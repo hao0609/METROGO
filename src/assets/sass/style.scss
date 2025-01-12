@@ -1,0 +1,21 @@
+@use "sass:map";
+
+// sass import
+@import 'base/color';
+@import 'base/font';
+@import 'base/reset';
+
+// component
+@import 'component/btn';
+
+// mixin
+@import 'mixin/mixin';
+
+body {
+    font-family: $font-noto, 'Microsoft JhengHei','PingFang TC', 'Heiti TC', 'Source Han Sans TC', 'Segoe UI', Arial, sans-serif;
+    -webkit-text-size-adjust: 100%; // 防止 iOS 自動調整字體大小
+}
+
+*{
+    box-sizing: border-box;
+}

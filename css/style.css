@@ -1,0 +1,190 @@
+@import url("https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Noto+Sans+TC:wght@100..900&family=Manrope:wght@200..800&family=Parkinsans:wght@300..800&display=swap");
+h1 {
+  font-size: 93px;
+  line-height: 128px;
+  font-family: "Dela Gothic One";
+}
+@media screen and (max-width: 576px) {
+  h1 {
+    font-size: 65px;
+    line-height: 94px;
+  }
+}
+
+h2 {
+  font-size: 60px;
+  line-height: 86px;
+  font-family: "Dela Gothic One";
+}
+@media screen and (max-width: 576px) {
+  h2 {
+    font-size: 36px;
+    line-height: 52px;
+  }
+}
+
+.title1 {
+  font-size: 30px;
+  line-height: 36px;
+}
+@media screen and (max-width: 576px) {
+  .title1 {
+    font-size: 24px;
+    line-height: 30px;
+  }
+}
+
+.title2 {
+  font-size: 20px;
+  line-height: 28px;
+}
+@media screen and (max-width: 576px) {
+  .title2 {
+    font-size: 18px;
+    line-height: 24px;
+  }
+}
+
+p {
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.caption {
+  font-size: 14px;
+  line-height: 20px;
+}
+
+[class*=title].bold, p.bold, .caption.bold {
+  font-weight: bold;
+}
+
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+html, body, ol, ul, li,
+table, caption, tbody, tfoot, thead, tr, th, td {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  vertical-align: baseline;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.btn_filled {
+  color: #ffffff;
+  background-color: #8C25C0;
+  padding: 16px 24px;
+  width: -moz-fit-content;
+  width: fit-content;
+  min-width: 180px;
+  border-radius: 100px;
+  font-size: 18px;
+  line-height: 24px;
+  font-weight: bold;
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  box-sizing: border-box;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.btn_filled:hover {
+  background: #a63eda;
+}
+.btn_filled:active {
+  background: #6d1d95;
+}
+@media screen and (max-width: 576px) {
+  .btn_filled {
+    min-width: 136px;
+  }
+}
+
+.btn_outline {
+  color: #8C25C0;
+  background-color: transparent;
+  padding: 16px 24px;
+  width: -moz-fit-content;
+  width: fit-content;
+  min-width: 180px;
+  border-radius: 100px;
+  font-size: 18px;
+  line-height: 24px;
+  font-weight: bold;
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  box-sizing: border-box;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 1px solid #8C25C0;
+}
+.btn_outline:hover {
+  background-color: #f6e9fe;
+}
+.btn_outline:active {
+  background-color: #e2b8fc;
+  border-color: #6d1d95;
+}
+@media screen and (max-width: 576px) {
+  .btn_outline {
+    min-width: 136px;
+  }
+}
+
+.btn_white {
+  color: #8C25C0;
+  background-color: #ffffff;
+  padding: 16px 24px;
+  width: -moz-fit-content;
+  width: fit-content;
+  min-width: 180px;
+  border-radius: 100px;
+  font-size: 18px;
+  line-height: 24px;
+  font-weight: bold;
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  box-sizing: border-box;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.btn_white:hover {
+  background-color: #f6e9fe;
+}
+@media screen and (max-width: 576px) {
+  .btn_white {
+    min-width: 136px;
+  }
+}
+.btn_white:active {
+  background-color: #e2b8fc;
+  color: #6d1d95;
+}
+
+.btn_filled.small, .btn_white.small, .btn_outline.small {
+  padding: 12px 20px;
+  min-width: 100px;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+body {
+  font-family: "NotoSansTC", "Microsoft JhengHei", "PingFang TC", "Heiti TC", "Source Han Sans TC", "Segoe UI", Arial, sans-serif;
+  -webkit-text-size-adjust: 100%;
+}
+
+* {
+  box-sizing: border-box;
+}/*# sourceMappingURL=style.css.map */

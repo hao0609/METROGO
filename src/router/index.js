@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
 
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -36,6 +37,9 @@ const router = createRouter({
 
     // 最新消息
     { path: "/news", name: "News" },
+
+    // 樣式參考頁
+    { path: "/style-view", name: "StyleView" , component: () => import("../views/StyleView.vue"),},
   ],
 });
 

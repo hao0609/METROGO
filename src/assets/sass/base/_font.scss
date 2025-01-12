@@ -1,5 +1,65 @@
-@import url("https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Noto+Sans+TC:wght@100..900&display=swap");
+@import '../mixin/_mixin';
 
+// 引用 google-font
+@import url("https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Noto+Sans+TC:wght@100..900&family=Manrope:wght@200..800&family=Parkinsans:wght@300..800&display=swap");
 $font-dela: "Dela Gothic One";
 $font-noto: "NotoSansTC";
-$background-color: #ffa5a5;
+
+h1 {
+    font-size: 93px;
+    line-height: 128px;
+    font-family: $font-dela;
+
+    @include mobile() {
+        font-size: 65px;
+        line-height: 94px;
+    }
+}
+
+h2 {
+    font-size: 60px;
+    line-height: 86px;
+    font-family: $font-dela;
+
+    @include mobile() {
+        font-size: 36px;
+        line-height: 52px;
+    }
+}
+
+.title1 {
+    font-size: 30px;
+    line-height: 36px;
+    @include mobile() {
+
+        font-size: 24px;
+        line-height: 30px;
+    }
+}
+
+.title2 {
+    font-size: 20px;
+    line-height: 28px;
+
+    @include mobile() {
+        font-size: 18px;
+        line-height: 24px;
+    }
+}
+
+p {
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.caption {
+    font-size: 14px;
+    line-height: 20px;
+}
+
+// 文字 class 後方帶 bold 變粗體
+[class*="title"], p, .caption {
+    &.bold {
+    font-weight: bold;
+    }
+}
