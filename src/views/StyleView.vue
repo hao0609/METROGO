@@ -65,7 +65,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style>
 .font-guide {
   max-width: 1200px;
   margin: 0 auto;
