@@ -36,14 +36,15 @@
     &:hover{
         background-color: #f6e9fe;
     }
-
-    @include mobile(){
-        min-width: 136px;
-    }
     &:active {
         background-color: darken(#f6e9fe, 10%);
         color: darken($primary-400, 10%);
     }
+    
+    @include mobile(){
+        min-width: 136px;
+    }
+    
 }
 
 .btn_filled, .btn_white, .btn_outline {
@@ -52,5 +53,9 @@
         min-width: 100px;
         font-size: 16px;
         line-height: 24px;
+
+        @include mobile(){
+            min-width: 80px;
+        }
     }
 }

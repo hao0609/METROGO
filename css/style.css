@@ -163,14 +163,14 @@ table {
 .btn_white:hover {
   background-color: #f6e9fe;
 }
+.btn_white:active {
+  background-color: #e2b8fc;
+  color: #6d1d95;
+}
 @media screen and (max-width: 576px) {
   .btn_white {
     min-width: 136px;
   }
-}
-.btn_white:active {
-  background-color: #e2b8fc;
-  color: #6d1d95;
 }
 
 .btn_filled.small, .btn_white.small, .btn_outline.small {
@@ -178,6 +178,11 @@ table {
   min-width: 100px;
   font-size: 16px;
   line-height: 24px;
+}
+@media screen and (max-width: 576px) {
+  .btn_filled.small, .btn_white.small, .btn_outline.small {
+    min-width: 80px;
+  }
 }
 
 body {
