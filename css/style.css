@@ -1,4 +1,25 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
 @import url("https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Noto+Sans+TC:wght@100..900&family=Manrope:wght@200..800&family=Parkinsans:wght@300..800&display=swap");
+html, body, ol, ul, li,
+table, caption, tbody, tfoot, thead, tr, th, td {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  vertical-align: baseline;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
 h1 {
   font-size: 93px;
   line-height: 128px;
@@ -57,27 +78,6 @@ p {
 
 [class*=title].bold, p.bold, .caption.bold {
   font-weight: bold;
-}
-
-/* http://meyerweb.com/eric/tools/css/reset/ 
-   v2.0 | 20110126
-   License: none (public domain)
-*/
-html, body, ol, ul, li,
-table, caption, tbody, tfoot, thead, tr, th, td {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  vertical-align: baseline;
-}
-
-ol, ul {
-  list-style: none;
-}
-
-table {
-  border-collapse: collapse;
-  border-spacing: 0;
 }
 
 .btn_filled {
@@ -192,4 +192,124 @@ body {
 
 * {
   box-sizing: border-box;
+}
+
+.txt-primary-400 {
+  color: #8C25C0;
+}
+
+.txt-neutral-400 {
+  color: #495057;
+}
+
+.txt-neutral-200 {
+  color: #7D8A93;
+}
+
+.txt-neutral-150 {
+  color: #CCD1D5;
+}
+
+.txt-neutral-0 {
+  color: #ffffff;
+}
+
+.txt-metro-green {
+  color: #008659;
+}
+
+.txt-metro-blue {
+  color: #0070BD;
+}
+
+.txt-metro-red {
+  color: #E3002C;
+}
+
+.txt-metro-brown {
+  color: #C48C31;
+}
+
+.txt-metro-yellow {
+  color: #F8B61C;
+}
+
+.txt-green-400 {
+  color: #2EB94C;
+}
+
+.txt-aqua-400 {
+  color: #00C9A7;
+}
+
+.txt-pink-400 {
+  color: #FC79D0;
+}
+
+.txt-orange-400 {
+  color: #FF974B;
+}
+
+.txt-yellow-400 {
+  color: #FCD34D;
+}
+
+.bg-primary-400 {
+  background-color: #8C25C0;
+}
+
+.bg-neutral-400 {
+  background-color: #495057;
+}
+
+.bg-neutral-200 {
+  background-color: #7D8A93;
+}
+
+.bg-neutral-150 {
+  background-color: #CCD1D5;
+}
+
+.bg-neutral-0 {
+  background-color: #ffffff;
+}
+
+.bg-metro-green {
+  background-color: #008659;
+}
+
+.bg-metro-blue {
+  background-color: #0070BD;
+}
+
+.bg-metro-red {
+  background-color: #E3002C;
+}
+
+.bg-metro-brown {
+  background-color: #C48C31;
+}
+
+.bg-metro-yellow {
+  background-color: #F8B61C;
+}
+
+.bg-green-400 {
+  background-color: #2EB94C;
+}
+
+.bg-aqua-400 {
+  background-color: #00C9A7;
+}
+
+.bg-pink-400 {
+  background-color: #FC79D0;
+}
+
+.bg-orange-400 {
+  background-color: #FF974B;
+}
+
+.bg-yellow-400 {
+  background-color: #FCD34D;
 }/*# sourceMappingURL=style.css.map */

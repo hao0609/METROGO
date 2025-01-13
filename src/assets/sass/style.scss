@@ -1,9 +1,9 @@
 @use "sass:map";
 
 // sass import
+@import 'base/reset';
 @import 'base/color';
 @import 'base/font';
-@import 'base/reset';
 
 // component
 @import 'component/btn';
@@ -18,4 +18,54 @@ body {
 
 *{
     box-sizing: border-box;
+}
+
+// 文字顏色 class 變數
+$textColor : (
+    txt-primary-400: $primary-400,
+    txt-neutral-400: $neutral-400,
+    txt-neutral-200: $neutral-200,
+    txt-neutral-150: $neutral-150,
+    txt-neutral-0: $neutral-0,
+    txt-metro-green: $metro-green,
+    txt-metro-blue: $metro-blue,
+    txt-metro-red: $metro-red,
+    txt-metro-brown: $metro-brown,
+    txt-metro-yellow: $metro-yellow,
+    txt-green-400: $green-400,
+    txt-aqua-400: $aqua-400,
+    txt-pink-400: $pink-400,
+    txt-orange-400: $orange-400,
+    txt-yellow-400: $yellow-400,
+);
+
+@each $title, $values in $textColor {
+   .#{$title} {
+       color: $values;
+   }
+}
+
+// 背景顏色 class 變數
+$bgColor : (
+    bg-primary-400: $primary-400,
+    bg-neutral-400: $neutral-400,
+    bg-neutral-200: $neutral-200,
+    bg-neutral-150: $neutral-150,
+    bg-neutral-0: $neutral-0,
+    bg-metro-green: $metro-green,
+    bg-metro-blue: $metro-blue,
+    bg-metro-red: $metro-red,
+    bg-metro-brown: $metro-brown,
+    bg-metro-yellow: $metro-yellow,
+    bg-green-400: $green-400,
+    bg-aqua-400: $aqua-400,
+    bg-pink-400: $pink-400,
+    bg-orange-400: $orange-400,
+    bg-yellow-400: $yellow-400,
+);
+
+@each $title, $value in $bgColor {
+   .#{$title} {
+       background-color: $value;
+   }
 }

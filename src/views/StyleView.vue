@@ -3,14 +3,14 @@
     <p style="margin-bottom: 40px">****** 字體樣式 ******</p>
     
     <!-- H1 -->
-    <section class="guide-section">
-      <p class="section-title">h1</p>
+    <section class="guide-section bg-primary-400">
+      <p class="section-title txt-primary-400">h1</p>
       <h1>H1 標題文字</h1>
     </section>
 
     <!-- H2 -->
     <section class="guide-section">
-      <p class="section-title">h2</p>
+      <p class="section-title txt-neutral-0">h2</p>
       <h2>H2 標題文字</h2>
     </section>
 
