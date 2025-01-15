@@ -7,54 +7,54 @@ $font-noto: "NotoSansTC";
 
 h1 {
     font-size: 93px;
-    line-height: 128px;
+    line-height: 1.5;
     font-family: $font-dela;
 
     @include mobile() {
         font-size: 65px;
-        line-height: 94px;
+        line-height: 1.5;
     }
 }
 
 h2 {
     font-size: 60px;
-    line-height: 86px;
+    line-height: 1.5;
     font-family: $font-dela;
 
     @include mobile() {
         font-size: 36px;
-        line-height: 52px;
+        line-height: 1.5;
     }
 }
 
 .title1 {
     font-size: 30px;
-    line-height: 36px;
+    line-height: 1.5;
     @include mobile() {
 
         font-size: 24px;
-        line-height: 30px;
+        line-height: 1.5;
     }
 }
 
 .title2 {
     font-size: 20px;
-    line-height: 28px;
+    line-height: 1.5;
 
     @include mobile() {
         font-size: 18px;
-        line-height: 24px;
+        line-height: 1.5;
     }
 }
 
 p {
     font-size: 16px;
-    line-height: 24px;
+    line-height: 1.5;
 }
 
 .caption {
     font-size: 14px;
-    line-height: 20px;
+    line-height: 1.5;
 }
 
 // 文字 class 後方帶 bold 變粗體
