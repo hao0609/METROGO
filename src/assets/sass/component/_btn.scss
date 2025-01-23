@@ -1,6 +1,7 @@
 .btn_filled {
     @include btn($primary-400, $neutral-0);
-       
+    border: 1px solid $primary-400;
+
     &:hover{
         background: lighten($primary-400, 10%);
     }
@@ -32,6 +33,7 @@
 
 .btn_white {
     @include btn($neutral-0, $primary-400);
+    border: 1px solid $neutral-0;
 
     &:hover{
         background-color: #f6e9fe;
@@ -58,4 +60,10 @@
             min-width: 80px;
         }
     }
+}
+
+.btn_filled:disabled, .btn_white:disabled, .btn_outline:disabled {
+    @include btn($neutral-150, $neutral-200);
+    border: 1px solid $neutral-150;
+    cursor: not-allowed;
 }

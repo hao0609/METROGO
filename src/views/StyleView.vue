@@ -46,13 +46,14 @@
     <p style="margin-bottom: 40px">****** 按鈕樣式 ******</p>
     <section style="display: flex; flex-direction: column; gap: 20px">
       <!-- size: Regular -->
-      <btn class="btn_filled">按鈕</btn>
-      <btn class="btn_outline">按鈕</btn>
-      <btn class="btn_white">按鈕</btn>
+      <button class="btn_filled">按鈕</button>
+      <button class="btn_outline">按鈕</button>
+      <button class="btn_white">按鈕</button>
+      <button class="btn_filled" disabled>禁止按鈕</button>
       <!-- size: Small -->
-      <btn class="btn_filled small">按鈕</btn>
-      <btn class="btn_outline small">按鈕</btn>
-      <btn class="btn_white small">按鈕</btn>
+      <button class="btn_filled small">按鈕</button>
+      <button class="btn_outline small">按鈕</button>
+      <button class="btn_white small">按鈕</button>
 
       <!-- <v-btn class="btn_filled small">Button</v-btn> -->
     </section>
