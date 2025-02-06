@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
-
+import LoginView from '../views/LoginView.vue'
+import AlertView from '../views/AlertView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -10,6 +11,7 @@ const router = createRouter({
       name: "home",
       component: HomeView,
     },
+
     // {
     //   path: "/about",
     //   name: "about",
@@ -38,8 +40,24 @@ const router = createRouter({
     // 最新消息
     { path: "/news", name: "News" },
 
+    // 登入
+    {
+      path: '/login',
+      name: 'LoginView',
+      component: LoginView
+    },
+
     // 樣式參考頁
     { path: "/style-view", name: "StyleView" , component: () => import("../views/StyleView.vue"),},
+
+    // Alert 樣式參考頁
+    {
+      path: '/alert-view',
+      name: 'AlertView',
+      component: AlertView
+    },
+    
+
   ],
 });
 

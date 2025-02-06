@@ -23,3 +23,12 @@
     cursor: pointer;
     transition: all .3s ease;
 }
+
+
+// display:flex/align-items-center
+
+@mixin flex-center {
+    
+    display: flex;
+    align-items: center;
+}

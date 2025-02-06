@@ -1,0 +1,86 @@
+
+// alert_Mobile
+
+  .swal2-container{
+    background: rgba(35, 37, 41, 0.50) !important;
+    padding: 0 20px;
+  }
+
+  .my-swal-mobile{
+      @include flex-center;
+      padding: 2.5rem 1.5rem;
+      gap: 1.5rem;    
+      flex-direction: column;
+      border-radius: 20px;    
+    }
+
+  .my-swal-mobile > .swal2-close{
+    width:unset;
+    height: unset;
+  }
+
+  .my-swal-mobile > .swal2-title {
+    order: 1; /* 將標題調整為第一個 */
+    font-size: unset;
+    padding: 0 40px;      /* 設左右 40px 是防止被 X按鈕擋到 */
+    color: $neutral-700;
+  }
+  .my-swal-mobile > .swal2-html-container > .content {
+    @include flex-center;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .my-swal-mobile > .swal2-html-container > .content > .image{
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+    background:  #CCD1D5;
+  } 
+
+  .my-swal-mobile > .swal2-html-container > .content > .image > img{
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+    display: block;
+  } 
+
+  .my-swal-mobile > .swal2-html-container > .content > .text_box{
+    display: flex;
+    gap: 16px;
+    flex-direction: column;
+    justify-content: space-between;
+  } 
+  .my-swal-mobile > .swal2-html-container > .content > .text_box >.title1{
+    color: $neutral-700;  
+  }
+
+
+
+  .my-swal-mobile .swal2-html-container {
+    order: 2; /* 將 中間內容 調整為第二個 */
+    padding: 0;
+  }
+
+  .my-swal-mobile >.swal2-actions {
+    order: 3; /* 將 按鈕外部容器 調整為第三個 */
+    margin: 0;
+    display: flex;
+    gap: 8px;
+
+  }
+  .my-swal-mobile > .swal2-actions > .swal2-cancel{
+    order: 1; /* 將 關閉按鈕 調整為第一個 */
+    margin: 0;
+  }
+  .my-swal-mobile > .swal2-actions > .swal2-confirm{    
+    order: 2; /* 將 另個按鈕 調整為第二個 */
+    margin: 0;
+  }
+
+
+
+
+
+
+  
