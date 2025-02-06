@@ -1,7 +1,7 @@
 <template>
   <div class="font-guide">
     <p style="margin-bottom: 40px">****** 字體樣式 ******</p>
-    
+
     <!-- H1 -->
     <section class="guide-section bg-primary-400">
       <p class="section-title txt-primary-400">h1</p>
@@ -20,7 +20,6 @@
       <div class="title1 bold">Title 1 粗體樣式</div>
       <div class="title1">Title 1 標準樣式</div>
     </section>
-    
 
     <!-- Title 2 -->
     <section class="guide-section">
@@ -32,15 +31,27 @@
     <!-- 內文 p -->
     <section class="guide-section">
       <p class="section-title">p</p>
-      <p class="bold">p 粗體樣式：力母吉一放多爪活像是昔房朵急首公！哭今泉乍田苦裏吉音色冬視怎院打常：朵沒几春記頭天禾牙高石，助詞念布米扒就時飽麼喜安胡二鳥。</p>
-      <p >p 標準樣式：力母吉一放多爪活像是昔房朵急首公！哭今泉乍田苦裏吉音色冬視怎院打常：朵沒几春記頭天禾牙高石，助詞念布米扒就時飽麼喜安胡二鳥。</p>
+      <p class="bold">
+        p
+        粗體樣式：力母吉一放多爪活像是昔房朵急首公！哭今泉乍田苦裏吉音色冬視怎院打常：朵沒几春記頭天禾牙高石，助詞念布米扒就時飽麼喜安胡二鳥。
+      </p>
+      <p>
+        p
+        標準樣式：力母吉一放多爪活像是昔房朵急首公！哭今泉乍田苦裏吉音色冬視怎院打常：朵沒几春記頭天禾牙高石，助詞念布米扒就時飽麼喜安胡二鳥。
+      </p>
     </section>
 
     <!-- Caption -->
     <section class="guide-section">
       <p class="section-title">class="caption"</p>
-      <p class="caption bold">caption 粗體樣式：力母吉一放多爪活像是昔房朵急首公！哭今泉乍田苦裏吉音色冬視怎院打常：朵沒几春記頭天禾牙高石，助詞念布米扒就時飽麼喜安胡二鳥。</p>
-      <p class="caption">caption 標準樣式：力母吉一放多爪活像是昔房朵急首公！哭今泉乍田苦裏吉音色冬視怎院打常：朵沒几春記頭天禾牙高石，助詞念布米扒就時飽麼喜安胡二鳥。</p>
+      <p class="caption bold">
+        caption
+        粗體樣式：力母吉一放多爪活像是昔房朵急首公！哭今泉乍田苦裏吉音色冬視怎院打常：朵沒几春記頭天禾牙高石，助詞念布米扒就時飽麼喜安胡二鳥。
+      </p>
+      <p class="caption">
+        caption
+        標準樣式：力母吉一放多爪活像是昔房朵急首公！哭今泉乍田苦裏吉音色冬視怎院打常：朵沒几春記頭天禾牙高石，助詞念布米扒就時飽麼喜安胡二鳥。
+      </p>
     </section>
 
     <p style="margin-bottom: 40px">****** 按鈕樣式 ******</p>
@@ -56,14 +67,21 @@
       <button class="btn_white small">按鈕</button>
 
       <!-- <v-btn class="btn_filled small">Button</v-btn> -->
+
+      <!-- check box -->
+      ****** checkbox樣式 ******
+      <label>
+        <input class="checkbox" type="checkbox" />
+        <span></span> A
+      </label>
     </section>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'FontGuideView'
-}
+  name: "FontGuideView",
+};
 </script>
 
 <style>
@@ -75,7 +93,7 @@ export default {
 
 .guide-section {
   margin-bottom: 48px;
-  
+
   .section-title {
     font-size: 20px;
     margin-bottom: 20px;

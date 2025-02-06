@@ -100,10 +100,10 @@ p {
   border: 1px solid #8C25C0;
 }
 .btn_filled:hover {
-  background: rgb(165.6113537118, 62.1615720524, 217.8384279476);
+  background: #a63eda;
 }
 .btn_filled:active {
-  background: rgb(108.8209606987, 28.7598253275, 149.2401746725);
+  background: #6d1d95;
 }
 @media screen and (max-width: 576px) {
   .btn_filled {
@@ -133,8 +133,8 @@ p {
   background-color: #f6e9fe;
 }
 .btn_outline:active {
-  background-color: rgb(226.0434782609, 184.2173913043, 251.7826086957);
-  border-color: rgb(108.8209606987, 28.7598253275, 149.2401746725);
+  background-color: #e2b8fc;
+  border-color: #6d1d95;
 }
 @media screen and (max-width: 576px) {
   .btn_outline {
@@ -164,8 +164,8 @@ p {
   background-color: #f6e9fe;
 }
 .btn_white:active {
-  background-color: rgb(226.0434782609, 184.2173913043, 251.7826086957);
-  color: rgb(108.8209606987, 28.7598253275, 149.2401746725);
+  background-color: #e2b8fc;
+  color: #6d1d95;
 }
 @media screen and (max-width: 576px) {
   .btn_white {
@@ -205,6 +205,36 @@ p {
   cursor: not-allowed;
 }
 
+.checkbox {
+  opacity: 0; /* 隱藏原生 checkbox，但仍保留其交互性 */
+  position: absolute;
+}
+
+label span {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  border: 2px solid #CCD1D5;
+  background-color: #ffffff;
+  margin-right: 8px;
+  position: relative;
+  border-radius: 4px; /* 設定圓角 */
+}
+
+/* 勾選後框的顏色變為紫色 */
+.checkbox:checked + span {
+  border-color: #8C25C0;
+}
+
+.checkbox:checked + span::after {
+  content: "✔";
+  color: #8C25C0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 .btn_filled {
   color: #ffffff;
   background-color: #8C25C0;
@@ -224,10 +254,10 @@ p {
   border: 1px solid #8C25C0;
 }
 .btn_filled:hover {
-  background: rgb(165.6113537118, 62.1615720524, 217.8384279476);
+  background: #a63eda;
 }
 .btn_filled:active {
-  background: rgb(108.8209606987, 28.7598253275, 149.2401746725);
+  background: #6d1d95;
 }
 @media screen and (max-width: 576px) {
   .btn_filled {
@@ -257,8 +287,8 @@ p {
   background-color: #f6e9fe;
 }
 .btn_outline:active {
-  background-color: rgb(226.0434782609, 184.2173913043, 251.7826086957);
-  border-color: rgb(108.8209606987, 28.7598253275, 149.2401746725);
+  background-color: #e2b8fc;
+  border-color: #6d1d95;
 }
 @media screen and (max-width: 576px) {
   .btn_outline {
@@ -288,8 +318,8 @@ p {
   background-color: #f6e9fe;
 }
 .btn_white:active {
-  background-color: rgb(226.0434782609, 184.2173913043, 251.7826086957);
-  color: rgb(108.8209606987, 28.7598253275, 149.2401746725);
+  background-color: #e2b8fc;
+  color: #6d1d95;
 }
 @media screen and (max-width: 576px) {
   .btn_white {
@@ -714,6 +744,4 @@ body {
 
 .bg-yellow-400 {
   background-color: #FCD34D;
-}
-
-/*# sourceMappingURL=style.css.map */
+}/*# sourceMappingURL=style.css.map */
