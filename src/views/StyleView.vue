@@ -75,6 +75,93 @@
         <span></span> A
       </label>
     </section>
+
+    <!-- input -->
+    ****** input 樣式 ******
+    <section>
+      <div class="form-group">
+        <label class="input-label">標題文字</label>
+        <div class="input-wrapper">
+        <input type="text" class="input-field" placeholder="Placeholder">
+      </div>
+    </div>
+
+    <div class="form-group error">
+      <label class="input-label">標題文字</label>
+      <div class="input-wrapper">
+        <input type="text" class="input-field" placeholder="Placeholder">
+        <span class="error-message">錯誤訊息</span>
+      </div>
+    </div>
+
+    <div class="form-group disabled">
+      <label class="input-label">標題文字</label>
+      <div class="input-wrapper">
+        <input type="text" class="input-field" placeholder="禁用文字" disabled>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="input-label required">驗證碼</label>
+      <div class="input-wrapper with-button">
+        <input type="text" class="input-field" placeholder="請輸入驗證碼">
+        <button class="text-button">重送驗證碼</button>
+      </div>
+    </div>
+    </section>
+
+    <!-- select -->
+    ****** 下拉選單 樣式 ******
+    <section style="display: flex; flex-direction: column; gap: 20px">
+    <!-- 一般狀態 -->
+    <div class="select-group">
+      <label class="select-label">標題文字</label>
+      <div class="select-wrapper">
+        <select class="select-field">
+          <option value="" disabled selected>下拉選項</option>
+          <option value="option1">選項一</option>
+          <option value="option2">選項二</option>
+        </select>
+        <span class="select-arrow"></span>
+      </div>
+    </div>
+
+    <!-- 錯誤狀態 -->
+    <div class="select-group">
+      <label class="select-label required">標題文字</label>
+      <div class="select-wrapper error">
+        <select class="select-field">
+          <option value="" disabled selected>下拉選項</option>
+          <option value="option1">選項一</option>
+          <option value="option2">選項二</option>
+        </select>
+        <span class="select-arrow"></span>
+        <span class="error-message">錯誤訊息</span>
+      </div>
+    </div>
+
+    <!-- 禁用狀態 -->
+    <div class="select-group">
+      <label class="select-label">標題文字</label>
+      <div class="select-wrapper disabled">
+        <select class="select-field" disabled>
+          <option value="" disabled selected>禁止選項</option>
+        </select>
+        <span class="select-arrow"></span>
+      </div>
+    </div>
+
+    <!-- 小尺寸 -->
+    <div class="select-wrapper small">
+      <select class="select-field">
+        <option value="" disabled selected>小尺寸下拉</option>
+        <option value="option1">選項一</option>
+        <option value="option2">選項二</option>
+      </select>
+      <span class="select-arrow"></span>
+    </div>
+
+    </section>
   </div>
 </template>
 
