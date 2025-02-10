@@ -54,7 +54,7 @@
       </p>
     </section>
 
-    <p style="margin-bottom: 40px">****** 按鈕樣式 ******</p>
+    <p style="margin: 40px 0;">****** 按鈕樣式 ******</p>
     <section style="display: flex; flex-direction: column; gap: 20px">
       <!-- size: Regular -->
       <button class="btn_filled">按鈕</button>
@@ -69,7 +69,7 @@
       <!-- <v-btn class="btn_filled small">Button</v-btn> -->
 
       <!-- check box -->
-      ****** checkbox樣式 ******
+      <p style="margin: 40px 0;">****** checkbox樣式 ******</p>
       <label>
         <input class="checkbox" type="checkbox" />
         <span class="checkbox-custom"></span> A
@@ -77,7 +77,7 @@
     </section>
 
     <!-- radio box -->
-    ****** radiobox樣式 ******
+    <p style="margin: 40px 0;">****** radiobox樣式 ******</p>
     <div class="radio-group">
       <label class="radio-container">
         <input type="radio" name="option" class="radio-input" value="1">
@@ -94,7 +94,7 @@
 
 
     <!-- input -->
-    ****** input 樣式 ******
+    <p style="margin: 40px 0;">****** input 樣式 ******</p>
     <section>
       <div class="form-group">
         <label class="input-label">標題文字</label>
@@ -125,10 +125,15 @@
         <button class="text-button">重送驗證碼</button>
       </div>
     </div>
+    
+    <!-- 小尺寸 -->
+      <div class="input-wrapper small">
+      <input type="text" class="input-field" placeholder="小尺寸輸入框">
+      </div>
     </section>
 
     <!-- select -->
-    ****** 下拉選單 樣式 ******
+    <p style="margin: 40px 0;">****** 下拉選單 樣式 ******</p>
     <section style="display: flex; flex-direction: column; gap: 20px">
     <!-- 一般狀態 -->
     <div class="select-group">

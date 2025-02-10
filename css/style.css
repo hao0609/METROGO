@@ -177,6 +177,7 @@ p {
 }
 
 .btn_filled.small, .btn_white.small, .btn_outline.small {
+  height: 48px;
   padding: 12px 20px;
   min-width: 100px;
   font-size: 16px;
@@ -209,10 +210,6 @@ p {
   cursor: not-allowed;
 }
 
-.form-group {
-  margin-bottom: 16px;
-  position: relative;
-}
 .form-group .input-label {
   display: block;
   font-size: 20px;
@@ -225,11 +222,12 @@ p {
   color: #E3002C;
   margin-left: 4px;
 }
-.form-group .input-wrapper {
+
+.input-wrapper {
   position: relative;
   width: 100%;
 }
-.form-group .input-wrapper .input-field {
+.input-wrapper .input-field {
   width: 100%;
   height: 56px;
   padding: 16px 20px;
@@ -240,30 +238,30 @@ p {
   background-color: #ffffff;
   transition: all 0.3s ease;
 }
-.form-group .input-wrapper .input-field::-moz-placeholder {
+.input-wrapper .input-field::-moz-placeholder {
   color: #CCD1D5;
 }
-.form-group .input-wrapper .input-field::placeholder {
+.input-wrapper .input-field::placeholder {
   color: #CCD1D5;
 }
-.form-group .input-wrapper .input-field:focus {
+.input-wrapper .input-field:focus {
   outline: 1px;
   border: 1px solid #8C25C0;
 }
-.form-group .input-wrapper .input-field:not(:-moz-placeholder-shown) {
+.input-wrapper .input-field:not(:-moz-placeholder-shown) {
   border-color: #CCD1D5;
 }
-.form-group .input-wrapper .input-field:not(:placeholder-shown) {
+.input-wrapper .input-field:not(:placeholder-shown) {
   border-color: #CCD1D5;
 }
-.form-group .input-wrapper.with-button {
+.input-wrapper.with-button {
   position: relative;
 }
-.form-group .input-wrapper.with-button .input-field {
+.input-wrapper.with-button .input-field {
   width: 100%;
   padding-right: 120px;
 }
-.form-group .input-wrapper .error-message {
+.input-wrapper .error-message {
   position: absolute;
   right: 0;
   top: -34px;
@@ -271,7 +269,7 @@ p {
   font-size: 16px;
   color: #E3002C;
 }
-.form-group .input-wrapper .text-button {
+.input-wrapper .text-button {
   position: absolute;
   right: 12px;
   top: 50%;
@@ -285,30 +283,32 @@ p {
   cursor: pointer;
   transition: all 0.3s ease;
 }
-.form-group .input-wrapper .text-button:hover {
+.input-wrapper .text-button:hover {
   color: #a63eda;
 }
-.form-group .input-wrapper .text-button:active {
+.input-wrapper .text-button:active {
   color: #8C25C0;
 }
-.form-group.error .input-field {
+.input-wrapper.error .input-field {
   border-color: #E3002C;
 }
-.form-group.disabled .input-field {
+.input-wrapper.disabled .input-field {
   background-color: #E9ECEF;
   border-color: #CCD1D5;
   color: #7D8A93;
   cursor: not-allowed;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  opacity: 1;
 }
-.form-group.disabled .input-field::-moz-placeholder {
+.input-wrapper.disabled .input-field::-moz-placeholder {
   color: #CCD1D5;
 }
-.form-group.disabled .input-field::placeholder {
+.input-wrapper.disabled .input-field::placeholder {
   color: #CCD1D5;
+}
+
+.input-wrapper.small .input-field {
+  height: 48px;
+  padding: 12px 36px 12px 20px;
+  font-size: 16px;
 }
 
 .select-group .select-label {
@@ -325,8 +325,8 @@ p {
 }
 
 .select-wrapper {
+  width: 100%;
   position: relative;
-  margin-bottom: 4px;
 }
 .select-wrapper .select-field {
   width: 100%;
@@ -382,19 +382,9 @@ p {
   border-color: #CCD1D5;
   color: #7D8A93;
   cursor: not-allowed;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  opacity: 1;
 }
 .select-wrapper.disabled .select-arrow {
   border-color: #7D8A93;
-}
-.select-wrapper.disabled::-moz-placeholder {
-  color: #CCD1D5;
-}
-.select-wrapper.disabled::placeholder {
-  color: #CCD1D5;
 }
 
 .select-wrapper.small .select-field {
@@ -529,6 +519,7 @@ label .checkbox-custom {
 }
 
 .btn_filled.small, .btn_white.small, .btn_outline.small {
+  height: 48px;
   padding: 12px 20px;
   min-width: 100px;
   font-size: 16px;
