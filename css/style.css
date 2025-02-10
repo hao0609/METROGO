@@ -408,7 +408,7 @@ p {
   position: absolute;
 }
 
-label span {
+label .checkbox-custom {
   display: inline-block;
   width: 24px;
   height: 24px;
@@ -424,7 +424,7 @@ label span {
   border-color: #8C25C0;
 }
 
-.checkbox:checked + span::after {
+.checkbox:checked + .checkbox-custom::after {
   content: "✔";
   color: #8C25C0;
   position: absolute;
@@ -559,6 +559,83 @@ label span {
   transition: all 0.3s ease;
   border: 1px solid #CCD1D5;
   cursor: not-allowed;
+}
+
+.radio-container {
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  padding: 4px;
+  margin: 4px 0;
+}
+
+.radio-input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+.radio-input:checked + .radio-custom {
+  border-color: #8C25C0;
+}
+.radio-input:checked + .radio-custom:after {
+  transform: scale(1);
+  opacity: 1;
+}
+.radio-input:focus + .radio-custom {
+  box-shadow: 0 0 0 3px rgba(140, 37, 192, 0.2);
+}
+.radio-input:disabled + .radio-custom {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.radio-custom {
+  position: relative;
+  height: 20px;
+  width: 20px;
+  border: 1px solid #CCD1D5;
+  background-color: #ffffff;
+  border-radius: 50%;
+  transition: all 0.2s ease-in-out;
+}
+.radio-custom:after {
+  content: "";
+  position: absolute;
+  top: 20%;
+  left: 20%;
+  transform: translate(-50%, -50%) scale(0);
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #8C25C0;
+  opacity: 0;
+  transition: all 0.2s ease-in-out;
+}
+.radio-custom:hover {
+  border-color: #b0b8be;
+}
+
+.radio-label {
+  margin-left: 8px;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.radio-group {
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+  flex: 1 0 0;
+}
+.radio-group--horizontal {
+  flex-direction: row;
+  gap: 16px;
 }
 
 .my-swal-M {

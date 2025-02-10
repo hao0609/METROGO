@@ -1,0 +1,91 @@
+// Radio Container
+.radio-container {
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+  cursor: pointer;
+  user-select: none;
+  padding: 4px;
+  margin: 4px 0;
+}
+
+// Hide default radio input
+.radio-input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+  
+  // Custom radio appearance when checked
+  &:checked + .radio-custom {
+    border-color: $primary-400;
+    
+    &:after {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+  
+  // Focus styles for accessibility
+  &:focus + .radio-custom {
+    box-shadow: 0 0 0 3px rgba($primary-400, 0.2);
+  }
+  
+  // Disabled state
+  &:disabled + .radio-custom {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+// Custom radio design
+.radio-custom {
+  position: relative;
+  height: $radio-size;
+  width: $radio-size;
+  border: $radio-border-width solid $neutral-150;
+  background-color: $neutral-0;
+  border-radius: 50%;
+  transition: all $radio-transition;
+  
+  &:after {
+    content: '';
+    position: absolute;
+    top: 20%;
+    left: 20%;
+    transform: translate(-50%, -50%) scale(0);
+    width: $radio-inner-size;
+    height: $radio-inner-size;
+    border-radius: 50%;
+    background-color: $primary-400;
+    opacity: 0;
+    transition: all $radio-transition;
+  }
+  
+  // Hover state
+  &:hover {
+    border-color: darken($neutral-150, 10%);
+  }
+}
+
+// Radio label
+.radio-label {
+  margin-left: 8px;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+// Radio group
+.radio-group {
+display: flex;
+align-items: flex-start;
+gap: 24px;
+flex: 1 0 0;
+  
+  &--horizontal {
+    flex-direction: row;
+    gap: 16px;
+  }
+}
+

@@ -72,9 +72,26 @@
       ****** checkbox樣式 ******
       <label>
         <input class="checkbox" type="checkbox" />
-        <span></span> A
+        <span class="checkbox-custom"></span> A
       </label>
     </section>
+
+    <!-- radio box -->
+    ****** radiobox樣式 ******
+    <div class="radio-group">
+      <label class="radio-container">
+        <input type="radio" name="option" class="radio-input" value="1">
+        <span class="radio-custom"></span>
+        <span class="radio-label">上架</span>
+      </label>
+      
+      <label class="radio-container">
+        <input type="radio" name="option" class="radio-input" value="2">
+        <span class="radio-custom"></span>
+        <span class="radio-label">下架</span>
+      </label>
+    </div>
+
 
     <!-- input -->
     ****** input 樣式 ******
