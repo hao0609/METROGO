@@ -10,11 +10,9 @@
       </div>
       <div class="arrow">
         <div class="left">
-          <img
-            class=""
-            @click="goTo('frontend')"
-            src="../assets/images/Entrance_FrontEnd.svg"
-          />
+          <RouterLink to="/sights">
+            <img src="../assets/images/Entrance_FrontEnd.svg" alt="前往前台" />
+          </RouterLink>
         </div>
         <div class="metro">
           <img class="small" src="../assets/images/Entrance_metro_small.svg" /><img
@@ -24,11 +22,9 @@
           />
         </div>
         <div class="left">
-          <img
-            class=""
-            @click="goTo('backend')"
-            src="../assets/images/Entrance_BackEnd.svg"
-          />
+          <RouterLink to="/backend">
+            <img src="../assets/images/Entrance_BackEnd.svg" alt="前往後台" />
+          </RouterLink>
         </div>
       </div>
     </div>
@@ -36,17 +32,7 @@
 </template>
 
 <script>
-export default {
-  methods: {
-    goTo(destination) {
-      if (destination === "frontend") {
-        this.$router.push("/sights");
-      } else {
-        this.$router.push("/backend");
-      }
-    },
-  },
-};
+import { RouterLink } from "vue-router";
 </script>
 
 <style lang="scss" scoped>
