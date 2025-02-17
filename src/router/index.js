@@ -6,6 +6,7 @@ import AlertView from "../views/AlertView.vue";
 import SightsView from "../views/SightsView.vue";
 import TourView from "../views/TourView.vue";
 import MetroBlueLineView from "../views/MetroBlueLineView.vue";
+import BackendLoginView from "../views/BackendLoginView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -78,6 +79,13 @@ const router = createRouter({
       path: "/",
       name: "EntranceView",
       component: EntranceViewView,
+    },
+
+    // 後台登入頁面
+    {
+      path: "/backend-login",
+      name: "BackendLoginView",
+      component: BackendLoginView,
     },
   ],
 });
