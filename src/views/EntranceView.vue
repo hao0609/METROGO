@@ -10,7 +10,11 @@
       </div>
       <div class="arrow">
         <div class="left">
-          <img class="" src="../assets/images/Entrance_FrontEnd.svg" />
+          <img
+            class=""
+            @click="goTo('frontend')"
+            src="../assets/images/Entrance_FrontEnd.svg"
+          />
         </div>
         <div class="metro">
           <img class="small" src="../assets/images/Entrance_metro_small.svg" /><img
@@ -20,7 +24,11 @@
           />
         </div>
         <div class="left">
-          <img class="" src="../assets/images/Entrance_BackEnd.svg" />
+          <img
+            class=""
+            @click="goTo('backend')"
+            src="../assets/images/Entrance_BackEnd.svg"
+          />
         </div>
       </div>
     </div>
@@ -32,7 +40,7 @@ export default {
   methods: {
     goTo(destination) {
       if (destination === "frontend") {
-        this.$router.push("/frontend");
+        this.$router.push("/sights");
       } else {
         this.$router.push("/backend");
       }
