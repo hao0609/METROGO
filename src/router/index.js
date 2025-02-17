@@ -70,6 +70,14 @@ const router = createRouter({
       name: "AlertView",
       component: AlertView,
     },
+
+    // Entrance參考頁
+    {
+      path: "/entrance-view",
+      name: "EntranceView",
+      component: () => import("../views/EntranceView.vue"),
+    },
+
   ],
 });
 
