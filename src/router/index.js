@@ -6,6 +6,12 @@ import AlertView from "../views/AlertView.vue";
 import SightsView from "../views/SightsView.vue";
 import TourView from "../views/TourView.vue";
 import MetroBlueLineView from "../views/MetroBlueLineView.vue";
+import MissionGeneralView from '../views/MissionGeneralView.vue';
+import red_line from '../views/line/red.vue'
+import green_line from '../views/line/green.vue'
+import blue_line from '../views/line/blue.vue'
+import yellow_line from '../views/line/yellow.vue'
+import brown_line from '../views/line/brown.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -38,7 +44,39 @@ const router = createRouter({
     { path: "/red-line", name: "淡水信義線" },
     { path: "/featured/:line/:contentType", name: "小編精選" },
     { path: "/tour/:tourType", name: "旅遊行程", component: TourView },
-    { path: "/special-mission", name: "特殊任務" },
+    { path: "/special-mission",
+      name: "特殊任務", 
+      component: MissionGeneralView,
+      redirect: '/special-mission/red', // 讓 `/` 預設導向 `/red
+      children: [
+        {
+          path: 'red', // 這裡是子路由，不要加 `/`
+          name: 'Red',
+          component: red_line,
+        },
+        {
+          path: 'green', 
+          name: 'Green',
+          component: green_line,
+        },
+        {
+          path: 'blue', 
+          name: 'Blue',
+          component: blue_line,
+        },
+        {
+          path: 'yellow', 
+          name: 'Yellow',
+          component: yellow_line,
+        },
+        {
+          path: 'brown', 
+          name: 'Brown',
+          component: brown_line,
+        },
+      ]
+      
+   },
 
     // 會員中心
     { path: "/user-profile", name: "會員資料" },
