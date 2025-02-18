@@ -45,10 +45,10 @@ const router = createRouter({
     { path: "/featured/:line/:contentType", name: "小編精選" },
     { path: "/tour/:tourType", name: "旅遊行程", component: TourView },
     { path: "/special-mission", name: "特殊任務" },
-    { path: "/normal-mission",
+    { path: "/general-mission",
       name: "一般任務", 
       component: MissionGeneralView,
-      redirect: '/normal-mission/red', // 預設導向 `/red
+      redirect: '/general-mission/red', // 預設導向 `/red
       children: [
         {
           path: 'red', // 這裡是子路由，不要加 `/`

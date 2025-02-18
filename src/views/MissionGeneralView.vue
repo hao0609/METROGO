@@ -35,20 +35,22 @@
         }
     };
 
+    
+
     const route = useRoute();
 
     // 根據當前路由動態設定 .body 背景顏色
     const bgClass = computed(() => {
       switch (route.path) {
-        case "/normal-mission/red":
+        case "/general-mission/red":
           return "bg_color_red";
-        case "/normal-mission/green":         
+        case "/general-mission/green":         
           return "bg_color_green";
-        case "/normal-mission/blue":         
+        case "/general-mission/blue":         
           return "bg_color_blue";
-        case "/normal-mission/yellow":           
+        case "/general-mission/yellow":           
           return "bg_color_yellow";
-        case "/normal-mission/brown":         
+        case "/general-mission/brown":         
           return "bg_color_brown";
         default:
           return "";
@@ -59,19 +61,19 @@
     // 根據當前路由動態設定 .line_name 背景顏色以及文字
     const lineNameColor = computed(() => {
       switch (route.path) {
-        case "/normal-mission/red":
+        case "/general-mission/red":
           lineName.value = "淡水信義線"
           return "line_name_color_red";
-        case "/normal-mission/green":
+        case "/general-mission/green":
           lineName.value = "松山新店線"            
           return "line_name_color_green";
-        case "/normal-mission/blue":
+        case "/general-mission/blue":
           lineName.value = "板南線"            
           return "line_name_color_blue";
-        case "/normal-mission/yellow":
+        case "/general-mission/yellow":
           lineName.value = "中和新蘆線"            
           return "line_name_color_yellow";
-        case "/normal-mission/brown":
+        case "/general-mission/brown":
           lineName.value = "文湖線"            
           return "line_name_color_brown";
         default:
