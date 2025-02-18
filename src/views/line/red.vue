@@ -47,3 +47,10 @@
     </div>
     <alert_user_location ref="alert_web_M_userlocation"/> 
 </template>
+
+<style lang="scss" scoped>
+    @import "@/assets/sass/base/_color.scss";
+    @import "@/assets/sass/base/_font.scss";
+
+    @import "@/assets/sass/page/_mission-general-wrapper.scss";
+</style>

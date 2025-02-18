@@ -1,0 +1,326 @@
+
+button {
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+    border: 0;
+    background-color:unset
+}
+
+.lineH_28px{
+    line-height: 28px;
+}
+
+// 遊戲選單
+.game_menu{
+    position: absolute;
+    top: 72px;
+    width: 100%;
+    height: 70px;
+    z-index: 99;
+    padding: 0 40px;
+    display: flex;
+    @include mobile() {
+        background-color: $neutral-0;
+    }
+}
+.game_menu > .menu_box{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    align-items: center;
+    justify-content: flex-start;
+    flex-shrink: 0;
+    @include mobile() {
+       width: 100%;
+       justify-content: space-between;
+    }
+}
+
+.game_menu > .menu_box > .menu_btn{
+    background-color:$neutral-700;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 55px;
+    height: 55px;
+    position: relative;
+    border: 0;
+}
+.game_menu > .menu_box > .menu_btn > .text{
+    line-height: 100% ;
+    color: $neutral-0
+}
+
+.game_menu > .menu_box > .money_box{
+    background:  $neutral-0;
+    border-radius: 12px;
+    padding: 10px 25px 10px 25px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    flex-shrink: 0;
+    gap: 10px;
+    @include mobile() {
+        padding: 0;
+    }
+}
+
+.game_menu > .menu_box > .money_box > .icon{
+    display: flex;
+    align-items: center;
+}
+
+.game_menu > .menu_box > .money_box > .money{
+    color: $neutral-700;
+}
+
+.game_menu_btns{
+    position: absolute;
+    top: 145px;
+    width: 100%;
+    z-index: 99;
+    padding: 0 40px;
+    display: flex;
+}
+
+.game_menu_btns > .game_menu_btnsBox{
+    background: #dddddd;
+    border-radius: 20px;
+    padding: 27px 14px;
+    display: flex;
+    flex-direction: row;
+    gap: 14px;
+    align-items: center;
+    justify-content: center;
+    z-index: 99; 
+    position: relative;
+
+    @include mobile() {
+       width: 100%;
+    }
+
+}
+.game_menu_btns > .game_menu_btnsBox> .close_btn{
+    top: 0;
+    right: 0;
+    position: absolute;
+    cursor: pointer;
+}
+
+
+
+.game_menu_btns > .game_menu_btnsBox > .btn_box{
+    background: #ffffff;
+    border-radius: 29px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    align-items: center;
+    justify-content: center;
+    width: 85px;
+    height: 80px;
+    border: 0;
+    position: relative;
+    padding: 0;
+}
+
+.game_menu_btns > .game_menu_btnsBox > .btn_box:hover{
+    border: 2px solid #000000;
+}
+
+.game_menu_btns > .game_menu_btnsBox > .btn_box > .btn_box_text{
+    font-family: $font-noto;
+    font-size: 16px;
+    font-weight: 700;
+    color: black;
+}
+
+.game_menu_btns > .game_menu_btnsBox> .btn_box > .notify{
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: #ff0000;
+    border-radius: 50%;
+    width: 23px;
+    height: 23px;
+}
+
+
+
+// 整個遊戲畫面
+.body{    
+    height: 100vh;
+    overflow: hidden;
+}
+
+#container, .body {
+    width: 100%;
+}
+
+#wrapper {
+    height: 100%;
+}
+
+#stage {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    padding: 0 !important;
+    z-index: 0;
+    overflow: hidden;
+}
+
+#stage > .mover {
+  position: relative;
+  transform-origin: 0 0;
+  pointer-events: none;
+  will-change: transform
+}
+
+#stage > .mover {
+    cursor: grab;
+    pointer-events: auto
+}
+
+#stage > .mover.dragging {
+    cursor: grabbing;
+}
+
+
+
+
+// 背景顏色變更用
+.bg_color_red{
+    background-color: $pink-400;
+}
+
+.bg_color_green{
+    background-color: $green-400;
+}
+
+.bg_color_blue{
+    background-color: $aqua-400;
+}
+
+.bg_color_yellow{
+    background-color: $yellow-400;
+}
+
+.bg_color_brown{
+    background-color: $orange-400;
+}
+
+
+
+
+
+// 下方路線選擇區域
+.line_select{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 50px 20px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    @media screen and (max-width: 1055px) {
+        padding: 10px 20px;
+    }
+}
+
+.line_select > .line_select_box {
+
+    display: flex;
+    width: 61.25%;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    @media screen and (max-width: 1055px) {
+        width: 100%;
+        justify-content: center;
+        flex-direction: column;
+        gap: 5px;
+    }
+}
+.line_select > .line_select_box >.line_select_btns {
+
+    display: flex;
+    padding: 0px 20px;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    border-radius: 20px;
+    background-color: #ffffff;
+    height: 65px;
+
+    @include mobile() {
+        padding: 0px 5px;
+        visibility: hidden;
+        display: none;
+    }
+
+}
+.line_select > .line_select_box >.line_select_btns > .router_link:hover{
+    background-color: unset;
+}
+.line_select > .line_select_box >.line_select_btns > .router_link > button {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    border-radius: 50%;
+}
+
+.line_select > .line_select_box >.line_select_btns > .router_link > button > svg {
+    border-radius: 50%;
+
+}
+.line_select > .line_select_box >.line_select_btns > .router_link > button > svg:hover{
+    
+    border: 2px solid #000000;
+}
+
+.line_select > .line_select_box > .line_name {
+    display: flex;
+    padding: 15px 50px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    color: $neutral-0;
+}
+
+.line_name_color_red{
+    background-color: $metro-red;
+}
+
+.line_name_color_green{
+    background-color: $metro-green;
+}
+
+.line_name_color_blue{
+    background-color: $metro-blue;
+}
+
+.line_name_color_yellow{
+    background-color: $metro-yellow;
+}
+
+.line_name_color_brown{
+    background-color: $metro-brown;
+}
+
+
+// 取消 router-link 的預設樣式
+.router-link-active,
+.router-link-exact-active {
+text-decoration: none;
+color: inherit;
+}

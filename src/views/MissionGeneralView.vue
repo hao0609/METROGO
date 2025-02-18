@@ -40,15 +40,15 @@
     // 根據當前路由動態設定 .body 背景顏色
     const bgClass = computed(() => {
       switch (route.path) {
-        case "/red":
+        case "/normal-mission/red":
           return "bg_color_red";
-        case "/green":         
+        case "/normal-mission/green":         
           return "bg_color_green";
-        case "/blue":         
+        case "/normal-mission/blue":         
           return "bg_color_blue";
-        case "/yellow":           
+        case "/normal-mission/yellow":           
           return "bg_color_yellow";
-        case "/brown":         
+        case "/normal-mission/brown":         
           return "bg_color_brown";
         default:
           return "";
@@ -59,19 +59,19 @@
     // 根據當前路由動態設定 .line_name 背景顏色以及文字
     const lineNameColor = computed(() => {
       switch (route.path) {
-        case "/red":
+        case "/normal-mission/red":
           lineName.value = "淡水信義線"
           return "line_name_color_red";
-        case "/green":
+        case "/normal-mission/green":
           lineName.value = "松山新店線"            
           return "line_name_color_green";
-        case "/blue":
+        case "/normal-mission/blue":
           lineName.value = "板南線"            
           return "line_name_color_blue";
-        case "/yellow":
+        case "/normal-mission/yellow":
           lineName.value = "中和新蘆線"            
           return "line_name_color_yellow";
-        case "/brown":
+        case "/normal-mission/brown":
           lineName.value = "文湖線"            
           return "line_name_color_brown";
         default:
@@ -140,7 +140,7 @@
                     <path d="M24 2.64381C26.4323 4.0481 28.4521 6.06791 29.8564 8.50022C31.2607 10.9325 32 13.6916 32 16.5002C32 19.3088 31.2607 22.0679 29.8563 24.5002C28.452 26.9325 26.4322 28.9523 23.9998 30.3565C21.5675 31.7608 18.8084 32.5 15.9997 32.5C13.1911 32.5 10.432 31.7606 7.99974 30.3563C5.56744 28.9519 3.54766 26.9321 2.14342 24.4997C0.739168 22.0674 -7.13435e-05 19.3083 5.16424e-09 16.4997L0.00800019 15.9813C0.0976051 13.2181 0.901676 10.5253 2.34182 8.16536C3.78197 5.80543 5.80905 3.85893 8.22543 2.51563C10.6418 1.17232 13.365 0.478063 16.1296 0.500528C18.8942 0.522994 21.6058 1.26142 24 2.64381ZM16 6.89978C15.5757 6.89978 15.1687 7.06835 14.8686 7.36841C14.5686 7.66846 14.4 8.07543 14.4 8.49977C13.127 8.49977 11.9061 9.00548 11.0059 9.90565C10.1057 10.8058 9.6 12.0267 9.6 13.2997C9.6 14.5728 10.1057 15.7937 11.0059 16.6938C11.9061 17.594 13.127 18.0997 14.4 18.0997V21.2997C14.1346 21.3144 13.8697 21.264 13.6283 21.1531C13.3868 21.0421 13.1761 20.8738 13.0144 20.6629L12.9056 20.5013C12.6867 20.1482 12.3391 19.8942 11.9362 19.7928C11.5334 19.6915 11.1069 19.7507 10.747 19.9581C10.3871 20.1655 10.1219 20.5048 10.0076 20.9041C9.89326 21.3035 9.93874 21.7316 10.1344 22.0981C10.5428 22.8063 11.1253 23.3985 11.8267 23.8185C12.5282 24.2386 13.3252 24.4725 14.1424 24.4981H14.4C14.3997 24.8902 14.5434 25.2688 14.8038 25.562C15.0643 25.8552 15.4233 26.0426 15.8128 26.0884L16 26.0996C16.4243 26.0996 16.8313 25.9311 17.1314 25.631C17.4314 25.331 17.6 24.924 17.6 24.4997L17.8816 24.4917C19.129 24.4196 20.2991 23.8639 21.1433 22.9428C21.9875 22.0217 22.4392 20.8077 22.4026 19.5588C22.3659 18.3099 21.8437 17.1245 20.9469 16.2545C20.0501 15.3846 18.8494 14.8985 17.6 14.8997V11.6997C18.1728 11.6805 18.6736 11.9237 18.9856 12.3365L19.0944 12.4981C19.3133 12.8512 19.6609 13.1052 20.0638 13.2066C20.4666 13.308 20.8931 13.2487 21.253 13.0413C21.6129 12.8339 21.8781 12.4947 21.9924 12.0953C22.1067 11.6959 22.0613 11.2678 21.8656 10.9014C21.4574 10.1928 20.875 9.60027 20.1735 9.17997C19.4721 8.75967 18.6749 8.52553 17.8576 8.49977H17.6C17.6 8.07543 17.4314 7.66846 17.1314 7.36841C16.8313 7.06835 16.4243 6.89978 16 6.89978ZM17.6 18.0997C18.0243 18.0997 18.4313 18.2683 18.7314 18.5683C19.0314 18.8684 19.2 19.2753 19.2 19.6997C19.2 20.124 19.0314 20.531 18.7314 20.831C18.4313 21.1311 18.0243 21.2997 17.6 21.2997V18.0997ZM14.4 11.6997V14.8997C13.9757 14.8997 13.5687 14.7312 13.2686 14.4311C12.9686 14.131 12.8 13.7241 12.8 13.2997C12.8 12.8754 12.9686 12.4684 13.2686 12.1684C13.5687 11.8683 13.9757 11.6997 14.4 11.6997Z" fill="#FCD34D" />
                     </svg
                 ></div>
-                <div class="money title1 bold">1,000,000</div>   
+                <div class="money title1 bold lineH_28px">1,000,000</div>   
             </div>
         </div>
     </div>
@@ -179,7 +179,7 @@
         <div id="wrapper">
             <div id="container">
                 <div id="stage">
-                    <div ref="mover" class="mover active" :style="moverStyle" @mousedown="startDrag" @touchstart.prevent="startDrag">
+                    <div ref="mover" class="mover" :style="moverStyle" @mousedown="startDrag" @touchstart.prevent="startDrag">
                         <RouterView />
                     </div>
                 </div>
@@ -190,7 +190,7 @@
     <div class="line_select">
         <div class="line_select_box">
             <div class="line_select_btns" ref="line_select_btns">
-                <RouterLink to="/red" class="router_link" @click="">
+                <RouterLink to="red" class="router_link" @click="">
                     <button class="red">
                         <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 60 60" fill="none">
                         <g clip-path="url(#clip0_2006_16720)">
@@ -213,7 +213,7 @@
                         </svg>
                     </button>
                 </RouterLink>
-                <RouterLink to="/green" class="router_link">
+                <RouterLink to="green" class="router_link">
                     <button class="green"> 
                         
                         <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 60 60" fill="none">
@@ -237,7 +237,7 @@
                         </svg>
                     </button>
                 </RouterLink>
-                <RouterLink to="/blue" class="router_link">
+                <RouterLink to="blue" class="router_link">
                     <button class="blue">
                         <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 60 60" fill="none">
                         <g opacity="0.54" clip-path="url(#clip0_2006_16742)">
@@ -260,7 +260,7 @@
                         </svg>
                     </button>
                 </RouterLink>
-                <RouterLink to="/yellow" class="router_link">
+                <RouterLink to="yellow" class="router_link">
                     <button class="yellow">
                         <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 60 60" fill="none">
                         <g opacity="0.54" clip-path="url(#clip0_2006_16753)">
@@ -283,7 +283,7 @@
                         </svg>
                     </button>
                 </RouterLink>
-                <RouterLink to="/brown" class="router_link">
+                <RouterLink to="brown" class="router_link">
                     <button class="brown">
                         <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 60 60" fill="none">
                         <g opacity="0.54" clip-path="url(#clip0_2006_16764)">
@@ -307,7 +307,7 @@
                     </button>
                 </RouterLink>
             </div>
-            <button class="line_name title1 bold" :class="lineNameColor" @click="toggleVisibility">
+            <button class="line_name title1 bold lineH_28px" :class="lineNameColor" @click="toggleVisibility">
                 {{lineName}}
             </button>
         </div>
@@ -324,376 +324,12 @@
 </template>
 
 
-<style lang="scss"> 
+<style lang="scss" scoped>
     @import "@/assets/sass/base/_color.scss";
     @import "@/assets/sass/base/_font.scss";
 
-    .bg_img{
-        width: 100%;
-        height: 100%;
-    }
+    @import "@/assets/sass/page/_mission-general.scss";
 
-    button {
-        cursor: pointer;
-        padding: 0;
-        margin: 0;
-        border: 0;
-        background-color:unset
-    }
-
-    .game_menu{
-        position: absolute;
-        top: 72px;
-        width: 100%;
-        height: 70px;
-        z-index: 99;
-        padding: 0 40px;
-        display: flex;
-        @include mobile() {
-            background-color: $neutral-0;
-        }
-    }
-    .game_menu > .menu_box{
-        display: flex;
-        flex-direction: row;
-        gap: 20px;
-        align-items: center;
-        justify-content: flex-start;
-        flex-shrink: 0;
-        @include mobile() {
-           width: 100%;
-           justify-content: space-between;
-        }
-    }
-
-    .game_menu > .menu_box > .menu_btn{
-        background-color:$neutral-700;
-        border-radius: 12px;
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-        align-items: center;
-        justify-content: center;
-        flex-shrink: 0;
-        width: 55px;
-        height: 55px;
-        position: relative;
-        border: 0;
-    }
-    .game_menu > .menu_box > .menu_btn > .text{
-        line-height: 100% ;
-        color: $neutral-0
-    }
-
-    .game_menu > .menu_box > .money_box{
-        background:  $neutral-0;
-        border-radius: 12px;
-        padding: 10px 25px 10px 25px;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-        flex-shrink: 0;
-        gap: 10px;
-        @include mobile() {
-            padding: 0;
-        }
-    }
-
-    .game_menu > .menu_box > .money_box > .money{
-        color: $neutral-700;
-    }
-
-    .game_menu_btns{
-        position: absolute;
-        top: 145px;
-        width: 100%;
-        z-index: 99;
-        padding: 0 40px;
-        display: flex;
-    }
-
-    .game_menu_btns > .game_menu_btnsBox{
-        background: #dddddd;
-        border-radius: 20px;
-        padding: 27px 14px;
-        display: flex;
-        flex-direction: row;
-        gap: 14px;
-        align-items: center;
-        justify-content: center;
-        z-index: 99; 
-        position: relative;
-
-        @include mobile() {
-           width: 100%;
-        }
-
-    }
-    .game_menu_btns > .game_menu_btnsBox> .close_btn{
-        top: 0;
-        right: 0;
-        position: absolute;
-        cursor: pointer;
-    }
-
-
-  
-    .game_menu_btns > .game_menu_btnsBox > .btn_box{
-        background: #ffffff;
-        border-radius: 29px;
-        display: flex;
-        flex-direction: column;
-        gap: 5px;
-        align-items: center;
-        justify-content: center;
-        width: 85px;
-        height: 80px;
-        border: 0;
-        position: relative;
-        padding: 0;
-    }
-
-    .game_menu_btns > .game_menu_btnsBox > .btn_box:hover{
-        border: 2px solid #000000;
-    }
-
-    .game_menu_btns > .game_menu_btnsBox > .btn_box > .btn_box_text{
-        font-family: $font-noto;
-        font-size: 16px;
-        font-weight: 700;
-        color: black;
-    }
-
-    .game_menu_btns > .game_menu_btnsBox> .btn_box > .notify{
-        position: absolute;
-        top: 0;
-        right: 0;
-        background-color: #ff0000;
-        border-radius: 50%;
-        width: 23px;
-        height: 23px;
-    }
-
-    #container, .body {
-        width: 100%;
-    }
-
-    .body{    
-        height: 100vh;
-        overflow: hidden;
-    }
-
-    .bg_color_red{
-        background-color: $pink-400;
-    }
-
-    .bg_color_green{
-        background-color: $green-400;
-    }
-
-    .bg_color_blue{
-        background-color: $aqua-400;
-    }
-
-    .bg_color_yellow{
-        background-color: $yellow-400;
-    }
-
-    .bg_color_brown{
-        background-color: $orange-400;
-    }
-
-    #wrapper {
-        height: 100%;
-    }
-    #stage {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100vh;
-        padding: 0 !important;
-        z-index: 0;
-        overflow: hidden;
-    }
-    
-    #stage .mover {
-      position: relative;
-      transform-origin: 0 0;
-      pointer-events: none;
-      will-change: transform
-    }
-
-    #stage .mover.active {
-        cursor: grab;
-        pointer-events: auto
-    }
-
-    #stage .mover.active.dragging {
-        cursor: grabbing;
-    }
-
-
-
-    #stage .mover .wrapper, #stage .mover .wrapper .item {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-    }
-    #stage .mover .wrapper .item svg {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-    }
-
-    #stage .mover .hitarea .hit svg {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-    }
-
-
-    #stage .mover .hitarea {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        pointer-events: auto
-    }
-
-    #stage .mover .hitarea button{
-      position: absolute;
-      display: block;
-      padding: 0;
-      margin: 0;
-      border: none;
-      background: none;
-      outline: none;
-      transition: none;
-    }
-
-    #stage .mover .hitarea .pin{
-      position: absolute;
-      width:71px;
-      height:103px;
-    }
-
-    #stage .mover .hitarea .pin svg{
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        top:0;
-        left: 0;
-        transform-origin: 50% 85%
-    }
-
-    .line_select{
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        padding: 50px 20px;
-        display: flex;
-        justify-content: flex-end;
-        align-items: center;
-        @media screen and (max-width: 1055px) {
-            padding: 10px 20px;
-        }
-    }
-
-    .line_select > .line_select_box {
-
-        display: flex;
-        width: 61.25%;
-        justify-content: space-between;
-        align-items: center;
-        height: 100%;
-        @media screen and (max-width: 1055px) {
-            width: 100%;
-            justify-content: center;
-            flex-direction: column;
-            gap: 5px;
-        }
-    }
-    .line_select > .line_select_box >.line_select_btns {
-
-        display: flex;
-        padding: 0px 20px;
-        justify-content: center;
-        align-items: center;
-        gap: 5px;
-        border-radius: 20px;
-        background-color: #ffffff;
-        height: 65px;
-
-        @include mobile() {
-            padding: 0px 5px;
-            visibility: hidden;
-            display: none;
-        }
-
-    }
-    .line_select > .line_select_box >.line_select_btns > .router_link:hover{
-        background-color: unset;
-    }
-    .line_select > .line_select_box >.line_select_btns > .router_link > button {
-        display: flex;
-        align-items: center;
-        height: 100%;
-        border-radius: 50%;
-    }
-
-    .line_select > .line_select_box >.line_select_btns > .router_link > button > svg {
-        border-radius: 50%;
-
-    }
-    .line_select > .line_select_box >.line_select_btns > .router_link > button > svg:hover{
-        
-        border: 2px solid #000000;
-    }
-
-    .line_select > .line_select_box > .line_name {
-        display: flex;
-        padding: 15px 50px;
-        justify-content: center;
-        align-items: center;
-        border-radius: 20px;
-        color: $neutral-0;
-    }
-
-    .line_name_color_red{
-        background-color: $metro-red;
-    }
-
-    .line_name_color_green{
-        background-color: $metro-green;
-    }
-
-    .line_name_color_blue{
-        background-color: $metro-blue;
-    }
-
-    .line_name_color_yellow{
-        background-color: $metro-yellow;
-    }
-
-    .line_name_color_brown{
-        background-color: $metro-brown;
-    }
-
-    .router-link-active,
-    .router-link-exact-active {
-    text-decoration: none;
-    color: inherit;
-    }
 
 
 </style>
