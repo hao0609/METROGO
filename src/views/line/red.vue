@@ -1,5 +1,5 @@
 <script setup>
-    import { ref } from 'vue'
+    import { onMounted, ref } from 'vue'
     import ground from '../../assets/images/MessionGeneral/ground.png';
     import building_tree from '../../assets/images/MessionGeneral/building_tree.png'
     import road from '../../assets/images/MessionGeneral/road.png';
@@ -8,15 +8,24 @@
     import logo from '../../assets/images/MessionGeneral/logo.vue';
     import pin from '../../assets/images/MessionGeneral/pin.vue';
     import { pinjs } from '../../js/view/MissionGeralView/pin.js'             // 引入 pin.js
-    const { pinStyle } = pinjs();                             // 使用 pin.js 的 pin()
+    const { pinStyle } = pinjs();                                             // 使用 pin.js 的 pin()
 
-    
-    import alert_user_location from '@/alert/alert_user_location.vue';
 
-    const alert_web_M_userlocation = ref(null);
-    const UserLocationShowAlert = () => {
-    alert_web_M_userlocation.value.UserLocationShowAlert();  
+
+
+    import alert_positioning_successful from '@/alert/alert_positioning_successful.vue';        // 引入用戶定位成功彈窗
+
+    const alert_web_M_userlocation = ref(null);                               
+    const UserLocationSuccessful = () => {
+    alert_web_M_userlocation.value.UserLocationSuccessful();  
     }
+
+
+
+
+
+
+
 </script>
 
 <template>
@@ -42,10 +51,10 @@
         </div>
     </div>
     <div class="hitarea">
-        <button ref="pin_obj" class="pin" :style="pinStyle" @click="UserLocationShowAlert" @touchstart="UserLocationShowAlert" ><pin/></button>
+        <button ref="pin_obj" class="pin" :style="pinStyle" @click="UserLocationSuccessful" @touchstart="UserLocationSuccessful" ><pin/></button>
         <!-- <pin/> -->
     </div>
-    <alert_user_location ref="alert_web_M_userlocation"/> 
+    <alert_positioning_successful ref="alert_web_M_userlocation"/> 
 </template>
 
 <style lang="scss" scoped>
