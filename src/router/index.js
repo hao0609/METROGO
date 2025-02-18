@@ -48,17 +48,35 @@ const router = createRouter({
     { path: "/cart", name: "訂單管理" },
 
     // 商城
-    { path: "/store", name: "商城" },
+    { path: "/store", name: "商城入口" },
+    { path: "/store", name: "商品頁" },
+    { path: "/store", name: "商品詳情" },
+    { path: "/store", name: "客製化" },
 
     // 最新消息
     { path: "/news", name: "最新消息" },
 
-    // 登入
+    // 前台登入
     {
       path: "/login",
       name: "LoginView",
       component: LoginView,
     },
+
+    // 後台
+    { path: "/admin/login/", name: "後台登入" },
+    { path: "/admin/home", name: "後台總覽" },
+    { path: "/admin/news", name: "最新消息管理" },
+    { path: "/admin", name: "最新消息分類管理" },
+    { path: "/admin", name: "行程管理" },
+    { path: "/admin", name: "小編精選管理" },
+    { path: "/admin", name: "一日/半日遊管理" },
+    { path: "/admin", name: "商城管理" },
+    { path: "/admin", name: "商品分類管理" },
+    { path: "/admin", name: "商品標籤管理" },
+    { path: "/admin", name: "訂單管理" },
+    { path: "/admin", name: "照片管理" },
+    { path: "/admin", name: "會員管理" },
 
     // 樣式參考頁
     {
