@@ -6,12 +6,13 @@ import AlertView from "../views/AlertView.vue";
 import SightsView from "../views/SightsView.vue";
 import TourView from "../views/TourView.vue";
 import MetroBlueLineView from "../views/MetroBlueLineView.vue";
-import MissionGeneralView from '../views/MissionGeneralView.vue';
-import red_line from '../views/line/red.vue'
-import green_line from '../views/line/green.vue'
-import blue_line from '../views/line/blue.vue'
-import yellow_line from '../views/line/yellow.vue'
-import brown_line from '../views/line/brown.vue'
+import MissionGeneralView from "../views/MissionGeneralView.vue";
+import red_line from "../views/line/red.vue";
+import green_line from "../views/line/green.vue";
+import blue_line from "../views/line/blue.vue";
+import yellow_line from "../views/line/yellow.vue";
+import brown_line from "../views/line/brown.vue";
+import BackendLoginView from "../views/BackendLoginView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -45,39 +46,39 @@ const router = createRouter({
     { path: "/featured/:line/:contentType", name: "小編精選" },
     { path: "/tour/:tourType", name: "旅遊行程", component: TourView },
     { path: "/special-mission", name: "特殊任務" },
-    { path: "/general-mission",
-      name: "一般任務", 
+    {
+      path: "/general-mission",
+      name: "一般任務",
       component: MissionGeneralView,
-      redirect: '/general-mission/red', // 預設導向 `/red
+      redirect: "/general-mission/red", // 預設導向 `/red
       children: [
         {
-          path: 'red', // 這裡是子路由，不要加 `/`
-          name: 'Red',
+          path: "red", // 這裡是子路由，不要加 `/`
+          name: "Red",
           component: red_line,
         },
         {
-          path: 'green', 
-          name: 'Green',
+          path: "green",
+          name: "Green",
           component: green_line,
         },
         {
-          path: 'blue', 
-          name: 'Blue',
+          path: "blue",
+          name: "Blue",
           component: blue_line,
         },
         {
-          path: 'yellow', 
-          name: 'Yellow',
+          path: "yellow",
+          name: "Yellow",
           component: yellow_line,
         },
         {
-          path: 'brown', 
-          name: 'Brown',
+          path: "brown",
+          name: "Brown",
           component: brown_line,
         },
-      ]
-      
-   },
+      ],
+    },
 
     // 會員中心
     { path: "/user-profile", name: "會員資料" },
@@ -86,17 +87,35 @@ const router = createRouter({
     { path: "/cart", name: "訂單管理" },
 
     // 商城
-    { path: "/store", name: "商城" },
+    { path: "/store", name: "商城入口" },
+    { path: "/store", name: "商品頁" },
+    { path: "/store", name: "商品詳情" },
+    { path: "/store", name: "客製化" },
 
     // 最新消息
     { path: "/news", name: "最新消息" },
 
-    // 登入
+    // 前台登入
     {
       path: "/login",
       name: "LoginView",
       component: LoginView,
     },
+
+    // 後台
+    { path: "/admin/login/", name: "後台登入" },
+    { path: "/admin/home", name: "後台總覽" },
+    { path: "/admin/news", name: "最新消息管理" },
+    { path: "/admin", name: "最新消息分類管理" },
+    { path: "/admin", name: "行程管理" },
+    { path: "/admin", name: "小編精選管理" },
+    { path: "/admin", name: "一日/半日遊管理" },
+    { path: "/admin", name: "商城管理" },
+    { path: "/admin", name: "商品分類管理" },
+    { path: "/admin", name: "商品標籤管理" },
+    { path: "/admin", name: "訂單管理" },
+    { path: "/admin", name: "照片管理" },
+    { path: "/admin", name: "會員管理" },
 
     // 樣式參考頁
     {
@@ -117,6 +136,13 @@ const router = createRouter({
       path: "/",
       name: "EntranceView",
       component: EntranceViewView,
+    },
+
+    // 後台登入頁面
+    {
+      path: "/backend-login",
+      name: "BackendLoginView",
+      component: BackendLoginView,
     },
   ],
 });

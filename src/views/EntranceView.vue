@@ -22,7 +22,7 @@
           />
         </div>
         <div class="left">
-          <RouterLink to="/backend">
+          <RouterLink to="/backend-login">
             <img src="../assets/images/Entrance_BackEnd.svg" alt="前往後台" />
           </RouterLink>
         </div>
