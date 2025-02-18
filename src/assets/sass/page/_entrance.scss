@@ -1,63 +1,69 @@
-.container {
-    margin: 0;
-    padding: 0;
-  }
-  .back {
-    position: relative;
-  }
-  .vector-left {
-    position: absolute;
-    top: 0;
-    left: 0;
-  }
-  .vector-right {
-    position: absolute;
-    top: 0;
-    right: 0;
-  }
-  .front {
-    position: relative;
-    top: 50px;
-  }
-  .front_logo {
-    position: relative;
-    display: flex;
-    justify-content: center;
-  }
-  .arrow {
-    position: relative;
-    margin: 0 50px;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-  }
-  .left {
-    position: relative;
-    cursor: pointer;
-    z-index: 999;
-  }
-  .left:hover {
-    transform: scale(1.1);
-  }
-  .right {
-    position: relative;
-    cursor: pointer;
-    z-index: 999;
-  }
-  .right:hover {
-    transform: scale(1.1);
-  }
-  
-  .metro {
-    position: relative;
-  }
-  
-  .small {
-    position: absolute;
-  }
-  
-  .big {
-    position: relative;
-    top: 70px;
-    right: 8px;
-  }
+*{
+  box-sizing: border-box;
+}
+
+body{
+  margin: 0;
+  padding: 0;
+}
+.entrance-container{
+  width: 100%;
+  max-width: 1920px;
+}
+.bg-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: url('@/assets/images/Entrance_background.svg') center/cover no-repeat;
+  z-index: -1;
+}
+
+.content{
+  position: relative;
+  top: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+.front_logo{
+  margin: auto;
+  display: flex;
+  justify-content: center;
+}
+.entrance-info{
+  margin: auto;
+}
+.entrance-arrow{
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+}
+.left {
+  cursor: pointer;
+  z-index: 999;
+}
+.right {
+  cursor: pointer;
+  z-index: 999;
+}
+.left:hover {
+  transform: scale(1.1);
+}
+.right:hover {
+  transform: scale(1.1);
+}
+.metro {
+  position: relative;
+}
+
+.small {
+  position: absolute;
+}
+
+.big {
+  position: relative;
+  top: 70px;
+  right: 8px;
+}
