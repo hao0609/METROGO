@@ -85,7 +85,6 @@ p {
   color: #ffffff;
   background-color: #8C25C0;
   padding: 16px 24px;
-  width: -moz-fit-content;
   width: fit-content;
   min-width: 180px;
   border-radius: 100px;
@@ -116,7 +115,6 @@ p {
   color: #8C25C0;
   background-color: transparent;
   padding: 16px 24px;
-  width: -moz-fit-content;
   width: fit-content;
   min-width: 180px;
   border-radius: 100px;
@@ -148,7 +146,6 @@ p {
   color: #8C25C0;
   background-color: #ffffff;
   padding: 16px 24px;
-  width: -moz-fit-content;
   width: fit-content;
   min-width: 180px;
   border-radius: 100px;
@@ -193,7 +190,6 @@ p {
   color: #7D8A93;
   background-color: #CCD1D5;
   padding: 16px 24px;
-  width: -moz-fit-content;
   width: fit-content;
   min-width: 180px;
   border-radius: 100px;
@@ -238,18 +234,12 @@ p {
   background-color: #ffffff;
   transition: all 0.3s ease;
 }
-.input-wrapper .input-field::-moz-placeholder {
-  color: #CCD1D5;
-}
 .input-wrapper .input-field::placeholder {
   color: #CCD1D5;
 }
 .input-wrapper .input-field:focus {
   outline: 1px;
   border: 1px solid #8C25C0;
-}
-.input-wrapper .input-field:not(:-moz-placeholder-shown) {
-  border-color: #CCD1D5;
 }
 .input-wrapper .input-field:not(:placeholder-shown) {
   border-color: #CCD1D5;
@@ -298,9 +288,6 @@ p {
   color: #7D8A93;
   cursor: not-allowed;
 }
-.input-wrapper.disabled .input-field::-moz-placeholder {
-  color: #CCD1D5;
-}
 .input-wrapper.disabled .input-field::placeholder {
   color: #CCD1D5;
 }
@@ -337,14 +324,9 @@ p {
   background-color: #ffffff;
   font-size: 16px;
   color: #232529;
-  -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
+  appearance: none;
   cursor: pointer;
   transition: all 0.3s ease;
-}
-.select-wrapper .select-field::-moz-placeholder {
-  color: #CCD1D5;
 }
 .select-wrapper .select-field::placeholder {
   color: #CCD1D5;
@@ -427,7 +409,6 @@ label .checkbox-custom {
   color: #ffffff;
   background-color: #8C25C0;
   padding: 16px 24px;
-  width: -moz-fit-content;
   width: fit-content;
   min-width: 180px;
   border-radius: 100px;
@@ -458,7 +439,6 @@ label .checkbox-custom {
   color: #8C25C0;
   background-color: transparent;
   padding: 16px 24px;
-  width: -moz-fit-content;
   width: fit-content;
   min-width: 180px;
   border-radius: 100px;
@@ -490,7 +470,6 @@ label .checkbox-custom {
   color: #8C25C0;
   background-color: #ffffff;
   padding: 16px 24px;
-  width: -moz-fit-content;
   width: fit-content;
   min-width: 180px;
   border-radius: 100px;
@@ -535,7 +514,6 @@ label .checkbox-custom {
   color: #7D8A93;
   background-color: #CCD1D5;
   padding: 16px 24px;
-  width: -moz-fit-content;
   width: fit-content;
   min-width: 180px;
   border-radius: 100px;
@@ -557,9 +535,7 @@ label .checkbox-custom {
   align-items: center;
   position: relative;
   cursor: pointer;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-          user-select: none;
+  user-select: none;
   padding: 4px;
   margin: 4px 0;
 }
