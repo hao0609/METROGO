@@ -4,32 +4,35 @@
 
         <div class="bl_intr_banner_01">
           <div class="bl_inter_banner_01a">
-            <img class="bl_10_01" src="../assets/images/sample.jpg">
+            <img class="bl_10_01" src="../assets/images/sample.jpg"
+            width="300px" hight="417px">
           </div>
           <div class="b1_inter_banner_01_1">
-            <p class="p1">有拜有保庇，你想要..?</p>
-            <p class="p5">懷著滿滿的願望，誠懇地與神交流吧！充滿歷史意義與神秘的氛圍，不管你想得到
+            <p class="title1 Bold">有拜有保庇，你想要..?</p>
+            <p class="title2 Bold">懷著滿滿的願望，誠懇地與神交流吧！充滿歷史意義與神秘的氛圍，不管你想得到
             甚麼或想知道甚麼，甚至煩惱糾結的選擇，這裡都可以給你參考的答案！</p>
           </div>
         </div>
 
         <div class="bl_inter_banner_02">
           <div class="bl_inter_banner_02a">
-            <img class="bl_14_01" src="../assets/images/sample.jpg">
+            <img class="bl_14_01" src="../assets/images/sample.jpg"
+            width="300px" hight="417px">
           </div>
           <div class="b1_inter_banner_02_1">
-            <p class="p1">當懷舊與新潮達成默契</p>
-            <p class="p5">由舊倉庫來改造成今日的展覽場所，懷舊與新潮在這裡達成默契，品牌與動漫也和諧
+            <p class="title1 Bold">當懷舊與新潮達成默契</p>
+            <p class="title2 Bold">由舊倉庫來改造成今日的展覽場所，懷舊與新潮在這裡達成默契，品牌與動漫也和諧
             一致地等待你大駕光臨，探索你的想像，支持你愛的偶像，世界就是充滿愛與和平。</P>
           </div>
         </div>
 
         <div class="bl_inter_banner_03">
           <div class="bl_inter_banner_03a">
-            <img class="bl_11_01" src="../assets/images/sample.jpg">
+            <img class="bl_11_01" src="../assets/images/sample.jpg"
+            width="300px" hight="417px">
           </div>
           <div class="b1_inter_banner_03_1">
-            <p class="p1">潮！城市是我的伸展台</p>
+            <p class="title1 Bold">潮！城市是我的伸展台</p>
             <p class="p5">潮流就是風格，挖掘屬於你自我風格，這裡相信可以滿足你的需求，文青、龐克、韓風、
             日式、台式、美式，在這裡做自己，何必在意別人眼光！</P>
           </div>
@@ -39,7 +42,8 @@
 
         <div class="bl_inter_banner_04">
           <div class="bl_inter_banner_04a">
-            <img class="bl_18_01" src="../assets/images/sample.jpg">
+            <img class="bl_18_01" src="../assets/images/sample.jpg"
+            width="300px" hight="417px">
           </div>
           <div class="b1_inter_banner_04_1">
             <p class="p1">百貨公司的密集症候群</p>
@@ -50,7 +54,8 @@
 
         <div class="bl_inter_banner_05">
           <div class="bl_inter_banner_05a">
-            <img class="bl_07_01" src="../assets/images/sample.jpg">
+            <img class="bl_07_01" src="../assets/images/sample.jpg"
+            width="300px" hight="417px">
           </div>
           <div class="b1_inter_banner_05_1">
             <p class="p1">2024全台最嗨的耶誕季</p>
@@ -61,7 +66,8 @@
 
         <div class="bl_inter_banner_06">
           <div class="bl_inter_banner_06a">
-            <img class="bl_12_01" src="../assets/images/sample.jpg">
+            <img class="bl_12_01" src="../assets/images/sample.jpg"
+            width="300px" hight="417px">
           </div>
           <div class="b1_inter_banner_06_1">
             <p class="p1">2024約在北車北三門見喔！</p>

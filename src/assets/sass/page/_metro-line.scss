@@ -5,17 +5,19 @@
     background-color: #99d6ff;
     width: 400px;
     height: 700px;
-    margin: auto;
+    margin: center;
     display: flex;
     flex-direction: column;
 }
 .bl_inter_banner_01a {
     width: 300px;
     height: 417px;
+
 }
 .b1_inter_banner_01_1 {
     width: 327px;
     height: 158px;
+
 }
 .bl_intr_banner_02 {
     background-color: #99d6ff;
@@ -98,9 +100,19 @@
     height: 158px;
 }
 .p1 {
-    color: #fff200;
+    font-family: "Noto Sans TC";
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 36px;
+    color:#460961
 }
 .p5 {
+    font-family: "Noto Sans TC";
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 24px;
     color: #232529;
 }
 .hr-container {
