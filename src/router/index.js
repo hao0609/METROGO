@@ -15,7 +15,7 @@ import brown_line from "../views/line/brown.vue";
 import BackendLoginView from "../views/BackendLoginView.vue";
 import MissionSpecialView from "../views/MissionSpecialView.vue";
 
-// 後台 
+// 後台
 import AdminMainpageView from "../views/backend/AdminMainpageView.vue";
 
 const router = createRouter({
@@ -113,7 +113,7 @@ const router = createRouter({
 
     // 後台
     // { path: "/admin/login/", name: "後台登入" },
-    
+
     // 後台
     // 後台登入頁面
     {
@@ -122,93 +122,89 @@ const router = createRouter({
       component: BackendLoginView,
     },
 
-
     {
-      path: '/admin',
+      path: "/admin",
       name: "後台共用主頁",
       component: AdminMainpageView,
       children: [
         {
-          path: 'dashboard',
-          name: 'AdminDashboard',
-          component: () => import('@/views/backend/AdminDashBoardView.vue')
+          path: "dashboard",
+          name: "AdminDashboard",
+          component: () => import("@/views/backend/AdminDashBoardView.vue"),
         },
         // 會員管理
         {
-          path: 'user',
-          name: 'AdminUser',
-          component: () => import('@/views/backend/AdminUserView.vue')
+          path: "user",
+          name: "AdminUser",
+          component: () => import("@/views/backend/AdminUserView.vue"),
         },
         {
-          path: 'user-data',
-          name: 'AdminUserData',
-          component: () => import('@/views/backend/AdminUserDataView.vue')
+          path: "user-data",
+          name: "AdminUserData",
+          component: () => import("@/views/backend/AdminUserDataView.vue"),
         },
         {
-          path: 'user-record',
-          name: 'AdminUserRecord',
-          component: () => import('@/views/backend/AdminUserRecordView.vue')
+          path: "user-record",
+          name: "AdminUserRecord",
+          component: () => import("@/views/backend/AdminUserRecordView.vue"),
         },
         // 商城管理
         {
-          path: 'store',
-          name: 'AdminStore',
-          component: () => import('@/views/backend/AdminStoreView.vue')
+          path: "store",
+          name: "AdminStore",
+          component: () => import("@/views/backend/AdminStoreView.vue"),
         },
         {
-          path: 'store-product',
-          name: 'AdminStoreProduct',
-          component: () => import('@/views/backend/AdminStoreProductView.vue')
+          path: "store-product",
+          name: "AdminStoreProduct",
+          component: () => import("@/views/backend/AdminStoreProductView.vue"),
         },
         {
-          path: 'store-category',
-          name: 'AdminStoreCategory',
-          component: () => import('@/views/backend/AdminStoreCategoryView.vue')
+          path: "store-category",
+          name: "AdminStoreCategory",
+          component: () => import("@/views/backend/AdminStoreCategoryView.vue"),
         },
         {
-          path: 'store-label',
-          name: 'AdminStoreLabel',
-          component: () => import('@/views/backend/AdminStoreLabelView.vue')
+          path: "store-label",
+          name: "AdminStoreLabel",
+          component: () => import("@/views/backend/AdminStoreLabelView.vue"),
         },
         // 訂單管理
         {
-          path: 'order',
-          name: 'AdminOrder',
-          component: () => import('@/views/backend/AdminOrderView.vue')
+          path: "order",
+          name: "AdminOrder",
+          component: () => import("@/views/backend/AdminOrderView.vue"),
         },
         // 最新消息管理
         {
-          path: 'news',
-          name: 'AdminNews',
-          component: () => import('@/views/backend/AdminNewsView.vue')
+          path: "news",
+          name: "AdminNews",
+          component: () => import("@/views/backend/AdminNewsView.vue"),
         },
         {
-          path: 'news-add',
-          name: 'AdminNewsAdd',
-          component: () => import('@/views/backend/AdminNewsAddView.vue')
+          path: "news-add",
+          name: "AdminNewsAdd",
+          component: () => import("@/views/backend/AdminNewsAddView.vue"),
         },
         {
-          path: 'news-category',
-          name: 'AdminNewsCategory',
-          component: () => import('@/views/backend/AdminNewsCategoryView.vue')
+          path: "news-category",
+          name: "AdminNewsCategory",
+          component: () => import("@/views/backend/AdminNewsCategoryView.vue"),
         },
         // 行程管理
         {
-          path: 'schedule',
-          name: 'AdminSchedule',
-          component: () => import('@/views/backend/AdminScheduleView.vue')
+          path: "schedule",
+          name: "AdminSchedule",
+          component: () => import("@/views/backend/AdminScheduleView.vue"),
         },
         // 照片管理
         {
-          path: 'photo',
-          name: 'AdminPhoto',
-          component: () => import('@/views/backend/AdminPhotoView.vue')
-        }
-      ]
+          path: "photo",
+          name: "AdminPhoto",
+          component: () => import("@/views/backend/AdminPhotoView.vue"),
+        },
+      ],
     },
-
-  
-
 
     // 樣式參考頁
     {
@@ -229,6 +225,13 @@ const router = createRouter({
       path: "/",
       name: "EntranceView",
       component: EntranceViewView,
+    },
+
+    // 後台登入頁面
+    {
+      path: "/backend-login",
+      name: "BackendLoginView",
+      component: BackendLoginView,
     },
   ],
 });

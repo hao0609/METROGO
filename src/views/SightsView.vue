@@ -1,3 +1,21 @@
+<script>
+import { Vue3Marquee } from "vue3-marquee";
+
+import img1 from "../assets/images/sights/logo/images.png";
+import img2 from "../assets/images/sights/logo/images.png";
+
+export default {
+  components: {
+    // Vue3Marquee,
+  },
+  data() {
+    return {
+      logos: [img1, img2, img1, img1, img1, img1, img1, img1, img1],
+    };
+  },
+};
+</script>
+
 <template>
   <!-- banner -->
   <div class="banner">
@@ -68,7 +86,12 @@
     </div>
     <div class="banner-grid">
       <div class="grid-container">
-        <img src="../assets/images/sights/banner/" alt="" />
+        <video
+          autoplay
+          loop
+          muted
+          src="../assets/videos/88921-608445975_tiny.mp4"
+        ></video>
       </div>
       <div class="grid-container">
         <img src="../assets/images/sights/banner/12.jpg" alt="" />
@@ -104,7 +127,12 @@
         <img src="../assets/images/sights/banner/19.jpg" alt="" />
       </div>
       <div class="grid-container">
-        <img src="../assets/images/sights/banner/" alt="" />
+        <video
+          autoplay
+          loop
+          muted
+          src="../assets/videos/88921-608445975_tiny.mp4"
+        ></video>
       </div>
     </div>
     <div class="banner-grid">
@@ -119,7 +147,12 @@
         <img src="../assets/images/sights/banner/21.jpg" alt="" />
       </div>
       <div class="grid-container">
-        <img src="../assets/images/sights/banner/" alt="" />
+        <video
+          autoplay
+          loop
+          muted
+          src="../assets/videos/88921-608445975_tiny.mp4"
+        ></video>
       </div>
       <div class="grid-container">
         <img src="../assets/images/sights/banner/23.jpg" alt="" />
@@ -164,7 +197,12 @@
   <!-- GO編精選 -->
   <div class="featured">
     <h1 class="featured-title">GO編精選</h1>
-    <swiper-container class="mySwiper" autoplay>
+    <swiper-container
+      class="mySwiper"
+      :autoplay="{ delay: 3000 }"
+      :loop="true"
+      :navigation="true"
+    >
       <swiper-slide>
         <div class="featured-container">
           <div class="featured-img">
@@ -209,12 +247,12 @@
       </swiper-slide>
 
       <!-- 自訂 SVG 按鈕 -->
-      <div class="custom-prev">
+      <!-- <div class="custom-prev">
         <img src="../assets/images/sights/Vector-left.svg" alt="Prev" />
       </div>
       <div class="custom-next">
         <img src="../assets/images/sights/Vector-right.svg" alt="Next" />
-      </div>
+      </div> -->
     </swiper-container>
   </div>
 
@@ -233,36 +271,43 @@
         <img src="../assets/images/sights/Vector-right.svg" alt="" />
       </div>
     </div>
+    <swiper-container
+      class="logo-swiper"
+      :slides-per-view="'auto'"
+      :allow-touch-move="false"
+      :autoplay="{ delay: 0, disableOnInteraction: false }"
+      :speed="5000"
+      :free-mode="true"
+      :loop="true"
+    >
+      <swiper-slide class="logo" v-for="(logo, index) in logos" :key="index">
+        <img :src="logo" />
+      </swiper-slide>
+    </swiper-container>
 
-    <div class="logo">
-      <div class="logo-container">
-        <img src="../assets/images/sights/logo/images.png" alt="" />
+    <!-- <Vue3Marquee
+      class="logo"
+      :pause-on-click="true"
+      :direction="'reverse'"
+      :duration="10"
+      :loop="0"
+      :gradient="true"
+    >
+      <div class="logo-container" v-for="(logo, index) in logos" :key="index">
+        <img :src="logo" />
       </div>
-      <div class="logo-container">
-        <img src="../assets/images/sights/logo/images.png" alt="" />
+    </Vue3Marquee>
+    <Vue3Marquee
+      class="logo"
+      :pause-on-click="true"
+      :duration="10"
+      :loop="0"
+      :gradient="true"
+    >
+      <div class="logo-container" v-for="(logo, index) in logos" :key="index">
+        <img :src="logo" />
       </div>
-      <div class="logo-container">
-        <img src="../assets/images/sights/logo/images.png" alt="" />
-      </div>
-      <div class="logo-container">
-        <img src="../assets/images/sights/logo/images.png" alt="" />
-      </div>
-    </div>
-
-    <div class="logo">
-      <div class="logo-container">
-        <img src="../assets/images/sights/logo/images.png" alt="" />
-      </div>
-      <div class="logo-container">
-        <img src="../assets/images/sights/logo/images.png" alt="" />
-      </div>
-      <div class="logo-container">
-        <img src="../assets/images/sights/logo/images.png" alt="" />
-      </div>
-      <div class="logo-container">
-        <img src="../assets/images/sights/logo/images.png" alt="" />
-      </div>
-    </div>
+    </Vue3Marquee> -->
   </div>
 </template>
 

@@ -226,21 +226,36 @@ swiper-slide {
   gap: 30px;
 }
 
-.logo {
+.logo-swiper {
   display: flex;
-  padding: 80px 100px;
+  padding: 20px;
   justify-content: flex-end;
   align-items: center;
-  gap: 40px;
-}
-
-.logo-container {
-  width: 272px;
-  height: 100px;
-  border-radius: 50px;
-}
-
-.logo-container img {
   width: 100%;
-  height: auto;
+  height: 400px;
+  background-color: $neutral-0;
+  transition-timing-function: linear;
 }
+
+.logo {
+  display: flex;
+  padding: 20px;
+  justify-content: space-around;
+  align-items: center;
+  width: auto;
+  height: 400px;
+  background-color: $neutral-0;
+}
+
+// .logo-container {
+//   width: 200px;
+//   height: auto;
+//   border: 1px solid red;
+//   margin-right: 40px;
+// }
+
+// .logo-container img {
+//   width: 100%;
+//   height: auto;
+//   object-fit: cover;
+// }
