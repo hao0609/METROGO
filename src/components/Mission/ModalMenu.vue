@@ -564,18 +564,18 @@ export default {
       activeSlide: 0,
 
       locationTasks: [
-        { progress: 100, title: "捷運站 1" },
-        { progress: 75, title: "捷運站 2" },
+        { progress: 100, title: "淡水站" },
+        { progress: 75, title: "紅樹林站" },
       ],
-      locationBadges: ["捷運徽章 1", "捷運徽章 2"],
+      locationBadges: ["時光旅人", "打卡全制霸"],
       achievementTasks: [
-        { progress: 30, title: "成就任務 1" },
-        { progress: 60, title: "成就任務 2" },
+        { progress: 30, title: "時光旅人" },
+        { progress: 60, title: "打卡全制霸" },
       ],
-      achievementBadges: ["成就徽章 1", "成就徽章 2"],
+      achievementBadges: ["半日遊", "一日遊"],
       specialTasks: [
-        { progress: 80, title: "特殊遊戲 1" },
-        { progress: 100, title: "特殊遊戲 2" },
+        { progress: 80, title: "淡水信義線" },
+        { progress: 100, title: "板南線" },
       ],
       specialBadges: ["成就徽章 1", "成就徽章 2"],
     };
