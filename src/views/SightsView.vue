@@ -1,3 +1,5 @@
+
+
 <script>
 // logos 管理
 import img1 from "../assets/images/sights/logo/Tibame.png";
@@ -9,6 +11,9 @@ import img6 from "../assets/images/sights/logo/島壽司.png";
 import img7 from "../assets/images/sights/logo/板橋慈惠宮.png";
 import img8 from "../assets/images/sights/logo/貓宅咖啡.png";
 
+// 引入 Navbar
+import Navbar_V1 from '../components/Navbar_V1.vue';
+
 export default {
   data() {
     return {
@@ -19,6 +24,7 @@ export default {
 </script>
 
 <template>
+  <navbar_-v1></navbar_-v1>
   <!-- banner -->
   <div class="banner">
     <div class="banner-grid">

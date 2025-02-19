@@ -2,7 +2,8 @@
     import { ref , onMounted , onUnmounted,computed} from 'vue'
     import { RouterLink, RouterView ,useRoute } from 'vue-router'
 
-    // import Navbar_V1 from '../components/Navbar_V1.vue';
+    import Navbar_V1 from '../components/Navbar_V1.vue'; //備用 header
+
     import { movejs } from '../js/view/MissionGeralView/move';          // 引入 move.js
     const { mover, moverStyle} = movejs();                              // 使用 move.js 的 move()
 
@@ -125,7 +126,10 @@
 
 
 <template>
-    <!-- <Navbar_V1/> -->
+    <div class="navbar">
+        <Navbar_V1/>
+    </div>
+    
     <div class="game_menu">
         <div class="menu_box">
             <button class="menu_btn" @click="game_menu_btns_show = !game_menu_btns_show">
@@ -332,7 +336,13 @@
 
     @import "@/assets/sass/page/_mission-general.scss";
 
+    .navbar{
 
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+    }
 
 </style>
 
