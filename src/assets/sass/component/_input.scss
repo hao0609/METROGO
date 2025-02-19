@@ -60,6 +60,29 @@
       padding-right: 120px; // 為按鈕預留空間
     }
   }
+  // 上傳按鈕
+  .upload-button {
+    position: absolute;
+    right: 0px;
+    height: 100%;
+    width: 80px;
+    background-color: $primary-400;
+    color: $neutral-0;
+    padding: 12px 8px;
+    border-radius: 0 12px 12px 0;
+    border: 0;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background-color: lighten($primary-400, 10%);
+    }
+
+    &:active {
+      color: $primary-400;
+    }
+  }
 
   // 錯誤訊息
   .error-message {

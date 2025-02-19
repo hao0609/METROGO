@@ -20,7 +20,7 @@
               </div>
             </div>
           </div>
-          <button class="btn_white">登入</button>
+          <router-link to="/admin/dashboard" class="btn_white">登入</router-link>
         </div>
       </div>
     </div>
