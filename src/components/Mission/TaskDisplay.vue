@@ -27,7 +27,12 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@import "@/assets/sass/base/_color.scss";
+@import "@/assets/sass/base/_font.scss";
+@import "@/assets/sass/component/_btn.scss";
+@import "@/assets/sass/mixin/_mixin.scss";
+@import "@/assets/sass/component/_modal_menu.scss";
 .task-with-reward {
   border: 1px solid #ddd;
   padding: 10px;

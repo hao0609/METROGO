@@ -2,22 +2,36 @@
   <div class="modal-overlay">
     <div class="modal-container modal-large">
       <div v-if="type === 'rewards' || type === 'stampBook'">
-        <button @click="$emit('close')" class="close-btn light">
-          <span>&#10005;</span>
-        </button>
-        <div class="modal-title title1 bold">
-          {{ type === "rewards" ? "獎勵領取" : "集章冊" }}
+        <div class="modal-header">
+          <div class="modal-title title1 bold">
+            {{ type === "rewards" ? "獎勵領取" : "集章冊" }}
+          </div>
+          <button @click="$emit('close')" class="close-btn light">
+            <span>&#10005;</span>
+          </button>
         </div>
         <div class="modal-content">
           <!-- Tab 按鈕 -->
           <div>
-            <button class="tabs title1" @click="activeTab = 'task'">
+            <button
+              class="tabs title1"
+              :class="{ active: activeTab === 'task' }"
+              @click="activeTab = 'task'"
+            >
               定位任務
             </button>
-            <button class="tabs title1" @click="activeTab = 'achievement'">
+            <button
+              class="tabs title1"
+              :class="{ active: activeTab === 'achievement' }"
+              @click="activeTab = 'achievement'"
+            >
               成就任務
             </button>
-            <button class="tabs title1" @click="activeTab = 'special'">
+            <button
+              class="tabs title1"
+              :class="{ active: activeTab === 'special' }"
+              @click="activeTab = 'special'"
+            >
               特殊任務
             </button>
           </div>
@@ -25,7 +39,7 @@
           <div class="tab-content item title2 bold">
             <div class="tab-content" v-if="type === 'rewards'">
               <div v-if="activeTab === 'task'">
-                <TaskWithReward
+                <TaskDisplay
                   v-for="(task, index) in locationTasks"
                   :key="index"
                   :task="task"
@@ -33,7 +47,7 @@
                 />
               </div>
               <div v-if="activeTab === 'achievement'">
-                <TaskWithReward
+                <TaskDisplay
                   v-for="(task, index) in achievementTasks"
                   :key="index"
                   :task="task"
@@ -41,7 +55,7 @@
                 />
               </div>
               <div v-if="activeTab === 'special'">
-                <TaskWithReward
+                <TaskDisplay
                   v-for="(task, index) in specialTasks"
                   :key="index"
                   :task="task"
@@ -78,15 +92,16 @@
       </div>
 
       <div v-else-if="type === 'gameRules'">
-        <button @click="$emit('close')" class="close-btn light">
-          <span>&#10005;</span>
-        </button>
-        <div class="modal-title title1 bold">
-          <!-- {{ gameRules[activeSlide].title }} -->
-          <!-- 幻燈片標題 -->
-          <div v-if="activeSlide === 0">玩法說明</div>
-          <div v-if="activeSlide === 1">一般任務</div>
-          <div v-if="activeSlide === 2">特殊任務</div>
+        <!-- 幻燈片標題 -->
+        <div class="modal-header">
+          <div class="modal-title title1 bold">
+            <div v-if="activeSlide === 0">玩法說明</div>
+            <div v-if="activeSlide === 1">一般任務</div>
+            <div v-if="activeSlide === 2">特殊任務</div>
+          </div>
+          <button @click="$emit('close')" class="close-btn light">
+            <span>&#10005;</span>
+          </button>
         </div>
         <div class="modal-content">
           <div class="slide-content">
@@ -318,27 +333,13 @@
                   </li>
                   <p>上傳失敗例:</p>
                   <div class="game-icon special">
-                    <!-- <p>上傳成功<br />回答正確</p>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="100"
-                      height="100"
-                      viewBox="0 0 171 171"
-                      fill="none"
-                    >
-                      <path
-                        d="M85.5 14.25C46.3125 14.25 14.25 46.3125 14.25 85.5C14.25 124.688 46.3125 156.75 85.5 156.75C124.688 156.75 156.75 124.688 156.75 85.5C156.75 46.3125 124.688 14.25 85.5 14.25ZM85.5 142.5C54.0788 142.5 28.5 116.921 28.5 85.5C28.5 54.0788 54.0788 28.5 85.5 28.5C116.921 28.5 142.5 54.0788 142.5 85.5C142.5 116.921 116.921 142.5 85.5 142.5ZM118.204 54.0075L71.25 100.961L52.7963 82.5788L42.75 92.625L71.25 121.125L128.25 64.125L118.204 54.0075Z"
-                        fill="#00C9A7"
-                      />
-                    </svg> -->
-
                     <div class="icon">
                       <p>照片不清晰</p>
-                      <img src="https://picsum.photos/100/100/?blur" />
+                      <img src="https://picsum.photos/id/100/100/?blur" />
                     </div>
                     <div class="icon">
                       <p>無指定標的物 <br />ex:台北101</p>
-                      <img src="https://picsum.photos/100/100/?10" />
+                      <img src="https://picsum.photos/id/236/100/100" />
                     </div>
                   </div>
 
@@ -514,7 +515,7 @@
       </div>
     </div>
     <div class="slider" v-if="type === 'gameRules'">
-      <button class="pre" @click="prevSlide">
+      <button class="pre" @click="prevSlide" :disabled="activeSlide === 0">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="32"
@@ -545,7 +546,7 @@
   </div>
 </template>
 <script>
-import TaskWithReward from "./TaskWithReward.vue";
+import TaskDisplay from "./TaskDisplay.vue";
 import BadgeDisplay from "./BadgeDisplay.vue";
 
 export default {
@@ -554,7 +555,7 @@ export default {
     gameData: Object, // 接收遊戲數據
   },
   components: {
-    TaskWithReward,
+    TaskDisplay,
     BadgeDisplay,
   },
   data() {
