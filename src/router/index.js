@@ -13,7 +13,7 @@ import blue_line from "../views/line/blue.vue";
 import yellow_line from "../views/line/yellow.vue";
 import brown_line from "../views/line/brown.vue";
 import BackendLoginView from "../views/BackendLoginView.vue";
-
+import MissionSpecialView from "../views/MissionSpecialView.vue";
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -79,7 +79,12 @@ const router = createRouter({
         },
       ],
     },
-
+    // 特殊遊戲
+    {
+      path: "/MissionSpecialView",
+      name: "特殊任務",
+      component: MissionSpecialView,
+    },
     // 會員中心
     { path: "/user-profile", name: "會員資料" },
     { path: "/password", name: "修改密碼" },
