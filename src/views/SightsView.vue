@@ -1,16 +1,18 @@
 <script>
-import { Vue3Marquee } from "vue3-marquee";
-
-import img1 from "../assets/images/sights/logo/images.png";
-import img2 from "../assets/images/sights/logo/images.png";
+// logos 管理
+import img1 from "../assets/images/sights/logo/Tibame.png";
+import img2 from "../assets/images/sights/logo/SNOPA.png";
+import img3 from "../assets/images/sights/logo/Spotify.png";
+import img4 from "../assets/images/sights/logo/健身參盒.png";
+import img5 from "../assets/images/sights/logo/勉Keki.png";
+import img6 from "../assets/images/sights/logo/島壽司.png";
+import img7 from "../assets/images/sights/logo/板橋慈惠宮.png";
+import img8 from "../assets/images/sights/logo/貓宅咖啡.png";
 
 export default {
-  components: {
-    // Vue3Marquee,
-  },
   data() {
     return {
-      logos: [img1, img2, img1, img1, img1, img1, img1, img1, img1],
+      logos: [img1, img2, img3, img4, img5, img6, img7, img8],
     };
   },
 };
@@ -271,7 +273,7 @@ export default {
         <img src="../assets/images/sights/Vector-right.svg" alt="" />
       </div>
     </div>
-    <swiper-container
+    <!-- <swiper-container
       class="logo-swiper"
       :slides-per-view="'auto'"
       :allow-touch-move="false"
@@ -283,15 +285,16 @@ export default {
       <swiper-slide class="logo" v-for="(logo, index) in logos" :key="index">
         <img :src="logo" />
       </swiper-slide>
-    </swiper-container>
+    </swiper-container> -->
 
-    <!-- <Vue3Marquee
+    <Vue3Marquee
       class="logo"
       :pause-on-click="true"
       :direction="'reverse'"
       :duration="10"
       :loop="0"
       :gradient="true"
+      :clone="true"
     >
       <div class="logo-container" v-for="(logo, index) in logos" :key="index">
         <img :src="logo" />
@@ -303,11 +306,12 @@ export default {
       :duration="10"
       :loop="0"
       :gradient="true"
+      :clone="true"
     >
       <div class="logo-container" v-for="(logo, index) in logos" :key="index">
         <img :src="logo" />
       </div>
-    </Vue3Marquee> -->
+    </Vue3Marquee>
   </div>
 </template>
 
