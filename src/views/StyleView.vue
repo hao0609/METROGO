@@ -1,4 +1,10 @@
+<script setup>
+     import Navbar_V1 from '../components/Navbar_V1.vue'; //備用 header
+</script>
+
 <template>
+
+<Navbar_V1/>
   <div class="font-guide">
     <p style="margin-bottom: 40px">****** 字體樣式 ******</p>
 

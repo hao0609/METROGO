@@ -1,4 +1,9 @@
+<script setup>
+import Navbar_V1 from '../components/Navbar_V1.vue';
+</script>
+
 <template>
+  <navbar_-v1></navbar_-v1>
   <!-- banner -->
   <div class="banner">
     <div class="banner-grid">
