@@ -280,22 +280,32 @@ export default {
 
       // 線
       // 當滾動未達 header 高度的一半時，line 隱藏在 header 底下
+      const gapAboveFooter = 20;
+
       if (scrollY < headerHeight / 2) {
+        // 還沒開始畫線，隱藏在 header 底下
         verticalLine.value.style.top = `${headerHeight}px`;
         verticalLine.value.style.height = "0px";
-      }
-      // 當滾動介於 header 一半到 header 底時，根據滾動進度展開 line
-      else if (scrollY >= headerHeight / 2 && scrollY < headerHeight) {
+      } else if (scrollY >= headerHeight / 2 && scrollY < headerHeight) {
+        // 滾動介於 header 一半到 header 底時，依滾動進度展開 line
         const progress = (scrollY - headerHeight / 2) / (headerHeight / 2);
-        // 這裡假設滿版的效果是 line 從 header 底部展開到整個視窗高度
-        const targetHeight = progress * (window.innerHeight - headerHeight);
+        let targetHeight = progress * (window.innerHeight - headerHeight);
+        // 限制 targetHeight 不會超過 footer 區域：計算 header 底部到 footer 上緣的最大距離
+        const maxLineHeight = footerRect.top - gapAboveFooter - headerHeight;
+        if (targetHeight > maxLineHeight) {
+          targetHeight = maxLineHeight;
+        }
         verticalLine.value.style.top = `${headerHeight}px`;
         verticalLine.value.style.height = `${targetHeight}px`;
-      }
-      // 當滾過 header 後，讓 line 變為滿版（例如從視窗頂部開始）
-      else {
+      } else {
+        // 滾動超過 header，線從 viewport 最上方開始
+        let newHeight = window.innerHeight;
+        // 若 footer 已進入畫面，則限制高度
+        if (footerRect.top < window.innerHeight) {
+          newHeight = footerRect.top - gapAboveFooter;
+        }
         verticalLine.value.style.top = "0px";
-        verticalLine.value.style.height = "100%";
+        verticalLine.value.style.height = `${newHeight}px`;
       }
       // 球
       if (scrollTop < startScroll) {
@@ -366,7 +376,7 @@ export default {
       document.addEventListener("click", handleAnchorClick);
       window.addEventListener("scroll", onScroll);
 
-      onScroll(); // 確保一開始就執行
+      onScroll();
     });
 
     onUnmounted(() => {
