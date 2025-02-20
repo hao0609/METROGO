@@ -1,124 +1,340 @@
-.blueline_introduce {
-    background-color: #0070BD;
+@use "@/assets/sass/base/color" as *;
+.metroline-detail {
+  max-width: 1920px;
+  padding: 80px 64px;
 }
-.bl_intr_banner_01 {
-    background-color: #99d6ff;
-    width: 400px;
-    height: 700px;
-    margin: center;
-    display: flex;
-    flex-direction: column;
-}
-.bl_inter_banner_01a {
-    width: 300px;
-    height: 417px;
 
+.introduce {
+  display: flex;
+  gap: 52px;
 }
-.b1_inter_banner_01_1 {
-    width: 327px;
-    height: 158px;
 
+.banner-group {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-grow: 1;
+  gap: 52px;
+
+  &.group-1,
+  &.group-3 {
+    margin-top: 154px;
+  }
+
+  &.group-2 {
+    margin-top: 0px;
+  }
 }
-.bl_intr_banner_02 {
-    background-color: #99d6ff;
-    width: 400px;
-    height: 700px;
-    margin: auto;
-    display: flex;
-    flex-direction: column;
+
+.banner {
+  padding: 52px 40px;
+  width: 400px;
+  transition: all 0.3s ease;
+  text-decoration: none; // 移除 route-link 樣式
+  color: inherit; // 移除 route-link 樣式
+
+  &:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
 }
-.bl_inter_banner_02a {
-    width: 300px;
-    height: 417px;
+
+// banner-group 裡標題高度內縮
+.banner-group .banner-group-title {
+  text-align: center;
+  margin: -52px 0;
 }
-.b1_inter_banner_02_1{
-    width: 327px;
-    height: 158px;
+
+// 各區塊標題
+.metro-line-title {
+  text-align: center;
+  position: relative;
 }
-.bl_intr_banner_03 {
-    background-color: #99d6ff;
-    width: 400px;
-    height: 700px;
-    margin: auto;
-    display: flex;
-    flex-direction: column;
+
+// 分隔線
+.metro-line-title::before,
+.metro-line-title::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 25%;
+  height: 4px;
 }
-.bl_inter_banner_03a {
-    width: 300px;
-    height: 417px;
+
+.metro-line-title::before {
+  left: 0;
 }
-.b1_inter_banner_03_1 {
-    width: 327px;
-    height: 158px;
+
+.metro-line-title::after {
+  right: 0;
 }
-.bl_intr_banner_04 {
-    background-color: #99d6ff;
-    width: 400px;
-    height: 700px;
-    margin: auto;
-    display: flex;
-    flex-direction: column;
-}
-.bl_inter_banner_04a {
-    width: 300px;
-    height: 417px;
-}
-.bl_inter_banner_04_1 {
-    width: 327px;
-    height: 158px;
-}
-.bl_intr_banner_05 {
-    background-color: #99d6ff;
-    width: 400px;
-    height: 700px;
-    margin: auto;
-    display: flex;
-    flex-direction: column;
-}
-.bl_inter_banner_05a {
-    width: 300px;
-    height: 417px;
-}
-.bl_inter_banner_05_1 {
-    width: 327px;
-    height: 158px;
-}
-.bl_intr_banner_06 {
-    background-color: #99d6ff;
-    width: 400px;
-    height: 700px;
-    margin: auto;
-    display: flex;
-    flex-direction: column;
-}
-.bl_inter_banner_06a {
-    width: 300px;
-    height: 417px;
-}
-.bl_inter_banner_06_1 {
-    width: 327px;
-    height: 158px;
-}
-.p1 {
-    font-family: "Noto Sans TC";
-    font-size: 30px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 36px;
-    color:#460961
-}
-.p5 {
-    font-family: "Noto Sans TC";
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 24px;
-    color: #232529;
-}
-.hr-container {
-    border: 0;
-    border-top: 1px solid #fff200;
+
+// go 精選
+.section-group {
+  display: flex;
+  width: 100%;
+  gap: 8%;
+
+  .go-choise-img {
     position: relative;
-    text-align: center;
-    margin: 20px 0;
+    background-image: url("https://picsum.photos/300/200");
+    background-size: cover;
+    background-position: center;
+
+    .group-title {
+      position: absolute; // 使用絕對定位
+      bottom: 20px; // 距離底部的距離
+      left: 0;
+      right: 0;
+      text-align: center;
+    }
+  }
+
+  .w-half {
+    width: 60%;
+    padding-bottom: 40%; // 等比例3:2縮放
+  }
 }
+
+.w-full-img {
+  position: relative;
+  width: 100%;
+  height: 340px;
+  background-image: url("https://picsum.photos/600/200");
+  background-size: cover;
+  background-position: center;
+
+  .group-title {
+    position: absolute; // 使用絕對定位
+    font-size: 1250%;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0;
+    right: 0;
+    text-align: center;
+  }
+}
+
+// 留言板
+.review-card {
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+  max-width: 600px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.review-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.user-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  margin-right: 12px;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.user-name {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.rating {
+  color: #000;
+  font-size: 16px;
+}
+
+.review-content {
+  color: #333;
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+.review-images {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.review-image {
+  width: 180px;
+  height: 180px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.timestamp {
+  color: #666;
+  font-size: 14px;
+}
+
+@media (max-width: 576px) {
+  .review-images {
+    flex-wrap: wrap;
+  }
+
+  .review-image {
+    width: calc(50% - 6px);
+    height: 160px;
+  }
+}
+
+// 各線 banner 顏色 - 板南線
+
+.metroline-detail.blue {
+  background-color: $metro-blue;
+
+  .banner {
+    background-color: #99d6ff;
+
+    .banner-txt-title {
+      color: #460961;
+    }
+  }
+
+  .metro-line-title,
+  .group-title {
+    color: #fff200;
+  }
+
+  .metro-line-title::before,
+  .metro-line-title::after {
+    background-color: #ffd700;
+  }
+}
+
+.group-title.white {
+  color: rgba($color: #ffffff, $alpha: 0.7) !important;
+}
+
+// .bl_intr_banner_01 {
+//     background-color: #99d6ff;
+//     width: 400px;
+//     height: 700px;
+//     margin: center;
+//     display: flex;
+//     flex-direction: column;
+// }
+// .bl_inter_banner_01a {
+//     width: 300px;
+//     height: 417px;
+
+// }
+// .b1_inter_banner_01_1 {
+//     width: 327px;
+//     height: 158px;
+
+// }
+// .bl_intr_banner_02 {
+//     background-color: #99d6ff;
+//     width: 400px;
+//     height: 700px;
+//     margin: auto;
+//     display: flex;
+//     flex-direction: column;
+// }
+// .bl_inter_banner_02a {
+//     width: 300px;
+//     height: 417px;
+// }
+// .b1_inter_banner_02_1{
+//     width: 327px;
+//     height: 158px;
+// }
+// .bl_intr_banner_03 {
+//     background-color: #99d6ff;
+//     width: 400px;
+//     height: 700px;
+//     margin: auto;
+//     display: flex;
+//     flex-direction: column;
+// }
+// .bl_inter_banner_03a {
+//     width: 300px;
+//     height: 417px;
+// }
+// .b1_inter_banner_03_1 {
+//     width: 327px;
+//     height: 158px;
+// }
+// .bl_intr_banner_04 {
+//     background-color: #99d6ff;
+//     width: 400px;
+//     height: 700px;
+//     margin: auto;
+//     display: flex;
+//     flex-direction: column;
+// }
+// .bl_inter_banner_04a {
+//     width: 300px;
+//     height: 417px;
+// }
+// .bl_inter_banner_04_1 {
+//     width: 327px;
+//     height: 158px;
+// }
+// .bl_intr_banner_05 {
+//     background-color: #99d6ff;
+//     width: 400px;
+//     height: 700px;
+//     margin: auto;
+//     display: flex;
+//     flex-direction: column;
+// }
+// .bl_inter_banner_05a {
+//     width: 300px;
+//     height: 417px;
+// }
+// .bl_inter_banner_05_1 {
+//     width: 327px;
+//     height: 158px;
+// }
+// .bl_intr_banner_06 {
+//     background-color: #99d6ff;
+//     width: 400px;
+//     height: 700px;
+//     margin: auto;
+//     display: flex;
+//     flex-direction: column;
+// }
+// .bl_inter_banner_06a {
+//     width: 300px;
+//     height: 417px;
+// }
+// .bl_inter_banner_06_1 {
+//     width: 327px;
+//     height: 158px;
+// }
+// .p1 {
+//     font-family: "Noto Sans TC";
+//     font-size: 30px;
+//     font-style: normal;
+//     font-weight: 700;
+//     line-height: 36px;
+//     color:#460961
+// }
+// .p5 {
+//     font-family: "Noto Sans TC";
+//     font-size: 18px;
+//     font-style: normal;
+//     font-weight: 700;
+//     line-height: 24px;
+//     color: #232529;
+// }
+// .hr-container {
+//     border: 0;
+//     border-top: 1px solid #fff200;
+//     position: relative;
+//     text-align: center;
+//     margin: 20px 0;
+// }
