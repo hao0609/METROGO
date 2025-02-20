@@ -1,5 +1,3 @@
-
-
 <script>
 // logos 管理
 import img1 from "../assets/images/sights/logo/Tibame.png";
@@ -12,7 +10,7 @@ import img7 from "../assets/images/sights/logo/板橋慈惠宮.png";
 import img8 from "../assets/images/sights/logo/貓宅咖啡.png";
 
 // 引入 Navbar
-import Navbar_V1 from '../components/Navbar_V1.vue';
+import Navbar_V1 from "../components/Navbar_V1.vue";
 
 export default {
   data() {
@@ -194,11 +192,21 @@ export default {
       </div>
     </div>
     <div class="line-square">
-      <h2 class="green-line">松山新店線</h2>
-      <h2 class="brown-line">文湖線</h2>
-      <h2 class="orange-line">中和新蘆線</h2>
-      <h2 class="blue-line">板南線</h2>
-      <h2 class="red-line">淡水信義線</h2>
+      <router-link to="/blue-line">
+        <div class="green-line"><h2>松山新店線</h2></div>
+      </router-link>
+      <router-link to="/blue-line">
+        <div class="brown-line"><h2>文湖線</h2></div>
+      </router-link>
+      <router-link to="/blue-line">
+        <div class="orange-line"><h2>中和新蘆線</h2></div>
+      </router-link>
+      <router-link to="/blue-line">
+        <div class="blue-line"><h2>板南線</h2></div>
+      </router-link>
+      <router-link to="/blue-line">
+        <div class="red-line"><h2>淡水信義線</h2></div>
+      </router-link>
     </div>
   </div>
 
@@ -221,7 +229,7 @@ export default {
           </div>
           <div class="featured-paragraph">
             <p class="paragraph-title title1">
-              天冷就要吃鍋！盤點五間板南線老饕必吃火鍋！
+              天冷就要吃鍋！盤點板南線老饕必吃火鍋！
             </p>
             <p class="paragraph caption bold">
               台北的冬天，最適合約三五好友來一鍋熱騰騰的火鍋！從大直到永春，沿著捷運藍線走，一路都是火鍋美食天堂，無論你偏愛清淡的湯底還是濃郁的麻辣，這五間必吃火鍋店絕對讓你心滿意足！無論是深夜宵夜場還是悠閒的晚餐時光，這些火鍋店的豐富選擇絕對能滿足每位饕客的味蕾。準備好暖暖你的冬天，跟著我們的推薦開啟你的火鍋之旅吧！
@@ -242,7 +250,7 @@ export default {
           </div>
           <div class="featured-paragraph">
             <p class="paragraph-title title1">
-              天冷就要吃鍋！盤點五間板南線老饕必吃火鍋！
+              天冷就要吃鍋！盤點板南線老饕必吃火鍋！
             </p>
             <p class="paragraph caption bold">
               台北的冬天，最適合約三五好友來一鍋熱騰騰的火鍋！從大直到永春，沿著捷運藍線走，一路都是火鍋美食天堂，無論你偏愛清淡的湯底還是濃郁的麻辣，這五間必吃火鍋店絕對讓你心滿意足！無論是深夜宵夜場還是悠閒的晚餐時光，這些火鍋店的豐富選擇絕對能滿足每位饕客的味蕾。準備好暖暖你的冬天，跟著我們的推薦開啟你的火鍋之旅吧！

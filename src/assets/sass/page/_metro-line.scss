@@ -28,10 +28,10 @@
 
 .banner {
   padding: 52px 40px;
-  width: 400px;
   transition: all 0.3s ease;
   text-decoration: none; // 移除 route-link 樣式
   color: inherit; // 移除 route-link 樣式
+  width: 100%;
 
   &:hover {
     transform: translateY(-8px);
@@ -45,10 +45,18 @@
   margin: -52px 0;
 }
 
+.banner-group-title {
+  color: $yellow-400;
+}
+
 // 各區塊標題
 .metro-line-title {
   text-align: center;
+  margin: 70px 0;
   position: relative;
+  h1 {
+    font-size: 72px;
+  }
 }
 
 // 分隔線
@@ -106,7 +114,7 @@
 
   .group-title {
     position: absolute; // 使用絕對定位
-    font-size: 1250%;
+    font-size: 800%;
     top: 50%;
     transform: translateY(-50%);
     left: 0;
@@ -204,7 +212,7 @@
 
   .metro-line-title,
   .group-title {
-    color: #fff200;
+    color: $yellow-400;
   }
 
   .metro-line-title::before,

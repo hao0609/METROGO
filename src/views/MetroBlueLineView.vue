@@ -31,7 +31,7 @@
       <div class="banner-group group-2">
         <div class="banner">
           <div class="banner-img">
-            <img src="https://picsum.photos/300/417" />
+            <img src="https://picsum.photos/200/417" />
           </div>
           <div class="banner-txt-wrapper">
             <p class="title1 bold banner-txt-title">有拜有保庇，你想要..?</p>
@@ -44,7 +44,7 @@
         <h1 class="banner-group-title bl">板南線</h1>
         <div class="banner">
           <div class="banner-img">
-            <img src="https://picsum.photos/300/417" />
+            <img src="https://picsum.photos/200/417" />
           </div>
           <div class="banner-txt-wrapper">
             <p class="title1 bold banner-txt-title">有拜有保庇，你想要..?</p>
@@ -59,7 +59,7 @@
       <div class="banner-group group-3">
         <div class="banner">
           <div class="banner-img">
-            <img src="https://picsum.photos/300/417" />
+            <img src="https://picsum.photos/200/417" />
           </div>
           <div class="banner-txt-wrapper">
             <p class="title1 bold banner-txt-title">有拜有保庇，你想要..?</p>
@@ -71,7 +71,7 @@
         </div>
         <div class="banner">
           <div class="banner-img">
-            <img src="https://picsum.photos/300/417" />
+            <img src="https://picsum.photos/200/417" />
           </div>
           <div class="banner-txt-wrapper">
             <p class="title1 bold banner-txt-title">有拜有保庇，你想要..?</p>
@@ -101,17 +101,21 @@
     <div class="metro-line-title">
       <h1>板南線半日遊行程推薦</h1>
     </div>
-    <div class="w-full-img">
-      <h1 class="group-title white">西門町</h1>
-    </div>
+    <router-link to="/tour/tourtype">
+      <div class="w-full-img">
+        <h1 class="group-title white">西門町</h1>
+      </div>
+    </router-link>
 
     <!-- 一日遊行程推薦 -->
     <div class="metro-line-title">
       <h1>板南線半日遊行程推薦</h1>
     </div>
-    <div class="w-full-img">
-      <h1 class="group-title white">龍山寺</h1>
-    </div>
+    <router-link to="/tour/tourtype">
+      <div class="w-full-img">
+        <h1 class="group-title white">龍山寺</h1>
+      </div>
+    </router-link>
 
     <!-- 留言板 -->
     <div class="metro-line-title">
