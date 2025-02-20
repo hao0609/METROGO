@@ -17,6 +17,7 @@ import MissionSpecialView from "../views/MissionSpecialView.vue";
 import NewsView from "../views/NewsView.vue";
 import NewsDetailView from "../views/NewsDetailView.vue";
 import UserProfileView from "../views/UserProfileView.vue";
+import JourneyFeaturedView from "../views/JourneyFeaturedView.vue";
 
 // 後台
 import AdminMainpageView from "../views/backend/AdminMainpageView.vue";
@@ -122,6 +123,13 @@ const router = createRouter({
       path: "/login",
       name: "LoginView",
       component: LoginView,
+    },
+
+    // 小編精選
+    {
+      path: "/journey-featured",
+      name: "JourneyFeaturedView",
+      component: JourneyFeaturedView,
     },
 
 

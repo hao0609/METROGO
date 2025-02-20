@@ -1,0 +1,95 @@
+@import "../base/color";
+@import "../base/font";
+@import "../base/reset";
+
+
+*{
+    margin: 0;
+    padding: 0;
+}
+.div-all{
+    box-sizing: border-box;
+    background-color: $aqua-400;
+}
+
+.spaceing-g8{
+    gap: 8px;
+}
+
+.spaceing-g12{
+    gap: 12px;
+}
+
+.spaceing-g24{
+    gap: 24px;
+}
+
+.spaceing-g36{
+    gap: 36px;
+}
+
+.spaceing-g48{
+    gap: 48px;
+}
+
+.flex{
+    display: flex;
+    justify-content: space-between;
+}
+
+img{
+    max-width: 100%;
+    height: auto;
+}
+.featured-main{
+    max-width: 1080px;
+    margin: auto;
+    margin-bottom: 20px;
+}
+
+.journey_featured_title1 > h1{
+    text-align: center;
+    margin: 24px;
+    color:$neutral-0;
+}
+
+.features-img-container{
+    flex-direction: column;
+}
+
+.top-img-top{
+    align-self: center;
+    flex: 2;
+}
+
+.bottom-images {
+    flex: 1 1 33%;
+}
+
+.side-images{
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+}
+
+.journey-featured-info{
+    background-color: $metro-green;
+    width: 100%;
+    padding: 50px 0px;
+}
+
+.featured-info-title{
+    color:$neutral-0;
+}
+.info-card{
+    color:$neutral-0;
+    margin: 16px 0px;
+}
+
+
+@media screen and (max-width : 1080px) {
+    .featured-main{
+        margin: 0 20px 60px 20px;
+        justify-content: center
+    }
+}
