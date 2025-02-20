@@ -1,3 +1,7 @@
+<script setup lang="ts">
+import Message from "../components/Message.vue";
+</script>
+
 <template>
   <div class="metroline-detail blue">
     <div class="introduce">
@@ -159,6 +163,7 @@
         </div>
       </div>
     </div>
+    <Message />
   </div>
 
   <!-- <div class="bl_inter_banner_02">
