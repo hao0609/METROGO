@@ -1,27 +1,25 @@
 <template>
-  <Navbar_V1/>
+  <Navbar_V1 />
   <div class="container">
-    <img src="../assets/images/img_home_v1.jpg" alt="" class="home">
+    <img src="../assets/images/img_home_v1.jpg" alt="" class="home" />
   </div>
+  <Footer />
 </template>
 
 <style lang="scss" scoped>
-@use '../assets/sass/page/home.scss';
-
-
+@use "../assets/sass/page/home.scss";
 </style>
 
 <script>
-import Navbar_V1 from '@/components/Navbar_V1.vue';
+import Navbar_V1 from "@/components/Navbar_V1.vue";
+import Footer from "../components/Footer.vue";
 
 export default {
   name: "HomeView",
-  created() {
-      
-  },
+  created() {},
   components: {
-    Navbar_V1
+    Navbar_V1,
+    Footer,
   },
-  
 };
 </script>

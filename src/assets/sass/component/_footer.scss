@@ -1,0 +1,94 @@
+@import "../base/color";
+@import "../base/reset";
+
+.footer {
+  background-color: $neutral-700;
+  width: 100vw;
+
+  bottom: 0;
+  left: 0;
+}
+
+.footer-container {
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column; // 確保上下排列
+  max-width: 1400px;
+  margin: 0 auto; // 置中
+}
+
+.footer-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-logo {
+  a {
+    display: inline;
+
+    img {
+      width: 200px;
+      height: auto;
+      object-fit: cover;
+    }
+  }
+}
+
+.footer-menu {
+  ul {
+    display: flex;
+    gap: 24px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  a {
+    color: $neutral-0;
+    text-decoration: none;
+    font-size: 16px;
+    white-space: nowrap;
+  }
+}
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; // 頂部對齊
+
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 40px;
+}
+
+.footer-text {
+  flex: 1; // 讓文字區塊佔據剩餘空間
+  margin-right: 40px;
+
+  p {
+    color: $neutral-0;
+    font-size: 14px;
+    line-height: 1.6;
+    margin: 0;
+    max-width: 800px; // 控制文字最大寬度
+  }
+}
+
+.footer-link {
+  flex-shrink: 0; // 防止內容被壓縮
+
+  ul {
+    display: flex;
+    gap: 24px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  a {
+    color: $neutral-0;
+    text-decoration: none;
+    font-size: 14px;
+    white-space: nowrap;
+  }
+}
