@@ -22,17 +22,17 @@
             </button>
             <button
               class="tabs title1"
-              :class="{ active: activeTab === 'achievement' }"
-              @click="activeTab = 'achievement'"
-            >
-              成就任務
-            </button>
-            <button
-              class="tabs title1"
               :class="{ active: activeTab === 'special' }"
               @click="activeTab = 'special'"
             >
               特殊任務
+            </button>
+            <button
+              class="tabs title1"
+              :class="{ active: activeTab === 'achievement' }"
+              @click="activeTab = 'achievement'"
+            >
+              成就任務
             </button>
           </div>
 

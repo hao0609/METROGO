@@ -61,7 +61,7 @@ export default {
 @import "@/assets/sass/base/_font.scss";
 @import "@/assets/sass/component/_btn.scss";
 @import "@/assets/sass/mixin/_mixin.scss";
-@import "@/assets/sass/component/_modal_menu.scss";
+
 .task-with-reward {
   // border: 1px solid #ddd;
   padding: 10px;
@@ -70,17 +70,17 @@ export default {
   background-color: $neutral-150;
 }
 .reward-title {
-  width: 90px;
-  height: 90px;
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
   background-color: $metro-red;
   text-align: center;
   font-weight: bold;
   color: $neutral-0;
-  padding: 10px 24px;
+  padding: 10px 20px;
 }
 .task-title {
-  font-size: 10px;
+  font-size: 14px;
   font-weight: bold;
 }
 
@@ -123,13 +123,11 @@ button {
   min-width: 74px;
   padding: 5px 10px;
 }
-// button {
-//   padding: 5px 10px;
-//   background-color: #007bff;
-//   color: white;
-//   border: none;
-//   cursor: pointer;
-// }
+.progress-icon {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
 
 button:disabled {
   background-color: #aaa;

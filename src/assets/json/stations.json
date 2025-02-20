@@ -1,0 +1,237 @@
+[
+  {
+    "Station": "七張站",
+    "Destination": "新店站",
+    "UpdateTime": "20250220083534"
+  },
+  {
+    "Station": "大安站",
+    "Destination": "北投站",
+    "UpdateTime": "20250220083522"
+  },
+  {
+    "Station": "大安站",
+    "Destination": "象山站",
+    "UpdateTime": "20250220083522"
+  },
+  {
+    "Station": "大安森林公園站",
+    "Destination": "淡水站",
+    "UpdateTime": "20250220083513"
+  },
+  {
+    "Station": "中山站",
+    "Destination": "台電大樓站",
+    "UpdateTime": "20250220083534"
+  },
+  {
+    "Station": "中山國中站",
+    "Destination": "南港展覽館站",
+    "UpdateTime": "20250220060012"
+  },
+  {
+    "Station": "中正紀念堂站",
+    "Destination": "北投站",
+    "UpdateTime": "20250220083532"
+  },
+  {
+    "Station": "六張犁站",
+    "Destination": "南港展覽館站",
+    "UpdateTime": "20250220060012"
+  },
+  {
+    "Station": "文德站",
+    "Destination": "南港展覽館站",
+    "UpdateTime": "20250220060012"
+  },
+  {
+    "Station": "木柵站",
+    "Destination": "南港展覽館站",
+    "UpdateTime": "20250220060012"
+  },
+  {
+    "Station": "木柵站",
+    "Destination": "動物園站",
+    "UpdateTime": "20250220060012"
+  },
+  {
+    "Station": "北門站",
+    "Destination": "新店站",
+    "UpdateTime": "20250220083534"
+  },
+  {
+    "Station": "古亭站",
+    "Destination": "南勢角站",
+    "UpdateTime": "20250220083536"
+  },
+  {
+    "Station": "台大醫院站",
+    "Destination": "淡水站",
+    "UpdateTime": "20250220083513"
+  },
+  {
+    "Station": "台北小巨蛋站",
+    "Destination": "松山站",
+    "UpdateTime": "20250220083524"
+  },
+  {
+    "Station": "台北橋站",
+    "Destination": "迴龍站",
+    "UpdateTime": "20250220083526"
+  },
+  {
+    "Station": "石牌站",
+    "Destination": "淡水站",
+    "UpdateTime": "20250220083532"
+  },
+  {
+    "Station": "江子翠站",
+    "Destination": "南港展覽館站",
+    "UpdateTime": "20250220083519"
+  },
+  {
+    "Station": "行天宮站",
+    "Destination": "南勢角站",
+    "UpdateTime": "20250220083516"
+  },
+  {
+    "Station": "西門站",
+    "Destination": "昆陽站",
+    "UpdateTime": "20250220083528"
+  },
+  {
+    "Station": "西門站",
+    "Destination": "頂埔站",
+    "UpdateTime": "20250220083508"
+  },
+  {
+    "Station": "西湖站",
+    "Destination": "動物園站",
+    "UpdateTime": "20250220060012"
+  },
+  {
+    "Station": "府中站",
+    "Destination": "頂埔站",
+    "UpdateTime": "20250220083508"
+  },
+  {
+    "Station": "忠孝復興站",
+    "Destination": "昆陽站",
+    "UpdateTime": "20250220083528"
+  },
+  {
+    "Station": "忠孝復興站",
+    "Destination": "動物園站",
+    "UpdateTime": "20250220060012"
+  },
+  {
+    "Station": "昆陽站",
+    "Destination": "頂埔站",
+    "UpdateTime": "20250220083508"
+  },
+  {
+    "Station": "明德站",
+    "Destination": "象山站",
+    "UpdateTime": "20250220083522"
+  },
+  {
+    "Station": "東湖站",
+    "Destination": "動物園站",
+    "UpdateTime": "20250220060012"
+  },
+  {
+    "Station": "板橋站",
+    "Destination": "亞東醫院站",
+    "UpdateTime": "20250220083519"
+  },
+  {
+    "Station": "板橋站",
+    "Destination": "昆陽站",
+    "UpdateTime": "20250220083528"
+  },
+  {
+    "Station": "松山機場站",
+    "Destination": "動物園站",
+    "UpdateTime": "20250220060012"
+  },
+  {
+    "Station": "芝山站",
+    "Destination": "北投站",
+    "UpdateTime": "20250220083513"
+  },
+  {
+    "Station": "信義安和站",
+    "Destination": "象山站",
+    "UpdateTime": "20250220083522"
+  },
+  {
+    "Station": "科技大樓站",
+    "Destination": "動物園站",
+    "UpdateTime": "20250220060012"
+  },
+  {
+    "Station": "迴龍站",
+    "Destination": "南勢角站",
+    "UpdateTime": "20250220083416"
+  },
+  {
+    "Station": "國父紀念館站",
+    "Destination": "頂埔站",
+    "UpdateTime": "20250220083519"
+  },
+  {
+    "Station": "頂埔站",
+    "Destination": "南港展覽館站",
+    "UpdateTime": "20250220083519"
+  },
+  {
+    "Station": "景安站",
+    "Destination": "迴龍站",
+    "UpdateTime": "20250220083536"
+  },
+  {
+    "Station": "象山站",
+    "Destination": "北投站",
+    "UpdateTime": "20250220083433"
+  },
+  {
+    "Station": "新埔民生站",
+    "Destination": "新北產業園區站",
+    "UpdateTime": "20230512173649"
+  },
+  {
+    "Station": "新埔站",
+    "Destination": "南港展覽館站",
+    "UpdateTime": "20250220083508"
+  },
+  {
+    "Station": "萬芳醫院站",
+    "Destination": "南港展覽館站",
+    "UpdateTime": "20250220060012"
+  },
+  {
+    "Station": "輔大站",
+    "Destination": "迴龍站",
+    "UpdateTime": "20250220083516"
+  },
+  {
+    "Station": "劍南路站",
+    "Destination": "動物園站",
+    "UpdateTime": "20250220060012"
+  },
+  {
+    "Station": "龍山寺站",
+    "Destination": "亞東醫院站",
+    "UpdateTime": "20250220083528"
+  },
+  {
+    "Station": "蘆洲站",
+    "Destination": "南勢角站",
+    "UpdateTime": "20250220083410"
+  },
+  {
+    "Station": "麟光站",
+    "Destination": "動物園站",
+    "UpdateTime": "20250220060012"
+  }
+]
