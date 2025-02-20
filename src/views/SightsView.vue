@@ -121,7 +121,7 @@ export default {
     </div>
     <div class="banner-grid">
       <div class="grid-container">
-        <img src="../assets/images/sights/banner/16.JPG" alt="" />
+        <!-- <img src="../assets/images/sights/banner/16.JPG" alt="" /> -->
       </div>
       <div class="grid-container">
         <img src="../assets/images/sights/banner/17.jpg" alt="" />
