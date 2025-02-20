@@ -4,6 +4,7 @@ import icon_purple from './icons/icon_purple.vue'
 import icon_white from './icons/icon_white.vue';
 import shopping_cart from './icons/shopping_cart.vue' 
 import user from './icons/user.vue' 
+// import shopping_cart_alert from './shopping_cart_alert.vue'
 
 import { ref , computed} from 'vue';
 
@@ -50,6 +51,13 @@ const checked_change = () => {
         // header.value.style.backgroundColor = 'black';
     }
 };
+
+
+// const cartVisible = ref(false);
+// const cartItems = ref([
+//   { prod_name: "商品1", prod_price: 500, prod_quantity: 1 },
+//   { prod_name: "商品2", prod_price: 200, prod_quantity: 1 }
+// ]);
 
 </script>
 
@@ -111,9 +119,15 @@ const checked_change = () => {
 
             <div class="line"></div>
 
-            <div class="shopping_cart"><shopping_cart/></div> 
+            <!-- <div class="shopping_cart"><shopping_cart/></div>  -->
+
+
             <div class="user"><RouterLink to="/user-profile" ><user v-show="user_login_status"></user></RouterLink></div> 
-            <button class="btn_white small">{{user_login_statusText}}</button>
+
+            <RouterLink to="/login">
+                <button class="btn_white small">{{user_login_statusText}}</button>
+            </RouterLink>
+
             
         </nav>
 
@@ -126,6 +140,18 @@ const checked_change = () => {
                 </div>
             </div>
         </div>
+
+        <div class="shooping_cart_alert_box">
+            <ShoppingCart
+                v-model:show="cartVisible"
+                :itemList="cartItems"
+                @update:itemList="cartItems = $event"
+                @remove-item="cartItems.splice($event, 1)"
+            />
+
+        </div>
+        
+        
 
 
 
@@ -176,6 +202,7 @@ const checked_change = () => {
 
 @import "@/assets/sass/base/_color.scss";
 @import "@/assets/sass/base/_font.scss";
+@import "@/assets/sass/mixin/_mixin.scss";
 
 
 ///////////* Header *//////////////
@@ -352,6 +379,19 @@ $all_animation_time: .4s;
    transition: all $all_animation_time ease;
  }
 
+// 購物車彈窗_外容器
+.shooping_cart_alert_box{
+    position: absolute;
+    top: 92px;
+    right: 0px;
+
+    @include mobile(){
+      width: 100%;
+      padding: 0 5px;
+    }
+
+
+}
 
 
 ////////* rwd_menu_V1 *///////////
