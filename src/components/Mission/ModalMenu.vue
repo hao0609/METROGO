@@ -562,10 +562,21 @@ export default {
     return {
       activeTab: "task",
       activeSlide: 0,
+      // Destination: [],
 
       locationTasks: [
         { progress: 100, title: "淡水站" },
         { progress: 75, title: "紅樹林站" },
+        { progress: 75, title: "竹圍站" },
+        { progress: 75, title: "關渡站" },
+        { progress: 75, title: "北投站" },
+        { progress: 75, title: "新北投站" },
+        { progress: 75, title: "奇岩站" },
+        { progress: 75, title: "明德站" },
+        { progress: 75, title: "士林站" },
+        { progress: 75, title: "劍潭站" },
+        { progress: 75, title: "中山站" },
+        { progress: 75, title: "台北車站" },
       ],
       locationBadges: ["時光旅人", "打卡全制霸"],
       achievementTasks: [
@@ -624,6 +635,16 @@ export default {
         )
         .filter((badge) => badge !== null);
     },
+    // mounted() {
+    //   fetch(`	https://tcgmetro.blob.core.windows.net/stationnames/stations.json`)
+    //     .then((response) => response.json())
+    //     .then((data) => {
+    //       this.locationTasks = this.locationTasks.map((task, index) => ({
+    //         progress: task.progress,
+    //         title: data[index] ? data[index].Destination : task.title,
+    //       }));
+    //     });
+    // },
   },
 };
 </script>

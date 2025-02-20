@@ -130,6 +130,7 @@ export default {
     ModalMenu,
     PopupMenu,
   },
+
   setup() {
     const ball = ref(null);
     const container = ref(null);
@@ -185,24 +186,24 @@ export default {
         id: 1,
         title: "淡水站 ",
         subtitle:
-          " Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandaemodi earum dignissimos suscipit nulla doloremque aliquam commodi,dolorum sit reprehenderit beatae vero culpa quia corporis minus eosid voluptatem quisquam?",
-        message: "Lorem ipsum dolor sit amet.",
+          " 淡水擁有豐富的自然與人文景觀，如紅樹林保護區、漁人碼頭的浪漫夕陽，以及歷史悠久的淡水老街。這裡有著名的小吃，如阿給、鐵蛋、魚酥等，還能搭渡輪前往八里或欣賞河岸風光，是台北近郊熱門旅遊地點。",
+        message: "請拍攝「金色水岸」，包含金色水岸字樣.",
         img: "/public/img/red_01.png",
       },
       {
         id: 2,
         title: "關渡站 ",
         subtitle:
-          " Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandaemodi earum dignissimos suscipit nulla doloremque aliquam commodi,dolorum sit reprehenderit beatae vero culpa quia corporis minus eosid voluptatem quisquam?",
-        message: "Lorem ipsum dolor sit amet.",
+          " 關渡擁有悠久歷史的關渡宮，是北台灣重要的媽祖廟。關渡自然公園則是賞鳥與生態觀察的好地方，擁有豐富的濕地生態。沿著河岸的自行車道，可一路騎往淡水或市區，適合喜愛戶外活動的旅客。",
+        message: "請拍攝「關渡宮」，包含關渡宮字樣.",
         img: null,
       },
       {
         id: 3,
         title: "北投站 ",
         subtitle:
-          " Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandaemodi earum dignissimos suscipit nulla doloremque aliquam commodi,dolorum sit reprehenderit beatae vero culpa quia corporis minus eosid voluptatem quisquam?",
-        message: "Lorem ipsum dolor sit amet.",
+          " 北投以溫泉聞名，擁有北投溫泉博物館、地熱谷等知名景點。北投圖書館是台灣首座綠建築圖書館，結合自然環境與閱讀空間。此外，北投公園及周邊步道充滿綠意，是放鬆散步的好去處，讓旅客能同時享受自然與文化之美。",
+        message: "請拍攝北投溫泉博物館.",
         img: null,
       },
     ]);
@@ -210,7 +211,7 @@ export default {
       {
         id: 1,
         title: "問答",
-        message: "Lorem ipsum dolor sit amet.",
+        message: "紅線知識大挑戰，你能答對嗎？",
         img: "/public/img/question.png",
       },
     ]);

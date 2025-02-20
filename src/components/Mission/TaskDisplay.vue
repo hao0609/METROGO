@@ -105,10 +105,10 @@ progress {
 progress::-webkit-progress-bar {
   background-color: $neutral-150;
   border-radius: 11px;
+  border: 1px solid $neutral-700;
 }
 /* 進度條內部填充 */
 progress::-webkit-progress-value {
-  border: 1px solid $neutral-700;
   background-color: $primary-400; // 這是你的 SCSS 變數，改成你要的顏色
   border-radius: 11px;
 }

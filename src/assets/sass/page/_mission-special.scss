@@ -141,6 +141,10 @@ $gap: 50px;
 }
 .question-section {
   height: 500px;
+  p {
+    display: block;
+    margin-bottom: 20px;
+  }
 }
 .question-img {
   border-radius: 50%;
@@ -158,9 +162,6 @@ $gap: 50px;
   text-align: center;
   .question-text {
     margin-top: 10px;
-  }
-  .message p {
-    display: block;
   }
 }
 .mission-menu {
