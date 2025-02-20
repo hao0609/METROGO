@@ -234,9 +234,11 @@ export default {
             <p class="paragraph caption bold">
               台北的冬天，最適合約三五好友來一鍋熱騰騰的火鍋！從大直到永春，沿著捷運藍線走，一路都是火鍋美食天堂，無論你偏愛清淡的湯底還是濃郁的麻辣，這五間必吃火鍋店絕對讓你心滿意足！無論是深夜宵夜場還是悠閒的晚餐時光，這些火鍋店的豐富選擇絕對能滿足每位饕客的味蕾。準備好暖暖你的冬天，跟著我們的推薦開啟你的火鍋之旅吧！
             </p>
-            <div class="btn-container">
-              <button class="btn_white small">閱讀更多</button>
-            </div>
+            <router-link to="/journey-featured">
+              <div class="btn-container">
+                <button class="btn_white small">閱讀更多</button>
+              </div>
+            </router-link>
           </div>
         </div>
       </swiper-slide>
@@ -255,9 +257,11 @@ export default {
             <p class="paragraph caption bold">
               台北的冬天，最適合約三五好友來一鍋熱騰騰的火鍋！從大直到永春，沿著捷運藍線走，一路都是火鍋美食天堂，無論你偏愛清淡的湯底還是濃郁的麻辣，這五間必吃火鍋店絕對讓你心滿意足！無論是深夜宵夜場還是悠閒的晚餐時光，這些火鍋店的豐富選擇絕對能滿足每位饕客的味蕾。準備好暖暖你的冬天，跟著我們的推薦開啟你的火鍋之旅吧！
             </p>
-            <div class="btn-container">
-              <button class="btn_white small">閱讀更多</button>
-            </div>
+            <router-link to="/journey-featured">
+              <div class="btn-container">
+                <button class="btn_white small">閱讀更多</button>
+              </div>
+            </router-link>
           </div>
         </div>
       </swiper-slide>
