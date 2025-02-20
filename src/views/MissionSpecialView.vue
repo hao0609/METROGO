@@ -1,4 +1,5 @@
 <template>
+  <Navbar_V1 />
   <div class="mission-body" ref="container">
     <div class="mission-menu">
       <button @click="isPopupOpen = true" class="menu-button">
@@ -116,19 +117,25 @@
         </div>
       </div>
     </div>
-    <div class="mission-footer" ref="footer">
-      <img src="../assets/images/MissionSpecial/station_end.png" alt="" />
-    </div>
   </div>
+  <div class="mission-footer" ref="footer">
+    <img src="../assets/images/MissionSpecial/station_end.png" alt="" />
+  </div>
+  <Footer />
 </template>
 <script>
 import { ref, onMounted, onUnmounted } from "vue";
+import Navbar_V1 from "@/components/Navbar_V1.vue";
+import Footer from "../components/Footer.vue";
+
 import ModalMenu from "../components/Mission/ModalMenu.vue";
 import PopupMenu from "../components/Mission/PopupMenu.vue";
 export default {
   components: {
     ModalMenu,
     PopupMenu,
+    Navbar_V1,
+    Footer,
   },
 
   setup() {
