@@ -49,6 +49,17 @@
     &:not(:placeholder-shown) {
       border-color: $neutral-150;
     }
+
+    &:disabled {
+      background-color: $neutral-50;
+      border-color: $neutral-150;
+      color: $neutral-200;
+      cursor: not-allowed;
+
+      &::placeholder {
+        color: $neutral-150;
+      }
+    }
   }
 
   // input 裡包含按鈕

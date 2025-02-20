@@ -1,0 +1,410 @@
+@use '@/assets/sass/base/color' as *;
+
+.container {
+    background-color: $yellow-400;
+    padding: 72px 64px 32px 64px;
+    display: flex;
+    flex-direction: row;
+    gap: 32px;
+    height: 100vh;
+    overflow-y: hidden;
+
+    @media screen and (max-width: 576px) {
+        padding: 56px 20px 24px 20px;
+        gap: 16px;
+        flex-direction: column;
+        overflow-y: auto;
+        height: auto;
+        min-height: 100vh;
+    }
+}
+
+.side-bar {
+    width: 240px;
+    text-align: center;
+
+    @media screen and (max-width: 768px) {
+        width: 180px;
+    }
+
+    @media screen and (max-width: 576px) {
+        width: 100%;
+    }
+}
+
+.side-bar-top {
+    background-color: $neutral-0;
+    padding: 24px 12px;
+    border-radius: 24px 24px 0 0;
+
+    @media screen and (max-width: 576px) {
+        padding: 16px 12px 12px 12px;
+    }
+}
+
+.side-bar-bottom {
+    padding: 24px;
+    background-color: $neutral-700;
+    border-radius: 0 0 24px 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .select-group {
+        width: 100%;
+    }
+
+    @media screen and (max-width: 576px) {
+        padding: 12px;
+    }
+
+}
+
+.profile-pic {
+    width: 80px;
+    height: 80px;
+    background: #ccc;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+
+    @media screen and (max-width: 576px) {
+        width: 60px;
+        height: 60px;
+    }
+}
+
+.point-group {
+    margin-top: 24px;
+    @media screen and (max-width: 576px) {
+        margin-top: 12px;
+    }
+}
+
+.btn-group {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 16px;
+}
+
+.btn-mission {
+    background: $metro-yellow;
+    color: $neutral-700;
+    font-weight: bold;
+    text-align: center;
+    border: none;
+    padding: 12px;
+    border-radius: 12px;
+    cursor: pointer;
+    flex: 1;
+
+    &:hover {
+        background-color: #f2af15;
+    }
+
+    &:focus-visible, &:focus {
+        border: none !important;
+    }
+}
+
+.menu {
+    width: 100%;
+
+    .btn_white.small {
+        margin: 0 auto ;
+    }
+
+    @media screen and (max-width: 576px) {
+        display: none;
+    }
+}
+
+.menu_mobile {
+    width: 100%;
+    display: none;
+    @media screen and (max-width: 576px) {
+        display: block;
+    }
+}
+
+.menu-item {
+    background: $neutral-0;
+    color: $neutral-700;
+    width: 100%;
+    padding: 12px 24px;
+    margin: 5px 0;
+    border-radius: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    margin-bottom: 16px;
+    transition: ease-in-out 0.2s;
+
+    &:last-of-type {
+        margin-bottom: 24px;
+    }
+
+    &.active {
+        background: $primary-400;
+        color: $neutral-0;
+    }
+
+    @media screen and (max-width: 768px) {
+        padding: 12px;
+    }
+}
+
+// 右側內容 //
+
+// 會員資料、重設密碼
+.container-right {
+    flex: 1;
+    height: 100%;
+    //min-height: 633px;
+    background-color: $neutral-0;
+    padding: 48px; 
+    border-radius: 24px;
+    overflow-y: hiddin;
+
+    @media screen and (max-width: 576px) {
+        height: auto;
+        width: 100%;
+        padding: 32px 20px; 
+        overflow-y: auto;
+    }
+
+    .title1 {
+        margin-bottom: 40px;
+
+        @media screen and (max-width: 768px) {
+            margin-bottom: 24px;
+        }
+    }
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    align-items: center;
+
+    .profile-pic {
+        width: 160px;
+        height: 160px;
+        margin-bottom: 32px;
+
+        @media screen and (max-width: 768px) {
+            width: 180px;
+            height: 180px;
+        }
+    }
+
+    .form-group {
+        width: 60%;
+        max-width: 400px;
+        min-width: 200px;
+        margin-bottom: 24px;
+
+        &:last-of-type {
+            margin-bottom: 32px;
+        }
+
+        @media screen and (max-width: 768px) {
+            width: 100%;
+        }
+
+        .input-wrapper.with-icon {
+            .input-field {
+                padding: 16px 40px 16px 24px;
+            }
+        }
+
+        .input-icon {
+            position: absolute;
+            right: 24px;
+            top: 50%;
+            transform: translateY(-50%);
+            transition: transform ease-in-out 0.3s;
+            cursor: pointer;
+            color: $neutral-200;
+        }
+
+    }
+}
+
+// 加入購物車
+#productCollection {
+    .content {
+        align-items: flex-start;
+        width: 100%;
+    }
+
+    .product-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 48px;
+
+        @media screen and (max-width: 576px) {
+            width: 100%;
+            gap: 40px 20px;
+            margin: 0 auto;
+        }
+    }
+
+    .product {
+        text-align: center;
+        position: relative;
+
+        @media screen and (max-width: 576px) {
+            width: calc(50% - 10px);
+        }
+
+        @media screen and (max-width: 425px) {
+            width: 100%;
+        }
+    }
+
+    .img-product-photo {
+        flex-shrink: 0;
+        width: 240px;
+        height: 160px;
+        border-radius: 4px;
+        position: static;
+        background-color: $neutral-50;
+
+        @media screen and (max-width: 576px) {
+            width: 100%;
+        }
+    }
+
+    .icon-heart {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        color: $metro-red;
+
+        svg {
+            width: 32px;
+            height: 32px;
+        }
+    }
+
+    .btn-group {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 16px;
+        margin-bottom: 0;
+        gap: 8px;
+    }
+
+    .btn_outline.small {
+        display: flex;
+        flex-grow: 1;
+        justify-content: center;
+        @media screen and (max-width: 576px) {
+            padding: 12px 12px;
+        }
+    }
+
+    .cart-btn {
+        width: 48px;
+        height: 48px;
+        background: #6A1B9A;
+        color: white;
+        border-radius: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+    }
+
+}
+
+// 表格
+.order-table {
+    width: 100%;
+    overflow-x: auto;
+    text-align: center;
+
+    .btn_outline.small {
+        margin: auto;
+    }
+}
+  
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th {
+    background-color: #222;
+    color: white;
+    padding: 12px;
+}
+
+td {
+    padding: 8px 12px;
+    border-bottom: 1px solid #ddd;
+}
+
+.highlight-row {
+    background-color: #f3f3f3;
+}
+
+.details-btn:hover {
+    background: #7d29e8;
+    color: white;
+}
+
+// 訂單詳情彈窗
+
+.dialog-order-detail, #orderDetailDialog {
+    border-radius: 20px !important;
+    padding: 32px 24px !important;
+    width: 335px !important;
+}
+
+.dialog-title {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+
+.order-detail-content {
+    text-align: left;
+}
+
+.list-title {
+    margin-bottom: 20px;
+}
+
+.list-title, .item-row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.divider {
+    border-top: 1px solid $neutral-150;
+    margin: 15px 0;
+}
+
+.amount-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 32px;
+    
+    .bold {
+        font-weight: bold;
+    }
+}
+
+.receiver-section {
+    .form-group {
+        margin-bottom: 24px;
+    }
+}

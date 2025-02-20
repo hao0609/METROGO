@@ -1,5 +1,6 @@
 
 <script setup>
+import { RouterLink } from "vue-router";
 import icon_purple from './icons/icon_purple.vue' 
 import icon_white from './icons/icon_white.vue';
 import shopping_cart from './icons/shopping_cart.vue' 
@@ -104,16 +105,19 @@ const checked_change = () => {
                     </div>
                 
                 </li>
-                <li><RouterLink to="/store" >商城</RouterLink></li>
+                <!-- <li><RouterLink to="/store" >商城</RouterLink></li> -->
                 <li><RouterLink to="/news" >最新消息</RouterLink></li>
 
             </ul>
 
             <div class="line"></div>
 
-            <div class="shopping_cart"><shopping_cart/></div> 
+            <!-- <div class="shopping_cart"><shopping_cart/></div>  -->
             <div class="user"><RouterLink to="/user-profile" ><user v-show="user_login_status"></user></RouterLink></div> 
-            <button class="btn_white small">{{user_login_statusText}}</button>
+            <RouterLink to="/login">
+                <button class="btn_white small">{{user_login_statusText}}</button>
+            </RouterLink>
+
             
         </nav>
 

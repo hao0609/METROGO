@@ -14,6 +14,9 @@ import yellow_line from "../views/line/yellow.vue";
 import brown_line from "../views/line/brown.vue";
 import BackendLoginView from "../views/BackendLoginView.vue";
 import MissionSpecialView from "../views/MissionSpecialView.vue";
+import NewsView from "../views/NewsView.vue";
+import NewsDetailView from "../views/NewsDetailView.vue";
+import UserProfileView from "../views/UserProfileView.vue";
 
 // 後台
 import AdminMainpageView from "../views/backend/AdminMainpageView.vue";
@@ -23,7 +26,7 @@ const router = createRouter({
   routes: [
     {
       path: "/home",
-      name: "home",
+      name: "HomeView",
       component: HomeView,
     },
 
@@ -85,15 +88,16 @@ const router = createRouter({
     },
     // 特殊遊戲
     {
-      path: "/MissionSpecialView",
+      path: "/special-mission",
       name: "特殊任務",
       component: MissionSpecialView,
     },
     // 會員中心
-    { path: "/user-profile", name: "會員資料" },
-    { path: "/password", name: "修改密碼" },
-    { path: "/favorites", name: "商品收藏" },
-    { path: "/cart", name: "訂單管理" },
+    {
+      path: "/user-profile",
+      name: "UserProfile",
+      component: UserProfileView,
+    },
 
     // 商城
     { path: "/store", name: "商城入口" },
@@ -102,7 +106,16 @@ const router = createRouter({
     { path: "/store", name: "客製化" },
 
     // 最新消息
-    { path: "/news", name: "最新消息" },
+    { path: "/news", 
+      name: "News",
+      component: NewsView,
+    },
+
+    // 最新消息詳情
+    { path: "/news-detail", 
+      name: "NewsDetail",
+      component: NewsDetailView,
+    },
 
     // 前台登入
     {
@@ -111,8 +124,6 @@ const router = createRouter({
       component: LoginView,
     },
 
-    // 後台
-    // { path: "/admin/login/", name: "後台登入" },
 
     // 後台
     // 後台登入頁面

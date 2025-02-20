@@ -1,0 +1,187 @@
+
+@use '@/assets/sass/base/color' as *;
+
+.container {
+    min-height: 100vh;
+    height: auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: url('@/assets/images/Entrance_background.svg') right/cover no-repeat;
+    // overflow: hidden;
+    position: relative;
+    padding: 0 24px 80px 24px;
+
+
+    @media screen and (max-width: 576px) {
+        padding: 24px;
+    }
+  }
+
+  .form {
+    width: 480px;
+    padding: 40px 24px;
+    border-radius: 20px;
+    border: 1px solid $neutral-150;
+    background-color: $neutral-0;
+    transition: all 0.3s ease;
+
+    &:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        // border: 1px solid $primary-400;
+    }
+
+    @media screen and (max-width: 576px) {
+        width: 100%;
+    }
+  }
+
+  .form-title {
+    margin: 40px 0 20px 0;
+    text-align: center;
+  }
+
+  .form.signup {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+.form-group {
+    margin-bottom: 24px;
+
+    &:last-of-type {
+    margin-bottom: 32px;
+    }
+
+    @media screen and (max-width: 768px) {
+    width: 100%;
+    }
+
+    .input-wrapper.with-icon {
+    .input-field {
+        padding: 16px 40px 16px 24px;
+    }
+    }
+
+    .input-icon {
+    position: absolute;
+    right: 24px;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: transform ease-in-out 0.3s;
+    cursor: pointer;
+    color: $neutral-200;
+    }
+
+}
+
+.button-field {
+    display: flex;
+    justify-content: center;
+}
+
+.form-link {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.form-link span,
+.form-link a {
+    font-size: 14px;
+    font-weight: 400;
+    color: #232836;
+}
+
+.form a {
+    color: $primary-400;
+}
+
+.form-content a:hover {
+    text-decoration: underline;
+}
+
+.line {
+    position: relative;
+    height: 1px;
+    width: 100%;
+    margin: 36px 0;
+    background-color: $neutral-150;
+}
+
+.line::before {
+content: 'Or';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #FFF;
+    color: $neutral-150;
+    padding: 0 15px;
+}
+
+.media-group {
+    display: flex;
+    width: 100%;
+    gap: 8px;
+
+    @media screen and (max-width: 576px) {
+        flex-direction: column;
+    }
+  }
+
+.media-options {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 16px;
+    border-radius: 8px;
+    background-color: $neutral-50;
+    border: 0;
+    font-weight: bold;
+    width: calc( 100% - 4px);
+    gap: 8px;
+
+    &:hover {
+        background-color: $neutral-150;  
+    }
+}
+
+
+.media-options a {
+    text-decoration: none;
+    color: $neutral-700;
+
+    &:hover {
+        text-decoration: none;
+    }
+}
+
+img.google-img {
+    height: 20px;
+    width: 20px;
+    object-fit: cover;
+}
+
+.pw-desc {
+    margin-bottom: 40px;
+}
+
+// 返回按鈕
+.return-btn {
+    color: $neutral-700;
+    display: flex;
+    width: fit-content;
+    padding: 8px;
+    gap: 8px;
+    align-items: center;
+    cursor: pointer;
+    position: absolute;
+    left: 32px;
+    top: 40px;
+
+    &:hover {
+        color: $neutral-400;
+    }
+}

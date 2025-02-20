@@ -39,7 +39,7 @@
       <div class="entrance-info">
         <div class="entrance-arrow">
           <div class="left">
-            <RouterLink to="/sights">
+            <RouterLink to="/home">
               <img src="../assets/images/Entrance_FrontEnd.svg" alt="前往前台" />
             </RouterLink>
           </div>

@@ -1,0 +1,291 @@
+@use '@/assets/sass/base/color' as *;
+
+// 外層清單
+.news-hero {
+    box-sizing: border-box;
+    height: 400px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    
+    @media screen and (max-width: 576px) {
+        height: 174px;
+    }
+
+}
+
+.hero-title {
+    // text-align: center;
+    // align-items: center;
+    // margin: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    text-wrap: nowrap;
+}
+
+.metroshape-group {
+    display: flex;
+    position: absolute;
+    z-index: 1;
+    gap: 24px;
+
+    &.left {
+        right: 50%;
+        padding-right: 20%;
+        top: 24px;
+    }
+
+    &.right {
+        left: 50%;
+        padding-left: 20%;
+        bottom: 24px;
+    }
+
+    @media screen and (max-width: 576px) {
+        gap: 8px;
+    }
+}
+
+.metroshape {
+    width: 160px;
+    height: 200px;
+    border-radius: 16px;
+    display: block;
+    position: relative;
+    opacity: 50%;
+    transform: skew(-20deg) translateX(10%);
+
+    @media screen and (max-width: 576px) {
+        width: 60px;
+        height: 80px;
+        border-radius: 8px;
+    }
+}
+
+.content {
+    display: block;
+    padding: 80px 64px;
+    width: 100%;
+    background-color: $neutral-50;
+
+    @media screen and (max-width: 576px) {
+        padding: 32px 20px;
+    }
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    gap: 12px;
+    margin-bottom: 80px;
+    align-items: flex-start;
+    justify-content: flex-end;
+    flex-shrink: 0;
+
+    .select-wrapper, .input-wrapper {
+        width: 200px;
+
+        @media screen and (max-width: 576px) {
+            width: 100%;
+        }
+    }
+
+    @media screen and (max-width: 576px) {
+        flex-direction: column;
+        gap: 12px;
+        margin-bottom: 20px;
+    }
+}
+
+.input-group {
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+
+    @media screen and (max-width: 576px) {
+        gap: 8px;
+    }
+}
+
+.news-list {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+
+    @media screen and (max-width: 576px) {
+        gap: 20px;
+    }
+}
+
+.news-card {
+    background: $neutral-0;
+    border-radius: 20px;
+    padding: 52px 40px 40px 40px;
+    display: flex;
+    flex-direction: row;
+    gap: 40px;
+    align-items: center;
+    justify-content: flex-start;
+    align-self: stretch;
+    flex-shrink: 0;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none; // 移除 route-link 樣式
+    color: inherit; // 移除 route-link 樣式
+
+    &:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        // border: 1px solid $primary-400;
+    }
+
+    @media screen and (max-width: 576px) {
+        flex-direction: column;
+        padding: 44px 16px 16px 16px;
+        gap: 8px;
+    }
+}
+
+.img-news-photo {
+    flex-shrink: 0;
+    width: 300px;
+    height: 200px;
+    border-radius: 12px;
+    // position: static;
+    background-color: $neutral-50;
+    background-image: url('https://picsum.photos/600/400');
+    background-repeat: no-repeat ;
+    background-size: cover;
+
+    @media screen and (max-width: 576px) {
+        width: 200px;
+        height: 120px;
+        background-image: url('https://picsum.photos/114/76');
+        border-radius: 8px;
+    }
+}
+
+.card-text-wrap {
+    display: flex;
+    // position: relative;
+    flex-direction: column;
+    gap: 16px;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex: 1;
+}
+
+.card-title {
+    @media screen and (max-width: 576px) {
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}
+
+.card-content {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.news-date {
+    color: $neutral-400;
+    margin: 8px 0;
+
+    @media screen and (max-width: 576px) {
+        position: absolute;
+        top: 4px;
+        right: 16px;
+    }
+}
+
+// 外層卡片的文字行數限制
+.news-list {
+    .card-content {
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    }
+}
+
+.news-card-tag {
+    background: $neutral-200;
+    color: $neutral-0;
+    border-radius: 20px 0px 100px 0px;
+    padding: 8px 20px 8px 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    min-width: 120px;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+
+    &.tag-1 {
+        background: $metro-green;
+    }
+
+    &.tag-2 {
+        background: $metro-blue;
+    }
+
+    &.tag-3 {
+        background: $metro-yellow;
+    }
+}
+
+// 最新消息詳情
+.return-btn {
+    color: $neutral-700;
+    display: flex;
+    width: fit-content;
+    padding: 8px;
+    gap: 8px;
+    align-items: center;
+    cursor: pointer;
+
+    &:hover {
+        color: $neutral-400;
+    }
+}
+
+.detail-content {
+    background-color: $neutral-50;
+    display: flex;
+    flex-direction: column;
+    padding: 80px 64px;
+    gap: 40px;
+}
+
+.news-card-detail {
+    background-color: $neutral-0;
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    border-radius: 20px;
+    padding: 80px 8%; 
+    gap: 80px;
+
+    .img-area {
+        width: 100%;
+
+        .img-news-photo {
+            width: 60%;
+            padding-bottom: 40%; // 等比例3:2縮放
+            max-width: 720px;
+            max-height: 480px;
+            margin: 0 auto;
+        }
+    }
+}

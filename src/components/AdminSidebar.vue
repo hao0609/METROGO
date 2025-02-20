@@ -2,7 +2,13 @@
     <div class="sidebar">
         <!-- Logo 和管理者資訊 -->
         <div class="logo-section">
-            <img class="logo "src="../assets/images/backend_enter.svg" alt="logo" />
+            <router-link to="/">
+            <img 
+                class="logo" 
+                src="../assets/images/backend_enter.svg" 
+                alt="logo" 
+            />
+            </router-link>
             <div class="admin-info">
                 <span class="admin-title">管理者名稱</span>
                 <button class="logout-btn">
