@@ -279,19 +279,6 @@ export default {
         <img src="../assets/images/sights/Vector-right.svg" alt="" />
       </div>
     </div>
-    <!-- <swiper-container
-      class="logo-swiper"
-      :slides-per-view="'auto'"
-      :allow-touch-move="false"
-      :autoplay="{ delay: 0, disableOnInteraction: false }"
-      :speed="5000"
-      :free-mode="true"
-      :loop="true"
-    >
-      <swiper-slide class="logo" v-for="(logo, index) in logos" :key="index">
-        <img :src="logo" />
-      </swiper-slide>
-    </swiper-container> -->
 
     <Vue3Marquee
       class="logo"
