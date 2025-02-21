@@ -2,21 +2,30 @@
     
     import { computed } from 'vue';
 
+
+    // 接收來自父元件的 item 資料
+
     defineProps({
     item: Object,
     });
 
+    // 定義自定義事件 update-quantity (更新數量)　和　remove (刪除該商品項目)
+
     const emit = defineEmits(['update-quantity', 'remove']);
 
+
+    // 定義函數 decreaseQuantity (減少數量) 
     const decreaseQuantity = () => {
     if (item.prod_quantity > 1) {
         emit('update-quantity', item.prod_quantity - 1);
     }
     };
 
+    // 定義函數 increaseQuantity (增加數量)
     const increaseQuantity = () => {
     emit('update-quantity', item.prod_quantity + 1);
     };
+    
 </script>
 
 

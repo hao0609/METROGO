@@ -44,7 +44,7 @@
        
        </div>
 
-       <ShoppingCartItem
+       <shopping_cart_alert_item
         v-for="(item, index) in itemList"
         :key="index"
         :item="item"

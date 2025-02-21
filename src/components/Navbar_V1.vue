@@ -4,7 +4,7 @@ import icon_purple from './icons/icon_purple.vue'
 import icon_white from './icons/icon_white.vue';
 import shopping_cart from './icons/shopping_cart.vue' 
 import user from './icons/user.vue' 
-// import shopping_cart_alert from './shopping_cart_alert.vue'
+import shopping_cart_alert from './shopping_cart_alert.vue'
 
 import { ref , computed} from 'vue';
 
@@ -53,11 +53,13 @@ const checked_change = () => {
 };
 
 
-// const cartVisible = ref(false);
-// const cartItems = ref([
-//   { prod_name: "商品1", prod_price: 500, prod_quantity: 1 },
-//   { prod_name: "商品2", prod_price: 200, prod_quantity: 1 }
-// ]);
+const cartVisible = ref(false);
+const cartItems = ref([
+  { prod_name: "商品1", prod_price: 500, prod_quantity: 1 },
+  { prod_name: "商品2", prod_price: 200, prod_quantity: 1 }
+]);
+
+
 
 </script>
 
@@ -116,10 +118,9 @@ const checked_change = () => {
                 <li><RouterLink to="/news" >最新消息</RouterLink></li>
 
             </ul>
-
             <div class="line"></div>
 
-            <!-- <div class="shopping_cart"><shopping_cart/></div>  -->
+            <div class="shopping_cart"><shopping_cart @click="cartVisible = !cartVisible"/></div> 
 
 
             <div class="user"><RouterLink to="/user-profile" ><user v-show="user_login_status"></user></RouterLink></div> 
@@ -142,20 +143,13 @@ const checked_change = () => {
         </div>
 
         <div class="shooping_cart_alert_box">
-            <ShoppingCart
+            <shopping_cart_alert
                 v-model:show="cartVisible"
                 :itemList="cartItems"
                 @update:itemList="cartItems = $event"
                 @remove-item="cartItems.splice($event, 1)"
             />
-
         </div>
-        
-        
-
-
-
-
 
     </header>
 
@@ -525,6 +519,12 @@ $all_animation_time: .4s;
 
 .rwd_hamburger >div::after{
    background-color: $primary-400
+}
+
+
+
+header > nav > .shopping_cart{
+   cursor: pointer;
 }
 
 
