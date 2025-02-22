@@ -54,7 +54,7 @@
       </p>
     </section>
 
-    <p style="margin-bottom: 40px">****** 按鈕樣式 ******</p>
+    <p style="margin: 40px 0">****** 按鈕樣式 ******</p>
     <section style="display: flex; flex-direction: column; gap: 20px">
       <!-- size: Regular -->
       <button class="btn_filled">按鈕</button>
@@ -69,98 +69,142 @@
       <!-- <v-btn class="btn_filled small">Button</v-btn> -->
 
       <!-- check box -->
-      ****** checkbox樣式 ******
+      <p style="margin: 40px 0">****** checkbox樣式 ******</p>
       <label>
         <input class="checkbox" type="checkbox" />
-        <span></span> A
+        <span class="checkbox-custom"></span> A
       </label>
     </section>
 
+    <!-- radio box -->
+    <p style="margin: 40px 0">****** radiobox樣式 ******</p>
+    <div class="radio-group">
+      <label class="radio-container">
+        <input type="radio" name="option" class="radio-input" value="1" />
+        <span class="radio-custom"></span>
+        <span class="radio-label">上架</span>
+      </label>
+
+      <label class="radio-container">
+        <input type="radio" name="option" class="radio-input" value="2" />
+        <span class="radio-custom"></span>
+        <span class="radio-label">下架</span>
+      </label>
+    </div>
+
+    <!-- 小編精選輪播 -->
+    <p style="margin: 40px 0">****** 小編精選輪播 ******</p>
+    <div class="carousel">
+      <div
+        class="carousel-inner"
+        :style="{ transform: `translateX(-${currentIndex * 100}%)` }"
+      >
+        <div class="carousel-item" v-for="(item, index) in items" :key="index">
+          <div class="carousel-content-container">
+            <img :src="item.image" :alt="item.alt" />
+            <div class="carousel-content">
+              <h3 class="title2 bold">{{ item.title }}</h3>
+              <p>{{ item.text }}</p>
+              <button class="btn_white small" @click="goToLink(item.link)">
+                閱讀更多
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button class="carousel-control prev" @click="prevSlide">&#10094;</button>
+      <button class="carousel-control next" @click="nextSlide">&#10095;</button>
+    </div>
+
     <!-- input -->
-    ****** input 樣式 ******
+    <p style="margin: 40px 0">****** input 樣式 ******</p>
     <section>
       <div class="form-group">
         <label class="input-label">標題文字</label>
         <div class="input-wrapper">
-        <input type="text" class="input-field" placeholder="Placeholder">
+          <input type="text" class="input-field" placeholder="Placeholder" />
+        </div>
       </div>
-    </div>
 
-    <div class="form-group error">
-      <label class="input-label">標題文字</label>
-      <div class="input-wrapper">
-        <input type="text" class="input-field" placeholder="Placeholder">
-        <span class="error-message">錯誤訊息</span>
+      <div class="form-group error">
+        <label class="input-label">標題文字</label>
+        <div class="input-wrapper">
+          <input type="text" class="input-field" placeholder="Placeholder" />
+          <span class="error-message">錯誤訊息</span>
+        </div>
       </div>
-    </div>
 
-    <div class="form-group disabled">
-      <label class="input-label">標題文字</label>
-      <div class="input-wrapper">
-        <input type="text" class="input-field" placeholder="禁用文字" disabled>
+      <div class="form-group disabled">
+        <label class="input-label">標題文字</label>
+        <div class="input-wrapper">
+          <input type="text" class="input-field" placeholder="禁用文字" disabled />
+        </div>
       </div>
-    </div>
 
-    <div class="form-group">
-      <label class="input-label required">驗證碼</label>
-      <div class="input-wrapper with-button">
-        <input type="text" class="input-field" placeholder="請輸入驗證碼">
-        <button class="text-button">重送驗證碼</button>
+      <div class="form-group">
+        <label class="input-label required">驗證碼</label>
+        <div class="input-wrapper with-button">
+          <input type="text" class="input-field" placeholder="請輸入驗證碼" />
+          <button class="text-button">重送驗證碼</button>
+        </div>
       </div>
-    </div>
+
+      <!-- 小尺寸 -->
+      <div class="input-wrapper small">
+        <input type="text" class="input-field" placeholder="小尺寸輸入框" />
+      </div>
     </section>
 
     <!-- select -->
-    ****** 下拉選單 樣式 ******
+    <p style="margin: 40px 0">****** 下拉選單 樣式 ******</p>
     <section style="display: flex; flex-direction: column; gap: 20px">
-    <!-- 一般狀態 -->
-    <div class="select-group">
-      <label class="select-label">標題文字</label>
-      <div class="select-wrapper">
+      <!-- 一般狀態 -->
+      <div class="select-group">
+        <label class="select-label">標題文字</label>
+        <div class="select-wrapper">
+          <select class="select-field">
+            <option value="" disabled selected>下拉選項</option>
+            <option value="option1">選項一</option>
+            <option value="option2">選項二</option>
+          </select>
+          <span class="select-arrow"></span>
+        </div>
+      </div>
+
+      <!-- 錯誤狀態 -->
+      <div class="select-group">
+        <label class="select-label required">標題文字</label>
+        <div class="select-wrapper error">
+          <select class="select-field">
+            <option value="" disabled selected>下拉選項</option>
+            <option value="option1">選項一</option>
+            <option value="option2">選項二</option>
+          </select>
+          <span class="select-arrow"></span>
+          <span class="error-message">錯誤訊息</span>
+        </div>
+      </div>
+
+      <!-- 禁用狀態 -->
+      <div class="select-group">
+        <label class="select-label">標題文字</label>
+        <div class="select-wrapper disabled">
+          <select class="select-field" disabled>
+            <option value="" disabled selected>禁止選項</option>
+          </select>
+          <span class="select-arrow"></span>
+        </div>
+      </div>
+
+      <!-- 小尺寸 -->
+      <div class="select-wrapper small">
         <select class="select-field">
-          <option value="" disabled selected>下拉選項</option>
+          <option value="" disabled selected>小尺寸下拉</option>
           <option value="option1">選項一</option>
           <option value="option2">選項二</option>
         </select>
         <span class="select-arrow"></span>
       </div>
-    </div>
-
-    <!-- 錯誤狀態 -->
-    <div class="select-group">
-      <label class="select-label required">標題文字</label>
-      <div class="select-wrapper error">
-        <select class="select-field">
-          <option value="" disabled selected>下拉選項</option>
-          <option value="option1">選項一</option>
-          <option value="option2">選項二</option>
-        </select>
-        <span class="select-arrow"></span>
-        <span class="error-message">錯誤訊息</span>
-      </div>
-    </div>
-
-    <!-- 禁用狀態 -->
-    <div class="select-group">
-      <label class="select-label">標題文字</label>
-      <div class="select-wrapper disabled">
-        <select class="select-field" disabled>
-          <option value="" disabled selected>禁止選項</option>
-        </select>
-        <span class="select-arrow"></span>
-      </div>
-    </div>
-
-    <!-- 小尺寸 -->
-    <div class="select-wrapper small">
-      <select class="select-field">
-        <option value="" disabled selected>小尺寸下拉</option>
-        <option value="option1">選項一</option>
-        <option value="option2">選項二</option>
-      </select>
-      <span class="select-arrow"></span>
-    </div>
-
     </section>
   </div>
 
@@ -192,6 +236,7 @@
   </a-table>
 </template>
 
+<<<<<<< HEAD
 
 
 
@@ -280,6 +325,59 @@ const data = ref([
 
 
 
+=======
+<script>
+// export default {
+//   name: "FontGuideView",
+// };
+//
+export default {
+  data() {
+    return {
+      currentIndex: 0,
+      items: [
+        {
+          image:
+            "https://cdn-static.tibame.com/banner/316098/images/fefeb74b-d6b1-45d7-9e1b-43142d0caa17.jpg",
+          alt: "Image 1",
+          title: "Title 1",
+          text: "Description for Image 1",
+          link: "/page1",
+        },
+        {
+          image: "src/assets/images/sample.jpg",
+          alt: "Image 2",
+          title: "Title 2",
+          text: "Description for Image 2",
+          link: "/page2",
+        },
+        {
+          image:
+            "https://cdn-static.tibame.com/banner/316098/images/fefeb74b-d6b1-45d7-9e1b-43142d0caa17.jpg",
+          alt: "Image 3",
+          title: "Title 3",
+          text: "Description for Image 3",
+          link: "/page3",
+        },
+      ],
+    };
+  },
+  methods: {
+    nextSlide() {
+      this.currentIndex = (this.currentIndex + 1) % this.items.length;
+    },
+    prevSlide() {
+      this.currentIndex = (this.currentIndex - 1 + this.items.length) % this.items.length;
+    },
+    goToSlide(index) {
+      this.currentIndex = index;
+    },
+    goToLink(link) {
+      window.location.href = link;
+    },
+  },
+};
+>>>>>>> e4c67585005483ed2d6001f5026e27d2145decdd
 </script>
 
 <style lang="scss" scoped>
@@ -297,6 +395,78 @@ const data = ref([
     margin-bottom: 20px;
     padding-bottom: 8px;
     border-bottom: 1px solid #cacaca;
+  }
+}
+
+/* 小編精選輪播 */
+.carousel {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  max-width: 1080px;
+  margin: auto;
+}
+
+.carousel-inner {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.carousel-item {
+  min-width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.carousel-content-container {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.carousel-item img {
+  display: block;
+  width: 50%;
+  height: auto;
+}
+
+.carousel-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.carousel-control {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.carousel-control.prev {
+  left: 10px;
+}
+
+.carousel-control.next {
+  right: 10px;
+}
+
+@media (max-width: 768px) {
+  .carousel-content-container {
+    flex-direction: column;
+    text-align: center;
+  }
+  .carousel-item img {
+    width: 100%;
+  }
+  .carousel-content p {
+    display: none;
   }
 }
 </style>

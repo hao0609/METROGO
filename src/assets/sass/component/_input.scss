@@ -1,125 +1,126 @@
 .form-group {
-    margin-bottom: 16px;
-    position: relative;
-    
-    // 標題文字
-    .input-label {
-      display: block;
-      font-size: 20px;
-      font-weight: bold;
-      color: $neutral-700;
-      margin-bottom: 8px;
+  // 標題文字
+  .input-label {
+    display: block;
+    font-size: 20px;
+    font-weight: bold;
+    color: $neutral-700;
+    margin-bottom: 8px;
 
-      &.required {
-        &:after {
-          content: "*";
-          color: $metro-red;
-          margin-left: 4px;
-        }
-      }
-    }
-  
-    // 輸入框
-    .input-wrapper {
-      position: relative;
-      width: 100%;
-      
-      // 基本輸入框樣式
-      .input-field {
-        width: 100%;
-        height: 56px;
-        padding: 16px 20px;
-        border: 1px solid $neutral-150;
-        border-radius: 20px;
-        font-size: 16px;
-        color: $neutral-700;
-        background-color: $neutral-0;
-        transition: all 0.3s ease;
-        
-        // placeholder 樣式
-        &::placeholder {
-          color: $neutral-150;
-        }
-        
-        // focus 狀態
-        &:focus {
-          outline: 1px;
-          border: 1px solid $primary-400;
-        }
-        
-        // 已填寫狀態
-        &:not(:placeholder-shown) {
-          border-color: $neutral-150;
-        }
-      }
-
-        // input 裡包含按鈕
-        &.with-button {
-        position: relative;
-    
-        .input-field {
-            width: 100%;
-            padding-right: 120px; // 為按鈕預留空間 
-            }
-        }   
-      
-      // 錯誤訊息
-      .error-message {
-        position: absolute;
-        right: 0;
-        top: -34px;
-        right: 8px;
-        font-size: 16px;
+    &.required {
+      &:after {
+        content: "*";
         color: $metro-red;
-      }
-
-      .text-button {
-        position: absolute;
-        right: 12px;
-        top: 50%;
-        transform: translateY(-50%);
-        padding: 8px 12px;
-        border: none;
-        background: none;
-        color: $primary-400;
-        font-size: 16px;
-        white-space: nowrap;
-        cursor: pointer;
-        transition: all 0.3s ease;
-
-        &:hover {
-            color: lighten($primary-400, 10%);
-        }
-
-        &:active {
-            color: $primary-400;
-        }
-        }
-    }
-    
-    // 錯誤狀態
-    &.error {
-      .input-field {
-        border-color: $metro-red;
-      }
-    }
-    
-    // 禁用狀態
-    &.disabled {
-      .input-field {
-        background-color: $neutral-50;
-        border-color: $neutral-150;
-        color: $neutral-200;
-        cursor: not-allowed;
-        // 為統一 input & select 顏色，需要覆蓋瀏覽器的預設樣式：
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        appearance: none;
-        opacity: 1;
-        
-        &::placeholder {
-          color: $neutral-150;
-        }
+        margin-left: 4px;
       }
     }
   }
+}
+
+// 輸入框
+.input-wrapper {
+  position: relative;
+  width: 100%;
+
+  // 基本輸入框樣式
+  .input-field {
+    width: 100%;
+    height: 56px;
+    padding: 16px 20px;
+    border: 1px solid $neutral-150;
+    border-radius: 20px;
+    font-size: 16px;
+    color: $neutral-700;
+    background-color: $neutral-0;
+    transition: all 0.3s ease;
+
+    // placeholder 樣式
+    &::placeholder {
+      color: $neutral-150;
+    }
+
+    // focus 狀態
+    &:focus {
+      outline: 1px;
+      border: 1px solid $primary-400;
+    }
+
+    // 已填寫狀態
+    &:not(:placeholder-shown) {
+      border-color: $neutral-150;
+    }
+  }
+
+  // input 裡包含按鈕
+  &.with-button {
+    position: relative;
+
+    .input-field {
+      width: 100%;
+      padding-right: 120px; // 為按鈕預留空間
+    }
+  }
+
+  // 錯誤訊息
+  .error-message {
+    position: absolute;
+    right: 0;
+    top: -34px;
+    right: 8px;
+    font-size: 16px;
+    color: $metro-red;
+  }
+
+  .text-button {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 8px 12px;
+    border: none;
+    background: none;
+    color: $primary-400;
+    font-size: 16px;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover {
+      color: lighten($primary-400, 10%);
+    }
+
+    &:active {
+      color: $primary-400;
+    }
+  }
+
+  // 錯誤狀態
+  &.error {
+    .input-field {
+      border-color: $metro-red;
+    }
+  }
+
+  // 禁用狀態
+  &.disabled {
+    .input-field {
+      background-color: $neutral-50;
+      border-color: $neutral-150;
+      color: $neutral-200;
+      cursor: not-allowed;
+
+      &::placeholder {
+        color: $neutral-150;
+      }
+    }
+  }
+}
+
+// 下拉框小尺寸
+.input-wrapper.small {
+  .input-field {
+    height: 48px;
+    padding: 12px 36px 12px 20px;
+    font-size: 16px;
+  }
+}

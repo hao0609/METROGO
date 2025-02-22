@@ -3,7 +3,7 @@
   position: absolute;
 }
 
-label span {
+label .checkbox-custom {
   display: inline-block;
   width: 24px;
   height: 24px;
@@ -19,7 +19,7 @@ label span {
   border-color: $primary-400;
 }
 
-.checkbox:checked + span::after {
+.checkbox:checked + .checkbox-custom::after {
   content: "✔";
   color: $primary-400;
   position: absolute;

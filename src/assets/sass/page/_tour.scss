@@ -1,0 +1,108 @@
+@import "../base/font";
+@import "../base/color";
+
+/* Banner */
+
+.banner {
+  display: flex;
+  width: 100%;
+  height: 572px;
+  padding: 0px 96px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 60px;
+  background-color: $metro-blue;
+}
+
+.line-container {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  gap: 50px;
+  border: 5px sandybrown solid;
+}
+
+.top {
+  display: flex;
+  align-self: flex-end;
+  flex-direction: column;
+}
+
+.bottom {
+  display: flex;
+  align-self: flex-start;
+}
+
+.banner-station {
+  writing-mode: vertical-lr;
+  font-size: 30px;
+  line-height: 36px;
+  font-weight: bold;
+  color: $neutral-0;
+  position: absolute;
+  right: 246px;
+  top: -26px;
+}
+
+// .station-container {
+//   display: flex;
+//   gap: 111px;
+//   border: 5px sandybrown solid;
+// }
+
+/* 文章 */
+
+.paragraph {
+  display: flex;
+  width: 100%;
+  padding: 80px 96px 120px 96px;
+  flex-direction: column;
+  align-items: center;
+  gap: 80px;
+}
+
+.station {
+  display: flex;
+  width: 100%;
+}
+
+.text {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 40px;
+}
+
+h1 {
+  color: $neutral-0;
+}
+
+.title1 {
+  font-family: $font-dela;
+  font-weight: 400;
+}
+
+p {
+  font-weight: bold;
+}
+
+.paragraph-content {
+  display: flex;
+  width: 60%;
+  height: auto;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.img-container {
+  width: 400px;
+  height: 400px;
+}
+
+img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}

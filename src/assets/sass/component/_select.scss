@@ -1,108 +1,99 @@
 .select-group {
-    .select-label {
-      display: block;
-      font-size: 20px;
-      font-weight: bold;
-      color: $neutral-700;
-      margin-bottom: 8px;
-  
-      &.required {
-        &:after {
-          content: "*";
-          color: $metro-red;
-          margin-left: 4px;
-        }
+  // 標題文字
+  .select-label {
+    display: block;
+    font-size: 20px;
+    font-weight: bold;
+    color: $neutral-700;
+    margin-bottom: 8px;
+
+    &.required {
+      &:after {
+        content: "*";
+        color: $metro-red;
+        margin-left: 4px;
       }
     }
   }
+}
   
-    // 下拉框
-    .select-wrapper {
-      position: relative;
-      margin-bottom: 4px;
-  
-      .select-field {
-        width: 100%;
-        height: 56px;
-        padding: 16px 36px 16px 16px;
-        border: 1px solid $neutral-150;
-        border-radius: 20px;
-        background-color: $neutral-0;
+// 下拉框
+.select-wrapper {
+  width: 100%;
+  position: relative;
+
+  .select-field {
+    width: 100%;
+    height: 56px;
+    padding: 16px 36px 16px 16px;
+    border: 1px solid $neutral-150;
+    border-radius: 20px;
+    background-color: $neutral-0;
+    font-size: 16px;
+    color: $neutral-700;
+    appearance: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &::placeholder {
+      color: $neutral-150;
+    }
+
+    &:focus {
+      outline: 1px;
+      border: 1px solid $primary-400;
+    }
+  }
+
+  .select-arrow {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 10px;
+    height: 10px;
+    border-right: 2px solid $neutral-200;
+    border-bottom: 2px solid $neutral-200;
+    transform: translateY(-50%) rotate(45deg);
+    transition: transform ease-in-out 0.3s;
+    pointer-events: none;
+  }
+
+  &.error {
+    .select-field {
+      border-color: $metro-red;
+    }
+
+    // 錯誤訊息
+    .error-message {
+      position: absolute;
+      right: 0;
+      top: -34px;
+      right: 8px;
+      font-size: 16px;
+      color: $metro-red;
+    }
+  }
+
+  &.disabled {
+    .select-field {
+      background-color: $neutral-50;
+      border-color: $neutral-150;
+      color: $neutral-200;
+      cursor: not-allowed;
+    }
+
+    .select-arrow {
+      border-color: $neutral-200;
+    }
+  }
+}
+
+// 下拉框小尺寸
+.select-wrapper.small {
+    .select-field {
+        height: 48px;
+        padding: 12px 36px 12px 20px;
         font-size: 16px;
-        color: $neutral-700;
-        appearance: none;
-        cursor: pointer;
-        transition: all 0.3s ease;
-  
-        &::placeholder {
-          color: $neutral-150;
-        }
-  
-        &:focus {
-          outline: 1px;
-          border: 1px solid $primary-400;
-        }
-      }
-  
-      .select-arrow {
-        position: absolute;
-        right: 20px;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 10px;
-        height: 10px;
-        border-right: 2px solid $neutral-200;
-        border-bottom: 2px solid $neutral-200;
-        transform: translateY(-50%) rotate(45deg);
-        transition: transform ease-in-out 0.3s;
-        pointer-events: none;
-      }
-  
-      &.error {
-        .select-field {
-          border-color: $metro-red;
-        }
-  
-        // 錯誤訊息
-        .error-message {
-          position: absolute;
-          right: 0;
-          top: -34px;
-          right: 8px;
-          font-size: 16px;
-          color: $metro-red;
-        }
-      }
-      
-      // 禁用狀態
-      &.disabled {
-        .select-field {
-          background-color: $neutral-50;
-          border-color: $neutral-150;
-          color: $neutral-200;
-          cursor: not-allowed;
-          // 為統一 input & select 顏色，需要覆蓋瀏覽器的預設樣式：
-          -webkit-appearance: none;
-          -moz-appearance: none;
-          appearance: none;
-          opacity: 1;
-        }
-  
-        .select-arrow {
-          border-color: $neutral-200;
-        }
-        
-        &::placeholder {
-          color: $neutral-150;
-        }
-      }
-    }
-  
-    // 下拉框小尺寸
-      .select-wrapper.small {
-          .select-field {
-              height: 48px;
-              padding: 12px 36px 12px 20px;
-              font-size: 16px;
-      }
   }
+}

@@ -1,13 +1,17 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
+import EntranceViewView from "../views/EntranceView.vue";
 import LoginView from "../views/LoginView.vue";
 import AlertView from "../views/AlertView.vue";
+import SightsView from "../views/SightsView.vue";
+import TourView from "../views/TourView.vue";
+import MetroBlueLineView from "../views/MetroBlueLineView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
-      path: "/",
+      path: "/home",
       name: "home",
       component: HomeView,
     },
@@ -22,18 +26,19 @@ const router = createRouter({
     // },
 
     // 景點介紹
-    { path: "/sights", name: "景點介紹" },
+    {
+      path: "/sights",
+      name: "景點介紹",
+      component: SightsView,
+    },
     { path: "/green-line", name: "松山新店線" },
     { path: "/brown-line", name: "文湖線" },
     { path: "/orange-line", name: "中和新盧線" },
-    { path: "/blue-line", name: "板南線" },
+    { path: "/blue-line", name: "板南線", component: MetroBlueLineView },
     { path: "/red-line", name: "淡水信義線" },
     { path: "/featured/:line/:contentType", name: "小編精選" },
-    { path: "/tour/:tourType", name: "旅遊行程" },
-
-    // 積分任務
-    { path: "/", name: "一般任務" },
-    { path: "/", name: "特殊任務" },
+    { path: "/tour/:tourType", name: "旅遊行程", component: TourView },
+    { path: "/special-mission", name: "特殊任務" },
 
     // 會員中心
     { path: "/user-profile", name: "會員資料" },
@@ -74,6 +79,13 @@ const router = createRouter({
       path: "/alert-view",
       name: "AlertView",
       component: AlertView,
+    },
+
+    // Entrance參考頁
+    {
+      path: "/",
+      name: "EntranceView",
+      component: EntranceViewView,
     },
   ],
 });
