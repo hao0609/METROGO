@@ -1,7 +1,7 @@
 <template>
   <div class="font-guide">
     <p style="margin-bottom: 40px">****** 字體樣式 ******</p>
-    
+
     <!-- H1 -->
     <section class="guide-section bg-primary-400">
       <p class="section-title txt-primary-400">h1</p>
@@ -20,7 +20,6 @@
       <div class="title1 bold">Title 1 粗體樣式</div>
       <div class="title1">Title 1 標準樣式</div>
     </section>
-    
 
     <!-- Title 2 -->
     <section class="guide-section">
@@ -32,15 +31,27 @@
     <!-- 內文 p -->
     <section class="guide-section">
       <p class="section-title">p</p>
-      <p class="bold">p 粗體樣式：力母吉一放多爪活像是昔房朵急首公！哭今泉乍田苦裏吉音色冬視怎院打常：朵沒几春記頭天禾牙高石，助詞念布米扒就時飽麼喜安胡二鳥。</p>
-      <p >p 標準樣式：力母吉一放多爪活像是昔房朵急首公！哭今泉乍田苦裏吉音色冬視怎院打常：朵沒几春記頭天禾牙高石，助詞念布米扒就時飽麼喜安胡二鳥。</p>
+      <p class="bold">
+        p
+        粗體樣式：力母吉一放多爪活像是昔房朵急首公！哭今泉乍田苦裏吉音色冬視怎院打常：朵沒几春記頭天禾牙高石，助詞念布米扒就時飽麼喜安胡二鳥。
+      </p>
+      <p>
+        p
+        標準樣式：力母吉一放多爪活像是昔房朵急首公！哭今泉乍田苦裏吉音色冬視怎院打常：朵沒几春記頭天禾牙高石，助詞念布米扒就時飽麼喜安胡二鳥。
+      </p>
     </section>
 
     <!-- Caption -->
     <section class="guide-section">
       <p class="section-title">class="caption"</p>
-      <p class="caption bold">caption 粗體樣式：力母吉一放多爪活像是昔房朵急首公！哭今泉乍田苦裏吉音色冬視怎院打常：朵沒几春記頭天禾牙高石，助詞念布米扒就時飽麼喜安胡二鳥。</p>
-      <p class="caption">caption 標準樣式：力母吉一放多爪活像是昔房朵急首公！哭今泉乍田苦裏吉音色冬視怎院打常：朵沒几春記頭天禾牙高石，助詞念布米扒就時飽麼喜安胡二鳥。</p>
+      <p class="caption bold">
+        caption
+        粗體樣式：力母吉一放多爪活像是昔房朵急首公！哭今泉乍田苦裏吉音色冬視怎院打常：朵沒几春記頭天禾牙高石，助詞念布米扒就時飽麼喜安胡二鳥。
+      </p>
+      <p class="caption">
+        caption
+        標準樣式：力母吉一放多爪活像是昔房朵急首公！哭今泉乍田苦裏吉音色冬視怎院打常：朵沒几春記頭天禾牙高石，助詞念布米扒就時飽麼喜安胡二鳥。
+      </p>
     </section>
 
     <p style="margin-bottom: 40px">****** 按鈕樣式 ******</p>
@@ -56,17 +67,222 @@
       <button class="btn_white small">按鈕</button>
 
       <!-- <v-btn class="btn_filled small">Button</v-btn> -->
+
+      <!-- check box -->
+      ****** checkbox樣式 ******
+      <label>
+        <input class="checkbox" type="checkbox" />
+        <span></span> A
+      </label>
+    </section>
+
+    <!-- input -->
+    ****** input 樣式 ******
+    <section>
+      <div class="form-group">
+        <label class="input-label">標題文字</label>
+        <div class="input-wrapper">
+        <input type="text" class="input-field" placeholder="Placeholder">
+      </div>
+    </div>
+
+    <div class="form-group error">
+      <label class="input-label">標題文字</label>
+      <div class="input-wrapper">
+        <input type="text" class="input-field" placeholder="Placeholder">
+        <span class="error-message">錯誤訊息</span>
+      </div>
+    </div>
+
+    <div class="form-group disabled">
+      <label class="input-label">標題文字</label>
+      <div class="input-wrapper">
+        <input type="text" class="input-field" placeholder="禁用文字" disabled>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="input-label required">驗證碼</label>
+      <div class="input-wrapper with-button">
+        <input type="text" class="input-field" placeholder="請輸入驗證碼">
+        <button class="text-button">重送驗證碼</button>
+      </div>
+    </div>
+    </section>
+
+    <!-- select -->
+    ****** 下拉選單 樣式 ******
+    <section style="display: flex; flex-direction: column; gap: 20px">
+    <!-- 一般狀態 -->
+    <div class="select-group">
+      <label class="select-label">標題文字</label>
+      <div class="select-wrapper">
+        <select class="select-field">
+          <option value="" disabled selected>下拉選項</option>
+          <option value="option1">選項一</option>
+          <option value="option2">選項二</option>
+        </select>
+        <span class="select-arrow"></span>
+      </div>
+    </div>
+
+    <!-- 錯誤狀態 -->
+    <div class="select-group">
+      <label class="select-label required">標題文字</label>
+      <div class="select-wrapper error">
+        <select class="select-field">
+          <option value="" disabled selected>下拉選項</option>
+          <option value="option1">選項一</option>
+          <option value="option2">選項二</option>
+        </select>
+        <span class="select-arrow"></span>
+        <span class="error-message">錯誤訊息</span>
+      </div>
+    </div>
+
+    <!-- 禁用狀態 -->
+    <div class="select-group">
+      <label class="select-label">標題文字</label>
+      <div class="select-wrapper disabled">
+        <select class="select-field" disabled>
+          <option value="" disabled selected>禁止選項</option>
+        </select>
+        <span class="select-arrow"></span>
+      </div>
+    </div>
+
+    <!-- 小尺寸 -->
+    <div class="select-wrapper small">
+      <select class="select-field">
+        <option value="" disabled selected>小尺寸下拉</option>
+        <option value="option1">選項一</option>
+        <option value="option2">選項二</option>
+      </select>
+      <span class="select-arrow"></span>
+    </div>
+
     </section>
   </div>
+
+
+
+  <!-- Form -->
+  <template>
+  <a-table :columns="columns" :data-source="data">
+    <template #bodyCell="{ column, record }">
+      <template v-if="column.key === 'tags'">
+        <span>
+          <a-tag
+            v-for="tag in record.tags"
+            :key="tag"
+            :color="tag === 'VIP' ? 'gold' : tag === 'new' ? 'green' : 'blue'"
+          >
+            {{ tag.toUpperCase() }}
+          </a-tag>
+        </span>
+      </template>
+      <template v-else-if="column.key === 'action'">
+        <span>
+          <a>Invite {{ record.userEmail }}</a>
+          <a-divider type="vertical" />
+          <a>Delete</a>
+        </span>
+      </template>
+    </template>
+  </a-table>
 </template>
 
-<script>
-export default {
-  name: 'FontGuideView'
-}
+
+
+
+
+
+
+
+
+
+
+
+</template>
+
+<script setup>
+
+import { ref } from 'vue'; 
+
+import { Table, Tag, Divider } from 'ant-design-vue';
+
+const count = ref(0);
+
+const columns = ref([
+  {
+    title: 'ID',
+    dataIndex: 'id',
+    key: 'id',
+  },
+  {
+    title: 'User ID',
+    dataIndex: 'userId',
+    key: 'userId',
+  },
+  {
+    title: 'User Email',
+    dataIndex: 'userEmail',
+    key: 'userEmail',
+  },
+  {
+    title: 'Register Date',
+    dataIndex: 'registerDate',
+    key: 'registerDate',
+  },
+  {
+    title: 'User Points',
+    dataIndex: 'userPoint',
+    key: 'userPoint',
+  },
+  {
+    title: 'Tags',
+    dataIndex: 'tags',
+    key: 'tags',
+  },
+  {
+    title: 'Action',
+    key: 'action',
+  },
+]);
+
+const data = ref([
+  {
+    id: 1,
+    userId: 101,
+    userEmail: 'john@example.com',
+    registerDate: '2024-02-10',
+    userPoint: 120,
+    tags: ['VIP', 'active'],
+  },
+  {
+    id: 2,
+    userId: 102,
+    userEmail: 'jane@example.com',
+    registerDate: '2024-01-22',
+    userPoint: 80,
+    tags: ['new', 'inactive'],
+  },
+  {
+    id: 3,
+    userId: 103,
+    userEmail: 'jack@example.com',
+    registerDate: '2023-12-05',
+    userPoint: 150,
+    tags: ['VIP', 'loyal'],
+  },
+]);
+
+
+
+
 </script>
 
-<style>
+<style lang="scss" scoped>
 .font-guide {
   max-width: 1200px;
   margin: 0 auto;
@@ -75,7 +291,7 @@ export default {
 
 .guide-section {
   margin-bottom: 48px;
-  
+
   .section-title {
     font-size: 20px;
     margin-bottom: 20px;

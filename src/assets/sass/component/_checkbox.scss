@@ -1,0 +1,35 @@
+.checkbox {
+  opacity: 0; /* 隱藏原生 checkbox，但仍保留其交互性 */
+  position: absolute;
+}
+
+label span {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  border: 2px solid $neutral-150;
+  background-color: $neutral-0;
+  margin-right: 8px;
+  position: relative;
+  border-radius: 4px; /* 設定圓角 */
+}
+
+/* 勾選後框的顏色變為紫色 */
+.checkbox:checked + span {
+  border-color: $primary-400;
+}
+
+.checkbox:checked + span::after {
+  content: "✔";
+  color: $primary-400;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+// .checkbox {
+//   width: 24px;
+//   height: 24px;
+//   accent-color: $primary-400;
+// }

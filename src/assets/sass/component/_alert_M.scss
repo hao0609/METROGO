@@ -1,0 +1,41 @@
+
+// alert_M
+
+
+.my-swal-M{
+    @include flex-center;
+    width: 480px;
+    gap: 24px;
+    padding: 40px 24px;
+    flex-direction: column;
+    border-radius: 20px;
+  }
+  .my-swal-M > .swal2-title {
+    order: 1; /* 將標題調整為第一個 */
+    font-size: unset;
+    padding: 0;
+    color: $neutral-700;
+  }
+  .my-swal-M > .swal2-html-container > .content {
+    order: 2; /* 將 ICON 調整為第二個 */
+    @include flex-center;
+    flex-direction: column;
+    gap: 24px;
+  }
+  .my-swal-M >.swal2-html-container > .content > .title1{
+    color: $neutral-700;
+  }
+  .my-swal-M > .swal2-html-container >.content > .title2{
+    color: $neutral-400;
+  }
+  .my-swal-M .swal2-html-container {
+    order: 3; /* 將 文字 調整為第三個 */
+    padding: 0;
+  }
+  .my-swal-M >.swal2-actions {
+    order: 4; /* 將 按鈕 調整為第四個 */
+    margin: 0;
+  }
+  .my-swal-M > .swal2-actions{
+    margin: 0;
+  }

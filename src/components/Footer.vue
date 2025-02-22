@@ -45,5 +45,5 @@
   </template>
   
   <style lang="scss" scoped>
-  @use '../assets/sass/component/footer.scss';
+  @import '../assets/sass/component/footer.scss';
   </style>

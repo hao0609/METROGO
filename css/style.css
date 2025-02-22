@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
    License: none (public domain)
@@ -208,6 +209,230 @@ p {
   cursor: not-allowed;
 }
 
+.form-group {
+  margin-bottom: 16px;
+  position: relative;
+}
+.form-group .input-label {
+  display: block;
+  font-size: 20px;
+  font-weight: bold;
+  color: #232529;
+  margin-bottom: 8px;
+}
+.form-group .input-label.required:after {
+  content: "*";
+  color: #E3002C;
+  margin-left: 4px;
+}
+.form-group .input-wrapper {
+  position: relative;
+  width: 100%;
+}
+.form-group .input-wrapper .input-field {
+  width: 100%;
+  height: 56px;
+  padding: 16px 20px;
+  border: 1px solid #CCD1D5;
+  border-radius: 20px;
+  font-size: 16px;
+  color: #232529;
+  background-color: #ffffff;
+  transition: all 0.3s ease;
+}
+.form-group .input-wrapper .input-field::-moz-placeholder {
+  color: #CCD1D5;
+}
+.form-group .input-wrapper .input-field::placeholder {
+  color: #CCD1D5;
+}
+.form-group .input-wrapper .input-field:focus {
+  outline: 1px;
+  border: 1px solid #8C25C0;
+}
+.form-group .input-wrapper .input-field:not(:-moz-placeholder-shown) {
+  border-color: #CCD1D5;
+}
+.form-group .input-wrapper .input-field:not(:placeholder-shown) {
+  border-color: #CCD1D5;
+}
+.form-group .input-wrapper.with-button {
+  position: relative;
+}
+.form-group .input-wrapper.with-button .input-field {
+  width: 100%;
+  padding-right: 120px;
+}
+.form-group .input-wrapper .error-message {
+  position: absolute;
+  right: 0;
+  top: -34px;
+  right: 8px;
+  font-size: 16px;
+  color: #E3002C;
+}
+.form-group .input-wrapper .text-button {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 8px 12px;
+  border: none;
+  background: none;
+  color: #8C25C0;
+  font-size: 16px;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.form-group .input-wrapper .text-button:hover {
+  color: #a63eda;
+}
+.form-group .input-wrapper .text-button:active {
+  color: #8C25C0;
+}
+.form-group.error .input-field {
+  border-color: #E3002C;
+}
+.form-group.disabled .input-field {
+  background-color: #E9ECEF;
+  border-color: #CCD1D5;
+  color: #7D8A93;
+  cursor: not-allowed;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  opacity: 1;
+}
+.form-group.disabled .input-field::-moz-placeholder {
+  color: #CCD1D5;
+}
+.form-group.disabled .input-field::placeholder {
+  color: #CCD1D5;
+}
+
+.select-group .select-label {
+  display: block;
+  font-size: 20px;
+  font-weight: bold;
+  color: #232529;
+  margin-bottom: 8px;
+}
+.select-group .select-label.required:after {
+  content: "*";
+  color: #E3002C;
+  margin-left: 4px;
+}
+
+.select-wrapper {
+  position: relative;
+  margin-bottom: 4px;
+}
+.select-wrapper .select-field {
+  width: 100%;
+  height: 56px;
+  padding: 16px 36px 16px 16px;
+  border: 1px solid #CCD1D5;
+  border-radius: 20px;
+  background-color: #ffffff;
+  font-size: 16px;
+  color: #232529;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.select-wrapper .select-field::-moz-placeholder {
+  color: #CCD1D5;
+}
+.select-wrapper .select-field::placeholder {
+  color: #CCD1D5;
+}
+.select-wrapper .select-field:focus {
+  outline: 1px;
+  border: 1px solid #8C25C0;
+}
+.select-wrapper .select-arrow {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 10px;
+  height: 10px;
+  border-right: 2px solid #7D8A93;
+  border-bottom: 2px solid #7D8A93;
+  transform: translateY(-50%) rotate(45deg);
+  transition: transform ease-in-out 0.3s;
+  pointer-events: none;
+}
+.select-wrapper.error .select-field {
+  border-color: #E3002C;
+}
+.select-wrapper.error .error-message {
+  position: absolute;
+  right: 0;
+  top: -34px;
+  right: 8px;
+  font-size: 16px;
+  color: #E3002C;
+}
+.select-wrapper.disabled .select-field {
+  background-color: #E9ECEF;
+  border-color: #CCD1D5;
+  color: #7D8A93;
+  cursor: not-allowed;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  opacity: 1;
+}
+.select-wrapper.disabled .select-arrow {
+  border-color: #7D8A93;
+}
+.select-wrapper.disabled::-moz-placeholder {
+  color: #CCD1D5;
+}
+.select-wrapper.disabled::placeholder {
+  color: #CCD1D5;
+}
+
+.select-wrapper.small .select-field {
+  height: 48px;
+  padding: 12px 36px 12px 20px;
+  font-size: 16px;
+}
+
+.checkbox {
+  opacity: 0; /* 隱藏原生 checkbox，但仍保留其交互性 */
+  position: absolute;
+}
+
+label span {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  border: 2px solid #CCD1D5;
+  background-color: #ffffff;
+  margin-right: 8px;
+  position: relative;
+  border-radius: 4px; /* 設定圓角 */
+}
+
+/* 勾選後框的顏色變為紫色 */
+.checkbox:checked + span {
+  border-color: #8C25C0;
+}
+
+.checkbox:checked + span::after {
+  content: "✔";
+  color: #8C25C0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 .btn_filled {
   color: #ffffff;
   background-color: #8C25C0;
@@ -334,6 +559,264 @@ p {
   transition: all 0.3s ease;
   border: 1px solid #CCD1D5;
   cursor: not-allowed;
+}
+
+.my-swal-M {
+  display: flex;
+  align-items: center;
+  width: 480px;
+  gap: 24px;
+  padding: 40px 24px;
+  flex-direction: column;
+  border-radius: 20px;
+}
+
+.my-swal-M > .swal2-title {
+  order: 1; /* 將標題調整為第一個 */
+  font-size: unset;
+  padding: 0;
+  color: #232529;
+}
+
+.my-swal-M > .swal2-html-container > .content {
+  order: 2; /* 將 ICON 調整為第二個 */
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.my-swal-M > .swal2-html-container > .content > .title1 {
+  color: #232529;
+}
+
+.my-swal-M > .swal2-html-container > .content > .title2 {
+  color: #495057;
+}
+
+.my-swal-M .swal2-html-container {
+  order: 3; /* 將 文字 調整為第三個 */
+  padding: 0;
+}
+
+.my-swal-M > .swal2-actions {
+  order: 4; /* 將 按鈕 調整為第四個 */
+  margin: 0;
+}
+
+.my-swal-M > .swal2-actions {
+  margin: 0;
+}
+
+.swal2-container {
+  background: rgba(35, 37, 41, 0.5) !important;
+}
+
+.my-swal-L {
+  display: flex;
+  align-items: center;
+  width: 71.125rem;
+  padding: 2.5rem 1.5rem;
+  gap: 2.5rem;
+  flex-direction: column;
+  border-radius: 20px;
+}
+@media screen and (max-width: 576px) {
+  .my-swal-L {
+    gap: 20px;
+  }
+}
+
+.my-swal-L > .swal2-title {
+  order: 1; /* 將標題調整為第一個 */
+  font-size: unset;
+  padding: 0;
+  color: #232529;
+}
+
+.my-swal-L > .swal2-html-container > .content {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 2.5rem;
+  max-height: 350px;
+  max-width: 1090px;
+}
+
+.my-swal-L > .swal2-html-container::-webkit-scrollbar {
+  width: 10px;
+}
+
+.my-swal-L > .swal2-html-container::-webkit-scrollbar-thumb {
+  background: #495057;
+  border-radius: 100px;
+}
+
+.my-swal-L > .swal2-html-container > .content > .row_box {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+@media screen and (max-width: 1145px) {
+  .my-swal-L > .swal2-html-container > .content > .row_box {
+    align-items: center;
+    flex-direction: column;
+  }
+}
+
+.my-swal-L > .swal2-html-container > .content > .row_box > .image {
+  width: 335px;
+  height: 273px;
+  border-radius: 12px;
+  background: #CCD1D5;
+}
+@media screen and (max-width: 576px) {
+  .my-swal-L > .swal2-html-container > .content > .row_box > .image {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.my-swal-L > .swal2-html-container > .content > .row_box > .image > img {
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  display: block;
+}
+
+.my-swal-L > .swal2-html-container > .content > .row_box > .text_box {
+  width: 715px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+@media screen and (max-width: 1145px) {
+  .my-swal-L > .swal2-html-container > .content > .row_box > .text_box {
+    margin: 2.5rem 0;
+    width: 100%;
+    text-align: center;
+  }
+}
+
+.my-swal-L > .swal2-html-container > .content > .row_box > .text_box > .title2 {
+  color: #232529;
+}
+@media screen and (max-width: 1145px) {
+  .my-swal-L > .swal2-html-container > .content > .row_box > .text_box > .title2 {
+    margin: 10px 0;
+  }
+}
+
+.my-swal-L > .swal2-html-container > .content > .row_box > .text_box > .body {
+  min-height: 216px;
+}
+@media screen and (max-width: 1145px) {
+  .my-swal-L > .swal2-html-container > .content > .row_box > .text_box > .body {
+    min-height: 0;
+  }
+}
+
+.my-swal-L .swal2-html-container {
+  order: 2; /* 將 中間內容 調整為第二個 */
+  padding: 0;
+}
+
+.my-swal-L > .swal2-actions {
+  order: 3; /* 將 按鈕外部容器 調整為第三個 */
+  margin: 0;
+  display: flex;
+  gap: 8px;
+}
+
+.my-swal-L > .swal2-actions > .swal2-confirm {
+  order: 2; /* 將 關閉按鈕 調整為第一個 */
+  margin: 0;
+}
+
+.my-swal-L > .swal2-actions > .swal2-cancel {
+  order: 1; /* 將 另個按鈕 調整為第二個 */
+  margin: 0;
+}
+
+.swal2-container {
+  background: rgba(35, 37, 41, 0.5) !important;
+  padding: 0 20px;
+}
+
+.my-swal-mobile {
+  display: flex;
+  align-items: center;
+  padding: 2.5rem 1.5rem;
+  gap: 1.5rem;
+  flex-direction: column;
+  border-radius: 20px;
+}
+
+.my-swal-mobile > .swal2-close {
+  width: unset;
+  height: unset;
+}
+
+.my-swal-mobile > .swal2-title {
+  order: 1; /* 將標題調整為第一個 */
+  font-size: unset;
+  padding: 0 40px; /* 設左右 40px 是防止被 X按鈕擋到 */
+  color: #232529;
+}
+
+.my-swal-mobile > .swal2-html-container > .content {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.my-swal-mobile > .swal2-html-container > .content > .image {
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  background: #CCD1D5;
+}
+
+.my-swal-mobile > .swal2-html-container > .content > .image > img {
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  display: block;
+}
+
+.my-swal-mobile > .swal2-html-container > .content > .text_box {
+  display: flex;
+  gap: 16px;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.my-swal-mobile > .swal2-html-container > .content > .text_box > .title1 {
+  color: #232529;
+}
+
+.my-swal-mobile .swal2-html-container {
+  order: 2; /* 將 中間內容 調整為第二個 */
+  padding: 0;
+}
+
+.my-swal-mobile > .swal2-actions {
+  order: 3; /* 將 按鈕外部容器 調整為第三個 */
+  margin: 0;
+  display: flex;
+  gap: 8px;
+}
+
+.my-swal-mobile > .swal2-actions > .swal2-cancel {
+  order: 1; /* 將 關閉按鈕 調整為第一個 */
+  margin: 0;
+}
+
+.my-swal-mobile > .swal2-actions > .swal2-confirm {
+  order: 2; /* 將 另個按鈕 調整為第二個 */
+  margin: 0;
 }
 
 body {
