@@ -9,11 +9,13 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore"
   },
   "dependencies": {
+    "chart.js": "^4.4.8",
     "jquery": "^3.7.1",
     "pinia": "^2.1.4",
     "sweetalert2": "^11.15.10",
     "swiper": "^11.2.2",
     "vue": "^3.3.4",
+    "vue-chartjs": "^5.3.2",
     "vue-router": "^4.2.4",
     "vue3-marquee": "^4.2.2"
   },

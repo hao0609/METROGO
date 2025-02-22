@@ -1,13 +1,9 @@
 <template>
-    <div>
-      <h1 class="admin-title">活動紀錄查詢</h1>
-    
-      <div class="admin-form">
-          
-      </div>
-      
-      
-    </div>
+  <div>
+    <h1 class="admin-title">活動紀錄査詢</h1>
+
+    <div class="admin-form"></div>
+  </div>
 </template>
 
 <style lang="scss" scoped>
@@ -26,6 +22,5 @@ export default {
     // DeleteIcon,
     // AddIcon,
   },
-  
 };
 </script>
