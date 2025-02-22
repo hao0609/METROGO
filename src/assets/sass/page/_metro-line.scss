@@ -335,7 +335,7 @@
   
   // 上方 banner 
   .banner {
-    background-color: #dc7aef;
+    background-color: #FFC0CC;
 
     .banner-txt-title {
       color: #460961;
@@ -343,23 +343,23 @@
   }
 
   .banner-group-title {
-    color: $pink-400;
+    color: $yellow-400;
   }
 
   // 上方 banner 之間捷運線名稱
   .metro-line-title,
   .group-title {
-    color: $pink-400;
+    color: $yellow-400;
   }
 
   .metro-line-title::before,
   .metro-line-title::after {
-    background-color: #dc7aef;
+    background-color: $yellow-400;
   }
 
   .message-card {
     @media (max-width: 576px) {
-      background-color: #df79ed;
+      background-color: #FFC0CC;
     }
   }
 }
