@@ -107,16 +107,10 @@ const router = createRouter({
     { path: "/store", name: "客製化" },
 
     // 最新消息
-    { path: "/news", 
-      name: "News",
-      component: NewsView,
-    },
+    { path: "/news", name: "News", component: NewsView },
 
     // 最新消息詳情
-    { path: "/news-detail", 
-      name: "NewsDetail",
-      component: NewsDetailView,
-    },
+    { path: "/news-detail", name: "NewsDetail", component: NewsDetailView },
 
     // 前台登入
     {
@@ -131,7 +125,6 @@ const router = createRouter({
       name: "JourneyFeaturedView",
       component: JourneyFeaturedView,
     },
-
 
     // 後台
     // 後台登入頁面
@@ -253,6 +246,17 @@ const router = createRouter({
       component: BackendLoginView,
     },
   ],
+
+  // 路由切換 平滑
+  scrollBehavior(to, from, savedPosition) {
+    if (savedPosition) {
+      return savedPosition;
+    } else if (to.hash) {
+      return { el: to.hash, behavior: "smooth" };
+    } else {
+      return { top: 0, behavior: "smooth" };
+    }
+  },
 });
 
 export default router;

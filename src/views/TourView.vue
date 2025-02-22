@@ -17,25 +17,25 @@
           <div class="line">
             <img src="../assets/images/tour/line.svg" alt="" />
           </div>
-          <a href="#target1">
+          <router-link to="#target1">
             <div class="hover-container">
               <div class="circle hover-light">
                 <img src="../assets/images/tour/circle.svg" alt="" />
               </div>
               <p class="station-name">西門站</p>
             </div>
-          </a>
+          </router-link>
           <div class="line">
             <img src="../assets/images/tour/line.svg" alt="" />
           </div>
-          <a href="#target2">
+          <router-link to="#target2">
             <div class="hover-container">
               <div class="circle hover-light">
                 <img src="../assets/images/tour/circle.svg" alt="" />
               </div>
               <p class="station-name">龍山寺站</p>
             </div>
-          </a>
+          </router-link>
           <div class="line">
             <img src="../assets/images/tour/line.svg" alt="" />
           </div>

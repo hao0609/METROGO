@@ -85,7 +85,6 @@ p {
   color: #ffffff;
   background-color: #8C25C0;
   padding: 16px 24px;
-  width: -moz-fit-content;
   width: fit-content;
   min-width: 180px;
   border-radius: 100px;
@@ -116,7 +115,6 @@ p {
   color: #8C25C0;
   background-color: transparent;
   padding: 16px 24px;
-  width: -moz-fit-content;
   width: fit-content;
   min-width: 180px;
   border-radius: 100px;
@@ -148,7 +146,6 @@ p {
   color: #8C25C0;
   background-color: #ffffff;
   padding: 16px 24px;
-  width: -moz-fit-content;
   width: fit-content;
   min-width: 180px;
   border-radius: 100px;
@@ -193,7 +190,6 @@ p {
   color: #7D8A93;
   background-color: #CCD1D5;
   padding: 16px 24px;
-  width: -moz-fit-content;
   width: fit-content;
   min-width: 180px;
   border-radius: 100px;
@@ -208,6 +204,108 @@ p {
   transition: all 0.3s ease;
   border: 1px solid #CCD1D5;
   cursor: not-allowed;
+}
+
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+html, body, ol, ul, li,
+table, caption, tbody, tfoot, thead, tr, th, td {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  vertical-align: baseline;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.footer {
+  background-color: #232529;
+  width: 100vw;
+  bottom: 0;
+  left: 0;
+}
+
+.footer-container {
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.footer-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-logo a {
+  display: inline;
+}
+.footer-logo a img {
+  width: 200px;
+  height: auto;
+  object-fit: cover;
+}
+
+.footer-menu ul {
+  display: flex;
+  gap: 24px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.footer-menu a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 16px;
+  white-space: nowrap;
+}
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 40px;
+}
+
+.footer-text {
+  flex: 1;
+  margin-right: 40px;
+}
+.footer-text p {
+  color: #ffffff;
+  font-size: 14px;
+  line-height: 1.6;
+  margin: 0;
+  max-width: 800px;
+}
+
+.footer-link {
+  flex-shrink: 0;
+}
+.footer-link ul {
+  display: flex;
+  gap: 24px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.footer-link a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 14px;
+  white-space: nowrap;
 }
 
 .form-group .input-label {
@@ -238,18 +336,12 @@ p {
   background-color: #ffffff;
   transition: all 0.3s ease;
 }
-.input-wrapper .input-field::-moz-placeholder {
-  color: #CCD1D5;
-}
 .input-wrapper .input-field::placeholder {
   color: #CCD1D5;
 }
 .input-wrapper .input-field:focus {
   outline: 1px;
   border: 1px solid #8C25C0;
-}
-.input-wrapper .input-field:not(:-moz-placeholder-shown) {
-  border-color: #CCD1D5;
 }
 .input-wrapper .input-field:not(:placeholder-shown) {
   border-color: #CCD1D5;
@@ -259,9 +351,6 @@ p {
   border-color: #CCD1D5;
   color: #7D8A93;
   cursor: not-allowed;
-}
-.input-wrapper .input-field:disabled::-moz-placeholder {
-  color: #CCD1D5;
 }
 .input-wrapper .input-field:disabled::placeholder {
   color: #CCD1D5;
@@ -330,9 +419,6 @@ p {
   color: #7D8A93;
   cursor: not-allowed;
 }
-.input-wrapper.disabled .input-field::-moz-placeholder {
-  color: #CCD1D5;
-}
 .input-wrapper.disabled .input-field::placeholder {
   color: #CCD1D5;
 }
@@ -369,14 +455,9 @@ p {
   background-color: #ffffff;
   font-size: 16px;
   color: #232529;
-  -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
+  appearance: none;
   cursor: pointer;
   transition: all 0.3s ease;
-}
-.select-wrapper .select-field::-moz-placeholder {
-  color: #CCD1D5;
 }
 .select-wrapper .select-field::placeholder {
   color: #CCD1D5;
@@ -390,9 +471,6 @@ p {
   border-color: #CCD1D5;
   color: #7D8A93;
   cursor: not-allowed;
-}
-.select-wrapper .select-field:disabled::-moz-placeholder {
-  color: #CCD1D5;
 }
 .select-wrapper .select-field:disabled::placeholder {
   color: #CCD1D5;
@@ -471,7 +549,6 @@ label .checkbox-custom {
   color: #ffffff;
   background-color: #8C25C0;
   padding: 16px 24px;
-  width: -moz-fit-content;
   width: fit-content;
   min-width: 180px;
   border-radius: 100px;
@@ -502,7 +579,6 @@ label .checkbox-custom {
   color: #8C25C0;
   background-color: transparent;
   padding: 16px 24px;
-  width: -moz-fit-content;
   width: fit-content;
   min-width: 180px;
   border-radius: 100px;
@@ -534,7 +610,6 @@ label .checkbox-custom {
   color: #8C25C0;
   background-color: #ffffff;
   padding: 16px 24px;
-  width: -moz-fit-content;
   width: fit-content;
   min-width: 180px;
   border-radius: 100px;
@@ -579,7 +654,6 @@ label .checkbox-custom {
   color: #7D8A93;
   background-color: #CCD1D5;
   padding: 16px 24px;
-  width: -moz-fit-content;
   width: fit-content;
   min-width: 180px;
   border-radius: 100px;
@@ -601,9 +675,7 @@ label .checkbox-custom {
   align-items: center;
   position: relative;
   cursor: pointer;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-          user-select: none;
+  user-select: none;
   padding: 4px;
   margin: 4px 0;
 }
