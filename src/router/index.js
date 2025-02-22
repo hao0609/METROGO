@@ -6,6 +6,10 @@ import AlertView from "../views/AlertView.vue";
 import SightsView from "../views/SightsView.vue";
 import TourView from "../views/TourView.vue";
 import MetroBlueLineView from "../views/MetroBlueLineView.vue";
+import MetroRedLineView from "../views/MetroRedLineView.vue";
+import MetroGreenLineView from "../views/MetroGreenLineView.vue";
+import MetroOrangeLineView from "../views/MetroOrangeLineView.vue";
+import MetroBrownLineView from "../views/MetroBrownLineView.vue";
 import MissionGeneralView from "../views/MissionGeneralView.vue";
 import red_line from "../views/line/red.vue";
 import green_line from "../views/line/green.vue";
@@ -46,11 +50,11 @@ const router = createRouter({
       name: "景點介紹",
       component: SightsView,
     },
-    { path: "/green-line", name: "松山新店線" },
-    { path: "/brown-line", name: "文湖線" },
-    { path: "/orange-line", name: "中和新盧線" },
+    { path: "/green-line", name: "松山新店線", component: MetroGreenLineView  },
+    { path: "/brown-line", name: "文湖線", component: MetroBrownLineView  },
+    { path: "/orange-line", name: "中和新盧線", component: MetroOrangeLineView  },
     { path: "/blue-line", name: "板南線", component: MetroBlueLineView },
-    { path: "/red-line", name: "淡水信義線" },
+    { path: "/red-line", name: "淡水信義線", component: MetroRedLineView },
     { path: "/featured/:line/:contentType", name: "小編精選" },
     { path: "/tour/:tourType", name: "旅遊行程", component: TourView },
     { path: "/special-mission", name: "特殊任務" },

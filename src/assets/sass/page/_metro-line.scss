@@ -2,11 +2,19 @@
 .metroline-detail {
   max-width: 1920px;
   padding: 80px 64px;
+
+  @media (max-width: 768px) {
+    padding: 40px 32px;
+  }
+
+  @media (max-width: 576px) {
+      padding: 40px 0;
+    }
 }
 
 .introduce {
   display: flex;
-  gap: 52px;
+  gap: 3.6%;
 }
 
 .banner-group {
@@ -32,6 +40,11 @@
   text-decoration: none; // 移除 route-link 樣式
   color: inherit; // 移除 route-link 樣式
   width: 100%;
+  cursor: pointer;
+
+  @media (max-width: 768px) {
+    padding: 24px 20px;
+    }
 
   &:hover {
     transform: translateY(-8px);
@@ -39,55 +52,82 @@
   }
 }
 
+.banner-txt-content {
+  margin-top: 8px;
+  display: -webkit-box; // 文字刪節號
+  -webkit-box-orient: vertical; // 文字刪節號
+  -webkit-line-clamp: 5; // 文字刪節號(保留顯示行數)
+  overflow: hidden; // 文字刪節號
+}
+
+// 各線照片引入在 scss 最下方
+.banner-img {
+  width: 100%;
+  padding-bottom: 140%; // 圖片等比例
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  color: transparent; // 把 div 裡撐內容的文字隱藏起來
+  margin-bottom: 16px;
+}
+
 // banner-group 裡標題高度內縮
 .banner-group .banner-group-title {
   text-align: center;
   margin: -52px 0;
+
+  @media (max-width: 1024px) {
+    font-size: 64px;
+    }
 }
 
-.banner-group-title {
-  color: $yellow-400;
-}
+// // 各區塊標題
+// .metro-line-title {
+//   text-align: center;
+//   margin: 70px 0;
+//   position: relative;
+//   h1 {
+//     font-size: 72px;
+//   }
+// }
 
-// 各區塊標題
-.metro-line-title {
-  text-align: center;
-  margin: 70px 0;
-  position: relative;
-  h1 {
-    font-size: 72px;
-  }
-}
+// // 分隔線
+// .metro-line-title::before,
+// .metro-line-title::after {
+//   content: "";
+//   position: absolute;
+//   top: 50%;
+//   width: 25%;
+//   height: 4px;
+// }
 
-// 分隔線
-.metro-line-title::before,
-.metro-line-title::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  width: 25%;
-  height: 4px;
-}
+// .metro-line-title::before {
+//   left: 0;
+// }
 
-.metro-line-title::before {
-  left: 0;
-}
-
-.metro-line-title::after {
-  right: 0;
-}
+// .metro-line-title::after {
+//   right: 0;
+// }
 
 // go 精選
 .section-group {
   display: flex;
+  flex-wrap: wrap;
   width: 100%;
-  gap: 8%;
+  gap: 4%;
 
   .go-choise-img {
     position: relative;
-    background-image: url("https://picsum.photos/300/200");
+    background-image: url("https://picsum.photos/600/400");
     background-size: cover;
     background-position: center;
+    width: 48%;
+    padding-bottom: 33.3%; // 等比例3:2縮放
+
+    @media (max-width: 576px) {
+      width: 100%;
+      padding-bottom: 75%;
+    }
 
     .group-title {
       position: absolute; // 使用絕對定位
@@ -95,12 +135,12 @@
       left: 0;
       right: 0;
       text-align: center;
-    }
-  }
 
-  .w-half {
-    width: 60%;
-    padding-bottom: 40%; // 等比例3:2縮放
+      @media (max-width: 576px) {
+        font-size: 60px;
+      }
+    }
+
   }
 }
 
@@ -120,19 +160,67 @@
     left: 0;
     right: 0;
     text-align: center;
+
+    @media (max-width: 576px) {
+      font-size: 80px;
+      top: auto;
+      bottom: 16px;
+      transform: none;
+    }
+    
   }
 }
 
-// 留言板
-.review-card {
-  background: white;
-  border-radius: 8px;
-  padding: 20px;
-  max-width: 600px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+// 帶透明度標題文字
+.group-title.white {
+  color: rgba($color: #ffffff, $alpha: 0.7) !important;
 }
 
-.review-header {
+// 留言板
+.section-message {
+  display: flex; 
+  width: 100%;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+
+.message-card-group {
+  display: grid;
+  grid-row-gap: 24px;
+  grid-column-gap: 24px;
+  justify-content: center; // 使網格置中
+  width: 100%;
+  max-width: 1920px;
+  grid-auto-rows: min-content; // 行高自適應內容
+  align-items: start; 
+  grid-template-columns: repeat(auto-fit, 400px); // 自動填充固定寬度的列
+
+  @media (max-width: 1240px) {
+    grid-template-columns: repeat(auto-fit, 300px)
+  }
+
+  @media (max-width: 1080px) {
+    grid-template-columns: repeat(auto-fit, 280px)
+  }
+
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(auto-fit, 100%)
+  }
+}
+
+.message-card {
+  background: $neutral-0;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 100%;
+
+  @media (max-width: 576px) {
+    border-radius: 0;
+  }
+}
+
+.message-header {
   display: flex;
   align-items: center;
   margin-bottom: 16px;
@@ -157,25 +245,29 @@
 }
 
 .rating {
-  color: #000;
+  color: $neutral-700;
   font-size: 16px;
 }
 
-.review-content {
-  color: #333;
+.message-content {
+  color: $neutral-700;
   font-size: 16px;
   line-height: 1.6;
   margin-bottom: 16px;
 }
 
-.review-images {
+.message-img-group {
   display: flex;
   gap: 12px;
   margin-bottom: 12px;
+  flex-wrap: wrap;
 }
 
-.review-image {
-  width: 180px;
+.message-image {
+  display: flex;
+  flex: 1;
+  min-width: 0; // 防止圖片溢出
+  max-width: 100%;
   height: 180px;
   border-radius: 8px;
   object-fit: cover;
@@ -187,21 +279,25 @@
 }
 
 @media (max-width: 576px) {
-  .review-images {
+  .message-images {
     flex-wrap: wrap;
+    gap: 8px;
   }
 
-  .review-image {
+  .message-image {
     width: calc(50% - 6px);
     height: 160px;
   }
 }
 
-// 各線 banner 顏色 - 板南線
+// 各線 banner 顏色 //
+// 板南線 blue
 
+// 頁面背景色
 .metroline-detail.blue {
   background-color: $metro-blue;
-
+  
+  // 上方 banner 
   .banner {
     background-color: #99d6ff;
 
@@ -210,6 +306,11 @@
     }
   }
 
+  .banner-group-title {
+    color: $yellow-400;
+  }
+
+  // 上方 banner 之間捷運線名稱
   .metro-line-title,
   .group-title {
     color: $yellow-400;
@@ -217,13 +318,112 @@
 
   .metro-line-title::before,
   .metro-line-title::after {
-    background-color: #ffd700;
+    background-color: $yellow-400;
+  }
+
+  .message-card {
+    @media (max-width: 576px) {
+      background-color: #99d6ff;
+    }
   }
 }
 
-.group-title.white {
-  color: rgba($color: #ffffff, $alpha: 0.7) !important;
+// 淡水線 red (顏色待調整)
+// 頁面背景色
+.metroline-detail.red {
+  background-color: $metro-red;
+  
+  // 上方 banner 
+  .banner {
+    background-color: #dc7aef;
+
+    .banner-txt-title {
+      color: #460961;
+    }
+  }
+
+  .banner-group-title {
+    color: $pink-400;
+  }
+
+  // 上方 banner 之間捷運線名稱
+  .metro-line-title,
+  .group-title {
+    color: $pink-400;
+  }
+
+  .metro-line-title::before,
+  .metro-line-title::after {
+    background-color: #dc7aef;
+  }
+
+  .message-card {
+    @media (max-width: 576px) {
+      background-color: #df79ed;
+    }
+  }
 }
+
+// 各線不同 banner 照片 // 
+// 板南線
+.metroline-detail.blue {
+  .banner-img-1-1 {
+      background-image: url("https://picsum.photos/300/720");
+    }
+
+  .banner-img-1-2 {
+    background-image: url("https://picsum.photos/310/720");
+  }
+
+  .banner-img-2-1 {
+    background-image: url("https://picsum.photos/320/720");
+  }
+
+  .banner-img-2-2 {
+    background-image: url("https://picsum.photos/330/720");
+  }
+
+  .banner-img-3-1 {
+    background-image: url("https://picsum.photos/340/720");
+  }
+
+  .banner-img-3-2 {
+    background-image: url("https://picsum.photos/350/720");
+  }
+
+}
+
+// 淡水線
+.metroline-detail.red {
+  .banner-img-1-1 {
+      background-image: url("https://picsum.photos/350/720");
+    }
+
+  .banner-img-1-2 {
+    background-image: url("https://picsum.photos/360/720");
+  }
+
+  .banner-img-2-1 {
+    background-image: url("https://picsum.photos/370/720");
+  }
+
+  .banner-img-2-2 {
+    background-image: url("https://picsum.photos/380/720");
+  }
+
+  .banner-img-3-1 {
+    background-image: url("https://picsum.photos/390/720");
+  }
+
+  .banner-img-3-2 {
+    background-image: url("https://picsum.photos/400/720");
+  }
+
+}
+
+
+
+
 
 // .bl_intr_banner_01 {
 //     background-color: #99d6ff;

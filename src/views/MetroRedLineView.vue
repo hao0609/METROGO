@@ -52,7 +52,7 @@ const messageData = ref([
 
 <template>
   <!-- class 後方的 blue 換掉就可以吃到其他線的配色 -->
-  <div class="metroline-detail blue">
+  <div class="metroline-detail red">
     <div class="introduce">
       <div class="banner-group group-1">
         <div class="banner">
@@ -169,7 +169,6 @@ const messageData = ref([
   </div>
   <Footer/>
   <!-- <div class="bl_inter_banner_02">
-
           <div class="bl_inter_banner_02a">
             <img class="bl_14_01" src="../assets/images/sample.jpg"
             width="300px" hight="417px">
