@@ -2,23 +2,33 @@
 
     import shopping_cart_alert_item from './shopping_cart_alert_item.vue';
     
-    defineProps({
-    show: Boolean, // 是否顯示購物車
-    itemList: Array, // 購物車商品列表
+    const props = defineProps({     // 提供 兩個 props 給父祖件
+    show: Boolean,    // 1.是否顯示購物車
+    itemList: Array,  // 2.購物車目前商品清單
     });
+
+
+    // 建立自定義事件 
+
+    // update:show : 顯示/隱藏購物車
+    // update:itemList : 更新購物車商品清單
+    // remove-item : 刪除購物車商品項目
 
     const emit = defineEmits(['update:show', 'update:itemList', 'remove-item']);
 
 
-    // 關閉購物車
+    // 關閉購物車彈窗
     const closeCart = () => {
     emit('update:show', false);
     };
 
     // 更新數量
     const updateQuantity = (index, quantity) => {
-    const updatedList = [...itemList];
-    updatedList[index].prod_quantity = quantity;
+    const updatedList = [...props.itemList];           // Vue 不允許直接修改 props（父組件傳來的 itemList）
+                                                 // 所以建立 updatedList 陣列複製 父祖件的 itemList 陣列來修改資料
+                                                 // 展開運算子 (...)，來建立一個新陣列，而不是修改原本的 itemList
+                                                 
+    updatedList[index] = { ...updatedList[index], prod_quantity: quantity };
     emit('update:itemList', updatedList);
     };
 
@@ -51,6 +61,18 @@
         @update-quantity="(quantity) => updateQuantity(index, quantity)"
         @remove="() => removeItem(index)" />
 
+       <div class="goShoppingCart_box" v-if="itemList.length > 0">
+            <router-link class="goShoppingCart" to="/shoppingCart">前往購物車</router-link>
+       </div>
+
+        
+
+        <!-- 購物車為空時顯示 -->
+
+        <div class="cart_empty" v-if="itemList.length === 0">
+            <div class="cart_empty_text title2 bold">您目前購物車是空的!</div>
+        </div>
+
     </div>
 </template>
 
@@ -68,6 +90,7 @@
     justify-content: center;
     width: 100%;
     align-content: space-between;
+    color: black;
 }
 
 
@@ -84,5 +107,35 @@
     align-items: center;
 }
 
+.shopping_cart_alert > .cart_empty {
+    text-align: center;
+    width: 100%;
+}
 
+.shopping_cart_alert > .goShoppingCart_box{
+
+    display: flex;
+    justify-content: flex-end;
+}
+
+
+.shopping_cart_alert > .goShoppingCart_box > .goShoppingCart {
+    color: #ffffff;
+    display: flex;
+    width: 120px;
+    height: 48px;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 4px;
+    background: #000;
+}
+
+
+ // 取消 router-link 的預設樣式
+ a:-webkit-any-link {
+    text-decoration: none;
+    color: inherit;
+}
 </style>

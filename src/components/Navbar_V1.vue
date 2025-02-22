@@ -52,11 +52,11 @@ const checked_change = () => {
     }
 };
 
-
+// 購物車彈窗顯示與否 跟 購物車商品清單資料
 const cartVisible = ref(false);
 const cartItems = ref([
-  { prod_name: "商品1", prod_price: 500, prod_quantity: 1 },
-  { prod_name: "商品2", prod_price: 200, prod_quantity: 1 }
+  { prod_name: "商品1", prod_price: 500, prod_quantity: 1,prod_ImgURL :"/src/assets/images/sample.jpg" },
+  { prod_name: "商品2", prod_price: 200, prod_quantity: 1 ,prod_ImgURL :"/src/assets/images/sample.jpg"}
 ]);
 
 
@@ -144,12 +144,15 @@ const cartItems = ref([
 
         <div class="shooping_cart_alert_box">
             <shopping_cart_alert
-                v-model:show="cartVisible"
+                v-model:show="cartVisible"      
                 :itemList="cartItems"
                 @update:itemList="cartItems = $event"
                 @remove-item="cartItems.splice($event, 1)"
             />
+            <!-- v-model:show="cartVisible"  等同於 @update:show="cartVisible = $event" -->            
         </div>
+
+        
 
     </header>
 
@@ -174,7 +177,7 @@ const cartItems = ref([
                 <div class="icon_box">
 
                     <div class="icon">
-                    <shopping_cart/>
+                    <shopping_cart @click="cartVisible = !cartVisible"/>
                     
                     <user v-show="user_login_status"><RouterLink to="/user-profile" ></RouterLink></user>
                     </div>

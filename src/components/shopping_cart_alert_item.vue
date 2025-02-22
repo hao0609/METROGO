@@ -5,10 +5,10 @@
 
     // 接收來自父元件的 item 資料
 
-    defineProps({
-    item: Object,
+    const props = defineProps({
+    item: Object, // item 來自父組件
     });
-
+    
     // 定義自定義事件 update-quantity (更新數量)　和　remove (刪除該商品項目)
 
     const emit = defineEmits(['update-quantity', 'remove']);
@@ -16,14 +16,15 @@
 
     // 定義函數 decreaseQuantity (減少數量) 
     const decreaseQuantity = () => {
-    if (item.prod_quantity > 1) {
-        emit('update-quantity', item.prod_quantity - 1);
+        
+    if (props.item.prod_quantity > 1) {
+        emit('update-quantity', props.item.prod_quantity - 1);
     }
     };
 
     // 定義函數 increaseQuantity (增加數量)
     const increaseQuantity = () => {
-    emit('update-quantity', item.prod_quantity + 1);
+    emit('update-quantity', props.item.prod_quantity + 1);
     };
     
 </script>
@@ -32,36 +33,28 @@
 
 <template>
        <div class="item">
-            <div class="product_img"></div>
-
+            <div class="product_img"><img :src="props.item.prod_ImgURL" alt=""></div> 
+            <!-- <div class="product_img"><img src="../assets/images/sample.jpg" alt=""></div>  -->
 
             <div class="product_info">
-
                 <div class="product_price_info">
-
-                    <div class="product_name title2 bold">{{ item.prod_name }}</div>
-
-               </div>
-                <div class="product_price title2 bold">${{item.prod_price}}</div>
-
+                    <div class="product_name title2 bold">{{ props.item.prod_name }}</div>
+                    <div class="product_price title2 bold">${{props.item.prod_price}}</div>
+                </div>
             </div>
 
             <div class="product_quantity">
                 <div class="sub" @click="decreaseQuantity">
-                
                     <svg class="ic-baseline-minus" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M19 12.998H5V10.998H19V12.998Z" fill="black" />
                     </svg>
-                
                 </div>
-                <div class="quantity title2 bold">{{ item.prod_quantity }}</div>
+                <div class="quantity title2 bold">{{ props.item.prod_quantity }}</div>
                 <div class="add" @click="increaseQuantity">
                     <svg class="ic-baseline-plus" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M19 12.998H13V18.998H11V12.998H5V10.998H11V4.99805H13V10.998H19V12.998Z" fill="black" />
                     </svg>
                 </div>
-            
-            
             </div>
             
             <div class="delete_item" @click="emit('remove')">
@@ -72,9 +65,10 @@
                 </svg>
                                 
             </div>
-        
+        </div>
 
-       </div>
+
+
         
 </template>
 
@@ -103,6 +97,12 @@
 }
 
 
+.item > .product_img > img{
+
+    width: 100%;
+    height: 100%;
+}
+
 .item > .product_info {
 
     display: flex;
@@ -126,6 +126,11 @@
     align-items: center;
     justify-content: space-between;
     gap: 46px;
+
+    @include mobile(){
+        gap: 0px;
+        flex-direction: column;
+    }
 
 }   
 
