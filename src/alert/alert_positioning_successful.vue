@@ -1,13 +1,19 @@
 <script setup>
-import { ref } from 'vue'
+import { ref ,watch} from 'vue'
 import alert_web_M from '../components/alert_web_M.vue';
+
+import { gelocation } from '../js/view/MissionGeralView/geolocation';
+    const {nearby_station} = gelocation();
+
+    watch(nearby_station, (newStation) => {
+    locationAlertInfo.SecondTittle = `您目前定位於 "${newStation}" 捷運站`;
+    });
+
 
 // 按鈕 所執行的功能
 
-const station = "象山"; // 後續會透過定位判斷傳站名來
-
 const function_1 = ref(() => {
-   
+
 });
 
 const locationAlertInfo = {
@@ -18,7 +24,7 @@ const locationAlertInfo = {
             </svg>
 
         `, //無法確認 ICON 是否可以用外部引入.vue檔方式，目前先使用字串方式
-    SecondTittle: `您目前定位於 "${station}" 捷運站`,
+    SecondTittle: `您目前定位於 "" 捷運站`,
     ThirdTittle: '點擊完成定位任務!',
     ButtonText: '完成 !',
     allowOutsideClick: true,  

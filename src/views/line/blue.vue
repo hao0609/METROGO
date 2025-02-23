@@ -8,7 +8,8 @@
     import logo from '../../assets/images/MessionGeneral/logo.vue';
     import pin from '../../assets/images/MessionGeneral/pin.vue';
     import { pinjs } from '../../js/view/MissionGeralView/pin.js'             // 引入 pin.js
-    const { pinStyle } = pinjs();                             // 使用 pin.js 的 pin()
+    const { pinStyle_blue } = pinjs();                             // 使用 pin.js 的 pin()
+
     import alert_user_location from '@/alert/alert_user_location.vue';
 
     const alert_web_M_userlocation = ref(null);
@@ -40,8 +41,7 @@
         </div>
     </div>
     <div class="hitarea">
-        <!-- <button ref="pin_obj" class="pin" :style="pinStyle" @click="UserLocationShowAlert" @touchstart="UserLocationShowAlert" ><pin/></button> -->
-        <!-- <pin/> -->
+        <!-- <button ref="pin_obj" class="pin" :style="pinStyle_blue" @click="UserLocationShowAlert" @touchstart="UserLocationShowAlert" ><pin/></button> -->
     </div>
     <alert_user_location ref="alert_web_M_userlocation"/> 
 </template>

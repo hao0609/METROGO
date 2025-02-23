@@ -109,6 +109,20 @@ export function movejs() {
       willChange: "transform"
     }));
 
+    const active = computed({
+      get() {
+        return mover.value?.classList.contains('active') || false;
+      },
+      set(value) {
+        if (mover.value) {
+          if (value) {
+            mover.value.classList.add('active');
+          } else {
+            mover.value.classList.remove('active');
+          }
+        }
+      }
+    });
 
     onMounted(async () => {
       window.addEventListener("resize", updateSize);
@@ -134,7 +148,7 @@ export function movejs() {
     return {
         mover,
         moverStyle,
-
+        active,
     };
 } 
     
