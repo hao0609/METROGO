@@ -107,5 +107,5 @@
 </template>
 
 <style lang="scss" scoped>
-    @use "../assets/sass/page/_metro-line.scss"
+    @import "../assets/sass/page/_metro-line.scss"
 </style>

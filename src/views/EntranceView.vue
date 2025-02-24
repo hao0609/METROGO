@@ -50,5 +50,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@use "../assets/sass/page/entrance";
+@import "../assets/sass/page/entrance";
 </style>

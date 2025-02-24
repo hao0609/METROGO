@@ -51,5 +51,5 @@
 </template>
 
 <style lang="scss" scoped>
-@use "../assets/sass/page/tour";
+@import "../assets/sass/page/tour";
 </style>

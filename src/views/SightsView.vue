@@ -267,5 +267,5 @@
 </template>
 
 <style lang="scss" scoped>
-@use "../assets/sass/page/sights";
+@import "../assets/sass/page/sights";
 </style>
