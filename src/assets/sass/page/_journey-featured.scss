@@ -42,33 +42,37 @@ img{
     height: auto;
 }
 .featured-main{
-    max-width: 1080px;
+    max-width: 1024px;
     margin: auto;
     margin-bottom: 20px;
 }
 
 .journey_featured_title1 > h1{
     text-align: center;
-    color:$neutral-0;
+    color: $neutral-700;
+    margin-bottom: 12px;
 }
 
 .features-img-container{
     flex-direction: column;
+    gap: 32px;
+    
+}
+.top-images{
+    /* flex: 2 1 auto; */
+    gap: 32px;
 }
 
 .top-img-top{
     align-self: center;
-    flex: 2;
 }
-
-.bottom-images {
-    flex: 1 1 33%;
-}
-
 .side-images{
     flex-direction: column;
     align-items: center;
-    flex: 1;
+}
+.bottom-images {
+    /* flex: 1 1 auto; */
+    gap: 32px;
 }
 
 .journey-featured-info{
@@ -78,17 +82,117 @@ img{
 }
 
 .featured-info-title{
-    color:$neutral-0;
+    color: $neutral-0;
 }
+
 .info-card{
-    color:$neutral-0;
+    color: $neutral-0;
     margin: 16px 0px;
 }
+.featured-content-pic{
+    width: 100%;
+}
+.journey_featured_photo6{
+    width: 100%;
+    object-fit: cover;
+}
 
 
-@media screen and (max-width : 1080px) {
+/* 整體佈局容器 */
+.featured-paragraph-main{
+    max-width: 1024px;
+    margin: auto;
+}
+.featured-paragraph {
+    display: flex;
+    margin: 0 auto;
+}
+
+/* 主要內容區域 */
+.featured-paragraph-content {
+    flex: 2;
+    padding: 20px;
+}
+
+.featured-paragraph-content p {
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+/* 側邊欄 */
+.featured-sidebar {
+    flex: 1;
+    background-color: $neutral-400;
+    color: $neutral-0;
+    padding: 20px;
+}
+.sidebar-title{
+    text-align: center;
+    padding-bottom: 36px;
+}
+
+.sidebar-title hr {
+    border-top: 3px solid $neutral-0;
+    margin: 20px 0;
+}
+
+.featured-sidebar h2 {
+    font-size: 24px;
+}
+
+/* 精選文章列表 */
+.featured-articles {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.featured-articles hr{
+    border-top: 1px solid $neutral-0;
+    margin: 20px 0;
+}
+
+.article {
+    display: flex;
+    align-items:flex-start;
+    gap: 24px;
+}
+
+.article img {
+    width: 120px;
+    height: 100%;
+    object-fit: cover;
+}
+
+.article-title{
+    color: $neutral-0;
+    font-size: 16px;
+    line-height: 1.5;
+}
+.featured-articles a {
+    color: $neutral-0;
+    text-decoration: none;
+}
+
+.featured-articles a:hover {
+    text-decoration: underline;
+}
+
+
+
+
+@media screen and (max-width : 1024px) {
     .featured-main{
-        margin: 0 20px 60px 20px;
-        justify-content: center
+        margin: 0 40px 20px 40px;
+    }
+    .featured-paragraph-main{
+        margin: 0 40px 0px 40px;
+    }
+}
+
+@media screen and (max-width : 768px) {
+    .featured-paragraph {
+        display: flex;
+        flex-direction: column;
     }
 }
