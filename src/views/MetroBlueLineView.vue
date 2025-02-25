@@ -58,7 +58,7 @@ const messageData = ref([
         <div class="banner">
           <div class="banner-img banner-img-1-1">img</div>
           <div class="banner-txt-wrapper">
-            <p class="title1 bold banner-txt-title">有拜有保庇，你想要..?</p>
+            <p class="title1 bold banner-txt-title">各路神仙來保庇</p>
             <p class="title2 bold banner-txt-content">
               懷著滿滿的願望，誠懇地與神交流吧！充滿歷史意義與神秘的氛圍，不管你想得到
               甚麼或想知道甚麼，甚至煩惱糾結的選擇，這裡都可以給你參考的答案！
@@ -68,10 +68,9 @@ const messageData = ref([
         <div class="banner">
           <div class="banner-img banner-img-1-2">img</div>
           <div class="banner-txt-wrapper">
-            <p class="title1 bold banner-txt-title">有拜有保庇，你想要..?</p>
+            <p class="title1 bold banner-txt-title">百貨密集症候群</p>
             <p class="title2 bold banner-txt-content">
-              懷著滿滿的願望，誠懇地與神交流吧！充滿歷史意義與神秘的氛圍，不管你想得到
-              甚麼或想知道甚麼，甚至煩惱糾結的選擇，這裡都可以給你參考的答案！
+              有人許運池裡滿滿的百貨公司嗎? 那這裡一定不會讓你失望，奢侈品、名牌精品、精緻美食、也可能不經意地遇到藝人明星，機會不等人，先來先贏！
             </p>
           </div>
         </div>
@@ -81,10 +80,9 @@ const messageData = ref([
         <div class="banner">
           <div class="banner-img banner-img-2-1">img</div>
           <div class="banner-txt-wrapper">
-            <p class="title1 bold banner-txt-title">有拜有保庇，你想要..?</p>
+            <p class="title1 bold banner-txt-title">文創基地與大巨蛋效應</p>
             <p class="title2 bold banner-txt-content">
-              懷著滿滿的願望，誠懇地與神交流吧！充滿歷史意義與神秘的氛圍，不管你想得到
-              甚麼或想知道甚麼，甚至煩惱糾結的選擇，這裡都可以給你參考的答案！
+              台北最新的娛樂、運動、購物與美食聚集地，這裡結合了大巨蛋、百貨購物中心、文創、夜生活與公園，成為台北最具規模的多功能商圈之一！
             </p>
           </div>
         </div>
@@ -92,10 +90,9 @@ const messageData = ref([
         <div class="banner">
           <div class="banner-img banner-img-2-2">img</div>
           <div class="banner-txt-wrapper">
-            <p class="title1 bold banner-txt-title">有拜有保庇，你想要..?</p>
+            <p class="title1 bold banner-txt-title">全台熊嗨心的耶誕季</p>
             <p class="title2 bold banner-txt-content">
-              懷著滿滿的願望，誠懇地與神交流吧！充滿歷史意義與神秘的氛圍，不管你想得到
-              甚麼或想知道甚麼，甚至煩惱糾結的選擇，這裡都可以給你參考的答案！
+              來感受濃濃台式的耶誕季，投射巨大的耶誕樹與聲光效果，周邊的燈海與特別打卡拍照處，周末還有巨星陪你歡唱不停，更是少不了等你品嘗的美食，猶豫甚麼？還不趕快跟上！
             </p>
           </div>
         </div>
@@ -105,20 +102,18 @@ const messageData = ref([
         <div class="banner">
           <div class="banner-img banner-img-3-1">img</div>
           <div class="banner-txt-wrapper">
-            <p class="title1 bold banner-txt-title">有拜有保庇，你想要..?</p>
+            <p class="title1 bold banner-txt-title">城市是我的伸展台</p>
             <p class="title2 bold banner-txt-content">
-              懷著滿滿的願望，誠懇地與神交流吧！充滿歷史意義與神秘的氛圍，不管你想得到
-              甚麼或想知道甚麼，甚至煩惱糾結的選擇，這裡都可以給你參考的答案！
+              潮流就是風格，挖掘屬於你自我風格，這裡相信可以滿足你的需求，文青、龐克、韓風、日式、台式、美式，在這裡做自己，何必在意別人眼光！
             </p>
           </div>
         </div>
         <div class="banner">
           <div class="banner-img banner-img-3-2">img</div>
           <div class="banner-txt-wrapper">
-            <p class="title1 bold banner-txt-title">有拜有保庇，你想要..?</p>
+            <p class="title1 bold banner-txt-title">約北車北三門見喔！</p>
             <p class="title2 bold banner-txt-content">
-              懷著滿滿的願望，誠懇地與神交流吧！充滿歷史意義與神秘的氛圍，不管你想得到
-              甚麼或想知道甚麼，甚至煩惱糾結的選擇，這裡都可以給你參考的答案！
+              身為首都的車站，怎麼可以輕易地錯過它呢？這裡有著最多的人潮，還有絕不能錯過的商家與地下街， 眾多的異國美食，有吃有玩，怎能不約在這呢？！
             </p>
           </div>
         </div>
