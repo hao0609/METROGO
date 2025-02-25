@@ -9,6 +9,7 @@ const menuItems = ref([
   },
   {
     title: '積分任務',
+    isOpen: false, // 為每個子選單項目添加獨立的開關狀態
     children: [
       { title: '一般任務', link: '' },
       { title: '特殊任務-半日遊', link: '' },
@@ -25,9 +26,7 @@ const menuItems = ref([
   }
 ]);
 
-
 const isLoggedIn = ref(false);
-const isSubMenuOpen = ref(false);
 const isMobileMenuOpen = ref(false);
 
 const userInfo = ref({
@@ -35,8 +34,9 @@ const userInfo = ref({
   avatar: `data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="%23FFFFFF"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>`
 });
 
-const toggleSubMenu = () => {
-  isSubMenuOpen.value = !isSubMenuOpen.value;
+// 修改為可以切換特定子選單的函數
+const toggleSubMenu = (index) => {
+  menuItems.value[index].isOpen = !menuItems.value[index].isOpen;
 };
 
 const toggleMobileMenu = () => {
@@ -51,10 +51,14 @@ const handleLogout = () => {
   isLoggedIn.value = false;
 };
 
-
 const handleClickOutside = (event) => {
   if (!event.target.closest('.nav-item')) {
-    isSubMenuOpen.value = false;
+    // 關閉所有子選單
+    menuItems.value.forEach(item => {
+      if (item.children) {
+        item.isOpen = false;
+      }
+    });
   }
 };
 
@@ -85,10 +89,10 @@ onUnmounted(() => {
         <ul class="nav-item">
           <li v-for="(item, index) in menuItems" :key="index">
             <template v-if="item.children">
-              <a href="#" @click.prevent="toggleSubMenu">
-                {{ item.title }} <span :class="{ 'rotate': isSubMenuOpen }">▼</span>
+              <a href="#" @click.prevent="toggleSubMenu(index)">
+                {{ item.title }} <span :class="{ 'rotate': item.isOpen }">▼</span>
               </a>
-              <ul class="sub-item" v-if="isSubMenuOpen">
+              <ul class="sub-item" v-if="item.isOpen">
                 <li v-for="(child, childIndex) in item.children" :key="childIndex">
                   <a :href="child.link">{{ child.title }}</a>
                 </li>
@@ -131,8 +135,8 @@ onUnmounted(() => {
 </template>
 
 <style lang="scss" scoped>
-@import'@/assets/sass/base/color.scss';
-@import'@/assets/sass/base/reset.scss';
+@import '@/assets/sass/base/color.scss';
+@import '@/assets/sass/base/reset.scss';
 
 .header {
   height: var(--header-height, 70px);
@@ -199,7 +203,6 @@ onUnmounted(() => {
       position: relative;
       margin: 0;
       height: 100%;
-      
       align-items: center;
 
       a {
@@ -393,46 +396,46 @@ onUnmounted(() => {
   }
 
   .mobile-menu-toggle {
-  display: block;
-  width: 30px;
-  height: 30px;
-  position: relative;
-  background: none;
-  border: none;
-  cursor: pointer;
-  margin-left: auto;
+    display: block;
+    width: 30px;
+    height: 30px;
+    position: relative;
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-left: auto;
 
-  span {
-    position: absolute;
-    top: 50%;
-    left: 0;
-    width: 100%;
-    height: 5px; 
-    background-color: $neutral-0;
-    transition: all 0.3s ease;
-
-    &::before {
-      content: '';
+    span {
       position: absolute;
+      top: 50%;
       left: 0;
       width: 100%;
       height: 5px; 
       background-color: $neutral-0;
       transition: all 0.3s ease;
-      top: -10px; // 調整間距，因為線條變粗了
-    }
 
-    &.active {
-      opacity: 0; 
-     
       &::before {
-        transform: rotate(45deg);
-        top: 0;
-        box-shadow: 0px -6px 0px #000; 
+        content: '';
+        position: absolute;
+        left: 0;
+        width: 100%;
+        height: 5px; 
+        background-color: $neutral-0;
+        transition: all 0.3s ease;
+        top: -10px;
+      }
+
+      &.active {
+        opacity: 0; 
+       
+        &::before {
+          transform: rotate(45deg);
+          top: 0;
+          box-shadow: 0px -6px 0px $neutral-0; // 修正顏色變數
+        }
       }
     }
   }
-}
 
   .nav-menu {
     position: fixed;
@@ -476,9 +479,9 @@ onUnmounted(() => {
           position: static;
           width: 100%;
           left: 0;
-          display: flex; // 改為 flex
-          flex-direction: column; // 強制垂直排列
-          padding: 0; // 移除所有 padding
+          display: flex;
+          flex-direction: column;
+          padding: 0;
           margin: 0;
           box-sizing: border-box;
 
@@ -487,7 +490,6 @@ onUnmounted(() => {
             display: block;
             width: 100%; 
             padding-left: 0;
-        }
             
             a {
               padding-left: 30px;
@@ -509,5 +511,5 @@ onUnmounted(() => {
   .user-dropdown {
     right: -16px;
   }
-
+}
 </style>
