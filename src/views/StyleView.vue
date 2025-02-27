@@ -208,32 +208,6 @@
     </section>
   </div>
 
-</template>>
-
-  <!-- Form -->
-  <template>
-  <a-table :columns="columns" :data-source="data">
-    <template #bodyCell="{ column, record }">
-      <template v-if="column.key === 'tags'">
-        <span>
-          <a-tag
-            v-for="tag in record.tags"
-            :key="tag"
-            :color="tag === 'VIP' ? 'gold' : tag === 'new' ? 'green' : 'blue'"
-          >
-            {{ tag.toUpperCase() }}
-          </a-tag>
-        </span>
-      </template>
-      <template v-else-if="column.key === 'action'">
-        <span>
-          <a>Invite {{ record.userEmail }}</a>
-          <a-divider type="vertical" />
-          <a>Delete</a>
-        </span>
-      </template>
-    </template>
-  </a-table>
 </template>
 
 

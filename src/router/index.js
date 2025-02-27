@@ -6,6 +6,8 @@ import AlertView from "../views/AlertView.vue";
 import SightsView from "../views/SightsView.vue";
 import TourView from "../views/TourView.vue";
 import MetroBlueLineView from "../views/MetroBlueLineView.vue";
+import StylePreview from "../views/StylePreview.vue";
+
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -15,15 +17,6 @@ const router = createRouter({
       name: "home",
       component: HomeView,
     },
-
-    // {
-    //   path: "/about",
-    //   name: "about",
-    //   // route level code-splitting
-    //   // this generates a separate chunk (About.[hash].js) for this route
-    //   // which is lazy-loaded when the route is visited.
-    //   component: () => import("../views/AboutView.vue"),
-    // },
 
     // 景點介紹
     {
@@ -59,33 +52,43 @@ const router = createRouter({
       component: LoginView,
     },
 
-    // 樣式參考頁
-    {
-      path: "/style-view",
-      name: "StyleView",
-      component: () => import("../views/StyleView.vue"),
-    },
-
-    //表格參考頁
-    {
-      path: "/table-view",
-      name: "FormView",
-      component: () => import("../views/FormView.vue"),
-    },
-
-
-    // Alert 樣式參考頁
-    {
-      path: "/alert-view",
-      name: "AlertView",
-      component: AlertView,
-    },
-
     // Entrance參考頁
     {
       path: "/",
       name: "EntranceView",
       component: EntranceViewView,
+    },
+    
+    // 樣式預覽頁 (參考用)
+
+    {
+      path: "/StylePreview",
+      name: "StylePreview",
+      component: StylePreview,
+      redirect: '/StylePreview/style-view', 
+      children: [
+        // 樣式參考頁
+        {
+          path: "style-view",
+          name: "StyleView",
+          component: () => import("../views/StyleView.vue"),
+        },
+
+        //表格參考頁
+        {
+          path: "table-view",
+          name: "FormView",
+          component: () => import("../views/FormView.vue"),
+        },
+
+
+        // Alert 樣式參考頁
+        {
+          path: "alert-view",
+          name: "AlertView",
+          component: AlertView,
+        },
+      ]
     },
   ],
 });
