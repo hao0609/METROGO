@@ -65,7 +65,7 @@ export function gelocation() {
                             let dist = getDistanceFromLatLon(lat.value, lng.value, station.latitude, station.longitude)
                             // console.log("距離 : "+dist+"公尺");
 
-                            if (dist<5000) {
+                            if (dist<500) {
                                 closest_station = station.station_name;
                             }
                         })

@@ -7,8 +7,8 @@
     import { movejs } from '../js/view/MissionGeralView/move';          // 引入 move.js
     const { mover, moverStyle} = movejs();                              // 使用 move.js 的 move()
 
-    import alert_user_location from '@/alert/alert_user_location.vue';  // 引入 alert_user_location 彈窗
-    const alert_web_M_userlocation = ref(null);
+    import alert_user_location from '@/alert/alert_user_location.vue';  // 引入 alert_user_location 打開定位彈窗
+    const alert_userlocation_ref = ref(null);
 
     import alert_location_inaccurate from '@/alert/alert_location_inaccurate.vue';  // 引入 alert_location_inaccurate 彈窗
     const alert_web_M_location_inaccurate = ref(null);
@@ -101,8 +101,8 @@
       document.addEventListener("dblclick", (event) => {event.preventDefault()});
 
 
-      if (alert_web_M_userlocation.value) {
-        setAlertInstance_userlocation(alert_web_M_userlocation.value); // 傳遞 alert_web_M_userlocation 組件給 geolocation.js
+      if (alert_userlocation_ref.value) {
+        setAlertInstance_userlocation(alert_userlocation_ref.value); // 傳遞 alert_userlocation_ref 組件給 geolocation.js
       }
 
       if (alert_web_M_location_inaccurate.value) {
@@ -320,7 +320,7 @@
     </div>
 
     <!-- 提醒用戶開啟裝置定位彈窗 -->
-    <alert_user_location ref="alert_web_M_userlocation"/> 
+    <alert_user_location ref="alert_userlocation_ref"/> 
 
     <!-- 提醒用戶裝置定位不準確彈窗 -->
     <alert_location_inaccurate ref="alert_web_M_location_inaccurate"/> 
