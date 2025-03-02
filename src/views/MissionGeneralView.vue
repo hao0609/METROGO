@@ -1,21 +1,40 @@
 <script setup>
-    import { ref , onMounted , onUnmounted,computed} from 'vue'
-    import { RouterLink, RouterView ,useRoute } from 'vue-router'
+    import { ref , onMounted , onUnmounted,computed,watch} from 'vue'
+    import { RouterLink, RouterView ,useRoute ,onBeforeRouteUpdate } from 'vue-router'
 
     import Navbar_V1 from '../components/Navbar_V1.vue'; //備用 header
 
     import { movejs } from '../js/view/MissionGeralView/move';          // 引入 move.js
     const { mover, moverStyle} = movejs();                              // 使用 move.js 的 move()
 
-    import alert_user_location from '@/alert/alert_user_location.vue';  // 引入 alert_user_location 打開定位彈窗
-    const alert_userlocation_ref = ref(null);
+    import alert_user_location_open from '@/alert/alert_user_location_open.vue';  // 引入 alert_user_location 打開定位彈窗
+    const alert_userlocation_open_ref = ref(null);
 
     import alert_location_inaccurate from '@/alert/alert_location_inaccurate.vue';  // 引入 alert_location_inaccurate 彈窗
     const alert_web_M_location_inaccurate = ref(null);
 
-    
+
+    import alert_user_location_stay from '@/alert/alert_user_location_stay.vue';  // 引入 alert_user_location 打開定位彈窗
+    const alert_userlocation_stay_ref = ref(null);
+
+
+    import { EventBus } from "../js/view/MissionGeralView/eventBus.js";
 
     import { setAlertInstance_location_inaccurate, setAlertInstance_userlocation,gelocation } from '../js/view/MissionGeralView/geolocation';          // 引入 geolocation.js
+
+    const isNearStation = ref(null);
+  
+    // 監聽 EventBus 的 `No_Station` 狀態變更
+    watch(() => EventBus.No_Station, (newValue) => {
+        isNearStation.value = newValue;
+
+        if ( isNearStation.value === true ) {
+            console.log(alert_userlocation_stay_ref.value);
+            
+            alert_userlocation_stay_ref.value.UserLocationShowAlert();
+        }
+    });
+
 
     let game_menu_btns_show = ref(false);   // 遊戲選單按鈕是否隱藏
     const line_select_btns = ref(null);
@@ -101,17 +120,18 @@
       document.addEventListener("dblclick", (event) => {event.preventDefault()});
 
 
-      if (alert_userlocation_ref.value) {
-        setAlertInstance_userlocation(alert_userlocation_ref.value); // 傳遞 alert_userlocation_ref 組件給 geolocation.js
+      if (alert_userlocation_open_ref.value) {
+        setAlertInstance_userlocation(alert_userlocation_open_ref.value); // 傳遞 alert_userlocation_ref 組件給 geolocation.js
       }
 
       if (alert_web_M_location_inaccurate.value) {
         setAlertInstance_location_inaccurate(alert_web_M_location_inaccurate.value); // 傳遞 alert_web_M_location_inaccurate 組件給 geolocation.js
       }
 
-      gelocation() // 呼叫 geolocation.js 來取得用戶定位
+    //   gelocation() // 呼叫 geolocation.js 來取得用戶定位
       
     });
+
 
     onUnmounted(() => {
       document.removeEventListener("wheel", disableScroll_and_dbClick);
@@ -320,10 +340,13 @@
     </div>
 
     <!-- 提醒用戶開啟裝置定位彈窗 -->
-    <alert_user_location ref="alert_userlocation_ref"/> 
+    <alert_user_location_open ref="alert_userlocation_open_ref"/> 
 
     <!-- 提醒用戶裝置定位不準確彈窗 -->
     <alert_location_inaccurate ref="alert_web_M_location_inaccurate"/> 
+
+    <!-- 提醒用戶開啟裝置定位彈窗 -->
+    <alert_user_location_stay ref="alert_userlocation_stay_ref"/> 
 
 
       

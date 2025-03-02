@@ -1,13 +1,18 @@
 <script setup>
-import { ref ,watch} from 'vue'
+import { ref ,watch,onMounted,} from 'vue'
 import alert_web_M from '../components/alert_web_M.vue';
 
 import { gelocation } from '../js/view/MissionGeralView/geolocation';
-    const {nearby_station} = gelocation();
 
-    watch(nearby_station, (newStation) => {
+const nearby_station = ref('');
+
+onMounted(() => {
+    nearby_station.value = gelocation().nearby_station
+    watch(nearby_station.value, (newStation) => {
     locationAlertInfo.SecondTittle = `您目前定位於 "${newStation}" 捷運站`;
     });
+})
+
 
 
 // 按鈕 所執行的功能
