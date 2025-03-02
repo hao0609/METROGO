@@ -85,6 +85,7 @@
 .form-link {
     text-align: center;
     margin-top: 20px;
+    cursor: pointer;
 }
 
 .form-link span,
@@ -184,4 +185,12 @@ img.google-img {
     &:hover {
         color: $neutral-400;
     }
+}
+
+// 針對密碼 input 隱藏瀏覽器預設出現的眼睛icon
+input::-ms-reveal,
+input::-ms-clear,
+input::-webkit-contacts-auto-fill-button,
+input::-webkit-credentials-auto-fill-button {
+  display: none !important;
 }

@@ -16,20 +16,8 @@
     gap: 8px;
 }
 
-.spaceing-g12{
-    gap: 12px;
-}
-
 .spaceing-g24{
     gap: 24px;
-}
-
-.spaceing-g36{
-    gap: 36px;
-}
-
-.spaceing-g48{
-    gap: 48px;
 }
 
 .flex{
@@ -59,7 +47,6 @@ img{
     
 }
 .top-images{
-    /* flex: 2 1 auto; */
     gap: 32px;
 }
 
@@ -71,12 +58,13 @@ img{
     align-items: center;
 }
 .bottom-images {
-    /* flex: 1 1 auto; */
     gap: 32px;
 }
 
+
+/* 商家資訊區塊 */
 .journey-featured-info{
-    background-color: $metro-green;
+    // background-color: $metro-green;
     width: 100%;
     padding: 50px 0px;
 }
@@ -98,7 +86,7 @@ img{
 }
 
 
-/* 整體佈局容器 */
+/* 文字內容區塊 */
 .featured-paragraph-main{
     max-width: 1024px;
     margin: auto;
@@ -180,7 +168,6 @@ img{
 
 
 
-
 @media screen and (max-width : 1024px) {
     .featured-main{
         margin: 0 40px 20px 40px;
@@ -194,5 +181,18 @@ img{
     .featured-paragraph {
         display: flex;
         flex-direction: column;
+    }
+    .features-img-container{
+        gap: 12px;
+    }
+    .top-images{
+        gap: 16px;
+    }
+    .bottom-images{
+        gap: 16px;
+    }
+    .journey_featured_title1 > h1{
+        font-size: 48px;
+        line-height: 1.25;
     }
 }

@@ -92,12 +92,7 @@ export default {
     </div>
     <div class="banner-grid">
       <div class="grid-container">
-        <video
-          autoplay
-          loop
-          muted
-          src="../assets/videos/88921-608445975_tiny.mp4"
-        ></video>
+        <img src="../assets/images/sights/banner/11.gif" alt="" />
       </div>
       <div class="grid-container">
         <img src="../assets/images/sights/banner/12.jpg" alt="" />
@@ -121,24 +116,19 @@ export default {
     </div>
     <div class="banner-grid">
       <div class="grid-container">
-        <!-- <img src="../assets/images/sights/banner/16.JPG" alt="" /> -->
+        <img src="../assets/images/sights/banner/16.JPG" alt="" />
       </div>
       <div class="grid-container">
         <img src="../assets/images/sights/banner/17.jpg" alt="" />
       </div>
       <div class="grid-container">
-        <img src="../assets/images/sights/banner/18.jpg" alt="" />
+        <img src="../assets/images/sights/banner/18.gif" alt="" />
       </div>
       <div class="grid-container">
         <img src="../assets/images/sights/banner/19.jpg" alt="" />
       </div>
       <div class="grid-container">
-        <video
-          autoplay
-          loop
-          muted
-          src="../assets/videos/88921-608445975_tiny.mp4"
-        ></video>
+        <img src="../assets/images/sights/banner/20.gif" alt="" />
       </div>
     </div>
     <div class="banner-grid">
@@ -153,12 +143,7 @@ export default {
         <img src="../assets/images/sights/banner/21.jpg" alt="" />
       </div>
       <div class="grid-container">
-        <video
-          autoplay
-          loop
-          muted
-          src="../assets/videos/88921-608445975_tiny.mp4"
-        ></video>
+        <img src="../assets/images/sights/banner/22.gif" alt="" />
       </div>
       <div class="grid-container">
         <img src="../assets/images/sights/banner/23.jpg" alt="" />
@@ -174,38 +159,54 @@ export default {
 
   <!-- 各線入口 -->
   <div class="line-entrance">
-    <div class="line-img">
-      <div class="lmg-container">
+    <div class="line-container">
+      <div class="img-container">
         <img src="../assets/images/sights/line/green.jpg" alt="" />
       </div>
-      <div class="lmg-container">
+      <router-link to="/green-line" class="line-square">
+        <div class="hover-container green-line">
+          <h2>松山新店線</h2>
+        </div>
+      </router-link>
+    </div>
+    <div class="line-container">
+      <div class="img-container">
         <img src="../assets/images/sights/line/brown.jpg" alt="" />
       </div>
-      <div class="lmg-container">
+      <router-link to="/brown-line" class="line-square">
+        <div class="hover-container brown-line">
+          <h2>文湖線</h2>
+        </div>
+      </router-link>
+    </div>
+    <div class="line-container">
+      <div class="img-container">
         <img src="../assets/images/sights/line/orange.jpg" alt="" />
       </div>
-      <div class="lmg-container">
+      <router-link to="/orange-line" class="line-square">
+        <div class="hover-container orange-line">
+          <h2>中和新蘆線</h2>
+        </div>
+      </router-link>
+    </div>
+    <div class="line-container">
+      <div class="img-container">
         <img src="../assets/images/sights/line/blue.jpeg" alt="" />
       </div>
-      <div class="lmg-container">
+      <router-link to="/blue-line" class="line-square">
+        <div class="hover-container blue-line">
+          <h2>板南線</h2>
+        </div>
+      </router-link>
+    </div>
+    <div class="line-container">
+      <div class="img-container">
         <img src="../assets/images/sights/line/red.jpg" alt="" />
       </div>
-    </div>
-    <div class="line-square">
-      <router-link to="/blue-line">
-        <div class="green-line"><h2>松山新店線</h2></div>
-      </router-link>
-      <router-link to="/blue-line">
-        <div class="brown-line"><h2>文湖線</h2></div>
-      </router-link>
-      <router-link to="/blue-line">
-        <div class="orange-line"><h2>中和新蘆線</h2></div>
-      </router-link>
-      <router-link to="/blue-line">
-        <div class="blue-line"><h2>板南線</h2></div>
-      </router-link>
-      <router-link to="/blue-line">
-        <div class="red-line"><h2>淡水信義線</h2></div>
+      <router-link to="/red-line" class="line-square">
+        <div class="hover-container red-line">
+          <h2>淡水信義線</h2>
+        </div>
       </router-link>
     </div>
   </div>

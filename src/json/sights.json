@@ -1,0 +1,93 @@
+{
+  "松山新店線": [
+    {
+      "sight_name": "公館商圈",
+      "sight_copy": "最具學生氛圍的商圈之一，這裡聚集了平價美食、小吃、書店、文創小店、咖啡館、運動用品店等，無論是吃飯、逛街、買書，還是找個地方讀書、聊天，這裡都是個好選擇！",
+      "sight_intro": "公館商圈鄰近臺灣大學、臺灣科技大學、師範大學公館校區，提供市民及學生食衣住行育樂機能性完善的購物商圈，除了擁有符合外國遊客和交換生口味的各式異國料理餐廳，也有美食咖啡廳及著名的手搖飲料店；日常服飾及體育用品商家眾多，買衣買鞋都非常方便；同時公館商圈位於臺北市南區的重要交通樞紐地帶，大眾運輸發達又便利。因學區而匯聚各式獨立書店、咖啡廳、二手小店...等的公館商圈溫羅汀(溫州街、羅斯福路、汀州路)，是華文世界書店密度最高的區域，使得公館商圈增添了不少人文特色及文青氣息。粗略統計，方圓小於一公里的公館域內密布至少約四十家以上的特色書店、二十家以上的人文咖啡店與數家彰顯搖滾精神之地下音樂場所，更遑論首屈一指的NGO集中特色，在學院主義與象牙塔教條外，以文化精神驅動出意識竄流、拼貼切分的地下社會。此外公館商圈周圍景點眾多，包含自來水園區、寶藏巖國際藝術村、自來水博物館、水源劇場、公館夜市，計畫到景點遊玩的遊客，也可以到公館商圈逛街吃美食，安排一日遊或半日遊都非常適合。(部分資料來源：臺北市政府文化局)",
+      "sight_img": "../assets/images/sights/banner/1.jpg"
+    },
+    {
+      "sight_name": "饒河夜市",
+      "sight_copy": "blablabla",
+      "sight_intro": "blablablabla"
+    },
+    {
+      "sight_name": "西門紅樓",
+      "sight_copy": "blablabla",
+      "sight_intro": "blablablabla"
+    },
+    {
+      "sight_name": "西門紅樓",
+      "sight_copy": "blablabla",
+      "sight_intro": "blablablabla"
+    },
+    {
+      "sight_name": "西門紅樓",
+      "sight_copy": "blablabla",
+      "sight_intro": "blablablabla"
+    },
+    {
+      "sight_name": "西門紅樓",
+      "sight_copy": "blablabla",
+      "sight_intro": "blablablabla"
+    },
+    {
+      "sight_name": "西門紅樓",
+      "sight_copy": "blablabla",
+      "sight_intro": "blablablabla"
+    },
+    {
+      "sight_name": "西門紅樓",
+      "sight_copy": "blablabla",
+      "sight_intro": "blablablabla"
+    }
+  ],
+  "文湖線": [
+    {
+      "sight_name": "西門紅樓",
+      "sight_copy": "blablabla",
+      "sight_intro": "blablablabla"
+    },
+    {
+      "sight_name": "西門紅樓",
+      "sight_copy": "blablabla",
+      "sight_intro": "blablablabla"
+    }
+  ],
+  "中和新蘆線": [
+    {
+      "sight_name": "西門紅樓",
+      "sight_copy": "blablabla",
+      "sight_intro": "blablablabla"
+    },
+    {
+      "sight_name": "西門紅樓",
+      "sight_copy": "blablabla",
+      "sight_intro": "blablablabla"
+    }
+  ],
+  "板南線": [
+    {
+      "sight_name": "西門紅樓",
+      "sight_copy": "blablabla",
+      "sight_intro": "blablablabla"
+    },
+    {
+      "sight_name": "西門紅樓",
+      "sight_copy": "blablabla",
+      "sight_intro": "blablablabla"
+    }
+  ],
+  "淡水信義線": [
+    {
+      "sight_name": "西門紅樓",
+      "sight_copy": "blablabla",
+      "sight_intro": "blablablabla"
+    },
+    {
+      "sight_name": "西門紅樓",
+      "sight_copy": "blablabla",
+      "sight_intro": "blablablabla"
+    }
+  ]
+}

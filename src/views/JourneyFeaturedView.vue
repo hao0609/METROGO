@@ -3,11 +3,11 @@
   <div class="div-all">
     <div class="featured-main">
       <div class="journey_featured_title1">
-        <h1>天冷就要吃鍋！板南線老饕必吃火鍋！</h1>
+        <h1>{{ journey_featured_name }}</h1>
       </div>
-      <div class="features-container flex spaceing-g36">
-        <div class="features-img-container flex spaceing-g12">
-          <div class="top-images flex spaceing-g8">
+      <div class="features-container flex">
+        <div class="features-img-container flex">
+          <div class="top-images flex">
             <div class="top-img-top">
               <img
                 src="../assets/images/pic-featured_main.svg"
@@ -15,7 +15,7 @@
                 class="journey_featured_main_photo"
               />
             </div>
-            <div class="side-images flex spaceing-g8">
+            <div class="side-images flex">
               <div class="side-img-top">
                 <img
                   src="../assets/images/pic-featured_1.svg"
@@ -32,7 +32,7 @@
               </div>
             </div>
           </div>
-          <div class="bottom-images flex spaceing-g8">
+          <div class="bottom-images flex">
             <div class="bottom-img">
               <img
                 src="../assets/images/pic-featured_1.svg"
@@ -59,7 +59,10 @@
       </div>
     </div>
 
-    <div class="journey-featured-info">
+    <FeaturedInfo />
+
+    <!-- 店家資訊 -->
+    <!-- <div class="journey-featured-info">
       <div class="featured-main">
         <h2 class="featured-info-title">詹記麻辣火鍋西門大世界</h2>
         <div class="info-card">
@@ -76,7 +79,7 @@
           class="journey_featured_photo6"
         />
       </div>
-    </div>
+    </div> -->
 
     <div class="featured-paragraph-main">
       <div class="featured-paragraph">
@@ -163,7 +166,6 @@
       </div>
     </div>
   </div>
-
   <Footer />
 </template>
 
@@ -174,6 +176,7 @@
 <script>
 import Navbar_V1 from "@/components/Navbar_V1.vue";
 import Footer from "../components/Footer.vue";
+import FeaturedInfo from "../components/FeaturedInfo.vue";
 
 export default {
   name: "HomeView",
@@ -181,6 +184,12 @@ export default {
   components: {
     Navbar_V1,
     Footer,
+    FeaturedInfo,
+  },
+  data() {
+    return {
+      journey_featured_name: "天冷就要吃鍋！板南線老饕必吃火鍋！",
+    };
   },
 };
 </script>
