@@ -1,20 +1,28 @@
 @use "@/assets/sass/base/color" as *;
-.metroline-detail {
-  max-width: 1920px;
-  padding: 80px 64px;
 
-  @media (max-width: 768px) {
-    padding: 40px 32px;
+.top-section {
+  max-width: 1920px;
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+  background-color: $neutral-700;
+
+  .metro-words {
+    writing-mode: vertical-lr;
+    text-orientation:upright;
+    color: $neutral-0;
   }
 
+  // 手機版隱藏
   @media (max-width: 576px) {
-      padding: 40px 0;
-    }
+    display: none;
+  }
 }
 
 .introduce {
   display: flex;
-  gap: 3.6%;
+  gap: 1.6%;
+  padding: 0 24px;
 }
 
 .banner-group {
@@ -22,20 +30,22 @@
   flex-direction: column;
   justify-content: center;
   flex-grow: 1;
-  gap: 52px;
+  gap: 24px;
+  padding-bottom: 20px;
 
   &.group-1,
   &.group-3 {
-    margin-top: 154px;
+    padding-top: 174px;
+    padding-bottom: 40px;
   }
 
   &.group-2 {
-    margin-top: 0px;
+    padding: 40px 0;
   }
 }
 
 .banner {
-  padding: 52px 40px;
+  padding: 24px 24px;
   transition: all 0.3s ease;
   text-decoration: none; // 移除 route-link 樣式
   color: inherit; // 移除 route-link 樣式
@@ -50,6 +60,10 @@
     transform: translateY(-8px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   }
+}
+
+.banner-txt-title {
+  text-align: center;
 }
 
 .banner-txt-content {
@@ -74,40 +88,88 @@
 // banner-group 裡標題高度內縮
 .banner-group .banner-group-title {
   text-align: center;
-  margin: -52px 0;
+  margin: -32px 0 -20px 0;
 
   @media (max-width: 1024px) {
     font-size: 64px;
     }
 }
 
-// // 各區塊標題
-// .metro-line-title {
-//   text-align: center;
-//   margin: 70px 0;
-//   position: relative;
-//   h1 {
-//     font-size: 72px;
-//   }
-// }
+//手機版輪播
+.top-section-mobile {
+  height: 100%;
 
-// // 分隔線
-// .metro-line-title::before,
-// .metro-line-title::after {
-//   content: "";
-//   position: absolute;
-//   top: 50%;
-//   width: 25%;
-//   height: 4px;
-// }
+  display: none;
+  @media (max-width: 576px) {
+    display: block;
+  }
 
-// .metro-line-title::before {
-//   left: 0;
-// }
+  .banner-group-title {
+    text-align: center;
+    margin: 0;
+  }
+}
 
-// .metro-line-title::after {
-//   right: 0;
-// }
+.swiper.metroLineSwiper {
+  width: 100%;
+  height: 100%;
+  padding-bottom: 40px;
+}
+
+.metroLineSwiper .swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .banner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+
+    &:hover {
+      box-shadow: none;
+    }
+    
+    .banner-img {
+      width: 80%;
+      padding-bottom: 110%;
+      margin: 12px auto;
+    }
+
+    .banner-txt-title {
+      text-align: center;
+      display: -webkit-box; // 文字刪節號
+      -webkit-box-orient: vertical; // 文字刪節號
+      -webkit-line-clamp: 2; // 文字刪節號(保留顯示行數)
+      overflow: hidden; // 文字刪節號
+    }
+
+    .banner-txt-wrapper {
+      text-align: center;
+    }
+
+    .banner-txt-content {
+      display: flex;
+      justify-self: center;
+      width: 82%;
+      font-size: 16px;
+      margin-top: 4px;
+      text-align: left;
+      display: -webkit-box; // 文字刪節號
+      -webkit-box-orient: vertical; // 文字刪節號
+      -webkit-line-clamp: 5; // 文字刪節號(保留顯示行數)
+      overflow: hidden; // 文字刪節號
+    }
+  }
+}
+
+.metroLineSwiper .swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 
 // go 精選
 .section-group {
@@ -118,7 +180,7 @@
 
   .go-choise-img {
     position: relative;
-    background-image: url("https://picsum.photos/600/400");
+    //background-image: url("https://picsum.photos/600/400");
     background-size: cover;
     background-position: center;
     width: 48%;
@@ -137,7 +199,7 @@
       text-align: center;
 
       @media (max-width: 576px) {
-        font-size: 60px;
+        font-size: 36px;
       }
     }
 
@@ -148,7 +210,6 @@
   position: relative;
   width: 100%;
   height: 340px;
-  background-image: url("https://picsum.photos/600/200");
   background-size: cover;
   background-position: center;
 
@@ -290,12 +351,80 @@
   }
 }
 
+// 彈窗 
+.dialog-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(35, 37, 41, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+#sightDetailDialog {
+  position: relative;
+  max-width: 80%;
+  width: 100%;
+  height: 80vh;
+  padding: 48px;
+  z-index: 1001;
+  border-radius: 20px;
+  overflow-y: auto; /* 使對話框內容可滾動 */
+  -webkit-overflow-scrolling: touch; /* 提高移動設備上的滾動體驗 */
+
+
+  @media (max-width: 576px) {
+    width: 80%;
+    height: 80%;
+    padding: 40px 24px;
+  }
+}
+
+.detail-dialog-content {
+  color: $neutral-0;
+  height: auto;
+}
+
+.detail-dialog-title {
+  text-align: center;
+}
+
+.sight-basic-info {
+  margin-bottom: 24px;
+}
+
+.detail-dialog-img {
+  width: 80%;
+  padding-top: 48%;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: top;
+  margin: 24px auto;
+  color: transparent;
+}
+
+.dialog-cta {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  margin-top: 40px;
+}
+
 // 各線 banner 顏色 //
 // 板南線 blue
 
 // 頁面背景色
 .metroline-detail.blue {
   background-color: $metro-blue;
+
+  // 上方滾動 banner 背景
+  .introduce {
+    background-color: $metro-blue;
+  }
   
   // 上方 banner 
   .banner {
@@ -326,13 +455,28 @@
       background-color: #99d6ff;
     }
   }
+
+  // 手機版 swiper 背景色
+  .swiper.metroLineSwiper {
+    background-color: #99d6ff;
+  }
+
+  // 點擊 banner 彈窗背景色
+  #sightDetailDialog {
+    background-color: $metro-blue;
+  }
 }
 
 // 淡水線 red (顏色待調整)
 // 頁面背景色
 .metroline-detail.red {
   background-color: $metro-red;
-  
+
+  // 上方滾動 banner 背景
+  .introduce {
+    background-color: $metro-red;
+  }
+    
   // 上方 banner 
   .banner {
     background-color: #FFC0CC;
@@ -362,187 +506,14 @@
       background-color: #FFC0CC;
     }
   }
+
+  // 手機版 swiper 背景色
+  .swiper.metroLineSwiper {
+    background-color: #FFC0CC;
+  }
+
+  // 點擊 banner 彈窗背景色
+  #sightDetailDialog {
+    background-color: $metro-red;
+  }
 }
-
-// 各線不同 banner 照片 // 
-// 板南線
-.metroline-detail.blue {
-  .banner-img-1-1 {
-      background-image: url("/src/assets/images/line/longshan_temple_01.jpg");
-    }
-
-  .banner-img-1-2 {
-    background-image: url("/src/assets/images/line/xinyi_shopping_district_01.jpg");
-  }
-
-  .banner-img-2-1 {
-    background-image: url("/src/assets/images/line/taipei_dome_01.jpg");
-  }
-
-  .banner-img-2-2 {
-    background-image: url("/src/assets/images/line/new_taipei_city_government_01.jpg");
-  }
-
-  .banner-img-3-1 {
-    background-image: url("/src/assets/images/line/ximending_01.jpg");
-  }
-
-  .banner-img-3-2 {
-    background-image: url("/src/assets/images/line/taipei_city_mall_01.jpg");
-  }
-
-}
-
-// 淡水線
-.metroline-detail.red {
-  .banner-img-1-1 {
-      background-image: url("https://picsum.photos/350/720");
-    }
-
-  .banner-img-1-2 {
-    background-image: url("https://picsum.photos/360/720");
-  }
-
-  .banner-img-2-1 {
-    background-image: url("https://picsum.photos/370/720");
-  }
-
-  .banner-img-2-2 {
-    background-image: url("https://picsum.photos/380/720");
-  }
-
-  .banner-img-3-1 {
-    background-image: url("https://picsum.photos/390/720");
-  }
-
-  .banner-img-3-2 {
-    background-image: url("https://picsum.photos/400/720");
-  }
-
-}
-
-
-
-
-
-// .bl_intr_banner_01 {
-//     background-color: #99d6ff;
-//     width: 400px;
-//     height: 700px;
-//     margin: center;
-//     display: flex;
-//     flex-direction: column;
-// }
-// .bl_inter_banner_01a {
-//     width: 300px;
-//     height: 417px;
-
-// }
-// .b1_inter_banner_01_1 {
-//     width: 327px;
-//     height: 158px;
-
-// }
-// .bl_intr_banner_02 {
-//     background-color: #99d6ff;
-//     width: 400px;
-//     height: 700px;
-//     margin: auto;
-//     display: flex;
-//     flex-direction: column;
-// }
-// .bl_inter_banner_02a {
-//     width: 300px;
-//     height: 417px;
-// }
-// .b1_inter_banner_02_1{
-//     width: 327px;
-//     height: 158px;
-// }
-// .bl_intr_banner_03 {
-//     background-color: #99d6ff;
-//     width: 400px;
-//     height: 700px;
-//     margin: auto;
-//     display: flex;
-//     flex-direction: column;
-// }
-// .bl_inter_banner_03a {
-//     width: 300px;
-//     height: 417px;
-// }
-// .b1_inter_banner_03_1 {
-//     width: 327px;
-//     height: 158px;
-// }
-// .bl_intr_banner_04 {
-//     background-color: #99d6ff;
-//     width: 400px;
-//     height: 700px;
-//     margin: auto;
-//     display: flex;
-//     flex-direction: column;
-// }
-// .bl_inter_banner_04a {
-//     width: 300px;
-//     height: 417px;
-// }
-// .bl_inter_banner_04_1 {
-//     width: 327px;
-//     height: 158px;
-// }
-// .bl_intr_banner_05 {
-//     background-color: #99d6ff;
-//     width: 400px;
-//     height: 700px;
-//     margin: auto;
-//     display: flex;
-//     flex-direction: column;
-// }
-// .bl_inter_banner_05a {
-//     width: 300px;
-//     height: 417px;
-// }
-// .bl_inter_banner_05_1 {
-//     width: 327px;
-//     height: 158px;
-// }
-// .bl_intr_banner_06 {
-//     background-color: #99d6ff;
-//     width: 400px;
-//     height: 700px;
-//     margin: auto;
-//     display: flex;
-//     flex-direction: column;
-// }
-// .bl_inter_banner_06a {
-//     width: 300px;
-//     height: 417px;
-// }
-// .bl_inter_banner_06_1 {
-//     width: 327px;
-//     height: 158px;
-// }
-// .p1 {
-//     font-family: "Noto Sans TC";
-//     font-size: 30px;
-//     font-style: normal;
-//     font-weight: 700;
-//     line-height: 36px;
-//     color:#460961
-// }
-// .p5 {
-//     font-family: "Noto Sans TC";
-//     font-size: 18px;
-//     font-style: normal;
-//     font-weight: 700;
-//     line-height: 24px;
-//     color: #232529;
-// }
-// .hr-container {
-//     border: 0;
-//     border-top: 1px solid #fff200;
-//     position: relative;
-//     text-align: center;
-//     margin: 20px 0;
-// }
