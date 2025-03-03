@@ -750,3 +750,29 @@ export function pinjs() {
   
 
 }
+
+
+export function locationInfo() {
+
+    const locationInfobox_style = computed(() => {
+
+        let leftRatio = 0;
+        let topRatio = 0;
+
+
+        leftRatio = 678 / baseW;
+        topRatio = 324 / baseH;
+
+        //  寬高比例計算
+        const widthRatio = 230 / baseW;     
+        const heightRatio = 90 / baseH;
+
+        return {
+            left: `${leftRatio * 100}%`,
+            top: `${topRatio * 100}%`,
+            width: `${widthRatio * 100}%`,
+            // height: `${heightRatio * 100}%`,
+        };
+    })
+    return {locationInfobox_style}
+}

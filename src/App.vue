@@ -28,7 +28,7 @@ import BarChart from "./components/BarChart.vue";
   </header> -->
 
   <RouterView />
-  <Footer />
+  <!-- <Footer /> -->
 </template>
 
 <style scoped>

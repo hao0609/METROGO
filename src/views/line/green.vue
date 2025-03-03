@@ -7,13 +7,17 @@
     import station_green from '../../assets/images/MessionGeneral/station_green.vue';
     import logo from '../../assets/images/MessionGeneral/logo.vue';
     import pin from '../../assets/images/MessionGeneral/pin.vue';
-    import { pinjs } from '../../js/view/MissionGeralView/pin.js'             // 引入 pin.js
+    import { pinjs,locationInfo } from '../../js/view/MissionGeralView/pin.js'             // 引入 pin.js
 
 
-    const pinStyle_green = ref(null);
+    const pinStyle_red = ref(null);
+    const locationInfobox_style = ref(null);
 
     onMounted(() => {
-        pinStyle_green.value = pinjs().pinStyle_green.value;                           // 使用 pin.js 的 pin()
+        // console.log(pinjs().pinStyle_red.value);
+        
+        pinStyle_red.value = pinjs().pinStyle_red.value;                           // 使用 pin.js 的 pin()
+        locationInfobox_style.value = locationInfo().locationInfobox_style.value;  // 使用 pin.js 的 locationInfobox_style()
     })
 
     
@@ -39,6 +43,28 @@
         </div>
         <div class="item">
             <img :src=bridge class="bg_image" >
+        </div>
+        <div class="item">
+            <div class="closeStation_Info" :style="locationInfobox_style">
+                <div class="closeStation_Info_box">
+                    <div class="location_info">
+                        <div class="icon">
+                            <svg class="vector" width="17" height="28" viewBox="0 0 17 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M8.5 13.325C7.69488 13.325 6.92273 12.9694 6.35343 12.3365C5.78412 11.7036 5.46429 10.8451 5.46429 9.95C5.46429 9.05489 5.78412 8.19645 6.35343 7.56351C6.92273 6.93058 7.69488 6.575 8.5 6.575C9.30512 6.575 10.0773 6.93058 10.6466 7.56351C11.2159 8.19645 11.5357 9.05489 11.5357 9.95C11.5357 10.3932 11.4572 10.8321 11.3046 11.2416C11.1521 11.651 10.9285 12.0231 10.6466 12.3365C10.3647 12.6499 10.03 12.8985 9.66172 13.0681C9.29341 13.2377 8.89866 13.325 8.5 13.325ZM8.5 0.5C6.24566 0.5 4.08365 1.49562 2.48959 3.26784C0.895533 5.04006 0 7.4437 0 9.95C0 17.0375 8.5 27.5 8.5 27.5C8.5 27.5 17 17.0375 17 9.95C17 7.4437 16.1045 5.04006 14.5104 3.26784C12.9163 1.49562 10.7543 0.5 8.5 0.5Z" fill="#E3002C" />
+                            </svg>
+                            
+                        </div>
+
+                        <div class="location">
+                            <div class="lat"><span class="tittle">緯度</span> <span class="value">23.8777</span></div>
+                            <div class="lng"><span class="tittle">經度</span> <span class="value">123.8777</span></div>
+                        </div>
+                    </div>
+                    <div class="nearStation">距離最近的捷運站是: <span class="value">南港軟體園區</span></div>
+                    <div class="neardiff">距離約 <span class="value">8000</span> 公尺</div>
+
+                </div>
+            </div>
         </div>
         <div class="item">
             <station_green class="station"/>
