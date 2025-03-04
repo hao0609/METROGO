@@ -182,7 +182,7 @@ export function pinjs(stationName) {
         let topRatio = 0;
         let display = '';
 
-        switch (stationName.value) {
+        switch (stationName) {
 
             case "新店":
                 leftRatio = 686 / baseW;
@@ -302,7 +302,7 @@ export function pinjs(stationName) {
         let topRatio = 0;
         let display = '';
 
-        switch (stationName.value) {
+        switch (stationName) {
 
             case "頂埔":
                 leftRatio = 686 / baseW;
@@ -442,7 +442,7 @@ export function pinjs(stationName) {
         let topRatio = 0;
         let display = '';
 
-        switch (stationName.value) {
+        switch (stationName) {
 
             case "南勢角":
                 leftRatio = 687 / baseW;
@@ -597,7 +597,7 @@ export function pinjs(stationName) {
         let topRatio = 0;
         let display = '';
 
-        switch (stationName.value) {
+        switch (stationName) {
 
             case "動物園":
                 leftRatio = 688 / baseW;

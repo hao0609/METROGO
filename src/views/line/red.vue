@@ -16,30 +16,31 @@
     const pinStyle_red = ref(null);
     const locationInfobox_style = ref(null);
 
+    let geoWatcher = null; // 用於存儲 geolocation 的 watchPosition 監聽器 ID
+
+    let station_result = '';
+
+    
+    const updateLocation = async () =>{
 
 
-    onMounted(async () => {
         try {
+            
             const nearbyStation = await gelocation(); // 等待 `gelocation()` 完成
             console.log("最近的捷運站:", nearbyStation);
 
-             pinStyle_red.value = pinjs("淡水").pinStyle_red.value
+             pinStyle_red.value = pinjs(nearbyStation).pinStyle_red.value
             
-             alert_web_M_userlocation.value.nearby_station = "淡水"
-
-
-
-             console.log(alert_web_M_userlocation.value.nearby_station);
+             station_result = nearbyStation
+             
             
         } catch (error) {
             console.error("獲取位置失敗:", error);
         }
-    });
+    };
 
-        locationInfobox_style.value = locationInfo().locationInfobox_style.value;  // 使用 pin.js 的 locationInfobox_style()
-
-       
-
+    
+    locationInfobox_style.value = locationInfo().locationInfobox_style.value;  // 使用 pin.js 的 locationInfobox_style()
     
 
     import alert_positioning_successful from '@/alert/alert_positioning_successful.vue';        // 引入用戶定位成功彈窗
@@ -48,7 +49,26 @@
         const UserLocationSuccessful = () => {
         alert_web_M_userlocation.value.UserLocationSuccessful();  
 
+    }
+
+    onMounted(() => {
+        updateLocation();
+
+        if (navigator.geolocation) {
+            geoWatcher = navigator.geolocation.watchPosition(
+                async (position) => {
+                    console.log("位置變更");
+                    await updateLocation(); // 當位置改變時更新 `station_result`
+                },
+                (error) => {
+                    console.error("監聽位置變更失敗:", error);
+                },
+                { enableHighAccuracy: true, maximumAge: 0 }
+            );
+        } else {
+            console.warn("瀏覽器不支援 Geolocation API");
         }
+    });
 
 </script>
 
@@ -100,7 +120,7 @@
         <button ref="pin_obj" class="pin" :style="pinStyle_red" @click="UserLocationSuccessful" @touchstart="UserLocationSuccessful" ><pin/></button>
         <!-- <pin/> -->
     </div>
-      <alert_positioning_successful ref="alert_web_M_userlocation" />  
+      <alert_positioning_successful ref="alert_web_M_userlocation" :nearby_station="station_result"/>  
 </template>
 
 <style lang="scss" scoped>
@@ -108,13 +128,5 @@
     @import "@/assets/sass/base/_font.scss";
 
     @import "@/assets/sass/page/_mission-general-wrapper.scss";
-
-    
-
-    
-
-
-    
-
 
 </style>

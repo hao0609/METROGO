@@ -6,6 +6,9 @@
     import bridge from '../../assets/images/MessionGeneral/bridge.png';
     import station_brown from '../../assets/images/MessionGeneral/station_brown.vue';
     import logo from '../../assets/images/MessionGeneral/logo.vue';
+   
+    import { gelocation } from "../../js/view/MissionGeralView/geolocation";
+
     import pin from '../../assets/images/MessionGeneral/pin.vue';
     import { pinjs,locationInfo } from '../../js/view/MissionGeralView/pin.js'             // 引入 pin.js
 
@@ -13,23 +16,57 @@
     const pinStyle_brown = ref(null);
     const locationInfobox_style = ref(null);
 
-    onMounted(() => {
-        console.log(pinjs().pinStyle_brown.value);
-        
-        pinStyle_brown.value = pinjs().pinStyle_brown.value;                           // 使用 pin.js 的 pin()
-        locationInfobox_style.value = locationInfo().locationInfobox_style.value;  // 使用 pin.js 的 locationInfobox_style()
-    })
+    let geoWatcher = null; // 用於存儲 geolocation 的 watchPosition 監聽器 ID
 
+    let station_result = '';
 
+    const updateLocation = async () =>{
+
+        try {
+            
+            const nearbyStation = await gelocation(); // 等待 `gelocation()` 完成
+            console.log("最近的捷運站:", nearbyStation);
+
+            pinStyle_brown.value = pinjs(nearbyStation).pinStyle_brown.value
+            
+            station_result = nearbyStation
+            
+            
+        } catch (error) {
+            console.error("獲取位置失敗:", error);
+        }
+    };
+
+    locationInfobox_style.value = locationInfo().locationInfobox_style.value;  // 使用 pin.js 的 locationInfobox_style()
     
 
     import alert_positioning_successful from '@/alert/alert_positioning_successful.vue';        // 引入用戶定位成功彈窗
 
     const alert_web_M_userlocation = ref(null);                               
-    const UserLocationSuccessful = () => {
-    alert_web_M_userlocation.value.UserLocationSuccessful();  
-    
+        const UserLocationSuccessful = () => {
+        alert_web_M_userlocation.value.UserLocationSuccessful();  
+
     }
+
+    onMounted(() => {
+        updateLocation();
+
+        if (navigator.geolocation) {
+            geoWatcher = navigator.geolocation.watchPosition(
+                async (position) => {
+                    console.log("位置變更");
+                    await updateLocation(); // 當位置改變時更新 `station_result`
+                },
+                (error) => {
+                    console.error("監聽位置變更失敗:", error);
+                },
+                { enableHighAccuracy: true, maximumAge: 0 }
+            );
+        } else {
+            console.warn("瀏覽器不支援 Geolocation API");
+        }
+    });
+
 </script>
 
 <template>
@@ -79,7 +116,7 @@
     <div class="hitarea">
         <button ref="pin_obj" class="pin" :style="pinStyle_brown" @click="UserLocationSuccessful" @touchstart="UserLocationSuccessful" ><pin/></button>
     </div>
-    <alert_positioning_successful ref="alert_web_M_userlocation"/> 
+    <alert_positioning_successful ref="alert_web_M_userlocation" :nearby_station="station_result"/> 
 </template>
 
 <style lang="scss" scoped>
