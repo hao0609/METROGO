@@ -1,5 +1,5 @@
 <script setup>
-    import { ref,onMounted } from 'vue'
+    import { ref,onMounted , onUnmounted} from 'vue'
     import ground from '../../assets/images/MessionGeneral/ground.png';
     import building_tree from '../../assets/images/MessionGeneral/building_tree.png'
     import road from '../../assets/images/MessionGeneral/road.png';
@@ -12,6 +12,9 @@
     import pin from '../../assets/images/MessionGeneral/pin.vue';
     import { pinjs,locationInfo } from '../../js/view/MissionGeralView/pin.js'             // 引入 pin.js
 
+    import alert_user_location_stay from '@/alert/alert_user_location_stay.vue';  // 引入 alert_user_location 打開定位彈窗
+    const alert_userlocation_stay_ref = ref(null);
+
 
     const pinStyle_red = ref(null);
     const locationInfobox_style = ref(null);
@@ -20,18 +23,33 @@
 
     let station_result = '';
 
+    const latitude = ref(0);
+    const longitude = ref(0);
+    const closestStation = ref('');
+    const dis = ref(0);
+
+    const watchID = ref(0);
     
     const updateLocation = async () =>{
 
-
         try {
             
-            const nearbyStation = await gelocation(); // 等待 `gelocation()` 完成
-            console.log("最近的捷運站:", nearbyStation);
-
-             pinStyle_red.value = pinjs(nearbyStation).pinStyle_red.value
+            const result  = await gelocation(); // 等待 `gelocation()` 完成
+            console.log(result);
             
-             station_result = nearbyStation
+            console.log("最近的捷運站:", result.station, "距離:", result.distance);
+
+            if (result.No_Station == false) {
+
+                pinStyle_red.value = pinjs(result.station).pinStyle_red.value;
+
+            }else{
+                alert_userlocation_stay_ref.value.UserLocationShowAlert(); 
+            }
+
+            station_result = result.station; // ✅ 更新最近的捷運站名稱
+            closestStation.value = result.station; // ✅ 更新 Vue 變數
+            dis.value = result.distance; // ✅ 更新距離
              
             
         } catch (error) {
@@ -51,24 +69,39 @@
 
     }
 
-    onMounted(() => {
+    onMounted(() => {       
         updateLocation();
+
 
         if (navigator.geolocation) {
             geoWatcher = navigator.geolocation.watchPosition(
                 async (position) => {
+                    console.log(position.coords.latitude, position.coords.longitude); 
+
                     console.log("位置變更");
                     await updateLocation(); // 當位置改變時更新 `station_result`
+
+                    latitude.value = position.coords.latitude;
+                    longitude.value = position.coords.longitude;
                 },
                 (error) => {
                     console.error("監聽位置變更失敗:", error);
                 },
-                { enableHighAccuracy: true, maximumAge: 0 }
-            );
+                { enableHighAccuracy: false, timeout: Infinity,maximumAge: Infinity }
+            )
+            watchID.value = geoWatcher;
+
         } else {
             console.warn("瀏覽器不支援 Geolocation API");
         }
     });
+
+
+    onUnmounted(() => {
+        navigator.geolocation.clearWatch(watchID.value); // 停止監聽Position(watchID.value);
+        console.log("clearWatch:", watchID.value);
+        
+    })
 
 </script>
 
@@ -96,12 +129,12 @@
                         </div>
 
                         <div class="location">
-                            <div class="lat"><span class="tittle">緯度</span> <span class="value">23.8777</span></div>
-                            <div class="lng"><span class="tittle">經度</span> <span class="value">123.8777</span></div>
+                            <div class="lat"><span class="tittle">緯度</span> <span class="value">{{ latitude }}</span></div>
+                            <div class="lng"><span class="tittle">經度</span> <span class="value">{{ longitude }}</span></div>
                         </div>
                     </div>
-                    <div class="nearStation">距離最近的捷運站是: <span class="value">南港軟體園區</span></div>
-                    <div class="neardiff">距離約 <span class="value">8000</span> 公尺</div>
+                    <div class="nearStation">距離最近的捷運站是: <span class="value">{{closestStation}}</span></div>
+                    <div class="neardiff">距離約 <span class="value">{{dis}}</span> 公尺</div>
 
                 </div>
             </div>
@@ -118,9 +151,11 @@
     </div>
     <div class="hitarea">
         <button ref="pin_obj" class="pin" :style="pinStyle_red" @click="UserLocationSuccessful" @touchstart="UserLocationSuccessful" ><pin/></button>
-        <!-- <pin/> -->
     </div>
       <alert_positioning_successful ref="alert_web_M_userlocation" :nearby_station="station_result"/>  
+
+          <!-- 提醒用戶不在捷運站附近彈窗-->
+      <alert_user_location_stay ref="alert_userlocation_stay_ref"/> 
 </template>
 
 <style lang="scss" scoped>

@@ -14,26 +14,7 @@
     const alert_web_M_location_inaccurate = ref(null);
 
 
-    import alert_user_location_stay from '@/alert/alert_user_location_stay.vue';  // 引入 alert_user_location 打開定位彈窗
-    const alert_userlocation_stay_ref = ref(null);
-
-
-    import { EventBus } from "../js/view/MissionGeralView/eventBus.js";
-
     import { setAlertInstance_location_inaccurate, setAlertInstance_userlocation } from '../js/view/MissionGeralView/geolocation';          // 引入 geolocation.js
-
-    const isNearStation = ref(null);
-  
-    // 監聽 EventBus 的 `No_Station` 狀態變更
-    watch(() => EventBus.No_Station, (newValue) => {
-        isNearStation.value = newValue;
-
-        if ( isNearStation.value === true ) {
-            console.log(alert_userlocation_stay_ref.value);
-            
-            alert_userlocation_stay_ref.value.UserLocationShowAlert();
-        }
-    });
 
 
     let game_menu_btns_show = ref(false);   // 遊戲選單按鈕是否隱藏

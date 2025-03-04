@@ -88,6 +88,7 @@ export function gelocation() {
                     console.log("執行 printAllStation");
                     
                     let closest_station = ""
+                    let min_distance = Infinity; // 初始設為無限大，確保後續計算時能找到最小值
                     
                     metro_station_locationData.metro_lines.forEach(line => {
                         line.stations.forEach(station => {
@@ -95,25 +96,21 @@ export function gelocation() {
                             let dist = getDistanceFromLatLon(lat.value, lng.value, station.latitude, station.longitude)
                             // console.log("距離 : "+dist+"公尺");
 
-                            if (dist<500) {
+                            if (dist<500 && dist<min_distance) {
+                                min_distance = dist;
                                 closest_station = station.station_name;
+                                No_Station.value = false
+                                nearby_station.value = closest_station;
+                            }else if (dist<min_distance) {
+                                min_distance = dist;
+                                closest_station = station.station_name;
+                                No_Station.value = true
+                                nearby_station.value = closest_station;
                             }
                         })
                     });
 
-                    if (closest_station != "") {
-                        console.log("距離 500 公尺內的捷運站有 : "+closest_station);
-                        nearby_station.value = closest_station;
-                        No_Station.value = false
-                    }  else{
-                        console.log("距離 500 公尺內沒有捷運站");
-                        nearby_station.value = "";
-                        No_Station.value = true
-                    }
-
-                    // ✅ 使用 Event Bus 廣播 No_Station 狀態變更
-                    EventBus.setNoStation(No_Station.value);
-                    resolve(nearby_station.value); // ✅ 確保 `printAllStation` 執行完後回傳值
+                    resolve({station: nearby_station.value, distance: min_distance, No_Station: No_Station.value }); // ✅ 確保 `printAllStation` 執行完後回傳值
         
                 }
                 printAllStation();
