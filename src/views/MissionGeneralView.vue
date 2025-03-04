@@ -20,7 +20,7 @@
 
     import { EventBus } from "../js/view/MissionGeralView/eventBus.js";
 
-    import { setAlertInstance_location_inaccurate, setAlertInstance_userlocation,gelocation } from '../js/view/MissionGeralView/geolocation';          // 引入 geolocation.js
+    import { setAlertInstance_location_inaccurate, setAlertInstance_userlocation } from '../js/view/MissionGeralView/geolocation';          // 引入 geolocation.js
 
     const isNearStation = ref(null);
   

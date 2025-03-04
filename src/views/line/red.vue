@@ -6,6 +6,9 @@
     import bridge from '../../assets/images/MessionGeneral/bridge.png';
     import station_red from '../../assets/images/MessionGeneral/station_red.vue';
     import logo from '../../assets/images/MessionGeneral/logo.vue';
+
+    import { gelocation } from "../../js/view/MissionGeralView/geolocation";
+
     import pin from '../../assets/images/MessionGeneral/pin.vue';
     import { pinjs,locationInfo } from '../../js/view/MissionGeralView/pin.js'             // 引入 pin.js
 
@@ -13,22 +16,39 @@
     const pinStyle_red = ref(null);
     const locationInfobox_style = ref(null);
 
-    onMounted(() => {
-        // console.log(pinjs().pinStyle_red.value);
-        
-        pinStyle_red.value = pinjs().pinStyle_red.value;                           // 使用 pin.js 的 pin()
+
+
+    onMounted(async () => {
+        try {
+            const nearbyStation = await gelocation(); // 等待 `gelocation()` 完成
+            console.log("最近的捷運站:", nearbyStation);
+
+             pinStyle_red.value = pinjs("淡水").pinStyle_red.value
+            
+             alert_web_M_userlocation.value.nearby_station = "淡水"
+
+
+
+             console.log(alert_web_M_userlocation.value.nearby_station);
+            
+        } catch (error) {
+            console.error("獲取位置失敗:", error);
+        }
+    });
+
         locationInfobox_style.value = locationInfo().locationInfobox_style.value;  // 使用 pin.js 的 locationInfobox_style()
-    })
+
+       
 
     
 
     import alert_positioning_successful from '@/alert/alert_positioning_successful.vue';        // 引入用戶定位成功彈窗
 
     const alert_web_M_userlocation = ref(null);                               
-    const UserLocationSuccessful = () => {
-    alert_web_M_userlocation.value.UserLocationSuccessful();  
-    
-    }
+        const UserLocationSuccessful = () => {
+        alert_web_M_userlocation.value.UserLocationSuccessful();  
+
+        }
 
 </script>
 
@@ -80,7 +100,7 @@
         <button ref="pin_obj" class="pin" :style="pinStyle_red" @click="UserLocationSuccessful" @touchstart="UserLocationSuccessful" ><pin/></button>
         <!-- <pin/> -->
     </div>
-    <!-- <alert_positioning_successful ref="alert_web_M_userlocation"/>  -->
+      <alert_positioning_successful ref="alert_web_M_userlocation" />  
 </template>
 
 <style lang="scss" scoped>

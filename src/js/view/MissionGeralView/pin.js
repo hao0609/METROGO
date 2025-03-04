@@ -1,21 +1,12 @@
-import {  computed , watch ,ref} from 'vue';
-import { gelocation } from './geolocation';
-
-
+import {  computed ,ref} from 'vue';
 
 const baseW = 1440;                // 基準寬度 (來自每個 SVG 檔的寬高)
 const baseH = 1024;                // 基準高度
 
-const stationName = ref('');
-export function pinjs() {
-    // console.log(moverW.value,moverH.value);
+export const stationName = ref('');
+export function pinjs(stationName) {
 
-         const {nearby_station} = gelocation();
 
-        watch(nearby_station, (newStation) => {            // 監聽 nearby_station 的變化
-            console.log("目前用戶靠近的捷運站:", newStation);
-            stationName.value = newStation
-        });
 
     // 紅線路線定位    
     const pinStyle_red = computed(() => {
@@ -24,7 +15,8 @@ export function pinjs() {
         let topRatio = 0;
         let display = '';
 
-        switch (stationName.value) {
+
+        switch (stationName) {
 
             case "淡水":
                 leftRatio = 690 / baseW;

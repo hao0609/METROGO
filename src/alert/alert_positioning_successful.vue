@@ -44,6 +44,7 @@ const UserLocationSuccessful = () => {
 defineExpose({                                                // 暴露 UserLocationSuccessful 方法給父組件使用
     UserLocationSuccessful,
     function_1,
+    locationAlertInfo
 });
 </script>
 

@@ -10,13 +10,15 @@
     import { pinjs,locationInfo } from '../../js/view/MissionGeralView/pin.js'             // 引入 pin.js
 
 
-    const pinStyle_red = ref(null);
+    const pinStyle_blue = ref(null);
     const locationInfobox_style = ref(null);
 
     onMounted(() => {
-        // console.log(pinjs().pinStyle_red.value);
+        console.log(pinjs().pinStyle_blue.value);
         
-        pinStyle_red.value = pinjs().pinStyle_red.value;                           // 使用 pin.js 的 pin()
+        pinStyle_blue.value = pinjs().pinStyle_blue.value;                           // 使用 pin.js 的 pin()
+        console.log(pinStyle_blue.value);
+        
         locationInfobox_style.value = locationInfo().locationInfobox_style.value;  // 使用 pin.js 的 locationInfobox_style()
     })
 
