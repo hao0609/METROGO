@@ -275,10 +275,10 @@ const messageData = ref([
     <!-- 引入 MetroLineTitle 元件可直接輸入標題文字 -->
     <MetroLineTitle title="GO精選" />
     <div class="section-group">
-      <div class="go-choise-img" style="background-image: url('https://picsum.photos/600/400')">
+      <div class="go-choise-img" style="background-image: url('/src/assets/images/line/hot_pot_01_w600xh400.jpg')">
         <h2 class="group-title">火鍋季開跑</h2>
       </div>
-      <div class="go-choise-img" style="background-image: url('https://picsum.photos/600/400')">
+      <div class="go-choise-img" style="background-image: url('/src/assets/images/line/BanqiaoStation_03_600x400.jpg')">
         <h2 class="group-title">耶誕城派對</h2>
       </div>
     </div>
@@ -286,7 +286,7 @@ const messageData = ref([
     <!-- 半日遊行程推薦 -->
     <MetroLineTitle :title="`${currentLine}半日遊行程推薦`" />
     <router-link to="/tour/tourtype">
-      <div class="w-full-img" style="background-image: url('https://picsum.photos/600/200')">
+      <div class="w-full-img" style="background-image: url('/src/assets/images/line/ximending_02_w1312xh340.jpg')">
         <h1 class="group-title white">西門町</h1>
       </div>
     </router-link>
@@ -294,7 +294,7 @@ const messageData = ref([
     <!-- 一日遊行程推薦 -->
     <MetroLineTitle :title="`${currentLine}一日遊行程推薦`" />
     <router-link to="/tour/tourtype">
-      <div class="w-full-img" style="background-image: url('https://picsum.photos/600/200')">
+      <div class="w-full-img" style="background-image: url('/src/assets/images/line/longshan_temple_02_w1312xh340.jpg')">
         <h1 class="group-title white">龍山寺</h1>
       </div>
     </router-link>
