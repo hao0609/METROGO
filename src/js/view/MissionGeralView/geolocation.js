@@ -18,9 +18,6 @@ export const setAlertInstance_userlocation = (instance) => {
 
 
 
-import { EventBus } from "./eventBus.js";
-
-
 
 const watchId = ref(null);         // watchID 是 watch定位監聽器編號
 

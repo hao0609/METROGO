@@ -34,7 +34,7 @@ export function movejs() {
        dragX.value = Math.min(0, Math.max(dragX.value + dx, stageW.value - moverW.value)); // dragX值 不能大於 0 且不能小於 stageW - moverW
        dragY.value = Math.min(0, Math.max(dragY.value + dy, stageH.value - moverH.value)); // dragY值 不能大於 0 且不能小於 stageH - moverH
 
-       console.log(moverW.value,moverH.value);
+        //  console.log(moverW.value,moverH.value);
 
         // // 提供給子組件使用
         // provide('moverW', moverW.value);

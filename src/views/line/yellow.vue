@@ -43,7 +43,8 @@
                 pinStyle_yellow.value = pinjs(result.station).pinStyle_yellow.value;
 
             }else{
-            alert_userlocation_stay_ref.value.UserLocationShowAlert(); 
+                pinStyle_yellow.value = pinjs("").pinStyle_yellow.value;
+                alert_userlocation_stay_ref.value.UserLocationShowAlert(); 
             }
 
             station_result = result.station; // ✅ 更新最近的捷運站名稱
@@ -68,26 +69,42 @@
 
     }
 
-    onMounted(() => {
-        updateLocation();
+    onMounted(() => {       
+        // updateLocation();
+
 
         if (navigator.geolocation) {
+
+            let lastLatitude = null;
+            let lastLongitude = null;
+
+
             geoWatcher = navigator.geolocation.watchPosition(
                 async (position) => {
-                    console.log(position.coords.latitude, position.coords.longitude); 
+                const newLatitude = parseFloat(position.coords.latitude.toFixed(4));
+                const newLongitude = parseFloat(position.coords.longitude.toFixed(4));
 
-                    console.log("位置變更");
+                // **只有當經緯度變更時才執行更新**
+                if (newLatitude !== lastLatitude || newLongitude !== lastLongitude) {
+                    console.log(`位置變更: ${newLatitude}, ${newLongitude}`);
+
                     await updateLocation(); // 當位置改變時更新 `station_result`
 
-                    latitude.value = position.coords.latitude;
-                    longitude.value = position.coords.longitude;
+                    latitude.value = newLatitude;
+                    longitude.value = newLongitude;
+
+                    // 更新上一次的位置
+                    lastLatitude = newLatitude;
+                    lastLongitude = newLongitude;
+                };
                 },
                 (error) => {
                     console.error("監聽位置變更失敗:", error);
                 },
                 { enableHighAccuracy: false, timeout: Infinity,maximumAge: Infinity }
-            );
+            )
             watchID.value = geoWatcher;
+
         } else {
             console.warn("瀏覽器不支援 Geolocation API");
         }

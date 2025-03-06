@@ -1,6 +1,6 @@
 <script setup>
-    import { ref , onMounted , onUnmounted,computed,watch} from 'vue'
-    import { RouterLink, RouterView ,useRoute ,onBeforeRouteUpdate } from 'vue-router'
+    import { ref , onMounted , onUnmounted,computed} from 'vue'
+    import { RouterLink, RouterView ,useRoute } from 'vue-router'
 
     import Navbar_V1 from '../components/Navbar_V1.vue'; //備用 header
 
@@ -10,8 +10,8 @@
     import alert_user_location_open from '@/alert/alert_user_location_open.vue';  // 引入 alert_user_location 打開定位彈窗
     const alert_userlocation_open_ref = ref(null);
 
-    import alert_location_inaccurate from '@/alert/alert_location_inaccurate.vue';  // 引入 alert_location_inaccurate 彈窗
-    const alert_web_M_location_inaccurate = ref(null);
+    //import alert_location_inaccurate from '@/alert/alert_location_inaccurate.vue';  // 引入 alert_location_inaccurate 彈窗 ( 暫不引入 )
+    //const alert_web_M_location_inaccurate = ref(null);
 
 
     import { setAlertInstance_location_inaccurate, setAlertInstance_userlocation } from '../js/view/MissionGeralView/geolocation';          // 引入 geolocation.js
@@ -105,9 +105,9 @@
         setAlertInstance_userlocation(alert_userlocation_open_ref.value); // 傳遞 alert_userlocation_ref 組件給 geolocation.js
       }
 
-      if (alert_web_M_location_inaccurate.value) {
-        setAlertInstance_location_inaccurate(alert_web_M_location_inaccurate.value); // 傳遞 alert_web_M_location_inaccurate 組件給 geolocation.js
-      }
+    //   if (alert_web_M_location_inaccurate.value) {
+    //     setAlertInstance_location_inaccurate(alert_web_M_location_inaccurate.value); // 傳遞 alert_web_M_location_inaccurate 組件給 geolocation.js
+    //   }
 
     //   gelocation() // 呼叫 geolocation.js 來取得用戶定位
       
@@ -324,10 +324,9 @@
     <alert_user_location_open ref="alert_userlocation_open_ref"/> 
 
     <!-- 提醒用戶裝置定位不準確彈窗 -->
-    <alert_location_inaccurate ref="alert_web_M_location_inaccurate"/> 
+    <!-- <alert_location_inaccurate ref="alert_web_M_location_inaccurate"/>  -->
 
-    <!-- 提醒用戶開啟裝置定位彈窗 -->
-    <alert_user_location_stay ref="alert_userlocation_stay_ref"/> 
+
 
 
       

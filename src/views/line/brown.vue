@@ -30,6 +30,7 @@
     const watchID = ref(0);
 
     const updateLocation = async () =>{
+
         try {
             
             const result  = await gelocation(); // 等待 `gelocation()` 完成
@@ -42,6 +43,7 @@
                 pinStyle_brown.value = pinjs(result.station).pinStyle_brown.value;
 
             }else{
+                pinStyle_brown.value = pinjs("").pinStyle_brown.value;
                 alert_userlocation_stay_ref.value.UserLocationShowAlert(); 
             }
 
@@ -66,23 +68,42 @@
 
     }
 
-    onMounted(() => {
-        updateLocation();
+    onMounted(() => {       
+        // updateLocation();
+
 
         if (navigator.geolocation) {
+
+            let lastLatitude = null;
+            let lastLongitude = null;
+
+
             geoWatcher = navigator.geolocation.watchPosition(
                 async (position) => {
-                    console.log("位置變更");
+                const newLatitude = parseFloat(position.coords.latitude.toFixed(4));
+                const newLongitude = parseFloat(position.coords.longitude.toFixed(4));
+
+                // **只有當經緯度變更時才執行更新**
+                if (newLatitude !== lastLatitude || newLongitude !== lastLongitude) {
+                    console.log(`位置變更: ${newLatitude}, ${newLongitude}`);
+
                     await updateLocation(); // 當位置改變時更新 `station_result`
-                
-                    latitude.value = position.coords.latitude;
-                    longitude.value = position.coords.longitude;
+
+                    latitude.value = newLatitude;
+                    longitude.value = newLongitude;
+
+                    // 更新上一次的位置
+                    lastLatitude = newLatitude;
+                    lastLongitude = newLongitude;
+                };
                 },
                 (error) => {
                     console.error("監聽位置變更失敗:", error);
                 },
                 { enableHighAccuracy: false, timeout: Infinity,maximumAge: Infinity }
-            );
+            )
+            watchID.value = geoWatcher;
+
         } else {
             console.warn("瀏覽器不支援 Geolocation API");
         }
