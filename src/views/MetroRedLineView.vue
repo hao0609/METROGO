@@ -161,7 +161,7 @@ const messageData = ref([
           <div class="banner" v-if="currentLineSights[0]" @click="showSightDetail(0)">
             <div class="banner-img" :style="{ backgroundImage: `url(${currentLineSights[0].sight_img})` }">img</div>
             <div class="banner-txt-wrapper">
-              <p class="title1 bold banner-txt-title">{{ currentLineSights[0].sight_name }}</p>
+              <p class="title1 bold banner-txt-title">{{ currentLineSights[0].sight_banner_title }}</p>
               <p class="title2 bold banner-txt-content">
                 {{ currentLineSights[0].sight_intro }}
               </p>
@@ -170,7 +170,7 @@ const messageData = ref([
           <div class="banner" v-if="currentLineSights[1]" @click="showSightDetail(1)">
             <div class="banner-img" :style="{ backgroundImage: `url(${currentLineSights[1].sight_img})` }">img</div>
             <div class="banner-txt-wrapper">
-              <p class="title1 bold banner-txt-title">{{ currentLineSights[1].sight_name }}</p>
+              <p class="title1 bold banner-txt-title">{{ currentLineSights[1].sight_banner_title }}</p>
               <p class="title2 bold banner-txt-content">
                 {{ currentLineSights[1].sight_intro }}
               </p>
@@ -182,7 +182,7 @@ const messageData = ref([
           <div class="banner" v-if="currentLineSights[2]" @click="showSightDetail(2)">
             <div class="banner-img" :style="{ backgroundImage: `url(${currentLineSights[2].sight_img})` }">img</div>
             <div class="banner-txt-wrapper">
-              <p class="title1 bold banner-txt-title">{{ currentLineSights[2].sight_name }}</p>
+              <p class="title1 bold banner-txt-title">{{ currentLineSights[2].sight_banner_title }}</p>
               <p class="title2 bold banner-txt-content">
                 {{ currentLineSights[2].sight_intro }}
               </p>
@@ -192,7 +192,7 @@ const messageData = ref([
           <div class="banner" v-if="currentLineSights[3]" @click="showSightDetail(3)">
             <div class="banner-img" :style="{ backgroundImage: `url(${currentLineSights[3].sight_img})` }">img</div>
             <div class="banner-txt-wrapper">
-              <p class="title1 bold banner-txt-title">{{ currentLineSights[3].sight_name }}</p>
+              <p class="title1 bold banner-txt-title">{{ currentLineSights[3].sight_banner_title }}</p>
               <p class="title2 bold banner-txt-content">
                 {{ currentLineSights[3].sight_intro }}
               </p>
@@ -204,7 +204,7 @@ const messageData = ref([
           <div class="banner" v-if="currentLineSights[4]" @click="showSightDetail(4)">
             <div class="banner-img" :style="{ backgroundImage: `url(${currentLineSights[4].sight_img})` }">img</div>
             <div class="banner-txt-wrapper">
-              <p class="title1 bold banner-txt-title">{{ currentLineSights[4].sight_name }}</p>
+              <p class="title1 bold banner-txt-title">{{ currentLineSights[4].sight_banner_titlee }}</p>
               <p class="title2 bold banner-txt-content">
                 {{ currentLineSights[4].sight_intro }}
               </p>
@@ -213,7 +213,7 @@ const messageData = ref([
           <div class="banner" v-if="currentLineSights[5]" @click="showSightDetail(5)">
             <div class="banner-img" :style="{ backgroundImage: `url(${currentLineSights[5].sight_img})` }">img</div>
             <div class="banner-txt-wrapper">
-              <p class="title1 bold banner-txt-title">{{ currentLineSights[5].sight_name }}</p>
+              <p class="title1 bold banner-txt-title">{{ currentLineSights[5].sight_banner_title }}</p>
               <p class="title2 bold banner-txt-content">
                 {{ currentLineSights[5].sight_intro }}
               </p>
