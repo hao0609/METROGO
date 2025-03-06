@@ -7,11 +7,11 @@ import { createPinia } from "pinia";
 // marquee套件(跑馬燈)
 import Vue3Marquee from "vue3-marquee";
 
-// swiper套件(輪播)
-import { register } from "swiper/element/bundle";
-import "swiper/css/bundle";
-// 註冊 swiper 自訂元素
-register();
+// // swiper套件(輪播)
+// import { register } from "swiper/element/bundle";
+// import "swiper/css/bundle";
+// // 註冊 swiper 自訂元素
+// register();
 
 import App from "./App.vue";
 import router from "./router";

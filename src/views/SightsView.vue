@@ -1,4 +1,10 @@
-<script>
+<script setup>
+import { ref, onMounted, onBeforeUnmount } from "vue";
+import "animate.css";
+// 引入 Navbar
+import Navbar_V1 from "../components/Navbar_V1.vue";
+import Swiper from "../components/Swiper.vue";
+
 // logos 管理
 import img1 from "../assets/images/sights/logo/Tibame.png";
 import img2 from "../assets/images/sights/logo/SNOPA.png";
@@ -9,20 +15,55 @@ import img6 from "../assets/images/sights/logo/島壽司.png";
 import img7 from "../assets/images/sights/logo/板橋慈惠宮.png";
 import img8 from "../assets/images/sights/logo/貓宅咖啡.png";
 
-// 引入 Navbar
-import Navbar_V1 from "../components/Navbar_V1.vue";
+const logos = ref([img1, img2, img3, img4, img5, img6, img7, img8]);
 
-export default {
-  data() {
-    return {
-      logos: [img1, img2, img3, img4, img5, img6, img7, img8],
-    };
-  },
+const isMobile = ref(true);
+
+const checkScreenSize = () => {
+  isMobile.value = window.innerWidth <= 1024;
+  console.log(isMobile.value);
 };
+
+const header = ref(false);
+const topAreaHeight = 80;
+const headerContainer = ref(null);
+
+const handleMouseMove = (event) => {
+  // 如果滑鼠在視窗上方的 topAreaHeight 區域，或者 event.target 在 headerContainer 裡，
+  // 則保持 header 顯示
+  if (
+    event.clientY <= topAreaHeight ||
+    (headerContainer.value && headerContainer.value.contains(event.target))
+  ) {
+    header.value = true;
+  } else {
+    header.value = false;
+  }
+};
+
+onMounted(() => {
+  console.log("onMounted 觸發了！");
+  // checkScreenSize();
+  // window.addEventListener("resize", checkScreenSize);
+
+  // Header 觸發
+  window.addEventListener("mousemove", handleMouseMove);
+});
+
+onBeforeUnmount(() => {
+  console.log("onBeforeUnmount 觸發！");
+  // window.removeEventListener("resize", checkScreenSize);
+  window.removeEventListener("mousemove", handleMouseMove);
+});
 </script>
 
 <template>
-  <navbar_-v1></navbar_-v1>
+  <transition
+    ><div v-if="header" ref="headerContainer">
+      <Navbar_V1 />
+    </div>
+  </transition>
+
   <!-- banner -->
   <div class="banner">
     <div class="banner-grid">
@@ -217,8 +258,8 @@ export default {
     <swiper-container
       class="mySwiper"
       :autoplay="{ delay: 3000 }"
-      :loop="true"
       :navigation="true"
+      :loop="true"
     >
       <swiper-slide>
         <div class="featured-container">
@@ -266,27 +307,20 @@ export default {
           </div>
         </div>
       </swiper-slide>
-
-      <!-- 自訂 SVG 按鈕 -->
-      <!-- <div class="custom-prev">
-        <img src="../assets/images/sights/Vector-left.svg" alt="Prev" />
-      </div>
-      <div class="custom-next">
-        <img src="../assets/images/sights/Vector-right.svg" alt="Next" />
-      </div> -->
     </swiper-container>
+    <!-- 自訂 SVG 按鈕 -->
   </div>
 
   <!-- 合作夥伴 -->
   <div class="partners">
     <div class="partners-title">
-      <div class="arrows">
+      <div class="arrows animate__animated animate-left">
         <img src="../assets/images/sights/Vector-left.svg" alt="" />
         <img src="../assets/images/sights/Vector-left.svg" alt="" />
         <img src="../assets/images/sights/Vector-left.svg" alt="" />
       </div>
       <h2>合作夥伴</h2>
-      <div class="arrows">
+      <div class="arrows animate__animated animate-right">
         <img src="../assets/images/sights/Vector-right.svg" alt="" />
         <img src="../assets/images/sights/Vector-right.svg" alt="" />
         <img src="../assets/images/sights/Vector-right.svg" alt="" />
@@ -323,4 +357,14 @@ export default {
 
 <style lang="scss" scoped>
 @use "../assets/sass/page/sights";
+.v-enter-active {
+  transition: opacity 0.2s ease;
+}
+.v-leave-active {
+  transition: opacity 0.01s ease;
+}
+.v-enter-from,
+.v-leave-to {
+  opacity: 0; // header 進場前、後都透明
+}
 </style>

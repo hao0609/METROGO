@@ -9,6 +9,7 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore"
   },
   "dependencies": {
+    "animate.css": "^4.1.1",
     "chart.js": "^4.4.8",
     "firebase": "^11.4.0",
     "gsap": "^3.12.7",

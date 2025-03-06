@@ -1,71 +1,3 @@
-<template>
-  <h1 class="admin-title">後台總覽</h1>
-  <div class="dashboard-container">
-    <div class="circle-container">
-      <div class="item">
-        <span>最新照片</span>
-        <div class="circle">
-          <div class="data-container">
-            <p>待審核照片</p>
-            <p>待串接資料</p>
-          </div>
-        </div>
-      </div>
-      <div class="item">
-        <span>最新訂單</span>
-        <div class="circle">
-          <div class="data-container">
-            <p>待處理訂單</p>
-            <p>待串接資料</p>
-          </div>
-        </div>
-      </div>
-      <div class="item">
-        <span>會員管理</span>
-        <div class="circle">
-          <div class="data-container">
-            <p>新增會員數</p>
-            <p>待串接資料</p>
-          </div>
-        </div>
-      </div>
-      <div class="item">
-        <span>行程管理</span>
-        <div class="circle">
-          <div class="data-container">
-            <p>待審核照片</p>
-            <p>待串接資料</p>
-          </div>
-        </div>
-      </div>
-      <div class="item">
-        <span class="hidden">被隱藏了</span>
-        <div class="circle">
-          <div class="data-container">
-            <p>待審核照片</p>
-            <p>待串接資料</p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="mission">
-      <span class="">一般任務 </span>
-      <BarChart :chartData="popularity" />
-    </div>
-    <div class="mission">
-      <span class="">特殊任務 </span>
-      <div class="chart-container">
-        <BarChart :chartData="half_day_tour" />
-        <BarChart :chartData="full_day_tour" />
-      </div>
-    </div>
-  </div>
-</template>
-
-<style lang="scss" scoped>
-@use "@/assets/sass/page/backend/_admin-dashboard";
-</style>
-
 <script>
 // import EditIcon from '@/components/icons/IconAdminEdit.vue';
 // import DeleteIcon from '@/components/icons/IconAdminDelete.vue';
@@ -135,3 +67,71 @@ export default {
   },
 };
 </script>
+
+<template>
+  <h1 class="admin-title">後台總覽</h1>
+  <div class="dashboard-container">
+    <div class="circle-container">
+      <div class="item">
+        <span>最新照片</span>
+        <div class="circle">
+          <div class="data-container">
+            <p>待審核照片</p>
+            <p>待串接資料</p>
+          </div>
+        </div>
+      </div>
+      <div class="item">
+        <span>最新訂單</span>
+        <div class="circle">
+          <div class="data-container">
+            <p>待處理訂單</p>
+            <p>待串接資料</p>
+          </div>
+        </div>
+      </div>
+      <div class="item">
+        <span>會員管理</span>
+        <div class="circle">
+          <div class="data-container">
+            <p>新增會員數</p>
+            <p>待串接資料</p>
+          </div>
+        </div>
+      </div>
+      <div class="item">
+        <span>行程管理</span>
+        <div class="circle">
+          <div class="data-container">
+            <p>待審核照片</p>
+            <p>待串接資料</p>
+          </div>
+        </div>
+      </div>
+      <div class="item">
+        <span class="hidden">被隱藏了</span>
+        <div class="circle">
+          <div class="data-container">
+            <p>待審核照片</p>
+            <p>待串接資料</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="mission">
+      <span class="">一般任務 </span>
+      <BarChart :chartData="popularity" />
+    </div>
+    <div class="mission">
+      <span class="">特殊任務 </span>
+      <div class="chart-container">
+        <BarChart :chartData="half_day_tour" />
+        <BarChart :chartData="full_day_tour" />
+      </div>
+    </div>
+  </div>
+</template>
+
+<style lang="scss" scoped>
+@use "@/assets/sass/page/backend/_admin-dashboard";
+</style>

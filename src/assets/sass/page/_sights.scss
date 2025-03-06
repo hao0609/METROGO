@@ -8,21 +8,21 @@
   display: flex;
   width: 100%;
   gap: 0.5%;
+  height: 100%;
 }
 
 .banner-grid {
   display: flex;
   width: 9.55%;
+  height: 100%;
   flex-direction: column;
-  align-items: flex-start;
-  gap: 10px;
+  gap: 8px;
 }
 
 .banner-grid p {
   display: flex;
   width: 100%;
-  height: 124px;
-  padding: 10px;
+  height: 120px;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -32,7 +32,7 @@
   display: flex;
   align-items: center;
   width: 100%;
-  height: 124px;
+  height: 120px;
 }
 
 .grid-container img {
@@ -62,7 +62,6 @@ p {
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: auto;
   background-color: $neutral-700;
   padding-bottom: 100px;
 }
@@ -104,6 +103,7 @@ p {
   }
 }
 
+// 控制入口區塊的版面排版
 .hover-container {
   display: flex;
   align-items: center;
@@ -112,22 +112,19 @@ p {
   height: 100%;
 }
 
+// 控制入口區塊版面顏色
 .green-line {
   background-color: $green-400;
 }
-
 .brown-line {
   background-color: $orange-400;
 }
-
 .orange-line {
   background-color: $yellow-400;
 }
-
 .blue-line {
   background-color: $aqua-400;
 }
-
 .red-line {
   background-color: $pink-400;
 }
@@ -147,7 +144,7 @@ p {
 .mySwiper {
   display: flex;
   width: 100%;
-  height: 501px;
+  height: auto;
   padding: 30px 64px;
   justify-content: center;
   align-items: center;
@@ -180,8 +177,10 @@ swiper-slide {
   width: 100%;
   height: auto;
   flex-direction: column;
-  align-items: flex-start;
   gap: 50px;
+  a {
+    text-decoration: none;
+  }
 }
 
 .paragraph-title {
@@ -201,25 +200,25 @@ swiper-slide {
   justify-content: flex-end;
 }
 
-// .custom-prev,
-// .custom-next {
-//   width: 50px;
-//   height: 50px;
-//   border: 1px solid red;
+// .swiper-button-prev,
+// .swiper-button-next {
+//   // display: none;
+//   color: #b7ff00; /* 改變箭頭顏色 */
+//   // font-size: 100px; /* 改變箭頭大小 */
 // }
 
 /* 合作夥伴 */
 
 .partners {
   width: 100%;
-  height: 300px;
+  height: auto;
 }
 .partners-title {
   display: flex;
-  justify-content: center;
+  padding: 10px 0;
+  justify-content: space-around;
   color: $neutral-0;
   background-color: $yellow-400;
-  gap: 300px;
 }
 
 .arrows {
@@ -227,6 +226,11 @@ swiper-slide {
   width: 164px;
   align-items: center;
   gap: 30px;
+}
+
+.partners-title h2 {
+  text-align: center;
+  white-space: nowrap; // 防止換行
 }
 
 .logo-swiper {
@@ -260,4 +264,155 @@ swiper-slide {
   width: 100%;
   height: auto;
   object-fit: cover;
+}
+
+// animate.css 控制箭頭動畫
+.animate-left {
+  animation: slideInRight 1.5s infinite, flash 1.2s infinite;
+}
+
+.animate-right {
+  animation: slideInLeft 1.5s infinite, flash 1.2s infinite;
+}
+
+// 手機版
+@media screen and (max-width: 1240px) {
+  // banner
+  .banner-grid {
+    p {
+      font-size: 90px;
+    }
+  }
+  // 各線入口
+  .hover-container h2 {
+    font-size: 50px;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  // banner
+  .banner {
+    width: 100%;
+    flex-direction: column;
+  }
+  .banner-grid {
+    flex-direction: row;
+    width: 100%;
+    padding-bottom: 0.5%;
+  }
+
+  // 各線入口
+  .line-entrance {
+    flex-direction: row;
+    padding-bottom: 50px;
+  }
+  .img-container {
+    display: none;
+  }
+  .line-square {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    writing-mode: vertical-lr;
+  }
+
+  // GO編精選
+
+  .featured-title {
+    font-size: 70px;
+  }
+  .featured-container {
+    gap: 50px;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .mySwiper {
+    padding-top: 0px;
+  }
+
+  .featured-img {
+    display: flex;
+    width: 70%;
+    height: auto;
+  }
+
+  .featured-paragraph {
+    gap: 30px;
+  }
+
+  .paragraph-title {
+    text-align: center;
+  }
+
+  .paragraph,
+  .btn-container {
+    justify-content: center;
+  }
+
+  // 合作夥伴
+  .partners h2 {
+    font-size: 50px;
+    width: 100%;
+  }
+
+  .arrows img {
+    width: 36px;
+    height: 36px;
+  }
+
+  .logo {
+    height: 200px;
+  }
+
+  .logo-container {
+    width: 90px;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  // banner
+  .banner-grid {
+    p {
+      font-size: 64px;
+    }
+  }
+  // 各線入口
+  .hover-container h2 {
+    font-size: 40px;
+  }
+
+  // GO編精選
+  .featured-container {
+    gap: 20px;
+    padding: 20px;
+  }
+
+  .featured-title {
+    font-size: 50px;
+  }
+
+  .paragraph-title {
+    font-size: 20px;
+  }
+  .paragraph {
+    display: none;
+  }
+
+  // 合作夥伴
+  .partners h2 {
+    font-size: 24px;
+  }
+  .arrows img {
+    width: 20px;
+    height: 20px;
+  }
+
+  .logo {
+    height: auto;
+  }
+
+  .logo-container {
+    width: 50px;
+  }
 }
