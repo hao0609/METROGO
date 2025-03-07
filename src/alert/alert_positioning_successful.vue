@@ -23,16 +23,16 @@ const locationAlertInfo = {
             </svg>
 
         `, //無法確認 ICON 是否可以用外部引入.vue檔方式，目前先使用字串方式
-    SecondTittle: `您目前定位於 "${props.nearby_station}" 捷運站`,
+    SecondTittle: `您目前定位於 <br> "${props.nearby_station}" 捷運站`,
     ThirdTittle: '點擊完成定位任務!',
     ButtonText: '完成 !',
-    allowOutsideClick: true,  
+    allowOutsideClick: false,  
     function:function_1.value ,
 }
 
 // 監聽 `nearby_station`，當它變化時，動態更新 `locationAlertInfo`
 watch(() => props.nearby_station, (newStation) => {
-    locationAlertInfo.SecondTittle = `您目前定位於 "${newStation}" 捷運站`;
+    locationAlertInfo.SecondTittle = `您目前定位於 <br> "${newStation}" 捷運站`;
 });
 
 const alert_web_M_content = ref(null);
