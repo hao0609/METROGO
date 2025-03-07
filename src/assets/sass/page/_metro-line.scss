@@ -517,3 +517,54 @@
     background-color: $metro-red;
   }
 }
+
+// 松山新店線 green (顏色待調整)
+// 頁面背景色
+.metroline-detail.green {
+  background-color: $metro-green;
+
+  // 上方滾動 banner 背景
+  .introduce {
+    background-color: $metro-green;
+  }
+    
+  // 上方 banner 
+  .banner {
+    background-color: #8CE4C7;
+
+    .banner-txt-title {
+      color: #460961;
+    }
+  }
+
+  .banner-group-title {
+    color: $yellow-400;
+  }
+
+  // 上方 banner 之間捷運線名稱
+  .metro-line-title,
+  .group-title {
+    color: $yellow-400;
+  }
+
+  .metro-line-title::before,
+  .metro-line-title::after {
+    background-color: $yellow-400;
+  }
+
+  .message-card {
+    @media (max-width: 576px) {
+      background-color: #8CE4C7;
+    }
+  }
+
+  // 手機版 swiper 背景色
+  .swiper.metroLineSwiper {
+    background-color: #8CE4C7;
+  }
+
+  // 點擊 banner 彈窗背景色
+  #sightDetailDialog {
+    background-color: $metro-green;
+  }
+}
