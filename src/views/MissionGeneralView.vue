@@ -151,6 +151,23 @@
             </div>
         </div>
     </div>
+
+    
+    <div class="getlocation">
+        <button>
+            <svg class="subway-location-3" width="40" height="40" viewBox="0 0 52 53" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g clip-path="url(#clip0_4132_7496)">
+                <path d="M24.4053 40.8C24.7404 41.318 25.3295 41.6633 25.9998 41.6633C26.6701 41.6633 27.2592 41.318 27.6045 40.8L38.7967 23.5141C40.2998 21.1883 41.1732 18.6289 41.1732 15.6633C41.1631 7.09141 34.4295 0.5 25.9998 0.5C17.5701 0.5 10.8365 7.09141 10.8365 15.6633C10.8365 18.6289 11.71 21.1883 13.2131 23.5141L24.4053 40.8ZM25.9998 7C30.7834 7 34.6631 10.8797 34.6631 15.6633C34.6631 20.4469 30.7834 24.3266 25.9998 24.3266C21.2162 24.3266 17.3365 20.4469 17.3365 15.6633C17.3365 10.8797 21.2162 7 25.9998 7ZM37.1107 33.3555L25.9998 48.1633L14.8889 33.3555C11.0904 35.3461 8.66309 38.3219 8.66309 41.6633C8.66309 47.6453 16.4225 52.5 25.9998 52.5C35.5771 52.5 43.3365 47.6453 43.3365 41.6633C43.3365 38.3219 40.9092 35.3461 37.1107 33.3555Z" fill="white" />
+                </g>
+                <defs>
+                <clipPath id="clip0_4132_7496">
+                <rect width="52" height="52" fill="white" transform="translate(0 0.5)" />
+                </clipPath>
+                </defs>
+            </svg>
+        </button>
+    </div>
+
     <div class="game_menu_btns" v-show="game_menu_btns_show">
         <div class="game_menu_btnsBox">
             <button id="receive_btn" class="btn_box">
@@ -346,6 +363,19 @@
         left: 0;
         width: 100%;
     }
+
+    .getlocation{
+        position: absolute;
+        top: 150px;
+        right: 10px;
+        z-index: 99;
+        background-color: red;
+        border-radius: 20px
+    }
+    .getlocation > button {
+        padding: 10px;
+    }
+
 
 </style>
 
