@@ -6,9 +6,9 @@ const line2 = ref(null)
 const scrollY = ref(0)
 const isInTriggerZone = ref(false)
 
-const TRIGGER_START = 720
+const TRIGGER_START = 150
 const TRIGGER_END = 1500
-const MAX_HORIZONTAL_MOVE = 150
+const MAX_HORIZONTAL_MOVE = 100
 
 const updateLines = () => {
   // 檢查是否正在監聽滾動
@@ -96,9 +96,8 @@ onUnmounted(() => {
 
 .line {
   position: fixed;
-  top: 720px;
+  top: 0px;
   width: 5px; // 加粗線條
-  height: 100px !important; // 強制設置初始高度來測試可見性
   transition: all 0.3s ease-out;
   
   &.line-1 {

@@ -7,6 +7,7 @@ import HomeBenefits from '@/components/Home/Benfits.vue';
 
 import HomeProducts from '@/components/Home/Products.vue';
 import HomeNews from '@/components/Home/News.vue';
+import ScrollLine from '@/components/ScrollMetroLine.vue';
 
 
 </script>
@@ -14,8 +15,10 @@ import HomeNews from '@/components/Home/News.vue';
 <template>
   
     <main class="main-content">
+    
     <div class="home">
-      <HomeHero />      
+      <HomeHero />
+      <ScrollLine />      
       <HomeFeatures /> 
       <HomeBenefits />      
       <HomeProducts />      

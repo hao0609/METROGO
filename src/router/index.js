@@ -6,6 +6,11 @@ import AlertView from "../views/AlertView.vue";
 import SightsView from "../views/SightsView.vue";
 import TourView from "../views/TourView.vue";
 import MetroBlueLineView from "../views/MetroBlueLineView.vue";
+import StoreView from "../views/StoreView.vue";
+import CategoryPage from "../views/CategoryPageView.vue";
+import ProductDetailView from "../views/ProductDetailView.vue";
+import CategoryPageView from "../views/CategoryPageView.vue";
+
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -47,7 +52,28 @@ const router = createRouter({
     { path: "/cart", name: "訂單管理" },
 
     // 商城
-    { path: "/store", name: "商城" },
+    { path: "/store", name: "商城", component : StoreView,},
+    { path: "/category", name: "分類", component : CategoryPageView,},
+    {
+      path: '/product/:id',
+      name: '商品詳情頁',
+      component: ProductDetailView,
+      props: (route) => {
+        
+        const id = parseInt(route.params.id) || 0
+       
+        if (route.query.productData) {
+          try {
+            const productData = JSON.parse(route.query.productData)
+            return { id, product: productData }
+          } catch (e) {
+            console.error('解析商品数据失败', e)
+          }
+        }
+        
+        return { id }
+      }
+    },
 
     // 最新消息
     { path: "/news", name: "最新消息" },
