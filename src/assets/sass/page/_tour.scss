@@ -173,3 +173,69 @@ img {
   height: auto;
   object-fit: cover;
 }
+
+@media screen and (max-width: 1024px) {
+  // banner
+  h1 {
+    font-size: 68px;
+  }
+  .circle,
+  .line {
+    width: 40px;
+    height: 40px;
+  }
+  .station-name {
+    font-size: 24px;
+  }
+}
+
+@media screen and (max-width: 880px) {
+  // 內文
+  .hidden {
+    display: none;
+  }
+  .title1 {
+    font-size: 26px;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  // banner
+  .banner {
+    align-items: center;
+    padding: 50px;
+  }
+  h1 {
+    font-size: 40px;
+  }
+  .top {
+    width: 100%;
+    justify-content: center;
+  }
+  .line,
+  .circle {
+    visibility: hidden;
+  }
+  .bottom {
+    display: none;
+  }
+  .hover-light,
+  .visible {
+    visibility: visible;
+  }
+
+  // 內文
+
+  .station {
+    gap: 40px;
+  }
+  .paragraph-container {
+    gap: 20px;
+  }
+  .title1 {
+    font-size: 18px;
+  }
+  .paragraph-content {
+    font-size: 12px;
+  }
+}

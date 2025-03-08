@@ -17,13 +17,6 @@ import img8 from "../assets/images/sights/logo/貓宅咖啡.png";
 
 const logos = ref([img1, img2, img3, img4, img5, img6, img7, img8]);
 
-const isMobile = ref(true);
-
-const checkScreenSize = () => {
-  isMobile.value = window.innerWidth <= 1024;
-  console.log(isMobile.value);
-};
-
 const header = ref(false);
 const topAreaHeight = 80;
 const headerContainer = ref(null);
@@ -36,32 +29,27 @@ const handleMouseMove = (event) => {
     (headerContainer.value && headerContainer.value.contains(event.target))
   ) {
     header.value = true;
+    header.vi;
   } else {
     header.value = false;
   }
 };
 
 onMounted(() => {
-  console.log("onMounted 觸發了！");
-  // checkScreenSize();
-  // window.addEventListener("resize", checkScreenSize);
-
   // Header 觸發
   window.addEventListener("mousemove", handleMouseMove);
 });
 
 onBeforeUnmount(() => {
-  console.log("onBeforeUnmount 觸發！");
-  // window.removeEventListener("resize", checkScreenSize);
   window.removeEventListener("mousemove", handleMouseMove);
 });
 </script>
 
 <template>
   <transition
-    ><div v-if="header" ref="headerContainer">
+    ><header v-if="header" ref="headerContainer">
       <Navbar_V1 />
-    </div>
+    </header>
   </transition>
 
   <!-- banner -->
@@ -357,6 +345,15 @@ onBeforeUnmount(() => {
 
 <style lang="scss" scoped>
 @use "../assets/sass/page/sights";
+
+// 控制 header 樣式
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  opacity: 0.95;
+}
 .v-enter-active {
   transition: opacity 0.2s ease;
 }

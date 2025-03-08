@@ -1,25 +1,35 @@
+<script setup>
+import Navbar_V1 from "@/components/Navbar_V1.vue";
+import Footer from "@/components/Footer.vue";
+import HomeHero from "@/components/Home/HeroBanner.vue";
+import HomeFeatures from "@/components/Home/IconFeatures.vue";
+import HomeBenefits from "@/components/Home/Benefits.vue";
+import HomeProducts from "@/components/Home/Products.vue";
+import HomeNews from "@/components/Home/News.vue";
+</script>
+
 <template>
-  <Navbar_V1 />
-  <div class="container">
-    <img src="../assets/images/img_home_v1.jpg" alt="" class="home" />
-  </div>
-  <Footer />
+  <main class="main-content">
+    <div class="home">
+      <Navbar_V1 />
+      <HomeHero />
+      <HomeFeatures />
+      <HomeBenefits />
+      <HomeProducts />
+      <HomeNews />
+      <Footer />
+    </div>
+  </main>
 </template>
 
 <style lang="scss" scoped>
-@use "../assets/sass/page/home.scss";
+.main-content {
+  flex: 1;
+  position: relative;
+}
+
+.home {
+  position: relative;
+  min-height: 100vh;
+}
 </style>
-
-<script>
-import Navbar_V1 from "@/components/Navbar_V1.vue";
-import Footer from "../components/Footer.vue";
-
-export default {
-  name: "HomeView",
-  created() {},
-  components: {
-    Navbar_V1,
-    Footer,
-  },
-};
-</script>

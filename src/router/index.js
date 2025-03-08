@@ -25,6 +25,7 @@ import JourneyFeaturedView from "../views/JourneyFeaturedView.vue";
 
 // 後台
 import AdminMainpageView from "../views/backend/AdminMainpageView.vue";
+import Navbar_V1 from "../components/Navbar_V1.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -57,8 +58,16 @@ const router = createRouter({
       name: "中和新盧線",
       component: MetroOrangeLineView,
     },
-    { path: "/blue-line", name: "板南線", component: MetroBlueLineView },
-    { path: "/red-line", name: "淡水信義線", component: MetroRedLineView },
+    {
+      path: "/blue-line",
+      name: "板南線",
+      component: MetroBlueLineView,
+    },
+    {
+      path: "/red-line",
+      name: "淡水信義線",
+      component: MetroRedLineView,
+    },
     { path: "/featured/:line/:contentType", name: "小編精選" },
     { path: "/tour/:tourType", name: "旅遊行程", component: TourView },
     { path: "/special-mission", name: "特殊任務" },

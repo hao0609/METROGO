@@ -1,21 +1,22 @@
 <script setup>
-import { ref, onMounted, onUnmounted, computed } from 'vue'
-import Message from "@/components/Message.vue"
-import MessageCard from "@/components/MessageCard.vue"
-import MetroLineTitle from '@/components/MetroLineTitle.vue'
-import Footer from '@/components/Footer.vue'
-import { initMetrolineScroll } from '@/js/view/metroline.js'
+import { ref, onMounted, onUnmounted, computed } from "vue";
+import Message from "@/components/Message.vue";
+import MessageCard from "@/components/MessageCard.vue";
+import MetroLineTitle from "@/components/MetroLineTitle.vue";
+import Footer from "@/components/Footer.vue";
+import Navbar_V1 from "../components/Navbar_V1.vue";
+import { initMetrolineScroll } from "@/js/view/metroline.js";
 // 導入 Swiper 相關組件
-import { Swiper, SwiperSlide } from 'swiper/vue';
-import { Pagination } from 'swiper/modules';
+import { Swiper, SwiperSlide } from "swiper/vue";
+import { Pagination } from "swiper/modules";
 // 從 JSON 檔取得資料
-import sightsData from '@/json/sights.json'
+import sightsData from "@/json/sights.json";
 
 // 將 JSON 數據轉換為 ref
 const sights = ref(sightsData);
 
 // 定義當前線路(調整這裡就可以改取用來源)
-const currentLine = ref('淡水信義線');
+const currentLine = ref("淡水信義線");
 
 // 根據當前線路獲取景點數據
 const currentLineSights = computed(() => {
@@ -23,22 +24,22 @@ const currentLineSights = computed(() => {
 });
 
 // 設置圖片基礎路徑
-const IMAGE_BASE_PATH = '/src/assets/images/';
+const IMAGE_BASE_PATH = "/src/assets/images/";
 
 // 圖片路徑處理函數
 function getImageUrl(relativePath) {
-  if (!relativePath) return '';
-  
+  if (!relativePath) return "";
+
   // 如果已經是完整URL則直接返回
-  if (relativePath.startsWith('http')) {
+  if (relativePath.startsWith("http")) {
     return relativePath;
   }
-  
+
   try {
     return new URL(`${IMAGE_BASE_PATH}${relativePath}`, import.meta.url).href;
   } catch (error) {
-    console.error('Image path error:', error);
-    return ''; // 返回空字符串作為備用
+    console.error("Image path error:", error);
+    return ""; // 返回空字符串作為備用
   }
 }
 
@@ -62,9 +63,8 @@ const onSwiper = (swiper) => {
 };
 
 const onSlideChange = () => {
-  console.log('slide change');
+  console.log("slide change");
 };
-
 
 // 清理函数變量
 let cleanupFunction = null;
@@ -79,7 +79,7 @@ function showSightDetail(index) {
   currentSightDetail.value = currentLineSights.value[index];
   isDialogVisible.value = true;
   // 禁止背景滾動
-  document.body.style.overflow = 'hidden';
+  document.body.style.overflow = "hidden";
 }
 // 開啟彈窗 --end
 
@@ -87,9 +87,26 @@ function showSightDetail(index) {
 function closeSightDetail() {
   isDialogVisible.value = false;
   // 允許背景滾動
-  document.body.style.overflow = '';
+  document.body.style.overflow = "";
 }
 
+// 控制 header 顯示
+const header = ref(false);
+const topAreaHeight = 80;
+const headerContainer = ref(null);
+
+const handleMouseMove = (event) => {
+  // 如果滑鼠在視窗上方的 topAreaHeight 區域，或者 event.target 在 headerContainer 裡，
+  // 則保持 header 顯示
+  if (
+    event.clientY <= topAreaHeight ||
+    (headerContainer.value && headerContainer.value.contains(event.target))
+  ) {
+    header.value = true;
+  } else {
+    header.value = false;
+  }
+};
 
 // 使用Vue的生命周期鉤子
 onMounted(() => {
@@ -97,14 +114,17 @@ onMounted(() => {
   setTimeout(() => {
     cleanupFunction = initMetrolineScroll();
   }, 100);
-})
+  // Header 觸發
+  window.addEventListener("mousemove", handleMouseMove);
+});
 
 // 在组件卸载前清理资源
 onUnmounted(() => {
   if (cleanupFunction) {
     cleanupFunction();
   }
-})
+  window.removeEventListener("mousemove", handleMouseMove);
+});
 
 // 留言板假資料可以先不理他
 const messageData = ref([
@@ -116,10 +136,10 @@ const messageData = ref([
     images: [
       {
         src: "https://picsum.photos/150/360",
-        alt: "海山站景色 1"
+        alt: "海山站景色 1",
       },
     ],
-    timestamp: "2025/02/22"
+    timestamp: "2025/02/22",
   },
   {
     id: 2,
@@ -129,10 +149,10 @@ const messageData = ref([
     images: [
       {
         src: "https://picsum.photos/150/360",
-        alt: "海山站景色 1"
+        alt: "海山站景色 1",
       },
     ],
-    timestamp: "2025/02/22"
+    timestamp: "2025/02/22",
   },
   {
     id: 3,
@@ -142,35 +162,65 @@ const messageData = ref([
     images: [
       {
         src: "https://picsum.photos/150/360",
-        alt: "海山站景色 1"
+        alt: "海山站景色 1",
       },
     ],
-    timestamp: "2025/02/22"
+    timestamp: "2025/02/22",
   },
-])
-
+]);
 </script>
 
 <template>
+  <transition
+    ><header v-if="header" ref="headerContainer">
+      <Navbar_V1 />
+    </header>
+  </transition>
   <!-- class 後方的 blue 換掉就可以吃到其他線的配色 -->
   <div class="metroline-detail red">
     <div class="top-section">
       <h1 class="metro-words">METROMETRO</h1>
       <div class="introduce">
         <div class="banner-group group-1">
-          <div class="banner" v-if="currentLineSights[0]" @click="showSightDetail(0)">
-            <div class="banner-img" :style="{ backgroundImage: `url(${currentLineSights[0].sight_img})` }">img</div>
+          <div
+            class="banner"
+            v-if="currentLineSights[0]"
+            @click="showSightDetail(0)"
+          >
+            <div
+              class="banner-img"
+              :style="{
+                backgroundImage: `url(${currentLineSights[0].sight_img})`,
+              }"
+            >
+              img
+            </div>
             <div class="banner-txt-wrapper">
-              <p class="title1 bold banner-txt-title">{{ currentLineSights[0].sight_banner_title }}</p>
+              <p class="title1 bold banner-txt-title">
+                {{ currentLineSights[0].sight_banner_title }}
+              </p>
               <p class="title2 bold banner-txt-content">
                 {{ currentLineSights[0].sight_intro }}
               </p>
             </div>
           </div>
-          <div class="banner" v-if="currentLineSights[1]" @click="showSightDetail(1)">
-            <div class="banner-img" :style="{ backgroundImage: `url(${currentLineSights[1].sight_img})` }">img</div>
+          <div
+            class="banner"
+            v-if="currentLineSights[1]"
+            @click="showSightDetail(1)"
+          >
+            <div
+              class="banner-img"
+              :style="{
+                backgroundImage: `url(${currentLineSights[1].sight_img})`,
+              }"
+            >
+              img
+            </div>
             <div class="banner-txt-wrapper">
-              <p class="title1 bold banner-txt-title">{{ currentLineSights[1].sight_banner_title }}</p>
+              <p class="title1 bold banner-txt-title">
+                {{ currentLineSights[1].sight_banner_title }}
+              </p>
               <p class="title2 bold banner-txt-content">
                 {{ currentLineSights[1].sight_intro }}
               </p>
@@ -179,20 +229,46 @@ const messageData = ref([
         </div>
 
         <div class="banner-group group-2">
-          <div class="banner" v-if="currentLineSights[2]" @click="showSightDetail(2)">
-            <div class="banner-img" :style="{ backgroundImage: `url(${currentLineSights[2].sight_img})` }">img</div>
+          <div
+            class="banner"
+            v-if="currentLineSights[2]"
+            @click="showSightDetail(2)"
+          >
+            <div
+              class="banner-img"
+              :style="{
+                backgroundImage: `url(${currentLineSights[2].sight_img})`,
+              }"
+            >
+              img
+            </div>
             <div class="banner-txt-wrapper">
-              <p class="title1 bold banner-txt-title">{{ currentLineSights[2].sight_banner_title }}</p>
+              <p class="title1 bold banner-txt-title">
+                {{ currentLineSights[2].sight_banner_title }}
+              </p>
               <p class="title2 bold banner-txt-content">
                 {{ currentLineSights[2].sight_intro }}
               </p>
             </div>
           </div>
           <h1 class="banner-group-title">{{ currentLine }}</h1>
-          <div class="banner" v-if="currentLineSights[3]" @click="showSightDetail(3)">
-            <div class="banner-img" :style="{ backgroundImage: `url(${currentLineSights[3].sight_img})` }">img</div>
+          <div
+            class="banner"
+            v-if="currentLineSights[3]"
+            @click="showSightDetail(3)"
+          >
+            <div
+              class="banner-img"
+              :style="{
+                backgroundImage: `url(${currentLineSights[3].sight_img})`,
+              }"
+            >
+              img
+            </div>
             <div class="banner-txt-wrapper">
-              <p class="title1 bold banner-txt-title">{{ currentLineSights[3].sight_banner_title }}</p>
+              <p class="title1 bold banner-txt-title">
+                {{ currentLineSights[3].sight_banner_title }}
+              </p>
               <p class="title2 bold banner-txt-content">
                 {{ currentLineSights[3].sight_intro }}
               </p>
@@ -201,19 +277,45 @@ const messageData = ref([
         </div>
 
         <div class="banner-group group-3">
-          <div class="banner" v-if="currentLineSights[4]" @click="showSightDetail(4)">
-            <div class="banner-img" :style="{ backgroundImage: `url(${currentLineSights[4].sight_img})` }">img</div>
+          <div
+            class="banner"
+            v-if="currentLineSights[4]"
+            @click="showSightDetail(4)"
+          >
+            <div
+              class="banner-img"
+              :style="{
+                backgroundImage: `url(${currentLineSights[4].sight_img})`,
+              }"
+            >
+              img
+            </div>
             <div class="banner-txt-wrapper">
-              <p class="title1 bold banner-txt-title">{{ currentLineSights[4].sight_banner_titlee }}</p>
+              <p class="title1 bold banner-txt-title">
+                {{ currentLineSights[4].sight_banner_titlee }}
+              </p>
               <p class="title2 bold banner-txt-content">
                 {{ currentLineSights[4].sight_intro }}
               </p>
             </div>
           </div>
-          <div class="banner" v-if="currentLineSights[5]" @click="showSightDetail(5)">
-            <div class="banner-img" :style="{ backgroundImage: `url(${currentLineSights[5].sight_img})` }">img</div>
+          <div
+            class="banner"
+            v-if="currentLineSights[5]"
+            @click="showSightDetail(5)"
+          >
+            <div
+              class="banner-img"
+              :style="{
+                backgroundImage: `url(${currentLineSights[5].sight_img})`,
+              }"
+            >
+              img
+            </div>
             <div class="banner-txt-wrapper">
-              <p class="title1 bold banner-txt-title">{{ currentLineSights[5].sight_banner_title }}</p>
+              <p class="title1 bold banner-txt-title">
+                {{ currentLineSights[5].sight_banner_title }}
+              </p>
               <p class="title2 bold banner-txt-content">
                 {{ currentLineSights[5].sight_intro }}
               </p>
@@ -223,7 +325,7 @@ const messageData = ref([
       </div>
       <h1 class="metro-words">METROMETRO</h1>
     </div>
-    
+
     <!-- 手機版的頂部輪播區域 -->
     <div class="top-section-mobile">
       <h1 class="banner-group-title">淡水信義線</h1>
@@ -234,14 +336,22 @@ const messageData = ref([
         class="metroLineSwiper"
       >
         <!-- 為每個幻燈片添加點擊事件 -->
-        <swiper-slide v-for="(sight, index) in currentLineSights.slice(0, 6)" :key="index" @click="showSightDetail(index)">
+        <swiper-slide
+          v-for="(sight, index) in currentLineSights.slice(0, 6)"
+          :key="index"
+          @click="showSightDetail(index)"
+        >
           <div class="banner">
-            <div 
-              class="banner-img" 
+            <div
+              class="banner-img"
               :style="{ backgroundImage: `url(${sight.sight_img})` }"
-            >img</div>
+            >
+              img
+            </div>
             <div class="banner-txt-wrapper">
-              <p class="title1 bold banner-txt-title">{{ sight.sight_banner_title }}</p>
+              <p class="title1 bold banner-txt-title">
+                {{ sight.sight_banner_title }}
+              </p>
               <p class="title2 bold banner-txt-content">
                 {{ sight.sight_intro }}
               </p>
@@ -250,19 +360,40 @@ const messageData = ref([
         </swiper-slide>
       </swiper>
     </div>
-    
+
     <!-- 景點詳情對話框 -->
     <div class="dialog-overlay" v-if="isDialogVisible && currentSightDetail">
       <div id="sightDetailDialog" v-if="isDialogVisible && currentSightDetail">
         <div class="dialog-container">
           <div class="detail-dialog-content">
-            <h2 class="detail-dialog-title">{{ currentSightDetail.sight_name }}</h2>
-            <div class="detail-dialog-img" :style="{ backgroundImage: `url(${currentSightDetail.sight_img})` }">img</div>
-            <div class="sight-basic-info">
-              <div><span>地址：</span><span>{{ currentSightDetail.info_address || '暫無資料' }}</span></div>
-              <div><span>聯絡電話：</span><span>{{ currentSightDetail.info_number || '暫無資料' }}</span></div>
+            <h2 class="detail-dialog-title">
+              {{ currentSightDetail.sight_name }}
+            </h2>
+            <div
+              class="detail-dialog-img"
+              :style="{
+                backgroundImage: `url(${currentSightDetail.sight_img})`,
+              }"
+            >
+              img
             </div>
-            <p>{{ currentSightDetail.dialog_desc || currentSightDetail.sight_intro }}</p>
+            <div class="sight-basic-info">
+              <div>
+                <span>地址：</span
+                ><span>{{
+                  currentSightDetail.info_address || "暫無資料"
+                }}</span>
+              </div>
+              <div>
+                <span>聯絡電話：</span
+                ><span>{{ currentSightDetail.info_number || "暫無資料" }}</span>
+              </div>
+            </div>
+            <p>
+              {{
+                currentSightDetail.dialog_desc || currentSightDetail.sight_intro
+              }}
+            </p>
           </div>
           <div class="dialog-cta">
             <button class="btn_white" @click="closeSightDetail">關閉</button>
@@ -270,15 +401,21 @@ const messageData = ref([
         </div>
       </div>
     </div>
-    
+
     <!-- GO精選 -->
     <!-- 引入 MetroLineTitle 元件可直接輸入標題文字 -->
     <MetroLineTitle title="GO精選" />
     <div class="section-group">
-      <div class="go-choise-img" style="background-image: url('https://picsum.photos/600/400')">
+      <div
+        class="go-choise-img"
+        style="background-image: url('https://picsum.photos/600/400')"
+      >
         <h2 class="group-title">火鍋季開跑</h2>
       </div>
-      <div class="go-choise-img" style="background-image: url('https://picsum.photos/600/400')">
+      <div
+        class="go-choise-img"
+        style="background-image: url('https://picsum.photos/600/400')"
+      >
         <h2 class="group-title">耶誕城派對</h2>
       </div>
     </div>
@@ -286,7 +423,10 @@ const messageData = ref([
     <!-- 半日遊行程推薦 -->
     <MetroLineTitle :title="`${currentLine}半日遊行程推薦`" />
     <router-link to="/tour/tourtype">
-      <div class="w-full-img" style="background-image: url('https://picsum.photos/600/200')">
+      <div
+        class="w-full-img"
+        style="background-image: url('https://picsum.photos/600/200')"
+      >
         <h1 class="group-title white">101</h1>
       </div>
     </router-link>
@@ -294,7 +434,10 @@ const messageData = ref([
     <!-- 一日遊行程推薦 -->
     <MetroLineTitle :title="`${currentLine}一日遊行程推薦`" />
     <router-link to="/tour/tourtype">
-      <div class="w-full-img" style="background-image: url('https://picsum.photos/600/200')">
+      <div
+        class="w-full-img"
+        style="background-image: url('https://picsum.photos/600/200')"
+      >
         <h1 class="group-title white">士林</h1>
       </div>
     </router-link>
@@ -313,9 +456,28 @@ const messageData = ref([
     <!-- 留言板小工具 -->
     <Message />
   </div>
-  <Footer/>
+  <Footer />
 </template>
 
 <style lang="scss" scoped>
 @import "../assets/sass/page/_metro-line.scss";
+// 控制 header 樣式
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  opacity: 0.95;
+}
+
+.v-enter-active {
+  transition: opacity 0.2s ease;
+}
+.v-leave-active {
+  transition: opacity 0.01s ease;
+}
+.v-enter-from,
+.v-leave-to {
+  opacity: 0; // header 進場前、後都透明
+}
 </style>

@@ -1,4 +1,9 @@
+<script setup>
+import Navbar_V1 from "../components/Navbar_V1.vue";
+</script>
+
 <template>
+  <Navbar_V1 />
   <!-- banner -->
   <div class="banner">
     <h1>板南線半日遊</h1>
@@ -11,10 +16,10 @@
           <div class="line">
             <img src="../assets/images/tour/line.svg" alt="" />
           </div>
-          <div class="circle">
+          <div class="circle visible">
             <img src="../assets/images/tour/circle.svg" alt="" />
           </div>
-          <div class="line">
+          <div class="line visible">
             <img src="../assets/images/tour/line.svg" alt="" />
           </div>
           <router-link to="#target1">
@@ -25,7 +30,7 @@
               <p class="station-name">西門站</p>
             </div>
           </router-link>
-          <div class="line">
+          <div class="line visible">
             <img src="../assets/images/tour/line.svg" alt="" />
           </div>
           <router-link to="#target2">
@@ -36,10 +41,10 @@
               <p class="station-name">龍山寺站</p>
             </div>
           </router-link>
-          <div class="line">
+          <div class="line visible">
             <img src="../assets/images/tour/line.svg" alt="" />
           </div>
-          <div class="circle">
+          <div class="circle visible">
             <img src="../assets/images/tour/circle.svg" alt="" />
           </div>
           <div class="line">
@@ -107,7 +112,7 @@
             位於艋舺祖師爺廟旁的臺南風味小店，至今已傳承了三代。老闆每天選用肥瘦均勻的五花肉，佐以自製小黃瓜、酸菜、滷豆乾，以及口感出眾的南部米，製作出招牌焢肉飯。此外，滷肉飯、刈包與麻豆碗粿也是店內熱門小吃，後者更限量供應。如果想嚐嚐北部口味，可以來一碗沙茶味道濃厚的豬血湯佐餐。
             位於艋舺祖師爺廟旁的臺南風味小店，至今已傳承了三代。老闆每天選用肥瘦均勻的五花肉，佐以自製小黃瓜、酸菜、滷豆乾，以及口感出眾的南部米，製作出招牌焢肉飯。此外，滷肉飯、刈包與麻豆碗粿也是店內熱門小吃，後者更限量供應。如果想嚐嚐北部口味，可以來一碗沙茶味道濃厚的豬血湯佐餐。
           </p>
-          <div class="img-container">
+          <div class="img-container hidden">
             <img
               src="../assets/images/tour/1735490750891-removebg-preview.png "
               alt=""
@@ -139,7 +144,7 @@
             位於艋舺祖師爺廟旁的臺南風味小店，至今已傳承了三代。老闆每天選用肥瘦均勻的五花肉，佐以自製小黃瓜、酸菜、滷豆乾，以及口感出眾的南部米，製作出招牌焢肉飯。此外，滷肉飯、刈包與麻豆碗粿也是店內熱門小吃，後者更限量供應。如果想嚐嚐北部口味，可以來一碗沙茶味道濃厚的豬血湯佐餐。
             位於艋舺祖師爺廟旁的臺南風味小店，至今已傳承了三代。老闆每天選用肥瘦均勻的五花肉，佐以自製小黃瓜、酸菜、滷豆乾，以及口感出眾的南部米，製作出招牌焢肉飯。此外，滷肉飯、刈包與麻豆碗粿也是店內熱門小吃，後者更限量供應。如果想嚐嚐北部口味，可以來一碗沙茶味道濃厚的豬血湯佐餐。
           </p>
-          <div class="img-container">
+          <div class="img-container hidden">
             <img
               src="../assets/images/tour/1735490750891-removebg-preview.png "
               alt=""
@@ -174,7 +179,7 @@
             位於艋舺祖師爺廟旁的臺南風味小店，至今已傳承了三代。老闆每天選用肥瘦均勻的五花肉，佐以自製小黃瓜、酸菜、滷豆乾，以及口感出眾的南部米，製作出招牌焢肉飯。此外，滷肉飯、刈包與麻豆碗粿也是店內熱門小吃，後者更限量供應。如果想嚐嚐北部口味，可以來一碗沙茶味道濃厚的豬血湯佐餐。
             位於艋舺祖師爺廟旁的臺南風味小店，至今已傳承了三代。老闆每天選用肥瘦均勻的五花肉，佐以自製小黃瓜、酸菜、滷豆乾，以及口感出眾的南部米，製作出招牌焢肉飯。此外，滷肉飯、刈包與麻豆碗粿也是店內熱門小吃，後者更限量供應。如果想嚐嚐北部口味，可以來一碗沙茶味道濃厚的豬血湯佐餐。
           </p>
-          <div class="img-container">
+          <div class="img-container hidden">
             <img
               src="../assets/images/tour/1735490750891-removebg-preview.png "
               alt=""
@@ -206,7 +211,7 @@
             位於艋舺祖師爺廟旁的臺南風味小店，至今已傳承了三代。老闆每天選用肥瘦均勻的五花肉，佐以自製小黃瓜、酸菜、滷豆乾，以及口感出眾的南部米，製作出招牌焢肉飯。此外，滷肉飯、刈包與麻豆碗粿也是店內熱門小吃，後者更限量供應。如果想嚐嚐北部口味，可以來一碗沙茶味道濃厚的豬血湯佐餐。
             位於艋舺祖師爺廟旁的臺南風味小店，至今已傳承了三代。老闆每天選用肥瘦均勻的五花肉，佐以自製小黃瓜、酸菜、滷豆乾，以及口感出眾的南部米，製作出招牌焢肉飯。此外，滷肉飯、刈包與麻豆碗粿也是店內熱門小吃，後者更限量供應。如果想嚐嚐北部口味，可以來一碗沙茶味道濃厚的豬血湯佐餐。
           </p>
-          <div class="img-container">
+          <div class="img-container hidden">
             <img
               src="../assets/images/tour/1735490750891-removebg-preview.png "
               alt=""
