@@ -1,33 +1,121 @@
 <script setup>
-    import { ref,onMounted,onUnmounted} from 'vue'
+    import { ref,onMounted , onUnmounted} from 'vue'
     import ground from '../../assets/images/MessionGeneral/ground.png';
     import building_tree from '../../assets/images/MessionGeneral/building_tree.png'
     import road from '../../assets/images/MessionGeneral/road.png';
     import bridge from '../../assets/images/MessionGeneral/bridge.png';
     import station_yellow from '../../assets/images/MessionGeneral/station_yellow.vue';
     import logo from '../../assets/images/MessionGeneral/logo.vue';
+    
+    import { gelocation } from "../../js/view/MissionGeralView/geolocation";
+
     import pin from '../../assets/images/MessionGeneral/pin.vue';
     import { pinjs,locationInfo } from '../../js/view/MissionGeralView/pin.js'             // 引入 pin.js
 
-
-    const pinStyle_red = ref(null);
+    import alert_user_location_stay from '@/alert/alert_user_location_stay.vue';  // 引入 alert_user_location 打開定位彈窗
+    const alert_userlocation_stay_ref = ref(null);
+    
+    const pinStyle_yellow = ref(null);
     const locationInfobox_style = ref(null);
 
-    onMounted(() => {
-        // console.log(pinjs().pinStyle_red.value);
-        
-        pinStyle_red.value = pinjs().pinStyle_red.value;                           // 使用 pin.js 的 pin()
-        locationInfobox_style.value = locationInfo().locationInfobox_style.value;  // 使用 pin.js 的 locationInfobox_style()
-    })
+    let geoWatcher = null; // 用於存儲 geolocation 的 watchPosition 監聽器 ID
 
+    let station_result = '';
+
+    const latitude = ref(0);
+    const longitude = ref(0);
+    const closestStation = ref('');
+    const dis = ref(0);
+
+    const watchID = ref(0);
+
+    const updateLocation = async () =>{
+
+        try {
+            
+            const result  = await gelocation(); // 等待 `gelocation()` 完成
+            console.log(result);
+            
+            console.log("最近的捷運站:", result.station, "距離:", result.distance);
+
+            if (result.No_Station == false) {
+
+                pinStyle_yellow.value = pinjs(result.station).pinStyle_yellow.value;
+
+            }else{
+                pinStyle_yellow.value = pinjs("").pinStyle_yellow.value;
+                alert_userlocation_stay_ref.value.UserLocationShowAlert(); 
+            }
+
+            station_result = result.station; // ✅ 更新最近的捷運站名稱
+            closestStation.value = result.station; // ✅ 更新 Vue 變數
+            dis.value = result.distance; // ✅ 更新距離
+             
+            
+        } catch (error) {
+            console.error("獲取位置失敗:", error);
+        }
+    };
+
+
+    locationInfobox_style.value = locationInfo().locationInfobox_style.value;  // 使用 pin.js 的 locationInfobox_style()
+    
 
     import alert_positioning_successful from '@/alert/alert_positioning_successful.vue';        // 引入用戶定位成功彈窗
 
     const alert_web_M_userlocation = ref(null);                               
-    const UserLocationSuccessful = () => {
-    alert_web_M_userlocation.value.UserLocationSuccessful();  
-    
+        const UserLocationSuccessful = () => {
+        alert_web_M_userlocation.value.UserLocationSuccessful();  
+
     }
+
+    onMounted(() => {       
+        // updateLocation();
+
+
+        if (navigator.geolocation) {
+
+            let lastLatitude = null;
+            let lastLongitude = null;
+
+
+            geoWatcher = navigator.geolocation.watchPosition(
+                async (position) => {
+                const newLatitude = parseFloat(position.coords.latitude.toFixed(4));
+                const newLongitude = parseFloat(position.coords.longitude.toFixed(4));
+
+                // **只有當經緯度變更時才執行更新**
+                if (newLatitude !== lastLatitude || newLongitude !== lastLongitude) {
+                    console.log(`位置變更: ${newLatitude}, ${newLongitude}`);
+
+                    await updateLocation(); // 當位置改變時更新 `station_result`
+
+                    latitude.value = newLatitude;
+                    longitude.value = newLongitude;
+
+                    // 更新上一次的位置
+                    lastLatitude = newLatitude;
+                    lastLongitude = newLongitude;
+                };
+                },
+                (error) => {
+                    console.error("監聽位置變更失敗:", error);
+                },
+                { enableHighAccuracy: false, timeout: Infinity,maximumAge: Infinity }
+            )
+            watchID.value = geoWatcher;
+
+        } else {
+            console.warn("瀏覽器不支援 Geolocation API");
+        }
+    });
+
+    onUnmounted(() => {
+        navigator.geolocation.clearWatch(watchID.value); // 停止監聽Position(watchID.value);
+        console.log("clearWatch:", watchID.value);
+        
+    })
+    
 </script>
 
 <template>
@@ -54,12 +142,12 @@
                         </div>
 
                         <div class="location">
-                            <div class="lat"><span class="tittle">緯度</span> <span class="value">23.8777</span></div>
-                            <div class="lng"><span class="tittle">經度</span> <span class="value">123.8777</span></div>
+                            <div class="lat"><span class="tittle">緯度</span> <span class="value">{{ latitude }}</span></div>
+                            <div class="lng"><span class="tittle">經度</span> <span class="value">{{ longitude }}</span></div>
                         </div>
                     </div>
-                    <div class="nearStation">距離最近的捷運站是: <span class="value">南港軟體園區</span></div>
-                    <div class="neardiff">距離約 <span class="value">8000</span> 公尺</div>
+                    <div class="nearStation">距離最近的捷運站是: <span class="value">{{closestStation}}</span></div>
+                    <div class="neardiff">距離約 <span class="value">{{dis}}</span> 公尺</div>
 
                 </div>
             </div>
@@ -77,7 +165,11 @@
     <div class="hitarea">
         <button ref="pin_obj" class="pin" :style="pinStyle_yellow" @click="UserLocationSuccessful" @touchstart="UserLocationSuccessful" ><pin/></button>
     </div>
-    <alert_positioning_successful ref="alert_web_M_userlocation"/> 
+    <alert_positioning_successful ref="alert_web_M_userlocation" :nearby_station="station_result"/> 
+    
+    <!-- 提醒用戶不在捷運站附近彈窗-->
+    <alert_user_location_stay ref="alert_userlocation_stay_ref"/> 
+
 </template>
 
 <style lang="scss" scoped>

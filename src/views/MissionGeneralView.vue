@@ -1,6 +1,6 @@
 <script setup>
-    import { ref , onMounted , onUnmounted,computed,watch} from 'vue'
-    import { RouterLink, RouterView ,useRoute ,onBeforeRouteUpdate } from 'vue-router'
+    import { ref , onMounted , onUnmounted,computed} from 'vue'
+    import { RouterLink, RouterView ,useRoute } from 'vue-router'
 
     import Navbar_V1 from '../components/Navbar_V1.vue'; //備用 header
 
@@ -10,30 +10,18 @@
     import alert_user_location_open from '@/alert/alert_user_location_open.vue';  // 引入 alert_user_location 打開定位彈窗
     const alert_userlocation_open_ref = ref(null);
 
-    import alert_location_inaccurate from '@/alert/alert_location_inaccurate.vue';  // 引入 alert_location_inaccurate 彈窗
-    const alert_web_M_location_inaccurate = ref(null);
+    //import alert_location_inaccurate from '@/alert/alert_location_inaccurate.vue';  // 引入 alert_location_inaccurate 彈窗 ( 暫不引入 )
+    //const alert_web_M_location_inaccurate = ref(null);
 
 
-    import alert_user_location_stay from '@/alert/alert_user_location_stay.vue';  // 引入 alert_user_location 打開定位彈窗
-    const alert_userlocation_stay_ref = ref(null);
+    import { setAlertInstance_location_inaccurate, setAlertInstance_userlocation } from '../js/view/MissionGeralView/geolocation';          // 引入 geolocation.js
 
+    import Alert_UserLocation_map from '../components/Alert_UserLocation_map.vue';
+    const Alert_UserLocation_map_ref = ref(null);
 
-    import { EventBus } from "../js/view/MissionGeralView/eventBus.js";
-
-    import { setAlertInstance_location_inaccurate, setAlertInstance_userlocation,gelocation } from '../js/view/MissionGeralView/geolocation';          // 引入 geolocation.js
-
-    const isNearStation = ref(null);
-  
-    // 監聽 EventBus 的 `No_Station` 狀態變更
-    watch(() => EventBus.No_Station, (newValue) => {
-        isNearStation.value = newValue;
-
-        if ( isNearStation.value === true ) {
-            console.log(alert_userlocation_stay_ref.value);
-            
-            alert_userlocation_stay_ref.value.UserLocationShowAlert();
-        }
-    });
+    const getUserLocation = () => {
+        Alert_UserLocation_map_ref.value.showAlert();        
+    }
 
 
     let game_menu_btns_show = ref(false);   // 遊戲選單按鈕是否隱藏
@@ -124,9 +112,9 @@
         setAlertInstance_userlocation(alert_userlocation_open_ref.value); // 傳遞 alert_userlocation_ref 組件給 geolocation.js
       }
 
-      if (alert_web_M_location_inaccurate.value) {
-        setAlertInstance_location_inaccurate(alert_web_M_location_inaccurate.value); // 傳遞 alert_web_M_location_inaccurate 組件給 geolocation.js
-      }
+    //   if (alert_web_M_location_inaccurate.value) {
+    //     setAlertInstance_location_inaccurate(alert_web_M_location_inaccurate.value); // 傳遞 alert_web_M_location_inaccurate 組件給 geolocation.js
+    //   }
 
     //   gelocation() // 呼叫 geolocation.js 來取得用戶定位
       
@@ -170,6 +158,23 @@
             </div>
         </div>
     </div>
+
+    
+    <div class="getlocation">
+        <button  @click="getUserLocation">
+            <svg class="subway-location-3" width="40" height="40" viewBox="0 0 52 53" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g clip-path="url(#clip0_4132_7496)">
+                <path d="M24.4053 40.8C24.7404 41.318 25.3295 41.6633 25.9998 41.6633C26.6701 41.6633 27.2592 41.318 27.6045 40.8L38.7967 23.5141C40.2998 21.1883 41.1732 18.6289 41.1732 15.6633C41.1631 7.09141 34.4295 0.5 25.9998 0.5C17.5701 0.5 10.8365 7.09141 10.8365 15.6633C10.8365 18.6289 11.71 21.1883 13.2131 23.5141L24.4053 40.8ZM25.9998 7C30.7834 7 34.6631 10.8797 34.6631 15.6633C34.6631 20.4469 30.7834 24.3266 25.9998 24.3266C21.2162 24.3266 17.3365 20.4469 17.3365 15.6633C17.3365 10.8797 21.2162 7 25.9998 7ZM37.1107 33.3555L25.9998 48.1633L14.8889 33.3555C11.0904 35.3461 8.66309 38.3219 8.66309 41.6633C8.66309 47.6453 16.4225 52.5 25.9998 52.5C35.5771 52.5 43.3365 47.6453 43.3365 41.6633C43.3365 38.3219 40.9092 35.3461 37.1107 33.3555Z" fill="white" />
+                </g>
+                <defs>
+                <clipPath id="clip0_4132_7496">
+                <rect width="52" height="52" fill="white" transform="translate(0 0.5)" />
+                </clipPath>
+                </defs>
+            </svg>
+        </button>
+    </div>
+
     <div class="game_menu_btns" v-show="game_menu_btns_show">
         <div class="game_menu_btnsBox">
             <button id="receive_btn" class="btn_box">
@@ -343,10 +348,9 @@
     <alert_user_location_open ref="alert_userlocation_open_ref"/> 
 
     <!-- 提醒用戶裝置定位不準確彈窗 -->
-    <alert_location_inaccurate ref="alert_web_M_location_inaccurate"/> 
+    <!-- <alert_location_inaccurate ref="alert_web_M_location_inaccurate"/>  -->
 
-    <!-- 提醒用戶開啟裝置定位彈窗 -->
-    <alert_user_location_stay ref="alert_userlocation_stay_ref"/> 
+    <Alert_UserLocation_map ref="Alert_UserLocation_map_ref" />
 
 
       
@@ -366,6 +370,19 @@
         left: 0;
         width: 100%;
     }
+
+    .getlocation{
+        position: absolute;
+        top: 150px;
+        right: 10px;
+        z-index: 99;
+        background-color: red;
+        border-radius: 20px
+    }
+    .getlocation > button {
+        padding: 10px;
+    }
+
 
 </style>
 
