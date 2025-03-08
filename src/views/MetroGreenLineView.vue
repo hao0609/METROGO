@@ -204,7 +204,7 @@ const messageData = ref([
           <div class="banner" v-if="currentLineSights[4]" @click="showSightDetail(4)">
             <div class="banner-img" :style="{ backgroundImage: `url(${currentLineSights[4].sight_img})` }">img</div>
             <div class="banner-txt-wrapper">
-              <p class="title1 bold banner-txt-title">{{ currentLineSights[4].sight_banner_titlee }}</p>
+              <p class="title1 bold banner-txt-title">{{ currentLineSights[4].sight_banner_title }}</p>
               <p class="title2 bold banner-txt-content">
                 {{ currentLineSights[4].sight_intro }}
               </p>
