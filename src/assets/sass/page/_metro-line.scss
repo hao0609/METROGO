@@ -1,112 +1,570 @@
-.blueline_introduce {
-    background-color: #0070BD;
+@use "@/assets/sass/base/color" as *;
+
+.top-section {
+  max-width: 1920px;
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+  background-color: $neutral-700;
+
+  .metro-words {
+    writing-mode: vertical-lr;
+    text-orientation:upright;
+    color: $neutral-0;
+  }
+
+  // 手機版隱藏
+  @media (max-width: 576px) {
+    display: none;
+  }
 }
-.bl_intr_banner_01 {
-    background-color: #99d6ff;
-    width: 400px;
-    height: 700px;
-    margin: auto;
-    display: flex;
-    flex-direction: column;
+
+.introduce {
+  display: flex;
+  gap: 1.6%;
+  padding: 0 24px;
 }
-.bl_inter_banner_01a {
-    width: 300px;
-    height: 417px;
+
+.banner-group {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-grow: 1;
+  gap: 24px;
+  padding-bottom: 20px;
+
+  &.group-1,
+  &.group-3 {
+    padding-top: 174px;
+    padding-bottom: 40px;
+  }
+
+  &.group-2 {
+    padding: 40px 0;
+  }
 }
-.b1_inter_banner_01_1 {
-    width: 327px;
-    height: 158px;
+
+.banner {
+  padding: 24px 24px;
+  transition: all 0.3s ease;
+  text-decoration: none; // 移除 route-link 樣式
+  color: inherit; // 移除 route-link 樣式
+  width: 100%;
+  cursor: pointer;
+
+  @media (max-width: 768px) {
+    padding: 24px 20px;
+    }
+
+  &:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
 }
-.bl_intr_banner_02 {
-    background-color: #99d6ff;
-    width: 400px;
-    height: 700px;
-    margin: auto;
-    display: flex;
-    flex-direction: column;
+
+.banner-txt-title {
+  text-align: center;
 }
-.bl_inter_banner_02a {
-    width: 300px;
-    height: 417px;
+
+.banner-txt-content {
+  margin-top: 8px;
+  display: -webkit-box; // 文字刪節號
+  -webkit-box-orient: vertical; // 文字刪節號
+  -webkit-line-clamp: 5; // 文字刪節號(保留顯示行數)
+  overflow: hidden; // 文字刪節號
 }
-.b1_inter_banner_02_1{
-    width: 327px;
-    height: 158px;
+
+// 各線照片引入在 scss 最下方
+.banner-img {
+  width: 100%;
+  padding-bottom: 140%; // 圖片等比例
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  color: transparent; // 把 div 裡撐內容的文字隱藏起來
+  margin-bottom: 16px;
 }
-.bl_intr_banner_03 {
-    background-color: #99d6ff;
-    width: 400px;
-    height: 700px;
-    margin: auto;
-    display: flex;
-    flex-direction: column;
+
+// banner-group 裡標題高度內縮
+.banner-group .banner-group-title {
+  text-align: center;
+  margin: -32px 0 -20px 0;
+
+  @media (max-width: 1024px) {
+    font-size: 64px;
+    }
 }
-.bl_inter_banner_03a {
-    width: 300px;
-    height: 417px;
-}
-.b1_inter_banner_03_1 {
-    width: 327px;
-    height: 158px;
-}
-.bl_intr_banner_04 {
-    background-color: #99d6ff;
-    width: 400px;
-    height: 700px;
-    margin: auto;
-    display: flex;
-    flex-direction: column;
-}
-.bl_inter_banner_04a {
-    width: 300px;
-    height: 417px;
-}
-.bl_inter_banner_04_1 {
-    width: 327px;
-    height: 158px;
-}
-.bl_intr_banner_05 {
-    background-color: #99d6ff;
-    width: 400px;
-    height: 700px;
-    margin: auto;
-    display: flex;
-    flex-direction: column;
-}
-.bl_inter_banner_05a {
-    width: 300px;
-    height: 417px;
-}
-.bl_inter_banner_05_1 {
-    width: 327px;
-    height: 158px;
-}
-.bl_intr_banner_06 {
-    background-color: #99d6ff;
-    width: 400px;
-    height: 700px;
-    margin: auto;
-    display: flex;
-    flex-direction: column;
-}
-.bl_inter_banner_06a {
-    width: 300px;
-    height: 417px;
-}
-.bl_inter_banner_06_1 {
-    width: 327px;
-    height: 158px;
-}
-.p1 {
-    color: #fff200;
-}
-.p5 {
-    color: #232529;
-}
-.hr-container {
-    border: 0;
-    border-top: 1px solid #fff200;
-    position: relative;
+
+//手機版輪播
+.top-section-mobile {
+  height: 100%;
+
+  display: none;
+  @media (max-width: 576px) {
+    display: block;
+  }
+
+  .banner-group-title {
     text-align: center;
-    margin: 20px 0;
+    margin: 0;
+  }
+}
+
+.swiper.metroLineSwiper {
+  width: 100%;
+  height: 100%;
+  padding-bottom: 40px;
+}
+
+.metroLineSwiper .swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .banner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+
+    &:hover {
+      box-shadow: none;
+    }
+    
+    .banner-img {
+      width: 80%;
+      padding-bottom: 110%;
+      margin: 12px auto;
+    }
+
+    .banner-txt-title {
+      text-align: center;
+      display: -webkit-box; // 文字刪節號
+      -webkit-box-orient: vertical; // 文字刪節號
+      -webkit-line-clamp: 2; // 文字刪節號(保留顯示行數)
+      overflow: hidden; // 文字刪節號
+    }
+
+    .banner-txt-wrapper {
+      text-align: center;
+    }
+
+    .banner-txt-content {
+      display: flex;
+      justify-self: center;
+      width: 82%;
+      font-size: 16px;
+      margin-top: 4px;
+      text-align: left;
+      display: -webkit-box; // 文字刪節號
+      -webkit-box-orient: vertical; // 文字刪節號
+      -webkit-line-clamp: 5; // 文字刪節號(保留顯示行數)
+      overflow: hidden; // 文字刪節號
+    }
+  }
+}
+
+.metroLineSwiper .swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+// go 精選
+.section-group {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  gap: 4%;
+
+  .go-choise-img {
+    position: relative;
+    //background-image: url("https://picsum.photos/600/400");
+    background-size: cover;
+    background-position: center;
+    width: 48%;
+    padding-bottom: 33.3%; // 等比例3:2縮放
+
+    @media (max-width: 576px) {
+      width: 100%;
+      padding-bottom: 75%;
+    }
+
+    .group-title {
+      position: absolute; // 使用絕對定位
+      bottom: 20px; // 距離底部的距離
+      left: 0;
+      right: 0;
+      text-align: center;
+
+      @media (max-width: 576px) {
+        font-size: 36px;
+      }
+    }
+
+  }
+}
+
+.w-full-img {
+  position: relative;
+  width: 100%;
+  height: 340px;
+  background-size: cover;
+  background-position: center;
+
+  .group-title {
+    position: absolute; // 使用絕對定位
+    font-size: 800%;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0;
+    right: 0;
+    text-align: center;
+
+    @media (max-width: 576px) {
+      font-size: 80px;
+      top: auto;
+      bottom: 16px;
+      transform: none;
+    }
+    
+  }
+}
+
+// 帶透明度標題文字
+.group-title.white {
+  color: rgba($color: #ffffff, $alpha: 0.7) !important;
+}
+
+// 留言板
+.section-message {
+  display: flex; 
+  width: 100%;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+
+.message-card-group {
+  display: grid;
+  grid-row-gap: 24px;
+  grid-column-gap: 24px;
+  justify-content: center; // 使網格置中
+  width: 100%;
+  max-width: 1920px;
+  grid-auto-rows: min-content; // 行高自適應內容
+  align-items: start; 
+  grid-template-columns: repeat(auto-fit, 400px); // 自動填充固定寬度的列
+
+  @media (max-width: 1240px) {
+    grid-template-columns: repeat(auto-fit, 300px)
+  }
+
+  @media (max-width: 1080px) {
+    grid-template-columns: repeat(auto-fit, 280px)
+  }
+
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(auto-fit, 100%)
+  }
+}
+
+.message-card {
+  background: $neutral-0;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 100%;
+
+  @media (max-width: 576px) {
+    border-radius: 0;
+  }
+}
+
+.message-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.user-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  margin-right: 12px;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.user-name {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.rating {
+  color: $neutral-700;
+  font-size: 16px;
+}
+
+.message-content {
+  color: $neutral-700;
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+.message-img-group {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+
+.message-image {
+  display: flex;
+  flex: 1;
+  min-width: 0; // 防止圖片溢出
+  max-width: 100%;
+  height: 180px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.timestamp {
+  color: #666;
+  font-size: 14px;
+}
+
+@media (max-width: 576px) {
+  .message-images {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .message-image {
+    width: calc(50% - 6px);
+    height: 160px;
+  }
+}
+
+// 彈窗 
+.dialog-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(35, 37, 41, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+#sightDetailDialog {
+  position: relative;
+  max-width: 80%;
+  width: 100%;
+  height: 80vh;
+  padding: 48px;
+  z-index: 1001;
+  border-radius: 20px;
+  overflow-y: auto; /* 使對話框內容可滾動 */
+  -webkit-overflow-scrolling: touch; /* 提高移動設備上的滾動體驗 */
+
+
+  @media (max-width: 576px) {
+    width: 80%;
+    height: 80%;
+    padding: 40px 24px;
+  }
+}
+
+.detail-dialog-content {
+  color: $neutral-0;
+  height: auto;
+}
+
+.detail-dialog-title {
+  text-align: center;
+}
+
+.sight-basic-info {
+  margin-bottom: 24px;
+}
+
+.detail-dialog-img {
+  width: 80%;
+  padding-top: 48%;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: top;
+  margin: 24px auto;
+  color: transparent;
+}
+
+.dialog-cta {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+// 各線 banner 顏色 //
+// 板南線 blue
+
+// 頁面背景色
+.metroline-detail.blue {
+  background-color: $metro-blue;
+
+  // 上方滾動 banner 背景
+  .introduce {
+    background-color: $metro-blue;
+  }
+  
+  // 上方 banner 
+  .banner {
+    background-color: #99d6ff;
+
+    .banner-txt-title {
+      color: $primary-950;
+    }
+  }
+
+  .banner-group-title {
+    color: $yellow-400;
+  }
+
+  // 上方 banner 之間捷運線名稱
+  .metro-line-title,
+  .group-title {
+    color: $yellow-400;
+  }
+
+  .metro-line-title::before,
+  .metro-line-title::after {
+    background-color: $yellow-400;
+  }
+
+  .message-card {
+    @media (max-width: 576px) {
+      background-color: #99d6ff;
+    }
+  }
+
+  // 手機版 swiper 背景色
+  .swiper.metroLineSwiper {
+    background-color: #99d6ff;
+  }
+
+  // 點擊 banner 彈窗背景色
+  #sightDetailDialog {
+    background-color: $metro-blue;
+  }
+}
+
+// 淡水線 red (顏色待調整)
+// 頁面背景色
+.metroline-detail.red {
+  background-color: $metro-red;
+
+  // 上方滾動 banner 背景
+  .introduce {
+    background-color: $metro-red;
+  }
+    
+  // 上方 banner 
+  .banner {
+    background-color: #FFC0CC;
+
+    .banner-txt-title {
+      color: $primary-950;
+    }
+  }
+
+  .banner-group-title {
+    color: $yellow-400;
+  }
+
+  // 上方 banner 之間捷運線名稱
+  .metro-line-title,
+  .group-title {
+    color: $yellow-400;
+  }
+
+  .metro-line-title::before,
+  .metro-line-title::after {
+    background-color: $yellow-400;
+  }
+
+  .message-card {
+    @media (max-width: 576px) {
+      background-color: #FFC0CC;
+    }
+  }
+
+  // 手機版 swiper 背景色
+  .swiper.metroLineSwiper {
+    background-color: #FFC0CC;
+  }
+
+  // 點擊 banner 彈窗背景色
+  #sightDetailDialog {
+    background-color: $metro-red;
+  }
+}
+
+// 松山新店線 green (顏色待調整)
+// 頁面背景色
+.metroline-detail.green {
+  background-color: $metro-green;
+
+  // 上方滾動 banner 背景
+  .introduce {
+    background-color: $metro-green;
+  }
+    
+  // 上方 banner 
+  .banner {
+    background-color: #8CE4C7;
+
+    .banner-txt-title {
+      color: $primary-950;
+    }
+  }
+
+  .banner-group-title {
+    color: $yellow-400;
+  }
+
+  // 上方 banner 之間捷運線名稱
+  .metro-line-title,
+  .group-title {
+    color: $yellow-400;
+  }
+
+  .metro-line-title::before,
+  .metro-line-title::after {
+    background-color: $yellow-400;
+  }
+
+  .message-card {
+    @media (max-width: 576px) {
+      background-color: #8CE4C7;
+    }
+  }
+
+  // 手機版 swiper 背景色
+  .swiper.metroLineSwiper {
+    background-color: #8CE4C7;
+  }
+
+  // 點擊 banner 彈窗背景色
+  #sightDetailDialog {
+    background-color: $metro-green;
+  }
 }

@@ -210,6 +210,109 @@ p {
   cursor: not-allowed;
 }
 
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+html, body, ol, ul, li,
+table, caption, tbody, tfoot, thead, tr, th, td {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  vertical-align: baseline;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.footer {
+  background-color: #232529;
+  width: 100vw;
+  bottom: 0;
+  left: 0;
+}
+
+.footer-container {
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.footer-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-logo a {
+  display: inline;
+}
+.footer-logo a img {
+  width: 200px;
+  height: auto;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.footer-menu ul {
+  display: flex;
+  gap: 24px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.footer-menu a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 16px;
+  white-space: nowrap;
+}
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 40px;
+}
+
+.footer-text {
+  flex: 1;
+  margin-right: 40px;
+}
+.footer-text p {
+  color: #ffffff;
+  font-size: 14px;
+  line-height: 1.6;
+  margin: 0;
+  max-width: 800px;
+}
+
+.footer-link {
+  flex-shrink: 0;
+}
+.footer-link ul {
+  display: flex;
+  gap: 24px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.footer-link a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 14px;
+  white-space: nowrap;
+}
+
 .form-group .input-label {
   display: block;
   font-size: 20px;
@@ -254,12 +357,44 @@ p {
 .input-wrapper .input-field:not(:placeholder-shown) {
   border-color: #CCD1D5;
 }
+.input-wrapper .input-field:disabled {
+  background-color: #E9ECEF;
+  border-color: #CCD1D5;
+  color: #7D8A93;
+  cursor: not-allowed;
+}
+.input-wrapper .input-field:disabled::-moz-placeholder {
+  color: #CCD1D5;
+}
+.input-wrapper .input-field:disabled::placeholder {
+  color: #CCD1D5;
+}
 .input-wrapper.with-button {
   position: relative;
 }
 .input-wrapper.with-button .input-field {
   width: 100%;
   padding-right: 120px;
+}
+.input-wrapper .upload-button {
+  position: absolute;
+  right: 0px;
+  height: 100%;
+  width: 80px;
+  background-color: #8C25C0;
+  color: #ffffff;
+  padding: 12px 8px;
+  border-radius: 0 12px 12px 0;
+  border: 0;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.input-wrapper .upload-button:hover {
+  background-color: #a63eda;
+}
+.input-wrapper .upload-button:active {
+  color: #8C25C0;
 }
 .input-wrapper .error-message {
   position: absolute;
@@ -352,6 +487,18 @@ p {
 .select-wrapper .select-field:focus {
   outline: 1px;
   border: 1px solid #8C25C0;
+}
+.select-wrapper .select-field:disabled {
+  background-color: #E9ECEF;
+  border-color: #CCD1D5;
+  color: #7D8A93;
+  cursor: not-allowed;
+}
+.select-wrapper .select-field:disabled::-moz-placeholder {
+  color: #CCD1D5;
+}
+.select-wrapper .select-field:disabled::placeholder {
+  color: #CCD1D5;
 }
 .select-wrapper .select-arrow {
   position: absolute;

@@ -43,7 +43,7 @@
       }).then((result) => {
         /* 兩個按鈕點擊後各個執行的功能 */
         if (result.isConfirmed) {
-          props.alertInfo.function();
+          props.alertInfo.function;
           // router.push("/login"); // Vue Router 內部導航          
         } 
       });

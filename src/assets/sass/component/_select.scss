@@ -43,6 +43,17 @@
       outline: 1px;
       border: 1px solid $primary-400;
     }
+
+    &:disabled {
+      background-color: $neutral-50;
+      border-color: $neutral-150;
+      color: $neutral-200;
+      cursor: not-allowed;
+
+      &::placeholder {
+        color: $neutral-150;
+      }
+    }
   }
 
   .select-arrow {

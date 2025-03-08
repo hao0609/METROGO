@@ -1,0 +1,76 @@
+@use "@/assets/sass/base/color" as *;
+@use "@/assets/sass/base/font" as *;
+
+.user-profile {
+    display: flex;
+    gap: 32px;
+    padding: 20px;
+    margin-bottom: 20px;
+    background: $neutral-0;
+    border-radius: 10px;
+    box-shadow: 0 0 10px $neutral-150;
+  
+    .profile-card {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      
+      .avatar {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+  
+      .info {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        
+        .info-row {
+          display: flex;
+          gap: 10px;
+          align-items: center;
+  
+          .info-title {
+            width: 80px;
+          }
+        }
+      }
+    }
+  }
+
+.tabs-container {
+    width: 100%;
+    max-width: 1024px;
+  
+    .tabs {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 20px;
+  
+      .tab {
+        width: 100px;
+        padding: 10px;
+        text-align: center;
+        font-weight: 700;
+        border-bottom: 4px solid $neutral-150;
+        color: $neutral-150;
+        cursor: pointer;
+        transition: all 0.3s ease;
+  
+        &.active {
+          border-bottom-color: $primary-400;
+          color: $primary-400;
+        }
+      }
+    }
+  
+    .tab-content {
+      margin-top: 10px;
+
+      .filter-group{
+        justify-content:flex-end;
+      }
+    }
+  }

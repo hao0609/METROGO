@@ -109,7 +109,7 @@ onMounted(async () => {
       </router-link>
     </div>
     
-    <!-- 调用你之前定义的商品详情组件 -->
+
     <ProductDetailComponent
       :product="productData"
       :additionalImages="productData.additionalImages || []"

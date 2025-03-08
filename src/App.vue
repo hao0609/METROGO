@@ -1,16 +1,15 @@
 <script setup>
  import { RouterView } from 'vue-router'
- import Header from '@/components/Header.vue';
- import Footer from '@/components/Footer.vue';
+
 </script>
 
 <template>
  
     <!-- 保留 <router-view /> 来渲染路由组件 -->
     <div class="app-container">
-    <Header />
+   
     <RouterView/>
-    <Footer />
+    
   </div>
 </template>
 
@@ -50,9 +49,13 @@
     </div>
   </header> 
 
-
   <RouterView />
+
 </template>-->
+
+  <!-- <Footer /> -->
+  <!--</template> -->
+
 
 <!--
 <style scoped>
