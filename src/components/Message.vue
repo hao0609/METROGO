@@ -60,10 +60,12 @@ const submitMessage = () => {
 
 <style scoped>
 .message-board {
+  width: 100%;
   display: flex;
+  justify-content: center;
   flex-direction: column;
   gap: 10px;
-  max-width: 1920px;
+  padding: 20px;
 }
 .input-container {
   display: flex;

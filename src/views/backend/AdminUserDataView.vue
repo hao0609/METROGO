@@ -1,5 +1,7 @@
 <template>
   <div>
+    <!-- 返回按鈕 -->
+    <div class="return-btn title2 bold" @click="goBack"><BackIcon /> 返回</div>
     <h1 class="admin-title">會員資料</h1>
     <div class="user-profile">
       <p class="title2 bold">基本資料</p>
@@ -101,7 +103,7 @@
                   <tr>
                     <th>No.</th>
                     <th>路線</th>
-                    <th>特殊路線</th>
+                    <th>行程</th>
                     <th>集章狀態</th>
                     <th>獎勵領取</th>
                     <th>查看</th>
@@ -115,7 +117,7 @@
                   >
                     <td>{{ special.id }}</td>
                     <td>{{ special.route }}</td>
-                    <td>{{ special.station }}</td>
+                    <td>{{ special.journeyTravel }}</td>
                     <td>{{ special.chapterStatus }}</td>
                     <td>{{ special.rewardStatus }}</td>
                     <td class="action-buttons">
@@ -129,7 +131,34 @@
             </div>
           </div>
           <!-- 成就頁籤 -->
-          <div v-if="activeTab === 'achievements'">這是成就的內容。</div>
+          <div v-if="activeTab === 'achievements'">
+            <div class="admin-table">
+              <table>
+                <thead>
+                  <tr>
+                    <th>No.</th>
+                    <th>任務分類</th>
+                    <th>成就名稱</th>
+                    <th>集章狀態</th>
+                    <th>獎勵領取</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr
+                    v-for="(achievements, index) in achievementsItems"
+                    :key="achievements.id"
+                    :class="{ 'highlight-row': index % 2 === 1 }"
+                  >
+                    <td>{{ achievements.id }}</td>
+                    <td>{{ achievements.category }}</td>
+                    <td>{{ achievements.name }}</td>
+                    <td>{{ achievements.chapterStatus }}</td>
+                    <td>{{ achievements.rewardStatus }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -145,12 +174,14 @@
 // import EditIcon from '@/components/icons/IconAdminEdit.vue';
 // import DeleteIcon from '@/components/icons/IconAdminDelete.vue';
 // import AddIcon from '@/components/icons/IconAdd.vue';
+import BackIcon from "@/components/icons/IconBack.vue";
 import AdminEyeIcon from "@/components/icons/IconAdminEye.vue";
 
 export default {
   name: "AdminUserDataView",
   components: {
     AdminEyeIcon,
+    BackIcon,
     // EditIcon,
     // DeleteIcon,
     // AddIcon,
@@ -202,7 +233,7 @@ export default {
         {
           id: 1,
           route: "淡水信義線",
-          station: "台北車站",
+          journeyTravel: "半日遊",
           chapterStatus: "已集章",
           rewardStatus: "已領取",
           selected: false,
@@ -210,7 +241,7 @@ export default {
         {
           id: 2,
           route: "淡水信義線",
-          station: "臺大醫院站",
+          journeyTravel: "半日遊",
           chapterStatus: "已集章",
           rewardStatus: "已領取",
           selected: false,
@@ -218,10 +249,33 @@ export default {
         {
           id: 3,
           route: "板南線",
-          station: "忠孝新生站",
+          journeyTravel: "一日遊",
           chapterStatus: "已集章",
           rewardStatus: "未領取",
           selected: false,
+        },
+      ],
+      achievementsItems: [
+        {
+          id: 1,
+          category: "一般任務",
+          name: "時光旅人",
+          chapterStatus: "已集章",
+          rewardStatus: "已領取",
+        },
+        {
+          id: 2,
+          category: "一般任務",
+          name: "文湖線",
+          chapterStatus: "已集章",
+          rewardStatus: "已領取",
+        },
+        {
+          id: 3,
+          category: "特殊任務",
+          name: "全制霸",
+          chapterStatus: "已集章",
+          rewardStatus: "未領取",
         },
       ],
     };
