@@ -186,6 +186,11 @@ export default {
     // DeleteIcon,
     // AddIcon,
   },
+  methods: {
+    goBack() {
+      this.$router.push("/admin/user");
+    },
+  },
   data() {
     return {
       activeTab: "general",

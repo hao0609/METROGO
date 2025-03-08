@@ -12,7 +12,6 @@ body{
     margin: 0;
     padding: 0;
 }
-
 .backend-container{
     width: 100%;
     max-width: 1920px;
@@ -32,6 +31,13 @@ body{
     width: 550px;
     height: 100px;
     border-radius: 10px;
+    
+    .icon{
+        align-items: center;
+        display: flex;
+        margin: auto;
+        gap: 16px;
+    }
 }
 .backend-login-content{
     margin: auto;
@@ -60,4 +66,22 @@ body{
 }
 .form-group .input-label{
     color: $neutral-0;
+}
+
+
+@media screen and (max-width: 576px) {
+    .backend-login-logo{
+        width: 100%;
+        
+    }
+    .backend-login-content{
+        width: 100%;
+    }
+    .backend-login{
+        padding: 12px;
+    }
+    .form-group{
+        width: 100%;
+    }
+    
 }
