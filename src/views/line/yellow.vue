@@ -14,6 +14,9 @@
 
     import alert_user_location_stay from '@/alert/alert_user_location_stay.vue';  // 引入 alert_user_location 打開定位彈窗
     const alert_userlocation_stay_ref = ref(null);
+
+    import alert_user_location_open from '@/alert/alert_user_location_open.vue';  // 引入 alert_user_location 打開定位彈窗
+    const alert_userlocation_open_ref = ref(null);
     
     const pinStyle_yellow = ref(null);
     const locationInfobox_style = ref(null);
@@ -100,6 +103,7 @@
                 },
                 (error) => {
                     console.error("監聽位置變更失敗:", error);
+                    alert_userlocation_open_ref.value.UserLocationShowAlert();
                 },
                 { enableHighAccuracy: false, timeout: Infinity,maximumAge: Infinity }
             )
@@ -169,6 +173,9 @@
     
     <!-- 提醒用戶不在捷運站附近彈窗-->
     <alert_user_location_stay ref="alert_userlocation_stay_ref"/> 
+
+    <!-- 提醒用戶打開定位彈窗-->
+    <alert_user_location_open ref="alert_userlocation_open_ref"/>
 
 </template>
 

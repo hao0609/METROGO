@@ -96,6 +96,19 @@
             },
             (error) => {
                 console.error("Error getting location:", error);
+                document.getElementById("map").innerHTML = 
+                `
+                <div class="title2 bold" id="NoLocation" style="              
+                background-color: #CCD1D5;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height: 100%;
+                border-radius: 20px;     
+                "> 
+                  無法取得位置,請開啟定位服務
+                </div>
+                `;
             },
             { enableHighAccuracy: false, timeout: Infinity,maximumAge: Infinity }
         );
@@ -133,10 +146,6 @@
     });
 </script>
 
-
-<style scoped>
-
-</style>
 
 
 

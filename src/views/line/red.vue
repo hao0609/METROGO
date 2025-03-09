@@ -6,6 +6,7 @@
     import bridge from '../../assets/images/MessionGeneral/bridge.png';
     import station_red from '../../assets/images/MessionGeneral/station_red.vue';
     import logo from '../../assets/images/MessionGeneral/logo.vue';
+    import train1 from '../../assets/images/MessionGeneral/train1.vue';
 
     import { gelocation } from "../../js/view/MissionGeralView/geolocation";
 
@@ -14,6 +15,9 @@
 
     import alert_user_location_stay from '@/alert/alert_user_location_stay.vue';  // 引入 alert_user_location 打開定位彈窗
     const alert_userlocation_stay_ref = ref(null);
+
+    import alert_user_location_open from '@/alert/alert_user_location_open.vue';  // 引入 alert_user_location 打開定位彈窗
+    const alert_userlocation_open_ref = ref(null);
 
 
     const pinStyle_red = ref(null);
@@ -101,6 +105,8 @@
                 },
                 (error) => {
                     console.error("監聽位置變更失敗:", error);
+                    alert_userlocation_open_ref.value.UserLocationShowAlert();
+                    
                 },
                 { enableHighAccuracy: false, timeout: Infinity,maximumAge: Infinity }
             )
@@ -163,6 +169,9 @@
         <div class="item">
             <logo class="logo"/>
         </div>
+        <div class="item">
+            <train1 />
+        </div>
     </div>
     <div class="hitarea">
         <button ref="pin_obj" class="pin" :style="pinStyle_red" @click="UserLocationSuccessful" @touchstart="UserLocationSuccessful" ><pin/></button>
@@ -171,6 +180,9 @@
 
           <!-- 提醒用戶不在捷運站附近彈窗-->
       <alert_user_location_stay ref="alert_userlocation_stay_ref"/> 
+
+          <!-- 提醒用戶打開定位彈窗-->
+      <alert_user_location_open ref="alert_userlocation_open_ref"/>
 </template>
 
 <style lang="scss" scoped>
