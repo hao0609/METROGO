@@ -168,7 +168,7 @@
     background-color: $neutral-0;
     padding: 48px; 
     border-radius: 24px;
-    overflow-y: hiddin;
+    overflow-y: auto;
 
     @media screen and (max-width: 576px) {
         height: auto;
