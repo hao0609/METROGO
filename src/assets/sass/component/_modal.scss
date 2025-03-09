@@ -1,0 +1,134 @@
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  margin: auto;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  max-height: 80vh;
+  overflow-y: auto;
+  background-color: $neutral-0;
+  padding: 40px 24px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  gap: 40px;
+  &.modal-large {
+    max-width: 1138px;
+  }
+  // 小型彈窗尺寸
+  &.modal-small {
+    max-width: 480px;
+  }
+  &.mobile {
+    max-width: 335px;
+  }
+}
+
+.modal-title {
+  // max-width: 1138px;
+  margin: 0;
+  //   background-color: #fcf;
+  text-align: center;
+
+  h2 {
+    @extend h2;
+    color: $neutral-700;
+    margin: 0;
+  }
+}
+.item {
+  display: flex;
+  gap: 40px;
+}
+.item-M {
+  text-align: center;
+  gap: 24px;
+}
+.txt {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-height: 200px;
+  p {
+    margin: 0;
+  }
+}
+img {
+  width: 100%;
+  border-radius: 12px;
+}
+.title2 {
+  @extend .title2;
+  @extend .bold;
+}
+p {
+  @extend p;
+  margin: 0;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-top: 24px;
+  .btn {
+    margin: 0;
+  }
+}
+.btn {
+  @extend .btn_filled;
+  margin: auto;
+}
+.btn.cancel {
+  @extend .btn_outline;
+}
+.modal-content::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+@include mobile() {
+  .modal-content {
+    max-width: 90vw;
+    gap: 24px;
+    &.modal-small {
+      text-align: center;
+    }
+  }
+  .item {
+    flex-direction: column;
+  }
+  .modal-footer {
+    margin-top: 24px;
+  }
+}
+.close-button {
+  font-size: 30px;
+  text-align: right;
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  transition: all 0.3s ease;
+  color: $primary-400;
+  cursor: pointer;
+
+  &:hover {
+    // color: lighten($primary-400, 10%);
+    background: lighten($primary-400, 10%);
+  }
+  &:active {
+    background: darken($primary-400, 10%);
+  }
+}
+.login-img {
+  max-width: 160px;
+}

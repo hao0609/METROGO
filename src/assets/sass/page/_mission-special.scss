@@ -1,3 +1,27 @@
+@mixin tablet() {
+  @media screen and (max-width: 768px) {
+    @content;
+  }
+}
+@include tablet() {
+  .app {
+    padding: 0;
+    max-width: 100%;
+  }
+  .mission-body {
+    max-width: 100%;
+    margin: auto;
+    padding: 0; // 根據需求調整
+  }
+}
+@include mobile() {
+  .mission-body {
+    max-width: 100%;
+    margin: auto;
+    padding: 0px; // 減少 padding
+  }
+}
+
 $headerHeight: 696px;
 $gap: 50px;
 .mission-body {
@@ -5,17 +29,22 @@ $gap: 50px;
   margin: auto;
   h1,
   h2 {
-    margin: 0;
+    // margin: 0;
     font-weight: normal;
+    margin: 20px 0;
   }
 }
+body {
+  margin: 0;
+  padding: 0;
+}
 .mission-header {
+  width: 100%;
   display: flex;
   // gap: 50px;
   padding: 0 50px;
   align-items: center;
   justify-content: center;
-
   top: 0;
   z-index: 500;
   background-color: #fff;
@@ -24,19 +53,45 @@ $gap: 50px;
     flex-direction: column;
     flex-shrink: 0;
     text-align: center;
-    padding: 50px;
+    align-content: center;
+    width: 350px;
+    height: 350px;
 
     color: $neutral-0;
-    background-color: $metro-red;
+    // background-color: $metro-red;
     border-radius: 50%;
   }
   img {
     width: auto;
-    max-height: 699px;
+    max-height: 150vh;
+    flex: 0.25;
+  }
+  @include tablet() {
+    .metro_line_id {
+      width: 300px;
+      height: 300px;
+      h1 {
+        font-size: 4em;
+      }
+    }
+    img {
+      max-height: 80vh;
+    }
+  }
+  @include mobile() {
+    display: flex;
+    flex-direction: column;
+    margin-top: 100px;
+
+    // img {
+    //   max-height: 362px;
+    // }
   }
 }
+
 .mission-content {
   max-width: 1138px;
+  // background-color: #fcf;
   // margin: auto;
   display: flex;
   justify-content: end;
@@ -50,12 +105,24 @@ $gap: 50px;
     left: 8%;
     // position: fixed;
     height: 394px;
-    position: absolute;
-
+    position: relative;
+    @include tablet() {
+      left: 0;
+      z-index: 50;
+    }
     ol {
       display: flex;
       gap: 18px;
       flex-direction: column;
+      transform: translateX(0);
+      @include tablet() {
+        transform: translateX(-120%);
+        transition: all 0.3s ease;
+        background-color: #ffffffc9;
+        border: 1px solid #00000039;
+        padding: 20px;
+        border-radius: 12px;
+      }
     }
     .title1 {
       background-color: $neutral-150;
@@ -66,12 +133,26 @@ $gap: 50px;
       // padding: 16px 24px;
       text-align: center;
       margin: 0 auto;
-      &:hover {
-        box-shadow: 10px 10px 0px 0px rgba(255, 0, 0, 0.4);
-      }
+
       &.answered,
       &.red-line {
         background-color: #e3002c;
+        color: #ffff;
+      }
+      &.blue-line {
+        background-color: #0070bd;
+        color: #ffff;
+      }
+      &.yellow-line {
+        background-color: #f8b61c;
+        color: #ffff;
+      }
+      &.brown-line {
+        background-color: #c48c31;
+        color: #ffff;
+      }
+      &.green-line {
+        background-color: #008659;
         color: #ffff;
       }
     }
@@ -91,40 +172,75 @@ $gap: 50px;
         text-decoration: none;
       }
     }
+
+    .section_active {
+      transition: all 0.3s ease;
+      transform: translateX(5%);
+    }
+    .section-button {
+      background-color: $neutral-700;
+      position: relative;
+      top: 0px;
+      left: 0;
+      padding: 20px 30px;
+      border-radius: 12px;
+      margin-bottom: 20px;
+      // transform: translateY(0);
+
+      z-index: 10;
+      opacity: 0;
+
+      @include tablet() {
+        opacity: 1;
+      }
+    }
   }
-  .station.active,
-  .question.active {
-    box-shadow: 10px 10px 0px 0px rgba(255, 0, 0, 0.4);
-  }
+
+  // .station.active,
+  // .question.active {
+  //   box-shadow: 10px 10px 0px 0px rgba(255, 0, 0, 0.4);
+  // }
   .mission-main {
     flex: 0.5;
     padding: 0px 64px;
+    transition: opacity 0.3s ease;
     p {
       margin: 20px 0;
     }
+
     .list {
       color: $neutral-0;
-      background-color: $metro-red;
-      padding: 8px 24px;
+      // background-color: $metro-red;
+      padding: 8px 20px;
       border-radius: 24px;
+    }
+    .line-message {
+      display: inline-block;
+      margin: 0 10px 30px 10px;
+      @include mobile() {
+        display: block;
+        margin: 20px 10px;
+      }
     }
     .station-img,
     .no-photo {
+      cursor: pointer;
       border-radius: 50%;
       width: 360px;
       height: 360px;
       flex-shrink: 0;
-      box-shadow: 10px 10px 0px 4px rgba(255, 0, 0, 0.4);
-      background-color: $metro-red;
+      // box-shadow: 10px 10px 0px 4px rgba(255, 0, 0, 0.4);
+      // background-color: $metro-red;
       color: $neutral-0;
-      background-color: $metro-red;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       text-align: center;
+      .question-text {
+        margin-top: 10px;
+      }
       &.question-img {
-        gap: 32px;
         align-self: stretch;
       }
     }
@@ -137,36 +253,75 @@ $gap: 50px;
     .lock-text {
       color: $neutral-0;
     }
+    @include mobile() {
+      .station-img,
+      .no-photo {
+        width: 250px;
+        height: 250px;
+      }
+      .lock-icon {
+        width: 80px;
+        height: 80px;
+      }
+    }
+  }
+
+  .question-section {
+    height: 500px;
+    p {
+      display: block;
+      margin-bottom: 20px;
+    }
   }
 }
-.question-section {
-  height: 500px;
-  p {
-    display: block;
-    margin-bottom: 20px;
-  }
-}
-.question-img {
-  border-radius: 50%;
-  width: 360px;
-  height: 360px;
-  flex-shrink: 0;
+.red_shadow,
+.red_active,
+section > ol > li > .red:hover {
   box-shadow: 10px 10px 0px 4px rgba(255, 0, 0, 0.4);
-  background-color: $metro-red;
-  color: $neutral-0;
-  background-color: $metro-red;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  .question-text {
-    margin-top: 10px;
+}
+.blue_shadow,
+.blue_active,
+section > ol > li > .blue:hover {
+  box-shadow: 10px 10px 0px 4px rgba(0, 112, 189, 0.4);
+  @include mobile() {
+    box-shadow: 5px 5px 0px 2px rgba(0, 112, 189, 0.4);
+  }
+}
+.yellow_shadow,
+.yellow_active,
+section > ol > li > .yellow:hover {
+  box-shadow: 10px 10px 0px 4px rgba(248, 182, 28, 0.4);
+  @include mobile() {
+    box-shadow: 5px 5px 0px 2px rgba(248, 182, 28, 0.4);
+  }
+}
+.brown_shadow,
+.brown_active,
+section > ol > li > .brown:hover {
+  box-shadow: 10px 10px 0px 4px rgba(196, 140, 49, 0.4);
+  @include mobile() {
+    box-shadow: 5px 5px 0px 2px rgba(196, 140, 49, 0.4);
+  }
+}
+.green_shadow,
+.green_active,
+.section > ol > li > .green:hover:hover {
+  box-shadow: 10px 10px 0px 4px rgba(0, 134, 89, 0.4);
+  @include mobile() {
+    box-shadow: 5px 5px 0px 2px rgba(0, 134, 89, 0.4);
   }
 }
 .mission-menu {
   position: absolute;
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
   top: 100px;
+  right: 0;
+  .menu-and-box {
+    display: flex;
+    gap: 20px;
+  }
   .menu-button {
     @include btn($neutral-700, $neutral-0, $border: 12px);
     min-width: 80px;
@@ -176,6 +331,14 @@ $gap: 50px;
       font-size: 45px;
       padding-bottom: 15px;
     }
+  }
+
+  @include tablet() {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    position: relative;
+    top: 50px;
   }
 }
 .vertical-line {
@@ -187,6 +350,12 @@ $gap: 50px;
   background-color: $pink-400;
   z-index: 10;
   transition: height 0.3s ease-out;
+  @include tablet() {
+    left: 30%;
+  }
+  @include mobile() {
+    left: 25%;
+  }
 }
 
 .fixed-ball {
@@ -202,9 +371,137 @@ $gap: 50px;
   border-radius: 50%;
   z-index: 10;
   // transition: top 0.3s ease;
+  @media screen and (min-width: 768px) and (max-width: 1200px) {
+    width: 80px;
+    height: 80px;
+    left: 40%;
+  }
+  @include tablet() {
+    width: 70px;
+    height: 70px;
+    left: 25%;
+  }
+  @include mobile() {
+    width: 65px;
+    height: 65px;
+    left: 20%;
+  }
+}
+.mission-footer {
+  // background-color: #ffc;
+  width: 100%;
+  margin-bottom: 50px;
+
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+  @include tablet() {
+    img {
+      margin-top: 50px;
+    }
+  }
+  @include mobile() {
+    margin-bottom: 0;
+    img {
+      margin-top: 50px;
+    }
+  }
 }
 
-.mission-footer {
-  height: 600px;
-  margin-bottom: 50px;
+// .mission-footer {
+//   width: 100%;
+//   margin-bottom: 50px;
+//   @include tablet() {
+//     img {
+//       // max-height: 500px;
+//       width: 100%;
+//       margin-top: 50px;
+//     }
+//   }
+//   @include mobile() {
+//     margin-bottom: 0;
+//     img {
+//       // max-height: 362px;
+//       width: 100%;
+//       margin-top: 50px;
+//     }
+//   }
+// }
+.money_box {
+  background: $neutral-0;
+  border-radius: 12px;
+  padding: 0px 25px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border: 1px solid #00000077;
+  justify-content: space-between;
+  flex-shrink: 0;
+  gap: 10px;
+}
+
+.line_select_btns {
+  display: flex;
+  padding: 0px 20px;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  border-radius: 20px;
+  background-color: #fff;
+  border: 1px solid #00000077;
+  height: 65px;
+  padding: 50px 20px;
+  // @include mobile() {
+  //     padding: 0px 5px;
+  //     visibility: hidden;
+  //     display: none;
+  // }
+}
+$metro-colors: (
+  yellow: $metro-yellow,
+  red: $metro-red,
+  blue: $metro-blue,
+  green: $metro-green,
+  brown: $metro-brown,
+  lightgreen: $green-400,
+  lightblue: $aqua-400,
+  lightred: $pink-400,
+  lightbrown: $orange-400,
+  lightyellow: $yellow-400,
+);
+@each $name, $color in $metro-colors {
+  .#{$name} {
+    background-color: $color;
+  }
+}
+
+button {
+  display: flex;
+  align-items: center;
+  // height: 100%;
+  border-radius: 50%;
+  padding: 5px 10px;
+  border: 0px solid #000;
+  background-color: #fff;
+  cursor: pointer;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+}
+.to-top {
+  background-color: $neutral-700;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 20px;
+  border-radius: 12px;
+  transition: bottom 0.3s ease;
+  cursor: pointer;
+  z-index: 1000;
+  &.at-footer {
+    bottom: calc(50% - 100px); // 當到達 footer 時，移動到 footer 頂部
+  }
 }
