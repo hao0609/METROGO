@@ -1,37 +1,126 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, onMounted, onUnmounted, watch } from 'vue';
+import Swiper from 'swiper';
+import { Autoplay, Navigation, Pagination } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 
+import Navbar_V1 from "@/components/Navbar_V1.vue";
+import HomeFooter from "@/components/Footer.vue";
 
-const saleBanner = ref('/src/assets/images/store/store-banner.png');
+const swiperInstance = ref(null);
+const isMobile = ref(false);
+
+// 輪播圖片陣列
+const bannerImages = ref([
+  {
+    desktop: '/src/assets/images/store/store-banner.png',
+    mobile: '/src/assets/images/store/store-mobile-banner.png'
+  },
+  {
+    desktop: '/src/assets/images/store/store-banner2.png',
+    mobile: '/src/assets/images/store/store-mobile-banner2.png'
+  },
+  {
+    desktop: '/src/assets/images/store/store-banner3.png',
+    mobile: '/src/assets/images/store/store-mobile-banner3.png'
+  }
+]);
+
+// 其他圖片資源
 const notebookCoffee = ref('/src/assets/images/store/notecoffee.png');
 const camping = ref('/src/assets/images/store/service.png');
 const cooking = ref('/src/assets/images/store/cook.png');
 const towels = ref('/src/assets/images/store/towel.png');
 const livingRoom = ref('/src/assets/images/store/home.png');
 
-
 const handleExperience = () => {
   console.log('立即體驗點擊');
-  
 };
 
 const handleDesignService = () => {
   console.log('設計服務點擊');
-  
 };
 
 const handleLearnMore = (category) => {
   console.log(`了解更多關於 ${category} 的資訊`);
-  
 };
 
+// 檢查螢幕尺寸函數
+const checkScreenSize = () => {
+  isMobile.value = window.innerWidth < 768;
+};
 
+onMounted(() => {
+  // 初始檢查螢幕尺寸
+  checkScreenSize();
+  
+  // 監聽視窗大小變化
+  window.addEventListener('resize', checkScreenSize);
+  
+  // 初始化 Swiper
+  setTimeout(() => {
+    swiperInstance.value = new Swiper('.swiper', {
+      modules: [Autoplay, Navigation, Pagination],
+      loop: true,
+      observer: true,
+      observeParents: true,
+      updateOnImagesReady: true,
+      autoplay: {
+        delay: 3000,
+        disableOnInteraction: false,
+      },
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+    });
+  }, 100); // 短暫延遲確保DOM已更新
+});
+
+// 添加 onUnmounted 生命週期鉤子
+onUnmounted(() => {
+  window.removeEventListener('resize', checkScreenSize);
+  
+  // 清理 Swiper 實例
+  if (swiperInstance.value) {
+    swiperInstance.value.destroy();
+  }
+});
+
+// 監聽移動端狀態變化
+watch(isMobile, () => {
+  // 給 DOM 時間更新
+  setTimeout(() => {
+    if (swiperInstance.value) {
+      swiperInstance.value.update();
+    }
+  }, 100);
+});
 </script>
+
 <template>
- 
+ <Navbar_V1/>
  <div class="section-b">
-    <section class="sale-banner">
-      <img :src="saleBanner" alt="SALE">
+   
+    <!-- 簡化後的 Swiper Banner -->
+    <section class="banner-container">
+      <div class="swiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide" v-for="(image, index) in bannerImages" :key="index">
+            <img :src="isMobile ? image.mobile : image.desktop" alt="Banner Image" class="slide-image">
+          </div>
+        </div>
+        <!-- 輪播控制項 -->
+        <div class="swiper-pagination"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+      </div>
     </section>
 
     <!-- 生活質感升級 Section -->
@@ -109,20 +198,77 @@ const handleLearnMore = (category) => {
       </section>
     </section>
  </div>
-
+<HomeFooter/>
 </template>
 
 <style lang="scss" scoped>
 @import '@/assets/sass/base/color.scss';
 @import '@/assets/sass/base/reset.scss';
 
-
-
 .section-b {
   font-family: 'Noto Sans TC', Arial, sans-serif;
   color: $neutral-700;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+/* 簡化的 Swiper 相關樣式 */
+.banner-container {
+  width: 100%;
+  margin-bottom: 2rem;
+}
+
+.swiper {
+  width: 100%;
+}
+
+.swiper-slide {
+  width: 100%;
   
+  .slide-image {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+}
+
+
+.swiper-button-next,
+.swiper-button-prev {
+  color: $neutral-200;
+  margin: 0 40px; 
+  width: 50px;
+  height: 50px;
   
+  &::after {
+    font-size: 20px;
+    border-radius: 50%;
+    padding: 10px;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 20px;
+    height: 20px;
+  }
+}
+
+/* 自定義分頁指示器樣式 */
+.swiper-pagination {
+  bottom: 20px !important;
+}
+
+.swiper-pagination-bullet {
+  opacity: 0.7;
+  background: white;
+  width: 10px;
+  height: 10px;
+  margin: 0 6px;
 }
 
 .section {
@@ -139,15 +285,10 @@ const handleLearnMore = (category) => {
   margin-left: auto;
   margin-right: auto;
   
-  
-
-
-  
   &.with-line {
     position: relative;
     margin-bottom: 3rem;
     text-align: left;
-    
     
     &:after {
       content: '';
@@ -161,20 +302,6 @@ const handleLearnMore = (category) => {
   }
 }
 
-
-.sale-banner {
-  margin-bottom: 2rem;
-  width: 100%;
-  height: 450px;
-  
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-}
-
-
 .content-block {
   display: flex;
   flex-direction: row;
@@ -185,7 +312,6 @@ const handleLearnMore = (category) => {
   justify-content: center;
   margin:0 auto;
   
-  
   .text-content {
     flex: 1;
     padding: 1rem;
@@ -194,7 +320,6 @@ const handleLearnMore = (category) => {
       font-size: 2rem;
       margin-bottom: 1rem;
       font-weight: 600;
-      
     }
     
     p {
@@ -206,16 +331,13 @@ const handleLearnMore = (category) => {
   .image-content {
     flex: 1;
     
-    
     img {
       width: 100%;
       height: auto;
       border-radius: 15px;
-     
     }
   }
 }
-
 
 .primary-btn {
   background-color: $primary-400;
@@ -230,7 +352,6 @@ const handleLearnMore = (category) => {
   &:hover {
     background-color: darken($primary-400, 10%);
   }
-  
 }
 
 .small-btn {
@@ -248,10 +369,7 @@ const handleLearnMore = (category) => {
     background-color: $primary-400;
     color: white;
   }
-  
-  }
-
-
+}
 
 .card-container {
   display: flex;
@@ -265,13 +383,10 @@ const handleLearnMore = (category) => {
   flex: 1;
   min-width: 300px;
   
-  
-  
   .card-image {
     width:350px;
     height: 450px;
     border-radius: 15px;
-    
     
     img {
       width: 100%;
@@ -295,6 +410,160 @@ const handleLearnMore = (category) => {
       font-size: 16px;
       line-height: 1.5;
     }
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .section-title {
+    font-size: 2.5rem;
+    padding: 0 1rem;
+  }
+  
+  .content-block {
+    padding: 0 1.5rem;
+  }
+  
+  .card-container {
+    padding: 0 1.5rem;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .card {
+    min-width: 250px;
+    
+    .card-image {
+      width: 100%;
+      height: auto;
+    }
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .swiper-button-next,
+  .swiper-button-prev {
+    margin: 0 15px;
+    
+    &::after {
+      font-size: 16px;
+      padding: 8px;
+    }
+  }
+
+  .section-title {
+    font-size: 2.3rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .content-block {
+    flex-direction: column;
+    gap: 1.5rem;
+    
+    &.reverse {
+      flex-direction: column-reverse;
+    }
+    
+    .text-content, .image-content {
+      flex: none;
+      width: 100%;
+    }
+    
+    .text-content {
+      h2 {
+        font-size: 1.75rem;
+      }
+    }
+  }
+  
+  .card-container {
+    flex-direction: column;
+    gap: 2rem;
+  }
+  
+  .card {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    
+    .card-image {
+      width: 100%;
+      height: auto;
+      max-height: 350px;
+      
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+    }
+    
+    .card-content {
+      position: relative;
+      background-color: #fff;
+      z-index: 1;
+    }
+  }
+  
+  .primary-btn, .small-btn {
+    width: 100%;
+    padding: 0.8rem;
+    font-size: 1.2rem;
+  }
+  
+  .section-title.with-line {
+    padding-left: 1rem;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .swiper-button-next,
+  .swiper-button-prev {
+    display: none;
+  }
+
+  .section-title {
+    font-size: 2.3rem;
+    margin-bottom: 2rem;
+    line-height: 1.5;
+  }
+  
+  .content-block {
+    padding: 0 1rem;
+    
+    .text-content {
+      h2 {
+        font-size: 1.75rem;
+        margin-bottom: 1.2rem;
+      }
+      
+      p {
+        font-size: 20px;
+        line-height: 1.5;
+        margin-bottom: 2rem;
+      }
+    }
+  }
+  
+  .card .card-content {
+    padding: 1.8rem 0;
+    
+    h3 {
+      font-size: 1.75rem;
+      margin-bottom: 1rem;
+    }
+    
+    p {
+      font-size: 18px;
+      line-height: 1.5;
+      margin-bottom: 1.5rem;
+    }
+  }
+  
+  .primary-btn, .small-btn {
+    padding: 1rem 1.2rem;
+    font-size: 1.2rem;
+    border-radius: 25px;
   }
 }
 </style>

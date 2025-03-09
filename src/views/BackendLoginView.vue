@@ -80,4 +80,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 @use "../assets/sass/page/backend-login";
+
 </style>
+
+

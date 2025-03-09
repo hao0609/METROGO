@@ -1,6 +1,8 @@
 <script setup>
 import Banner from '../components/Store/SearchBar.vue';
 import ProductList from '../components/Store/ProductList.vue';
+import Navbar_V1 from "@/components/Navbar_V1.vue";
+import HomeFooter from '@/components/Footer.vue'
 
 const handleSearch = (query) => {
   console.log('Search query from App:', query);
@@ -13,12 +15,14 @@ const handleSearch = (query) => {
 <template>
     
 <div>
+    <Navbar_V1 />
     <Banner @search="handleSearch" />
     <main class="main">
       <div class="container">
         <ProductList />
       </div>
     </main>
+    <HomeFooter />
 </div>
 
 </template>

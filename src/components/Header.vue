@@ -1,3 +1,5 @@
+
+<!------
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue';
 
@@ -80,7 +82,7 @@ onUnmounted(() => {
         </a>
       </div>
 
-      <!-- 手機版選單按鈕 -->
+    
       <button class="mobile-menu-toggle" @click="toggleMobileMenu">
         <span :class="{ 'active': isMobileMenuOpen }"></span>
       </button>
@@ -110,7 +112,7 @@ onUnmounted(() => {
           </svg>
         </button>
 
-        <!-- 登入狀態顯示 -->
+   
         <template v-if="isLoggedIn">
           <div class="user-profile">
             <img :src="userInfo.avatar" :alt="userInfo.name" class="user-avatar">
@@ -513,3 +515,8 @@ onUnmounted(() => {
   }
 }
 </style>
+--->
+<template>
+  <div></div>
+</template>
+

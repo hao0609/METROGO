@@ -1,6 +1,6 @@
 <script setup>
-    import { ref , onMounted , onUnmounted,computed,watch} from 'vue'
-    import { RouterLink, RouterView ,useRoute ,onBeforeRouteUpdate } from 'vue-router'
+    import { ref , onMounted , onUnmounted,computed} from 'vue'
+    import { RouterLink, RouterView ,useRoute } from 'vue-router'
 
     import Navbar_V1 from '../components/Navbar_V1.vue'; //備用 header
 
@@ -10,30 +10,18 @@
     import alert_user_location_open from '@/alert/alert_user_location_open.vue';  // 引入 alert_user_location 打開定位彈窗
     const alert_userlocation_open_ref = ref(null);
 
-    import alert_location_inaccurate from '@/alert/alert_location_inaccurate.vue';  // 引入 alert_location_inaccurate 彈窗
-    const alert_web_M_location_inaccurate = ref(null);
+    //import alert_location_inaccurate from '@/alert/alert_location_inaccurate.vue';  // 引入 alert_location_inaccurate 彈窗 ( 暫不引入 )
+    //const alert_web_M_location_inaccurate = ref(null);
 
 
-    import alert_user_location_stay from '@/alert/alert_user_location_stay.vue';  // 引入 alert_user_location 打開定位彈窗
-    const alert_userlocation_stay_ref = ref(null);
+    import { setAlertInstance_location_inaccurate, setAlertInstance_userlocation } from '../js/view/MissionGeralView/geolocation';          // 引入 geolocation.js
 
+    import Alert_UserLocation_map from '../components/Alert_UserLocation_map.vue';
+    const Alert_UserLocation_map_ref = ref(null);
 
-    import { EventBus } from "../js/view/MissionGeralView/eventBus.js";
-
-    import { setAlertInstance_location_inaccurate, setAlertInstance_userlocation,gelocation } from '../js/view/MissionGeralView/geolocation';          // 引入 geolocation.js
-
-    const isNearStation = ref(null);
-  
-    // 監聽 EventBus 的 `No_Station` 狀態變更
-    watch(() => EventBus.No_Station, (newValue) => {
-        isNearStation.value = newValue;
-
-        if ( isNearStation.value === true ) {
-            console.log(alert_userlocation_stay_ref.value);
-            
-            alert_userlocation_stay_ref.value.UserLocationShowAlert();
-        }
-    });
+    const getUserLocation = () => {
+        Alert_UserLocation_map_ref.value.showAlert();        
+    }
 
 
     let game_menu_btns_show = ref(false);   // 遊戲選單按鈕是否隱藏
@@ -124,9 +112,9 @@
         setAlertInstance_userlocation(alert_userlocation_open_ref.value); // 傳遞 alert_userlocation_ref 組件給 geolocation.js
       }
 
-      if (alert_web_M_location_inaccurate.value) {
-        setAlertInstance_location_inaccurate(alert_web_M_location_inaccurate.value); // 傳遞 alert_web_M_location_inaccurate 組件給 geolocation.js
-      }
+    //   if (alert_web_M_location_inaccurate.value) {
+    //     setAlertInstance_location_inaccurate(alert_web_M_location_inaccurate.value); // 傳遞 alert_web_M_location_inaccurate 組件給 geolocation.js
+    //   }
 
     //   gelocation() // 呼叫 geolocation.js 來取得用戶定位
       
@@ -164,12 +152,29 @@
                 <div class="icon">
                     <svg class="vector" width="32" height="33" viewBox="0 0 32 33" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M24 2.64381C26.4323 4.0481 28.4521 6.06791 29.8564 8.50022C31.2607 10.9325 32 13.6916 32 16.5002C32 19.3088 31.2607 22.0679 29.8563 24.5002C28.452 26.9325 26.4322 28.9523 23.9998 30.3565C21.5675 31.7608 18.8084 32.5 15.9997 32.5C13.1911 32.5 10.432 31.7606 7.99974 30.3563C5.56744 28.9519 3.54766 26.9321 2.14342 24.4997C0.739168 22.0674 -7.13435e-05 19.3083 5.16424e-09 16.4997L0.00800019 15.9813C0.0976051 13.2181 0.901676 10.5253 2.34182 8.16536C3.78197 5.80543 5.80905 3.85893 8.22543 2.51563C10.6418 1.17232 13.365 0.478063 16.1296 0.500528C18.8942 0.522994 21.6058 1.26142 24 2.64381ZM16 6.89978C15.5757 6.89978 15.1687 7.06835 14.8686 7.36841C14.5686 7.66846 14.4 8.07543 14.4 8.49977C13.127 8.49977 11.9061 9.00548 11.0059 9.90565C10.1057 10.8058 9.6 12.0267 9.6 13.2997C9.6 14.5728 10.1057 15.7937 11.0059 16.6938C11.9061 17.594 13.127 18.0997 14.4 18.0997V21.2997C14.1346 21.3144 13.8697 21.264 13.6283 21.1531C13.3868 21.0421 13.1761 20.8738 13.0144 20.6629L12.9056 20.5013C12.6867 20.1482 12.3391 19.8942 11.9362 19.7928C11.5334 19.6915 11.1069 19.7507 10.747 19.9581C10.3871 20.1655 10.1219 20.5048 10.0076 20.9041C9.89326 21.3035 9.93874 21.7316 10.1344 22.0981C10.5428 22.8063 11.1253 23.3985 11.8267 23.8185C12.5282 24.2386 13.3252 24.4725 14.1424 24.4981H14.4C14.3997 24.8902 14.5434 25.2688 14.8038 25.562C15.0643 25.8552 15.4233 26.0426 15.8128 26.0884L16 26.0996C16.4243 26.0996 16.8313 25.9311 17.1314 25.631C17.4314 25.331 17.6 24.924 17.6 24.4997L17.8816 24.4917C19.129 24.4196 20.2991 23.8639 21.1433 22.9428C21.9875 22.0217 22.4392 20.8077 22.4026 19.5588C22.3659 18.3099 21.8437 17.1245 20.9469 16.2545C20.0501 15.3846 18.8494 14.8985 17.6 14.8997V11.6997C18.1728 11.6805 18.6736 11.9237 18.9856 12.3365L19.0944 12.4981C19.3133 12.8512 19.6609 13.1052 20.0638 13.2066C20.4666 13.308 20.8931 13.2487 21.253 13.0413C21.6129 12.8339 21.8781 12.4947 21.9924 12.0953C22.1067 11.6959 22.0613 11.2678 21.8656 10.9014C21.4574 10.1928 20.875 9.60027 20.1735 9.17997C19.4721 8.75967 18.6749 8.52553 17.8576 8.49977H17.6C17.6 8.07543 17.4314 7.66846 17.1314 7.36841C16.8313 7.06835 16.4243 6.89978 16 6.89978ZM17.6 18.0997C18.0243 18.0997 18.4313 18.2683 18.7314 18.5683C19.0314 18.8684 19.2 19.2753 19.2 19.6997C19.2 20.124 19.0314 20.531 18.7314 20.831C18.4313 21.1311 18.0243 21.2997 17.6 21.2997V18.0997ZM14.4 11.6997V14.8997C13.9757 14.8997 13.5687 14.7312 13.2686 14.4311C12.9686 14.131 12.8 13.7241 12.8 13.2997C12.8 12.8754 12.9686 12.4684 13.2686 12.1684C13.5687 11.8683 13.9757 11.6997 14.4 11.6997Z" fill="#FCD34D" />
-                    </svg
-                ></div>
+                    </svg>
+                </div>
                 <div class="money title1 bold lineH_28px">1,000,000</div>   
             </div>
         </div>
     </div>
+
+    
+    <div class="getlocation">
+        <button  @click="getUserLocation">
+            <svg class="subway-location-3" width="40" height="40" viewBox="0 0 52 53" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g clip-path="url(#clip0_4132_7496)">
+                <path d="M24.4053 40.8C24.7404 41.318 25.3295 41.6633 25.9998 41.6633C26.6701 41.6633 27.2592 41.318 27.6045 40.8L38.7967 23.5141C40.2998 21.1883 41.1732 18.6289 41.1732 15.6633C41.1631 7.09141 34.4295 0.5 25.9998 0.5C17.5701 0.5 10.8365 7.09141 10.8365 15.6633C10.8365 18.6289 11.71 21.1883 13.2131 23.5141L24.4053 40.8ZM25.9998 7C30.7834 7 34.6631 10.8797 34.6631 15.6633C34.6631 20.4469 30.7834 24.3266 25.9998 24.3266C21.2162 24.3266 17.3365 20.4469 17.3365 15.6633C17.3365 10.8797 21.2162 7 25.9998 7ZM37.1107 33.3555L25.9998 48.1633L14.8889 33.3555C11.0904 35.3461 8.66309 38.3219 8.66309 41.6633C8.66309 47.6453 16.4225 52.5 25.9998 52.5C35.5771 52.5 43.3365 47.6453 43.3365 41.6633C43.3365 38.3219 40.9092 35.3461 37.1107 33.3555Z" fill="white" />
+                </g>
+                <defs>
+                <clipPath id="clip0_4132_7496">
+                <rect width="52" height="52" fill="white" transform="translate(0 0.5)" />
+                </clipPath>
+                </defs>
+            </svg>
+        </button>
+    </div>
+
     <div class="game_menu_btns" v-show="game_menu_btns_show">
         <div class="game_menu_btnsBox">
             <button id="receive_btn" class="btn_box">
@@ -343,10 +348,9 @@
     <alert_user_location_open ref="alert_userlocation_open_ref"/> 
 
     <!-- 提醒用戶裝置定位不準確彈窗 -->
-    <alert_location_inaccurate ref="alert_web_M_location_inaccurate"/> 
+    <!-- <alert_location_inaccurate ref="alert_web_M_location_inaccurate"/>  -->
 
-    <!-- 提醒用戶開啟裝置定位彈窗 -->
-    <alert_user_location_stay ref="alert_userlocation_stay_ref"/> 
+    <Alert_UserLocation_map ref="Alert_UserLocation_map_ref" />
 
 
       
@@ -366,6 +370,19 @@
         left: 0;
         width: 100%;
     }
+
+    .getlocation{
+        position: absolute;
+        top: 150px;
+        right: 10px;
+        z-index: 99;
+        background-color: red;
+        border-radius: 20px
+    }
+    .getlocation > button {
+        padding: 10px;
+    }
+
 
 </style>
 
