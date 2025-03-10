@@ -1,28 +1,28 @@
 <script setup>
-import { ref } from "vue";
+import { ref } from 'vue'
 
 const newsList = ref([
   {
     id: 1,
-    title: "我們是METRO GO",
-    description: "現在註冊會員就享有10,000積分！！",
-    date: "2025/1/20",
+    title: '我們是METRO GO',
+    description: '現在註冊會員就享有10,000積分！！',
+    date: '2025/1/20'
   },
   {
     id: 2,
-    title: "恭喜ooo獲得全至霸",
-    description: "恭喜獲獎！",
-    date: "2025/1/20",
-  },
-]);
+    title: '恭喜ooo獲得全至霸',
+    description: '恭喜獲獎！',
+    date: '2025/1/20'
+  }
+])
 
 const handleViewMoreNews = () => {
-  console.log("查看更多新聞");
-};
+  console.log('查看更多新聞')
+}
 
 const handleReadMore = (news) => {
-  console.log("閱讀更多:", news);
-};
+  console.log('閱讀更多:', news)
+}
 </script>
 
 <template>
@@ -30,9 +30,7 @@ const handleReadMore = (news) => {
     <div class="news-wrapper">
       <div class="section-header">
         <h2>好消息別錯過</h2>
-        <button class="view-more" @click.prevent="handleViewMoreNews">
-          所有最新消息
-        </button>
+        <button class="view-more" @click.prevent="handleViewMoreNews">所有最新消息</button>
       </div>
       <div class="news-list">
         <div v-for="news in newsList" :key="news.id" class="news-card">
@@ -43,9 +41,7 @@ const handleReadMore = (news) => {
           </div>
           <div class="news-meta">
             <span class="news-date">{{ news.date }}</span>
-            <a class="news-link" @click.prevent="handleReadMore(news)"
-              >了解更多 →</a
-            >
+            <a class="news-link" @click.prevent="handleReadMore(news)">了解更多 →</a>
           </div>
         </div>
       </div>
@@ -59,16 +55,16 @@ const handleReadMore = (news) => {
   background: white;
   padding: 40px 120px;
   overflow: hidden;
-
+  
   // 平板和手機適配
   @media (max-width: 1024px) {
     padding: 40px 60px;
   }
-
+  
   @media (max-width: 768px) {
     padding: 40px 20px;
   }
-
+  
   .news-wrapper {
     max-width: 1440px;
     margin: 0 auto;
@@ -115,14 +111,14 @@ const handleReadMore = (news) => {
       cursor: pointer;
       transition: background-color 0.3s ease;
       font-size: 18px;
-
+      
       @media (max-width: 768px) {
         width: 100%;
         text-align: center;
         font-size: 16px;
         padding: 10px;
       }
-
+      
       &:hover {
         background: #8a2be2;
       }
@@ -149,13 +145,13 @@ const handleReadMore = (news) => {
         gap: 1rem;
         padding: 15px;
       }
-
+      
       // 手機版改為垂直排列
       @media (max-width: 768px) {
         grid-template-columns: 1fr;
         text-align: center;
       }
-
+      
       .news-avatar {
         width: 120px;
         height: 120px;
@@ -236,7 +232,7 @@ const handleReadMore = (news) => {
           cursor: pointer;
           font-size: 0.9rem;
           transition: color 0.3s ease;
-
+          
           &:hover {
             color: #8a2be2;
             text-decoration: underline;
