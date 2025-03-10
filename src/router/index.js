@@ -32,6 +32,15 @@ import JourneyFeaturedView from "../views/JourneyFeaturedView.vue";
 import AdminMainpageView from "../views/backend/AdminMainpageView.vue";
 import Navbar_V1 from "../components/Navbar_V1.vue";
 
+const requireAuth = (to, from, next) => {
+  const isAuthenticated = localStorage.getItem("admin"); // 檢查登入狀態
+  if (!isAuthenticated) {
+    next("/backend-login"); // 未登入則跳回登入頁
+  } else {
+    next(); // 允許進入
+  }
+};
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -189,6 +198,7 @@ const router = createRouter({
       path: "/admin",
       name: "後台共用主頁",
       component: AdminMainpageView,
+      beforeEnter: requireAuth, //
       children: [
         {
           path: "dashboard",
