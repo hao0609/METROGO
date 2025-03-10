@@ -21,6 +21,7 @@ body{
 }
 
 .content{
+  width: 100%;
   position: relative;
   top: 30px;
   display: flex;
@@ -34,36 +35,50 @@ body{
 }
 .entrance-info{
   margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .entrance-arrow{
+  width: 100%;
   display: flex;
   justify-content: center;
-  gap: 24px;
+  flex-wrap: wrap;
+  gap: 280px;
+  
 }
 .left {
-  cursor: pointer;
-  z-index: 999;
-}
-.right {
   cursor: pointer;
   z-index: 999;
 }
 .left:hover {
   transform: scale(1.1);
 }
-.right:hover {
-  transform: scale(1.1);
-}
 .metro {
-  position: relative;
+  position: absolute;
+  top: 180px;
 }
-
 .small {
   position: absolute;
 }
-
 .big {
   position: relative;
   top: 70px;
   right: 8px;
+}
+
+
+@media screen and (max-width: 946px) {
+  .metro {
+    top: 300px;
+  }
+  .entrance-arrow{
+    gap: 20px;
+  }
+}
+
+@media screen and (max-width: 693px) {
+  .metro {
+    top: 500px;
+  }
 }

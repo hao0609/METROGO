@@ -36,6 +36,7 @@
           <button @click="login" class="btn_white">登入</button>
           <!-- <router-link to="/admin/dashboard" class="btn_white">登入</router-link> -->
           <p v-if="errorMessage" class="error">{{ errorMessage }}</p>
+          <p v-else class="error-placeholder"></p>
         </div>
       </div>
     </div>

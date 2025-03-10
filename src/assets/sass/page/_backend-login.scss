@@ -18,7 +18,7 @@ body{
 }
 .backend-login{
     position: relative;
-    top: 80px;
+    top: 60px;
     display: flex;
     flex-direction: column;
     gap: 32px;
@@ -45,7 +45,7 @@ body{
     flex-direction: column;
     background-color: $primary-400;
     width: 550px;
-    height: 360px;
+    height: 400px;
     border-radius: 10px;
 }
 .backend-login-info{
@@ -66,6 +66,15 @@ body{
 }
 .form-group .input-label{
     color: $neutral-0;
+}
+.error, .error-placeholder {
+    color: $neutral-0;
+    height: 18px; /* 固定高度，避免錯誤訊息影響排版 */
+    line-height: 18px;
+    text-align: center;
+}
+.error-placeholder {
+visibility: hidden; /* 讓它佔位置但不顯示 */
 }
 
 
