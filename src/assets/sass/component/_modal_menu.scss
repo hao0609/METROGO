@@ -80,7 +80,6 @@
 
   gap: 40px;
   z-index: 9999;
-  width: 1030px;
   &.mobile {
     max-width: 325px;
   }
@@ -125,14 +124,22 @@
     color: #ffffff;
   }
 }
-.item {
+.tab-content {
   border-radius: 0px 30px 0px 0px;
   border: 1px solid $neutral-700;
   background: $neutral-0;
   min-height: 527px;
   margin: 0;
   padding: 10px;
+
+  &.stamp {
+    width: 786px;
+    border-radius: 0px;
+    overflow-y: auto;
+    min-height: 80vh;
+  }
 }
+
 // 玩法說明
 .close-filled {
   position: absolute;
@@ -188,23 +195,25 @@
   border-radius: 30px;
   background-color: $primary-200;
   display: flex;
+  flex-direction: column;
   align-content: center;
   width: 407px;
 
   gap: 10px;
   justify-content: center;
-}
-.rules-title2 {
-  text-align: center;
   h2 {
     font-size: 36px;
     margin: 0 0 0 16px;
   }
 }
-.rules-item {
+
+.rules-info {
   display: flex;
-  flex-direction: column;
+  align-items: center;
   justify-content: center;
+  gap: 15px;
+}
+.rules-item {
   align-items: center;
   gap: 15px;
   p {
@@ -280,7 +289,7 @@
   }
 }
 
-// 獎金領取
+// badge
 
 .badge-container {
   margin: 20px;
@@ -300,6 +309,189 @@
   font-size: 20px;
 }
 .badge-text {
-  text-align: center;
   padding: 10px;
+  &.inline {
+    display: inline-block;
+  }
+}
+// task
+.task-with-reward {
+  // border: 1px solid #ddd;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 20px;
+  background-color: $neutral-150;
+}
+.reward-icon {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  z-index: 1;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  color: $neutral-0;
+  padding: 5px;
+  &.yellow {
+    background-color: $metro-yellow;
+  }
+  &.red {
+    background-color: $metro-red;
+  }
+  &.blue {
+    background-color: $metro-blue;
+  }
+  &.green {
+    background-color: $metro-green;
+  }
+  &.brown {
+    background-color: $metro-brown;
+  }
+  &.grey {
+    background-color: $neutral-150;
+  }
+  .task-title {
+    font-size: 12px;
+    font-weight: bold;
+    text-align: center;
+
+    &.fz-16 {
+      font-size: 16px;
+    }
+  }
+  &.position-absolute {
+    position: absolute;
+  }
+}
+.progress-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+.progress-bar {
+  flex: 1;
+}
+
+progress {
+  width: 100%;
+  // width: 80%;
+  height: 27.374px;
+  overflow: hidden;
+  background-color: #e0e0e000;
+}
+
+progress::-webkit-progress-bar {
+  background-color: $neutral-150;
+  border-radius: 11px;
+  border: 1px solid $neutral-700;
+}
+/* 進度條內部填充 */
+progress::-webkit-progress-value {
+  background-color: $primary-400; // 這是你的 SCSS 變數，改成你要的顏色
+  border-radius: 11px;
+}
+/* Firefox 樣式 */
+progress::-moz-progress-bar {
+  background-color: $primary-400;
+  border-radius: 11px;
+}
+.task-btn {
+  @include btn($aqua-400, $neutral-0, 8px);
+  border: none;
+  min-width: 74px;
+  padding: 5px 10px;
+}
+.progress-icon {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+button:disabled {
+  background-color: #aaa;
+  cursor: not-allowed;
+}
+
+.badge-container {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.badge-container img {
+  width: 50px;
+  height: 50px;
+}
+// task
+.stamp-content {
+  display: flex;
+  min-height: 80vh;
+  overflow-y: auto;
+}
+
+.badge-content {
+  border-radius: 0px 0px 10px 0px;
+  border: 1px solid $primary-400;
+  max-width: 250px;
+}
+.badge-title {
+  background-color: $primary-400;
+  color: $neutral-0;
+  text-align: center;
+}
+.reward-info {
+  display: flex;
+  align-items: center;
+  margin: 20px;
+}
+.reward-gerneral,
+.reward-special {
+  display: flex;
+  gap: 40px;
+}
+.reward-achievement {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  padding: auto;
+}
+
+.red-line-group,
+.yellow-line-group,
+.blue-line-group,
+.green-line-group,
+.brown-line-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  position: relative;
+  z-index: 1;
+}
+
+.long-line {
+  width: 20px;
+  position: absolute;
+  // z-index: -1;
+  opacity: 0.3;
+  top: 0;
+  bottom: 0;
+  &.yellow {
+    background-color: $metro-yellow;
+  }
+  &.red {
+    background-color: $metro-red;
+  }
+  &.blue {
+    background-color: $metro-blue;
+  }
+  &.green {
+    background-color: $metro-green;
+  }
+  &.brown {
+    background-color: $metro-brown;
+  }
 }

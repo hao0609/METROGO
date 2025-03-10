@@ -286,7 +286,7 @@ const messageData = ref([
     <!-- 半日遊行程推薦 -->
     <MetroLineTitle :title="`${currentLine}半日遊行程推薦`" />
     <router-link to="/tour/tourtype">
-      <div class="w-full-img" style="background-image: url('/src/assets/images/line/SongshanStation_03_w1312xh340.jpg')">
+      <div class="w-full-img" style="background-image: url('/src/assets/images/line/sanchong_station_06_w1312xh340.jpg')">
         <h1 class="group-title white">三重</h1>
       </div>
     </router-link>
@@ -294,7 +294,7 @@ const messageData = ref([
     <!-- 一日遊行程推薦 -->
     <MetroLineTitle :title="`${currentLine}一日遊行程推薦`" />
     <router-link to="/tour/tourtype">
-      <div class="w-full-img" style="background-image: url('/src/assets/images/line/bitan_01_w1312xh340.jpg')">
+      <div class="w-full-img" style="background-image: url('/src/assets/images/line/Huashan1914CreativePark_04_w1314xh340.jpg')">
         <h1 class="group-title white">華山</h1>
       </div>
     </router-link>

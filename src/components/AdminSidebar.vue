@@ -7,7 +7,7 @@
       </router-link>
       <div class="admin-info">
         <span class="admin-title bold">管理者名稱</span>
-        <button class="logout-btn">
+        <button class="logout-btn" @click="logout">
           登出
           <span class="logout-icon">
             <AdminLogoutIcon />
@@ -19,11 +19,7 @@
     <!-- 側邊選單導航 -->
     <nav class="nav-menu">
       <!-- 後台總覽 -->
-      <router-link
-        to="/admin/dashboard"
-        class="menu-item bold"
-        active-class="active"
-      >
+      <router-link to="/admin/dashboard" class="menu-item bold" active-class="active">
         <span class="menu-icon">
           <AdminHomeIcon />
         </span>
@@ -120,11 +116,7 @@
       </div>
 
       <!-- 訂單管理 -->
-      <router-link
-        to="/admin/order"
-        class="menu-item bold"
-        active-class="active"
-      >
+      <router-link to="/admin/order" class="menu-item bold" active-class="active">
         <span class="menu-icon">
           <AdminOrderIcon />
         </span>
@@ -171,11 +163,7 @@
       </div>
 
       <!-- 行程管理 -->
-      <router-link
-        to="/admin/schedule"
-        class="menu-item bold"
-        active-class="active"
-      >
+      <router-link to="/admin/schedule" class="menu-item bold" active-class="active">
         <span class="menu-icon">
           <AdminScheduleIcon />
         </span>
@@ -183,11 +171,7 @@
       </router-link>
 
       <!-- 照片管理 -->
-      <router-link
-        to="/admin/photo"
-        class="menu-item bold"
-        active-class="active"
-      >
+      <router-link to="/admin/photo" class="menu-item bold" active-class="active">
         <span class="menu-icon">
           <AdminPhotoIcon />
         </span>
@@ -339,6 +323,7 @@
 </style>
 
 <script>
+import { useRouter } from "vue-router";
 import AdminLogoutIcon from "@/components/icons/IconAdminLogout.vue";
 import AdminHomeIcon from "@/components/icons/IconAdminHome.vue";
 import AdminOrderIcon from "@/components/icons/IconAdminOrder.vue";
@@ -381,6 +366,16 @@ export default {
     toggleNewsManagement() {
       this.newsManagementExpanded = !this.newsManagementExpanded;
     },
+  },
+  setup() {
+    const router = useRouter();
+
+    const logout = () => {
+      localStorage.removeItem("admin"); // 清除登入資訊
+      router.push("/backend-login"); // 跳轉到後台登入頁
+    };
+
+    return { logout };
   },
 };
 </script>

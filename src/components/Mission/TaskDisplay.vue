@@ -2,7 +2,7 @@
   <div class="task-with-reward">
     <!-- 進度條 + 領取按鈕 -->
     <div class="progress-container">
-      <div class="reward-title">
+      <div class="reward-icon red">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="42"
@@ -36,8 +36,14 @@
           <span>10</span>
         </div>
       </div>
-      <button v-if="task.progress < 100" @click="$emit('claim')">領取</button>
-      <button v-else disabled class="claimed-btn">已領取</button>
+      <button
+        v-if="task.progress < 100"
+        @click="$emit('claim')"
+        class="task-btn"
+      >
+        領取
+      </button>
+      <button v-else disabled class="claimed-btn task-btn">已領取</button>
     </div>
 
     <!-- 獎勵徽章（進度達到 100 顯示） -->

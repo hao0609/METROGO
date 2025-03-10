@@ -16,8 +16,13 @@ import green_line from "../views/line/green.vue";
 import blue_line from "../views/line/blue.vue";
 import yellow_line from "../views/line/yellow.vue";
 import brown_line from "../views/line/brown.vue";
-import BackendLoginView from "../views/BackendLoginView.vue";
+import special_blue from "../views/special-line/blue.vue";
+import special_red from "../views/special-line/red.vue";
+import special_yellow from "../views/special-line/yellow.vue";
+import special_green from "../views/special-line/green.vue";
+import special_brown from "../views/special-line/brown.vue";
 import MissionSpecialView from "../views/MissionSpecialView.vue";
+import BackendLoginView from "../views/BackendLoginView.vue";
 import NewsView from "../views/NewsView.vue";
 import NewsDetailView from "../views/NewsDetailView.vue";
 import UserProfileView from "../views/UserProfileView.vue";
@@ -26,6 +31,15 @@ import JourneyFeaturedView from "../views/JourneyFeaturedView.vue";
 // 後台
 import AdminMainpageView from "../views/backend/AdminMainpageView.vue";
 import Navbar_V1 from "../components/Navbar_V1.vue";
+
+const requireAuth = (to, from, next) => {
+  const isAuthenticated = localStorage.getItem("admin"); // 檢查登入狀態
+  if (!isAuthenticated) {
+    next("/backend-login"); // 未登入則跳回登入頁
+  } else {
+    next(); // 允許進入
+  }
+};
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -109,7 +123,36 @@ const router = createRouter({
       path: "/special-mission",
       name: "特殊任務",
       component: MissionSpecialView,
+      redirect: "/special-mission/red",
+      children: [
+        {
+          path: "red",
+          name: "red",
+          component: special_red,
+        },
+        {
+          path: "blue",
+          name: "blue",
+          component: special_blue,
+        },
+        {
+          path: "yellow",
+          name: "yellow",
+          component: special_yellow,
+        },
+        {
+          path: "green",
+          name: "green",
+          component: special_green,
+        },
+        {
+          path: "brown",
+          name: "brown",
+          component: special_brown,
+        },
+      ],
     },
+
     // 會員中心
     {
       path: "/user-profile",
@@ -155,6 +198,7 @@ const router = createRouter({
       path: "/admin",
       name: "後台共用主頁",
       component: AdminMainpageView,
+      beforeEnter: requireAuth, //
       children: [
         {
           path: "dashboard",
