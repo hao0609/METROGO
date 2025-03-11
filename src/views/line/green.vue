@@ -6,6 +6,8 @@
     import bridge from '../../assets/images/MessionGeneral/bridge.png';
     import station_green from '../../assets/images/MessionGeneral/station_green.vue';
     import logo from '../../assets/images/MessionGeneral/logo.vue';
+    import train1 from '../../assets/images/MessionGeneral/train1.vue';
+    import train2 from '../../assets/images/MessionGeneral/train2.vue';
 
     import { gelocation } from "../../js/view/MissionGeralView/geolocation";
 
@@ -72,8 +74,124 @@
 
     }
 
+    // 引入 GSAP 
+    import gsap from "gsap";
+    import { MotionPathPlugin } from "gsap/MotionPathPlugin";
+
+    // 註冊 MotionPathPlugin
+    gsap.registerPlugin(MotionPathPlugin);
+
+    const train_1_Ref = ref(null); // train_1 的 ref
+    const train_2_Ref = ref(null); // train_2 的 ref
+
     onMounted(() => {       
         // updateLocation();
+
+        // 捷運物件 ref ( 左上 & 右下)
+        const  train_list =  [train_1_Ref.value.train,train_2_Ref.value.train]
+
+        // 第一次移動位置到停下來 ( 左上 & 右下)
+        const motionPath_list_step1 = [
+
+                {
+                path: "#train1_road_path",
+                align: "#train1_road_path",
+                autoRotate: false,
+                alignOrigin: [0.5, 0.5],
+                offsetX: -10,
+                offsetY: -10,
+                start: 1,
+                end: 0.55, // 移動 80% 路徑後停止
+            },
+            {
+                path: "#train2_road_path",
+                align: "#train2_road_path",
+                autoRotate: false,
+                alignOrigin: [0.5, 0.5],
+                offsetX: -10,
+                offsetY: -10,
+                start: 1,
+                end: 0.55, // 移動 80% 路徑後停止
+            }
+        ]
+
+        // 第二次移動位置 ( 左上 & 右下)
+        const motionPath_list_step2 = [
+
+            {
+                path: "#train1_road_path",
+                align: "#train1_road_path",
+                autoRotate: false,
+                alignOrigin: [0.5, 0.5],
+                offsetX: -10,
+                offsetY: -10,
+                start: 0.55, // 從之前停下來的位置繼續
+                end: 0, 
+            },
+            {
+                path: "#train2_road_path",
+                align: "#train2_road_path",
+                autoRotate: false,
+                alignOrigin: [0.5, 0.5],
+                offsetX: -10,
+                offsetY: -10,
+                start: 0.55, // 從之前停下來的位置繼續
+                end: 0, 
+            }
+        ]
+        
+            // t1 左上捷運用時間線
+            // t2 右下捷運用時間線
+
+            const t1 = gsap.timeline({ repeat: -1 })
+            const t2 = gsap.timeline({ repeat: -1 ,delay:5})
+
+
+            // 左上捷運動畫流程
+
+            t1.to(train_list[0], {
+                motionPath: motionPath_list_step1[0],
+                duration: 5, // 正常速度運行
+                ease: "power1.inOut",
+            })
+            .to(train_list[0],{
+                duration: 2, 
+                ease: "power3.out", // 讓列車慢慢停止
+            })
+            .to({}, { duration: 3 }) // 停留 3 秒
+            .to(train_list[0], {                                    
+                motionPath: motionPath_list_step2[0],   // 讓列車繼續跑完剩下的路
+                duration: 5,  // 再次移動
+                ease: "power1.inOut",
+            });
+
+
+            // 讓 右下捷運在開始動畫時，先跑出畫面外
+
+            gsap.set(train_list[1], {
+            x: 1000,  // 離開畫面 (向左移動 100px)
+            y: 1000,  // 離開畫面 (向上移動 100px)
+            opacity: 1 // 確保它可見
+            });
+
+
+            // 右下捷運動畫流程
+
+            t2.to(train_list[1], {
+                motionPath: motionPath_list_step1[1],
+                duration: 5, // 正常速度運行
+                ease: "power1.inOut",
+            })
+            .to(train_list[1],{
+                duration: 2, 
+                ease: "power3.out", // 讓列車慢慢停止
+            })
+            .to({}, { duration: 3 }) // 停留 3 秒
+            .to(train_list[1], {                                    
+                motionPath: motionPath_list_step2[1],   // 讓列車繼續跑完剩下的路
+                duration: 5,  // 再次移動
+                ease: "power1.inOut",
+            })
 
 
         if (navigator.geolocation) {
@@ -157,6 +275,10 @@
         </div>
         <div class="item">
             <station_green class="station"/>
+        </div>
+        <div class="item">
+            <train1  ref="train_1_Ref"/>
+            <train2  ref="train_2_Ref"/>
         </div>
         <div class="item">
             <img :src=building_tree class="bg_image" >
