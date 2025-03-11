@@ -7,6 +7,7 @@
     import station_red from '../../assets/images/MessionGeneral/station_red.vue';
     import logo from '../../assets/images/MessionGeneral/logo.vue';
     import train1 from '../../assets/images/MessionGeneral/train1.vue';
+    import train2 from '../../assets/images/MessionGeneral/train2.vue';
 
     import { gelocation } from "../../js/view/MissionGeralView/geolocation";
 
@@ -74,8 +75,93 @@
 
     }
 
+    // 引入 GSAP 
+    import gsap from "gsap";
+    // 註冊 MotionPathPlugin
+    import { MotionPathPlugin } from "gsap/MotionPathPlugin";
+
+    gsap.registerPlugin(MotionPathPlugin);
+
+    const train_1_Ref = ref(null); // train_1 的 ref
+    const train_2_Ref = ref(null); // train_2 的 ref
+
     onMounted(() => {       
         // updateLocation();
+
+        const tl = gsap.timeline({ repeat: -1 }); // 建立循環動畫
+       
+        // 左上角火車動畫
+        if (train_1_Ref.value) {
+            tl.to(train_1_Ref.value.train, {
+            motionPath: {
+                path: "#train1_road_path",
+                align: "#train1_road_path",
+                autoRotate: false,
+                alignOrigin: [0.5, 0.5],
+                offsetX: -10,
+                offsetY: -10,
+                start: 1,
+                end: 0.55, // 移動 80% 路徑後停止
+            },
+            duration: 5, // 正常速度運行
+            ease: "power1.inOut",
+            })
+            .to(train_1_Ref.value.train, { // 減速停下來
+                duration: 2, 
+                ease: "power3.out", // 讓列車慢慢停止
+            })
+            .to({}, { duration: 3 }) // 停留 3 秒
+            .to(train_1_Ref.value.train, { // 讓列車繼續跑完剩下的路
+                motionPath: {
+                path: "#train1_road_path",
+                align: "#train1_road_path",
+                autoRotate: false,
+                alignOrigin: [0.5, 0.5],
+                offsetX: -10,
+                offsetY: -10,
+                start: 0.55, // 從之前停下來的位置繼續
+                end: 0, 
+                },
+                duration: 5, // 再次移動
+                ease: "power1.inOut",
+            });
+        }
+
+        
+        //右下角火車動畫
+        if (train_2_Ref.value) {
+            tl.to(train_2_Ref.value.train, {
+            motionPath: {
+                path: "#train2_road_path",
+                align: "#train2_road_path",
+                autoRotate: false,
+                alignOrigin: [0.5, 0.5],
+                offsetX: -10,
+                offsetY: -10,
+                start: 1,
+                end: 0.55, // 移動 80% 路徑後停止
+            },
+            duration: 5, // 正常速度運行
+            ease: "power1.inOut",
+            })
+            .to(train_2_Ref.value.train, { // 減速停下來
+                duration: 2, 
+                ease: "power3.out", // 讓列車慢慢停止
+            })
+            .to({}, { duration: 3 }) // 停留 3 秒
+            .to(train_2_Ref.value.train, { // 讓列車繼續跑完剩下的路
+                motionPath: {
+                path: "#train2_road_path",
+                align: "#train2_road_path",
+                autoRotate: false,
+                alignOrigin: [0.5, 0.5],
+                start: 0.55, // 從之前停下來的位置繼續
+                end: 0, 
+                },
+                duration: 5, // 再次移動
+                ease: "power1.inOut",
+            });
+        }
 
 
         if (navigator.geolocation) {
@@ -164,14 +250,16 @@
             <station_red class="station"/>
         </div>
         <div class="item">
+            <train1  ref="train_1_Ref"/>
+            <!-- <train2  ref="train_2_Ref"/> -->
+        </div>
+        <div class="item">
             <img :src=building_tree class="bg_image" >
         </div>
         <div class="item">
             <logo class="logo"/>
         </div>
-        <div class="item">
-            <train1 />
-        </div>
+
     </div>
     <div class="hitarea">
         <button ref="pin_obj" class="pin" :style="pinStyle_red" @click="UserLocationSuccessful" @touchstart="UserLocationSuccessful" ><pin/></button>

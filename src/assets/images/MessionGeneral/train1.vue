@@ -2,10 +2,14 @@
 <svg width="1440" height="1024" viewBox="0 0 1440 1024" fill="none" xmlns="http://www.w3.org/2000/svg">
 
     <!-- 定義路線 -->
-    <path id="train1_road_path" d="M0.742906 494.571 L819.743 3.57119" stroke="black" fill="none"/>
+    <path id="train1_road_path" d="M-311.5 177C-296.855 368.162 -286.5 662.5 -286.5 662.5L0.74292 494.571L819.743 3.5712L996 -100.5L866.5 -413.5" stroke="none"/>
+
+
+
+
 
     <!-- 列車 -->
-    <g id="train1">
+    <g id="train1" ref="train">
         <path d="M566.135 46L564.176 47.132V47.389L566.135 46.2658V46Z" fill="#4E4D4F"/>
         <path d="M562.204 48.2695L560.246 49.4015V49.6564L562.204 48.5353V48.2695Z" fill="#4E4D4F"/>
         <path d="M558.274 50.5396L556.316 51.6694V51.9264L558.274 50.8031V50.5396Z" fill="#4E4D4F"/>
@@ -3309,3 +3313,11 @@
 </svg>
 
 </template>
+
+
+<script setup>
+import { ref, defineExpose } from "vue";
+
+const train = ref(null);
+defineExpose({ train }); // 讓父組件能存取 train 元素
+</script>
