@@ -1,5 +1,5 @@
 <template>
-  <div class="modal-overlay" @click.stop>
+  <div class="modal-overlay" v-if="!showResult" @click.stop>
     <div class="modal-content" @click.stop>
       <!-- 點擊關閉按鈕觸發 cancel 事件 -->
       <div class="modal-body">
@@ -39,9 +39,11 @@
     </div>
   </div>
   <alert_L_result
+    v-if="showResult"
     :visible="showResult"
-    :message="resultMessage"
-    @close="closeResult"
+    :isCorrect="isCorrect"
+    @close="closeModalHandler"
+    @retry="retryHandler"
   />
 </template>
 
@@ -62,32 +64,39 @@ export default {
     return {
       selectedAnswer: null,
       showResult: false,
-      resultMessage: "",
+      isCorrect: false, // 儲存答案是否正確
     };
   },
   emits: ["confirm", "cancel"],
   methods: {
     handleConfirm() {
       // 判斷答案
-      if (this.selectedAnswer === this.question.correct) {
-        this.resultMessage = "回答正確！";
-      } else {
-        this.resultMessage = "回答錯誤！";
-      }
+      this.isCorrect = this.selectedAnswer === this.question.correct;
       // 顯示結果彈窗
       this.showResult = true;
     },
     handleCancel() {
       this.$emit("cancel");
+      this.reset();
     },
     // 可在送出時回傳選擇的答案
     selectAnswer(answerId) {
       this.selectedAnswer = answerId;
       // console.log("選擇的答案 id:", answerId);
     },
+    closeModalHandler() {
+      // 關閉結果彈窗，並同時關閉問題彈窗（例如發送 cancel 事件給父組件）
+      this.showResult = false;
+      this.$emit("cancel"); // 可通知父組件關閉整個問答流程
+      this.reset();
+    },
+    retryHandler() {
+      this.showResult = false;
+      this.reset();
+    },
     reset() {
       this.selectedAnswer = null; // 清空已選擇的答案
-      this.resultMessage = ""; // 清空結果訊息
+      this.isCorrect = false;
     },
   },
 };
