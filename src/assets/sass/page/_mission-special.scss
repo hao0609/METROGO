@@ -62,8 +62,8 @@ body {
     border-radius: 50%;
   }
   img {
-    width: auto;
-    max-height: 150vh;
+    width: 80%;
+    max-width: 900px;
     flex: 0.25;
   }
   @include tablet() {
@@ -221,8 +221,12 @@ body {
         display: block;
         margin: 20px 10px;
       }
+      &.noshow {
+        display: none;
+      }
     }
     .station-img,
+    .question,
     .no-photo {
       cursor: pointer;
       border-radius: 50%;
@@ -504,4 +508,7 @@ button {
   &.at-footer {
     bottom: calc(50% - 100px); // 當到達 footer 時，移動到 footer 頂部
   }
+}
+.line-message2 {
+  display: none;
 }

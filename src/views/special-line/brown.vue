@@ -18,6 +18,10 @@
       </div>
       <img src="../../assets/images/MissionSpecial/station_start.png" alt="" />
     </header>
+    <!-- 彈窗引入測試 -->
+    <!-- <button class="btn_filled" @click="showPhotoAlert">彈窗測試</button>
+    <AlertWebM ref="PhotoAlert" :alertInfo="alertInfo" /> -->
+    <!-- 彈窗引入測試 -->
     <div class="mission-content">
       <section ref="section">
         <button class="section-button" @click="toggleSection">
@@ -85,6 +89,7 @@
             <div class="message"></div>
             <span class="list brown">審核條件</span>
             <p class="line-message">{{ line.message }}</p>
+            <p class="line-message2">{{ line.message2 }}</p>
             <img
               v-if="line.img"
               :src="line.img"
@@ -94,11 +99,18 @@
             <div
               v-else
               class="no-photo brown brown_shadow"
-              @click="openPhotoAlert"
+              @click="openPhotoAlert(line)"
             >
               <img :src="defaultImg" alt="Lock Icon" class="lock-icon" />
               <span class="lock-text">請上傳照片</span>
-              <alert_L_Photo ref="alertPhoto" />
+              <alert_L_Photo
+                ref="alertPhoto"
+                v-if="isVisible"
+                :message="selectedLine?.message"
+                :message2="selectedLine?.message2"
+                @cancel="handleModalCancel"
+                @confirm="handleModalConfirm"
+              />
             </div>
           </div>
         </div>
@@ -112,13 +124,23 @@
             <div class="title article">
               <h2>{{ question.title }}</h2>
               <p class="message">{{ question.message }}</p>
-              <div class="station-img brown brown_shadow">
+              <div
+                class="question brown brown_shadow"
+                @click="showRandomQuestion"
+              >
                 <div
                   v-if="question.icon"
                   class="question-icon"
                   v-html="question.icon"
                 ></div>
                 <span class="question-text">點擊回答問題</span>
+                <alert_L_question
+                  ref="alertQuestion"
+                  v-if="isQuestionVisible"
+                  :question="selectedQuestion"
+                  @cancel="handleQuestionCancel"
+                  @confirm="handleQuestionConfirm"
+                />
               </div>
             </div>
           </div>
@@ -181,7 +203,10 @@
 </template>
 <script>
 import { ref, onMounted, onUnmounted } from "vue";
+import questionData from "@/json/question.json";
 import alert_L_Photo from "@/alert/alert_L_Photo.vue";
+import alert_L_question from "@/alert/alert_L_question.vue";
+// import AlertWebM from "@/components/Alert_web_M.vue";
 import Navbar_V1 from "@/components/Navbar_V1.vue";
 import Footer from "@/components/Footer.vue";
 import ModalMenu from "@/components/Mission/ModalMenu.vue";
@@ -193,6 +218,8 @@ export default {
     Navbar_V1,
     Footer,
     alert_L_Photo,
+    // AlertWebM,
+    alert_L_question,
   },
 
   setup() {
@@ -208,6 +235,7 @@ export default {
     const isModalOpen = ref(false);
     const selectedModal = ref("");
     const sectionActive = ref(false);
+    // const PhotoAlert = ref(null); // 新增 PhotoAlert ref
     const alertPhoto = ref(null);
 
     const openModal = (type) => {
@@ -225,13 +253,75 @@ export default {
       sectionActive.value = !sectionActive.value;
     };
 
-    const openPhotoAlert = () => {
-      if (alertPhoto.value) {
-        alertPhoto.value.openPhotoAlert();
-      } else {
-        console.error("alertPhoto 未初始化");
-      }
+    const isVisible = ref(false); // 在父組件中定義 isVisible
+    const isQuestionVisible = ref(false);
+
+    const selectedLine = ref(null);
+    const selectedQuestion = ref(null);
+    const openPhotoAlert = (line) => {
+      selectedLine.value = line;
+      isVisible.value = true;
     };
+
+    // 取得棕線的問題列表
+    const brownLineQuestions = ref(
+      questionData.metroLines.find((line) => line.line === "棕線").questions
+    );
+
+    // 隨機選擇一題
+    const showRandomQuestion = () => {
+      const randomIndex = Math.floor(
+        Math.random() * brownLineQuestions.value.length
+      );
+      selectedQuestion.value = brownLineQuestions.value[randomIndex];
+      isQuestionVisible.value = true;
+    };
+
+    const handleModalCancel = () => {
+      isVisible.value = false;
+    };
+    const handleQuestionCancel = () => {
+      isQuestionVisible.value = false;
+    };
+
+    const handleModalConfirm = () => {
+      isVisible.value = false;
+    };
+    const handleQuestionConfirm = () => {
+      isQuestionVisible.value = false;
+    };
+
+    // 定義正確的顯示 alert 方法
+    // const showPhotoAlert = () => {
+    //   if (PhotoAlert.value) {
+    //     console.log("PhotoAlert.value:", PhotoAlert.value);
+    //     // 然後嘗試可能的方法名稱
+    //     if (typeof PhotoAlert.value.showAlert === "function") {
+    //       PhotoAlert.value.showAlert();
+    //     } else if (typeof PhotoAlert.value.openAlert === "function") {
+    //       PhotoAlert.value.openAlert();
+    //     } else {
+    //       console.log("可用的方法:", Object.keys(PhotoAlert.value));
+    //     }
+    //   }
+    // };
+
+    // const alertInfo = {
+    //   fristTitle: "審核結果",
+    //   svg_icon: `<svg width="160" height="160" viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+    //         <circle cx="80" cy="80" r="75" stroke="#7D8A93" stroke-width="10"/>
+    //         <path d="M63.2393 73.1818C63.2393 76.88 64.7084 80.4268 67.3234 83.0418C69.9385 85.6569 73.4852 87.126 77.1835 87.126C80.8817 87.126 84.4285 85.6569 87.0435 83.0418C89.6586 80.4268 91.1277 76.88 91.1277 73.1818C91.1277 69.4835 89.6586 65.9368 87.0435 63.3217C84.4285 60.7067 80.8817 59.2375 77.1835 59.2375C73.4852 59.2375 69.9385 60.7067 67.3234 63.3217C64.7084 65.9368 63.2393 69.4835 63.2393 73.1818Z" stroke="#7D8A93" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+    //         <path d="M91.1134 111.84L83.7555 119.198C82.0124 120.939 79.6493 121.917 77.1854 121.917C74.7215 121.917 72.3585 120.939 70.6154 119.198L50.8889 99.4759C46.5553 95.1416 43.3603 89.8033 41.5882 83.9359C39.8161 78.0685 39.5217 71.8541 40.7315 65.8455C41.9412 59.8369 44.6174 54.2205 48.522 49.4961C52.4266 44.7716 57.4384 41.0856 63.1117 38.7659C68.7849 36.4463 74.9436 35.565 81.0397 36.2004C87.1358 36.8358 92.9803 38.9683 98.0533 42.4081C103.126 45.8479 107.27 50.4883 110.116 55.9164C112.963 61.3446 114.423 67.3922 114.368 73.5211M109.72 124.311V124.357M109.72 110.366C111.803 110.36 113.825 109.654 115.46 108.363C117.095 107.071 118.25 105.269 118.739 103.243C119.229 101.218 119.025 99.0868 118.16 97.1912C117.295 95.2955 115.819 93.7448 113.968 92.7873C112.119 91.8401 110.004 91.5464 107.966 91.954C105.929 92.3616 104.09 93.4466 102.748 95.0324" stroke="#7D8A93" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+    //         </svg>
+    //         `, //無法確認 ICON 是否可以用外部引入.vue檔方式，目前先使用字串方式`,
+    //   SecondTittle: "「淡水站」、「關渡站」",
+    //   ThirdTittle: "上傳成功",
+    //   ButtonText: "確認",
+    //   allowOutsideClick: true,
+    //   function: () => {
+    //     console.log("Alert 確認按鈕被點擊");
+    //   },
+    // };
 
     const stations = ref([
       {
@@ -266,7 +356,8 @@ export default {
         title: "劍南路站 ",
         subtitle:
           "美麗華摩天輪是大直地標，可俯瞰台北夜景，周邊有百貨商場、美食餐廳，還可前往內湖河濱公園，享受都市中的綠意。",
-        message: "請拍攝「美麗華摩天輪」.",
+        message: "請拍攝「美麗華摩天輪」",
+        message2: "(請拍攝美麗華摩天輪整體）",
         // img: "/src/assets/images/MissionSpecial/red_01.png",
         img: null,
       },
@@ -275,7 +366,8 @@ export default {
         title: "松山機場 ",
         subtitle:
           "市區內的機場，交通便利，提供國內與東亞航線，附近的美堤河濱公園可欣賞飛機起降，適合親子散步與攝影愛好者。",
-        message: "請拍攝「松山機場景觀台」.",
+        message: "請拍攝「松山機場景觀台」",
+        message2: "（請拍攝松山機場景觀台整體）",
         img: null,
       },
       {
@@ -283,7 +375,8 @@ export default {
         title: "大湖公園站 ",
         subtitle:
           "環湖步道適合散步、慢跑，湖中小島與拱橋景致優美，湖畔有大片草坪，是台北市內難得的自然綠地，適合親子與寵物同遊。",
-        message: "請拍攝「大湖公園」.",
+        message: "請拍攝「大湖公園」",
+        message2: "（請拍攝含有大湖公園字樣）",
         img: null,
       },
     ]);
@@ -405,8 +498,6 @@ export default {
         document.querySelector(".to-top").classList.remove("at-footer");
       }
 
-      // showToTop.value = scrollTop > 200; // 滾動超過 200px 才顯示
-
       // 淡化
       if (!header.value || !footer.value) return;
 
@@ -425,24 +516,6 @@ export default {
           missionMainEl.style.opacity = 1;
         }
       }
-
-      // if (scrollTop < startScroll) {
-      //   section.value.style.position = "fixed";
-      //   section.value.style.top = `${headerRect.bottom}px`;
-      //   section.value.style.transform = "translateY(0px)";
-      // } else if (scrollTop >= startScroll && scrollTop <= stopScroll) {
-      //   // 正常隨滾動移動
-      //   section.value.style.position = "absolute";
-      //   section.value.style.top = `${startScroll + gap}px`;
-      //   section.value.style.transform = `translateY(${
-      //     scrollTop - startScroll
-      //   }px)`;
-      // } else {
-      //   // 當 section 底部碰到 question-section，固定 section 位置
-      //   // section.value.style.position = "absolute";
-      //   // section.value.style.top = `${questionStop - sectionHeight}px`;
-      //   // section.value.style.transform = "translateY(0px)";
-      // }
 
       const lineElements = document.querySelectorAll(".mission-main .line");
       let activeId = null;
@@ -514,8 +587,23 @@ export default {
       sectionActive,
       toTop,
       showToTop,
-      alert_L_Photo,
+
+      isQuestionVisible,
+      questionData,
+      selectedQuestion,
+      handleQuestionConfirm,
+      handleQuestionCancel,
+      showRandomQuestion,
       openPhotoAlert,
+
+      selectedLine,
+      isVisible,
+      handleModalCancel,
+      handleModalConfirm,
+
+      // PhotoAlert, // 返回 PhotoAlert ref
+      // showPhotoAlert,
+      // alertInfo, // 返回 alertInfo
     };
   },
 };

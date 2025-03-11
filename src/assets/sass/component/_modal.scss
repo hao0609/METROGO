@@ -5,14 +5,16 @@
   margin: auto;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.266);
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 10000;
+  cursor: default;
 }
 
 .modal-content {
-  max-height: 80vh;
+  max-height: 90vh;
   overflow-y: auto;
   background-color: $neutral-0;
   padding: 40px 24px;
@@ -21,114 +23,167 @@
   flex-direction: column;
   position: relative;
   gap: 40px;
-  &.modal-large {
-    max-width: 1138px;
-  }
-  // 小型彈窗尺寸
-  &.modal-small {
-    max-width: 480px;
-  }
-  &.mobile {
-    max-width: 335px;
-  }
-}
+  width: 100%;
+  max-width: 1138px;
+  .modal-img {
+    // background-size: cover;
+    // background-position: bottom;
+    position: absolute;
+    z-index: 0;
+    &.right {
+      // background-image: url("../../images/MissionSpecial/addPhoto-BG.png");
+      right: -50px;
+      bottom: -50px;
+    }
+    &.left {
+      // background-image: url("../../images/MissionSpecial/addPhoto-BG2.png");
 
-.modal-title {
-  // max-width: 1138px;
-  margin: 0;
-  //   background-color: #fcf;
-  text-align: center;
-
-  h2 {
-    @extend h2;
-    color: $neutral-700;
-    margin: 0;
+      left: 0px;
+      bottom: -10px;
+    }
+  }
+  @include mobile() {
+    width: 335px;
+    .modal-bg.left,
+    .modal-bg.right {
+      background-image: none;
+    }
   }
 }
-.item {
-  display: flex;
-  gap: 40px;
-}
-.item-M {
-  text-align: center;
-  gap: 24px;
-}
-.txt {
+.modal-body {
+  z-index: 1;
+
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  max-height: 200px;
-  p {
-    margin: 0;
+  justify-content: center;
+  align-items: center;
+  .title1 {
+    color: $neutral-700;
+    &.white {
+      color: $neutral-0;
+    }
+  }
+  .title2 {
+    color: $neutral-400;
+  }
+  .add-photo {
+    margin-top: 24px;
+    width: 300px;
+    height: 300px;
+    border: 7px dashed var(--Primary-Primary-200, #e0c4ee);
+    cursor: pointer;
+  }
+  .add-icon {
+    color: var(--Primary-Primary-200, #e0c4ee);
+    text-align: center;
+    font-size: 128px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 200%;
+  }
+  h2 {
+    color: $neutral-700;
+  }
+  @include mobile() {
+    .add-photo {
+      width: 200px;
+      height: 200px;
+    }
+    .add-icon {
+      font-size: 80px;
+    }
   }
 }
-img {
-  width: 100%;
-  border-radius: 12px;
-}
-.title2 {
-  @extend .title2;
-  @extend .bold;
-}
-p {
-  @extend p;
-  margin: 0;
+
+.close-btn {
+  @include btn($primary-400, $neutral-0);
+  margin-right: 5px;
+  min-width: 27px;
+  font-size: 27px;
+  padding: 5px 7px;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  cursor: pointer;
+  &:hover {
+    transform: scale(1.1);
+  }
 }
 
 .modal-footer {
+  z-index: 1;
+  .btn-group {
+    display: flex;
+    gap: 8px;
+  }
   display: flex;
   justify-content: center;
+  flex-direction: column;
   align-items: center;
   gap: 8px;
-  margin-top: 24px;
-  .btn {
-    margin: 0;
-  }
 }
 .btn {
-  @extend .btn_filled;
-  margin: auto;
-}
-.btn.cancel {
   @extend .btn_outline;
+  background-color: #fff;
+  width: 150px;
 }
-.modal-content::-webkit-scrollbar-thumb {
-  background: #888;
-  border-radius: 4px;
+.submit-btn {
+  @extend .btn_filled;
+  width: 300px;
+  &.small {
+    width: 150px;
+  }
 }
+
 @include mobile() {
   .modal-content {
     max-width: 90vw;
-    gap: 24px;
-    &.modal-small {
-      text-align: center;
-    }
+    gap: 8px;
   }
-  .item {
-    flex-direction: column;
+  .btn {
+    width: 130px;
+  }
+  .submit-btn {
+    width: 260px;
   }
   .modal-footer {
     margin-top: 24px;
   }
 }
-.close-button {
-  font-size: 30px;
-  text-align: right;
-  position: absolute;
-  right: 5px;
-  top: 5px;
-  transition: all 0.3s ease;
-  color: $primary-400;
-  cursor: pointer;
-
-  &:hover {
-    // color: lighten($primary-400, 10%);
-    background: lighten($primary-400, 10%);
-  }
-  &:active {
-    background: darken($primary-400, 10%);
-  }
+.question-title {
+  background-color: $primary-400;
+  color: $neutral-0;
+  border-radius: 10px;
+  padding: 24px;
 }
-.login-img {
-  max-width: 160px;
+.answer-group {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  &:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+  }
+
+  margin: 10px 0;
+  .answer-list {
+    border: 3px solid $primary-400;
+    color: $primary-400;
+    border-radius: 10px;
+    flex: 1;
+  }
+  .answer-circle {
+    width: 52px;
+    height: 52px;
+    border: 3px solid $primary-400;
+    color: $primary-400;
+    border-radius: 50%;
+  }
+  &.selected {
+    .answer-list {
+      background-color: $primary-400;
+      border: 3px solid $primary-400;
+      color: $neutral-0;
+    }
+  }
 }
