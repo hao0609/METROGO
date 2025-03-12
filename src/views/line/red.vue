@@ -8,6 +8,8 @@
     import logo from '../../assets/images/MessionGeneral/logo.vue';
     import train1 from '../../assets/images/MessionGeneral/train1.vue';
     import train2 from '../../assets/images/MessionGeneral/train2.vue';
+    import car1 from '../../assets/images/MessionGeneral/car1.vue'
+    import car2 from '../../assets/images/MessionGeneral/car2.vue'
 
     import { gelocation } from "../../js/view/MissionGeralView/geolocation";
 
@@ -85,6 +87,9 @@
     const train_1_Ref = ref(null); // train_1 的 ref
     const train_2_Ref = ref(null); // train_2 的 ref
 
+    const car_1_Ref = ref(null); // car_1 的 ref
+    const car_2_Ref = ref(null); // car_2 的 ref
+
     onMounted(() => {       
         // updateLocation();
 
@@ -92,10 +97,13 @@
         // 捷運物件 ref ( 左上 & 右下)
         const  train_list =  [train_1_Ref.value.train,train_2_Ref.value.train]
 
+        // 車子物件 ref ( 右上 & 左下)
+        const  car_list = [car_1_Ref.value.car1,car_2_Ref.value.car2]
+
         // 第一次移動位置到停下來 ( 左上 & 右下)
         const motionPath_list_step1 = [
 
-                {
+            {
                 path: "#train1_road_path",
                 align: "#train1_road_path",
                 autoRotate: false,
@@ -114,7 +122,27 @@
                 offsetY: -10,
                 start: 1,
                 end: 0.55, // 移動 80% 路徑後停止
-            }
+            },
+            {
+                path: "#car1_road_path",
+                align: "#car1_road_path",
+                autoRotate: false,
+                alignOrigin: [0.5, 0.5],
+                offsetX: -20,
+                offsetY: -20,
+                start: 1,
+                end: 0.4, // 移動 80% 路徑後停止
+            },
+            {
+                path: "#car2_road_path",
+                align: "#car2_road_path",
+                autoRotate: false,
+                alignOrigin: [0.5, 0.5],
+                offsetX: -20,
+                offsetY: -20,
+                start: 1,
+                end: 0.5, // 移動 80% 路徑後停止
+            },
         ]
 
         // 第二次移動位置 ( 左上 & 右下)
@@ -139,14 +167,48 @@
                 offsetY: -10,
                 start: 0.55, // 從之前停下來的位置繼續
                 end: 0, 
-            }
+            },
+            {
+                path: "#car1_road_path",
+                align: "#car1_road_path",
+                autoRotate: false,
+                alignOrigin: [0.5, 0.5],
+                offsetX: -20,
+                offsetY: -20,
+                start: 0.4, // 從之前停下來的位置繼續
+                end: 0, 
+            },
+            {
+                path: "#car2_road_path",
+                align: "#car2_road_path",
+                autoRotate: false,
+                alignOrigin: [0.5, 0.5],
+                offsetX: -20,
+                offsetY: -20,
+                start: 0.5, // 從之前停下來的位置繼續
+                end: 0, 
+            },
         ]
         
             // t1 左上捷運用時間線
             // t2 右下捷運用時間線
 
             const t1 = gsap.timeline({ repeat: -1 })
-            const t2 = gsap.timeline({ repeat: -1 ,delay:5})
+            const t2 = gsap.timeline({ repeat: -1,delay:5})
+            const t3 = gsap.timeline({ repeat: -1,delay:3})
+            const t4 = gsap.timeline({ repeat: -1,delay:2})
+
+
+
+            // 讓 右下捷運在開始動畫時，先跑出畫面外
+
+            const getoutlist = [car_list[0],car_list[1],train_list[1]]
+
+            gsap.set(getoutlist, {
+            x: 1000,  // 離開畫面 (向左移動 100px)
+            y: 1000,  // 離開畫面 (向上移動 100px)
+            opacity: 1 // 確保它可見
+            });
 
 
             // 左上捷運動畫流程
@@ -168,15 +230,6 @@
             });
 
 
-            // 讓 右下捷運在開始動畫時，先跑出畫面外
-
-            gsap.set(train_list[1], {
-            x: 1000,  // 離開畫面 (向左移動 100px)
-            y: 1000,  // 離開畫面 (向上移動 100px)
-            opacity: 1 // 確保它可見
-            });
-
-
             // 右下捷運動畫流程
 
             t2.to(train_list[1], {
@@ -195,6 +248,45 @@
                 ease: "power1.inOut",
             })
 
+
+
+            // 右上車子動畫流程
+
+            t3.to(car_list[0], {
+                motionPath: motionPath_list_step1[2],
+                duration: 5, // 正常速度運行
+                ease: "power1.inOut",
+            })
+            .to(car_list[0],{
+                duration: 2, 
+                ease: "power3.out", // 讓列車慢慢停止
+            })
+            .to({}, { duration: 7 }) // 停留 7 秒
+            .to(car_list[0], {                                    
+                motionPath: motionPath_list_step2[2],   // 讓列車繼續跑完剩下的路
+                duration: 5,  // 再次移動
+                ease: "power1.inOut",
+            });
+
+
+
+            // 左下車子動畫流程
+
+            t4.to(car_list[1], {
+                motionPath: motionPath_list_step1[3],
+                duration: 5, // 正常速度運行
+                ease: "power1.inOut",
+            })
+            .to(car_list[1],{
+                duration: 2, 
+                ease: "power3.out", // 讓列車慢慢停止
+            })
+            .to({}, { duration: 7 }) // 停留 7 秒
+            .to(car_list[1], {                                    
+                motionPath: motionPath_list_step2[3],   // 讓列車繼續跑完剩下的路
+                duration: 5,  // 再次移動
+                ease: "power1.inOut",
+            });
 
 
 
@@ -257,6 +349,10 @@
         </div>
         <div class="item">
             <img :src=road class="bg_image" >
+        </div>
+        <div class="item">
+            <car1  ref="car_1_Ref"/>
+            <car2  ref="car_2_Ref"/>
         </div>
         <div class="item">
             <img :src=bridge class="bg_image" >
