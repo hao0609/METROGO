@@ -408,13 +408,13 @@ const messageData = ref([
     <div class="section-group">
       <div
         class="go-choise-img"
-        style="background-image: url('https://picsum.photos/600/400')"
+        style="background-image: url('/src/assets/images/line/hot_pot_01_w600xh400.jpg')"
       >
         <h2 class="group-title">火鍋季開跑</h2>
       </div>
       <div
         class="go-choise-img"
-        style="background-image: url('https://picsum.photos/600/400')"
+        style="background-image: url('/src/assets/images/line/BanqiaoStation_03_600x400.jpg')"
       >
         <h2 class="group-title">耶誕城派對</h2>
       </div>
@@ -425,7 +425,7 @@ const messageData = ref([
     <router-link to="/tour/tourtype">
       <div
         class="w-full-img"
-        style="background-image: url('https://picsum.photos/600/200')"
+        style="background-image: url('/src/assets/images/line/Taipei101_02_w1312xh340.jpg')"
       >
         <h1 class="group-title white">101</h1>
       </div>
@@ -436,7 +436,7 @@ const messageData = ref([
     <router-link to="/tour/tourtype">
       <div
         class="w-full-img"
-        style="background-image: url('https://picsum.photos/600/200')"
+        style="background-image: url('/src/assets/images/line/TaipeiPerformingArtsCenter_01_w1312xh340.jpg')"
       >
         <h1 class="group-title white">士林</h1>
       </div>
