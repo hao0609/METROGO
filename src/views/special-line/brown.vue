@@ -262,10 +262,13 @@ export default {
       selectedLine.value = line;
       isVisible.value = true;
     };
-
+    // const openQuestion = () => {
+    //   // selectedQuestion.value = questions;
+    //   isQuestionVisible.value = true;
+    // };
     // 取得棕線的問題列表
     const brownLineQuestions = ref(
-      questionData.metroLines.find((line) => line.line === "棕線").questions
+      questionData.metroLines.find((line) => line.line === "文湖線").questions
     );
 
     // 隨機選擇一題

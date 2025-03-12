@@ -74,9 +74,6 @@ body {
         font-size: 4em;
       }
     }
-    img {
-      max-height: 80vh;
-    }
   }
   @include mobile() {
     display: flex;
@@ -259,6 +256,7 @@ body {
     }
     @include mobile() {
       .station-img,
+      .question,
       .no-photo {
         width: 250px;
         height: 250px;
@@ -276,6 +274,12 @@ body {
       display: block;
       margin-bottom: 20px;
     }
+  }
+}
+@include mobile() {
+  .question {
+    width: 250px;
+    height: 250px;
   }
 }
 .red_shadow,

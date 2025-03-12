@@ -19,8 +19,22 @@
       <img src="../../assets/images/MissionSpecial/station_start.png" alt="" />
     </header>
     <div class="mission-content">
-      <section class="section" ref="section">
-        <ol>
+      <section ref="section">
+        <button class="section-button" @click="toggleSection">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="35"
+            height="62"
+            viewBox="0 0 35 62"
+            fill="none"
+          >
+            <path
+              d="M22.623 31L0.966795 7.4875L7.15742 0.771L34.9999 31L7.15742 61.229L0.971173 54.5125L22.623 31Z"
+              fill="white"
+            />
+          </svg>
+        </button>
+        <ol :class="{ section_active: sectionActive }">
           <li
             class="station title1 blue"
             v-for="station in stations"
@@ -76,9 +90,21 @@
               alt="Station Image"
               class="station-img"
             />
-            <div v-else class="no-photo blue blue_shadow">
+            <div
+              v-else
+              class="no-photo blue blue_shadow"
+              @click="openPhotoAlert(line)"
+            >
               <img :src="defaultImg" alt="Lock Icon" class="lock-icon" />
               <span class="lock-text">請上傳照片</span>
+              <alert_L_Photo
+                ref="alertPhoto"
+                v-if="isVisible"
+                :message="selectedLine?.message"
+                :message2="selectedLine?.message2"
+                @cancel="handleModalCancel"
+                @confirm="handleModalConfirm"
+              />
             </div>
           </div>
         </div>
@@ -94,11 +120,23 @@
               <p class="message">{{ question.message }}</p>
               <div class="station-img question-icon blue blue_shadow">
                 <div
-                  v-if="question.icon"
-                  class="question-icon"
-                  v-html="question.icon"
-                ></div>
-                <span class="question-text">點擊回答問題</span>
+                  class="question blue blue_shadow"
+                  @click="showRandomQuestion"
+                >
+                  <div
+                    v-if="question.icon"
+                    class="question-icon"
+                    v-html="question.icon"
+                  ></div>
+                  <span class="question-text">點擊回答問題</span>
+                  <alert_L_question
+                    ref="alertQuestion"
+                    v-if="isQuestionVisible"
+                    :question="selectedQuestion"
+                    @cancel="handleQuestionCancel"
+                    @confirm="handleQuestionConfirm"
+                  />
+                </div>
               </div>
             </div>
           </div>
@@ -128,6 +166,32 @@
             </div>
           </div> -->
     </div>
+    <div class="to-top" @click="toTop" v-show="showToTop">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="72"
+        height="72"
+        viewBox="0 0 72 72"
+        fill="none"
+      >
+        <g clip-path="url(#clip0_2008_5454)">
+          <path
+            d="M6.83203 27.6891L6.83203 44.3109L28.9805 22.1484L28.9805 72L40.0617 72L40.0617 22.1484L62.2101 44.3109L62.2101 27.6891L34.5211 6.41907e-06L6.83203 27.6891Z"
+            fill="white"
+          />
+        </g>
+        <defs>
+          <clipPath id="clip0_2008_5454">
+            <rect
+              width="72"
+              height="72"
+              fill="white"
+              transform="translate(0 72) rotate(-90)"
+            />
+          </clipPath>
+        </defs>
+      </svg>
+    </div>
     <div class="mission-footer" ref="footer">
       <img src="../../assets/images/MissionSpecial/station_end.png" alt="" />
     </div>
@@ -136,9 +200,12 @@
 </template>
 <script>
 import { ref, onMounted, onUnmounted } from "vue";
+import questionData from "@/json/question.json";
+import alert_L_Photo from "@/alert/alert_L_Photo.vue";
+import alert_L_question from "@/alert/alert_L_question.vue";
+// import AlertWebM from "@/components/Alert_web_M.vue";
 import Navbar_V1 from "@/components/Navbar_V1.vue";
 import Footer from "@/components/Footer.vue";
-
 import ModalMenu from "@/components/Mission/ModalMenu.vue";
 import PopupMenu from "@/components/Mission/PopupMenu.vue";
 export default {
@@ -147,6 +214,9 @@ export default {
     PopupMenu,
     Navbar_V1,
     Footer,
+    alert_L_Photo,
+    // AlertWebM,
+    alert_L_question,
   },
 
   setup() {
@@ -155,12 +225,16 @@ export default {
     const section = ref(null);
     const header = ref(null);
     const footer = ref(null);
+    const showToTop = ref(false);
     const questionSection = ref(null);
     const verticalLine = ref(null);
-
     const isPopupOpen = ref(false);
     const isModalOpen = ref(false);
     const selectedModal = ref("");
+    const sectionActive = ref(false);
+    // const PhotoAlert = ref(null); // 新增 PhotoAlert ref
+    const alertPhoto = ref(null);
+
     const openModal = (type) => {
       selectedModal.value = type;
       isModalOpen.value = true;
@@ -172,6 +246,83 @@ export default {
     const closeModal = () => {
       isModalOpen.value = false;
     };
+    const toggleSection = () => {
+      sectionActive.value = !sectionActive.value;
+    };
+
+    const isVisible = ref(false); // 在父組件中定義 isVisible
+    const isQuestionVisible = ref(false);
+
+    const selectedLine = ref(null);
+    const selectedQuestion = ref(null);
+    const openPhotoAlert = (line) => {
+      selectedLine.value = line;
+      isVisible.value = true;
+    };
+    // const openQuestion = () => {
+    //   // selectedQuestion.value = questions;
+    //   isQuestionVisible.value = true;
+    // };
+    // 取得棕線的問題列表
+    const brownLineQuestions = ref(
+      questionData.metroLines.find((line) => line.line === "板南線").questions
+    );
+
+    // 隨機選擇一題
+    const showRandomQuestion = () => {
+      const randomIndex = Math.floor(
+        Math.random() * brownLineQuestions.value.length
+      );
+      selectedQuestion.value = brownLineQuestions.value[randomIndex];
+      isQuestionVisible.value = true;
+    };
+
+    const handleModalCancel = () => {
+      isVisible.value = false;
+    };
+    const handleQuestionCancel = () => {
+      isQuestionVisible.value = false;
+    };
+
+    const handleModalConfirm = () => {
+      isVisible.value = false;
+    };
+    const handleQuestionConfirm = () => {
+      isQuestionVisible.value = false;
+    };
+
+    // 定義正確的顯示 alert 方法
+    // const showPhotoAlert = () => {
+    //   if (PhotoAlert.value) {
+    //     console.log("PhotoAlert.value:", PhotoAlert.value);
+    //     // 然後嘗試可能的方法名稱
+    //     if (typeof PhotoAlert.value.showAlert === "function") {
+    //       PhotoAlert.value.showAlert();
+    //     } else if (typeof PhotoAlert.value.openAlert === "function") {
+    //       PhotoAlert.value.openAlert();
+    //     } else {
+    //       console.log("可用的方法:", Object.keys(PhotoAlert.value));
+    //     }
+    //   }
+    // };
+
+    // const alertInfo = {
+    //   fristTitle: "審核結果",
+    //   svg_icon: `<svg width="160" height="160" viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+    //         <circle cx="80" cy="80" r="75" stroke="#7D8A93" stroke-width="10"/>
+    //         <path d="M63.2393 73.1818C63.2393 76.88 64.7084 80.4268 67.3234 83.0418C69.9385 85.6569 73.4852 87.126 77.1835 87.126C80.8817 87.126 84.4285 85.6569 87.0435 83.0418C89.6586 80.4268 91.1277 76.88 91.1277 73.1818C91.1277 69.4835 89.6586 65.9368 87.0435 63.3217C84.4285 60.7067 80.8817 59.2375 77.1835 59.2375C73.4852 59.2375 69.9385 60.7067 67.3234 63.3217C64.7084 65.9368 63.2393 69.4835 63.2393 73.1818Z" stroke="#7D8A93" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+    //         <path d="M91.1134 111.84L83.7555 119.198C82.0124 120.939 79.6493 121.917 77.1854 121.917C74.7215 121.917 72.3585 120.939 70.6154 119.198L50.8889 99.4759C46.5553 95.1416 43.3603 89.8033 41.5882 83.9359C39.8161 78.0685 39.5217 71.8541 40.7315 65.8455C41.9412 59.8369 44.6174 54.2205 48.522 49.4961C52.4266 44.7716 57.4384 41.0856 63.1117 38.7659C68.7849 36.4463 74.9436 35.565 81.0397 36.2004C87.1358 36.8358 92.9803 38.9683 98.0533 42.4081C103.126 45.8479 107.27 50.4883 110.116 55.9164C112.963 61.3446 114.423 67.3922 114.368 73.5211M109.72 124.311V124.357M109.72 110.366C111.803 110.36 113.825 109.654 115.46 108.363C117.095 107.071 118.25 105.269 118.739 103.243C119.229 101.218 119.025 99.0868 118.16 97.1912C117.295 95.2955 115.819 93.7448 113.968 92.7873C112.119 91.8401 110.004 91.5464 107.966 91.954C105.929 92.3616 104.09 93.4466 102.748 95.0324" stroke="#7D8A93" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+    //         </svg>
+    //         `, //無法確認 ICON 是否可以用外部引入.vue檔方式，目前先使用字串方式`,
+    //   SecondTittle: "「淡水站」、「關渡站」",
+    //   ThirdTittle: "上傳成功",
+    //   ButtonText: "確認",
+    //   allowOutsideClick: true,
+    //   function: () => {
+    //     console.log("Alert 確認按鈕被點擊");
+    //   },
+    // };
+
     const stations = ref([
       {
         id: 1,
@@ -242,46 +393,7 @@ export default {
     ]);
     const activeStationId = ref(null);
     const activeQuestionId = ref(null);
-    // 自訂平滑捲動函式（使用 easeInOut 緩動效果）
-    // function smoothScrollTo(targetY, duration = 1500) {
-    //   const startY = window.scrollY;
-    //   const diff = targetY - startY;
-    //   let start = null;
 
-    //   function step(timestamp) {
-    //     if (!start) start = timestamp;
-    //     const time = timestamp - start;
-    //     const percent = Math.min(time / duration, 1);
-    //     const easeInOut =
-    //       percent < 0.5
-    //         ? 2 * percent * percent
-    //         : -1 + (4 - 2 * percent) * percent;
-    //     window.scrollTo(0, startY + diff * easeInOut);
-    //     if (time < duration) {
-    //       window.requestAnimationFrame(step);
-    //     } else {
-    //       window.scrollTo(0, targetY);
-    //     }
-    //   }
-    //   window.requestAnimationFrame(step);
-    // }
-    // 攔截 a 點擊事件，並以自訂函式平滑捲動
-    // const handleAnchorClick = (event) => {
-    //   const a = event.target.closest("a");
-    //   if (
-    //     a &&
-    //     a.getAttribute("href") &&
-    //     a.getAttribute("href").startsWith("#")
-    //   ) {
-    //     event.preventDefault();
-    //     const targetId = a.getAttribute("href").substring(1);
-    //     const targetEl = document.getElementById(targetId);
-    //     if (targetEl) {
-    //       const targetY = targetEl.getBoundingClientRect().top + window.scrollY;
-    //       smoothScrollTo(targetY, 1500);
-    //     }
-    //   }
-    // };
     const gap = 50;
     const onScroll = () => {
       if (
@@ -298,12 +410,14 @@ export default {
       const headerHeight = header.value.offsetHeight;
       const headerRect = header.value.getBoundingClientRect();
       const footerRect = footer.value.getBoundingClientRect();
-      const questionRect = questionSection.value.getBoundingClientRect();
+      // const questionRect = questionSection.value.getBoundingClientRect();
+      const sectionRect = section.value.getBoundingClientRect();
 
       const startScroll = headerRect.bottom + scrollTop; // ball 開始滾動的點
       const stopScroll = footerRect.top + scrollTop - 150; // ball 停止滾動的點
-      const questionStop = questionRect.top + scrollTop; // section 停止的位置
-
+      // const questionStop = questionRect.top + scrollTop; // section 停止的位置
+      const sectionHeight = sectionRect.height;
+      showToTop.value = scrollTop > headerHeight; // 離開 header 才顯示
       // 線
       // 當滾動未達 header 高度的一半時，line 隱藏在 header 底下
       const gapAboveFooter = 20;
@@ -348,28 +462,58 @@ export default {
         ball.value.style.transform = `translateY(0px)`;
       }
 
-      // **控制 section：當 section 底部碰到 question-section 時停止移動**
-      const sectionRect = section.value.getBoundingClientRect();
-      const sectionHeight = sectionRect.height;
-      // 當滾動時 section 的底部位置 = (section 的 top + translateY + sectionHeight)
-      // 我們希望當這個值大於等於 question-section 的頂部（questionStop）時，停止移動
+      // section
       if (scrollTop < startScroll) {
+        // 還沒開始移動時，固定在 header 底下
         section.value.style.position = "fixed";
         section.value.style.top = `${headerRect.bottom}px`;
-        section.value.style.transform = "translateY(0px)";
-      } else if (scrollTop < questionStop - sectionHeight) {
-        // 正常隨滾動移動
-        section.value.style.position = "absolute";
-        section.value.style.top = `${startScroll + gap}px`;
-        section.value.style.transform = `translateY(${
-          scrollTop - startScroll
-        }px)`;
+        section.value.style.transform = "translateY(0)";
       } else {
-        // 當 section 底部碰到 question-section，固定 section 位置
+        // footer 的絕對頂部位置
+        const footerAbsoluteTop = footerRect.top + scrollTop;
+        // section 初始位置（絕對） = startScroll + gap
+        const sectionStart = startScroll + gap;
+        // 計算最大可移動距離：使 section 底部剛好碰到 footer
+        const maxTranslate = footerAbsoluteTop - sectionStart - sectionHeight;
+        // 目前應移動的距離
+        const currentTranslate = scrollTop - startScroll;
+        const translate = Math.min(currentTranslate, maxTranslate);
+
         section.value.style.position = "absolute";
-        section.value.style.top = `${questionStop - sectionHeight}px`;
-        section.value.style.transform = "translateY(0px)";
+        section.value.style.top = `${sectionStart}px`;
+        section.value.style.transform = `translateY(${translate}px)`;
       }
+      // toTop
+      const windowHeight = window.innerHeight;
+      const footerTop = footer.value.getBoundingClientRect().top + scrollTop;
+      const buffer = 10; // 預留一些空間
+
+      // 設定是否進入 footer
+      if (scrollTop + windowHeight >= footerTop - buffer) {
+        document.querySelector(".to-top").classList.add("at-footer");
+      } else {
+        document.querySelector(".to-top").classList.remove("at-footer");
+      }
+
+      // 淡化
+      if (!header.value || !footer.value) return;
+
+      const missionMainEl = document.querySelector(".mission-main");
+      if (missionMainEl) {
+        const rect = missionMainEl.getBoundingClientRect();
+        // 若 mission-main 還沒進入視窗（完全在下方）則透明度設定為 0.5
+        if (rect.top >= window.innerHeight) {
+          missionMainEl.style.opacity = 0.1;
+        }
+        // 進入部分視窗時根據上緣進入程度漸變
+        else if (rect.top < window.innerHeight && rect.top > 0) {
+          const progress = 1 - rect.top / window.innerHeight;
+          missionMainEl.style.opacity = 0.1 + progress * 0.9;
+        } else {
+          missionMainEl.style.opacity = 1;
+        }
+      }
+
       const lineElements = document.querySelectorAll(".mission-main .line");
       let activeId = null;
       lineElements.forEach((lineEl) => {
@@ -397,10 +541,15 @@ export default {
       });
       activeQuestionId.value = activeQuestion;
     };
+
+    const toTop = () => {
+      header.value && header.value.scrollIntoView({ behavior: "smooth" });
+    };
     onMounted(() => {
       questionSection.value = document.querySelector(".question-section");
       // document.addEventListener("click", handleAnchorClick);
       window.addEventListener("scroll", onScroll);
+      window.addEventListener("load", onScroll);
 
       onScroll();
     });
@@ -430,8 +579,28 @@ export default {
       section,
       activeStationId,
       activeQuestionId,
-      // handleAnchorClick,
+      toggleSection,
       verticalLine,
+      sectionActive,
+      toTop,
+      showToTop,
+
+      isQuestionVisible,
+      questionData,
+      selectedQuestion,
+      handleQuestionConfirm,
+      handleQuestionCancel,
+      showRandomQuestion,
+      openPhotoAlert,
+
+      selectedLine,
+      isVisible,
+      handleModalCancel,
+      handleModalConfirm,
+
+      // PhotoAlert, // 返回 PhotoAlert ref
+      // showPhotoAlert,
+      // alertInfo, // 返回 alertInfo
     };
   },
 };

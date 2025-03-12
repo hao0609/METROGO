@@ -2,9 +2,10 @@
 .popup-menu {
   background-color: #ddd;
   border-radius: 20px;
-  position: relative;
-  top: 27px;
-  min-width: 315px;
+  position: absolute;
+  top: 150px;
+  left: 150px;
+  max-width: 500px;
   padding: 20px;
   z-index: 50;
 

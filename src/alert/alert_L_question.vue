@@ -5,6 +5,11 @@
       <div class="modal-body">
         <h2>問答</h2>
         <div class="question-container">
+          <img
+            class="img-qa qa"
+            src="../assets/images/MissionSpecial/img_question.svg"
+            alt=""
+          />
           <div class="question-title title1 bold white">
             {{ question.text }}
           </div>
@@ -60,6 +65,7 @@ export default {
       required: true,
     },
   },
+
   data() {
     return {
       selectedAnswer: null,

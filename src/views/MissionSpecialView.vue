@@ -26,7 +26,6 @@
           <div class="money title1 bold lineH_28px">1,000,000</div>
         </div>
       </div>
-
       <div class="line_select_btns" ref="line_select_btns">
         <RouterLink to="red" class="router_link" @click="">
           <button class="red">

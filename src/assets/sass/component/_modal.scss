@@ -25,6 +25,7 @@
   gap: 40px;
   width: 100%;
   max-width: 1138px;
+  .img-qa,
   .modal-img {
     // background-size: cover;
     // background-position: bottom;
@@ -41,12 +42,16 @@
       left: 0px;
       bottom: -10px;
     }
+    &.qa {
+      left: -35%;
+    }
   }
   @include mobile() {
     width: 335px;
-    .modal-bg.left,
-    .modal-bg.right {
-      background-image: none;
+    .modal-img.left,
+    .modal-img.right,
+    .img-qa {
+      display: none;
     }
   }
 }
@@ -149,6 +154,9 @@
   .modal-footer {
     margin-top: 24px;
   }
+}
+.question-container {
+  position: relative;
 }
 .question-title {
   background-color: $primary-400;

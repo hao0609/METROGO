@@ -36,7 +36,6 @@
               /></svg
           ></span>
         </div>
-        <div class="title1 bold">問答</div>
         <div class="title1 bold">{{ resultMessage }}</div>
       </div>
       <div class="modal-footer">
