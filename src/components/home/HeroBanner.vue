@@ -17,7 +17,23 @@ const handleStartExperience = () => {
           MetroGo，每個捷運站都是你的遊戲關卡，我們精心設計了橫跨五條捷運線的一日遊、半日遊等特殊任務
         </p>
         <p class="sub-text">透過拍照打卡，一步步探索台北的獨特魅力</p>
-        <button class="btn-primary" @click.prevent="handleStartExperience">
+        <!-- <button class="btn-primary" @click.prevent="handleStartExperience">
+          立即體驗<svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            fill="currentColor"
+            class="bi bi-arrow-right"
+            viewBox="0 0 16 16"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"
+            />
+          </svg>
+        </button> -->
+        <RouterLink to="/general-mission/red" custom v-slot="{ navigate }">        
+          <button class="btn-primary" @click.prevent="handleStartExperience; navigate()">
           立即體驗<svg
             xmlns="http://www.w3.org/2000/svg"
             width="16"
@@ -32,6 +48,7 @@ const handleStartExperience = () => {
             />
           </svg>
         </button>
+        </RouterLink>
       </div>
       <div class="hero-image">
         <img

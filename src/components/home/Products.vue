@@ -50,9 +50,14 @@ const handleCompareProduct = (product) => {
     <div class="products-wrapper">
       <div class="section-header">
         <h2>最新商品</h2>
-        <button class="view-more" @click.prevent="handleViewMoreProducts">
+        <!-- <button class="view-more" @click.prevent="handleViewMoreProducts">
           查看更多
-        </button>
+        </button> -->
+        <RouterLink to="/store" custom v-slot="{ navigate }">        
+          <button class="view-more" @click="handleViewMoreProducts(); navigate()">
+            查看更多
+          </button>
+        </RouterLink>
       </div>
       <div class="product-list">
         <div v-for="product in products" :key="product.id" class="product-card">
@@ -121,7 +126,6 @@ const handleCompareProduct = (product) => {
     h2 {
       font-size: 2rem;
       color: #333;
-      font-weight: bold;
 
       @media (max-width: 1024px) {
         font-size: 1.8rem;

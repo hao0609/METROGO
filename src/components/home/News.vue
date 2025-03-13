@@ -30,9 +30,14 @@ const handleReadMore = (news) => {
     <div class="news-wrapper">
       <div class="section-header">
         <h2>好消息別錯過</h2>
-        <button class="view-more" @click.prevent="handleViewMoreNews">
+        <!-- <button class="view-more" @click.prevent="handleViewMoreNews">
           所有最新消息
-        </button>
+        </button> -->
+        <RouterLink to="/news" custom v-slot="{ navigate }">        
+          <button class="view-more" @click="handleViewMoreNews(); navigate()">
+            所有最新消息
+          </button>
+        </RouterLink>
       </div>
       <div class="news-list">
         <div v-for="news in newsList" :key="news.id" class="news-card">
