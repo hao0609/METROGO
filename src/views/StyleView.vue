@@ -213,62 +213,19 @@
       </div>
     </section>
   </div>
+
 </template>
 
-<script>
-// export default {
-//   name: "FontGuideView",
-// };
-//
-export default {
-  data() {
-    return {
-      currentIndex: 0,
-      items: [
-        {
-          image:
-            "https://cdn-static.tibame.com/banner/316098/images/fefeb74b-d6b1-45d7-9e1b-43142d0caa17.jpg",
-          alt: "Image 1",
-          title: "Title 1",
-          text: "Description for Image 1",
-          link: "/page1",
-        },
-        {
-          image: "src/assets/images/sample.jpg",
-          alt: "Image 2",
-          title: "Title 2",
-          text: "Description for Image 2",
-          link: "/page2",
-        },
-        {
-          image:
-            "https://cdn-static.tibame.com/banner/316098/images/fefeb74b-d6b1-45d7-9e1b-43142d0caa17.jpg",
-          alt: "Image 3",
-          title: "Title 3",
-          text: "Description for Image 3",
-          link: "/page3",
-        },
-      ],
-    };
-  },
-  methods: {
-    nextSlide() {
-      this.currentIndex = (this.currentIndex + 1) % this.items.length;
-    },
-    prevSlide() {
-      this.currentIndex = (this.currentIndex - 1 + this.items.length) % this.items.length;
-    },
-    goToSlide(index) {
-      this.currentIndex = index;
-    },
-    goToLink(link) {
-      window.location.href = link;
-    },
-  },
-};
-</script>
 
-<style>
+
+<script setup>
+
+
+
+
+
+</script>
+<style lang="scss" scoped>
 .font-guide {
   max-width: 1200px;
   margin: 0 auto;

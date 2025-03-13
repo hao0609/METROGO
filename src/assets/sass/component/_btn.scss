@@ -1,3 +1,6 @@
+@import '../base/color.scss';
+
+
 .btn_filled {
     @include btn($primary-400, $neutral-0);
     border: 1px solid $primary-400;

@@ -1,10 +1,10 @@
 <template>
-    <div class="container">
-        <AdminSidebar />
-        <div class="content-main">
-            <router-view></router-view>
-        </div>
-    </div>
+  <div class="container">
+      <AdminSidebar />
+      <div class="content-main">
+          <router-view></router-view>
+      </div>
+  </div>
 
 </template>
 
@@ -17,11 +17,11 @@
 import AdminSidebar from '@/components/AdminSidebar.vue';
 
 export default {
-    name: 'AdminMainpage',
-    components: {
-        AdminSidebar,
-    },
-    
-    
+  name: 'AdminMainpage',
+  components: {
+      AdminSidebar,
+  },
+  
+  
 };
 </script>

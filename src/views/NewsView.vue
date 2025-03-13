@@ -161,12 +161,6 @@
 
 </template>
 
-<style lang="scss" scoped>
-@use '../assets/sass/page/news.scss';
-
-
-</style>
-
 <script>
 import Pagination from '@/components/Pagination.vue';
 
@@ -215,3 +209,7 @@ export default {
 },
 };
 </script>
+
+<style lang="scss" scoped>
+@import '@/assets/sass/page/_news.scss';
+</style>

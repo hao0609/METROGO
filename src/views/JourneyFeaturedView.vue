@@ -169,9 +169,7 @@
   <Footer />
 </template>
 
-<style lang="scss" scoped>
-@use "../assets/sass/page/journey-featured";
-</style>
+
 
 <script>
 import Navbar_V1 from "@/components/Navbar_V1.vue";
@@ -193,3 +191,7 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+@import "@/assets/sass/page/journey-featured.scss";
+</style>

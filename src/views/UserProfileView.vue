@@ -206,10 +206,6 @@
     <Alert_web_M ref="alertM" :alertInfo="alertInfo" />
 </template>
 
-<style lang="scss" scoped>
-@use '../assets/sass/page/userprofile.scss';
-</style>
-
 <script>
 // Icons
 import SubwayRightIcon from '@/components/icons/IconSubwayRight.vue';
@@ -321,3 +317,6 @@ export default {
     
 };
 </script>
+<style lang="scss" scoped>
+@use '../assets/sass/page/userprofile.scss';
+</style>

@@ -236,5 +236,5 @@ import Navbar_V1 from "../components/Navbar_V1.vue";
 </template>
 
 <style lang="scss" scoped>
-@use "../assets/sass/page/tour";
+@import "../assets/sass/page/tour";
 </style>

@@ -1,10 +1,33 @@
 <script setup>
-import { RouterLink, RouterView } from "vue-router";
-import HelloWorld from "./components/HelloWorld.vue";
+ import { RouterView } from 'vue-router'
+
 </script>
 
 <template>
-  <!-- <header>
+ 
+    <!-- 保留 <router-view /> 来渲染路由组件 -->
+    <div class="app-container">
+   
+    <RouterView/>
+    
+  </div>
+</template>
+
+<style scoped>
+.app-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+}
+
+</style>
+
+
+<!--原本首頁瀏覽樣式頁面-->
+
+ <!--<template>
+  <header>
     <img
       alt="Vue logo"
       class="logo"
@@ -24,32 +47,22 @@ import HelloWorld from "./components/HelloWorld.vue";
         <RouterLink to="/entrance-view">EntranceView</RouterLink>
       </nav>
     </div>
-  </header> -->
+  </header> 
 
   <RouterView />
-  <!-- <Footer /> -->
-</template>
 
+</template>-->
+
+  <!-- <Footer /> -->
+  <!--</template> -->
+
+
+<!--
 <style scoped>
-/* header {
+header {
   line-height: 1.5;
   max-height: 100vh;
-}
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-nav {
-  width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
-}
-
-nav a.router-link-exact-active {
-  color: var(--color-text);
 }
 
 nav a.router-link-exact-active:hover {
@@ -64,7 +77,8 @@ nav a {
 
 nav a:first-of-type {
   border: 0;
-} */
+} 
+
 
 @media (min-width: 1024px) {
   header {
@@ -93,3 +107,4 @@ nav a:first-of-type {
   }
 }
 </style>
+-->
