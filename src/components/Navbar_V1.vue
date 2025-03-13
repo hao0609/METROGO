@@ -265,12 +265,41 @@ nav {
   display: flex;
 }
 
+.menu > li{
+  position: relative;
+}
+
+.menu > li::after {
+    position: absolute;
+    top: 20px;
+    left: 0;
+    content: "";
+    width: 100%;
+    height: 1px;
+    background: #ffffff;
+    bottom: 20px;
+    opacity: 0;
+    visibility: hidden;
+    -webkit-transition: 0.3s;
+    transition: 0.3s;
+}
+
+.menu > li:hover::after {
+    opacity: 1;
+    visibility: visible;
+}
+
 ul > li.dropdown {
   position: relative;
   display: flex;
   gap: 5px;
   align-items: center;
   cursor: pointer;
+}
+
+ul > li.dropdown > .dropdown_icon{
+  display: flex;
+  align-items: center;
 }
 
 ul > .dropdown > .dropdown_menu {
@@ -541,6 +570,20 @@ $all_animation_time: 0.4s;
 
 header > nav > .shopping_cart {
   cursor: pointer;
+  border-radius: 30%;
+}
+
+header > nav > .shopping_cart:hover {
+  background-color: #8C25C0;
+}
+
+header > nav > .user {
+  cursor: pointer;
+  border-radius: 30%;
+}
+
+header > nav > .user:hover {
+  background-color: #8C25C0;
 }
 
 // 斷點 945

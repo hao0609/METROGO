@@ -36,6 +36,7 @@
 
     const watchID = ref(0);
 
+    // 用戶定位座標物件位置判斷
     const updateLocation = async () =>{
 
         try {
@@ -52,7 +53,6 @@
 
             }else{
                 pinStyle_blue.value = pinjs("").pinStyle_blue.value;
-                alert_userlocation_stay_ref.value.UserLocationShowAlert(); 
             }
 
             station_result = result.station; // ✅ 更新最近的捷運站名稱
@@ -65,6 +65,26 @@
         }
     };
 
+
+    // 用戶定位不在捷運站附近彈窗提醒
+    const NO_location_alert = async () => {
+        try {
+            const result  = await gelocation(); // 等待 `gelocation()` 完成
+
+            console.log( "執行 NO_location_alert");
+            
+
+            if (result.No_Station == true) {
+                alert_userlocation_stay_ref.value.UserLocationShowAlert(); 
+            }  
+        } catch (error) {
+            console.error("獲取位置失敗:", error);
+        }
+    }
+
+    NO_location_alert()
+    
+    
     locationInfobox_style.value = locationInfo().locationInfobox_style.value;  // 使用 pin.js 的 locationInfobox_style()
     
 
