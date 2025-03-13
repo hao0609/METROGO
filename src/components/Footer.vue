@@ -1,4 +1,6 @@
-<script setup></script>
+<script setup>
+import { RouterLink } from "vue-router";
+</script>
 
 <template>
   <footer class="footer">
@@ -13,10 +15,10 @@
 
         <nav class="footer-menu">
           <ul>
-            <li><a href="/attractions">景點介紹</a></li>
-            <li><a href="/points">積分任務</a></li>
-            <li><a href="/shop">線上商城</a></li>
-            <li><a href="/news">最新消息</a></li>
+            <li><RouterLink to="/sights">景點介紹</RouterLink></li>
+            <li><RouterLink to="/points">積分任務</RouterLink></li>
+            <li><RouterLink to="/shop">線上商城</RouterLink></li>
+            <li><RouterLink to="/news">最新消息</RouterLink></li>
           </ul>
         </nav>
       </div>
@@ -33,8 +35,12 @@
 
         <nav class="footer-link">
           <ul>
-            <li><a href="/privacy">隱私權政策</a></li>
-            <li><a href="/terms">使用者條款</a></li>
+            <li>
+              <RouterLink to="/privacy">隱私權政策</RouterLink>
+            </li>
+            <li>
+              <RouterLink to="/terms">使用者條款</RouterLink>
+            </li>
           </ul>
         </nav>
       </div>

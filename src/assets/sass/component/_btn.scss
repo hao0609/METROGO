@@ -1,76 +1,78 @@
 .btn_filled {
-    @include btn($primary-400, $neutral-0);
-    border: 1px solid $primary-400;
+  @include btn($primary-400, $neutral-0);
+  border: 1px solid $primary-400;
 
-    &:hover{
-        //background: lighten($primary-400, 10%);
-        background: #9538C4;
-    }
-    &:active {
-        //background: darken($primary-400, 10%);
-        background: #6d1d95;
+  &:hover {
+    //background: lighten($primary-400, 10%);
+    background: #f6e9fe;
+  }
+  &:active {
+    //background: darken($primary-400, 10%);
+    background: #9538c4;
+  }
 
-    }
-
-    @include mobile(){
-        min-width: 136px;
-    }
+  @include mobile() {
+    min-width: 136px;
+  }
 }
 
 .btn_outline {
-    @include btn(transparent, $primary-400);
-    border: 1px solid $primary-400;
+  @include btn(transparent, $primary-400);
+  border: 1px solid $primary-400;
 
-    &:hover{
-        background-color: #F6E9FE;
-    }
-    &:active {
-        //background-color: darken(#F6E9FE, 10%);
-        background-color: #E2B8FB;
-        //border-color: darken($primary-400, 10%);
-        border-color: #9538C4;
-    }
+  &:hover {
+    background-color: #f6e9fe;
+  }
+  &:active {
+    //background-color: darken(#F6E9FE, 10%);
+    background-color: #e2b8fb;
+    //border-color: darken($primary-400, 10%);
+    border-color: #9538c4;
+  }
 
-    @include mobile(){
-        min-width: 136px;
-    }
+  @include mobile() {
+    min-width: 136px;
+  }
 }
 
 .btn_white {
-    @include btn($neutral-0, $primary-400);
-    border: 1px solid $neutral-0;
+  @include btn($neutral-0, $primary-400);
+  border: 1px solid $neutral-0;
 
-    &:hover{
-        background-color: #F6E9FE;
-    }
-    &:active {
-        background-color: #E2B8FB;
-        //color: darken($primary-400, 10%);
-        color: #9538C4;
-    }
-    
-    @include mobile(){
-        min-width: 136px;
-    }
-    
+  &:hover {
+    background-color: #f6e9fe;
+  }
+  &:active {
+    background-color: #e2b8fb;
+    //color: darken($primary-400, 10%);
+    color: #9538c4;
+  }
+
+  @include mobile() {
+    min-width: 136px;
+  }
 }
 
-.btn_filled, .btn_white, .btn_outline {
-    &.small {
-        height: 48px;
-        padding: 12px 20px;
-        min-width: 100px;
-        font-size: 16px;
-        line-height: 24px;
+.btn_filled,
+.btn_white,
+.btn_outline {
+  &.small {
+    height: 48px;
+    padding: 12px 20px;
+    min-width: 100px;
+    font-size: 16px;
+    line-height: 24px;
 
-        @include mobile(){
-            min-width: 80px;
-        }
+    @include mobile() {
+      min-width: 80px;
     }
+  }
 }
 
-.btn_filled:disabled, .btn_white:disabled, .btn_outline:disabled {
-    @include btn($neutral-150, $neutral-200);
-    border: 1px solid $neutral-150;
-    cursor: not-allowed;
+.btn_filled:disabled,
+.btn_white:disabled,
+.btn_outline:disabled {
+  @include btn($neutral-150, $neutral-200);
+  border: 1px solid $neutral-150;
+  cursor: not-allowed;
 }

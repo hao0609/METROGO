@@ -3,7 +3,16 @@ import { ref, onMounted, onBeforeUnmount } from "vue";
 import "animate.css";
 // 引入 Navbar
 import Navbar_V1 from "../components/Navbar_V1.vue";
+import Footer from "../components/Footer.vue";
 import Swiper from "../components/Swiper.vue";
+
+import { register } from "swiper/element/bundle";
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+
+// 註冊 swiper 自訂元素
+register();
 
 // logos 管理
 import img1 from "../assets/images/sights/logo/Tibame.png";
@@ -29,7 +38,6 @@ const handleMouseMove = (event) => {
     (headerContainer.value && headerContainer.value.contains(event.target))
   ) {
     header.value = true;
-    header.vi;
   } else {
     header.value = false;
   }
@@ -341,6 +349,7 @@ onBeforeUnmount(() => {
       </div>
     </Vue3Marquee>
   </div>
+  <Footer />
 </template>
 
 <style lang="scss" scoped>

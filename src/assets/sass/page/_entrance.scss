@@ -1,12 +1,12 @@
-*{
+* {
   box-sizing: border-box;
 }
 
-body{
+body {
   margin: 0;
   padding: 0;
 }
-.entrance-container{
+.entrance-container {
   width: 100%;
   max-width: 1920px;
 }
@@ -16,11 +16,12 @@ body{
   left: 0;
   width: 100%;
   height: 100vh;
-  background: url('@/assets/images/Entrance_background.svg') center/cover no-repeat;
+  background: url("@/assets/images/Entrance_background.svg") center/cover
+    no-repeat;
   z-index: -1;
 }
 
-.content{
+.content {
   width: 100%;
   position: relative;
   top: 30px;
@@ -28,28 +29,28 @@ body{
   flex-direction: column;
   gap: 32px;
 }
-.front_logo{
+.front_logo {
   margin: auto;
   display: flex;
   justify-content: center;
 }
-.entrance-info{
+.entrance-info {
   margin: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-.entrance-arrow{
+.entrance-arrow {
   width: 100%;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 280px;
-  
+  gap: 480px;
 }
 .left {
   cursor: pointer;
   z-index: 999;
+  transition: transform 0.5s ease;
 }
 .left:hover {
   transform: scale(1.1);
@@ -67,12 +68,11 @@ body{
   right: 8px;
 }
 
-
 @media screen and (max-width: 946px) {
   .metro {
     top: 300px;
   }
-  .entrance-arrow{
+  .entrance-arrow {
     gap: 20px;
   }
 }

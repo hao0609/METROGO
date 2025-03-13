@@ -41,7 +41,10 @@
         <div class="entrance-arrow">
           <div class="left">
             <RouterLink to="/home">
-              <img src="../assets/images/Entrance_FrontEnd.svg" alt="前往前台" />
+              <img
+                src="../assets/images/Entrance_FrontEnd.svg"
+                alt="前往前台"
+              />
             </RouterLink>
           </div>
           <div class="left">
@@ -52,7 +55,10 @@
         </div>
         <div class="metro">
           <img class="small" src="../assets/images/Entrance_metro_small.svg" />
-          <img class="big" src="../assets/images/Entrance_metro_big.svg" />
+          <img
+            class="big animate__animated animate__heartBeat"
+            src="../assets/images/Entrance_metro_big.svg"
+          />
         </div>
       </div>
     </div>
@@ -62,6 +68,7 @@
 <script>
 import { RouterLink } from "vue-router";
 import icon_black from "../components/icons/icon_black.vue";
+import "animate.css";
 
 export default {
   components: {
@@ -73,7 +80,12 @@ export default {
 <style scoped>
 @import "../assets/sass/page/_entrance.scss";
 
+.big {
+  animation: heartBeat 10s infinite;
+}
+
 /* 預設大尺寸 */
+
 .rwd-svg {
   width: 100%;
   height: auto;
