@@ -8,9 +8,7 @@ import { RouterLink } from "vue-router";
       <!-- 上半部分：Logo和導航選單的橫式排列 -->
       <div class="footer-top">
         <div class="footer-logo">
-          <a href="/">
-            <img src="../assets/images/Entrance_Logo.svg" alt="METROGO" />
-          </a>
+          <RouterLink to="/"><icon_white></icon_white></RouterLink>
         </div>
 
         <nav class="footer-menu">
@@ -47,6 +45,16 @@ import { RouterLink } from "vue-router";
     </div>
   </footer>
 </template>
+
+<script>
+import icon_white from "../components/icons/icon_white.vue";
+
+export default {
+  components: {
+    icon_white,
+  },
+};
+</script>
 
 <style lang="scss" scoped>
 @use "../assets/sass/component/footer.scss";
