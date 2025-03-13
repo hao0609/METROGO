@@ -147,12 +147,19 @@
 .item > .product_quantity > .sub{
     display: flex;
     align-items: center;
+    cursor: pointer;
 }  
 
 .item > .product_quantity > .add{
     display: flex;
     align-items: center;
+    cursor: pointer;
 }  
+
+.item > .delete_item{
+    cursor: pointer;
+} 
+
 
 
 

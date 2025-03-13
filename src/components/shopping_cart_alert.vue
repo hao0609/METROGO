@@ -83,6 +83,7 @@
 .shopping_cart_alert{
     background: #ffffff;
     border-radius: 20px;
+    border: 1px solid #000000;
     padding: 30px;
     display: flex;
     flex-direction: column;
@@ -105,6 +106,7 @@
 .shopping_cart_alert > .tittle_box > .close_btn {
     display: flex;
     align-items: center;
+    cursor: pointer;
 }
 
 .shopping_cart_alert > .cart_empty {

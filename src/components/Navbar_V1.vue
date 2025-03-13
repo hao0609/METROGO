@@ -153,9 +153,10 @@ const cartItems = ref([
       </div>
 
       <div class="user">
-        <RouterLink to="/user-profile"
-          ><user v-show="user_login_status"></user
-        ></RouterLink>
+        <RouterLink to="/user-profile">
+        <!-- <user v-show="user_login_status"></user> --> <!--暫時移除登入判斷-->
+        <user ></user>
+        </RouterLink>
       </div>
 
       <RouterLink to="/login">
@@ -206,15 +207,18 @@ const cartItems = ref([
         <RouterLink to="/store"><h2>商城</h2></RouterLink>
         <RouterLink to="/news"><h2>最新消息</h2></RouterLink>
 
-        <button class="btn_outline small">{{ user_login_statusText }}</button>
+        <RouterLink to="/login">
+        <button class="btn_white small">{{ user_login_statusText }}</button>
+        </RouterLink>
       </div>
       <div class="icon_box">
         <div class="icon">
           <shopping_cart @click="cartVisible = !cartVisible" />
-
-          <user v-show="user_login_status"
-            ><RouterLink to="/user-profile"></RouterLink
-          ></user>
+          
+          <RouterLink to="/user-profile">
+              <!-- <user v-show="user_login_status"></user> --> <!--暫時移除登入判斷-->
+              <user></user>
+          </RouterLink>
         </div>
       </div>
     </div>
