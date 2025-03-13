@@ -4,7 +4,8 @@ import Footer from "@/components/Footer.vue";
 import "animate.css";
 // import HomeHero from "@/components/Home/HeroBanner.vue";
 import HomeFeatures from "@/components/Home/IconFeatures.vue";
-import HomeBenefits from "@/components/Home/Benefits.vue";
+
+import HomeBenefits from "@/components/Home/Benfits.vue";
 import HomeProducts from "@/components/Home/Products.vue";
 import HomeNews from "@/components/Home/News.vue";
 import { RouterLink } from "vue-router";
@@ -190,3 +191,5 @@ import { RouterLink } from "vue-router";
 <style lang="scss" scoped>
 @use "../assets/sass/page/home";
 </style>
+
+

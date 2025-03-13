@@ -1,10 +1,13 @@
 <script setup>
+
 const handleStartExperience = () => {
-  console.log("開始體驗");
+  console.log('開始體驗');
 };
+
 </script>
 <template>
-  <section class="hero">
+
+<section class="hero">
     <div class="hero-wrapper">
       <div class="hero-content">
         <h1>
@@ -57,17 +60,21 @@ const handleStartExperience = () => {
         />
       </div>
     </div>
-  </section>
+ </section>
+
 </template>
 
 <style lang="scss" scoped>
-@import "@/assets/sass/base/reset.scss";
+
+@import'@/assets/sass/base/reset.scss';
+
+
 
 .hero {
   width: 100%;
   background-color: #fff6fe;
   overflow: hidden;
-
+  
   .hero-wrapper {
     max-width: 1440px;
     margin: 0 auto;
@@ -76,82 +83,94 @@ const handleStartExperience = () => {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    
   }
 }
 
-.hero-content {
-  margin-top: 30px;
-  flex: 1;
-  & h1 {
-    font-size: 48px;
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: bold;
-    margin-bottom: 20px;
-  }
-  & p {
-    font-size: 18px;
-    font-family: Arial, Helvetica, sans-serif;
-    line-height: 1.5;
-  }
-  & .sub-text {
-    font-size: 18px;
-    font-family: Arial, Helvetica, sans-serif;
-    margin-top: 10px;
-  }
-  & .btn-primary {
-    margin-top: 20px;
-    font-size: 18px;
-    background-color: #8c25c0;
-    border: none;
-    padding: 15px 30px;
-    color: #fff;
-    border-radius: 30px;
-  }
-  & .btn-primary:hover {
-    cursor: pointer;
-    background-color: #fff;
-    color: #8c25c0;
-    border: 2px solid #8c25c0;
-  }
-  & svg {
-    margin-left: 5px;
-  }
-}
-
-.metro-icon {
-  display: inline-block;
-  width: 30px;
-  margin-left: 10px;
-
-  & img {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-    overflow: hidden;
-  }
-}
-
-.hero-image {
-  margin-top: 20px;
-  flex: 1;
-  img {
-    max-width: 100%;
-    height: auto;
-  }
-}
-
-@media (max-width: 768px) {
-  .hero {
-    .hero-wrapper {
-      flex-direction: column;
-      text-align: left;
-      width: 100%;
-      padding: 20px 40px;
-
-      .hero-content {
-        margin-bottom: 2rem;
+  .hero-content {
+    margin-top: 30px;
+    flex: 1;
+     & h1{
+      font-size:48px;
+      font-family: Arial, Helvetica, sans-serif;
+      font-weight: bold;
+      margin-bottom: 20px;
+     }
+      & p{
+        font-size: 18px;
+        font-family: Arial, Helvetica, sans-serif;
+        line-height: 1.5;
       }
+      & .sub-text{
+        font-size: 18px;
+        font-family: Arial, Helvetica, sans-serif;
+        margin-top: 10px;
+      }
+      & .btn-primary{
+        margin-top:20px;
+        font-size: 18px;
+        background-color:#8C25C0;
+        border:none;
+        padding:15px 30px;
+        color:#fff;
+        border-radius: 30px;
+      }
+      & .btn-primary:hover{
+        cursor: pointer;
+        background-color: #fff;
+        color: #8C25C0;
+        border:2px solid #8C25C0;
+      }
+       & svg{
+         margin-left: 5px;
+       }
+
+     }
+  
+     .metro-icon{
+        display: inline-block;
+        width: 30px;
+        margin-left: 10px;
+
+        & img{
+          width: 100%;
+          height: auto;
+          object-fit: cover;
+          overflow: hidden;
+        }
+     }
+   
+
+
+
+  .hero-image {
+    margin-top: 20px;
+    flex: 1;
+    img {
+      max-width: 100%;
+      height: auto;
     }
   }
+
+
+@media (max-width: 768px){
+
+    .hero {
+      .hero-wrapper {
+        flex-direction: column;
+        text-align: left;
+        width: 100%;
+        padding:20px 40px;
+        
+        .hero-content {
+          margin-bottom: 2rem;
+        }
+      }
+    }
 }
+ 
+    
+
+
+
 </style>

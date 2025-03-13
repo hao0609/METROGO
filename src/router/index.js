@@ -6,6 +6,12 @@ import AlertView from "../views/AlertView.vue";
 import SightsView from "../views/SightsView.vue";
 import TourView from "../views/TourView.vue";
 import MetroBlueLineView from "../views/MetroBlueLineView.vue";
+
+import StoreView from "../views/StoreView.vue";
+import CategoryPage from "../views/CategoryPageView.vue";
+import ProductDetailView from "../views/ProductDetailView.vue";
+import CategoryPageView from "../views/CategoryPageView.vue";
+
 import MetroRedLineView from "../views/MetroRedLineView.vue";
 import MetroGreenLineView from "../views/MetroGreenLineView.vue";
 import MetroOrangeLineView from "../views/MetroOrangeLineView.vue";
@@ -161,10 +167,36 @@ const router = createRouter({
     },
 
     // 商城
-    { path: "/store", name: "商城入口" },
-    { path: "/store", name: "商品頁" },
-    { path: "/store", name: "商品詳情" },
-    { path: "/store", name: "客製化" },
+
+    { path: "/store", name: "商城", component : StoreView,},
+    { path: "/category", name: "分類", component : CategoryPageView,},
+    {
+      path: '/product/:id',
+      name: '商品詳情頁',
+      component: ProductDetailView,
+      props: (route) => {
+        
+        const id = parseInt(route.params.id) || 0
+       
+        if (route.query.productData) {
+          try {
+            const productData = JSON.parse(route.query.productData)
+            return { id, product: productData }
+          } catch (e) {
+            console.error('解析商品數據失敗', e)
+          }
+        }
+        
+        return { id }
+      }
+    },
+
+   // { path: "/store", name: "商城入口" },
+   // { path: "/store", name: "商品頁" },
+   // { path: "/store", name: "商品詳情" },
+   // { path: "/store", name: "客製化" },//
+    
+
 
     // 最新消息
     { path: "/news", name: "News", component: NewsView },
@@ -285,6 +317,14 @@ const router = createRouter({
       name: "StyleView",
       component: () => import("../views/StyleView.vue"),
     },
+
+    //表格參考頁
+    {
+      path: "/table-view",
+      name: "FormView",
+      component: () => import("../views/FormView.vue"),
+    },
+
 
     // Alert 樣式參考頁
     {

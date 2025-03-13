@@ -43,10 +43,6 @@
   </div>
 </template>
 
-<style lang="scss" scoped>
-@use "../assets/sass/page/backend-login";
-</style>
-
 <script>
 import icon_white from "../components/icons/icon_white.vue";
 
@@ -83,3 +79,9 @@ export default {
   },
 };
 </script>
+<style lang="scss" scoped>
+@use "../assets/sass/page/backend-login";
+
+</style>
+
+
