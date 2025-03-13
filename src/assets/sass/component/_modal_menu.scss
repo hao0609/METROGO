@@ -1,3 +1,8 @@
+@mixin tablet() {
+  @media screen and (max-width: 768px) {
+    @content;
+  }
+}
 // popup-menu
 .popup-menu {
   background-color: #ddd;
@@ -29,6 +34,21 @@
         flex: 1;
       }
       min-width: 120px;
+    }
+  }
+  @include tablet() {
+    padding: 0;
+    left: 0;
+    top: 0;
+    // position: static;
+    position: relative;
+    .close-btn {
+      padding: 1px 6px;
+      top: 3px;
+      right: 3px;
+    }
+    .close-icon {
+      font-size: 20px;
     }
   }
 }
@@ -124,6 +144,10 @@
     background-color: $neutral-700;
     color: #ffffff;
   }
+  @include tablet() {
+    font-size: 20px;
+    margin-right: 5px;
+  }
 }
 .tab-content {
   border-radius: 0px 30px 0px 0px;
@@ -189,6 +213,9 @@
   justify-content: center;
   align-content: center;
   gap: 10px;
+  @include tablet() {
+    flex-direction: column;
+  }
 }
 .game-rules1,
 .game-rules2 {
@@ -198,13 +225,18 @@
   display: flex;
   flex-direction: column;
   align-content: center;
-  width: 407px;
-
+  width: 100%;
+  max-width: 407px;
+  margin: auto;
   gap: 10px;
   justify-content: center;
   h2 {
     font-size: 36px;
     margin: 0 0 0 16px;
+  }
+
+  @include tablet() {
+    align-items: center;
   }
 }
 
@@ -246,6 +278,9 @@
     }
     .arrow {
       font-size: 40px;
+      @include mobile() {
+        transform: rotate(90deg);
+      }
     }
   }
   p {
@@ -267,6 +302,10 @@
     svg {
       margin-bottom: 1px;
     }
+  }
+  @include mobile() {
+    flex-direction: column;
+    gap: 10px;
   }
 }
 
@@ -451,6 +490,8 @@ button:disabled {
 .reward-gerneral,
 .reward-special {
   display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
   gap: 40px;
 }
 .reward-achievement {
@@ -459,7 +500,15 @@ button:disabled {
   gap: 40px;
   padding: auto;
 }
-
+.drop-down {
+  display: none;
+  @include mobile() {
+    display: block;
+    &.drop-down-active {
+      transform: rotate(180deg);
+    }
+  }
+}
 .red-line-group,
 .yellow-line-group,
 .blue-line-group,

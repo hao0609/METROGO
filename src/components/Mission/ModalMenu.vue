@@ -78,7 +78,35 @@
                     <div class="reward-icon red">
                       <div class="task-title fz-16">
                         淡水<br />
-                        信義線
+                        信義線<br />
+                        <span class="drop-down">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24"
+                            height="13"
+                            viewBox="0 0 24 13"
+                            fill="none"
+                          >
+                            <g clip-path="url(#clip0_2427_6246)">
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M11.2894 2.55009L5.63235 8.20709L7.04635 9.62109L11.9964 4.67109L16.9464 9.62109L18.3604 8.20709L12.7034 2.55009C12.5158 2.36262 12.2615 2.25731 11.9964 2.25731C11.7312 2.25731 11.4769 2.36262 11.2894 2.55009Z"
+                                fill="white"
+                              />
+                            </g>
+                            <defs>
+                              <clipPath id="clip0_2427_6246">
+                                <rect
+                                  width="12"
+                                  height="24"
+                                  fill="white"
+                                  transform="matrix(0 -1 -1 0 24 12.707)"
+                                />
+                              </clipPath>
+                            </defs>
+                          </svg>
+                        </span>
                       </div>
                     </div>
                     <div
@@ -105,7 +133,37 @@
                   </div>
                   <div class="blue-line-group">
                     <div class="reward-icon blue">
-                      <div class="task-title fz-16">板南線</div>
+                      <div class="task-title fz-16">
+                        板南線<br />
+                        <span class="drop-down">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24"
+                            height="13"
+                            viewBox="0 0 24 13"
+                            fill="none"
+                          >
+                            <g clip-path="url(#clip0_2427_6246)">
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M11.2894 2.55009L5.63235 8.20709L7.04635 9.62109L11.9964 4.67109L16.9464 9.62109L18.3604 8.20709L12.7034 2.55009C12.5158 2.36262 12.2615 2.25731 11.9964 2.25731C11.7312 2.25731 11.4769 2.36262 11.2894 2.55009Z"
+                                fill="white"
+                              />
+                            </g>
+                            <defs>
+                              <clipPath id="clip0_2427_6246">
+                                <rect
+                                  width="12"
+                                  height="24"
+                                  fill="white"
+                                  transform="matrix(0 -1 -1 0 24 12.707)"
+                                />
+                              </clipPath>
+                            </defs>
+                          </svg>
+                        </span>
+                      </div>
                     </div>
                     <div
                       class="reward-icon gray"
@@ -131,7 +189,37 @@
                   </div>
                   <div class="green-line-group">
                     <div class="reward-icon green">
-                      <div class="task-title fz-16">松山<br />新店線</div>
+                      <div class="task-title fz-16">
+                        松山<br />新店線<br />
+                        <span class="drop-down">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24"
+                            height="13"
+                            viewBox="0 0 24 13"
+                            fill="none"
+                          >
+                            <g clip-path="url(#clip0_2427_6246)">
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M11.2894 2.55009L5.63235 8.20709L7.04635 9.62109L11.9964 4.67109L16.9464 9.62109L18.3604 8.20709L12.7034 2.55009C12.5158 2.36262 12.2615 2.25731 11.9964 2.25731C11.7312 2.25731 11.4769 2.36262 11.2894 2.55009Z"
+                                fill="white"
+                              />
+                            </g>
+                            <defs>
+                              <clipPath id="clip0_2427_6246">
+                                <rect
+                                  width="12"
+                                  height="24"
+                                  fill="white"
+                                  transform="matrix(0 -1 -1 0 24 12.707)"
+                                />
+                              </clipPath>
+                            </defs>
+                          </svg>
+                        </span>
+                      </div>
                     </div>
                     <div
                       class="reward-icon gray"
@@ -157,7 +245,37 @@
                   </div>
                   <div class="yellow-line-group">
                     <div class="reward-icon yellow">
-                      <div class="task-title fz-16">中和<br />新蘆線</div>
+                      <div class="task-title fz-16">
+                        中和<br />新蘆線<br />
+                        <span class="drop-down">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24"
+                            height="13"
+                            viewBox="0 0 24 13"
+                            fill="none"
+                          >
+                            <g clip-path="url(#clip0_2427_6246)">
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M11.2894 2.55009L5.63235 8.20709L7.04635 9.62109L11.9964 4.67109L16.9464 9.62109L18.3604 8.20709L12.7034 2.55009C12.5158 2.36262 12.2615 2.25731 11.9964 2.25731C11.7312 2.25731 11.4769 2.36262 11.2894 2.55009Z"
+                                fill="white"
+                              />
+                            </g>
+                            <defs>
+                              <clipPath id="clip0_2427_6246">
+                                <rect
+                                  width="12"
+                                  height="24"
+                                  fill="white"
+                                  transform="matrix(0 -1 -1 0 24 12.707)"
+                                />
+                              </clipPath>
+                            </defs>
+                          </svg>
+                        </span>
+                      </div>
                     </div>
                     <div
                       class="reward-icon gray"
@@ -183,7 +301,37 @@
                   </div>
                   <div class="brown-line-group">
                     <div class="reward-icon brown">
-                      <div class="task-title fz-16">文湖線</div>
+                      <div class="task-title fz-16">
+                        文湖線<br />
+                        <span class="drop-down">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24"
+                            height="13"
+                            viewBox="0 0 24 13"
+                            fill="none"
+                          >
+                            <g clip-path="url(#clip0_2427_6246)">
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M11.2894 2.55009L5.63235 8.20709L7.04635 9.62109L11.9964 4.67109L16.9464 9.62109L18.3604 8.20709L12.7034 2.55009C12.5158 2.36262 12.2615 2.25731 11.9964 2.25731C11.7312 2.25731 11.4769 2.36262 11.2894 2.55009Z"
+                                fill="white"
+                              />
+                            </g>
+                            <defs>
+                              <clipPath id="clip0_2427_6246">
+                                <rect
+                                  width="12"
+                                  height="24"
+                                  fill="white"
+                                  transform="matrix(0 -1 -1 0 24 12.707)"
+                                />
+                              </clipPath>
+                            </defs>
+                          </svg>
+                        </span>
+                      </div>
                     </div>
                     <div
                       class="reward-icon gray"
@@ -238,7 +386,35 @@
                       <div class="reward-icon red">
                         <div class="task-title fz-16">
                           淡水<br />
-                          信義線
+                          信義線<br />
+                          <span class="drop-down">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="24"
+                              height="13"
+                              viewBox="0 0 24 13"
+                              fill="none"
+                            >
+                              <g clip-path="url(#clip0_2427_6246)">
+                                <path
+                                  fill-rule="evenodd"
+                                  clip-rule="evenodd"
+                                  d="M11.2894 2.55009L5.63235 8.20709L7.04635 9.62109L11.9964 4.67109L16.9464 9.62109L18.3604 8.20709L12.7034 2.55009C12.5158 2.36262 12.2615 2.25731 11.9964 2.25731C11.7312 2.25731 11.4769 2.36262 11.2894 2.55009Z"
+                                  fill="white"
+                                />
+                              </g>
+                              <defs>
+                                <clipPath id="clip0_2427_6246">
+                                  <rect
+                                    width="12"
+                                    height="24"
+                                    fill="white"
+                                    transform="matrix(0 -1 -1 0 24 12.707)"
+                                  />
+                                </clipPath>
+                              </defs>
+                            </svg>
+                          </span>
                         </div>
                       </div>
                       <div
@@ -282,7 +458,37 @@
                     </div>
                     <div class="blue-line-group">
                       <div class="reward-icon blue">
-                        <div class="task-title fz-16">板南線</div>
+                        <div class="task-title fz-16">
+                          板南線<br />
+                          <span class="drop-down">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="24"
+                              height="13"
+                              viewBox="0 0 24 13"
+                              fill="none"
+                            >
+                              <g clip-path="url(#clip0_2427_6246)">
+                                <path
+                                  fill-rule="evenodd"
+                                  clip-rule="evenodd"
+                                  d="M11.2894 2.55009L5.63235 8.20709L7.04635 9.62109L11.9964 4.67109L16.9464 9.62109L18.3604 8.20709L12.7034 2.55009C12.5158 2.36262 12.2615 2.25731 11.9964 2.25731C11.7312 2.25731 11.4769 2.36262 11.2894 2.55009Z"
+                                  fill="white"
+                                />
+                              </g>
+                              <defs>
+                                <clipPath id="clip0_2427_6246">
+                                  <rect
+                                    width="12"
+                                    height="24"
+                                    fill="white"
+                                    transform="matrix(0 -1 -1 0 24 12.707)"
+                                  />
+                                </clipPath>
+                              </defs>
+                            </svg>
+                          </span>
+                        </div>
                       </div>
                       <div
                         class="reward-icon gray"
@@ -324,7 +530,37 @@
                     </div>
                     <div class="green-line-group">
                       <div class="reward-icon green">
-                        <div class="task-title fz-16">松山<br />新店線</div>
+                        <div class="task-title fz-16">
+                          松山<br />新店線<br />
+                          <span class="drop-down">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="24"
+                              height="13"
+                              viewBox="0 0 24 13"
+                              fill="none"
+                            >
+                              <g clip-path="url(#clip0_2427_6246)">
+                                <path
+                                  fill-rule="evenodd"
+                                  clip-rule="evenodd"
+                                  d="M11.2894 2.55009L5.63235 8.20709L7.04635 9.62109L11.9964 4.67109L16.9464 9.62109L18.3604 8.20709L12.7034 2.55009C12.5158 2.36262 12.2615 2.25731 11.9964 2.25731C11.7312 2.25731 11.4769 2.36262 11.2894 2.55009Z"
+                                  fill="white"
+                                />
+                              </g>
+                              <defs>
+                                <clipPath id="clip0_2427_6246">
+                                  <rect
+                                    width="12"
+                                    height="24"
+                                    fill="white"
+                                    transform="matrix(0 -1 -1 0 24 12.707)"
+                                  />
+                                </clipPath>
+                              </defs>
+                            </svg>
+                          </span>
+                        </div>
                       </div>
                       <div
                         class="reward-icon gray"
@@ -366,7 +602,37 @@
                     </div>
                     <div class="yellow-line-group">
                       <div class="reward-icon yellow">
-                        <div class="task-title fz-16">中和<br />新蘆線</div>
+                        <div class="task-title fz-16">
+                          中和<br />新蘆線<br />
+                          <span class="drop-down">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="24"
+                              height="13"
+                              viewBox="0 0 24 13"
+                              fill="none"
+                            >
+                              <g clip-path="url(#clip0_2427_6246)">
+                                <path
+                                  fill-rule="evenodd"
+                                  clip-rule="evenodd"
+                                  d="M11.2894 2.55009L5.63235 8.20709L7.04635 9.62109L11.9964 4.67109L16.9464 9.62109L18.3604 8.20709L12.7034 2.55009C12.5158 2.36262 12.2615 2.25731 11.9964 2.25731C11.7312 2.25731 11.4769 2.36262 11.2894 2.55009Z"
+                                  fill="white"
+                                />
+                              </g>
+                              <defs>
+                                <clipPath id="clip0_2427_6246">
+                                  <rect
+                                    width="12"
+                                    height="24"
+                                    fill="white"
+                                    transform="matrix(0 -1 -1 0 24 12.707)"
+                                  />
+                                </clipPath>
+                              </defs>
+                            </svg>
+                          </span>
+                        </div>
                       </div>
                       <div
                         class="reward-icon gray"
@@ -408,7 +674,37 @@
                     </div>
                     <div class="brown-line-group">
                       <div class="reward-icon brown">
-                        <div class="task-title fz-16">文湖線</div>
+                        <div class="task-title fz-16">
+                          文湖線<br />
+                          <span class="drop-down">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="24"
+                              height="13"
+                              viewBox="0 0 24 13"
+                              fill="none"
+                            >
+                              <g clip-path="url(#clip0_2427_6246)">
+                                <path
+                                  fill-rule="evenodd"
+                                  clip-rule="evenodd"
+                                  d="M11.2894 2.55009L5.63235 8.20709L7.04635 9.62109L11.9964 4.67109L16.9464 9.62109L18.3604 8.20709L12.7034 2.55009C12.5158 2.36262 12.2615 2.25731 11.9964 2.25731C11.7312 2.25731 11.4769 2.36262 11.2894 2.55009Z"
+                                  fill="white"
+                                />
+                              </g>
+                              <defs>
+                                <clipPath id="clip0_2427_6246">
+                                  <rect
+                                    width="12"
+                                    height="24"
+                                    fill="white"
+                                    transform="matrix(0 -1 -1 0 24 12.707)"
+                                  />
+                                </clipPath>
+                              </defs>
+                            </svg>
+                          </span>
+                        </div>
                       </div>
                       <div
                         class="reward-icon gray"
@@ -970,7 +1266,7 @@ export default {
   },
   data() {
     return {
-      activeTab: "task",
+      activeTab: "special",
       activeSlide: 0,
       // Destination: [],
       badgeData: {
@@ -1007,7 +1303,7 @@ export default {
         special: {
           info: "完成所有的半+一日遊(全線)即可蒐集到此成就，並獲得 5000 點積分",
           icon: `    <div  style="font-size:16px;font-weight: bold;">
-          半/一日遊全制霸</div>
+          全制霸</div>
         `,
           text: "成就 x 1",
           point: "5000",
@@ -1138,7 +1434,7 @@ export default {
         { progress: 30, title: "中和線" },
         { progress: 30, title: "板南線" },
         { progress: 60, title: "打卡全制霸" },
-        { progress: 60, title: "半/一日遊全制霸" },
+        { progress: 60, title: "全制霸" },
       ],
       achievementBadges: ["半日遊", "一日遊"],
       specialTasks: [
