@@ -143,7 +143,7 @@ const cartItems = ref([
             </RouterLink>
           </div>
         </li>
-        <!-- <li><RouterLink to="/store" >商城</RouterLink></li> -->
+        <li><RouterLink to="/store" >商城</RouterLink></li>
         <li><RouterLink to="/news">最新消息</RouterLink></li>
       </ul>
       <div class="line"></div>
