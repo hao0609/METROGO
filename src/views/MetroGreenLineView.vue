@@ -3,6 +3,7 @@ import { ref, onMounted, onUnmounted, computed } from 'vue'
 import Message from "@/components/Message.vue"
 import MessageCard from "@/components/MessageCard.vue"
 import MetroLineTitle from '@/components/MetroLineTitle.vue'
+import Navbar_V1 from "../components/Navbar_V1.vue";
 import Footer from '@/components/Footer.vue'
 import { initMetrolineScroll } from '@/js/view/metroline.js'
 // 導入 Swiper 相關組件
@@ -74,21 +75,43 @@ let cleanupFunction = null;
 const currentSightDetail = ref(null);
 const isDialogVisible = ref(false);
 
-// 顯示景點詳情的函數
+/// 顯示景點詳情的函數
 function showSightDetail(index) {
   currentSightDetail.value = currentLineSights.value[index];
+  // 塞入判斷視窗是否開啟共用變數
+  localStorage.setItem('isDialogOpen','Y')
   isDialogVisible.value = true;
   // 禁止背景滾動
-  document.body.style.overflow = 'hidden';
+  // document.body.style.overflow = "hidden";
 }
 // 開啟彈窗 --end
 
 // 關閉景點詳情的函數
 function closeSightDetail() {
   isDialogVisible.value = false;
+  // 塞入判斷視窗是否開啟共用變數
+  localStorage.setItem('isDialogOpen','N')
   // 允許背景滾動
-  document.body.style.overflow = '';
+  // document.body.style.overflow = "";
 }
+
+// 控制 header 顯示
+const header = ref(false);
+const topAreaHeight = 80;
+const headerContainer = ref(null);
+
+const handleMouseMove = (event) => {
+  // 如果滑鼠在視窗上方的 topAreaHeight 區域，或者 event.target 在 headerContainer 裡，
+  // 則保持 header 顯示
+  if (
+    event.clientY <= topAreaHeight ||
+    (headerContainer.value && headerContainer.value.contains(event.target))
+  ) {
+    header.value = true;
+  } else {
+    header.value = false;
+  }
+};
 
 
 // 使用Vue的生命周期鉤子
@@ -97,6 +120,8 @@ onMounted(() => {
   setTimeout(() => {
     cleanupFunction = initMetrolineScroll();
   }, 100);
+  // Header 觸發
+  window.addEventListener("mousemove", handleMouseMove);
 })
 
 // 在组件卸载前清理资源
@@ -152,6 +177,11 @@ const messageData = ref([
 </script>
 
 <template>
+  <transition
+    ><header v-if="header" ref="headerContainer">
+      <Navbar_V1 />
+    </header>
+  </transition>
   <!-- class 後方的 blue 換掉就可以吃到其他線的配色 -->
   <div class="metroline-detail green">
     <div class="top-section">
@@ -318,7 +348,5 @@ const messageData = ref([
 
 <style lang="scss" scoped>
 @import "../assets/sass/page/_metro-line.scss";
+//公館商圈鄰近臺灣大學、臺灣科技大學、師範大學公館校區，提供市民及學生食衣住行育樂機能性完善的購物商圈，除了擁有符合外國遊客和交換生口味的各式異國料理餐廳，也有美食咖啡廳及著名的手搖飲料店；日常服飾及體育用品商家眾多，買衣買鞋都非常方便；同時公館商圈位於臺北市南區的重要交通樞紐地帶，大眾運輸發達又便利。因學區而匯聚各式獨立書店、咖啡廳、二手小店...等的公館商圈溫羅汀(溫州街、羅斯福路、汀州路)，是華文世界書店密度最高的區域，使得公館商圈增添了不少人文特色及文青氣息。粗略統計，方圓小於一公里的公館域內密布至少約四十家以上的特色書店、二十家以上的人文咖啡店與數家彰顯搖滾精神之地下音樂場所，更遑論首屈一指的NGO集中特色，在學院主義與象牙塔教條外，以文化精神驅動出意識竄流、拼貼切分的地下社會。此外公館商圈周圍景點眾多，包含自來水園區、寶藏巖國際藝術村、自來水博物館、水源劇場、公館夜市，計畫到景點遊玩的遊客，也可以到公館商圈逛街吃美食，安排一日遊或半日遊都非常適合。(部分資料來源：臺北市政府文化局)
 </style>
-// 
-
-公館商圈鄰近臺灣大學、臺灣科技大學、師範大學公館校區，提供市民及學生食衣住行育樂機能性完善的購物商圈，除了擁有符合外國遊客和交換生口味的各式異國料理餐廳，也有美食咖啡廳及著名的手搖飲料店；日常服飾及體育用品商家眾多，買衣買鞋都非常方便；同時公館商圈位於臺北市南區的重要交通樞紐地帶，大眾運輸發達又便利。因學區而匯聚各式獨立書店、咖啡廳、二手小店...等的公館商圈溫羅汀(溫州街、羅斯福路、汀州路)，是華文世界書店密度最高的區域，使得公館商圈增添了不少人文特色及文青氣息。粗略統計，方圓小於一公里的公館域內密布至少約四十家以上的特色書店、二十家以上的人文咖啡店與數家彰顯搖滾精神之地下音樂場所，更遑論首屈一指的NGO集中特色，在學院主義與象牙塔教條外，以文化精神驅動出意識竄流、拼貼切分的地下社會。此外公館商圈周圍景點眾多，包含自來水園區、寶藏巖國際藝術村、自來水博物館、水源劇場、公館夜市，計畫到景點遊玩的遊客，也可以到公館商圈逛街吃美食，安排一日遊或半日遊都非常適合。(部分資料來源：臺北市政府文化局)

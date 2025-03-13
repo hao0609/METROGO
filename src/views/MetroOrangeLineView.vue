@@ -3,6 +3,7 @@ import { ref, onMounted, onUnmounted, computed } from 'vue'
 import Message from "@/components/Message.vue"
 import MessageCard from "@/components/MessageCard.vue"
 import MetroLineTitle from '@/components/MetroLineTitle.vue'
+import Navbar_V1 from "../components/Navbar_V1.vue";
 import Footer from '@/components/Footer.vue'
 import { initMetrolineScroll } from '@/js/view/metroline.js'
 // 導入 Swiper 相關組件
@@ -74,21 +75,43 @@ let cleanupFunction = null;
 const currentSightDetail = ref(null);
 const isDialogVisible = ref(false);
 
-// 顯示景點詳情的函數
+/// 顯示景點詳情的函數
 function showSightDetail(index) {
   currentSightDetail.value = currentLineSights.value[index];
+  // 塞入判斷視窗是否開啟共用變數
+  localStorage.setItem('isDialogOpen','Y')
   isDialogVisible.value = true;
   // 禁止背景滾動
-  document.body.style.overflow = 'hidden';
+  // document.body.style.overflow = "hidden";
 }
 // 開啟彈窗 --end
 
 // 關閉景點詳情的函數
 function closeSightDetail() {
   isDialogVisible.value = false;
+  // 塞入判斷視窗是否開啟共用變數
+  localStorage.setItem('isDialogOpen','N')
   // 允許背景滾動
-  document.body.style.overflow = '';
+  // document.body.style.overflow = "";
 }
+
+// 控制 header 顯示
+const header = ref(false);
+const topAreaHeight = 80;
+const headerContainer = ref(null);
+
+const handleMouseMove = (event) => {
+  // 如果滑鼠在視窗上方的 topAreaHeight 區域，或者 event.target 在 headerContainer 裡，
+  // 則保持 header 顯示
+  if (
+    event.clientY <= topAreaHeight ||
+    (headerContainer.value && headerContainer.value.contains(event.target))
+  ) {
+    header.value = true;
+  } else {
+    header.value = false;
+  }
+};
 
 
 // 使用Vue的生命周期鉤子
@@ -97,6 +120,8 @@ onMounted(() => {
   setTimeout(() => {
     cleanupFunction = initMetrolineScroll();
   }, 100);
+  // Header 觸發
+  window.addEventListener("mousemove", handleMouseMove);
 })
 
 // 在组件卸载前清理资源
@@ -152,6 +177,11 @@ const messageData = ref([
 </script>
 
 <template>
+  <transition
+    ><header v-if="header" ref="headerContainer">
+      <Navbar_V1 />
+    </header>
+  </transition>
   <!-- class 後方的 blue 換掉就可以吃到其他線的配色 -->
   <div class="metroline-detail orange">
     <div class="top-section">

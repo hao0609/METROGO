@@ -1,5 +1,27 @@
 @use "@/assets/sass/base/color" as *;
 
+// 控制 header 樣式
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  opacity: 0.95;
+}
+
+.v-enter-active {
+  transition: opacity 0.2s ease;
+}
+.v-leave-active {
+  transition: opacity 0.01s ease;
+}
+.v-enter-from,
+.v-leave-to {
+  opacity: 0; // header 進場前、後都透明
+}
+
+
+
 .top-section {
   max-width: 1920px;
   display: flex;

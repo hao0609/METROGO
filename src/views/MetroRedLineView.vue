@@ -3,8 +3,8 @@ import { ref, onMounted, onUnmounted, computed } from "vue";
 import Message from "@/components/Message.vue";
 import MessageCard from "@/components/MessageCard.vue";
 import MetroLineTitle from "@/components/MetroLineTitle.vue";
-import Footer from "@/components/Footer.vue";
 import Navbar_V1 from "../components/Navbar_V1.vue";
+import Footer from "@/components/Footer.vue";
 import { initMetrolineScroll } from "@/js/view/metroline.js";
 // 導入 Swiper 相關組件
 import { Swiper, SwiperSlide } from "swiper/vue";
@@ -74,20 +74,24 @@ let cleanupFunction = null;
 const currentSightDetail = ref(null);
 const isDialogVisible = ref(false);
 
-// 顯示景點詳情的函數
+/// 顯示景點詳情的函數
 function showSightDetail(index) {
   currentSightDetail.value = currentLineSights.value[index];
+  // 塞入判斷視窗是否開啟共用變數
+  localStorage.setItem('isDialogOpen','Y')
   isDialogVisible.value = true;
   // 禁止背景滾動
-  document.body.style.overflow = "hidden";
+  // document.body.style.overflow = "hidden";
 }
 // 開啟彈窗 --end
 
 // 關閉景點詳情的函數
 function closeSightDetail() {
   isDialogVisible.value = false;
+  // 塞入判斷視窗是否開啟共用變數
+  localStorage.setItem('isDialogOpen','N')
   // 允許背景滾動
-  document.body.style.overflow = "";
+  // document.body.style.overflow = "";
 }
 
 // 控制 header 顯示
@@ -461,23 +465,4 @@ const messageData = ref([
 
 <style lang="scss" scoped>
 @import "../assets/sass/page/_metro-line.scss";
-// 控制 header 樣式
-header {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  z-index: 1000;
-  opacity: 0.95;
-}
-
-.v-enter-active {
-  transition: opacity 0.2s ease;
-}
-.v-leave-active {
-  transition: opacity 0.01s ease;
-}
-.v-enter-from,
-.v-leave-to {
-  opacity: 0; // header 進場前、後都透明
-}
 </style>

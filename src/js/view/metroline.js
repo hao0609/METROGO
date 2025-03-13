@@ -39,7 +39,9 @@ export function initMetrolineScroll() {
     direction: 0, // 0=靜止, 1=向下, -1=向上
     completed: false, // 是否完成滾動
     isHandlingWheel: false, // 是否正在處理滾輪事件
-    realProgress: 0 // 實際進度，範圍 -1 到 1
+    realProgress: 0, // 實際進度，範圍 -1 到 1
+    allowContinueScroll: false, // 允許繼續滾動到下一區塊
+    isReverseScroll: false // 標記是否正在進行反向滾動
   }
   
   // 初始位置設定（中間點）
@@ -47,6 +49,32 @@ export function initMetrolineScroll() {
   gsap.set(group2, { y: 0 })
   gsap.set(group3, { y: 0 })
   
+  
+  // 建立頂部區域的固定觸發
+  const pinTopSection = ScrollTrigger.create({
+    trigger: topSection,
+    start: "top top",
+    end: "bottom bottom",
+    pin: true,
+    pinSpacing: false,
+    onUpdate: function() {
+      // 當完成且允許繼續滾動時解除固定，但如果正在反向滾動則保持固定
+      if (scrollState.completed && scrollState.allowContinueScroll && !scrollState.isReverseScroll) {
+        console.log('disable pin')
+        this.disable() // 解除固定
+      } else {
+        console.log('enable pin')
+        this.enable() // 保持固定
+      }
+    },
+    onEnter: function() {
+      console.log('進入頂部區域');
+    },
+    onLeave: function() {
+      console.log('離開頂部區域');
+    }
+  })
+
   // 創建主滾動動畫
   const scrollTween = gsap.to({}, {
     duration: 1,
@@ -79,37 +107,112 @@ export function initMetrolineScroll() {
       }
       
       // 檢查是否完成
-      scrollState.completed = Math.abs(realProgress) >= 1
+      if(localStorage.getItem('isDialogOpen') === 'Y'){
+        // 當Dialog打開時,永遠設置為未鎖定狀態
+        scrollState.completed = true
+      } else {
+        scrollState.completed = Math.abs(realProgress) >= 1
+        
+        // 當滾動完成時自動允許滾動到下一區塊（只有向下方向時）
+        if (Math.abs(realProgress) >= 1 && scrollState.direction > 0) {
+          scrollState.allowContinueScroll = true;
+          console.log('滾動完成，允許繼續滾動到下一區塊');
+        }
+      }
       
       // 輸出調試信息
       console.log(`進度 - 實際：${realProgress.toFixed(2)}`)
       console.log(`完成 - ${scrollState.completed}`)
       console.log(`方向 - ${scrollState.direction < 0 ? '向上' : scrollState.direction > 0 ? '向下' : '靜止'}`)
+      console.log(`反向滾動 - ${scrollState.isReverseScroll}`)
     }
   })
   
   // 設置初始進度為中點
   scrollTween.progress(0.5)
   
-  // 建立頂部區域的固定觸發
-  const pinTopSection = ScrollTrigger.create({
-    trigger: topSection,
-    start: "top top",
-    end: "bottom bottom",
-    pin: true,
-    pinSpacing: false,
-    onUpdate: function() {
-      if (scrollState.completed) {
-        this.disable() // 解除固定
-      } else {
-        this.enable() // 保持固定
+  // 處理滾輪事件
+  const wheelHandler = function(e) {
+    // 檢查對話框狀態
+    if(localStorage.getItem('isDialogOpen') === 'Y') {
+      scrollState.completed = true
+      scrollState.allowContinueScroll = true
+      return // 對話框開啟時不處理滾輪事件
+    } else if(localStorage.getItem('isDialogOpen') === 'N') {
+      // 只有當不是在反向滾動模式且不是滾到底時才重置
+      if (!scrollState.isReverseScroll && scrollState.realProgress < 0.99) {
+        scrollState.completed = false
       }
     }
-  })
-  
-  // 滾輪事件處理器
-  const wheelHandler = function(e) {
-    if (scrollState.isInTopSection && !scrollState.completed) {
+    
+    // 檢查是否在頂部區域
+    if (!scrollState.isInTopSection) {
+      return // 不在頂部區域，不處理
+    }
+    
+    // 檢查滾動方向
+    const isScrollingDown = e.deltaY > 0
+    
+    // ===== 關鍵修改：直接處理滾到底後的反向滾動 =====
+    if (scrollState.realProgress >= 0.99 && !isScrollingDown) {
+      // 到達底部且向上滾動
+      e.preventDefault()
+      scrollState.isReverseScroll = true
+      scrollState.completed = false
+      scrollState.allowContinueScroll = false
+      
+      // 以 0.99 為起點開始反向滾動
+      scrollTween.progress(0.99)
+      console.log('從底部開始反向滾動')
+      return
+    }
+    
+    // ===== 關鍵修改：直接處理滾到頂後的正向滾動 =====
+    if (scrollState.realProgress <= -0.99 && isScrollingDown) {
+      // 到達頂部且向下滾動
+      e.preventDefault()
+      scrollState.isReverseScroll = true
+      scrollState.completed = false
+      scrollState.allowContinueScroll = false
+      
+      // 以 0.01 為起點開始正向滾動
+      scrollTween.progress(0.01)
+      console.log('從頂部開始正向滾動')
+      return
+    }
+    
+    // 當進度完成且用戶想繼續向下滾動到下一區塊
+    if (scrollState.completed && scrollState.realProgress >= 0.99 && isScrollingDown && !scrollState.isReverseScroll) {
+      scrollState.allowContinueScroll = true
+      console.log('允許繼續滾動到下一區塊')
+      return // 不阻止默認滾動行為
+    }
+    
+    // 如果在反向滾動模式中
+    if (scrollState.isReverseScroll) {
+      e.preventDefault()
+      
+      // 計算進度變化
+      const progressDelta = e.deltaY * 0.0005
+      let newProgress = scrollState.currentProgress + progressDelta
+      
+      // 在 0-1 範圍內限制進度
+      newProgress = Math.min(1, Math.max(0, newProgress))
+      
+      // 更新動畫進度
+      scrollTween.progress(newProgress)
+      
+      // 如果進度回到中間區域，退出反向滾動模式
+      if (newProgress >= 0.2 && newProgress <= 0.8) {
+        scrollState.isReverseScroll = false
+        console.log('退出反向滾動模式')
+      }
+      
+      return
+    }
+    
+    // 一般滾動處理：在頂部區域且未完成且不允許繼續滾動
+    if (scrollState.isInTopSection && !scrollState.completed && !scrollState.allowContinueScroll) {
       e.preventDefault()
       
       // 設置處理標記
@@ -130,26 +233,6 @@ export function initMetrolineScroll() {
         scrollState.isHandlingWheel = false
       }, 200)
     }
-    
-    // 處理已完成但想返回的情況
-    if (scrollState.completed && scrollState.realProgress >= 0.99 && e.deltaY < 0) {
-      // 向上滾動從 1.0 返回到 0.99
-      e.preventDefault()
-      
-      scrollState.completed = false
-      scrollTween.progress(0.99)
-      
-      console.log('從完成狀態返回')
-    }
-    else if (scrollState.completed && scrollState.realProgress <= -0.99 && e.deltaY > 0) {
-      // 向下滾動從 -1.0 返回到 -0.99
-      e.preventDefault()
-      
-      scrollState.completed = false
-      scrollTween.progress(0.01)
-      
-      console.log('從負向完成狀態返回')
-    }
   }
   
   // 滾動事件處理器
@@ -158,11 +241,36 @@ export function initMetrolineScroll() {
     const isInTopArea = window.scrollY < topSection.offsetHeight
     
     // 更新狀態
+    const wasInTopSection = scrollState.isInTopSection
     scrollState.isInTopSection = isInTopArea
     
-    // 未完成時防止離開頂部區域
-    if (isInTopArea && !scrollState.completed) {
+    // 檢測用戶是否從下方區塊滾動回頂部區域
+    if (isInTopArea && !wasInTopSection) {
+      console.log('用戶從下方區塊滾動回頂部區域')
+      // 重新啟用頂部區域的滾動功能
+      pinTopSection.enable()
+      scrollState.allowContinueScroll = false
+      scrollState.completed = false
+      scrollState.isReverseScroll = false
+      
+      // 重新設置滾動動畫進度為中點
+      scrollTween.progress(0.5)
+      
+      // 重置群組位置
+      gsap.set(group1, { y: 0 })
+      gsap.set(group2, { y: 0 })
+      gsap.set(group3, { y: 0 })
+    }
+    
+    // 未完成時防止離開頂部區域，除非允許繼續滾動且不是反向滾動
+    if (isInTopArea && (!scrollState.allowContinueScroll || scrollState.isReverseScroll)) {
       window.scrollTo(0, 0)
+    }
+    
+    // 如果用戶滾動到頂部，重置繼續滾動狀態
+    if (window.scrollY === 0 && scrollState.realProgress < 0.99) {
+      scrollState.allowContinueScroll = false
+      scrollState.isReverseScroll = false
     }
   }
   
@@ -176,11 +284,67 @@ export function initMetrolineScroll() {
   const touchMoveHandler = function(e) {
     if (!touchStartY) return
     
+    // 檢查對話框狀態
+    if(localStorage.getItem('isDialogOpen') === 'Y') {
+      scrollState.completed = true
+      scrollState.allowContinueScroll = true
+      return // 對話框開啟時不處理觸控事件
+    } else if(localStorage.getItem('isDialogOpen') === 'N') {
+      // 只有當不是在反向滾動模式且不是滾到底時才重置
+      if (!scrollState.isReverseScroll && scrollState.realProgress < 0.99) {
+        scrollState.completed = false
+      }
+    }
+    
+    // 檢查是否在頂部區域
+    if (!scrollState.isInTopSection) {
+      return // 不在頂部區域，不處理
+    }
+    
     const currentY = e.touches[0].clientY
-    const diff = touchStartY - currentY
+    const diff = touchStartY - currentY // 正值表示向下滑動，負值表示向上滑動
     touchStartY = currentY
     
-    if (scrollState.isInTopSection && !scrollState.completed) {
+    // 檢查滑動方向
+    const isScrollingDown = diff > 0
+    
+    // ===== 關鍵修改：直接處理滾到底後的反向滑動 =====
+    if (scrollState.realProgress >= 0.99 && !isScrollingDown) {
+      // 到達底部且向上滑動
+      e.preventDefault()
+      scrollState.isReverseScroll = true
+      scrollState.completed = false
+      scrollState.allowContinueScroll = false
+      
+      // 以 0.99 為起點開始反向滑動
+      scrollTween.progress(0.99)
+      console.log('觸控：從底部開始反向滑動')
+      return
+    }
+    
+    // ===== 關鍵修改：直接處理滾到頂後的正向滑動 =====
+    if (scrollState.realProgress <= -0.99 && isScrollingDown) {
+      // 到達頂部且向下滑動
+      e.preventDefault()
+      scrollState.isReverseScroll = true
+      scrollState.completed = false
+      scrollState.allowContinueScroll = false
+      
+      // 以 0.01 為起點開始正向滑動
+      scrollTween.progress(0.01)
+      console.log('觸控：從頂部開始正向滑動')
+      return
+    }
+    
+    // 當進度完成且用戶想繼續向下滑動到下一區塊
+    if (scrollState.completed && scrollState.realProgress >= 0.99 && isScrollingDown && !scrollState.isReverseScroll) {
+      scrollState.allowContinueScroll = true
+      console.log('觸控：允許繼續滾動到下一區塊')
+      return // 不阻止默認滑動行為
+    }
+    
+    // 如果在反向滑動模式中
+    if (scrollState.isReverseScroll) {
       e.preventDefault()
       
       // 計算進度變化
@@ -192,26 +356,29 @@ export function initMetrolineScroll() {
       
       // 更新動畫進度
       scrollTween.progress(newProgress)
+      
+      // 如果進度回到中間區域，退出反向滑動模式
+      if (newProgress >= 0.2 && newProgress <= 0.8) {
+        scrollState.isReverseScroll = false
+        console.log('觸控：退出反向滑動模式')
+      }
+      
+      return
     }
     
-    // 處理已完成但想返回的情況
-    if (scrollState.completed && scrollState.realProgress >= 0.99 && diff < 0) {
-      // 向上滾動從 1.0 返回到 0.99
+    // 一般滑動處理：在頂部區域且未完成且不允許繼續滾動
+    if (scrollState.isInTopSection && !scrollState.completed && !scrollState.allowContinueScroll) {
       e.preventDefault()
       
-      scrollState.completed = false
-      scrollTween.progress(0.99)
+      // 計算進度變化
+      const progressDelta = diff * 0.001
+      let newProgress = scrollState.currentProgress + progressDelta
       
-      console.log('觸控：從完成狀態返回')
-    }
-    else if (scrollState.completed && scrollState.realProgress <= -0.99 && diff > 0) {
-      // 向下滾動從 -1.0 返回到 -0.99
-      e.preventDefault()
+      // 在 0-1 範圍內限制進度
+      newProgress = Math.min(1, Math.max(0, newProgress))
       
-      scrollState.completed = false
-      scrollTween.progress(0.01)
-      
-      console.log('觸控：從負向完成狀態返回')
+      // 更新動畫進度
+      scrollTween.progress(newProgress)
     }
   }
   
@@ -236,4 +403,3 @@ export function initMetrolineScroll() {
     window.removeEventListener('scroll', scrollHandler)
   }
 }
-
