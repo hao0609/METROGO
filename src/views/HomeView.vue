@@ -16,16 +16,16 @@ import { RouterLink } from "vue-router";
   <div class="banner">
     <h1>METROGO</h1>
     <div class="left-container animate__animated animate__zoomInDown">
-      <img src="../assets/images/home/left.png" alt="" />
+      <img src="../assets/images/home/hero-left.svg" alt="" />
     </div>
     <div class="right-container animate__animated animate__bounceInUp">
-      <img src="../assets/images/home/right.png" alt="" />
+      <img src="../assets/images/home/hero-right.svg" alt="" />
     </div>
     <RouterLink to="/general-mission">
       <div
         class="icons-container gerneral-mission-img animate__animated animate__heartBeat"
       >
-        <img src="../assets/images/home/gerneral_mission.png" alt="" />
+        <img src="../assets/images/home/gerneral_mission.svg" alt="" />
       </div>
       <p class="gerneral-mission-title btn bold">一般任務</p></RouterLink
     >
@@ -34,7 +34,7 @@ import { RouterLink } from "vue-router";
       <div
         class="icons-container news-img animate__animated animate__heartBeat"
       >
-        <img src="../assets/images/home/news.png" alt="" />
+        <img src="../assets/images/home/news.svg" alt="" />
       </div>
       <p class="news-title btn bold">最新消息</p>
     </RouterLink>
@@ -43,7 +43,7 @@ import { RouterLink } from "vue-router";
       <div
         class="icons-container special-mission-img animate__animated animate__heartBeat"
       >
-        <img src="../assets/images/home/special_mission.png" alt="" />
+        <img src="../assets/images/home/special_mission.svg" alt="" />
       </div>
       <p class="special-mission-title btn bold">特殊任務</p></RouterLink
     >
@@ -52,7 +52,7 @@ import { RouterLink } from "vue-router";
       <div
         class="icons-container sights-img animate__animated animate__heartBeat"
       >
-        <img src="../assets/images/home/sights.png" alt="" />
+        <img src="../assets/images/home/sights.svg" alt="" />
       </div>
       <p class="sights-title btn bold">景點介紹</p>
     </RouterLink>
@@ -61,7 +61,7 @@ import { RouterLink } from "vue-router";
       <div
         class="icons-container store-img animate__animated animate__heartBeat"
       >
-        <img src="../assets/images/home/store.png" alt="" />
+        <img src="../assets/images/home/store.svg" alt="" />
       </div>
       <p class="store-title btn bold">商城</p>
     </RouterLink>
@@ -73,21 +73,21 @@ import { RouterLink } from "vue-router";
         <p class="title1 bold">捷運沿線景點推薦</p>
         <p class="bold">精選特色景點，帶你發現台北不為人知的一面</p>
         <div class="benefits-img">
-          <img src="../assets/images/home/benefits1.png" alt="" />
+          <img src="../assets/images/home/benefits1.svg" alt="" />
         </div>
       </div>
       <div class="card orange-card">
         <p class="title1 bold">貼近日常的互動遊戲</p>
         <p class="bold">透過有趣的任務遊戲，讓探索城市變得更豐富！</p>
         <div class="benefits-img">
-          <img src="../assets/images/home/benefits2.png" alt="" />
+          <img src="../assets/images/home/benefits2.svg" alt="" />
         </div>
       </div>
       <div class="card pink-card">
         <p class="title1 bold">客製化的商品</p>
         <p class="bold">獨特的紀念品和限定商品，紀錄你的探索回憶</p>
         <div class="benefits-img">
-          <img src="../assets/images/home/benefits3.png" alt="" />
+          <img src="../assets/images/home/benefits3.svg" alt="" />
         </div>
       </div>
     </div>
