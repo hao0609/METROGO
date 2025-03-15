@@ -16,10 +16,14 @@
       <div class="modal-footer">
         <div class="btn-group">
           <button class="btn small">拍照</button>
-          <button class="btn small" @click="onUploadFromAlbumClick">
+          <!-- <button class="btn small" @click="onUploadFromAlbumClick">
             從相簿上傳
-          </button>
-          <alert_user_photo_open ref="alert_user_photo_open_ref" />
+          </button> -->
+          <!-- <alert_user_photo_open
+            ref="alert_user_photo_open_ref"
+            v-if="showUserPhotoOpen"
+            @close="showUserPhotoOpen"
+          /> -->
         </div>
         <button class="submit-btn" @click="handleConfirm">送出</button>
       </div>
@@ -35,53 +39,11 @@
 
 <script>
 import { ref } from "vue";
-import alert_user_photo_open from "./alert_user_photo_open.vue";
+import alert_user_photo_open from "@/alert/alert_user_photo_open.vue";
 
 const alert_user_photo_open_ref = ref(null);
-
-// export default {
-//   name: "alert_L_Photo",
-
-//   props: {
-//     title: {
-//       type: String,
-//       default: "",
-//     },
-//     message: {
-//       type: String,
-//       default: "",
-//     },
-//     message2: {
-//       type: String,
-//       default: "",
-//     },
-//     img: {
-//       type: String,
-//       default: null,
-//     },
-//   },
-//   emits: ["confirm", "cancel"],
-//   setup(props, { emit }) {
-//     const showUserPhotoOpen = ref(false);
-
-//     function onUploadFromAlbumClick() {
-//       // alert_user_photo_open_ref.value.PhotoOpenShowAlert();
-//       console.log(alert_user_photo_open_ref.value);
-//     }
-//     function handleConfirm() {
-//       emit("confirm");
-//     }
-//     function handleCancel() {
-//       emit("cancel");
-//     }
-
-//     return {
-//       showUserPhotoOpen,
-//       onUploadFromAlbumClick,
-//       handleConfirm,
-//       handleCancel,
-//     };
-//   },
+// const onUploadFromAlbumClick = () => {
+//   console.log(alert_user_photo_open_ref.value);
 // };
 export default {
   components: {
@@ -109,7 +71,7 @@ export default {
   emits: ["confirm", "cancel"],
   methods: {
     onUploadFromAlbumClick() {
-      // this.showUserPhotoOpen = true;
+      this.PhotoOpenShowAlert = true;
       console.log(alert_user_photo_open_ref.value);
     },
     handleConfirm() {
@@ -124,6 +86,50 @@ export default {
       showUserPhotoOpen: false,
     };
   },
+  // export default {
+  //   name: "alert_L_Photo",
+
+  //   props: {
+  //     title: {
+  //       type: String,
+  //       default: "",
+  //     },
+  //     message: {
+  //       type: String,
+  //       default: "",
+  //     },
+  //     message2: {
+  //       type: String,
+  //       default: "",
+  //     },
+  //     img: {
+  //       type: String,
+  //       default: null,
+  //     },
+  //   },
+  //   emits: ["confirm", "cancel"],
+  //   setup(props, { emit }) {
+  //     const showUserPhotoOpen = ref(false);
+
+  //     function onUploadFromAlbumClick() {
+  //       // alert_user_photo_open_ref.value.PhotoOpenShowAlert();
+  //       console.log(alert_user_photo_open_ref.value);
+  //     }
+  //     function handleConfirm() {
+  //       emit("confirm");
+  //     }
+  //     function handleCancel() {
+  //       emit("cancel");
+  //     }
+
+  //     return {
+  //       showUserPhotoOpen,
+  //       onUploadFromAlbumClick,
+  //       handleConfirm,
+  //       handleCancel,
+  //     };
+  //   },
+  // };
 };
 </script>
 
