@@ -39,9 +39,9 @@
 
 <script>
 import { ref } from "vue";
-import alert_user_photo_open from "@/alert/alert_user_photo_open.vue";
+// import alert_user_photo_open from "@/alert/alert_user_photo_open.vue";
 
-const alert_user_photo_open_ref = ref(null);
+// const alert_user_photo_open_ref = ref(null);
 // const onUploadFromAlbumClick = () => {
 //   console.log(alert_user_photo_open_ref.value);
 // };
