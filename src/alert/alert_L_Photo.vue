@@ -46,9 +46,9 @@ const alert_user_photo_open_ref = ref(null);
 //   console.log(alert_user_photo_open_ref.value);
 // };
 export default {
-  components: {
-    alert_user_photo_open,
-  },
+  // components: {
+  //   alert_user_photo_open,
+  // },
   name: "alert_L_Photo",
   props: {
     title: {
