@@ -109,6 +109,20 @@
     const car_1_Ref = ref(null); // car_1 的 ref
     const car_2_Ref = ref(null); // car_2 的 ref
 
+
+    // t1 左上捷運用時間線
+    // t2 右下捷運用時間線
+    // t3 右上車子用時間線
+    // t4 左下車子用時間線
+
+
+    let t1 = gsap.timeline({ repeat: -1 })
+    let t2 = gsap.timeline({ repeat: -1,delay:5})
+    let t3 = gsap.timeline({ repeat: -1,delay:3})
+    let t4 = gsap.timeline({ repeat: -1,delay:2})
+
+    
+
     onMounted(() => {       
         // updateLocation();
 
@@ -208,13 +222,6 @@
             },
         ]
         
-            // t1 左上捷運用時間線
-            // t2 右下捷運用時間線
-
-            const t1 = gsap.timeline({ repeat: -1 })
-            const t2 = gsap.timeline({ repeat: -1,delay:5})
-            const t3 = gsap.timeline({ repeat: -1,delay:3})
-            const t4 = gsap.timeline({ repeat: -1,delay:2})
 
 
 
@@ -348,6 +355,12 @@
     onUnmounted(() => {
         navigator.geolocation.clearWatch(watchID.value); // 停止監聽Position(watchID.value);
         console.log("clearWatch:", watchID.value);
+
+        // 確保頁面離開時所有動畫都被移除
+        if (t1) t1.kill();
+        if (t2) t2.kill();
+        if (t3) t3.kill();
+        if (t4) t4.kill();
         
     })
 
