@@ -9,7 +9,7 @@
 }
 .div-all{
     box-sizing: border-box;
-    background-color: $aqua-400;
+    // background-color: $aqua-400;
 }
 
 .spaceing-g8{
@@ -64,7 +64,7 @@ img{
 
 /* 商家資訊區塊 */
 .journey-featured-info{
-    // background-color: $metro-green;
+    // background-color: $metro-blue;
     width: 100%;
     padding: 50px 0px;
 }
@@ -166,6 +166,24 @@ img{
     text-decoration: underline;
 }
 
+
+$metro-colors: (
+  yellow: $metro-yellow,
+  red: $metro-red,
+  blue: $metro-blue,
+  green: $metro-green,
+  brown: $metro-brown,
+  lightgreen: $green-400,
+  lightblue: $aqua-400,
+  lightred: $pink-400,
+  lightbrown: $orange-400,
+  lightyellow: $yellow-400,
+);
+@each $name, $color in $metro-colors {
+  .#{$name} {
+    background-color: $color;
+  }
+}
 
 
 @media screen and (max-width : 1024px) {

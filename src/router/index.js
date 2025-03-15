@@ -33,6 +33,11 @@ import NewsView from "../views/NewsView.vue";
 import NewsDetailView from "../views/NewsDetailView.vue";
 import UserProfileView from "../views/UserProfileView.vue";
 import JourneyFeaturedView from "../views/JourneyFeaturedView.vue";
+// import featured_blue from "../views/featured/blue.vue";
+// import featured_green from "../views/featured/green.vue";
+// import featured_red from "../views/featured/red.vue";
+// import featured_yellow from "../views/featured/yellow.vue";
+// import featured_brown from "../views/featured/brown.vue";
 
 // 後台
 import AdminMainpageView from "../views/backend/AdminMainpageView.vue";
@@ -214,9 +219,67 @@ const router = createRouter({
     // 小編精選
     {
       path: "/journey-featured",
-      name: "JourneyFeaturedView",
+      name: "小編精選",
       component: JourneyFeaturedView,
     },
+    //小編精選
+    // {
+    //   path: "/journey-featured",
+    //   name: "JourneyFeaturedView",
+    //   component: JourneyFeaturedView,
+    //   children: [
+    //     {
+    //       path: "red_restaurants",
+    //       name: "featured_red",
+    //       component: featured_red,
+    //     },
+    //     {
+    //       path: "blue_restaurants",
+    //       name: "featured_blue",
+    //       component: featured_blue,
+    //     },
+    //     {
+    //       path: "yellow_restaurants",
+    //       name: "featured_yellow",
+    //       component: featured_yellow,
+    //     },
+    //     {
+    //       path: "green_restaurants",
+    //       name: "featured_green",
+    //       component: featured_green,
+    //     },
+    //     {
+    //       path: "brown_restaurants",
+    //       name: "featured_brown",
+    //       component: featured_brown,
+    //     },
+    //     {
+    //       path: "red_attractions",
+    //       name: "featured_red",
+    //       component: featured_red,
+    //     },
+    //     {
+    //       path: "blue_attractions",
+    //       name: "featured_blue",
+    //       component: featured_blue,
+    //     },
+    //     {
+    //       path: "yellow_attractions",
+    //       name: "featured_yellow",
+    //       component: featured_yellow,
+    //     },
+    //     {
+    //       path: "green_attractions",
+    //       name: "featured_green",
+    //       component: featured_green,
+    //     },
+    //     {
+    //       path: "brown_attractions",
+    //       name: "featured_brown",
+    //       component: featured_brown,
+    //     },
+    //   ],
+    // },
 
     // 後台
     // 後台登入頁面
