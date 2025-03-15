@@ -1,3 +1,8 @@
+@mixin tablet() {
+  @media screen and (max-width: 768px) {
+    @content;
+  }
+}
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -43,18 +48,19 @@
       bottom: -10px;
     }
     &.qa {
-      left: -35%;
+      left: -50%;
     }
   }
-  @include mobile() {
-    width: 335px;
-    .modal-img.left,
-    .modal-img.right,
-    .img-qa {
+
+  .modal-img.left,
+  .modal-img.right,
+  .img-qa {
+    @include tablet() {
       display: none;
     }
   }
 }
+
 .modal-body {
   z-index: 1;
 

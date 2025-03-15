@@ -322,7 +322,7 @@ export default {
         title: "中正紀念堂站 ",
         subtitle:
           "國家級紀念館，紀念孫中山先生，廣場壯麗，是拍照打卡與參觀藝文展覽的好去處，每日還有莊嚴的衛兵交接儀式。",
-        message: "請拍攝「中正紀念堂」，包含字樣.",
+        message: "請拍攝「中正紀念堂」，包含字樣",
         // img: "/src/assets/images/MissionSpecial/red_01.png",
         img: null,
       },
@@ -331,7 +331,7 @@ export default {
         title: "小南門站 ",
         subtitle:
           "台北府城牆遺跡與台灣博物館南門園區位於此站，充滿歷史文化氛圍，適合喜愛老建築與歷史的遊客。",
-        message: "請拍攝「台北植物園」大門.",
+        message: "請拍攝「台北植物園」大門",
         img: null,
       },
       {
@@ -339,7 +339,7 @@ export default {
         title: "公館站 ",
         subtitle:
           "台灣大學所在地，周邊有熱鬧的公館夜市，小吃選擇多，如鴨肉飯、豆花、滷味，文青書店與音樂表演空間也相當豐富。",
-        message: "請拍攝「公館夜市」隨一店家.",
+        message: "請拍攝「公館夜市」隨一店家",
         img: null,
       },
     ]);

@@ -353,27 +353,27 @@ export default {
     const lines = ref([
       {
         id: 1,
-        title: "國父紀念館站 ",
+        title: "國父紀念館站",
         subtitle:
           "館內展出孫中山事蹟，周邊大草坪適合休憩，還可遠眺台北 101，信義區的百貨商場與夜生活就在附近。",
-        message: "請拍攝「國父紀念館映池」.",
+        message: "請拍攝「國父紀念館映池」",
         // img: "/src/assets/images/MissionSpecial/red_01.png",
         img: null,
       },
       {
         id: 2,
-        title: "台北車站 ",
+        title: "台北車站",
         subtitle:
           "台北交通樞紐，鐵路、高鐵、捷運交會，商場、美食、書店齊聚，連通地下街，適合購物與休閒。",
-        message: "請拍攝「北門.",
+        message: "請拍攝「北門」",
         img: null,
       },
       {
         id: 3,
-        title: "龍山寺站 ",
+        title: "龍山寺站",
         subtitle:
           " 艋舺龍山寺香火鼎盛，是台北最古老的寺廟之一，周邊有剝皮寮老街、華西街夜市，展現濃厚的歷史與庶民文化。",
-        message: "請拍攝「龍山寺」.",
+        message: "請拍攝「龍山寺」",
         img: null,
       },
     ]);

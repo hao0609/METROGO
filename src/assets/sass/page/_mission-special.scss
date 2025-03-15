@@ -276,12 +276,7 @@ body {
     }
   }
 }
-@include mobile() {
-  .question {
-    width: 250px;
-    height: 250px;
-  }
-}
+
 .red_shadow,
 .red_active,
 section > ol > li > .red:hover {
