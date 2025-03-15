@@ -1,6 +1,16 @@
 <script setup>
  import { RouterView } from 'vue-router'
 
+
+/*  目前用戶登入狀態 */
+import { provide } from "vue";
+import { userLoginStatus } from "./js/view/userLoginStatus";
+const { user } = userLoginStatus();
+provide("user", user);      //  讓所有子組件都可以使用 user 目前用戶登入資料
+
+
+
+
 </script>
 
 <template>

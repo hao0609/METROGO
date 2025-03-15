@@ -2,41 +2,38 @@
 // 初始化
 import { initializeApp } from 'firebase/app';
 import { getDatabase, ref, set, get, onValue, remove,update } from 'firebase/database';
+
+// 引入 firebase authentication 登入註冊驗證方法
+import { getAuth } from "firebase/auth"; 
+
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 
-// 慧君的
 
-// const firebaseConfig = {
-//   apiKey: "AIzaSyAwrSoPt6G1JHJMiSg4G3kAT8a2diYSiQg",
-//   authDomain: "metrogo-c90f8.firebaseapp.com",
-//   databaseURL: "https://metrogo-c90f8-default-rtdb.firebaseio.com",
-//   projectId: "metrogo-c90f8",
-//   storageBucket: "metrogo-c90f8.firebasestorage.app",
-//   messagingSenderId: "48761177586",
-//   appId: "1:48761177586:web:61a5d5e2568f73f396576b",
-//   measurementId: "G-FNN8FP9BWL"
-// };
 
-// 鈞皓的
+// 共用的
 const firebaseConfig = {
-  apiKey: "AIzaSyCay5zgTuKPFNQ6WrVrfFMMP1ngcLJ8pg8",
-  authDomain: "metrogo-282a2.firebaseapp.com",
-  databaseURL: "https://metrogo-282a2-default-rtdb.firebaseio.com",
-  projectId: "metrogo-282a2",
-  storageBucket: "metrogo-282a2.firebasestorage.app",
-  messagingSenderId: "1061816089446",
-  appId: "1:1061816089446:web:01f4bca9e97a8b7e27a6a7"
+  apiKey: "AIzaSyCr0etNy5x5Zdo9vzFintxYii6ckHRroHw",
+  authDomain: "metrogo-ff75f.firebaseapp.com",
+  databaseURL: "https://metrogo-ff75f-default-rtdb.firebaseio.com",
+  projectId: "metrogo-ff75f",
+  storageBucket: "metrogo-ff75f.firebasestorage.app",
+  messagingSenderId: "36460695281",
+  appId: "1:36460695281:web:42c5fa5fc62888561e2350"
 };
+
+
 
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 
+const auth = getAuth(app);
+console.log(`Auth instance created: ${auth}`);  // 測試 auth
 
 
 // ** 在 Firebase 載入時，立即執行初始化資料庫架構**
@@ -49,9 +46,10 @@ async function initializeDatabase() {
       console.log(" Firebase 資料庫為空，正在建立初始資料結構...");
       await update(dbRef, {
         "會員資料": {
-            "userID_001":{
+            "範例資料":{
                         "會員編號": "001",
                         "會員姓名": "黃小名",
+                        "會員暱稱": "小名",
                         "電子郵件": "D6YFg@example.com",
                         "會員密碼": "123456",
                         "會員頭像": "./URL",
@@ -60,7 +58,7 @@ async function initializeDatabase() {
                       }
         },
         "商品管理": {
-            "productID_001":{
+            "範例資料":{
                         "商品編號": "001",
                         "商品名稱": "馬克杯",
                         "商品價格": 123,
@@ -79,7 +77,7 @@ async function initializeDatabase() {
                       } 
         },
         "照片管理": {
-            "photoID_001":{
+            "範例資料":{
                         "照片編號": "001",
                         "用戶上傳的照片": "./URL",
                         "照片上傳時間": "2022-01-01",
@@ -177,4 +175,4 @@ initializeDatabase();
 
 
 
-export { database, ref, set, get, onValue, remove, update };
+export { auth,database, ref, set, get, onValue, remove, update };

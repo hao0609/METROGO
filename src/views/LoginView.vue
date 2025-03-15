@@ -4,6 +4,11 @@ import BackIcon from "@/components/icons/IconBack.vue";
 import EyeoffIcon from '@/components/icons/IconEyeoff.vue';
 import EyeIcon from '@/components/icons/IconEye.vue';
 
+// 引入 firebase authentication 登入註冊驗證方法
+import { auth } from '../firebase/firebaseConfig.js'
+import { createUserWithEmailAndPassword } from 'firebase/auth'
+import { signInWithEmailAndPassword } from 'firebase/auth'
+
 // 引入自定義的工具模組
 import { 
   initSignupData, 
@@ -17,6 +22,8 @@ import {
   initForgotPasswordData,
   validateLoginForm
 } from "../js/view/login.js";
+import { error } from "jquery";
+
 
 export default {
   name: "LoginView",
@@ -28,7 +35,7 @@ export default {
   data() {
     return {
       currentForm: 'login', // 預設顯示登入頁
-      passwordVisible: initPasswordVisibility(),
+      passwordVisible: initPasswordVisibility(), 
       login: initLoginData(),
       signup: initSignupData(),
       forgotPassword: initForgotPasswordData(),
@@ -107,11 +114,32 @@ export default {
       };
     },
     // 登入相關方法
-    handleLogin() {
+    async handleLogin() {
       const isValid = validateLoginForm(this.login);
       if (isValid) {
         console.log('登入表單驗證通過', this.login);
-        // 這裡加入實際登入邏輯
+
+
+        // 這邊是 Firebase Authentication 的登入驗證
+
+        try{
+          await signInWithEmailAndPassword(auth,this.login.email, this.login.password)
+          this.showMessage('success', `登入成功!`);
+
+            // 登入成功後，返回上一個瀏覽的頁面
+            this.$router.go(-1)
+  
+
+        }catch(error){
+            
+            switch (error.code) {
+                  case "auth/invalid-credential":
+                    this.showMessage('error', `帳號或密碼錯誤，請再試一次！`);
+                    break;
+                  default:
+                    this.showMessage('error', `登入失敗： ${error.message}`);
+            }
+        }
       }
     },
     // 註冊相關方法
@@ -122,21 +150,53 @@ export default {
       const isValid = validateSignupForm(this.signup);
       if (isValid) {
         try {
+
           this.isLoading = true;
           console.log('註冊表單驗證通過', this.signup);
           
-          // 調用保存到Firebase的函數
-          const result = await handleSignupAndSaveToFirebase(this.signup);
           
-          if (result.success) {
-            this.showMessage('success', '註冊成功！您的帳號已創建');
-            // 註冊成功後，可以導向登入頁面
-            setTimeout(() => {
-              this.switchForm('login');
-            }, 1500);
-          } else {
-            this.showMessage('error', `註冊失敗：${result.error}`);
+          // 這邊是 Firebase Authentication 的註冊驗證
+          try {
+            
+            await createUserWithEmailAndPassword(auth,this.signup.email, this.signup.password)
+
+            // 調用保存到Firebase的函數
+            const result = await handleSignupAndSaveToFirebase(this.signup);
+              
+              if (result.success) {
+                this.showMessage('success', '註冊成功！您的帳號已創建');
+                // 註冊成功後，可以導向登入頁面
+                setTimeout(() => {
+                  this.switchForm('login');
+                }, 1500);
+              } else {
+                this.showMessage('error', `註冊失敗：${result.error}`);
+              }
+
           }
+          catch (error) {
+            console.error('註冊過程中出錯:', error);
+
+              // 這邊是 Firebase Authentication 的註冊驗證錯誤訊息
+              switch (error.code) {
+              case "auth/invalid-email":
+                  this.showMessage('error', `註冊過程中出錯：請輸入有效的 Email`);
+                  break;
+              case "auth/email-already-in-use":
+                  this.showMessage('error', `註冊過程中出錯：該 Email 已被註冊`);
+                  break;
+              case "auth/weak-password":
+                  this.showMessage('error', `註冊過程中出錯：密碼至少需要 6 個字元`);
+                  break;
+              default:
+                  alert("註冊失敗，請稍後再試");
+             
+            }
+          }
+
+
+
+
         } catch (error) {
           console.error('註冊過程中出錯:', error);
           this.showMessage('error', `註冊過程中出錯：${error.message}`);

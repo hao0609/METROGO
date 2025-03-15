@@ -6,7 +6,15 @@ import shopping_cart from "./icons/shopping_cart.vue";
 import user from "./icons/user.vue";
 import shopping_cart_alert from "./shopping_cart_alert.vue";
 
+import alert_logout_successful from "../alert/alert_logout_successful.vue";
+const alert_logout_successful_ref = ref(null);
+
 import { ref, computed } from "vue";
+import { useRouter } from "vue-router";
+const router = useRouter()
+
+
+import { logoutUser } from "../js/view/signout"
 
 const checked = ref(false);
 const rwd_menu = ref(null);
@@ -16,16 +24,46 @@ const rwd_menu_bg = ref(null);
 // 控制積分遊戲 dropdown 是否隱藏
 const dropdown = ref(false);
 
-// 模擬登入狀態
-const user_login_status = ref(false);
+// 登入/ 登出按鈕狀態
+import { inject } from "vue";       // 使用 inject 來接 app.vue provide 的 user狀態
+const user_status = inject("user"); // 取得用戶狀態
 
+// 登入/ 登出按鈕文字
 const user_login_statusText = computed(() => {
-  if (user_login_status.value === true) {
-    return "登出";
-  } else if (user_login_status.value === false) {
+  if (user_status.value==null) {
     return "登入";
+  } else {
+    return "登出";
   }
 });
+
+
+// 登入/ 登出按鈕該做的事情
+const CheckUserLoginStatus = async() => {
+  
+  if (user_status.value==null) {
+    // 沒登入就跳到登入頁
+    router.push("/login");
+  }else{
+    // 有登入就能讓用戶登出
+    const logout_success =await logoutUser();   // 呼叫登出函式，並回傳登出是否成功
+    if (logout_success == true) {
+
+      // 若是 RWD MENU 則登出後把它隱藏
+      checked.value = false;
+      rwd_menu.value.style.visibility = "hidden";
+      rwd_menu_bg.value.style.transform = "scale(0)";
+      rwd_menu.value.style.transform = "scale(0)";
+
+
+      alert_logout_successful_ref.value.UserLogOutSuccessful();
+    }else{
+      console.log("登出失敗");
+      
+    }
+    
+  }
+}
 
 const checked_change = () => {
   if (checked.value === true) {
@@ -152,16 +190,14 @@ const cartItems = ref([
         <shopping_cart @click="cartVisible = !cartVisible" />
       </div>
 
-      <div class="user">
-        <RouterLink to="/user-profile">
-        <!-- <user v-show="user_login_status"></user> --> <!--暫時移除登入判斷-->
-        <user ></user>
+      <div class="user" >
+        <RouterLink to="/user-profile" v-if="user_status">
+          <user ></user>
         </RouterLink>
       </div>
 
-      <RouterLink to="/login">
-        <button class="btn_white small">{{ user_login_statusText }}</button>
-      </RouterLink>
+      <button class="btn_white small" @click=CheckUserLoginStatus>{{ user_login_statusText }}</button>
+
     </nav>
 
     <div class="hamburger_box">
@@ -207,16 +243,13 @@ const cartItems = ref([
         <RouterLink to="/store"><h2>商城</h2></RouterLink>
         <RouterLink to="/news"><h2>最新消息</h2></RouterLink>
 
-        <RouterLink to="/login">
-        <button class="btn_white small">{{ user_login_statusText }}</button>
-        </RouterLink>
+        <button class="btn_white small" @click=CheckUserLoginStatus>{{ user_login_statusText }}</button>
       </div>
       <div class="icon_box">
         <div class="icon">
           <shopping_cart @click="cartVisible = !cartVisible" />
           
-          <RouterLink to="/user-profile">
-              <!-- <user v-show="user_login_status"></user> --> <!--暫時移除登入判斷-->
+          <RouterLink to="/user-profile" v-if="user_status">
               <user></user>
           </RouterLink>
         </div>
@@ -231,6 +264,12 @@ const cartItems = ref([
       </div>
     </div>
   </div>
+
+
+  <!-- 用戶成功登出彈窗 -->
+  <alert_logout_successful ref="alert_logout_successful_ref"/>
+
+
 </template>
 
 <style lang="scss" scoped>
