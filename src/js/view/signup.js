@@ -100,9 +100,10 @@ export const resetSignupForm = (signupData) => {
 /**
  * 處理註冊並保存數據到Firebase
  * @param {Object} signupData - 註冊表單數據
+ * @param {string} userUID - 用戶UID
  * @returns {Promise} 返回包含註冊結果的Promise
  */
-export const handleSignupAndSaveToFirebase = async (signupData) => {
+export const handleSignupAndSaveToFirebase = async (signupData,userUID) => {
     try {
       // 準備要保存的用戶數據
       const userData = {
@@ -112,15 +113,16 @@ export const handleSignupAndSaveToFirebase = async (signupData) => {
       };
 
     // 保存數據到Firebase
-    const result = await saveUserToFirebase(userData);
+    const result = await saveUserToFirebase(userData, userUID);
     
     if (result.success) {
+
         console.log('用戶註冊成功並保存到Firebase, userId:', result.userId);
-        console.log('會員ID:', result.memberID);
+
         return { 
           success: true, 
           userId: result.userId,
-          memberID: result.memberID 
+          memberID: result.userId  //memberID 修改為直接使用 userId
         };
       } else {
         console.error('保存用戶數據時出錯:', result.error);

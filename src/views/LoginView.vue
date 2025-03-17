@@ -158,10 +158,15 @@ export default {
           // 這邊是 Firebase Authentication 的註冊驗證
           try {
             
-            await createUserWithEmailAndPassword(auth,this.signup.email, this.signup.password)
+            // 用戶透過 Firebase Authentication 註冊後的所有資料
+            const userCredential = await createUserWithEmailAndPassword(auth,this.signup.email, this.signup.password)
+            
+            // 從註冊後的所有資料取得用戶的唯一 UID 值 ( 由 Firebase 自動產生 ) 
+            const userUID = userCredential.user.uid 
+
 
             // 調用保存到Firebase的函數
-            const result = await handleSignupAndSaveToFirebase(this.signup);
+            const result = await handleSignupAndSaveToFirebase(this.signup, userUID);
               
               if (result.success) {
                 this.showMessage('success', '註冊成功！您的帳號已創建');
