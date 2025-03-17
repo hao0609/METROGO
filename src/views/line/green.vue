@@ -340,7 +340,11 @@
                         NO_location_alert()
                 }
             }
-            CheckUserStatus();
+
+            
+            setTimeout(() => {
+                CheckUserStatus();     //等 3 秒再執行判斷用戶是否登入
+            },3000)     
 
 
 

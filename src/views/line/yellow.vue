@@ -65,7 +65,7 @@
 
             }else{
                 pinStyle_yellow.value = pinjs("").pinStyle_yellow.value;
-                alert_userlocation_stay_ref.value.UserLocationShowAlert(); 
+               
             }
 
             station_result = result.station; // ✅ 更新最近的捷運站名稱
@@ -333,6 +333,7 @@
 
             // 檢查用戶有沒有登入的狀態
             const CheckUserStatus = () => {
+                console.log(user_status.value);
                 
                 if (user_status.value == null) {
             
@@ -345,7 +346,11 @@
                         NO_location_alert()
                 }
             }
-            CheckUserStatus();
+
+
+            setTimeout(() => {
+                CheckUserStatus();     //等 3 秒再執行判斷用戶是否登入
+            },3000)     
 
 
 

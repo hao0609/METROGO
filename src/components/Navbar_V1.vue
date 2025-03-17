@@ -27,10 +27,14 @@ const dropdown = ref(false);
 // 登入/ 登出按鈕狀態
 import { inject } from "vue";       // 使用 inject 來接 app.vue provide 的 user狀態
 const user_status = inject("user"); // 取得用戶狀態
+//console.log(user_status.value);
+
 
 // 登入/ 登出按鈕文字
 const user_login_statusText = computed(() => {
   if (user_status.value==null) {
+
+    
     return "登入";
   } else {
     return "登出";
