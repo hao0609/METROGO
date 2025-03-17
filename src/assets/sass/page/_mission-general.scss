@@ -101,9 +101,9 @@ button {
     z-index: 99; 
     position: relative;
 
-    @include mobile() {
-       width: 100%;
-    }
+    // @include mobile() {
+    //    width: 100%;
+    // }
 
 }
 .game_menu_btns > .game_menu_btnsBox> .close_btn{

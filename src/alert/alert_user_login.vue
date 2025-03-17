@@ -7,9 +7,8 @@ import { useRouter } from "vue-router";
 
 const router = useRouter();
 const function_1 = () => {
-//   console.log("執行第一個功能");
-
-   router.push('/login');   // Vue Router 內部導航  
+// console.log("執行第一個功能");
+   router.push('/login');   
 }
 
 
@@ -42,7 +41,7 @@ defineExpose({                                                // 暴露 UserLogi
 
 
 <template>
-    <alert_web_M ref="alert_web_M_content" :alertInfo="userAlertInfo"/>
+    <alert_web_M ref="alert_web_M_content" :alertInfo="userAlertInfo" :function="function_1"/>
 </template>
 
 

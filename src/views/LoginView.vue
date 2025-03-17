@@ -366,7 +366,7 @@ export default {
                     </div>
                 </div>
                 <div class="form-group" :class="{ error: !signup.isPasswordValid && signup.password === '' }">
-                        <label class="input-label required">密碼</label>
+                        <label class="input-label required">密碼 ( 密碼最少 6 字符 )</label>
                         <div class="input-wrapper with-icon">
                             <input 
                               :type="passwordVisible.signup ? 'text' : 'password'" 
