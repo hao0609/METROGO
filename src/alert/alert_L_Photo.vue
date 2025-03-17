@@ -62,11 +62,7 @@ import { ref } from "vue";
 import alert_user_camera_open from "@/alert/alert_user_camera_open.vue";
 import alert_camera from "@/alert/alert_camera.vue";
 import { storage } from "@/firebase/firebasePhotoUpload.js";
-import {
-  ref as fsRef,
-  uploadBytes,
-  getDownloadURL,
-} from "firebasePhotoUpload/storage";
+import { ref as fsRef, uploadBytes, getDownloadURL } from "firebase/storage";
 
 const props = defineProps({
   title: { type: String, default: "" },
@@ -79,10 +75,11 @@ const props = defineProps({
 const selectedPhoto = ref(null); // 使用者上傳的檔案
 const downloadURL = ref(""); // 上傳檔案的下載連結
 const error = ref(""); // 上傳失敗的訊息
-// const photoChange = (e) => {
-//   selectedPhoto.value = e.target.files[0];
-// };
-// 處理圖片選擇
+// 相機
+const alert_user_camera_open_ref = ref(null); // 相機權限
+const alert_camera_ref = ref(null); // 相機畫面
+const showCamera = ref(false);
+const imgSrc = ref("");
 const photoChange = (e) => {
   const file = e.target.files[0]; // 獲取選擇的檔案
   if (file) {
@@ -91,7 +88,7 @@ const photoChange = (e) => {
     reader.readAsDataURL(file);
 
     reader.onload = () => {
-      console.log("檔案讀取完成，結果：", reader.result);
+      // console.log("檔案讀取完成，結果：", reader.result);
       imgSrc.value = reader.result; // 用 FileReader 來生成圖片的 Data URL 並設定預覽
     };
   }
@@ -113,16 +110,12 @@ const uploadPhoto = async () => {
 };
 
 // 相機
-const alert_user_camera_open_ref = ref(null); // 相機權限
-const alert_camera_ref = ref(null); // 相機畫面
-const showCamera = ref(false);
-const imgSrc = ref("");
 const CameraClick = async () => {
   if (await checkCamera()) {
     showCamera.value = true;
-    console.log("開啟相機");
+    // console.log("開啟相機");
   } else {
-    console.log("無法存取相機");
+    // console.log("無法存取相機");
     alert_user_camera_open_ref.value.CameraOpenShowAlert(); // 無權限，顯示提示彈窗
   }
 };
@@ -130,8 +123,8 @@ const CameraClick = async () => {
 const checkCamera = async () => {
   try {
     const stream = await navigator.mediaDevices.getUserMedia({ video: true });
-    console.log("相機存取成功，權限已開啟");
-
+    // console.log("相機存取成功，權限已開啟");
+    //
     // 立即停止所有相機串流，避免佔用資源
     stream.getTracks().forEach((track) => track.stop());
 
@@ -140,9 +133,6 @@ const checkCamera = async () => {
     console.error("無法存取相機:", error);
     return false; // 回傳 false 表示相機無法使用
   }
-};
-const handlePhotoCaptured = (photoData) => {
-  imgSrc.value = photoData;
 };
 
 const emit = defineEmits("cancel");
@@ -153,6 +143,33 @@ const emit = defineEmits("cancel");
 
 const handleCancel = () => {
   emit("cancel");
+};
+const handlePhotoCaptured = (photoData) => {
+  imgSrc.value = photoData; // 更新圖片預覽
+
+  // 檢查 photoData 是否為合法的 base64 格式
+  if (!photoData || !photoData.includes("base64,")) {
+    console.error("Invalid photoData format");
+    return;
+  }
+
+  const base64Data = photoData.split(",")[1];
+  try {
+    const byteString = atob(base64Data);
+    const mimeString = photoData.split(",")[0].split(":")[1].split(";")[0];
+    const ab = new ArrayBuffer(byteString.length);
+    const ia = new Uint8Array(ab);
+    for (let i = 0; i < byteString.length; i++) {
+      ia[i] = byteString.charCodeAt(i);
+    }
+    const blob = new Blob([ab], { type: mimeString });
+    // 如果需要建立 File 物件，可這樣做：
+    selectedPhoto.value = new File([blob], `photo_${Date.now()}.jpg`, {
+      type: mimeString,
+    });
+  } catch (err) {
+    console.error("Base64 decoding failed:", err);
+  }
 };
 </script>
 

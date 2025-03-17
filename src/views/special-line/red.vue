@@ -67,6 +67,16 @@
           </li>
         </ol>
       </section>
+      <!-- v-if="selectedLine === null" -->
+      <!--  v-if="isVisible"-->
+      <alert_L_Photo
+        ref="alertPhoto"
+        v-if="selectedLine !== null"
+        :message="selectedLine?.message"
+        :message2="selectedLine?.message2"
+        @cancel="handleModalCancel"
+        @confirm="handleModalConfirm"
+      />
       <div class="mission-main">
         <div
           class="line"
@@ -97,14 +107,6 @@
             >
               <img :src="defaultImg" alt="Lock Icon" class="lock-icon" />
               <span class="lock-text">請上傳照片</span>
-              <alert_L_Photo
-                ref="alertPhoto"
-                v-if="isVisible"
-                :message="selectedLine?.message"
-                :message2="selectedLine?.message2"
-                @cancel="handleModalCancel"
-                @confirm="handleModalConfirm"
-              />
             </div>
           </div>
         </div>
@@ -125,9 +127,10 @@
                   v-html="question.icon"
                 ></div>
                 <span class="question-text">點擊回答問題</span>
+                <!-- v-if="isQuestionVisible"-->
                 <alert_L_question
                   ref="alertQuestion"
-                  v-if="isQuestionVisible"
+                  v-if="selectedQuestion !== null"
                   :question="selectedQuestion"
                   @cancel="handleQuestionCancel"
                   @confirm="handleQuestionConfirm"
@@ -244,14 +247,14 @@ export default {
       sectionActive.value = !sectionActive.value;
     };
 
-    const isVisible = ref(false); // 在父組件中定義 isVisible
-    const isQuestionVisible = ref(false);
+    // const isVisible = ref(false); // 在父組件中定義 isVisible
+    // const isQuestionVisible = ref(false);
 
     const selectedLine = ref(null);
     const selectedQuestion = ref(null);
     const openPhotoAlert = (line) => {
       selectedLine.value = line;
-      isVisible.value = true;
+      // isVisible.value = true;
     };
     // const openQuestion = () => {
     //   // selectedQuestion.value = questions;
@@ -269,21 +272,25 @@ export default {
         Math.random() * brownLineQuestions.value.length
       );
       selectedQuestion.value = brownLineQuestions.value[randomIndex];
-      isQuestionVisible.value = true;
+      // isQuestionVisible.value = true;
     };
 
     const handleModalCancel = () => {
-      isVisible.value = false;
+      // isVisible.value = false;
+      selectedLine.value = null;
     };
     const handleQuestionCancel = () => {
-      isQuestionVisible.value = false;
+      // isQuestionVisible.value = false;
+      selectedQuestion.value = null;
     };
 
     const handleModalConfirm = () => {
-      isVisible.value = false;
+      // isVisible.value = false;
+      selectedLine.value = null;
     };
     const handleQuestionConfirm = () => {
       isQuestionVisible.value = false;
+      selectedQuestion.value = null;
     };
     const stations = ref([
       {
@@ -546,7 +553,7 @@ export default {
       toTop,
       showToTop,
 
-      isQuestionVisible,
+      // isQuestionVisible,
       questionData,
       selectedQuestion,
       handleQuestionConfirm,
@@ -555,7 +562,7 @@ export default {
       openPhotoAlert,
 
       selectedLine,
-      isVisible,
+      // isVisible,
       handleModalCancel,
       handleModalConfirm,
     };
