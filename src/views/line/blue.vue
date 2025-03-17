@@ -1,5 +1,5 @@
 <script setup>
-    import { ref, onMounted , onUnmounted} from 'vue'
+    import { ref, onMounted , onUnmounted , watch} from 'vue'
     import ground from '../../assets/images/MessionGeneral/ground.png';
     import building_tree from '../../assets/images/MessionGeneral/building_tree.png'
     import road from '../../assets/images/MessionGeneral/road.png';
@@ -22,6 +22,12 @@
     import alert_user_location_open from '@/alert/alert_user_location_open.vue';  // 引入 alert_user_location 打開定位彈窗
     const alert_userlocation_open_ref = ref(null);
 
+    import alert_user_login from '../../alert/alert_user_login.vue';    // 引入 alert_user_login 登入提醒彈窗
+    const alert_user_login_ref = ref(null);
+
+
+
+
     const pinStyle_blue = ref(null);
     const locationInfobox_style = ref(null);
 
@@ -36,6 +42,14 @@
 
     const watchID = ref(0);
 
+
+    // 用戶登入狀態取得
+    import { inject } from "vue";       // 使用 inject 來接 app.vue provide 的 user 狀態
+    const user_status = inject("user"); // 取得用戶狀態
+
+
+
+    
     // 用戶定位座標物件位置判斷
     const updateLocation = async () =>{
 
@@ -82,7 +96,7 @@
         }
     }
 
-    NO_location_alert()
+
     
     
     locationInfobox_style.value = locationInfo().locationInfobox_style.value;  // 使用 pin.js 的 locationInfobox_style()
@@ -314,6 +328,41 @@
             });
 
 
+
+            // 檢查用戶有沒有登入的狀態
+            const CheckUserStatus = () => {
+                
+                if (user_status.value == null) {
+            
+                // 沒登入就跳登入提醒彈窗
+                console.log("用戶沒登入");
+                
+                        alert_user_login_ref.value.UserLoginShowAlert();
+                }else{
+                        // 有登入再來判斷用戶定位是否在捷運站附近
+                        NO_location_alert()
+                }
+            }
+            CheckUserStatus();
+
+
+
+            // 監聽用戶登入狀態
+            watch(user_status, (newValue, oldValue) => {
+            console.log("用戶登入狀態:", newValue);
+
+                if (newValue == null) {
+                    setTimeout(() => {
+                        CheckUserStatus();
+                    },3000)                    // 等 3 秒再執行登入判斷，避免執行其他彈窗時間重疊到
+                    
+                }
+            });
+
+
+
+
+
         if (navigator.geolocation) {
 
             let lastLatitude = null;
@@ -427,6 +476,9 @@
 
     <!-- 提醒用戶打開定位彈窗-->
     <alert_user_location_open ref="alert_userlocation_open_ref"/>
+
+    <!-- 用戶登入提醒彈窗 -->
+    <alert_user_login ref="alert_user_login_ref"/>
 
 </template>
 

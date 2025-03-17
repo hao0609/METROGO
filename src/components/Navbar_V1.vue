@@ -156,10 +156,10 @@ const cartItems = ref([
                     />
                   </svg>
                 </div>
-                特殊任務－半日
+                特殊任務
               </button>
             </RouterLink>
-            <RouterLink to="/special-mission" class="router_link">
+            <!-- <RouterLink to="/special-mission" class="router_link">
               <button class="btn_white">
                 <div class="icon">
                   <svg
@@ -178,7 +178,7 @@ const cartItems = ref([
                 </div>
                 特殊任務－一日
               </button>
-            </RouterLink>
+            </RouterLink> -->
           </div>
         </li>
         <li><RouterLink to="/store" >商城</RouterLink></li>

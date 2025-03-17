@@ -13,6 +13,19 @@
     //import alert_location_inaccurate from '@/alert/alert_location_inaccurate.vue';  // 引入 alert_location_inaccurate 彈窗 ( 暫不引入 )
     //const alert_web_M_location_inaccurate = ref(null);
 
+    import ModalMenu from '../components/Mission/ModalMenu.vue';  // 引入 玩法說明彈窗
+
+    // 呼叫 ModalMenu 的玩法說明彈窗
+    const selectedModal = ref("");
+    const isModalOpen = ref(false);
+
+    const openModal = () => {
+        isModalOpen.value = true;
+        selectedModal.value = "gameRules"
+        game_menu_btns_show.value = false
+    }
+
+
 
     import { setAlertInstance_location_inaccurate, setAlertInstance_userlocation } from '../js/view/MissionGeralView/geolocation';          // 引入 geolocation.js
 
@@ -192,7 +205,7 @@
                 <div class="btn_box_text">集章冊</div>
                 <div id="stamp_notify" class="notify"></div>
             </button> -->
-            <button id="question_btn" class="btn_box">
+            <button id="question_btn" class="btn_box" @click="openModal">
                 <svg class="vector" width="30" height="31" viewBox="0 0 30 31" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M15 30.5C6.7155 30.5 0 23.7845 0 15.5C0 7.2155 6.7155 0.5 15 0.5C23.2845 0.5 30 7.2155 30 15.5C30 23.7845 23.2845 30.5 15 30.5ZM13.5 20V23H16.5V20H13.5ZM16.5 17.5325C17.7055 17.1692 18.7404 16.3849 19.4162 15.3226C20.0921 14.2603 20.3638 12.9906 20.1821 11.7447C20.0004 10.4988 19.3772 9.35966 18.426 8.53469C17.4749 7.70971 16.2591 7.25381 15 7.25C13.7862 7.24962 12.6098 7.66984 11.6709 8.43915C10.732 9.20846 10.0888 10.2793 9.8505 11.4695L12.7935 12.059C12.877 11.6411 13.0775 11.2556 13.3716 10.9472C13.6656 10.6388 14.0412 10.4203 14.4546 10.3171C14.8681 10.2138 15.3023 10.2301 15.7068 10.364C16.1114 10.4978 16.4696 10.7439 16.7397 11.0734C17.0099 11.4029 17.181 11.8023 17.233 12.2253C17.2851 12.6482 17.2159 13.0772 17.0337 13.4624C16.8514 13.8475 16.5635 14.173 16.2035 14.401C15.8435 14.6289 15.4261 14.75 15 14.75C14.6022 14.75 14.2206 14.908 13.9393 15.1893C13.658 15.4706 13.5 15.8522 13.5 16.25V18.5H16.5V17.5325Z" fill="black" />
                 </svg>
@@ -354,6 +367,13 @@
 
     <!-- 用戶目前裝置googleMap api定位彈窗 -->
     <Alert_UserLocation_map ref="Alert_UserLocation_map_ref" />
+
+    <!-- 玩法說明彈窗 -->
+    <ModalMenu
+        v-if="isModalOpen"
+        :type="selectedModal"
+        @close="isModalOpen = false"
+      />
 
 
 
