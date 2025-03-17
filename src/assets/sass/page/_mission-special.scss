@@ -503,7 +503,7 @@ button {
   border-radius: 12px;
   transition: bottom 0.3s ease;
   cursor: pointer;
-  z-index: 1000;
+  z-index: 99;
   &.at-footer {
     bottom: calc(50% - 100px); // 當到達 footer 時，移動到 footer 頂部
   }
