@@ -10,6 +10,7 @@
     import train2 from '../../assets/images/MessionGeneral/train2.vue';
     import car1 from '../../assets/images/MessionGeneral/car1.vue'
     import car2 from '../../assets/images/MessionGeneral/car2.vue'
+    import red_done from '../../assets/images/MessionGeneral/red_done.vue'
 
 
 
@@ -496,6 +497,9 @@
         </div>
         <div class="item">
             <station_red class="station"/>
+        </div>
+        <div class="item">
+            <red_done class="red_done"/>
         </div>
         <div class="item">
             <train1  ref="train_1_Ref"/>
