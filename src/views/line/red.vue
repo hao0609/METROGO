@@ -11,6 +11,8 @@
     import car1 from '../../assets/images/MessionGeneral/car1.vue'
     import car2 from '../../assets/images/MessionGeneral/car2.vue'
 
+
+
     import { gelocation } from "../../js/view/MissionGeralView/geolocation";
 
     import pin from '../../assets/images/MessionGeneral/pin.vue';
@@ -98,6 +100,29 @@
         }
     }
 
+
+    const GetUserPoint = async (uid) =>{ // 取得用戶點數
+
+        try {
+
+            const ref = db_ref(database,`會員資料/${uid}`);
+
+            get(ref).then(snapshot => {
+                if (snapshot.exists()) {
+                    console.log(snapshot.val().點數積分);
+                    
+                }else{
+                    console.log('No data available');
+                    
+                }
+            }) .catch(why => console.log(`Error: ${why}` ))
+
+        } catch (error) {
+            console.log(error.message);
+            
+        }
+    }
+
     
 
 
@@ -144,6 +169,7 @@
 
     onMounted(() => {       
         // updateLocation();
+        
 
         // 捷運物件 ref ( 左上 & 右下)
         const  train_list =  [train_1_Ref.value.train,train_2_Ref.value.train]
@@ -347,6 +373,8 @@
                 }else{
                         // 有登入再來判斷用戶定位是否在捷運站附近
                         NO_location_alert()
+
+                        GetUserPoint(user_status.value.uid)
                 }
             }
             
