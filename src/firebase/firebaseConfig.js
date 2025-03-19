@@ -101,7 +101,7 @@ async function initializeDatabase() {
 
       if (!data["會員資料"]) {
         updates["會員資料"] = {
-          "userID_001": {
+          "範例資料": {
             "會員姓名": "黃小名",
             "電子郵件": "D6YFg@example.com",
             "會員頭像": "./URL",
@@ -113,7 +113,7 @@ async function initializeDatabase() {
 
       if (!data["商品管理"]) {
         updates["商品管理"] = {
-          "productID_001": {
+          "範例資料": {
             "商品名稱": "馬克杯",
             "商品價格": 123,
             "商品簡介": "500ml的容量，適合各式大小的場合使用",
@@ -137,7 +137,7 @@ async function initializeDatabase() {
 
       if (!data["照片管理"]) {
         updates["照片管理"] = {
-          "photoID_001":{
+          "範例資料":{
             "照片編號": "001",
             "用戶上傳的照片": "./URL",
             "照片上傳時間": "2022-01-01",

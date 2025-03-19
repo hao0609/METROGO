@@ -13,16 +13,28 @@
     //import alert_location_inaccurate from '@/alert/alert_location_inaccurate.vue';  // 引入 alert_location_inaccurate 彈窗 ( 暫不引入 )
     //const alert_web_M_location_inaccurate = ref(null);
 
+    import ModalMenu from '../components/Mission/ModalMenu.vue';  // 引入 玩法說明彈窗
+
+    // 呼叫 ModalMenu 的玩法說明彈窗
+    const selectedModal = ref("");
+    const isModalOpen = ref(false);
+
+    const openModal = () => {
+        isModalOpen.value = true;
+        selectedModal.value = "gameRules"
+        game_menu_btns_show.value = false
+    }
+
+
 
     import { setAlertInstance_location_inaccurate, setAlertInstance_userlocation } from '../js/view/MissionGeralView/geolocation';          // 引入 geolocation.js
 
-    import Alert_UserLocation_map from '../components/Alert_UserLocation_map.vue';
+    import Alert_UserLocation_map from '../components/Alert_UserLocation_map.vue';  // 引入 用戶目前裝置googleMap api定位彈窗
     const Alert_UserLocation_map_ref = ref(null);
 
     const getUserLocation = () => {
         Alert_UserLocation_map_ref.value.showAlert();        
     }
-
 
     let game_menu_btns_show = ref(false);   // 遊戲選單按鈕是否隱藏
     const line_select_btns = ref(null);
@@ -98,6 +110,8 @@
     };
 
     onMounted(() => {
+      
+
       document.addEventListener("wheel", disableScroll_and_dbClick, { passive: false });
       document.addEventListener("touchmove", disableScroll_and_dbClick, { passive: false });
       document.addEventListener("keydown", (event) => {
@@ -177,7 +191,7 @@
 
     <div class="game_menu_btns" v-show="game_menu_btns_show">
         <div class="game_menu_btnsBox">
-            <button id="receive_btn" class="btn_box">
+            <!-- <button id="receive_btn" class="btn_box">
                 <svg class="vector" width="34" height="31" viewBox="0 0 34 31" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M2.04 29.6025C2.04 30.256 2.64775 30.7839 3.4 30.7839H15.555V16.903H2.04V29.6025ZM18.445 30.7839H30.6C31.3522 30.7839 31.96 30.256 31.96 29.6025V16.903H18.445V30.7839ZM32.64 8.04279H26.367C26.945 7.25276 27.285 6.31506 27.285 5.3109C27.285 2.50149 24.6542 0.216309 21.42 0.216309C19.6605 0.216309 18.0753 0.895588 17 1.96619C15.9248 0.895588 14.3395 0.216309 12.58 0.216309C9.34575 0.216309 6.715 2.50149 6.715 5.3109C6.715 6.31506 7.05075 7.25276 7.633 8.04279H1.36C0.60775 8.04279 0 8.57071 0 9.22414V14.3926H15.555V8.04279H18.445V14.3926H34V9.22414C34 8.57071 33.3923 8.04279 32.64 8.04279ZM15.555 7.89512H12.58C10.9395 7.89512 9.605 6.73591 9.605 5.3109C9.605 3.88589 10.9395 2.72669 12.58 2.72669C14.2205 2.72669 15.555 3.88589 15.555 5.3109V7.89512ZM21.42 7.89512H18.445V5.3109C18.445 3.88589 19.7795 2.72669 21.42 2.72669C23.0605 2.72669 24.395 3.88589 24.395 5.3109C24.395 6.73591 23.0605 7.89512 21.42 7.89512Z" fill="#FF3B30" />
                 </svg>
@@ -190,8 +204,8 @@
                 </svg>
                 <div class="btn_box_text">集章冊</div>
                 <div id="stamp_notify" class="notify"></div>
-            </button>
-            <button id="question_btn" class="btn_box">
+            </button> -->
+            <button id="question_btn" class="btn_box" @click="openModal">
                 <svg class="vector" width="30" height="31" viewBox="0 0 30 31" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M15 30.5C6.7155 30.5 0 23.7845 0 15.5C0 7.2155 6.7155 0.5 15 0.5C23.2845 0.5 30 7.2155 30 15.5C30 23.7845 23.2845 30.5 15 30.5ZM13.5 20V23H16.5V20H13.5ZM16.5 17.5325C17.7055 17.1692 18.7404 16.3849 19.4162 15.3226C20.0921 14.2603 20.3638 12.9906 20.1821 11.7447C20.0004 10.4988 19.3772 9.35966 18.426 8.53469C17.4749 7.70971 16.2591 7.25381 15 7.25C13.7862 7.24962 12.6098 7.66984 11.6709 8.43915C10.732 9.20846 10.0888 10.2793 9.8505 11.4695L12.7935 12.059C12.877 11.6411 13.0775 11.2556 13.3716 10.9472C13.6656 10.6388 14.0412 10.4203 14.4546 10.3171C14.8681 10.2138 15.3023 10.2301 15.7068 10.364C16.1114 10.4978 16.4696 10.7439 16.7397 11.0734C17.0099 11.4029 17.181 11.8023 17.233 12.2253C17.2851 12.6482 17.2159 13.0772 17.0337 13.4624C16.8514 13.8475 16.5635 14.173 16.2035 14.401C15.8435 14.6289 15.4261 14.75 15 14.75C14.6022 14.75 14.2206 14.908 13.9393 15.1893C13.658 15.4706 13.5 15.8522 13.5 16.25V18.5H16.5V17.5325Z" fill="black" />
                 </svg>
@@ -350,7 +364,17 @@
     <!-- 提醒用戶裝置定位不準確彈窗 -->
     <!-- <alert_location_inaccurate ref="alert_web_M_location_inaccurate"/>  -->
 
+
+    <!-- 用戶目前裝置googleMap api定位彈窗 -->
     <Alert_UserLocation_map ref="Alert_UserLocation_map_ref" />
+
+    <!-- 玩法說明彈窗 -->
+    <ModalMenu
+        v-if="isModalOpen"
+        :type="selectedModal"
+        @close="isModalOpen = false"
+      />
+
 
 
       

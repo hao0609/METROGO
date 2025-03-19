@@ -43,9 +43,9 @@
       }).then((result) => {
         /* 兩個按鈕點擊後各個執行的功能 */
         if (result.isConfirmed) {
-          props.alertInfo.function;
-          // router.push("/login"); // Vue Router 內部導航          
-        } 
+          const do_function = props.alertInfo.function
+          do_function()
+          }
       });
     }
 

@@ -158,16 +158,21 @@ export default {
           // 這邊是 Firebase Authentication 的註冊驗證
           try {
             
-            await createUserWithEmailAndPassword(auth,this.signup.email, this.signup.password)
+            // 用戶透過 Firebase Authentication 註冊後的所有資料
+            const userCredential = await createUserWithEmailAndPassword(auth,this.signup.email, this.signup.password)
+            
+            // 從註冊後的所有資料取得用戶的唯一 UID 值 ( 由 Firebase 自動產生 ) 
+            const userUID = userCredential.user.uid 
+
 
             // 調用保存到Firebase的函數
-            const result = await handleSignupAndSaveToFirebase(this.signup);
+            const result = await handleSignupAndSaveToFirebase(this.signup, userUID);
               
               if (result.success) {
                 this.showMessage('success', '註冊成功！您的帳號已創建');
-                // 註冊成功後，可以導向登入頁面
+                // 註冊成功後，可以直接導向瀏覽的前一頁，因為 Autherization 會自動幫註冊完的用戶登入
                 setTimeout(() => {
-                  this.switchForm('login');
+                  this.$router.go(-1);     
                 }, 1500);
               } else {
                 this.showMessage('error', `註冊失敗：${result.error}`);
@@ -193,9 +198,6 @@ export default {
              
             }
           }
-
-
-
 
         } catch (error) {
           console.error('註冊過程中出錯:', error);
@@ -366,7 +368,7 @@ export default {
                     </div>
                 </div>
                 <div class="form-group" :class="{ error: !signup.isPasswordValid && signup.password === '' }">
-                        <label class="input-label required">密碼</label>
+                        <label class="input-label required">密碼 ( 密碼最少 6 字符 )</label>
                         <div class="input-wrapper with-icon">
                             <input 
                               :type="passwordVisible.signup ? 'text' : 'password'" 
