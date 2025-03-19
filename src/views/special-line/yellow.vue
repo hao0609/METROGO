@@ -68,6 +68,14 @@
           </li>
         </ol>
       </section>
+      <alert_L_Photo
+        ref="alertPhoto"
+        v-if="isVisible"
+        :message="selectedLine?.message"
+        :message2="selectedLine?.message2"
+        @cancel="handleModalCancel"
+        @confirm="handleModalConfirm"
+      />
       <div class="mission-main">
         <div
           class="line"
@@ -98,14 +106,6 @@
             >
               <img :src="defaultImg" alt="Lock Icon" class="lock-icon" />
               <span class="lock-text">請上傳照片</span>
-              <alert_L_Photo
-                ref="alertPhoto"
-                v-if="isVisible"
-                :message="selectedLine?.message"
-                :message2="selectedLine?.message2"
-                @cancel="handleModalCancel"
-                @confirm="handleModalConfirm"
-              />
             </div>
           </div>
         </div>

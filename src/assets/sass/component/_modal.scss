@@ -85,6 +85,9 @@
     cursor: pointer;
     position: relative;
     overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   .add-icon {
     color: var(--Primary-Primary-200, #e0c4ee);
@@ -100,11 +103,12 @@
   h2 {
     color: $neutral-700;
   }
-  .captured-img {
+  .alert-img {
     position: absolute;
+
     width: 100%;
     object-fit: cover; /* 保持圖片完整並填滿區域 */
-    transform: scale(0.8); /* 縮小圖片至 80% */
+    transform: scale(0.95); /* 縮小圖片至 80% */
   }
   @include mobile() {
     .add-photo {

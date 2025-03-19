@@ -9,7 +9,7 @@
         <div class="title1 bold">{{ message }}</div>
         <div class="title2 bold">{{ message2 }}</div>
         <div class="add-photo">
-          <span v-if="!imgSrc" class="add-icon">+</span>
+          <label v-if="!imgSrc" class="add-icon" for="photo-upload">+</label>
           <!-- 顯示拍照後的圖片  -->
           <img
             v-if="imgSrc"
