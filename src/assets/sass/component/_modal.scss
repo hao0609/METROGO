@@ -14,7 +14,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 10000;
+  z-index: 100;
   cursor: default;
 }
 
@@ -83,10 +83,18 @@
     height: 300px;
     border: 7px dashed var(--Primary-Primary-200, #e0c4ee);
     cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   .add-icon {
     color: var(--Primary-Primary-200, #e0c4ee);
     text-align: center;
+    display: block;
+    margin: 0 auto;
+    width: 100px;
     font-size: 128px;
     font-style: normal;
     font-weight: 600;
@@ -94,6 +102,13 @@
   }
   h2 {
     color: $neutral-700;
+  }
+  .alert-img {
+    position: absolute;
+
+    width: 100%;
+    object-fit: cover; /* 保持圖片完整並填滿區域 */
+    transform: scale(0.95); /* 縮小圖片至 80% */
   }
   @include mobile() {
     .add-photo {
@@ -115,6 +130,7 @@
   position: absolute;
   right: 10px;
   top: 10px;
+  z-index: 99;
   cursor: pointer;
   &:hover {
     transform: scale(1.1);
@@ -200,4 +216,9 @@
       color: $neutral-0;
     }
   }
+}
+
+.hidden-input,
+.hidden-canvas {
+  display: none; // 隱藏原生檔案上傳按鈕
 }

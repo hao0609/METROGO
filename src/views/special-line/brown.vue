@@ -71,6 +71,13 @@
           </li>
         </ol>
       </section>
+      <alert_L_question
+        ref="alertQuestion"
+        v-if="isQuestionVisible"
+        :question="selectedQuestion"
+        @cancel="handleQuestionCancel"
+        @confirm="handleQuestionConfirm"
+      />
       <div class="mission-main" ref="missionMain">
         <div
           class="line"
@@ -134,13 +141,6 @@
                   v-html="question.icon"
                 ></div>
                 <span class="question-text">點擊回答問題</span>
-                <alert_L_question
-                  ref="alertQuestion"
-                  v-if="isQuestionVisible"
-                  :question="selectedQuestion"
-                  @cancel="handleQuestionCancel"
-                  @confirm="handleQuestionConfirm"
-                />
               </div>
             </div>
           </div>

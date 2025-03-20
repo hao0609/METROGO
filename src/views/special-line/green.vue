@@ -67,6 +67,16 @@
           </li>
         </ol>
       </section>
+      <alert_L_Photo
+        ref="alertPhoto"
+        v-if="isVisible"
+        :mrtLine="missions[0].title"
+        :stationTitle="selectedStation ? selectedStation.title : ''"
+        :message="selectedLine?.message"
+        :message2="selectedLine?.message2"
+        @cancel="handleModalCancel"
+        @confirm="handleModalConfirm"
+      />
       <div class="mission-main">
         <div
           class="line"
@@ -96,15 +106,9 @@
               @click="openPhotoAlert(line)"
             >
               <img :src="defaultImg" alt="Lock Icon" class="lock-icon" />
-              <span class="lock-text">請上傳照片</span>
-              <alert_L_Photo
-                ref="alertPhoto"
-                v-if="isVisible"
-                :message="selectedLine?.message"
-                :message2="selectedLine?.message2"
-                @cancel="handleModalCancel"
-                @confirm="handleModalConfirm"
-              />
+              <span @click="selectStation(line)" class="lock-text"
+                >請上傳照片</span
+              >
             </div>
           </div>
         </div>
@@ -232,7 +236,7 @@ export default {
     const sectionActive = ref(false);
     // const PhotoAlert = ref(null); // 新增 PhotoAlert ref
     const alertPhoto = ref(null);
-
+    const selectedStation = ref(null);
     const openModal = (type) => {
       selectedModal.value = type;
       isModalOpen.value = true;
@@ -359,7 +363,11 @@ export default {
     ]);
     const activeStationId = ref(null);
     const activeQuestionId = ref(null);
-
+    // 照片彈窗取用資料
+    const selectStation = (line) => {
+      selectedStation.value = line;
+      console.log("選擇的站點：", line.title);
+    };
     const gap = 50;
     const onScroll = () => {
       if (
