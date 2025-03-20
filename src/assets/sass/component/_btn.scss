@@ -7,11 +7,12 @@
 
   &:hover {
     //background: lighten($primary-400, 10%);
-    background: #f6e9fe;
+     background: #9538C4;
+
   }
   &:active {
     //background: darken($primary-400, 10%);
-    background: #9538c4;
+    background: #6d1d95;
   }
 
   @include mobile() {

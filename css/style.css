@@ -126,10 +126,10 @@ p {
   border: 1px solid #8C25C0;
 }
 .btn_filled:hover {
-  background: #f6e9fe;
+  background: #9538C4;
 }
 .btn_filled:active {
-  background: #9538c4;
+  background: #6d1d95;
 }
 @media screen and (max-width: 576px) {
   .btn_filled {
@@ -642,10 +642,10 @@ label .checkbox-custom {
   border: 1px solid #8C25C0;
 }
 .btn_filled:hover {
-  background: #f6e9fe;
+  background: #9538C4;
 }
 .btn_filled:active {
-  background: #9538c4;
+  background: #6d1d95;
 }
 @media screen and (max-width: 576px) {
   .btn_filled {
