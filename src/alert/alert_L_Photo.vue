@@ -63,12 +63,14 @@ import alert_user_camera_open from "@/alert/alert_user_camera_open.vue";
 import alert_camera from "@/alert/alert_camera.vue";
 import { storage } from "@/firebase/firebasePhotoUpload.js";
 import { ref as fsRef, uploadBytes, getDownloadURL } from "firebase/storage";
-
+import { getAuth } from "firebase/auth";
 const props = defineProps({
   title: { type: String, default: "" },
   message: { type: String, default: "" },
   message2: { type: String, default: "" },
   img: { type: String, default: null },
+  mrtLine: { type: String, default: "" },
+  stationTitle: { type: String, default: "" },
 });
 
 // 上傳
@@ -93,19 +95,40 @@ const photoChange = (e) => {
     };
   }
 };
-
+// 取得會員 ID
+const getUserId = () => {
+  const auth = getAuth();
+  const user = auth.currentUser;
+  return user ? user.uid : null;
+};
+// 取得當天日期（格式：YYYYMMDD）
+const getCurrentDate = () => {
+  const now = new Date();
+  const year = now.getFullYear();
+  const month = String(now.getMonth() + 1).padStart(2, "0");
+  const day = String(now.getDate()).padStart(2, "0");
+  return `${year}${month}${day}`;
+};
 const uploadPhoto = async () => {
-  // 存入的檔案名稱，例如: 資料夾/時間戳記_原來的檔案名稱
-  const fileName = `images/${Date.now()}_${selectedPhoto.value.name}`;
-  const storageRef = fsRef(storage, fileName);
+  const userId = getUserId();
+
+  const { mrtLine, stationTitle } = props;
+  const timestamp = Date.now();
+  const originalFileName = selectedPhoto.value.name;
+  const fileName = `${stationTitle}_${timestamp}_${originalFileName}`;
+
+  // Firebase Storage 儲存路徑
+  const filePath = `photos/${userId}/${mrtLine}/${fileName}`;
+  const storageRef = fsRef(storage, filePath);
 
   try {
     error.value = ""; // 清除之前的錯誤訊息(如果有的話)，避免影響到目前的上傳
     const snapshot = await uploadBytes(storageRef, selectedPhoto.value); // 將選好的檔案存到剛剛建立的儲存位置
     downloadURL.value = await getDownloadURL(snapshot.ref);
+    console.log("上傳成功:", downloadURL);
   } catch (err) {
     error.value = `Error uploading file: ${err.message}`;
-    console.log(error.value);
+    console.error("上傳失敗:", err);
   }
 };
 
