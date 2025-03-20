@@ -5,7 +5,7 @@ import Navbar_V1 from "../components/Navbar_V1.vue";
 <template>
   <Navbar_V1 />
   <!-- banner -->
-  <div class="banner">
+  <div class="banner blue">
     <h1>板南線半日遊</h1>
     <div class="line-container">
       <div class="top">
@@ -97,12 +97,12 @@ import Navbar_V1 from "../components/Navbar_V1.vue";
   </div>
 
   <!-- 內文 -->
-  <div class="paragraph">
+  <div class="paragraph blue">
     <div class="station" id="target1">
       <h2>捷運西門站</h2>
       <div class="paragraph-container">
+        <p class="title1 name">一甲子餐飲</p>
         <p class="title1">
-          一甲子餐飲<br />
           地址：台北市萬華區康定路173巷<br />
           營業時間：09:00–18:00，週一休息
         </p>
@@ -146,8 +146,8 @@ import Navbar_V1 from "../components/Navbar_V1.vue";
         </div>
       </div>
       <div class="paragraph-container">
+        <p class="title1 name">一甲子餐飲</p>
         <p class="title1">
-          一甲子餐飲<br />
           地址：台北市萬華區康定路173巷<br />
           營業時間：09:00–18:00，週一休息
         </p>
@@ -192,8 +192,8 @@ import Navbar_V1 from "../components/Navbar_V1.vue";
     <div class="station" id="target2">
       <h2>捷運龍山寺站</h2>
       <div class="paragraph-container">
+        <p class="title1 name">龍山寺</p>
         <p class="title1">
-          龍山寺<br />
           地址：台北市萬華區廣州街211號<br />
           營業時間：06:00 - 22:00
         </p>
@@ -235,8 +235,8 @@ import Navbar_V1 from "../components/Navbar_V1.vue";
         </div>
       </div>
       <div class="paragraph-container">
-        <p class="title1">
-          剝皮寮歷史街區<br />
+        <p class="title1 name">剝皮寮歷史街區</p>
+        <p class="title1">>
           地址：台北市萬華區康定路173巷<br />
           營業時間：09:00–18:00，週一休息
         </p>

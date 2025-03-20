@@ -183,7 +183,7 @@ const messageData = ref([
     </header>
   </transition>
   <!-- class 後方的 blue 換掉就可以吃到其他線的配色 -->
-  <div class="metroline-detail orange">
+  <div class="metroline-detail yellow">
     <div class="top-section">
       <h1 class="metro-words">METROMETRO</h1>
       <div class="introduce">
@@ -317,20 +317,20 @@ const messageData = ref([
     <MetroLineTitle :title="`${currentLine}半日遊行程推薦`" />
     <router-link to="/tour/tourtype">
       <div class="w-full-img" style="background-image: url('/src/assets/images/line/sanchong_station_06_w1312xh340.jpg')">
-        <h1 class="group-title white">三重</h1>
+        <h1 class="group-title white"><RouterLink to="/tour/yellow-line">三重</RouterLink></h1>
       </div>
     </router-link>
 
     <!-- 一日遊行程推薦 -->
-    <MetroLineTitle :title="`${currentLine}一日遊行程推薦`" />
+    <!-- <MetroLineTitle :title="`${currentLine}一日遊行程推薦`" /> -->
     <router-link to="/tour/tourtype">
       <div class="w-full-img" style="background-image: url('/src/assets/images/line/Huashan1914CreativePark_04_w1314xh340.jpg')">
-        <h1 class="group-title white">華山</h1>
+        <h1 class="group-title white"><RouterLink to="/tour/yellow-line">華山</RouterLink></h1>
       </div>
     </router-link>
 
     <!-- 留言板 -->
-    <MetroLineTitle title="留言板" />
+    <!-- <MetroLineTitle title="留言板" />
     <div class="section-message">
       <div class="section-group message-card-group">
         <MessageCard
@@ -339,9 +339,9 @@ const messageData = ref([
           :message="message"
         />
       </div>
-    </div>
+    </div> -->
     <!-- 留言板小工具 -->
-    <Message />
+    <!-- <Message /> -->
   </div>
   <Footer/>
 </template>

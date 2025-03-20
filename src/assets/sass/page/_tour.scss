@@ -174,6 +174,10 @@ img {
   object-fit: cover;
 }
 
+.title1.name {
+  margin-bottom: -40px;
+}
+
 @media screen and (max-width: 1024px) {
   // banner
   h1 {
@@ -203,7 +207,7 @@ img {
   // banner
   .banner {
     align-items: center;
-    padding: 50px;
+    padding: 40px 20px;
   }
   h1 {
     font-size: 40px;
@@ -225,6 +229,9 @@ img {
   }
 
   // 內文
+  .paragraph {
+    padding: 32px 20px;
+  }
 
   .station {
     gap: 40px;
@@ -237,5 +244,87 @@ img {
   }
   .paragraph-content {
     font-size: 12px;
+  }
+  .title1.name {
+    margin-bottom: -20px;
+  }
+}
+
+
+/* 各線顏色 */
+
+.banner {
+  &.blue {
+    background-color: $metro-blue;
+  }
+
+  &.red {
+    background-color: $metro-red;
+  }
+  &.green {
+    background-color: $metro-green;
+  }
+  &.yellow {
+    background-color: $metro-yellow;
+  }
+  &.brown {
+    background-color: $metro-brown;
+  }
+}
+
+.paragraph {
+  &.blue {
+    
+    .station h2 {
+      color: $metro-blue;
+    }
+
+    .paragraph-container .title1:first-of-type {
+      color: $metro-blue;
+    }
+  }
+
+  &.red {
+
+    .station h2 {
+      color: $metro-red;
+    }
+
+    .paragraph-container .title1:first-of-type {
+      color: $metro-red;
+    }
+  }
+
+  &.green {
+
+    .station h2 {
+      color: $metro-green;
+    }
+
+    .paragraph-container .title1:first-of-type {
+      color: $metro-green;
+    }
+  }
+
+  &.yellow {
+
+    .station h2 {
+      color: $metro-yellow;
+    }
+
+    .paragraph-container .title1:first-of-type {
+      color: $metro-yellow;
+    }
+  }
+
+  &.brown {
+
+    .station h2 {
+      color: $metro-brown;
+    }
+
+    .paragraph-container .title1:first-of-type {
+      color: $metro-brown;
+    }
   }
 }

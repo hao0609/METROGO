@@ -431,23 +431,23 @@ const messageData = ref([
         class="w-full-img"
         style="background-image: url('/src/assets/images/line/Taipei101_02_w1312xh340.jpg')"
       >
-        <h1 class="group-title white">101</h1>
+      <h1 class="group-title white"><RouterLink to="/tour/red-line">101</RouterLink></h1>
       </div>
     </router-link>
 
     <!-- 一日遊行程推薦 -->
-    <MetroLineTitle :title="`${currentLine}一日遊行程推薦`" />
+    <!-- <MetroLineTitle :title="`${currentLine}一日遊行程推薦`" /> -->
     <router-link to="/tour/tourtype">
       <div
         class="w-full-img"
         style="background-image: url('/src/assets/images/line/TaipeiPerformingArtsCenter_01_w1312xh340.jpg')"
       >
-        <h1 class="group-title white">士林</h1>
+      <h1 class="group-title white"><RouterLink to="/tour/red-line">士林</RouterLink></h1>
       </div>
     </router-link>
 
     <!-- 留言板 -->
-    <MetroLineTitle title="留言板" />
+    <!-- <MetroLineTitle title="留言板" />
     <div class="section-message">
       <div class="section-group message-card-group">
         <MessageCard
@@ -456,9 +456,9 @@ const messageData = ref([
           :message="message"
         />
       </div>
-    </div>
+    </div> -->
     <!-- 留言板小工具 -->
-    <Message />
+    <!-- <Message /> -->
   </div>
   <Footer />
 </template>

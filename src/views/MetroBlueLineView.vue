@@ -437,12 +437,12 @@ const messageData = ref([
           background-image: url('/src/assets/images/line/ximending_02_w1312xh340.jpg');
         "
       >
-        <h1 class="group-title white">西門町</h1>
+      <h1 class="group-title white"><RouterLink to="/tour/blue-line">西門町</RouterLink></h1>
       </div>
     </router-link>
 
     <!-- 一日遊行程推薦 -->
-    <MetroLineTitle :title="`${currentLine}一日遊行程推薦`" />
+    <!-- <MetroLineTitle :title="`${currentLine}一日遊行程推薦`" /> -->
     <router-link to="/tour/tourtype">
       <div
         class="w-full-img"
@@ -450,12 +450,12 @@ const messageData = ref([
           background-image: url('/src/assets/images/line/longshan_temple_02_w1312xh340.jpg');
         "
       >
-        <h1 class="group-title white">龍山寺</h1>
+      <h1 class="group-title white"><RouterLink to="/tour/blue-line">龍山寺</RouterLink></h1>
       </div>
     </router-link>
 
     <!-- 留言板 -->
-    <MetroLineTitle title="留言板" />
+    <!-- <MetroLineTitle title="留言板" />
     <div class="section-message">
       <div class="section-group message-card-group">
         <MessageCard
@@ -464,9 +464,9 @@ const messageData = ref([
           :message="message"
         />
       </div>
-    </div>
+    </div> -->
     <!-- 留言板小工具 -->
-    <Message />
+    <!-- <Message /> -->
   </div>
   <Footer />
 </template>

@@ -220,7 +220,7 @@ onBeforeUnmount(() => {
       <div class="img-container">
         <img src="../assets/images/sights/line/orange.jpg" alt="" />
       </div>
-      <router-link to="/orange-line" class="line-square">
+      <router-link to="/yellow-line" class="line-square">
         <div class="hover-container orange-line">
           <h2>中和新蘆線</h2>
         </div>

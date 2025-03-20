@@ -243,6 +243,11 @@ header {
     left: 0;
     right: 0;
     text-align: center;
+    
+    a {
+      text-decoration: none;
+    }
+
 
     @media (max-width: 576px) {
       font-size: 80px;
@@ -255,7 +260,7 @@ header {
 }
 
 // 帶透明度標題文字
-.group-title.white {
+.group-title.white a {
   color: rgba($color: #ffffff, $alpha: 0.7) !important;
 }
 
@@ -592,10 +597,10 @@ header {
 }
 
 // 各線 banner 顏色 //
-// 中和新蘆線 orange
+// 中和新蘆線 yellow
 
 // 頁面背景色
-.metroline-detail.orange {
+.metroline-detail.yellow {
   background-color: $metro-yellow;
   
 
