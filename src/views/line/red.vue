@@ -1,5 +1,5 @@
 <script setup>
-    import { ref,onMounted , onUnmounted,watch} from 'vue'
+    import { ref,onMounted , onUnmounted,watch,provide} from 'vue'
     import ground from '../../assets/images/MessionGeneral/ground.png';
     import building_tree from '../../assets/images/MessionGeneral/building_tree.png'
     import road from '../../assets/images/MessionGeneral/road.png';
@@ -10,6 +10,9 @@
     import train2 from '../../assets/images/MessionGeneral/train2.vue';
     import car1 from '../../assets/images/MessionGeneral/car1.vue'
     import car2 from '../../assets/images/MessionGeneral/car2.vue'
+    import red_done from '../../assets/images/MessionGeneral/red_done.vue'
+
+
 
     import { gelocation } from "../../js/view/MissionGeralView/geolocation";
 
@@ -28,6 +31,7 @@
 
 
     const pinStyle_red = ref(null);
+    provide("pinStyle_red", pinStyle_red);      // 透過 `provide` 提供 `pinStyle_red`
     const locationInfobox_style = ref(null);
 
     let geoWatcher = null; // 用於存儲 geolocation 的 watchPosition 監聽器 ID
@@ -47,22 +51,37 @@
     const user_status = inject("user"); // 取得用戶狀態
 
 
+    import checkUserDB_AllDoneStations from '../../js/view/MissionGeralView/checkUserDB_AllDoneStations.js'
 
+
+    
 
     // 用戶定位座標物件位置判斷
     const updateLocation = async () =>{
 
         try {
             
-            const result  = await gelocation(); // 等待 `gelocation()` 完成
+            const result  = await gelocation(); // 等待 `gelocation()` 完成updateLocation
             console.log(result);
             
             console.log("最近的捷運站:", result.station, "距離:", result.distance);
 
             if (result.No_Station == false) {
 
-                pinStyle_red.value = pinjs(result.station).pinStyle_red.value;
+                // 拿取目前用戶已打卡的所有站點
+                const userDB_AllDoneStations =  await checkUserDB_AllDoneStations(user_status.value.uid);
+                
+                // 判斷目前用戶在附近的捷運站有沒有在已打卡的所有站點中
+                if (userDB_AllDoneStations.some(station => station.捷運站名稱 == result.station)) {
 
+                    // 如果有，隱藏 pin 
+                    pinStyle_red.value = pinjs("").pinStyle_red.value;
+
+                }else{
+                    // 如果沒有，顯示 pin 該在的位置 
+                    pinStyle_red.value = pinjs(result.station).pinStyle_red.value;
+                }
+                
             }else{
                 pinStyle_red.value = pinjs("").pinStyle_red.value;
                 
@@ -95,6 +114,29 @@
             }  
         } catch (error) {
             console.error("獲取位置失敗:", error);
+        }
+    }
+
+
+    const GetUserPoint = async (uid) =>{ // 取得用戶點數
+
+        try {
+
+            const ref = db_ref(database,`會員資料/${uid}`);
+
+            get(ref).then(snapshot => {
+                if (snapshot.exists()) {
+                    console.log(snapshot.val().點數積分);
+                    
+                }else{
+                    console.log('No data available');
+                    
+                }
+            }) .catch(why => console.log(`Error: ${why}` ))
+
+        } catch (error) {
+            console.log(error.message);
+            
         }
     }
 
@@ -347,6 +389,12 @@
                 }else{
                         // 有登入再來判斷用戶定位是否在捷運站附近
                         NO_location_alert()
+
+                        // 取得目前用戶點數
+                        GetUserPoint(user_status.value.uid)
+
+                        // 取得目前用戶所有已打卡的站點
+                        checkUserDB_AllDoneStations(user_status.value.uid)
                 }
             }
             
@@ -386,7 +434,10 @@
                     if (newLatitude !== lastLatitude || newLongitude !== lastLongitude) {
                         console.log(`位置變更: ${newLatitude}, ${newLongitude}`);
 
-                        await updateLocation(); // 當位置改變時更新 `station_result`
+                        setTimeout(() => {
+                             updateLocation(); // 當位置改變時更新 `station_result`
+                        },1000)
+
 
                         latitude.value = newLatitude;
                         longitude.value = newLongitude;
@@ -469,6 +520,9 @@
         <div class="item">
             <station_red class="station"/>
         </div>
+        <!-- <div class="item">
+            <red_done class="red_done"/>
+        </div> -->
         <div class="item">
             <train1  ref="train_1_Ref"/>
             <train2  ref="train_2_Ref"/>

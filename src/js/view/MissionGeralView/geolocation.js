@@ -82,7 +82,7 @@ export function gelocation() {
 
 
                 const printAllStation = () => {
-                    console.log("執行 printAllStation");
+                    // console.log("執行 printAllStation");
                     
                     let closest_station = ""
                     let min_distance = Infinity; // 初始設為無限大，確保後續計算時能找到最小值
