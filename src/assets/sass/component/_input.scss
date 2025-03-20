@@ -158,3 +158,11 @@
     font-size: 16px;
   }
 }
+
+// 瀏覽器 auto-fill input 底色
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px #fff inset;
+  background-color: $neutral-0;
+}
