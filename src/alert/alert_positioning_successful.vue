@@ -12,6 +12,8 @@ const pinStyle_blue = inject("pinStyle_blue");              // 取得藍線的 P
 const pinStyle_yellow = inject("pinStyle_yellow");          // 取得黃線的 Pin 樣式
 const pinStyle_brown = inject("pinStyle_brown");            // 取得棕線的 Pin 樣式
 
+const userTotalPoint = inject("userTotalPoint");            // 取得用戶總積分
+
 import updateUserDB_StationStatus from '../js/view/MissionGeralView/updateUserDB_StationStatus.js'
 import { pinjs} from '../js/view/MissionGeralView/pin.js'             // 引入 pin.js
 
@@ -29,6 +31,18 @@ const function_1 = () => {
     
     // 更新用戶會員資料表的一般任務遊戲進度打卡狀態
     updateUserDB_StationStatus(currentUser,props.nearby_station);
+
+    
+    // 取得用戶總積分
+    // console.log("彈窗取得用戶總積分 :" + userTotalPoint.value);
+    const userTotalPoint_result = userTotalPoint.value;
+    
+
+    // 取得用戶打卡的站點積分
+
+
+    // 目前積分加上 站點積分
+    
 
     // 打卡完把 Pin 座標給隱藏   
 

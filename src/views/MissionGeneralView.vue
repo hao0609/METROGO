@@ -1,5 +1,5 @@
 <script setup>
-    import { ref , onMounted , onUnmounted,computed} from 'vue'
+    import { ref , onMounted , onUnmounted,computed,provide} from 'vue'
     import { RouterLink, RouterView ,useRoute } from 'vue-router'
 
     import Navbar_V1 from '../components/Navbar_V1.vue'; //備用 header
@@ -25,13 +25,14 @@
         game_menu_btns_show.value = false
     }
 
-    import {ref as db_ref, get,database} from '../firebase/firebaseConfig.js'
+    import GetUserPoint from '../js/view/MissionGeralView/checkUserDB_TotalPoint.js'
 
     // 用戶登入狀態取得
     import { inject } from "vue";       // 使用 inject 來接 app.vue provide 的 user 狀態
     const user_status = inject("user"); // 取得用戶狀態
 
     const userTotalPoint =ref(0);
+    provide("userTotalPoint", userTotalPoint);      // 透過 `provide` 提供 `userTotalPoint`
 
 
     import { setAlertInstance_location_inaccurate, setAlertInstance_userlocation } from '../js/view/MissionGeralView/geolocation';          // 引入 geolocation.js
@@ -138,13 +139,21 @@
     //   }
 
         // 檢查用戶有沒有登入的狀態
-        const CheckUserStatus = () => {
+        const CheckUserStatus = async() => {
                 console.log(user_status.value);
                 
                 
                 if (user_status.value != null) {
                     
-                    GetUserPoint(user_status.value.uid)
+                   // 取得用戶目前總點數
+                   let userTotalPoint_result = await GetUserPoint(user_status.value.uid);
+
+                   console.log(userTotalPoint_result);
+                   
+                   userTotalPoint.value = userTotalPoint_result
+
+                   
+                   
                 
                 }else{
 
@@ -157,30 +166,34 @@
             CheckUserStatus();     //等 3 秒再執行判斷用戶是否登入
         },3000)     
 
+        
+
+        
 
 
-        const GetUserPoint = async (uid) =>{ // 取得用戶點數
 
-        try {
+        // const GetUserPoint = async (uid) =>{ // 取得用戶點數
 
-            const ref = db_ref(database,`會員資料/${uid}`);
+        // try {
 
-            get(ref).then(snapshot => {
-                if (snapshot.exists()) {
-                    console.log(snapshot.val().點數積分);
-                    userTotalPoint.value = snapshot.val().點數積分
+        //     const ref = db_ref(database,`會員資料/${uid}`);
+
+        //     get(ref).then(snapshot => {
+        //         if (snapshot.exists()) {
+        //             console.log(snapshot.val().點數積分);
+        //             userTotalPoint.value = snapshot.val().點數積分
                     
-                }else{
-                    console.log('No data available');
+        //         }else{
+        //             console.log('No data available');
                     
-                }
-            }) .catch(why => console.log(`Error: ${why}` ))
+        //         }
+        //     }) .catch(why => console.log(`Error: ${why}` ))
 
-        } catch (error) {
-            console.log(error.message);
+        // } catch (error) {
+        //     console.log(error.message);
             
-        }
-        }
+        // }
+        // }
 
       
     });

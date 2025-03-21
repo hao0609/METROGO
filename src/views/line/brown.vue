@@ -111,29 +111,6 @@
     }
 
 
-    const GetUserPoint = async (uid) =>{ // 取得用戶點數
-
-        try {
-
-            const ref = db_ref(database,`會員資料/${uid}`);
-
-            get(ref).then(snapshot => {
-                if (snapshot.exists()) {
-                    console.log(snapshot.val().點數積分);
-                    
-                }else{
-                    console.log('No data available');
-                    
-                }
-            }) .catch(why => console.log(`Error: ${why}` ))
-
-        } catch (error) {
-            console.log(error.message);
-            
-        }
-    }
-
-
     locationInfobox_style.value = locationInfo().locationInfobox_style.value;  // 使用 pin.js 的 locationInfobox_style()
     
 
@@ -381,9 +358,6 @@
                         // 有登入再來判斷用戶定位是否在捷運站附近
                         NO_location_alert()
 
-                        // 取得目前用戶點數
-                        GetUserPoint(user_status.value.uid)
-
                         // 取得目前用戶所有已打卡的站點
                         checkUserDB_AllDoneStations(user_status.value.uid)
                 }
@@ -517,7 +491,7 @@
     <div class="hitarea">
         <button ref="pin_obj" class="pin" :style="pinStyle_brown" @click="UserLocationSuccessful" @touchstart="UserLocationSuccessful" ><pin/></button>
     </div>
-    <alert_positioning_successful ref="alert_web_M_userlocation" :nearby_station="station_result"/> 
+    <alert_positioning_successful ref="alert_web_M_userlocation" :nearby_station="station_result" /> 
 
     <!-- 提醒用戶不在捷運站附近彈窗-->
     <alert_user_location_stay ref="alert_userlocation_stay_ref"/> 
