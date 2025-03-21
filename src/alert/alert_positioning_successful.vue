@@ -15,6 +15,13 @@ const pinStyle_brown = inject("pinStyle_brown");            // 取得棕線的 P
 const userTotalPoint = inject("userTotalPoint");            // 取得用戶總積分
 
 import updateUserDB_StationStatus from '../js/view/MissionGeralView/updateUserDB_StationStatus.js'
+
+import getStationScore from '../js/view/MissionGeralView/getStationPoint.js'
+
+import updateUserDB_addUserPoint from '../js/view/MissionGeralView/updateUserDB_addUserPoint.js'
+
+
+
 import { pinjs} from '../js/view/MissionGeralView/pin.js'             // 引入 pin.js
 
 // 接收來自父組件的 `nearby_station`
@@ -34,16 +41,21 @@ const function_1 = () => {
 
     
     // 取得用戶總積分
-    // console.log("彈窗取得用戶總積分 :" + userTotalPoint.value);
-    const userTotalPoint_result = userTotalPoint.value;
+    console.log("彈窗取得用戶總積分 :" + userTotalPoint.value);
+
+    // 取得用戶目前打卡的站點獎勵積分
+    const stationPoint = getStationScore(props.nearby_station);
+    console.log(stationPoint);
     
 
-    // 取得用戶打卡的站點積分
-
-
-    // 目前積分加上 站點積分
+    // 在頁面上顯示的目前積分加上 站點積分    
     
+    // console.log(userTotalPoint.value);
 
+
+    // 實際更新會員資料的總積分
+    updateUserDB_addUserPoint(currentUser,userTotalPoint.value += stationPoint)
+    
     // 打卡完把 Pin 座標給隱藏   
 
     if (pinStyle_red) pinStyle_red.value = pinjs("")?.pinStyle_red?.value;
