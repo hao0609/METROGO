@@ -1,7 +1,8 @@
 <template>
   <Navbar_V1 />
   <div class="div-all lightblue">
-    <div class="featured-main">
+    <FeaturedMain :FeaturedMain="featuredData" />
+    <!-- <div class="featured-main">
       <div class="journey_featured_title1">
         <h1>{{ featuredData.journey_featured_name }}</h1>
       </div>
@@ -62,11 +63,12 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
 
     <!-- 店家資訊 -->
     <div class="journey-featured-info blue">
-      <div class="featured-main">
+      <FeaturedInfo :FeaturedInfo="featuredData.store_info" />
+      <!-- <div class="featured-main">
         <h2 class="featured-info-title">{{ featuredData.store_info.name }}</h2>
         <div class="info-card">
           <p>
@@ -82,12 +84,13 @@
           alt=""
           class="journey_featured_photo6"
         />
-      </div>
+      </div> -->
     </div>
 
     <div class="featured-paragraph-main">
       <div class="featured-paragraph">
-        <div class="featured-paragraph-content">
+        <FeaturedContent :FeaturedContent="featuredData" />
+        <!-- <div class="featured-paragraph-content">
           <p v-if="featuredData.featured_paragraphs[0]" :key="index">
             {{ featuredData.featured_paragraphs[0] }}
           </p>
@@ -112,15 +115,17 @@
           <p v-if="featuredData.featured_paragraphs[7]" :key="index">
             {{ featuredData.featured_paragraphs[7] }}
           </p>
-        </div>
+        </div> -->
 
-        <div class="featured-sidebar">
+        <!-- 小編精選熱門推薦 -->
+        <FeaturedSidebar />
+
+        <!-- <div class="featured-sidebar">
           <div class="sidebar-title">
             <hr />
             <h2>小編精選熱門推薦</h2>
             <hr />
           </div>
-
           <div class="featured-articles">
             <a href="#">
               <div class="article">
@@ -179,33 +184,29 @@
             </a>
             <hr />
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>
   <Footer />
 </template>
 
-<script>
+<script setup>
+import { ref } from "vue";
+
+// 各種組件
 import Navbar_V1 from "@/components/Navbar_V1.vue";
 import Footer from "@/components/Footer.vue";
+import FeaturedMain from "@/components/FeaturedMain.vue";
+import FeaturedSidebar from "@/components/FeaturedSidebar.vue";
+import FeaturedInfo from "@/components/FeaturedInfo.vue";
+import FeaturedContent from "@/components/FeaturedContent.vue";
 
-import featuredData from "@/json/featured.json";
+// 匯入 JSON 資料
+import featuredDataJson from "@/json/featured.json";
 
-export default {
-  components: {
-    Navbar_V1,
-    Footer,
-  },
-  data() {
-    return {
-      featuredData: {},
-    };
-  },
-  created() {
-    this.featuredData = featuredData["板南線"].find((item) => item.id === 1); // 取得板南線id=1的資料(火鍋)
-  },
-};
+// 取得板南線 id=1 的資料 (火鍋)
+const featuredData = ref(featuredDataJson["板南線"].find((item) => item.id === 1));
 </script>
 
 <style lang="scss" scoped>

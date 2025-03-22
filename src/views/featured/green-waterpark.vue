@@ -66,7 +66,8 @@
 
     <!-- 店家資訊 -->
     <div class="journey-featured-info green">
-      <div class="featured-main">
+      <FeaturedInfo :FeaturedInfo="featuredData.store_info" />
+      <!-- <div class="featured-main">
         <h2 class="featured-info-title">{{ featuredData.store_info.name }}</h2>
         <div class="info-card">
           <p>
@@ -82,7 +83,7 @@
           alt=""
           class="journey_featured_photo6"
         />
-      </div>
+      </div> -->
     </div>
 
     <div class="featured-paragraph-main">
@@ -114,7 +115,9 @@
           </p>
         </div>
 
-        <div class="featured-sidebar">
+        <!-- 小編精選熱門推薦 -->
+        <FeaturedSidebar />
+        <!-- <div class="featured-sidebar">
           <div class="sidebar-title">
             <hr />
             <h2>小編精選熱門推薦</h2>
@@ -179,7 +182,7 @@
             </a>
             <hr />
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>
@@ -189,6 +192,8 @@
 <script>
 import Navbar_V1 from "@/components/Navbar_V1.vue";
 import Footer from "@/components/Footer.vue";
+import FeaturedSidebar from "@/components/FeaturedSidebar.vue";
+import FeaturedInfo from "@/components/FeaturedInfo.vue";
 
 import featuredData from "@/json/featured.json";
 
@@ -196,6 +201,8 @@ export default {
   components: {
     Navbar_V1,
     Footer,
+    FeaturedInfo,
+    FeaturedSidebar,
   },
   data() {
     return {
