@@ -440,9 +440,9 @@ const messageData = ref([
     <router-link to="/tour/tourtype">
       <div
         class="w-full-img"
-        style="background-image: url('/src/assets/images/line/TaipeiPerformingArtsCenter_01_w1312xh340.jpg')"
+        style="background-image: url('/src/assets/images/line/rongjin_gorgeous_time_01_w1312xh340.jpg')"
       >
-      <h1 class="group-title white"><RouterLink to="/tour/red-line">士林</RouterLink></h1>
+      <h1 class="group-title white"><RouterLink to="/tour/red-line">東門</RouterLink></h1>
       </div>
     </router-link>
 
