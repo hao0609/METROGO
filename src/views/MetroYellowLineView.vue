@@ -324,8 +324,8 @@ const messageData = ref([
     <!-- 一日遊行程推薦 -->
     <!-- <MetroLineTitle :title="`${currentLine}一日遊行程推薦`" /> -->
     <router-link to="/tour/tourtype">
-      <div class="w-full-img" style="background-image: url('/src/assets/images/line/Huashan1914CreativePark_04_w1314xh340.jpg')">
-        <h1 class="group-title white"><RouterLink to="/tour/yellow-line">華山</RouterLink></h1>
+      <div class="w-full-img" style="background-image: url('/src/assets/images/line/sanhe_night_market_01_w1312xh340.jpg')">
+        <h1 class="group-title white"><RouterLink to="/tour/yellow-line">台北橋</RouterLink></h1>
       </div>
     </router-link>
 
