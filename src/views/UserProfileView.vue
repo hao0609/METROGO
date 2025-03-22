@@ -1,117 +1,245 @@
-<script>
+<script setup>
+import { ref, computed, onMounted, inject } from 'vue';
+
+// 引入組件
 import Navbar_V1 from "../components/Navbar_V1.vue";
 import Footer from "@/components/Footer.vue";
-// Icons
+import Alert_web_M from '@/components/Alert_web_M.vue';
+
+// 引入圖標組件
 import SubwayRightIcon from '@/components/icons/IconSubwayRight.vue';
 import EyeoffIcon from '@/components/icons/IconEyeoff.vue';
 import EyeIcon from '@/components/icons/IconEye.vue';
 import HearFillIcon from '@/components/icons/IconHeartfill.vue';
 import CartIcon from '@/components/icons/IconCart.vue';
+import AddIcon from '@/components/icons/IconAdd.vue';
+import EditIcon from '@/components/icons/IconAdminEdit.vue';
+import DeleteIcon from '@/components/icons/IconAdminDelete.vue';
+
+// 引入用戶資訊獲取 & 更新函數
+import { getUserProfile } from '@/js/view/checkUserDB_UserProfile';
+import { handleUserProfileUpdate } from '@/js/view/updateUserDB_UserProfile';
+
+// 確保用戶狀態已加載
+const userReady = ref(false);
+
+onMounted(() => {
+  // 等待用戶狀態準備好
+  const checkUserStatus = () => {
+    if (user_status.value && user_status.value.uid) {
+      userReady.value = true;
+    } else {
+      // 如果用戶狀態還未準備好，500ms 後再檢查
+      setTimeout(checkUserStatus, 500);
+    }
+  };
+  
+  checkUserStatus();
+});
+
+// 使用 inject 來接 app.vue provide 的 user 狀態
+const user_status = inject("user"); // 取得用戶狀態
+
+// 狀態管理
+const activeMenuItem = ref('userInfo'); // 預設顯示會員資料 tab
+const menuItems = ref([
+    { id: 'userInfo', text: '會員資料' },
+    { id: 'changePassward', text: '修改密碼' },
+    { id: 'productCollection', text: '商品收藏' }
+]);
+
+// 會員資料
+const userName = ref("");
+const userEmail = ref("--");
+
+// 用戶積分
+const userPoints = ref("--");
+
+// 照片上傳相關
+const fileInput = ref(null);
+const photoUrl = ref('');
+const selectedFile = ref(null);
+const isPhotoDeleted = ref(false);
+const photoStatus = ref('default');
+
+// 計算屬性：是否有照片
+const hasPhoto = computed(() => photoUrl.value !== '');
+
+
 // 彈窗
-import Alert_web_M from '@/components/Alert_web_M.vue';
-import Swal from 'sweetalert2';
+const alertM = ref(null);
+const alertSuccess = ref(null);
+const alertFailed = ref(null);
 
-
-export default {
-    name: "UseProfile",
-    components: {
-        SubwayRightIcon,
-        EyeoffIcon,
-        EyeIcon,
-        HearFillIcon,
-        CartIcon,
-        Navbar_V1,
-        Footer,
-        Alert_web_M,
-    },
-    data() {
-        return {
-            activeMenuItem: 'userInfo', // 預設顯示會員資料 tab
-            menuItems: [
-                { id: 'userInfo', text: '會員資料' },
-                { id: 'changePassward', text: '修改密碼' },
-                { id: 'productCollection', text: '商品收藏' },
-                { id: 'orderList', text: '訂單管理' }
-            ],
-            // 會員資料預設顯示
-            userName: "王小明",
-            userEmail: "Test1234@gmail.com",
-            // 訂單資料
-            selectedOrder: null,
-            orders: [
-                    { 
-                        id: 'TID201111', 
-                        date: '2024-11-20 22:56:05', 
-                        status: '處理中', 
-                        logistics: '尚未出貨', 
-                        amount: 500,
-                        items: [
-                            { name: '商品名稱 AAA', quantity: 1 },
-                            { name: '商品名稱 AAA', quantity: 1 }
-                        ],
-                        receiver: {
-                            name: '王小明',
-                            phone: '0912345789',
-                            address: '地址'
-                        }
-                    },
-                    ],
-            // Alert_M
-            alertInfo: {
-            fristTitle: '資料更新',
-            svg_icon: `<svg width="160" height="160" viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="80" cy="80" r="75" stroke="#7D8A93" stroke-width="10"/>
-            <path d="M63.2393 73.1818C63.2393 76.88 64.7084 80.4268 67.3234 83.0418C69.9385 85.6569 73.4852 87.126 77.1835 87.126C80.8817 87.126 84.4285 85.6569 87.0435 83.0418C89.6586 80.4268 91.1277 76.88 91.1277 73.1818C91.1277 69.4835 89.6586 65.9368 87.0435 63.3217C84.4285 60.7067 80.8817 59.2375 77.1835 59.2375C73.4852 59.2375 69.9385 60.7067 67.3234 63.3217C64.7084 65.9368 63.2393 69.4835 63.2393 73.1818Z" stroke="#7D8A93" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M91.1134 111.84L83.7555 119.198C82.0124 120.939 79.6493 121.917 77.1854 121.917C74.7215 121.917 72.3585 120.939 70.6154 119.198L50.8889 99.4759C46.5553 95.1416 43.3603 89.8033 41.5882 83.9359C39.8161 78.0685 39.5217 71.8541 40.7315 65.8455C41.9412 59.8369 44.6174 54.2205 48.522 49.4961C52.4266 44.7716 57.4384 41.0856 63.1117 38.7659C68.7849 36.4463 74.9436 35.565 81.0397 36.2004C87.1358 36.8358 92.9803 38.9683 98.0533 42.4081C103.126 45.8479 107.27 50.4883 110.116 55.9164C112.963 61.3446 114.423 67.3922 114.368 73.5211M109.72 124.311V124.357M109.72 110.366C111.803 110.36 113.825 109.654 115.46 108.363C117.095 107.071 118.25 105.269 118.739 103.243C119.229 101.218 119.025 99.0868 118.16 97.1912C117.295 95.2955 115.819 93.7448 113.968 92.7873C112.119 91.8401 110.004 91.5464 107.966 91.954C105.929 92.3616 104.09 93.4466 102.748 95.0324" stroke="#7D8A93" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            `, //無法確認 ICON 是否可以用外部引入.vue檔方式，目前先使用字串方式`,
-            SecondTittle: '副標文字',
-            ThirdTittle: '副副標文字',
-            ButtonText: '確認',
-            allowOutsideClick: true,
-            function: () => {
-                console.log('Alert 確認按鈕被點擊');
-            }
-        }  
-    };  
-        
-    },
-    methods: {
-        handleMenuClick(menuId) {
-            this.activeMenuItem = menuId;
-        },
-        handleMobileMenuChange(event) {
-            this.activeMenuItem = event.target.value;
-        },
-        // 新增顯示資料更新提示的方法
-        showUpdateAlert() {
-            this.$refs.alertM.showAlert();
-        },
-        // 訂單詳情談窗
-        handleOrderDetails(orderId) {
-            this.selectedOrder = this.orders.find(o => o.id === orderId);
-            if (this.selectedOrder) {
-                const template = document.getElementById('orderDetailDialog');
-                Swal.fire({
-                    html: template.innerHTML,
-                    confirmButtonText: '關閉',
-                    customClass: {
-                        popup: 'dialog-order-detail',
-                        confirmButton: 'btn_filled'
-                    },
-                    showCloseButton: false,
-                    showClass: {
-                        popup: 'animate__animated animate__fadeIn'
-                    },
-                    hideClass: {
-                        popup: 'animate__animated animate__fadeOut'
-                    }
-                });
-            }
-        }
-    },
-    
+// 菜單點擊切換
+const handleMenuClick = (menuId) => {
+    activeMenuItem.value = menuId;
 };
+
+// 移動端菜單選擇變化
+const handleMobileMenuChange = (event) => {
+    activeMenuItem.value = event.target.value;
+};
+
+// 點擊上傳區域或編輯按鈕時觸發文件上傳
+const triggerFileUpload = () => {
+    fileInput.value.click();
+};
+
+// 處理文件上傳
+const handleFileUpload = (event) => {
+    const file = event.target.files[0];
+    if (!file) {
+        console.warn('未選擇檔案');
+        selectedFile.value = null;
+        return;
+    }
+    
+    // 驗證文件是否為圖片
+    if (!file.type.match('image.*')) {
+        alert('請上傳圖片文件');
+        selectedFile.value = null;
+        return;
+    }
+    
+    // 創建本地URL以預覽圖片
+    photoUrl.value = URL.createObjectURL(file);
+    selectedFile.value = file;
+
+    // 更新照片狀態為 uploaded
+    photoStatus.value = 'uploaded';
+};
+
+// 顯示刪除照片確認提示
+const showDeletePhotoConfirm = () => {
+    alertM.value.showAlert();
+};
+
+// 刪除照片提示確認
+const deletePhoto = () => {
+    showDeletePhotoConfirm();
+};
+
+// 實際執行刪除照片的函數
+const performDeletePhoto = () => {
+    photoUrl.value = '';
+    selectedFile.value = null;
+    isPhotoDeleted.value = true;
+    photoStatus.value = 'nophoto';
+};
+
+// 組件掛載時獲取用戶積分
+onMounted(async () => {
+    try {
+        // 確保用戶狀態已經準備好
+        while (!user_status.value?.uid) {
+            await new Promise(resolve => setTimeout(resolve, 200));
+        }
+
+        const userInfo = await getUserProfile(user_status.value);
+        
+        // 顯示用戶積分
+        userPoints.value = userInfo.points;
+        
+        // 更新用戶名稱和郵箱
+        userName.value = userInfo.userName || ''; 
+        userEmail.value = userInfo.email || '--';
+
+        // 判斷會員頭像狀態
+        if (userInfo.userPhoto) {
+            photoUrl.value = userInfo.userPhoto;
+            photoStatus.value = 'uploaded';
+        } else {
+            photoStatus.value = 'nophoto';
+        }
+    } catch (error) {
+        console.error('載入用戶資訊時發生錯誤:', error);
+    }
+});
+
+// 顯示資料更新提示
+const showUpdateAlert = async () => {
+    try {
+        const result = await handleUserProfileUpdate({
+            userStatus: user_status.value,
+            userName: userName.value,
+            imageFile: selectedFile.value,
+            photoUrl: photoUrl.value,
+            isPhotoDeleted: isPhotoDeleted.value
+        });
+
+        if (result.success) {
+            // 更新成功
+            alertSuccess.value.showAlert();
+            
+            // 更新本地照片URL和狀態
+            if (result.photoUrl) {
+                photoUrl.value = result.photoUrl;
+                photoStatus.value = 'uploaded';
+            } else {
+                photoStatus.value = 'nophoto';
+            }
+        } else {
+            // 更新失敗
+            alertFailed.value.showAlert();
+        }
+
+        // 重置狀態
+        selectedFile.value = null;
+        isPhotoDeleted.value = false;
+    } catch (error) {
+        console.error('更新過程發生未處理的錯誤:', error);
+        alertFailed.value.showAlert();
+    }
+};
+
+// 刪除照片 Alert 彈窗資訊
+const deletePhotoalertInfo = ref({
+    fristTitle: '刪除頭像',
+    svg_icon: `
+    <svg width="160" height="160" viewBox="0 0 160 160" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+    <path d="M79.9983 160C123.687 160 160 123.765 160 80C160 36.3122 123.607 0 79.918 0C36.1557 0 0 36.3122 0 80C0 123.765 36.2327 160 79.9983 160ZM80.0017 146.668C42.9759 146.668 13.4028 117.018 13.4028 80C13.4028 43.0553 42.8956 13.3322 79.918 13.3322C116.86 13.3322 146.584 43.0587 146.664 80C146.741 117.022 116.937 146.668 79.995 146.668M79.918 94.1956C83.6795 94.1956 85.7978 92.0773 85.8748 88.0014L87.0528 46.5891C87.1331 42.5868 83.9941 39.6085 79.8377 39.6085C75.601 39.6085 72.6226 42.5098 72.6996 46.5088L73.7203 88.0014C73.7973 92.0003 75.9959 94.1956 79.918 94.1956ZM79.918 119.685C84.3856 119.685 88.3847 116.078 88.3847 111.53C88.3847 106.902 84.4659 103.372 79.918 103.372C75.2898 103.372 71.4447 106.979 71.4447 111.53C71.4447 116.001 75.3668 119.685 79.918 119.685Z" fill="#FCD34D"/>
+    </svg>
+    `,
+    SecondTittle: '是否刪除照片',
+    ThirdTittle: '刪除後將無法復原',
+    ButtonText: '確認',
+    allowOutsideClick: true,
+    function: () => {
+        // 執行刪除照片的邏輯
+        performDeletePhoto();
+    }
+});
+
+// 更新資料成功 Alert 彈窗資訊
+const updateInfoSuccess = ref({
+    fristTitle: '成功',
+    svg_icon: `
+    <svg width="160" height="160" viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M80 0C36 0 0 36 0 80C0 124 36 160 80 160C124 160 160 124 160 80C160 36 124 0 80 0ZM80 144C44.72 144 16 115.28 16 80C16 44.72 44.72 16 80 16C115.28 16 144 44.72 144 80C144 115.28 115.28 144 80 144ZM116.72 44.64L64 97.36L43.28 76.72L32 88L64 120L128 56L116.72 44.64Z" fill="#00C9A7"/>
+    </svg>
+    `,
+    SecondTittle: '資料已更新',
+    ThirdTittle: '',
+    ButtonText: '確認',
+    allowOutsideClick: true,
+    function: () => {}
+});
+
+// 更新資料失敗 Alert 彈窗資訊
+const updateInfoFailed = ref({
+    fristTitle: '失敗',
+    svg_icon: `
+    <svg width="160" height="160" viewBox="0 0 160 160" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+    <path d="M79.9983 160C123.687 160 160 123.765 160 80C160 36.3122 123.607 0 79.918 0C36.1557 0 0 36.3122 0 80C0 123.765 36.2327 160 79.9983 160ZM80.0017 146.668C42.9759 146.668 13.4028 117.018 13.4028 80C13.4028 43.0553 42.8956 13.3322 79.918 13.3322C116.86 13.3322 146.584 43.0587 146.664 80C146.741 117.022 116.937 146.668 79.995 146.668M79.918 94.1956C83.6795 94.1956 85.7978 92.0773 85.8748 88.0014L87.0528 46.5891C87.1331 42.5868 83.9941 39.6085 79.8377 39.6085C75.601 39.6085 72.6226 42.5098 72.6996 46.5088L73.7203 88.0014C73.7973 92.0003 75.9959 94.1956 79.918 94.1956ZM79.918 119.685C84.3856 119.685 88.3847 116.078 88.3847 111.53C88.3847 106.902 84.4659 103.372 79.918 103.372C75.2898 103.372 71.4447 106.979 71.4447 111.53C71.4447 116.001 75.3668 119.685 79.918 119.685Z" fill="#FCD34D"/>
+    </svg>
+    `,
+    SecondTittle: '資料更新失敗',
+    ThirdTittle: '請再試一次',
+    ButtonText: '確認',
+    allowOutsideClick: true,
+    function: () => {}
+});
 </script>
 
 <template>
@@ -119,14 +247,18 @@ export default {
     <div class="container">
         <div class="side-bar">
             <div class="side-bar-top">
-                <div class="profile-pic">👤</div>
+                <div v-if="photoStatus === 'default'" class="profile-pic default">
+                    <img src="../assets/images/login/img_userprofile_default.svg">
+                </div>
+                <div v-else-if="photoStatus === 'nophoto'" class="profile-pic default">
+                    <img src="../assets/images/login/img_userprofile_default.svg">
+                </div>
+                <div v-else-if="photoStatus === 'uploaded'" class="profile-pic uploaded">
+                    <img :src="photoUrl" alt="用戶照片" />
+                </div>
                 <div class="point-group">
                     <p class="caption txt-neutral-400">目前積分</p>
-                    <div class="title1 bold">250</div>
-                </div>
-                <div class="btn-group">
-                    <button class="btn-mission">獎勵領取</button>
-                    <button class="btn-mission">集章冊</button>
+                    <div class="title1 bold">{{ userPoints }}</div>
                 </div>
             </div>
             <div class="side-bar-bottom">
@@ -159,15 +291,41 @@ export default {
                 </div>
             </div>
         </div>
+        
         <!-- 會員資料 -->
         <div class="container-right" id="userInfo" :style="{ display: activeMenuItem === 'userInfo' ? 'block' : 'none' }">
             <div class="title1 bold">會員資料</div>
             <div class="content">
-                <div class="profile-pic">👤</div>
+                <div v-if="photoStatus === 'default'" class="profile-pic default">
+                    <img src="../assets/images/login/img_userprofile_default.svg">
+                </div>
+                <div v-else-if="photoStatus === 'nophoto'" class="profile-pic nophoto" @click="triggerFileUpload">
+                    <AddIcon/>上傳照片
+                </div>
+                <div v-else-if="photoStatus === 'uploaded'" class="profile-pic uploaded">
+                    <img :src="photoUrl" alt="用戶照片" />
+                    <div class="hover-section">
+                        <EditIcon @click="triggerFileUpload" />
+                        <DeleteIcon @click="deletePhoto" />
+                    </div>
+                </div>
+                <!-- 隱藏的文件上傳輸入框 -->
+                <input 
+                    type="file" 
+                    ref="fileInput" 
+                    accept="image/*" 
+                    style="display: none" 
+                    @change="handleFileUpload"
+                />
                 <div class="form-group">
-                    <label class="input-label">會員名稱</label>
+                    <label class="input-label">會員姓名</label>
                     <div class="input-wrapper">
-                        <input type="text" class="input-field" v-model="userName" placeholder="">
+                        <input 
+                            type="text" 
+                            class="input-field" 
+                            v-model="userName" 
+                            placeholder="請輸入你的名稱"
+                        >
                     </div>
                 </div>
                 <div class="form-group disabled">
@@ -187,7 +345,7 @@ export default {
                 <div class="form-group">
                     <label class="input-label required">設定新密碼</label>
                     <div class="input-wrapper with-icon">
-                        <input type="text" class="input-field" placeholder="Placeholder">
+                        <input type="password" class="input-field" placeholder="請輸入新密碼">
                         <EyeoffIcon class="input-icon"/>
                         <EyeIcon class="input-icon" style="display: none"/>
                     </div>
@@ -195,7 +353,7 @@ export default {
                 <div class="form-group">
                     <label class="input-label required">再次輸入新密碼</label>
                     <div class="input-wrapper with-icon">
-                        <input type="text" class="input-field" placeholder="Placeholder">
+                        <input type="password" class="input-field" placeholder="再次確認新密碼">
                         <EyeoffIcon class="input-icon" style="display: none"/>
                         <EyeIcon class="input-icon" />
                     </div>
@@ -203,6 +361,7 @@ export default {
                 <button class="btn_filled">更新密碼</button>
             </div>
         </div>
+
         <!-- 商品收藏 -->
         <div class="container-right" id="productCollection" :style="{ display: activeMenuItem === 'productCollection' ? 'block' : 'none' }">
             <div class="title1 bold">商品收藏</div>
@@ -216,115 +375,19 @@ export default {
                             <div class="cart-btn"><CartIcon/></div>
                         </div>
                     </div>
-                    <div class="product">
-                        <div class="img-product-photo"></div>
-                        <div class="icon-heart"><HearFillIcon/></div>
-                        <div class="btn-group">
-                            <button class="btn_outline small">查看詳情</button>
-                            <div class="cart-btn"><CartIcon/></div>
-                        </div>
-                    </div>
-                    <div class="product">
-                        <div class="img-product-photo"></div>
-                        <div class="icon-heart"><HearFillIcon/></div>
-                        <div class="btn-group">
-                            <button class="btn_outline small">查看詳情</button>
-                            <div class="cart-btn"><CartIcon/></div>
-                        </div>
-                    </div>
-                    <div class="product">
-                        <div class="img-product-photo"></div>
-                        <div class="icon-heart"><HearFillIcon/></div>
-                        <div class="btn-group">
-                            <button class="btn_outline small">查看詳情</button>
-                            <div class="cart-btn"><CartIcon/></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- 訂單管理 -->
-        <div class="container-right" id="orderList" :style="{ display: activeMenuItem === 'orderList' ? 'block' : 'none' }">
-            <div class="title1 bold">訂單管理</div>
-            <div class="order-table">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>訂單編號</th>
-                            <th>訂購日期</th>
-                            <th>訂單狀態</th>
-                            <th>物流狀態</th>
-                            <th>總金額</th>
-                            <th>功能</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr 
-                            v-for="(order, index) in orders" 
-                            :key="order.id" 
-                            :class="{ 'highlight-row': index % 2 === 1 }"
-                        >
-                            <td>{{ order.id }}</td>
-                            <td>{{ order.date }}</td>
-                            <td>{{ order.status }}</td>
-                            <td>{{ order.logistics }}</td>
-                            <td>NT$ {{ order.amount }}</td>
-                            <td>
-                                <button class="btn_outline small" @click="handleOrderDetails(order.id)">查看詳情</button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div> 
-
-        <!-- 彈窗，預設隱藏 -->
-        <div id="orderDetailDialog" style="display: none;">
-            <div class="order-detail-content">
-                <div class="detail-section">
-                    <p class="title2 bold dialog-title">訂單詳情</p>
-                    <p class="title2 bold list-title">商品明細</p>
-                    <div class="items-list">
-                        <div v-for="(item, index) in selectedOrder?.items" :key="index" class="item-row">
-                            <span>{{ item.name }}</span>
-                            <span>x{{ item.quantity }}</span>
-                        </div>
-                    </div>
-                    <div class="divider"></div>
-                    <div class="amount-row">
-                        <span>訂單金額</span>
-                        <span class="bold">${{ selectedOrder?.amount }}</span>
-                    </div>
-                </div>
-                
-                <div class="receiver-section">
-                    <div class="form-group">
-                        <label class="input-label">收件人名稱</label>
-                        <div class="input-wrapper disabled">
-                            <input type="text" class="value input-field" :value="selectedOrder?.receiver.name" disabled>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="input-label">收件人電話</label>
-                        <div class="input-wrapper disabled">
-                            <input type="text" class="value input-field" :value="selectedOrder?.receiver.phone" disabled>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="input-label">收件地址</label>
-                        <div class="input-wrapper disabled">
-                            <input type="text" class="value input-field" :value="selectedOrder?.receiver.address" disabled>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
     </div>   
+    
     <Footer />
-    <Alert_web_M ref="alertM" :alertInfo="alertInfo" />
+    
+    <!-- 彈窗 -->
+    <Alert_web_M ref="alertM" :alertInfo="deletePhotoalertInfo" />
+    <Alert_web_M ref="alertSuccess" :alertInfo="updateInfoSuccess" />
+    <Alert_web_M ref="alertFailed" :alertInfo="updateInfoFailed"/>
 </template>
 
 <style lang="scss" scoped>
 @use '../assets/sass/page/userprofile.scss';
 </style>
-

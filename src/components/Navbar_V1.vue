@@ -103,7 +103,7 @@ const cartItems = ref([
 
 <template>
   <header>
-    <RouterLink to="/"><icon_white></icon_white></RouterLink>
+    <RouterLink to="/" class="header_logo"><icon_white></icon_white></RouterLink>
     <nav>
       <ul class="menu bold txt-neutral-0">
         <li><RouterLink to="/sights">景點介紹</RouterLink></li>
@@ -292,6 +292,11 @@ header {
   justify-content: space-between;
   align-items: center;
   z-index: 1062;
+}
+
+///////////* LOGO *//////////////
+.header_logo {
+  outline: none;
 }
 
 ///////////* iCON *//////////////

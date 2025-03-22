@@ -8,12 +8,17 @@
 
 .banner {
   width: 100%;
-  height: 100vh;
+  height: calc(100vh - 72px);
   background-image: url(../assets/images/home/bg.png);
   background-position: 250%;
+
+  
   h1 {
     font-size: 120px;
     text-align: center;
+    @include mobile() {
+      font-size: 40px;
+    }
   }
 }
 
@@ -118,6 +123,10 @@
   z-index: 3;
   left: 13%;
   top: 41%;
+  @include mobile() {
+    left: -30px;
+    top: 41%;
+  }
 }
 .news-title {
   background-color: $pink-400;
@@ -125,6 +134,10 @@
   z-index: 3;
   left: 4%;
   top: 86%;
+  @include mobile() {
+    left: -30px;
+    top: 51%;
+  }
 }
 .special-mission-title {
   background-color: $yellow-400;
@@ -132,6 +145,10 @@
   z-index: 3;
   left: 30%;
   top: 57%;
+  @include mobile() {
+    left: -30px;
+    top: 61%;
+  }
 }
 .sights-title {
   background-color: $green-400;
@@ -139,6 +156,10 @@
   z-index: 3;
   left: 75%;
   top: 51%;
+  @include mobile() {
+    left: -30px;
+    top: 71%;
+  }
 }
 .store-title {
   background-color: $orange-400;

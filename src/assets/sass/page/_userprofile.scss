@@ -2,7 +2,7 @@
 
 .container {
     background-color: $yellow-400;
-    padding: 72px 64px 32px 64px;
+    padding: 32px;
     display: flex;
     flex-direction: row;
     gap: 32px;
@@ -38,7 +38,7 @@
     border-radius: 24px 24px 0 0;
 
     @media screen and (max-width: 576px) {
-        padding: 16px 12px 12px 12px;
+        padding: 32px 12px 12px 12px;
     }
 }
 
@@ -63,7 +63,6 @@
 .profile-pic {
     width: 80px;
     height: 80px;
-    background: #ccc;
     border-radius: 50%;
     display: flex;
     justify-content: center;
@@ -73,6 +72,28 @@
     @media screen and (max-width: 576px) {
         width: 60px;
         height: 60px;
+    }
+}
+
+// 未上傳狀態
+.profile-pic.default {
+    background: $neutral-50;
+
+    img {
+        width: 32px;
+    }
+}
+
+// 已上傳狀態
+.profile-pic.uploaded {
+    background-color: $neutral-0;
+    position: relative;
+
+    img {
+        width: 80px;
+        height: 80px;
+        border-radius: 100%;
+        outline: 1px solid $neutral-150;
     }
 }
 
@@ -164,7 +185,6 @@
 .container-right {
     flex: 1;
     height: 100%;
-    //min-height: 633px;
     background-color: $neutral-0;
     padding: 48px; 
     border-radius: 24px;
@@ -196,10 +216,67 @@
         width: 160px;
         height: 160px;
         margin-bottom: 32px;
+        border: 2px solid $neutral-200;
+    }
 
-        @media screen and (max-width: 768px) {
-            width: 180px;
-            height: 180px;
+    .profile-pic.default {
+        background: $neutral-50;
+        border: none;
+    
+        img {
+            width: 40px;
+        }
+    }
+
+    // 未上傳狀態
+    .profile-pic.nophoto {
+        flex-direction: column;
+        gap: 12px;
+        cursor: pointer;
+    }
+
+    // 已上傳狀態
+    .profile-pic.uploaded {
+        background-color: $neutral-0;
+        position: relative;
+        border: none;
+
+        img {
+            width: 160px;
+            height: 160px;
+            border-radius: 100%;
+            outline: 1px solid $neutral-150;
+        }
+    }
+
+    .profile-pic.uploaded {
+        .hover-section {
+            display: none;
+            position: absolute;
+            width: 160px;
+            height: 160px;
+            border-radius: 100%;
+            overflow: hidden;
+            background-color: rgb(0,0,0,0.6);
+            gap: 24px;
+            align-items: center;
+            justify-content: center;
+
+            svg {
+               color: $neutral-0;
+               width: 40px;
+               cursor: pointer;
+
+               &:hover {
+                color: $neutral-150;
+               }
+            }
+        }
+    }
+
+    .profile-pic.uploaded:hover {
+        .hover-section {
+            display: flex;
         }
     }
 
