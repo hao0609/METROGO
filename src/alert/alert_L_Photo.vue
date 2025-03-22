@@ -41,9 +41,10 @@
           :isCorrect="isCorrect"
           :visible="showResult"
           :lineTitle="lineTitle"
-          @close="showResult = false"
+          @close="closeModalHandler"
           @retry="uploadPhoto"
         />
+        <!-- @close="showResult = false" -->
       </div>
       <div class="modal-img right">
         <img src="../assets/images/MissionSpecial/img_addPhoto.svg" alt="" />
@@ -137,9 +138,6 @@ const uploadPhoto = async () => {
     error.value = `Error uploading file: ${err.message}`;
   } finally {
     showResult.value = true; // 顯示上傳結果彈窗
-    setTimeout(() => {
-      emit("cancel");
-    }, 100);
   }
 };
 
@@ -174,9 +172,15 @@ const emit = defineEmits("cancel");
 // const uploadFile = () => {
 //   emit("confirm");
 // };
-
+const closeModalHandler = () => {
+  // 關閉結果彈窗，並同時關閉問題彈窗（例如發送 cancel 事件給父組件）
+  showResult.value = false;
+  emit("cancel"); // 可通知父組件關閉整個問答流程
+  reset();
+};
 const handleCancel = () => {
   emit("cancel");
+  reset();
 };
 const handlePhotoCaptured = (photoData) => {
   imgSrc.value = photoData; // 更新圖片預覽

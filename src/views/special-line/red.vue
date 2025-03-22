@@ -87,7 +87,7 @@
               v-if="line.img"
               :src="line.img"
               alt="Station Image"
-              class="station-img red_shadow"
+              class="station-img"
             />
             <div v-else class="no-photo red red_shadow" @click="openPhotoAlert(line)">
               <img :src="defaultImg" alt="Lock Icon" class="lock-icon" />
@@ -185,7 +185,6 @@ import { ref, onMounted, onUnmounted, inject, watch } from "vue";
 import questionData from "@/json/question.json";
 import alert_L_Photo from "@/alert/alert_L_Photo.vue";
 import alert_L_question from "@/alert/alert_L_question.vue";
-// import AlertWebM from "@/components/Alert_web_M.vue";
 import Navbar_V1 from "@/components/Navbar_V1.vue";
 import Footer from "@/components/Footer.vue";
 import ModalMenu from "@/components/Mission/ModalMenu.vue";
@@ -198,7 +197,7 @@ export default {
     Navbar_V1,
     Footer,
     alert_L_Photo,
-    // AlertWebM,
+
     alert_L_question,
     alert_user_login,
   },
@@ -325,7 +324,8 @@ export default {
         subtitle:
           " 淡水擁有豐富的自然與人文景觀，如紅樹林保護區、漁人碼頭的浪漫夕陽，以及歷史悠久的淡水老街。這裡有著名的小吃，如阿給、鐵蛋、魚酥等，還能搭渡輪前往八里或欣賞河岸風光，是台北近郊熱門旅遊地點。",
         message: "請拍攝「金色水岸」，包含金色水岸字樣.",
-        img: "/src/assets/images/MissionSpecial/red_01.png",
+        // img: "/src/assets/images/MissionSpecial/red_01.png",
+        img: null,
       },
       {
         id: 2,

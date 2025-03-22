@@ -40,7 +40,7 @@
         </div>
         <div class="btn-group" v-if="!isCorrect">
           <button class="btn small" @click="closeModal">關閉</button>
-          <button class="btn small" @click="retryAnswer">重新上傳</button>
+          <button class="btn small" @click="retryUpload">重新上傳</button>
         </div>
       </div>
     </div>
@@ -70,14 +70,14 @@ export default {
     closeModal() {
       this.$emit("close"); // 通知父組件關閉彈窗
     },
-    retryAnswer() {
+    retryUpload() {
       // 當使用者點擊重新作答時，發出 retry 事件
       this.$emit("retry");
     },
   },
-  mounted() {
-    console.log("lineTitle:", this.lineTitle);
-  },
+  // mounted() {
+  //   console.log("lineTitle:", this.lineTitle);
+  // },
 };
 </script>
 <style lang="scss" scoped>

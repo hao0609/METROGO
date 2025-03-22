@@ -115,8 +115,6 @@
                     ref="alertQuestion"
                     v-if="isQuestionVisible"
                     :question="selectedQuestion"
-                    @cancel="handleQuestionCancel"
-                    @confirm="handleQuestionConfirm"
                   />
                 </div>
               </div>
