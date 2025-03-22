@@ -1,5 +1,4 @@
 <template>
-  <!-- 文章內容 -->
   <div class="featured-paragraph-content">
     <p v-if="FeaturedContent.featured_paragraphs[0]" :key="index">
       {{ FeaturedContent.featured_paragraphs[0] }}

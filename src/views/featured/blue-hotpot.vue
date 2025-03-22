@@ -1,3 +1,21 @@
+<script setup>
+import { ref } from "vue";
+
+// 各種組件
+import Navbar_V1 from "@/components/Navbar_V1.vue";
+import Footer from "@/components/Footer.vue";
+import FeaturedMain from "@/components/FeaturedMain.vue";
+import FeaturedSidebar from "@/components/FeaturedSidebar.vue";
+import FeaturedInfo from "@/components/FeaturedInfo.vue";
+import FeaturedContent from "@/components/FeaturedContent.vue";
+
+// 匯入 JSON 資料
+import featuredDataJson from "@/json/featured.json";
+
+// 取得板南線 id=1 的資料 (火鍋)
+const featuredData = ref(featuredDataJson["板南線"].find((item) => item.id === 1));
+</script>
+
 <template>
   <Navbar_V1 />
   <div class="div-all lightblue">
@@ -190,24 +208,6 @@
   </div>
   <Footer />
 </template>
-
-<script setup>
-import { ref } from "vue";
-
-// 各種組件
-import Navbar_V1 from "@/components/Navbar_V1.vue";
-import Footer from "@/components/Footer.vue";
-import FeaturedMain from "@/components/FeaturedMain.vue";
-import FeaturedSidebar from "@/components/FeaturedSidebar.vue";
-import FeaturedInfo from "@/components/FeaturedInfo.vue";
-import FeaturedContent from "@/components/FeaturedContent.vue";
-
-// 匯入 JSON 資料
-import featuredDataJson from "@/json/featured.json";
-
-// 取得板南線 id=1 的資料 (火鍋)
-const featuredData = ref(featuredDataJson["板南線"].find((item) => item.id === 1));
-</script>
 
 <style lang="scss" scoped>
 @import "@/assets/sass/page/journey-featured.scss";

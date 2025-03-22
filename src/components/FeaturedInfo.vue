@@ -1,5 +1,4 @@
 <template>
-  <!-- 店家資訊 -->
   <div class="featured-main">
     <h2 class="featured-info-title">{{ FeaturedInfo.name }}</h2>
     <div class="info-card">

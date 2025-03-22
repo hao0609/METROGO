@@ -1,5 +1,4 @@
 <template>
-  <!-- 主要標題&圖片 -->
   <div class="featured-main">
     <div class="journey_featured_title1">
       <h1>{{ FeaturedMain.journey_featured_name }}</h1>
