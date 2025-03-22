@@ -3,18 +3,11 @@
     <div class="vertical-line lightbrown" ref="verticalLine"></div>
     <div class="fixed-ball brown" ref="ball"></div>
     <!-- <router-view /> -->
+    <!-- 用戶登入提醒彈窗 -->
+    <alert_user_login ref="alert_user_login_ref" />
     <header class="mission-header" ref="header">
-      <div
-        class="metro_line_id brown"
-        v-for="mission in missions"
-        :key="mission.id"
-      >
-        <h1 class="mission-title">
-          {{ mission.title }}
-        </h1>
-        <h1 class="mission_type">
-          {{ mission.type }}
-        </h1>
+      <div class="metro_line_id brown">
+        <h1 class="mission-title">文湖線</h1>
       </div>
       <img src="../../assets/images/MissionSpecial/station_start.png" alt="" />
     </header>
@@ -51,9 +44,7 @@
             ]"
           >
             <!-- <a :href="`#item${station.id}`">{{ station.title }}</a> -->
-            <router-link :to="`#item${station.id}`">{{
-              station.title
-            }}</router-link>
+            <router-link :to="`#item${station.id}`">{{ station.title }}</router-link>
           </li>
           <li
             class="question title1 brown"
@@ -71,20 +62,19 @@
           </li>
         </ol>
       </section>
-      <alert_L_question
-        ref="alertQuestion"
-        v-if="isQuestionVisible"
-        :question="selectedQuestion"
-        @cancel="handleQuestionCancel"
-        @confirm="handleQuestionConfirm"
+      <alert_L_Photo
+        ref="alertPhoto"
+        v-if="isVisible"
+        :lineTitle="selectedLine?.title"
+        :GetUserId="GetUserId"
+        :mission="mission"
+        :message="selectedLine?.message"
+        :message2="selectedLine?.message2"
+        @cancel="handleModalCancel"
+        @confirm="handleModalConfirm"
       />
       <div class="mission-main" ref="missionMain">
-        <div
-          class="line"
-          v-for="line in lines"
-          :key="line.id"
-          :id="`item${line.id}`"
-        >
+        <div class="line" v-for="line in lines" :key="line.id" :id="`item${line.id}`">
           <div class="title">
             <h2>{{ line.title }}</h2>
             <p class="subtitle">
@@ -103,21 +93,9 @@
               alt="Station Image"
               class="station-img brown_shadow"
             />
-            <div
-              v-else
-              class="no-photo brown brown_shadow"
-              @click="openPhotoAlert(line)"
-            >
+            <div v-else class="no-photo brown brown_shadow" @click="openPhotoAlert(line)">
               <img :src="defaultImg" alt="Lock Icon" class="lock-icon" />
               <span class="lock-text">請上傳照片</span>
-              <alert_L_Photo
-                ref="alertPhoto"
-                v-if="isVisible"
-                :message="selectedLine?.message"
-                :message2="selectedLine?.message2"
-                @cancel="handleModalCancel"
-                @confirm="handleModalConfirm"
-              />
             </div>
           </div>
         </div>
@@ -131,16 +109,20 @@
             <div class="title article">
               <h2>{{ question.title }}</h2>
               <p class="message">{{ question.message }}</p>
-              <div
-                class="question brown brown_shadow"
-                @click="showRandomQuestion"
-              >
+              <div class="question brown brown_shadow" @click="showRandomQuestion">
                 <div
                   v-if="question.icon"
                   class="question-icon"
                   v-html="question.icon"
                 ></div>
                 <span class="question-text">點擊回答問題</span>
+                <alert_L_question
+                  ref="alertQuestion"
+                  v-if="isQuestionVisible"
+                  :question="selectedQuestion"
+                  @cancel="handleQuestionCancel"
+                  @confirm="handleQuestionConfirm"
+                />
               </div>
             </div>
           </div>
@@ -202,7 +184,7 @@
   </div>
 </template>
 <script>
-import { ref, onMounted, onUnmounted } from "vue";
+import { ref, onMounted, onUnmounted, inject, watch } from "vue";
 import questionData from "@/json/question.json";
 import alert_L_Photo from "@/alert/alert_L_Photo.vue";
 import alert_L_question from "@/alert/alert_L_question.vue";
@@ -211,6 +193,7 @@ import Navbar_V1 from "@/components/Navbar_V1.vue";
 import Footer from "@/components/Footer.vue";
 import ModalMenu from "@/components/Mission/ModalMenu.vue";
 import PopupMenu from "@/components/Mission/PopupMenu.vue";
+import alert_user_login from "@/alert/alert_user_login.vue";
 export default {
   components: {
     ModalMenu,
@@ -220,6 +203,7 @@ export default {
     alert_L_Photo,
     // AlertWebM,
     alert_L_question,
+    alert_user_login,
   },
 
   setup() {
@@ -237,7 +221,8 @@ export default {
     const sectionActive = ref(false);
     // const PhotoAlert = ref(null); // 新增 PhotoAlert ref
     const alertPhoto = ref(null);
-
+    const GetUserId = ref(null);
+    const alert_user_login_ref = ref(null);
     const openModal = (type) => {
       selectedModal.value = type;
       isModalOpen.value = true;
@@ -258,6 +243,26 @@ export default {
 
     const selectedLine = ref(null);
     const selectedQuestion = ref(null);
+
+    const user_status = inject("user"); // 取得用戶狀態
+    // 檢查用戶有沒有登入的狀態
+    const CheckUserStatus = () => {
+      console.log(user_status.value);
+
+      if (user_status.value == null) {
+        // 沒登入就跳登入提醒彈窗
+        console.log("用戶沒登入");
+
+        if (alert_user_login_ref.value && alert_user_login_ref.value.UserLoginShowAlert) {
+          alert_user_login_ref.value.UserLoginShowAlert();
+        } else {
+          console.log("alert_user_login_ref 未正確獲取或方法名稱錯誤");
+        }
+      } else {
+        GetUserId.value = user_status.value.uid;
+        // console.log(user_status.value.uid);
+      }
+    };
     const openPhotoAlert = (line) => {
       selectedLine.value = line;
       isVisible.value = true;
@@ -270,12 +275,11 @@ export default {
     const brownLineQuestions = ref(
       questionData.metroLines.find((line) => line.line === "文湖線").questions
     );
+    const mission = "文湖線";
 
     // 隨機選擇一題
     const showRandomQuestion = () => {
-      const randomIndex = Math.floor(
-        Math.random() * brownLineQuestions.value.length
-      );
+      const randomIndex = Math.floor(Math.random() * brownLineQuestions.value.length);
       selectedQuestion.value = brownLineQuestions.value[randomIndex];
       isQuestionVisible.value = true;
     };
@@ -325,7 +329,6 @@ export default {
     //     console.log("Alert 確認按鈕被點擊");
     //   },
     // };
-
     const stations = ref([
       {
         id: 1,
@@ -346,13 +349,7 @@ export default {
     </svg>
   `)
     );
-    const missions = ref([
-      {
-        id: 1,
-        title: "文湖線",
-        // type: "半日遊",
-      },
-    ]);
+
     const lines = ref([
       {
         id: 1,
@@ -552,6 +549,20 @@ export default {
       header.value && header.value.scrollIntoView({ behavior: "smooth" });
     };
     onMounted(() => {
+      setTimeout(() => {
+        CheckUserStatus(); //等 3 秒再執行判斷用戶是否登入
+      }, 3000);
+
+      // 監聽用戶登入狀態
+      watch(user_status, (newValue, oldValue) => {
+        console.log("用戶登入狀態:", newValue);
+
+        if (newValue == null) {
+          setTimeout(() => {
+            CheckUserStatus();
+          }, 3000); // 等 3 秒再執行登入判斷，避免執行其他彈窗時間重疊到
+        }
+      });
       questionSection.value = document.querySelector(".question-section");
       // document.addEventListener("click", handleAnchorClick);
       window.addEventListener("scroll", onScroll);
@@ -568,7 +579,6 @@ export default {
     return {
       defaultImg,
       questions,
-      missions,
       stations,
       lines,
       isPopupOpen,
@@ -603,6 +613,10 @@ export default {
       isVisible,
       handleModalCancel,
       handleModalConfirm,
+      alert_user_login_ref,
+      CheckUserStatus,
+      mission,
+      GetUserId,
 
       // PhotoAlert, // 返回 PhotoAlert ref
       // showPhotoAlert,

@@ -7,16 +7,11 @@
       </button>
       <div class="modal-body">
         <div class="title1 bold">{{ message }}</div>
-        <div class="title2 bold">{{ message2 }}</div>
-        <div class="add-photo">
+
+        <div for="photo-upload" class="add-photo">
           <label v-if="!imgSrc" class="add-icon" for="photo-upload">+</label>
           <!-- 顯示拍照後的圖片  -->
-          <img
-            v-if="imgSrc"
-            :src="imgSrc"
-            alt="Captured Photo"
-            class="alert-img"
-          />
+          <img v-if="imgSrc" :src="imgSrc" alt="Captured Photo" class="alert-img" />
         </div>
       </div>
       <alert_camera
@@ -39,13 +34,16 @@
           />
           <label for="photo-upload" class="btn small">從相簿上傳</label>
         </div>
-        <button
-          class="submit-btn"
-          @click="uploadPhoto"
-          :disabled="!selectedPhoto"
-        >
+        <button class="submit-btn" @click="uploadPhoto" :disabled="!selectedPhoto">
           送出
         </button>
+        <alert_L_result_upload
+          :isCorrect="isCorrect"
+          :visible="showResult"
+          :lineTitle="lineTitle"
+          @close="showResult = false"
+          @retry="uploadPhoto"
+        />
       </div>
       <div class="modal-img right">
         <img src="../assets/images/MissionSpecial/img_addPhoto.svg" alt="" />
@@ -61,22 +59,27 @@ import { ref } from "vue";
 // import alert_user_photo_open from "@/alert/alert_user_photo_open.vue";
 import alert_user_camera_open from "@/alert/alert_user_camera_open.vue";
 import alert_camera from "@/alert/alert_camera.vue";
+import alert_L_result_upload from "@/alert/alert_L_result_upload.vue";
 import { storage } from "@/firebase/firebasePhotoUpload.js";
 import { ref as fsRef, uploadBytes, getDownloadURL } from "firebase/storage";
-import { getAuth } from "firebase/auth";
+
+let photoIndex = 0;
 const props = defineProps({
   title: { type: String, default: "" },
   message: { type: String, default: "" },
-  message2: { type: String, default: "" },
   img: { type: String, default: null },
-  mrtLine: { type: String, default: "" },
-  stationTitle: { type: String, default: "" },
+  lineTitle: { type: String, default: "" },
+  mission: { type: String, default: "" },
+  GetUserId: { type: String, default: "" },
 });
 
 // 上傳
 const selectedPhoto = ref(null); // 使用者上傳的檔案
 const downloadURL = ref(""); // 上傳檔案的下載連結
 const error = ref(""); // 上傳失敗的訊息
+
+const isCorrect = ref(false);
+const showResult = ref(false);
 // 相機
 const alert_user_camera_open_ref = ref(null); // 相機權限
 const alert_camera_ref = ref(null); // 相機畫面
@@ -95,40 +98,48 @@ const photoChange = (e) => {
     };
   }
 };
-// 取得會員 ID
-const getUserId = () => {
-  const auth = getAuth();
-  const user = auth.currentUser;
-  return user ? user.uid : null;
-};
-// 取得當天日期（格式：YYYYMMDD）
-const getCurrentDate = () => {
-  const now = new Date();
-  const year = now.getFullYear();
-  const month = String(now.getMonth() + 1).padStart(2, "0");
-  const day = String(now.getDate()).padStart(2, "0");
-  return `${year}${month}${day}`;
-};
-const uploadPhoto = async () => {
-  const userId = getUserId();
 
-  const { mrtLine, stationTitle } = props;
-  const timestamp = Date.now();
-  const originalFileName = selectedPhoto.value.name;
-  const fileName = `${stationTitle}_${timestamp}_${originalFileName}`;
+const uploadPhoto = async () => {
+  const { lineTitle, mission, GetUserId } = props;
+  // const timestamp = Date.now();
+  // const originalFileName = selectedPhoto.value.name;
+  photoIndex++; // 每上傳一次就遞增
+  // 取得今天的日期，並格式化為 YYYYMMDD 格式
+  const today = new Date();
+  const year = today.getFullYear();
+  const month = (today.getMonth() + 1).toString().padStart(2, "0");
+  const day = today.getDate().toString().padStart(2, "0");
+  const formattedDate = `${year}${month}${day}`;
+  const fileName = `${lineTitle}_${formattedDate}_${photoIndex}`;
 
   // Firebase Storage 儲存路徑
-  const filePath = `photos/${userId}/${mrtLine}/${fileName}`;
+  const filePath = `photos/${GetUserId}/${mission}/${fileName}`;
   const storageRef = fsRef(storage, filePath);
+  // console.log("GetUserId:", GetUserId);
+  // console.log("mission:", mission);
+  // console.log("父元件的lineTitle:", lineTitle);
 
   try {
     error.value = ""; // 清除之前的錯誤訊息(如果有的話)，避免影響到目前的上傳
     const snapshot = await uploadBytes(storageRef, selectedPhoto.value); // 將選好的檔案存到剛剛建立的儲存位置
     downloadURL.value = await getDownloadURL(snapshot.ref);
-    console.log("上傳成功:", downloadURL);
+
+    console.log("上傳成功:");
+    isCorrect.value = true;
+    showResult.value = true; // 顯示上傳結果彈窗
   } catch (err) {
+    console.error("上傳失敗，filePath:", filePath, "props:", {
+      GetUserId,
+      mission,
+      lineTitle,
+    });
+    isCorrect.value = false;
     error.value = `Error uploading file: ${err.message}`;
-    console.error("上傳失敗:", err);
+  } finally {
+    showResult.value = true; // 顯示上傳結果彈窗
+    setTimeout(() => {
+      emit("cancel");
+    }, 100);
   }
 };
 
