@@ -315,16 +315,16 @@ const messageData = ref([
     <!-- 半日遊行程推薦 -->
     <MetroLineTitle :title="`${currentLine}半日遊行程推薦`" />
     <router-link to="/tour/tourtype">
-      <div class="w-full-img" style="background-image: url('/src/assets/images/line/dahu_park_02_w1312xh340.jpg')">
-        <h1 class="group-title white"><RouterLink to="/tour/brown-line">大湖</RouterLink></h1>
+      <div class="w-full-img" style="background-image: url('/src/assets/images/line/shih_chien_university_03_w1312xh340.jpg')">
+        <h1 class="group-title white"><RouterLink to="/tour/brown-line">大直</RouterLink></h1>
       </div>
     </router-link>
 
     <!-- 一日遊行程推薦 -->
     <!-- <MetroLineTitle :title="`${currentLine}一日遊行程推薦`" /> -->
     <router-link to="/tour/tourtype">
-      <div class="w-full-img" style="background-image: url('/src/assets/images/line/taipei_zoo_05_w1312xh340.jpg')">
-        <h1 class="group-title white"><RouterLink to="/tour/brown-line">木柵</RouterLink></h1>
+      <div class="w-full-img" style="background-image: url('/src/assets/images/line/miramar_06_w1312xh340.jpg')">
+        <h1 class="group-title white"><RouterLink to="/tour/brown-line">劍南路</RouterLink></h1>
       </div>
     </router-link>
 
