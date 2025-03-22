@@ -1,6 +1,6 @@
 <template>
   <Navbar_V1 />
-  <div class="div-all lightbrown">
+  <div class="div-all lightgreen">
     <div class="featured-main">
       <div class="journey_featured_title1">
         <h1>{{ featuredData.journey_featured_name }}</h1>
@@ -65,7 +65,7 @@
     </div>
 
     <!-- 店家資訊 -->
-    <div class="journey-featured-info brown">
+    <div class="journey-featured-info green">
       <div class="featured-main">
         <h2 class="featured-info-title">{{ featuredData.store_info.name }}</h2>
         <div class="info-card">
@@ -203,7 +203,7 @@ export default {
     };
   },
   created() {
-    this.featuredData = featuredData["文湖線"].find((item) => item.id === 1); // 取得文湖線id=1的資料(火鍋)
+    this.featuredData = featuredData["松山新店線"].find((item) => item.id === 1); // 取得松山新店線id=1的資料(火鍋)
   },
 };
 </script>
