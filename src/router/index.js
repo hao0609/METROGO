@@ -37,7 +37,10 @@ import NewsView from "../views/NewsView.vue";
 import NewsDetailView from "../views/NewsDetailView.vue";
 import UserProfileView from "../views/UserProfileView.vue";
 import JourneyFeaturedView from "../views/JourneyFeaturedView.vue";
-// import featured_blue from "../views/featured/blue.vue";
+import blue_hotpot from "../views/featured/blue-hotpot.vue";
+import red_dumpling from "../views/featured/red-dumpling.vue";
+import brown_zoo from "../views/featured/brown-zoo.vue";
+
 // import featured_green from "../views/featured/green.vue";
 // import featured_red from "../views/featured/red.vue";
 // import featured_yellow from "../views/featured/yellow.vue";
@@ -252,64 +255,23 @@ const router = createRouter({
       name: "小編精選",
       component: JourneyFeaturedView,
     },
-    //小編精選
-    // {
-    //   path: "/journey-featured",
-    //   name: "JourneyFeaturedView",
-    //   component: JourneyFeaturedView,
-    //   children: [
-    //     {
-    //       path: "red_restaurants",
-    //       name: "featured_red",
-    //       component: featured_red,
-    //     },
-    //     {
-    //       path: "blue_restaurants",
-    //       name: "featured_blue",
-    //       component: featured_blue,
-    //     },
-    //     {
-    //       path: "yellow_restaurants",
-    //       name: "featured_yellow",
-    //       component: featured_yellow,
-    //     },
-    //     {
-    //       path: "green_restaurants",
-    //       name: "featured_green",
-    //       component: featured_green,
-    //     },
-    //     {
-    //       path: "brown_restaurants",
-    //       name: "featured_brown",
-    //       component: featured_brown,
-    //     },
-    //     {
-    //       path: "red_attractions",
-    //       name: "featured_red",
-    //       component: featured_red,
-    //     },
-    //     {
-    //       path: "blue_attractions",
-    //       name: "featured_blue",
-    //       component: featured_blue,
-    //     },
-    //     {
-    //       path: "yellow_attractions",
-    //       name: "featured_yellow",
-    //       component: featured_yellow,
-    //     },
-    //     {
-    //       path: "green_attractions",
-    //       name: "featured_green",
-    //       component: featured_green,
-    //     },
-    //     {
-    //       path: "brown_attractions",
-    //       name: "featured_brown",
-    //       component: featured_brown,
-    //     },
-    //   ],
-    // },
+
+    // 小編精選
+    {
+      path: "/journey-featured/blue-hotpot",
+      name: "小編精選-藍線火鍋",
+      component: blue_hotpot,
+    },
+    {
+      path: "/journey-featured/red-dumpling",
+      name: "小編精選-藍線小籠包",
+      component: red_dumpling,
+    },
+    {
+      path: "/journey-featured/brown-zoo",
+      name: "小編精選-棕線動物園",
+      component: brown_zoo,
+    },
 
     // 後台
     // 後台登入頁面

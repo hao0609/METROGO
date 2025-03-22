@@ -1,6 +1,7 @@
 {
     "板南線": [
         {
+            "id": 1,
             "journey_featured_name": "天冷就要吃鍋！板南線老饕必吃火鍋！",
             "featured_main_photo": "/src/assets/images/featured/pic-featured_blue_hotpot_main.svg",
             "featured_photos": [
@@ -30,6 +31,7 @@
             ]
         },
         {
+            "id": 2,
             "journey_featured_name": "開箱台北大巨蛋！全台最大多功能場館！",
             "featured_main_photo": "",
             "featured_photos": [
@@ -56,42 +58,66 @@
       ],
       "淡水信義線": [
         {
-            "journey_featured_name": "",
-            "featured_main_photo": "",
+            "id": 1,
+            "journey_featured_name": "觀光客必吃小籠包！朝聖信義東門鼎泰豐總店！",
+            "featured_main_photo": "/src/assets/images/featured/pic-featured_red_dumpling_main.svg",
             "featured_photos": [
-                
+                "/src/assets/images/featured/pic-featured_red_dumpling_1.svg",
+                "/src/assets/images/featured/pic-featured_red_dumpling_2.svg",
+                "/src/assets/images/featured/pic-featured_red_dumpling_3.svg",
+                "/src/assets/images/featured/pic-featured_red_dumpling_4.svg",
+                "/src/assets/images/featured/pic-featured_red_dumpling_5.svg"
             ],        
             "store_info": {
-                "name": "",
-                "address": "",
-                "hours": "",
-                "phone": "",
-                "info_photo": ""
+                "name": "鼎泰豐 信義店",
+                "address": "106台北市大安區信義路二段194號",
+                "hours": "11:00 – 20:30",
+                "phone": "02 2321 8928",
+                "info_photo": "/src/assets/images/featured/pic-featured_red_dumpling_info.svg"
               },          
             "featured_paragraphs": [
+                "鼎泰豐信義店，作為鼎泰豐的總店，是台灣最具代表性的餐廳之一，也是眾多觀光客和當地居民朝聖的美食聖地，是每個來到台北的遊客必訪的餐廳之一，依靠著捷運信義線與周邊的繁華商圈，成為了人們的聚集地。",
+                "鼎泰豐小籠包，經典美味",
+                "鼎泰豐最為人熟知的就是其小籠包。每一顆小籠包都經過精心的包製，外皮薄透卻不易破裂，裡頭的湯汁濃郁，與細緻的豬肉餡料相融合，口感鮮美。每一口咬下去，濃湯在口中瞬間爆開，肉質鮮嫩，湯汁鮮美，這種極致的美味讓鼎泰豐的小籠包成為了無數食客回味無窮的經典之選。無論你是第一次品嘗還是常來這裡的老饕，這裡的小籠包總能給你帶來極致的美食享受。",
+                "豐富的菜單，滿足各種需求",
+                "除了小籠包，鼎泰豐信義店的菜單還包括了許多台灣經典小吃，如紅油抄手、酸辣湯、蒸餃等，每一道菜都是經典的台灣味。特別是鼎泰豐的牛肉麵，湯底鮮美，麵條彈牙，與小籠包搭配起來更是絕妙。無論是想來一份經典的中式點心，還是想品嘗一些熱騰騰的湯麵，鼎泰豐信義店都能讓你滿足。",
+                "舒適的用餐環境與頂級服務",
+                "鼎泰豐的用餐環境設計現代且舒適，簡潔的裝潢風格讓人感到清新愉悅。餐廳內有充足的空間，適合家庭聚餐、朋友聚會。鼎泰豐的服務也以親切與專業著稱，服務生總是會迅速而且準確地為你介紹菜單，並協助你點選餐點，為每一位食客提供無微不至的服務。",
+                "鼎泰豐不僅是品味台灣小吃的好地方，它也是台灣美食文化的重要象徵。如果你來台灣旅遊，這裡無疑是不可錯過的美食亮點，讓你在饗宴美味的同時，感受台灣熱情的餐飲服務和濃厚的在地文化。"
 
               ]
         },
         {
-            "journey_featured_name": "",
-            "featured_main_photo": "",
+            "id": 2,
+            "journey_featured_name": "漫遊金色海岸！淡水八里渡船體驗去！",
+            "featured_main_photo": "/src/assets/images/featured/pic-featured_red_boat_main.svg",
             "featured_photos": [
-                
+                "/src/assets/images/featured/pic-featured_red_boat_1.svg",
+                "/src/assets/images/featured/pic-featured_red_boat_2.svg",
+                "/src/assets/images/featured/pic-featured_red_boat_3.svg",
+                "/src/assets/images/featured/pic-featured_red_boat_4.svg",
+                "/src/assets/images/featured/pic-featured_red_boat_5.svg"
             ],        
             "store_info": {
-                "name": "",
-                "address": "",
-                "hours": "",
-                "phone": "",
-                "info_photo": ""
+                "name": "淡水金色水岸渡船頭",
+                "address": "251新北市淡水區",
+                "hours": "7:00-21:00",
+                "phone": "02 2321 8928",
+                "info_photo": "/src/assets/images/featured/pic-featured_red_boat_info.svg"
               },          
             "featured_paragraphs": [
-
+                "淡水八里渡船是台北市周邊一個非常受歡迎的觀光活動。從淡水渡船碼頭搭船到八里，途中可欣賞到淡水河的迷人景致。無論是白天享受陽光還是傍晚觀賞浪漫日落，這條渡船線路提供了一個難得的視角來觀賞台北周邊的自然美景。",
+                "享受海岸風光，悠閒渡船之旅",
+                "淡水八里渡船的起點是位於淡水的渡船碼頭，這裡是許多遊客的出發點。搭乘渡船的過程中，船隻緩緩駛過淡水河的水面，兩岸的美景一覽無遺。你可以看到兩岸的綠意、河流的波光以及周邊的建築與自然環境相互交織。",
+                "渡船時間與便利性",
+                "渡船的班次非常頻繁，從淡水到八里的船程約10至15分鐘，讓遊客可以在短短的時間內抵達八里。特別是傍晚黃昏日落，很多遊客選擇搭船來欣賞大海與天空交織的美麗景象。無論你是來自台北市內，還是來自其他地方，淡水的交通非常便利，遊客可以輕鬆搭乘捷運至淡水站，再步行前往渡船碼頭，順利出發。",
+                "淡水八里渡船不僅是一條交通工具，更是一次放鬆心情、享受大自然美景的旅程。這條水上之旅，無論是單獨旅行，還是與家人、朋友共同出遊，都能帶來美好的回憶。如果你想要暫時逃離繁忙的都市生活，來一趟悠閒的渡船之旅，感受台灣金色海岸的魅力，淡水八里渡船無疑是你不可錯過的選擇。"
               ]
         }
       ],
     "松山新店線": [
       {
+        "id": 1,
         "journey_featured_name": "",
         "featured_main_photo": "",
         "featured_photos": [
@@ -109,6 +135,7 @@
           ]
       },
       {
+        "id": 2,
         "journey_featured_name": "",
         "featured_main_photo": "",
         "featured_photos": [
@@ -128,23 +155,35 @@
     ],
     "文湖線": [
       {
-        "journey_featured_name": "",
-        "featured_main_photo": "",
+        "id": 1,
+        "journey_featured_name": "來一個親子之旅！文湖線必去的動物園！",
+        "featured_main_photo": "/src/assets/images/featured/pic-featured_brown_zoo_main.svg",
         "featured_photos": [
-            
+            "/src/assets/images/featured/pic-featured_brown_zoo_1.svg",
+            "/src/assets/images/featured/pic-featured_brown_zoo_2.svg",
+            "/src/assets/images/featured/pic-featured_brown_zoo_3.svg",
+            "/src/assets/images/featured/pic-featured_brown_zoo_4.svg",
+            "/src/assets/images/featured/pic-featured_brown_zoo_5.svg"
         ],        
         "store_info": {
-            "name": "",
-            "address": "",
-            "hours": "",
-            "phone": "",
-            "info_photo": ""
+            "name": "臺北市立動物園",
+            "address": "116台北市文山區新光路二段30號",
+            "hours": "09:00 - 17:00",
+            "phone": "02 2938 2300",
+            "info_photo": "/src/assets/images/featured/pic-featured_brown_zoo_info.svg"
           },          
         "featured_paragraphs": [
-
+            "台北市立動物園（Taipei Zoo）是台灣最大的動物園之一，位於台北市文山區，這裡是親子遊玩的理想場所。園區成立於1914年，擁有豐富的動物種類和生態展示，致力於讓孩子們在遊玩的同時學習動物知識與環境保護。動物園內的設施適合各年齡層的遊客，特別是家庭遊客，無論是小朋友還是大人，都能在這裡度過難忘的時光。",
+            "多樣化動物，孩子的奇妙世界",
+            "台北市立動物園擁有多個動物展示區，每個區域都根據動物的生活環境進行精心設計。熱帶雨林區讓孩子們可以近距離觀察來自熱帶地區的奇妙動物，像是猩猩和美洲豹；極地動物區則展示企鵝、北極熊等寒冷地帶的生物。對於孩子們來說，這不僅是一場視覺的饗宴，還是對大自然的真實探索，增進他們對不同生態的了解。",
+            "綠意盎然的自然環境，親子放鬆好地方",
+            "除了豐富的動物展示外，台北市立動物園的環境設計也非常適合親子遊玩。園區內綠意盎然，有著大片的草地和樹蔭，非常適合家庭放鬆。孩子們可以在這裡跑跳玩耍，父母則可以在陰涼處稍作休息。動物園內還有多個餐飲設施與休息區，讓家庭可以輕鬆用餐或小憩，為接下來的冒險充電。",
+            "親子同行，共享美好時光",
+            "台北市立動物園是親子旅遊的絕佳選擇。這裡不僅有各式各樣的動物可以觀賞，還有充滿綠意的自然景觀和教育意義深遠的保育活動。無論是幼兒還是小學生，都能在這裡獲得樂趣與學習，並感受到大自然的魅力。帶著孩子來動物園，既能放鬆心情，又能增進親子之間的感情，這是一趟寓教於樂的完美旅程！"
           ]
       },
       {
+        "id": 2,
         "journey_featured_name": "",
         "featured_main_photo": "",
         "featured_photos": [
@@ -164,6 +203,7 @@
     ],
     "中和新蘆線": [
       {
+        "id": 1,
         "journey_featured_name": "",
         "featured_main_photo": "",
         "featured_photos": [
@@ -181,6 +221,7 @@
           ]
       },
       {
+        "id": 2,
         "journey_featured_name": "",
         "featured_main_photo": "",
         "featured_photos": [
