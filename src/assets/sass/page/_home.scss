@@ -1,20 +1,22 @@
 @import "../base/font";
 @import "../base/color";
 
-// .home {
-//   width: 100%;
-//   min-height: 100vh;
-// }
+a {
+  text-decoration: none;
+}
 
 .banner {
+  display: flex;
+  justify-content: center;
   width: 100%;
   height: calc(100vh - 72px);
-  background-image: url(../assets/images/home/bg.png);
+  background-image: url(../assets/images/home/bg.svg);
   background-position: 250%;
 
-  
   h1 {
-    font-size: 120px;
+    position: relative;
+    top: -20px;
+    font-size: 150px;
     text-align: center;
     @include mobile() {
       font-size: 40px;
@@ -29,6 +31,7 @@
   left: 18%;
   width: 35%;
   height: auto;
+
   img {
     width: 100%;
     height: 100%;
@@ -63,9 +66,9 @@
 .gerneral-mission-img {
   position: absolute;
   z-index: 4;
-  left: 10%;
-  top: 45%;
-  transform: rotate(340deg);
+  left: 17%;
+  top: 52%;
+  transform: rotate(20deg);
 }
 
 .news-img {
@@ -107,14 +110,13 @@
   padding: 16px 24px;
   justify-content: center;
   align-items: center;
-  gap: 10px;
   font-size: 20px;
   color: black;
   font-family: $font-noto;
   border-radius: 100px;
   transition: box-shadow 0.2s ease;
   &:hover {
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.9);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
   }
 }
 .gerneral-mission-title {
@@ -123,10 +125,6 @@
   z-index: 3;
   left: 13%;
   top: 41%;
-  @include mobile() {
-    left: -30px;
-    top: 41%;
-  }
 }
 .news-title {
   background-color: $pink-400;
@@ -165,7 +163,7 @@
   background-color: $orange-400;
   position: absolute;
   z-index: 3;
-  left: 84%;
+  left: 82%;
   top: 90%;
 }
 
@@ -194,6 +192,8 @@
   gap: 25px;
 }
 .card {
+  width: 100%;
+  text-align: center;
   display: flex;
   padding: 40px;
   flex-direction: column;
@@ -262,7 +262,7 @@
 .news-content {
   display: flex;
   padding: 40px;
-  align-items: flex-start;
+  align-items: center;
   gap: 40px;
   border-radius: 24px;
   background-color: $neutral-0;
@@ -277,6 +277,7 @@
     img {
       width: 100%;
       height: auto;
+      object-fit: cover;
     }
   }
 }
@@ -323,8 +324,14 @@
 }
 
 .products-card-container {
+  width: 100%;
   display: flex;
   justify-content: space-between;
+  gap: 20px;
+}
+
+.items {
+  display: flex;
   gap: 20px;
 }
 
@@ -367,5 +374,130 @@
   }
 }
 
-@media screen and (max-width: 1240px) {
+@media screen and (max-width: 1024px) {
+  .banner h1 {
+    font-size: 120px;
+    top: 0;
+  }
+  .card {
+    padding: 30px;
+    gap: 20px;
+    p {
+      font-size: 14px;
+    }
+    .title1 {
+      font-size: 20px;
+    }
+  }
+}
+
+@media screen and (max-width: 960px) {
+  .banner h1 {
+    font-size: 85px;
+    top: 20px;
+  }
+  .icons-container {
+    display: none;
+  }
+  .btn {
+    width: 120px;
+    height: 60px;
+    font-size: 16px;
+    white-space: nowrap;
+  }
+  .news-content {
+    flex-direction: column;
+    padding: 44px 16px 16px 16px;
+    gap: 15px;
+  }
+  .news-tag {
+    display: none;
+  }
+  .products-card-container {
+    flex-direction: column;
+  }
+  .title-btn {
+    button {
+      width: 80px;
+      height: 40px;
+      padding: 5px;
+      font-size: 14px;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .banner {
+    flex-direction: column;
+    padding: 0 20px;
+    h1 {
+      margin-bottom: 10%;
+    }
+  }
+
+  .gerneral-mission-title,
+  .news-title,
+  .special-mission-title,
+  .sights-title,
+  .store-title {
+    position: static;
+    margin: 3px;
+    font-size: 14px;
+    padding: 5px;
+    height: auto;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .banner {
+    align-items: center;
+    height: auto;
+    h1 {
+      font-size: 50px;
+    }
+    .banner-content-container {
+      position: relative;
+      height: 100%;
+    }
+    .person-container {
+      display: flex;
+      gap: 50%;
+    }
+    .left-container {
+      position: static;
+      padding-left: 1%;
+    }
+    .right-container {
+      position: static;
+      width: 40%;
+    }
+
+    .labels-container {
+      position: absolute;
+      top: 3%;
+      left: 35%;
+    }
+  }
+  .card-container {
+    flex-direction: column;
+  }
+  .card {
+    padding: 30px 20px;
+    .hidden {
+      display: none;
+    }
+  }
+
+  .products-card-container {
+    p {
+      font-size: 12px;
+    }
+    .product-title {
+      font-size: 14px;
+    }
+  }
+
+  .news-container .text-container .news-tag {
+    display: none;
+  }
 }

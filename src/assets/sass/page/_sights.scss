@@ -9,6 +9,7 @@
   width: 100%;
   gap: 0.5%;
   height: 100%;
+  background-color: $neutral-0;
 }
 
 .banner-grid {
@@ -63,7 +64,7 @@ p {
   flex-direction: column;
   width: 100%;
   background-color: $neutral-700;
-  padding-bottom: 100px;
+  padding-bottom: 80px;
 }
 
 .line-container {
@@ -73,20 +74,20 @@ p {
 }
 
 .img-container {
-  width: 70%;
+  width: 60%;
   height: auto;
 }
 
 .img-container img {
   width: 100%;
-  height: 100%;
+  height: auto;
   object-fit: cover;
   padding: 20px 50px;
 }
 
 .line-square {
   display: flex;
-  width: 30%;
+  width: 40%;
   height: auto;
   flex-direction: column;
   justify-content: center;
@@ -137,6 +138,7 @@ p {
 }
 
 .featured-title {
+  font-size: 4.5rem;
   text-align: center;
   color: $yellow-400;
 }
@@ -145,14 +147,17 @@ p {
   display: flex;
   width: 100%;
   height: auto;
-  padding: 30px 64px;
+  padding: 30px 50px;
   justify-content: center;
   align-items: center;
   gap: 30px;
+  --swiper-navigation-color: #ffffff; /* 導航按鈕顏色 */
+  --swiper-navigation-size: 35px; /* 導航按鈕大小 */
 }
 
 swiper-slide {
   display: flex;
+  width: 100%;
   background-color: $neutral-700;
   align-items: center;
   gap: 60px;
@@ -200,13 +205,6 @@ swiper-slide {
   justify-content: flex-end;
 }
 
-// .swiper-button-prev,
-// .swiper-button-next {
-//   // display: none;
-//   color: #b7ff00; /* 改變箭頭顏色 */
-//   // font-size: 100px; /* 改變箭頭大小 */
-// }
-
 /* 合作夥伴 */
 
 .partners {
@@ -223,12 +221,12 @@ swiper-slide {
 
 .arrows {
   display: flex;
-  width: 164px;
   align-items: center;
   gap: 30px;
 }
 
 .partners-title h2 {
+  font-size: 3.5rem;
   text-align: center;
   white-space: nowrap; // 防止換行
 }
@@ -311,9 +309,12 @@ swiper-slide {
   }
   .line-square {
     width: 100%;
-    height: 100%;
+    height: auto;
     text-align: center;
     writing-mode: vertical-lr;
+    h2 {
+      padding: 100px 0;
+    }
   }
 
   // GO編精選
