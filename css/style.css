@@ -298,7 +298,7 @@ table {
   padding: 40px 40px;
   display: flex;
   flex-direction: column;
-  max-width: 1400px;
+  max-width: 1200px;
   margin: 0 auto;
 }
 
@@ -319,6 +319,7 @@ table {
 
 .footer-menu ul {
   display: flex;
+  flex-wrap: wrap;
   gap: 24px;
   list-style: none;
   margin: 0;
@@ -332,37 +333,27 @@ table {
 }
 
 .footer-bottom {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  width: 100%;
   padding-top: 40px;
-  flex-wrap: wrap;
-  gap: 32px;
 }
 
-.footer-text p {
+.footer-text {
   color: #ffffff;
   font-size: 14px;
   line-height: 1.6;
   margin: 0;
-  max-width: 800px;
+  text-align: justify;
 }
 
-.footer-link {
-  flex-shrink: 0;
-}
 .footer-link ul {
   display: flex;
   gap: 24px;
   list-style: none;
-  margin: 0;
-  padding: 0;
 }
 .footer-link a {
   color: #ffffff;
   text-decoration: none;
   font-size: 14px;
-  white-space: nowrap;
 }
 
 .form-group .input-label {
