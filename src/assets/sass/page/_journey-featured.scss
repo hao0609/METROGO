@@ -9,7 +9,6 @@
 }
 .div-all{
     box-sizing: border-box;
-    // background-color: $aqua-400;
 }
 
 .spaceing-g8{
@@ -35,10 +34,14 @@ img{
     margin-bottom: 20px;
 }
 
-.journey_featured_title1 > h1{
+.journey_featured_title1{
+    h1{
+    // font-size: 64px;
     text-align: center;
+    line-height: 1.25;
     color: $neutral-700;
-    margin-bottom: 12px;
+    margin: 12px 0px;
+    }
 }
 
 .features-img-container{
@@ -64,9 +67,8 @@ img{
 
 /* 商家資訊區塊 */
 .journey-featured-info{
-    // background-color: $metro-blue;
     width: 100%;
-    padding: 50px 0px;
+    padding: 36px 0px;
 }
 
 .featured-info-title{
@@ -75,7 +77,11 @@ img{
 
 .info-card{
     color: $neutral-0;
-    margin: 16px 0px;
+    margin: 0px 0px 36px 0px;
+    
+    p{
+        font-size: 18px;
+    }
 }
 .featured-content-pic{
     width: 100%;
@@ -99,14 +105,22 @@ img{
 /* 主要內容區域 */
 .featured-paragraph-content {
     flex: 2;
-    padding: 20px;
+    padding: 32px 32px 32px 0px;
+    text-align: justify;
+
+    h3 {
+        font-size: 18px;
+        line-height: 1.5;
+        font-weight: bold;
+    }
+
+    p {
+        font-size: 18px;
+        line-height: 1.6;
+        margin-bottom: 24px;
+    }
 }
 
-.featured-paragraph-content p {
-    font-size: 18px;
-    line-height: 1.6;
-    margin-bottom: 15px;
-}
 
 /* 側邊欄 */
 .featured-sidebar {
@@ -209,8 +223,12 @@ $metro-colors: (
     .bottom-images{
         gap: 16px;
     }
-    .journey_featured_title1 > h1{
+    .journey_featured_title1{
+        h1{
         font-size: 48px;
-        line-height: 1.25;
+    }
+    }
+    .featured-paragraph-content{
+        padding: 32px 0px;
     }
 }

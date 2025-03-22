@@ -88,8 +88,29 @@
     <div class="featured-paragraph-main">
       <div class="featured-paragraph">
         <div class="featured-paragraph-content">
-          <p v-for="(paragraph, index) in featuredData.featured_paragraphs" :key="index">
-            {{ paragraph }}
+          <p v-if="featuredData.featured_paragraphs[0]" :key="index">
+            {{ featuredData.featured_paragraphs[0] }}
+          </p>
+          <h3 v-if="featuredData.featured_paragraphs[1]" :key="index">
+            {{ featuredData.featured_paragraphs[1] }}
+          </h3>
+          <p v-if="featuredData.featured_paragraphs[2]" :key="index">
+            {{ featuredData.featured_paragraphs[2] }}
+          </p>
+          <h3 v-if="featuredData.featured_paragraphs[3]" :key="index">
+            {{ featuredData.featured_paragraphs[3] }}
+          </h3>
+          <p v-if="featuredData.featured_paragraphs[4]" :key="index">
+            {{ featuredData.featured_paragraphs[4] }}
+          </p>
+          <h3 v-if="featuredData.featured_paragraphs[5]" :key="index">
+            {{ featuredData.featured_paragraphs[5] }}
+          </h3>
+          <p v-if="featuredData.featured_paragraphs[6]" :key="index">
+            {{ featuredData.featured_paragraphs[6] }}
+          </p>
+          <p v-if="featuredData.featured_paragraphs[7]" :key="index">
+            {{ featuredData.featured_paragraphs[7] }}
           </p>
         </div>
 

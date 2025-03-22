@@ -40,6 +40,8 @@ import JourneyFeaturedView from "../views/JourneyFeaturedView.vue";
 import blue_hotpot from "../views/featured/blue-hotpot.vue";
 import red_dumpling from "../views/featured/red-dumpling.vue";
 import brown_zoo from "../views/featured/brown-zoo.vue";
+import green_waterpark from "../views/featured/green-waterpark.vue";
+import yellow_breakfast from "../views/featured/yellow-breakfast.vue";
 
 // import featured_green from "../views/featured/green.vue";
 // import featured_red from "../views/featured/red.vue";
@@ -250,11 +252,11 @@ const router = createRouter({
     },
 
     // 小編精選
-    {
-      path: "/journey-featured",
-      name: "小編精選",
-      component: JourneyFeaturedView,
-    },
+    // {
+    //   path: "/journey-featured",
+    //   name: "小編精選",
+    //   component: JourneyFeaturedView,
+    // },
 
     // 小編精選
     {
@@ -264,13 +266,23 @@ const router = createRouter({
     },
     {
       path: "/journey-featured/red-dumpling",
-      name: "小編精選-藍線小籠包",
+      name: "小編精選-紅線小籠包",
       component: red_dumpling,
     },
     {
       path: "/journey-featured/brown-zoo",
       name: "小編精選-棕線動物園",
       component: brown_zoo,
+    },
+    {
+      path: "/journey-featured/green-waterpark",
+      name: "小編精選-綠線自來水",
+      component: green_waterpark,
+    },
+    {
+      path: "/journey-featured/yellow-breakfast",
+      name: "小編精選-黃線永和豆漿",
+      component: yellow_breakfast,
     },
 
     // 後台
