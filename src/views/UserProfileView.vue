@@ -5,6 +5,7 @@ import { ref, computed, onMounted, inject } from 'vue';
 import Navbar_V1 from "../components/Navbar_V1.vue";
 import Footer from "@/components/Footer.vue";
 import Alert_web_M from '@/components/Alert_web_M.vue';
+import alert_logout_successful from "../alert/alert_logout_successful.vue";
 
 // 引入圖標組件
 import SubwayRightIcon from '@/components/icons/IconSubwayRight.vue';
@@ -19,6 +20,11 @@ import DeleteIcon from '@/components/icons/IconAdminDelete.vue';
 // 引入用戶資訊獲取 & 更新函數
 import { getUserProfile } from '@/js/view/checkUserDB_UserProfile';
 import { handleUserProfileUpdate } from '@/js/view/updateUserDB_UserProfile';
+import { updateUserPassword, handlePasswordUpdate, validatePasswordFormat } from '@/js/view/updateUserDB_Password';
+
+// 登出
+import { logoutUser } from "@/js/view/signout";
+import { useRouter } from 'vue-router';
 
 // 確保用戶狀態已加載
 const userReady = ref(false);
@@ -65,11 +71,36 @@ const photoStatus = ref('default');
 // 計算屬性：是否有照片
 const hasPhoto = computed(() => photoUrl.value !== '');
 
+// 密碼相關狀態
+const passwordForm = ref({
+    newPassword: '',
+    confirmPassword: '',
+    isNewPasswordValid: true,
+    isConfirmPasswordValid: true,
+    passwordErrorMsg: '',
+    passwordMatchErrorMsg: '',
+    passwordFormatErrorMsg: '',
+    passwordLengthErrorMsg: ''
+});
+
+// 密碼可見性狀態
+const passwordVisible = ref({
+    newPassword: false,
+    confirmPassword: false
+});
+
+// 切換密碼可見性
+const togglePasswordVisibility = (field) => {
+    passwordVisible.value[field] = !passwordVisible.value[field];
+};
 
 // 彈窗
 const alertM = ref(null);
 const alertSuccess = ref(null);
 const alertFailed = ref(null);
+const passwordAlert = ref(null);
+const passwordSuccessAlert = ref(null);
+const passwordFailedAlert = ref(null);
 
 // 菜單點擊切換
 const handleMenuClick = (menuId) => {
@@ -141,7 +172,7 @@ onMounted(async () => {
         // 顯示用戶積分
         userPoints.value = userInfo.points;
         
-        // 更新用戶名稱和郵箱
+        // 更新用戶名稱和信箱
         userName.value = userInfo.userName || ''; 
         userEmail.value = userInfo.email || '--';
 
@@ -193,6 +224,122 @@ const showUpdateAlert = async () => {
     }
 };
 
+//// 密碼更新 ////
+
+const handlePasswordSubmit = async () => {
+    // 重置驗證狀態和錯誤訊息
+    passwordForm.value.isNewPasswordValid = true;
+    passwordForm.value.isConfirmPasswordValid = true;
+    passwordForm.value.passwordErrorMsg = '';
+    passwordForm.value.passwordMatchErrorMsg = '';
+    passwordForm.value.passwordFormatErrorMsg = '';
+    passwordForm.value.passwordLengthErrorMsg = '';
+    
+    try {
+        // 使用 JS 檔中的 handlePasswordUpdate 函數進行密碼更新
+        const result = await handlePasswordUpdate(
+            user_status.value, 
+            passwordForm.value.newPassword, 
+            passwordForm.value.confirmPassword
+        );
+        
+        if (result.success) {
+            // 密碼更新成功
+            passwordUpdateSuccess.value.ThirdTittle = '';
+            passwordSuccessAlert.value.showAlert();
+            // 清空密碼表單
+            passwordForm.value.newPassword = '';
+            passwordForm.value.confirmPassword = '';
+        } else {
+            // 處理各種錯誤情況
+            switch (result.type) {
+                case 'validation_error':
+                    if (result.field === 'newPassword') {
+                        passwordForm.value.isNewPasswordValid = false;
+                        passwordForm.value.passwordErrorMsg = result.message;
+                    } else if (result.field === 'confirmPassword') {
+                        passwordForm.value.isConfirmPasswordValid = false;
+                        passwordForm.value.passwordErrorMsg = result.message;
+                    }
+                    break;
+
+                case 'length_error':
+                    if (result.field === 'newPassword') {
+                        passwordForm.value.isNewPasswordValid = false;
+                        passwordForm.value.passwordLengthErrorMsg = result.message;
+                    } else if (result.field === 'confirmPassword') {
+                        passwordForm.value.isConfirmPasswordValid = false;
+                        passwordForm.value.passwordLengthErrorMsg = result.message;
+                    }
+                    break;
+                    
+                case 'format_error':
+                    if (result.field === 'newPassword') {
+                        passwordForm.value.isNewPasswordValid = false;
+                        passwordForm.value.passwordFormatErrorMsg = result.message;
+                    } else if (result.field === 'confirmPassword') {
+                        passwordForm.value.isConfirmPasswordValid = false;
+                        passwordForm.value.passwordFormatErrorMsg = result.message;
+                    }
+                    break;
+                    
+                case 'match_error':
+                    passwordForm.value.isNewPasswordValid = false;
+                    passwordForm.value.isConfirmPasswordValid = false;
+                    passwordForm.value.passwordMatchErrorMsg = result.message;
+                    break;
+                
+                case 'auth_requires_recent_login':
+                    // 對於需要重新登入的情況，顯示特別的提示
+                    passwordUpdateFailed.value.SecondTittle = '需要重新登入';
+                    passwordUpdateFailed.value.ThirdTittle = '請登出並重新登入後再嘗試修改密碼';
+                    passwordFailedAlert.value.showAlert();
+                    break;
+                    
+                default:
+                    // 其他未知錯誤，顯示失敗提示
+                    passwordUpdateFailed.value.SecondTittle = '密碼更新失敗';
+                    passwordUpdateFailed.value.ThirdTittle = '請再試一次';
+                    passwordFailedAlert.value.showAlert();
+            }
+        }
+    } catch (error) {
+        console.error('更新密碼時發生錯誤:', error);
+        passwordFailedAlert.value.showAlert();
+    }
+};
+
+//// 登出 ////
+
+// 引入路由
+const router = useRouter();
+
+// 登出彈窗參考
+const alert_logout_successful_ref = ref(null);
+
+// 處理登出功能
+const handleLogout = async () => {
+    try {
+        // 執行登出
+        const logout_success = await logoutUser();
+        
+        if (logout_success) {
+            // 顯示登出成功彈窗
+            alert_logout_successful_ref.value.UserLogOutSuccessful();
+            
+            // 使用 setTimeout 延遲導航，給足夠時間顯示彈窗
+            setTimeout(() => {
+                console.log("導航到首頁");
+                router.push("/home");
+            }, 2000); // 彈窗顯示 2 秒後導航到首頁
+        } else {
+            console.error("登出失敗");
+        }
+    } catch (error) {
+        console.error("登出過程中發生錯誤:", error);
+    }
+};
+
 // 刪除照片 Alert 彈窗資訊
 const deletePhotoalertInfo = ref({
     fristTitle: '刪除頭像',
@@ -240,6 +387,39 @@ const updateInfoFailed = ref({
     allowOutsideClick: true,
     function: () => {}
 });
+
+//// 彈窗 ////
+
+// 密碼更新成功 Alert 彈窗資訊
+const passwordUpdateSuccess = ref({
+    fristTitle: '成功',
+    svg_icon: `
+    <svg width="160" height="160" viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M80 0C36 0 0 36 0 80C0 124 36 160 80 160C124 160 160 124 160 80C160 36 124 0 80 0ZM80 144C44.72 144 16 115.28 16 80C16 44.72 44.72 16 80 16C115.28 16 144 44.72 144 80C144 115.28 115.28 144 80 144ZM116.72 44.64L64 97.36L43.28 76.72L32 88L64 120L128 56L116.72 44.64Z" fill="#00C9A7"/>
+    </svg>
+    `,
+    SecondTittle: '密碼已更新',
+    ThirdTittle: '',
+    ButtonText: '確認',
+    allowOutsideClick: true,
+    function: () => {}
+});
+
+// 密碼更新失敗 Alert 彈窗資訊
+const passwordUpdateFailed = ref({
+    fristTitle: '失敗',
+    svg_icon: `
+    <svg width="160" height="160" viewBox="0 0 160 160" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+    <path d="M79.9983 160C123.687 160 160 123.765 160 80C160 36.3122 123.607 0 79.918 0C36.1557 0 0 36.3122 0 80C0 123.765 36.2327 160 79.9983 160ZM80.0017 146.668C42.9759 146.668 13.4028 117.018 13.4028 80C13.4028 43.0553 42.8956 13.3322 79.918 13.3322C116.86 13.3322 146.584 43.0587 146.664 80C146.741 117.022 116.937 146.668 79.995 146.668M79.918 94.1956C83.6795 94.1956 85.7978 92.0773 85.8748 88.0014L87.0528 46.5891C87.1331 42.5868 83.9941 39.6085 79.8377 39.6085C75.601 39.6085 72.6226 42.5098 72.6996 46.5088L73.7203 88.0014C73.7973 92.0003 75.9959 94.1956 79.918 94.1956ZM79.918 119.685C84.3856 119.685 88.3847 116.078 88.3847 111.53C88.3847 106.902 84.4659 103.372 79.918 103.372C75.2898 103.372 71.4447 106.979 71.4447 111.53C71.4447 116.001 75.3668 119.685 79.918 119.685Z" fill="#FCD34D"/>
+    </svg>
+    `,
+    SecondTittle: '密碼更新失敗',
+    ThirdTittle: '請再試一次',
+    ButtonText: '確認',
+    allowOutsideClick: true,
+    function: () => {}
+});
+
 </script>
 
 <template>
@@ -272,7 +452,7 @@ const updateInfoFailed = ref({
                     >
                         {{ item.text }}<SubwayRightIcon/>
                     </div>
-                    <button class="btn_white small">登出</button>
+                    <button class="btn_white small" @click="handleLogout">登出</button>
                 </div>
                 <div class="menu_mobile">
                     <div class="select-group">
@@ -342,23 +522,77 @@ const updateInfoFailed = ref({
         <div class="container-right" id="changePassward" :style="{ display: activeMenuItem === 'changePassward' ? 'block' : 'none' }">
             <div class="title1 bold">修改密碼</div>
             <div class="content">   
-                <div class="form-group">
+                <div class="form-group" :class="{ error: !passwordForm.isNewPasswordValid }">
                     <label class="input-label required">設定新密碼</label>
                     <div class="input-wrapper with-icon">
-                        <input type="password" class="input-field" placeholder="請輸入新密碼">
-                        <EyeoffIcon class="input-icon"/>
-                        <EyeIcon class="input-icon" style="display: none"/>
+                        <input 
+                            :type="passwordVisible.newPassword ? 'text' : 'password'" 
+                            class="input-field" 
+                            placeholder="請輸入新密碼"
+                            v-model="passwordForm.newPassword"
+                        >
+                        <EyeoffIcon 
+                            class="input-icon" 
+                            v-if="!passwordVisible.newPassword" 
+                            @click="togglePasswordVisibility('newPassword')"
+                        />
+                        <EyeIcon 
+                            class="input-icon" 
+                            v-if="passwordVisible.newPassword" 
+                            @click="togglePasswordVisibility('newPassword')"
+                        />
+                        <!-- 密碼為空值時錯誤錯誤 -->
+                        <span class="error-message" v-if="!passwordForm.isNewPasswordValid && passwordForm.passwordErrorMsg && !passwordForm.passwordMatchErrorMsg">
+                            {{ passwordForm.passwordErrorMsg }}
+                        </span>
+                        <!-- 密碼小於 6 位字數時錯誤訊息 -->
+                        <span class="error-message" v-if="!passwordForm.isNewPasswordValid && passwordForm.passwordLengthErrorMsg && !passwordForm.passwordMatchErrorMsg">
+                            {{ passwordForm.passwordLengthErrorMsg }}
+                        </span>
+                        <!-- 密碼格式不符時錯誤訊息 -->
+                        <span class="error-message" v-if="!passwordForm.isNewPasswordValid && passwordForm.passwordFormatErrorMsg && !passwordForm.passwordMatchErrorMsg">
+                            {{ passwordForm.passwordFormatErrorMsg }}
+                        </span>
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group" :class="{ error: !passwordForm.isConfirmPasswordValid }">
                     <label class="input-label required">再次輸入新密碼</label>
                     <div class="input-wrapper with-icon">
-                        <input type="password" class="input-field" placeholder="再次確認新密碼">
-                        <EyeoffIcon class="input-icon" style="display: none"/>
-                        <EyeIcon class="input-icon" />
+                        <input 
+                            :type="passwordVisible.confirmPassword ? 'text' : 'password'" 
+                            class="input-field" 
+                            placeholder="再次確認新密碼"
+                            v-model="passwordForm.confirmPassword"
+                        >
+                        <EyeoffIcon 
+                            class="input-icon" 
+                            v-if="!passwordVisible.confirmPassword" 
+                            @click="togglePasswordVisibility('confirmPassword')"
+                        />
+                        <EyeIcon 
+                            class="input-icon" 
+                            v-if="passwordVisible.confirmPassword" 
+                            @click="togglePasswordVisibility('confirmPassword')"
+                        />
+                        <!-- 密碼為空值時錯誤錯誤 -->
+                        <span class="error-message" v-if="!passwordForm.isConfirmPasswordValid && passwordForm.passwordErrorMsg && !passwordForm.passwordMatchErrorMsg">
+                            {{ passwordForm.passwordErrorMsg }}
+                        </span>
+                        <!-- 密碼小於 6 位字數時錯誤訊息 -->
+                        <span class="error-message" v-if="!passwordForm.isConfirmPasswordValid && passwordForm.passwordLengthErrorMsg && !passwordForm.passwordMatchErrorMsg">
+                            {{ passwordForm.passwordLengthErrorMsg }}
+                        </span>
+                        <!-- 密碼格式不符時錯誤訊息 -->
+                        <span class="error-message" v-if="!passwordForm.isConfirmPasswordValid && passwordForm.passwordFormatErrorMsg && !passwordForm.passwordMatchErrorMsg">
+                            {{ passwordForm.passwordFormatErrorMsg }}
+                        </span>
+                        <!-- 密碼不符的錯誤訊息 -->
+                        <span class="error-message" v-if="passwordForm.passwordMatchErrorMsg">
+                            {{ passwordForm.passwordMatchErrorMsg }}
+                        </span>
                     </div>
                 </div>
-                <button class="btn_filled">更新密碼</button>
+                <button class="btn_filled" @click="handlePasswordSubmit">更新密碼</button>
             </div>
         </div>
 
@@ -386,6 +620,9 @@ const updateInfoFailed = ref({
     <Alert_web_M ref="alertM" :alertInfo="deletePhotoalertInfo" />
     <Alert_web_M ref="alertSuccess" :alertInfo="updateInfoSuccess" />
     <Alert_web_M ref="alertFailed" :alertInfo="updateInfoFailed"/>
+    <Alert_web_M ref="passwordSuccessAlert" :alertInfo="passwordUpdateSuccess" />
+    <Alert_web_M ref="passwordFailedAlert" :alertInfo="passwordUpdateFailed" />
+    <alert_logout_successful ref="alert_logout_successful_ref" />
 </template>
 
 <style lang="scss" scoped>

@@ -48,7 +48,7 @@ const CheckUserLoginStatus = async() => {
   if (user_status.value==null) {
     // 沒登入就跳到登入頁
     router.push("/login");
-  }else{
+  } else {
     // 有登入就能讓用戶登出
     const logout_success =await logoutUser();   // 呼叫登出函式，並回傳登出是否成功
     if (logout_success == true) {
@@ -61,11 +61,15 @@ const CheckUserLoginStatus = async() => {
 
 
       alert_logout_successful_ref.value.UserLogOutSuccessful();
-    }else{
-      console.log("登出失敗");
-      
-    }
     
+      // 使用 setTimeout 延遲導航，給足夠時間顯示彈窗
+      setTimeout(() => {
+        console.log("導航到首頁");
+        router.push("/home");
+      }, 2000); // 彈窗顯示 2 秒後導航到首頁
+    } else {
+      console.log("登出失敗");
+    }
   }
 }
 
