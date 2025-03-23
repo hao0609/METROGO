@@ -426,23 +426,23 @@ const messageData = ref([
 
     <!-- 半日遊行程推薦 -->
     <MetroLineTitle :title="`${currentLine}半日遊行程推薦`" />
-    <router-link to="/tour/tourtype">
+    <router-link to="/tour/red-line" class="tour-link">
       <div
         class="w-full-img"
         style="background-image: url('/src/assets/images/line/Taipei101_02_w1312xh340.jpg')"
       >
-      <h1 class="group-title white"><RouterLink to="/tour/red-line">101</RouterLink></h1>
+      <h1 class="group-title white">101</h1>
       </div>
     </router-link>
 
     <!-- 一日遊行程推薦 -->
     <!-- <MetroLineTitle :title="`${currentLine}一日遊行程推薦`" /> -->
-    <router-link to="/tour/tourtype">
+    <router-link to="/tour/red-line" class="tour-link">
       <div
         class="w-full-img"
         style="background-image: url('/src/assets/images/line/rongjin_gorgeous_time_01_w1312xh340.jpg')"
       >
-      <h1 class="group-title white"><RouterLink to="/tour/red-line">東門</RouterLink></h1>
+      <h1 class="group-title white">東門</h1>
       </div>
     </router-link>
 

@@ -258,6 +258,15 @@ header {
   }
 }
 
+.tour-link {
+  outline: none;
+}
+
+// 分開兩個 w-full-img 之間距離
+.tour-link:first-of-type .w-full-img {
+  margin-bottom: 40px;
+}
+
 // 帶透明度標題文字
 .group-title.white a {
   color: rgba($color: #ffffff, $alpha: 0.7) !important;

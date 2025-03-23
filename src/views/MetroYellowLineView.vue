@@ -315,17 +315,17 @@ const messageData = ref([
 
     <!-- 半日遊行程推薦 -->
     <MetroLineTitle :title="`${currentLine}半日遊行程推薦`" />
-    <router-link to="/tour/tourtype">
+    <router-link to="/tour/yellow-line" class="tour-link">
       <div class="w-full-img" style="background-image: url('/src/assets/images/line/sanchong_station_06_w1312xh340.jpg')">
-        <h1 class="group-title white"><RouterLink to="/tour/yellow-line">三重</RouterLink></h1>
+        <h1 class="group-title white">三重</h1>
       </div>
     </router-link>
 
     <!-- 一日遊行程推薦 -->
     <!-- <MetroLineTitle :title="`${currentLine}一日遊行程推薦`" /> -->
-    <router-link to="/tour/tourtype">
+    <router-link to="/tour/yellow-line" class="tour-link">
       <div class="w-full-img" style="background-image: url('/src/assets/images/line/sanhe_night_market_01_w1312xh340.jpg')">
-        <h1 class="group-title white"><RouterLink to="/tour/yellow-line">台北橋</RouterLink></h1>
+        <h1 class="group-title white">台北橋</h1>
       </div>
     </router-link>
 
