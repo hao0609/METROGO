@@ -224,3 +224,10 @@
 .hidden-canvas {
   display: none; // 隱藏原生檔案上傳按鈕
 }
+.camera-container > video {
+  max-width: 640px;
+  width: 100%;
+  @include mobile() {
+    max-width: 350px;
+  }
+}

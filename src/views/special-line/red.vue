@@ -82,11 +82,15 @@
 
           <div class="metro_station_id_n">
             <div class="message"></div>
-            <p><span class="list red">審核條件</span> {{ line.message }}</p>
+            <p><span class="list red">審核條件</span>   
+            <p class="line-message">{{ line.message }}</p>
+            <p class="line-message2">{{ line.message2 }}</p>
+            </p>
+            <!-- <child-component @uploadSuccess="handleUploadSuccess" /> -->
             <img
               v-if="line.img"
               :src="line.img"
-              alt="Station Image"
+              alt="Uploaded_Photo"
               class="station-img"
             />
             <div v-else class="no-photo red red_shadow" @click="openPhotoAlert(line)">
@@ -181,7 +185,7 @@
   </div>
 </template>
 <script>
-import { ref, onMounted, onUnmounted, inject, watch } from "vue";
+import { ref, onMounted, onUnmounted, inject, watch, computed } from "vue";
 import questionData from "@/json/question.json";
 import alert_L_Photo from "@/alert/alert_L_Photo.vue";
 import alert_L_question from "@/alert/alert_L_question.vue";
@@ -189,7 +193,11 @@ import Navbar_V1 from "@/components/Navbar_V1.vue";
 import Footer from "@/components/Footer.vue";
 import ModalMenu from "@/components/Mission/ModalMenu.vue";
 import PopupMenu from "@/components/Mission/PopupMenu.vue";
+import { storage } from "@/firebase/firebasePhotoUpload.js";
+import { ref as fsRef, getDownloadURL } from "firebase/storage";
+
 import alert_user_login from "@/alert/alert_user_login.vue";
+
 export default {
   components: {
     ModalMenu,
@@ -215,10 +223,14 @@ export default {
     const isModalOpen = ref(false);
     const selectedModal = ref("");
     const sectionActive = ref(false);
-    // const PhotoAlert = ref(null); // 新增 PhotoAlert ref
     const alertPhoto = ref(null);
-    const GetUserId = ref(null);
+
+    const GetUserId = ref("");
+
     const alert_user_login_ref = ref(null);
+
+    // 根據檔案路徑取得參照
+    const storageRef = ref(null);
     const openModal = (type) => {
       selectedModal.value = type;
       isModalOpen.value = true;
@@ -237,21 +249,61 @@ export default {
     // const isVisible = ref(false); // 在父組件中定義 isVisible
     // const isQuestionVisible = ref(false);
 
-    const selectedLine = ref(null);
+    const selectedLine = ref("");
+
     const selectedQuestion = ref(null);
     const openPhotoAlert = (line) => {
       selectedLine.value = line;
-      // isVisible.value = true;
     };
     // const openQuestion = () => {
     //   // selectedQuestion.value = questions;
     //   isQuestionVisible.value = true;
     // };
+
+    // 取用 Firebase 的圖片
+    const fetchPhotoForSelectedLine = async () => {
+      console.log("fetchPhotoForSelectedLine triggered");
+      console.log("selectedLine:", selectedLine.value);
+      console.log("GetUserId:", GetUserId.value);
+      console.log("mission:", mission.value);
+      if (!selectedLine.value || !GetUserId.value) return; // 若尚未取得則中斷
+
+      // 以和上傳時相同的規則取得 formattedDate
+      const today = new Date();
+      const year = today.getFullYear();
+      const month = (today.getMonth() + 1).toString().padStart(2, "0");
+      const day = today.getDate().toString().padStart(2, "0");
+      const formattedDate = `${year}${month}${day}`;
+
+      const fileName = `${selectedLine.value.title.trim()}_${formattedDate}_1`;
+      const filePath = `photos/${GetUserId.value}/${mission.value}/${fileName}`;
+
+      try {
+        // 取得 Storage 參照
+        const firebaseStorageRef = fsRef(storage, filePath);
+        console.log("嘗試取得圖片，路徑為：", filePath);
+        // 取得下載連結
+        const url = await getDownloadURL(firebaseStorageRef);
+        // 將連結存回選取的資料中
+        selectedLine.value.img = url;
+        console.log("取得圖片成功：", url);
+      } catch (error) {
+        console.error("取得圖片失敗：", error);
+        selectedLine.value.img = null;
+      }
+    };
+    // const handleUploadSuccess = ({ filePath, downloadURL }) => {
+    //   console.log("父元件接收到圖片連結：", downloadURL);
+    //   // 根據 filePath 或其他資料更新對應的 selectedLine
+    //   // 例如：
+
+    //   selectedLine.value.img = downloadURL;
+    // };
     // 取得棕線的問題列表
     const brownLineQuestions = ref(
       questionData.metroLines.find((line) => line.line === "淡水信義線").questions
     );
-    const mission = "淡水信義線";
+    const mission = ref("淡水信義線");
 
     // 隨機選擇一題
     const showRandomQuestion = () => {
@@ -293,7 +345,7 @@ export default {
         }
       } else {
         GetUserId.value = user_status.value.uid;
-        // console.log(user_status.value.uid);
+        console.log(user_status.value.uid);
       }
     };
     const stations = ref([
@@ -320,16 +372,16 @@ export default {
     const lines = ref([
       {
         id: 1,
-        title: "淡水站 ",
+        title: "淡水站",
         subtitle:
           " 淡水擁有豐富的自然與人文景觀，如紅樹林保護區、漁人碼頭的浪漫夕陽，以及歷史悠久的淡水老街。這裡有著名的小吃，如阿給、鐵蛋、魚酥等，還能搭渡輪前往八里或欣賞河岸風光，是台北近郊熱門旅遊地點。",
-        message: "請拍攝「金色水岸」，包含金色水岸字樣.",
+        message: "請拍攝「金色水岸」，包含金色水岸字樣",
         // img: "/src/assets/images/MissionSpecial/red_01.png",
         img: null,
       },
       {
         id: 2,
-        title: "關渡站 ",
+        title: "關渡站",
         subtitle:
           " 關渡擁有悠久歷史的關渡宮，是北台灣重要的媽祖廟。關渡自然公園則是賞鳥與生態觀察的好地方，擁有豐富的濕地生態。沿著河岸的自行車道，可一路騎往淡水或市區，適合喜愛戶外活動的旅客。",
         message: "請拍攝「關渡宮」，包含關渡宮字樣",
@@ -337,7 +389,7 @@ export default {
       },
       {
         id: 3,
-        title: "北投站 ",
+        title: "北投站",
         subtitle:
           " 北投以溫泉聞名，擁有北投溫泉博物館、地熱谷等知名景點。北投圖書館是台灣首座綠建築圖書館，結合自然環境與閱讀空間。此外，北投公園及周邊步道充滿綠意，是放鬆散步的好去處，讓旅客能同時享受自然與文化之美。",
         message: "請拍攝北投溫泉博物館",
@@ -513,6 +565,7 @@ export default {
       header.value && header.value.scrollIntoView({ behavior: "smooth" });
     };
     onMounted(() => {
+      fetchPhotoForSelectedLine();
       setTimeout(() => {
         CheckUserStatus(); //等 3 秒再執行判斷用戶是否登入
       }, 3000);
@@ -583,6 +636,13 @@ export default {
       CheckUserStatus,
       GetUserId,
       mission,
+
+      getDownloadURL,
+      fetchPhotoForSelectedLine,
+
+      storageRef,
+
+      // handleUploadSuccess,
     };
   },
 };

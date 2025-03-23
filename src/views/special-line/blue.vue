@@ -80,7 +80,9 @@
 
           <div class="metro_station_id_n">
             <div class="message"></div>
-            <p><span class="list blue">審核條件</span> {{ line.message }}</p>
+            <span class="list blue">審核條件</span>
+            <p class="line-message">{{ line.message }}</p>
+            <p class="line-message2">{{ line.message2 }}</p>
             <img
               v-if="line.img"
               :src="line.img"

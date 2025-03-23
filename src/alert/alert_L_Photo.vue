@@ -8,7 +8,7 @@
       <div class="modal-body">
         <div class="title1 bold">{{ message }}</div>
 
-        <div for="photo-upload" class="add-photo">
+        <div for="photo-upload" class="add-photo" id="dropzone" ref="dropzone">
           <label v-if="!imgSrc" class="add-icon" for="photo-upload">+</label>
           <!-- 顯示拍照後的圖片  -->
           <img v-if="imgSrc" :src="imgSrc" alt="Captured Photo" class="alert-img" />
@@ -42,7 +42,7 @@
           :visible="showResult"
           :lineTitle="lineTitle"
           @close="closeModalHandler"
-          @retry="uploadPhoto"
+          @retry="retryHandler"
         />
         <!-- @close="showResult = false" -->
       </div>
@@ -56,13 +56,14 @@
   </div>
 </template>
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 // import alert_user_photo_open from "@/alert/alert_user_photo_open.vue";
 import alert_user_camera_open from "@/alert/alert_user_camera_open.vue";
 import alert_camera from "@/alert/alert_camera.vue";
 import alert_L_result_upload from "@/alert/alert_L_result_upload.vue";
-import { storage } from "@/firebase/firebasePhotoUpload.js";
+import { storage, db } from "@/firebase/firebasePhotoUpload.js";
 import { ref as fsRef, uploadBytes, getDownloadURL } from "firebase/storage";
+import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 
 let photoIndex = 0;
 const props = defineProps({
@@ -73,7 +74,12 @@ const props = defineProps({
   mission: { type: String, default: "" },
   GetUserId: { type: String, default: "" },
 });
-
+// dropzone
+const dropzone = ref(null);
+const dragOver = (event) => {
+  event.preventDefault();
+};
+const fileInput = ref(null);
 // 上傳
 const selectedPhoto = ref(null); // 使用者上傳的檔案
 const downloadURL = ref(""); // 上傳檔案的下載連結
@@ -99,7 +105,25 @@ const photoChange = (e) => {
     };
   }
 };
-
+// dropzone
+const dropped = (e) => {
+  e.preventDefault();
+  const file = e.dataTransfer.files[0];
+  if (!file) return;
+  selectedPhoto.value = file;
+  const reader = new FileReader();
+  reader.readAsDataURL(file);
+  reader.addEventListener("load", () => {
+    // 更新預覽圖片
+    imgSrc.value = reader.result;
+  });
+};
+onMounted(() => {
+  if (dropzone.value) {
+    dropzone.value.addEventListener("dragover", dragOver);
+    dropzone.value.addEventListener("drop", dropped);
+  }
+});
 const uploadPhoto = async () => {
   const { lineTitle, mission, GetUserId } = props;
   // const timestamp = Date.now();
@@ -124,12 +148,27 @@ const uploadPhoto = async () => {
     error.value = ""; // 清除之前的錯誤訊息(如果有的話)，避免影響到目前的上傳
     const snapshot = await uploadBytes(storageRef, selectedPhoto.value); // 將選好的檔案存到剛剛建立的儲存位置
     downloadURL.value = await getDownloadURL(snapshot.ref);
+    // console.error("獲取圖片 URL 失敗:", err);
 
-    console.log("上傳成功:");
+    console.log("圖片上傳成功,URL:", downloadURL.value);
     isCorrect.value = true;
     showResult.value = true; // 顯示上傳結果彈窗
+    // 儲存至 Firestore
+    const docRef = await addDoc(collection(db, "user_uploads"), {
+      userId: GetUserId,
+      mission: mission,
+      imageURL: downloadURL.value,
+      lineTitle: lineTitle,
+      uploadedAt: serverTimestamp(), // Firebase 伺服器時間
+      filePath: filePath, // 可選：儲存檔案的路徑
+    });
+    console.log("Firestore 紀錄成功，文件 ID:", docRef.id);
+    emit("uploadSuccess", { filePath, downloadURL: downloadURL.value });
+    // 更新 Vue 狀態
+    downloadURL.value = downloadURL.value;
+    isCorrect.value = true;
   } catch (err) {
-    console.error("上傳失敗，filePath:", filePath, "props:", {
+    console.error("上傳失敗，filePath:", filePath, "錯誤訊息:", err.message, {
       GetUserId,
       mission,
       lineTitle,
@@ -167,7 +206,7 @@ const checkCamera = async () => {
   }
 };
 
-const emit = defineEmits("cancel");
+const emit = defineEmits(["cancel", "uploadSuccess", "retry"]);
 
 // const uploadFile = () => {
 //   emit("confirm");
@@ -181,6 +220,19 @@ const closeModalHandler = () => {
 const handleCancel = () => {
   emit("cancel");
   reset();
+};
+const retryHandler = () => {
+  showResult.value = false;
+  emit("retry");
+  reset();
+};
+const reset = () => {
+  imgSrc.value = ""; // 清空圖片預覽
+  selectedPhoto.value = null; // 清空選擇的檔案
+  // 如果 fileInput 有 ref，則也可以清空它的值
+  // if (fileInput.value) {
+  //   fileInput.value.value = "";
+  // }
 };
 const handlePhotoCaptured = (photoData) => {
   imgSrc.value = photoData; // 更新圖片預覽
