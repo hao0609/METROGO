@@ -178,6 +178,7 @@
     align-items: flex-start;
     justify-content: flex-start;
     flex: 1;
+    max-width: 100%;
 }
 
 .card-title {
@@ -289,3 +290,11 @@
         }
     }
 }
+
+
+.no-data-message {
+    text-align: center;
+    padding: 20px;
+    color: $neutral-400;
+    font-size: 16px;
+  }
