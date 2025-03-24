@@ -131,7 +131,7 @@ img{
 }
 .sidebar-title{
     text-align: center;
-    padding-bottom: 36px;
+    padding-bottom: 16px;
 }
 
 .sidebar-title hr {
@@ -233,5 +233,8 @@ $metro-colors: (
     }
     .featured-paragraph-content{
         padding: 32px 0px;
+    }
+    .article img{
+        width: 80px;
     }
 }
