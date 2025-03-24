@@ -6,42 +6,49 @@
       <hr />
     </div>
     <div class="featured-articles">
-      <a :href="selectedJourney.link" class="article-link">
-        <div v-if="selectedJourney" class="article">
-          <div class="article-pic">
-            <img :src="selectedJourney.featured_main_photo" alt="文章1" />
+      <template v-for="(article, index) in selectedArticles" :key="index">
+        <a :href="article.link" class="article-link">
+          <div class="article">
+            <div class="article-pic">
+              <img
+                :src="article.featured_main_photo"
+                :alt="article.journey_featured_name"
+              />
+            </div>
+            <p class="article-title">
+              {{ article.journey_featured_name }}
+            </p>
           </div>
-          <p>
-            {{ selectedJourney.journey_featured_name }}
-          </p>
-        </div>
-      </a>
-      <hr class="article-divider" />
+        </a>
+        <hr v-if="index !== selectedArticles.length - 1" />
+      </template>
     </div>
   </div>
 </template>
 
-<script>
-import featuredData from "@/json/featured.json"; // 引入 JSON 檔案
+<script setup>
+import { ref, computed, onMounted } from "vue";
+import featuredData from "@/json/featured.json";
 
-export default {
-  data() {
-    return {
-      featuredData, // 存入 JSON 資料
-      selectedLine: "板南線",
-      selectedId: 1,
-    };
-  },
-  computed: {
-    selectedJourney() {
-      return (
-        this.featuredData[this.selectedLine]?.find(
-          (journey) => journey.id === this.selectedId
-        ) || null
-      );
-    },
-  },
+const selectedArticles = ref([]);
+
+// 隨機選取 4 篇推薦文章
+const getRandomArticles = () => {
+  let allArticles = [];
+
+  // 將 JSON 裡的所有文章扁平化為一個陣列
+  for (const line in featuredData) {
+    allArticles.push(...featuredData[line]);
+  }
+
+  // 隨機排序並選取前 5 篇
+  selectedArticles.value = allArticles
+    .sort(() => 0.5 - Math.random()) // 隨機排序
+    .slice(0, 5); // 取前 5 筆
 };
+
+// 初始化時執行
+onMounted(getRandomArticles);
 </script>
 
 <style lang="scss" scoped>

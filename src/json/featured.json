@@ -125,20 +125,20 @@
       {
         "id": 1,
         "journey_featured_name": "台北玩水景點！銅板價親子友善游泳玩水好去處！",
-        "featured_main_photo": "",
+        "featured_main_photo": "/src/assets/images/featured/pic-featured_green_waterpark_main.svg",
         "featured_photos": [
-            "",
-            "",
-            "",
-            "",
-            ""
+            "/src/assets/images/featured/pic-featured_green_waterpark_1.svg",
+            "/src/assets/images/featured/pic-featured_green_waterpark_2.svg",
+            "/src/assets/images/featured/pic-featured_green_waterpark_3.svg",
+            "/src/assets/images/featured/pic-featured_green_waterpark_4.svg",
+            "/src/assets/images/featured/pic-featured_green_waterpark_5.svg"
         ],        
         "store_info": {
             "name": "自來水博物館",
             "address": "100台北市中正區思源街1號",
             "hours": "09:00 – 17:00",
             "phone": "02 8369 5104",
-            "info_photo": ""
+            "info_photo": "/src/assets/images/featured/pic-featured_green_waterpark_info.svg"
           },          
         "featured_paragraphs": [
             "自來水博物館是台北市一個別具特色且具有教育意義的景點，結合了水文化、環保教育與親子互動，無論大人小孩都能在這裡獲得豐富的學習經驗。博物館位於台北市中正區，交通便捷，非常適合全家大小一起參觀，了解水資源的重要性以及自來水的歷史。",
