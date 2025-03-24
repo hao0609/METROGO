@@ -33,10 +33,12 @@ import special_green from "../views/special-line/green.vue";
 import special_brown from "../views/special-line/brown.vue";
 import MissionSpecialView from "../views/MissionSpecialView.vue";
 import BackendLoginView from "../views/BackendLoginView.vue";
+import PrivacyView from "../views/PrivacyView.vue";
 import NewsView from "../views/NewsView.vue";
 import NewsDetailView from "../views/NewsDetailView.vue";
 import UserProfileView from "../views/UserProfileView.vue";
-import JourneyFeaturedView from "../views/JourneyFeaturedView.vue";
+
+// import JourneyFeaturedView from "../views/JourneyFeaturedView.vue";
 import blue_hotpot from "../views/featured/blue-hotpot.vue";
 import red_dumpling from "../views/featured/red-dumpling.vue";
 import brown_zoo from "../views/featured/brown-zoo.vue";
@@ -237,6 +239,8 @@ const router = createRouter({
    // { path: "/store", name: "客製化" },//
     
 
+    // 隱私權政策
+    { path: "/privacy", name: "Privacy", component: PrivacyView },
 
     // 最新消息
     { path: "/news", name: "News", component: NewsView },
