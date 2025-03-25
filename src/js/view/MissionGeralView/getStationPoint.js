@@ -17,8 +17,10 @@ export default function getStationScore(stationName) {
     for (const routeName in stationData) {
         const routeStations = stationData[routeName];
         if (routeStations[stationName]) {
-            // 如果有該站名，就回傳獎勵積分
-            return routeStations[stationName]["獎勵積分"];
+            // 如果有該站名，就回傳該捷運站編號以及獎勵積分 Object 資料
+            // console.log(routeStations[stationName]);
+            
+            return routeStations[stationName];
         }
     }
     return null; // 找不到時回傳 null

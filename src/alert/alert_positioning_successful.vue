@@ -44,15 +44,18 @@ const function_1 = () => {
     console.log("彈窗取得用戶總積分 :" + userTotalPoint.value);
 
     // 取得用戶目前打卡的站點獎勵積分
-    const stationPoint = getStationScore(props.nearby_station);
+    const stationPoint = getStationScore(props.nearby_station).獎勵積分;
     console.log(stationPoint);
+
+    // 取得用戶目前打卡的站點捷運站編號
+
+    const stationID = getStationScore(props.nearby_station).捷運站編號;
+    console.log(stationID);
     
 
     // 在頁面上顯示的目前積分加上 站點積分    
+
     
-    // console.log(userTotalPoint.value);
-
-
     // 實際更新會員資料的總積分
     updateUserDB_addUserPoint(currentUser,userTotalPoint.value += stationPoint)
     
@@ -63,6 +66,16 @@ const function_1 = () => {
     if (pinStyle_blue) pinStyle_blue.value = pinjs("")?.pinStyle_blue?.value;
     if (pinStyle_yellow) pinStyle_yellow.value = pinjs("")?.pinStyle_yellow?.value;
     if (pinStyle_brown) pinStyle_brown.value = pinjs("")?.pinStyle_brown?.value;
+
+
+    // 把目前打卡的站點完成旗標秀出來
+
+    const done_flagElement = document.querySelector(`#${stationID}`);
+
+    if (done_flagElement) {
+        document.querySelector(`#${stationID}`).style.display = "inline-block";
+    }       
+
 
     
 };
