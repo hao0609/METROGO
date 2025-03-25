@@ -82,20 +82,6 @@ const updateLocation = async () => {
   }
 };
 
-// 用戶定位不在捷運站附近彈窗提醒
-const NO_location_alert = async () => {
-  try {
-    const result = await gelocation(); // 等待 `gelocation()` 完成
-
-    console.log("執行 NO_location_alert");
-
-    if (result.No_Station == true) {
-      alert_userlocation_stay_ref.value.UserLocationShowAlert();
-    }
-  } catch (error) {
-    console.error("獲取位置失敗:", error);
-  }
-};
 
 const GetUserPoint = async (uid) => {
   // 取得用戶點數
@@ -339,7 +325,7 @@ onMounted(() => {
       alert_user_login_ref.value.alert_user_login_ref();
     } else {
       // 有登入再來判斷用戶定位是否在捷運站附近
-      NO_location_alert();
+      // NO_location_alert();
 
       // 取得目前用戶點數
       GetUserPoint(user_status.value.uid);
@@ -498,8 +484,6 @@ onUnmounted(() => {
     :nearby_station="station_result"
   />
 
-  <!-- 提醒用戶不在捷運站附近彈窗-->
-  <alert_user_location_stay ref="alert_userlocation_stay_ref" />
 
   <!-- 提醒用戶打開定位彈窗-->
   <alert_user_location_open ref="alert_userlocation_open_ref" />

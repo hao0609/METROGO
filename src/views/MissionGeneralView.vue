@@ -24,6 +24,11 @@
         selectedModal.value = "gameRules"
         game_menu_btns_show.value = false
     }
+    import { gelocation } from "../js/view/MissionGeralView/geolocation.js";
+
+    import alert_user_location_stay from '@/alert/alert_user_location_stay.vue';  // 引入 alert_user_location 打開定位彈窗
+    const alert_userlocation_stay_ref = ref(null);
+
 
     import GetUserPoint from '../js/view/MissionGeralView/checkUserDB_TotalPoint.js'
 
@@ -134,16 +139,41 @@
         setAlertInstance_userlocation(alert_userlocation_open_ref.value); // 傳遞 alert_userlocation_ref 組件給 geolocation.js
       }
 
-    //   if (alert_web_M_location_inaccurate.value) {
-    //     setAlertInstance_location_inaccurate(alert_web_M_location_inaccurate.value); // 傳遞 alert_web_M_location_inaccurate 組件給 geolocation.js
-    //   }
+        // 用戶定位不在捷運站附近彈窗提醒
+        const NO_location_alert = async () => {
+            try {
+                const result  = await gelocation(); // 等待 `gelocation()` 完成
+
+                console.log( "執行 NO_location_alert");
+                
+                // 用 localStorage 來紀錄用戶是否已經有提醒過它不在捷運站附近
+
+                // 先確認用戶是否已經有提醒過它不在捷運站附近
+                
+                if (localStorage.getItem('NO_location_DialogIsOpen') != "true") {
+                    // 如果沒有,再來判斷是否提醒用戶不再捷運站附近彈窗    
+                    if (result.No_Station == true) {
+                    alert_userlocation_stay_ref.value.UserLocationShowAlert(); 
+                    
+                    localStorage.setItem('NO_location_DialogIsOpen',true)
+                    }  
+                }
+
+
+            } catch (error) {
+                console.error("獲取位置失敗:", error);
+            }
+        }
 
         // 檢查用戶有沒有登入的狀態
         const CheckUserStatus = async() => {
+                
                 console.log(user_status.value);
                 
                 
                 if (user_status.value != null) {
+
+                    
                     
                    // 取得用戶目前總點數
                    let userTotalPoint_result = await GetUserPoint(user_status.value.uid);
@@ -152,6 +182,9 @@
                    
                    userTotalPoint.value = userTotalPoint_result
 
+                   // 有登入再來判斷是否提醒用戶不再捷運站附近彈窗
+
+                   NO_location_alert();
                    
                    
                 
@@ -163,8 +196,8 @@
         }
             
         setTimeout(() => {
-            CheckUserStatus();     //等 3 秒再執行判斷用戶是否登入
-        },3000)     
+            CheckUserStatus();     //等 2 秒再執行判斷用戶是否登入
+        },2000)     
 
         
 
@@ -427,6 +460,9 @@
 
     <!-- 提醒用戶裝置定位不準確彈窗 -->
     <!-- <alert_location_inaccurate ref="alert_web_M_location_inaccurate"/>  -->
+
+    <!-- 提醒用戶不在捷運站附近彈窗-->
+    <alert_user_location_stay ref="alert_userlocation_stay_ref"/> 
 
 
     <!-- 用戶目前裝置googleMap api定位彈窗 -->

@@ -1,5 +1,6 @@
 <script setup>
   import Swal from 'sweetalert2';
+  import { onUnmounted } from 'vue'
 
 
   // 自定義修改內容
@@ -144,6 +145,10 @@
     defineExpose({                                                // 暴露 showAlert 方法給父組件使用
       showAlert,
     });
+
+    onUnmounted(() => {
+      Swal.close();
+  });
 </script>
 
 

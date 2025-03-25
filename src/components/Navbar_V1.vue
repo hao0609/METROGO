@@ -59,8 +59,11 @@ const CheckUserLoginStatus = async() => {
       rwd_menu_bg.value.style.transform = "scale(0)";
       rwd_menu.value.style.transform = "scale(0)";
 
-
+      
       alert_logout_successful_ref.value.UserLogOutSuccessful();
+
+      // 把用戶一般遊戲的是否提醒過不在捷運站附近的彈窗狀態紀錄清除
+      localStorage.removeItem('NO_location_DialogIsOpen');
     
       // 使用 setTimeout 延遲導航，給足夠時間顯示彈窗
       setTimeout(() => {

@@ -3,6 +3,7 @@
   import alert_web_L_row from './Alert_web_L_row.vue'
   import { h } from "vue";   // h 是 Vue 組件創建虛擬節點方法
   import { renderToString } from "@vue/server-renderer"; // renderToString 是 Vue 組件 DOM 轉成字串方法
+  import { onUnmounted } from 'vue'
 
   // 自定義修改內容
   const props = defineProps({
@@ -71,6 +72,10 @@
     defineExpose({                                                // 暴露 showAlert 方法給父組件使用
       showAlert,
     });
+
+    onUnmounted(() => {
+      Swal.close();
+  });
 </script>
 
 
