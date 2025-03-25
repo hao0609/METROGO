@@ -27,7 +27,7 @@ import Navbar_V1 from "../components/Navbar_V1.vue";
               <div class="circle hover-light">
                 <img src="../assets/images/tour/circle.svg" alt="" />
               </div>
-              <p class="station-name">東門站</p>
+              <p class="station-name">台北101站</p>
             </div>
           </router-link>
           <div class="line visible">
@@ -38,7 +38,7 @@ import Navbar_V1 from "../components/Navbar_V1.vue";
               <div class="circle hover-light">
                 <img src="../assets/images/tour/circle.svg" alt="" />
               </div>
-              <p class="station-name">台北101站</p>
+              <p class="station-name">東門站</p>
             </div>
           </router-link>
           <div class="line visible">
