@@ -2,6 +2,7 @@
 // 初始化
 import { initializeApp } from 'firebase/app';
 import { getDatabase, ref, set, get, onValue, remove,update } from 'firebase/database';
+import { getStorage } from "firebase/storage";
 
 // 引入 firebase authentication 登入註冊驗證方法
 import { getAuth } from "firebase/auth"; 
@@ -29,6 +30,7 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
+const storage = getStorage(app);
 
 const auth = getAuth(app);
 console.log(`Auth instance created: ${auth}`);  // 測試 auth
@@ -173,4 +175,4 @@ initializeDatabase();
 
 
 
-export { auth,database, ref, set, get, onValue, remove, update };
+export { auth, database, ref, set, get, onValue, remove, update, storage };

@@ -61,7 +61,7 @@ import { ref, onMounted } from "vue";
 import alert_user_camera_open from "@/alert/alert_user_camera_open.vue";
 import alert_camera from "@/alert/alert_camera.vue";
 import alert_L_result_upload from "@/alert/alert_L_result_upload.vue";
-import { storage, db } from "@/firebase/firebasePhotoUpload.js";
+import { storage, database } from "@/firebase/firebaseConfig.js";
 import { ref as fsRef, uploadBytes, getDownloadURL } from "firebase/storage";
 import { doc, serverTimestamp, setDoc } from "firebase/firestore";
 
@@ -154,7 +154,7 @@ const uploadPhoto = async () => {
     isCorrect.value = true;
     showResult.value = true; // 顯示上傳結果彈窗
     // 將上傳記錄直接存入以使用者 ID 為文件的 Firestore 文件中
-    const userDocRef = doc(db, "users", props.GetUserId);
+    const userDocRef = doc(database, "users", props.GetUserId);
     await setDoc(
       userDocRef,
       {

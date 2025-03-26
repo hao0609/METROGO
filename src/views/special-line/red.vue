@@ -204,7 +204,7 @@ import PopupMenu from "@/components/Mission/PopupMenu.vue";
 
 import { ref as storageRef, getDownloadURL } from 'firebase/storage';
 import {  collection, query, where, getDocs } from 'firebase/firestore';
-import { storage, db } from "@/firebase/firebasePhotoUpload.js";
+import { storage, database } from "@/firebase/firebaseConfig.js";
 
 import alert_user_login from "@/alert/alert_user_login.vue";
 
@@ -298,7 +298,7 @@ const fetchUserImage = async () => {
   try {
     // 建立查詢條件：userId 與 mission 需符合相應條件
     const q = query(
-      collection(db, 'photos'),
+      collection(database, 'photos'),
       where('userId', '==', user_status.value), // 若 user_status 為物件，可改用 user_status.value.uid
       where('mission', '==', mission.value)
     );
