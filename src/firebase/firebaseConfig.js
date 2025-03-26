@@ -13,18 +13,16 @@ import { getAuth } from "firebase/auth";
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 
 
-
 // 共用的
 const firebaseConfig = {
-  apiKey: "AIzaSyCr0etNy5x5Zdo9vzFintxYii6ckHRroHw",
-  authDomain: "metrogo-ff75f.firebaseapp.com",
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
   databaseURL: "https://metrogo-ff75f-default-rtdb.firebaseio.com",
-  projectId: "metrogo-ff75f",
-  storageBucket: "metrogo-ff75f.firebasestorage.app",
-  messagingSenderId: "36460695281",
-  appId: "1:36460695281:web:42c5fa5fc62888561e2350"
-};
-
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
+}
 
 
 
