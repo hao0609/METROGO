@@ -190,6 +190,7 @@ import Footer from "@/components/Footer.vue";
 import ModalMenu from "@/components/Mission/ModalMenu.vue";
 import PopupMenu from "@/components/Mission/PopupMenu.vue";
 import alert_user_login from "@/alert/alert_user_login.vue";
+
 export default {
   components: {
     ModalMenu,

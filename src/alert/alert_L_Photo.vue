@@ -63,7 +63,7 @@ import alert_camera from "@/alert/alert_camera.vue";
 import alert_L_result_upload from "@/alert/alert_L_result_upload.vue";
 import { storage, db } from "@/firebase/firebasePhotoUpload.js";
 import { ref as fsRef, uploadBytes, getDownloadURL } from "firebase/storage";
-import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+import { doc, serverTimestamp, setDoc } from "firebase/firestore";
 
 let photoIndex = 0;
 const props = defineProps({
@@ -135,10 +135,10 @@ const uploadPhoto = async () => {
   const month = (today.getMonth() + 1).toString().padStart(2, "0");
   const day = today.getDate().toString().padStart(2, "0");
   const formattedDate = `${year}${month}${day}`;
-  const fileName = `${lineTitle}_${formattedDate}_${photoIndex}`;
+  const fileName = `${mission}_${lineTitle}_${formattedDate}_${photoIndex}`;
 
   // Firebase Storage 儲存路徑
-  const filePath = `photos/${GetUserId}/${mission}/${fileName}`;
+  const filePath = `photos/${GetUserId}/${fileName}`;
   const storageRef = fsRef(storage, filePath);
   // console.log("GetUserId:", GetUserId);
   // console.log("mission:", mission);
@@ -153,16 +153,30 @@ const uploadPhoto = async () => {
     console.log("圖片上傳成功,URL:", downloadURL.value);
     isCorrect.value = true;
     showResult.value = true; // 顯示上傳結果彈窗
+    // 將上傳記錄直接存入以使用者 ID 為文件的 Firestore 文件中
+    const userDocRef = doc(db, "users", props.GetUserId);
+    await setDoc(
+      userDocRef,
+      {
+        userId: props.GetUserId,
+        mission: props.mission,
+        imageURL: downloadURL.value,
+        lineTitle: props.lineTitle,
+        uploadedAt: serverTimestamp(),
+        filePath: filePath,
+      },
+      { merge: true }
+    ); // 使用 merge 避免覆蓋其他欄位（如果需要累計資料則不適用）
     // 儲存至 Firestore
-    const docRef = await addDoc(collection(db, "user_uploads"), {
-      userId: GetUserId,
-      mission: mission,
-      imageURL: downloadURL.value,
-      lineTitle: lineTitle,
-      uploadedAt: serverTimestamp(), // Firebase 伺服器時間
-      filePath: filePath, // 可選：儲存檔案的路徑
-    });
-    console.log("Firestore 紀錄成功，文件 ID:", docRef.id);
+    // const uploadsCollectionRef = db, props.GetUserId, "uploads");
+    // const docRef = await addDoc(uploadsCollectionRef, {
+    //   mission: props.mission,
+    //   imageURL: downloadURL.value,
+    //   lineTitle: props.lineTitle,
+    //   uploadedAt: serverTimestamp(),
+    //   filePath: filePath, // 上傳路徑
+    // });
+    // console.log("Firestore 紀錄成功，文件 ID:", docRef.id);
     emit("uploadSuccess", { filePath, downloadURL: downloadURL.value });
     // 更新 Vue 狀態
     downloadURL.value = downloadURL.value;

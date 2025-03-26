@@ -72,6 +72,13 @@
         @confirm="handleModalConfirm"
       />
       <div class="mission-main">
+    <!-- 當 imageUrl 有值時顯示圖片 -->
+    <div>
+    <h2>下載測試</h2>
+    <img v-if="imageUrl" :src="imageUrl" alt="圖片" />
+    <p v-else>載入中...</p>
+  </div>
+        <!-- 當 imageUrl 有值時顯示圖片 -->
         <div class="line" v-for="line in lines" :key="line.id" :id="`item${line.id}`">
           <div class="title">
             <h2>{{ line.title }}</h2>
@@ -86,7 +93,8 @@
             <p class="line-message">{{ line.message }}</p>
             <p class="line-message2">{{ line.message2 }}</p>
             </p>
-            <!-- <child-component @uploadSuccess="handleUploadSuccess" /> -->
+     
+
             <img
               v-if="line.img"
               :src="line.img"
@@ -193,8 +201,10 @@ import Navbar_V1 from "@/components/Navbar_V1.vue";
 import Footer from "@/components/Footer.vue";
 import ModalMenu from "@/components/Mission/ModalMenu.vue";
 import PopupMenu from "@/components/Mission/PopupMenu.vue";
-import { storage } from "@/firebase/firebasePhotoUpload.js";
-import { ref as fsRef, getDownloadURL } from "firebase/storage";
+
+import { ref as storageRef, getDownloadURL } from 'firebase/storage';
+import {  collection, query, where, getDocs } from 'firebase/firestore';
+import { storage, db } from "@/firebase/firebasePhotoUpload.js";
 
 import alert_user_login from "@/alert/alert_user_login.vue";
 
@@ -225,12 +235,11 @@ export default {
     const sectionActive = ref(false);
     const alertPhoto = ref(null);
 
-    const GetUserId = ref("");
+
 
     const alert_user_login_ref = ref(null);
 
-    // 根據檔案路徑取得參照
-    const storageRef = ref(null);
+
     const openModal = (type) => {
       selectedModal.value = type;
       isModalOpen.value = true;
@@ -259,46 +268,64 @@ export default {
     //   // selectedQuestion.value = questions;
     //   isQuestionVisible.value = true;
     // };
+    
+// ---- storage ---------
 
-    // 取用 Firebase 的圖片
-    const fetchPhotoForSelectedLine = async () => {
-      console.log("fetchPhotoForSelectedLine triggered");
-      console.log("selectedLine:", selectedLine.value);
-      console.log("GetUserId:", GetUserId.value);
-      console.log("mission:", mission.value);
-      if (!selectedLine.value || !GetUserId.value) return; // 若尚未取得則中斷
 
-      // 以和上傳時相同的規則取得 formattedDate
-      const today = new Date();
-      const year = today.getFullYear();
-      const month = (today.getMonth() + 1).toString().padStart(2, "0");
-      const day = today.getDate().toString().padStart(2, "0");
-      const formattedDate = `${year}${month}${day}`;
+// Firebase Storage 中圖片的路徑
+const imagePath = 'photos/3QEp1sH50qXX7rwxRhqL1U193Sn1/淡水信義線_淡水站_20250325_1.webp';
+// 儲存用戶 id 與圖片 URL 的響應式變數
+const GetUserId = ref('');
+const imageUrl = ref('');
+const fetchUserImage = async () => {
+  if (!GetUserId.value) return;
+  try {
+    // 根據實際上傳時的命名規則修改檔案名稱與副檔名
+    // const imagePath = `photos/${GetUserId.value}/淡水信義線_淡水站_20250325_1.webp`;
+    console.log('下載路徑:', imagePath);
+    const imageReference = storageRef(storage, imagePath);
+    const url = await getDownloadURL(imageReference);
+    imageUrl.value = url;
+    console.log('下載成功:', url);
+  } catch (error) {
+    console.error('下載圖片失敗:', error.code, error.message);
+  }
+};
+  
+ // ---- database --------- 
 
-      const fileName = `${selectedLine.value.title.trim()}_${formattedDate}_1`;
-      const filePath = `photos/${GetUserId.value}/${mission.value}/${fileName}`;
+ const fetchImageData = async () => {
+  try {
+    // 建立查詢條件：userId 與 mission 需符合相應條件
+    const q = query(
+      collection(db, 'photos'),
+      where('userId', '==', user_status.value), // 若 user_status 為物件，可改用 user_status.value.uid
+      where('mission', '==', mission.value)
+    );
 
-      try {
-        // 取得 Storage 參照
-        const firebaseStorageRef = fsRef(storage, filePath);
-        console.log("嘗試取得圖片，路徑為：", filePath);
-        // 取得下載連結
-        const url = await getDownloadURL(firebaseStorageRef);
-        // 將連結存回選取的資料中
-        selectedLine.value.img = url;
-        console.log("取得圖片成功：", url);
-      } catch (error) {
-        console.error("取得圖片失敗：", error);
-        selectedLine.value.img = null;
+    // 取得符合條件的文件快照
+    const querySnapshot = await getDocs(q);
+
+    // 遍歷查詢結果
+    querySnapshot.forEach((doc) => {
+      const data = doc.data();
+      const lineTitle = data.lineTitle;
+      const imageURL = data.imageURL;
+
+      // 尋找 lines 陣列中符合 lineTitle 的項目
+      const line = lines.value.find((line) => line.title === lineTitle);
+      if (line) {
+        line.img = imageURL;
+        console.log(`已更新 ${lineTitle} 的圖片 URL 為：${imageURL}`);
+      } else {
+        console.warn(`找不到標題為 ${lineTitle} 的 line`);
       }
-    };
-    // const handleUploadSuccess = ({ filePath, downloadURL }) => {
-    //   console.log("父元件接收到圖片連結：", downloadURL);
-    //   // 根據 filePath 或其他資料更新對應的 selectedLine
-    //   // 例如：
-
-    //   selectedLine.value.img = downloadURL;
-    // };
+    });
+  } catch (error) {
+    console.error("取得圖片資料時發生錯誤：", error);
+  }
+};
+ 
     // 取得棕線的問題列表
     const brownLineQuestions = ref(
       questionData.metroLines.find((line) => line.line === "淡水信義線").questions
@@ -346,6 +373,7 @@ export default {
       } else {
         GetUserId.value = user_status.value.uid;
         console.log(user_status.value.uid);
+        fetchUserImage();
       }
     };
     const stations = ref([
@@ -565,7 +593,8 @@ export default {
       header.value && header.value.scrollIntoView({ behavior: "smooth" });
     };
     onMounted(() => {
-      fetchPhotoForSelectedLine();
+      // fetchImage();
+      fetchImageData();
       setTimeout(() => {
         CheckUserStatus(); //等 3 秒再執行判斷用戶是否登入
       }, 3000);
@@ -638,11 +667,11 @@ export default {
       mission,
 
       getDownloadURL,
-      fetchPhotoForSelectedLine,
-
       storageRef,
+      imagePath,
+      imageUrl,
+  
 
-      // handleUploadSuccess,
     };
   },
 };
