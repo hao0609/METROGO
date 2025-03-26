@@ -10,6 +10,7 @@
     import train2 from '../../assets/images/MessionGeneral/train2.vue';
     import car1 from '../../assets/images/MessionGeneral/car1.vue'
     import car2 from '../../assets/images/MessionGeneral/car2.vue'
+    import brown_done from '../../assets/images/MessionGeneral/brown_done.vue'
    
 
 
@@ -93,7 +94,27 @@
         }
     };
 
+    const GetUserPoint = async (uid) =>{ // 取得用戶點數
 
+        try {
+
+            const ref = db_ref(database,`會員資料/${uid}`);
+
+            get(ref).then(snapshot => {
+                if (snapshot.exists()) {
+                    console.log(snapshot.val().點數積分);
+                    
+                }else{
+                    console.log('No data available');
+                    
+                }
+            }) .catch(why => console.log(`Error: ${why}` ))
+
+        } catch (error) {
+            console.log(error.message);
+            
+        }
+    }
 
     locationInfobox_style.value = locationInfo().locationInfobox_style.value;  // 使用 pin.js 的 locationInfobox_style()
     
@@ -328,7 +349,7 @@
 
 
             // 檢查用戶有沒有登入的狀態
-            const CheckUserStatus = () => {                
+            const CheckUserStatus = async() => {                
                 console.log(user_status.value);
                 
                 
@@ -342,8 +363,28 @@
                         // 有登入再來判斷用戶定位是否在捷運站附近
                         // NO_location_alert()
 
+                        // 取得目前用戶點數
+                        GetUserPoint(user_status.value.uid)
+
                         // 取得目前用戶所有已打卡的站點
-                        checkUserDB_AllDoneStations(user_status.value.uid)
+                        const userAllDoneStations = await checkUserDB_AllDoneStations(user_status.value.uid)
+
+                        // 取得目前用戶所有已打卡的站點的編號，並根據該編號ID 連結對應旗標Element ID 並顯示出來
+                        
+                        userAllDoneStations.forEach(station => {
+
+                            let stationID = station.捷運站編號
+
+                            const done_flagElement = document.querySelector(`#${stationID}`);
+
+                            if (done_flagElement) {
+                                document.querySelector(`#${stationID}`).style.display = "inline-block";
+                            }                    
+
+                            
+                        });
+                        // 讓 brown_done 的 SVG 各個捷運站編號 ID 的旗標通通顯示
+
                 }
             }
 
@@ -460,6 +501,9 @@
         </div>
         <div class="item">
             <station_brown class="station"/>
+        </div>
+        <div class="item">
+            <brown_done class="brown_done"/>
         </div>
         <div class="item">
             <train1  ref="train_1_Ref"/>

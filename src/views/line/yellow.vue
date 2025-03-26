@@ -10,7 +10,7 @@
     import train2 from '../../assets/images/MessionGeneral/train2.vue';
     import car1 from '../../assets/images/MessionGeneral/car1.vue'
     import car2 from '../../assets/images/MessionGeneral/car2.vue'
-    
+    import yellow_done from '../../assets/images/MessionGeneral/yellow_done.vue'
 
 
 
@@ -355,7 +355,7 @@
 
 
             // 檢查用戶有沒有登入的狀態
-            const CheckUserStatus = () => {
+            const CheckUserStatus = async() => {
                 console.log(user_status.value);
                 
                 if (user_status.value == null) {
@@ -372,7 +372,24 @@
                         GetUserPoint(user_status.value.uid)
 
                         // 取得目前用戶所有已打卡的站點
-                        checkUserDB_AllDoneStations(user_status.value.uid)
+                        const userAllDoneStations = await checkUserDB_AllDoneStations(user_status.value.uid)
+
+                        // 取得目前用戶所有已打卡的站點的編號，並根據該編號ID 連結對應旗標Element ID 並顯示出來
+                        
+                        userAllDoneStations.forEach(station => {
+
+                            let stationID = station.捷運站編號
+
+                            const done_flagElement = document.querySelector(`#${stationID}`);
+
+                            if (done_flagElement) {
+                                document.querySelector(`#${stationID}`).style.display = "inline-block";
+                            }                    
+
+                            
+                        });
+
+                        // 讓 yellow_done 的 SVG 各個捷運站編號 ID 的旗標通通顯示
                 }
             }
 
@@ -490,6 +507,9 @@
         </div>
         <div class="item">
             <station_yellow class="station"/>
+        </div>
+        <div class="item">
+            <yellow_done class="yellow_done"/>
         </div>
         <div class="item">
             <train1  ref="train_1_Ref"/>

@@ -10,6 +10,8 @@ import train1 from "../../assets/images/MessionGeneral/train1.vue";
 import train2 from "../../assets/images/MessionGeneral/train2.vue";
 import car1 from "../../assets/images/MessionGeneral/car1.vue";
 import car2 from "../../assets/images/MessionGeneral/car2.vue";
+import blue_done from '../../assets/images/MessionGeneral/blue_done.vue'
+
 
 import { gelocation } from "../../js/view/MissionGeralView/geolocation";
 
@@ -315,7 +317,7 @@ onMounted(() => {
     });
 
   // 檢查用戶有沒有登入的狀態
-  const CheckUserStatus = () => {
+  const CheckUserStatus = async() => {
     console.log(user_status.value);
 
     if (user_status.value == null) {
@@ -324,14 +326,32 @@ onMounted(() => {
 
       alert_user_login_ref.value.alert_user_login_ref();
     } else {
-      // 有登入再來判斷用戶定位是否在捷運站附近
-      // NO_location_alert();
+            // 有登入再來判斷用戶定位是否在捷運站附近
+            // NO_location_alert()
 
-      // 取得目前用戶點數
-      GetUserPoint(user_status.value.uid);
+            // 取得目前用戶點數
+            GetUserPoint(user_status.value.uid)
 
-      // 取得目前用戶所有已打卡的站點
-      checkUserDB_AllDoneStations(user_status.value.uid);
+            // 取得目前用戶所有已打卡的站點
+            const userAllDoneStations = await checkUserDB_AllDoneStations(user_status.value.uid)
+
+            // 取得目前用戶所有已打卡的站點的編號，並根據該編號ID 連結對應旗標Element ID 並顯示出來
+            
+            userAllDoneStations.forEach(station => {
+
+                let stationID = station.捷運站編號
+
+                const done_flagElement = document.querySelector(`#${stationID}`);
+
+                if (done_flagElement) {
+                    document.querySelector(`#${stationID}`).style.display = "inline-block";
+                }                    
+
+                
+            });
+
+            // 讓 blue_done 的 SVG 各個捷運站編號 ID 的旗標通通顯示
+
     }
   };
 
@@ -457,6 +477,9 @@ onUnmounted(() => {
     <div class="item">
       <station_blue class="station" />
     </div>
+    <div class="item">
+            <blue_done class="blue_done"/>
+        </div>
     <div class="item">
       <train1 ref="train_1_Ref" />
       <train2 ref="train_2_Ref" />
