@@ -19,7 +19,7 @@ import { logoutUser } from "../js/view/signout"
 const checked = ref(false);
 const rwd_menu = ref(null);
 const rwd_menu_bg = ref(null);
-// const header = ref(null);
+const header = ref(null);
 
 // 控制積分遊戲 dropdown 是否隱藏
 const dropdown = ref(false);
@@ -81,12 +81,18 @@ const checked_change = () => {
     rwd_menu.value.style.visibility = "visible";
     rwd_menu_bg.value.style.transform = "scale(1)";
     rwd_menu.value.style.transform = "scale(1)";
-    // header.value.style.backgroundColor = '#e0c4ee';
+    header.value.style.position = "fixed";
+    rwd_menu.value.style.position = "fixed";
+
+    
+
   } else if (checked.value === false) {
     rwd_menu.value.style.visibility = "hidden";
     rwd_menu_bg.value.style.transform = "scale(0)";
     rwd_menu.value.style.transform = "scale(0)";
-    // header.value.style.backgroundColor = 'black';
+    header.value.style.position = "relative";
+    rwd_menu.value.style.position = "absolute";
+
   }
 };
 
@@ -109,7 +115,7 @@ const cartItems = ref([
 </script>
 
 <template>
-  <header>
+  <header ref="header">
     <RouterLink to="/" class="header_logo"><icon_white></icon_white></RouterLink>
     <nav>
       <ul class="menu bold txt-neutral-0">
@@ -197,12 +203,12 @@ const cartItems = ref([
       </ul>
       <div class="line"></div>
 
-      <div class="shopping_cart">
+      <!-- <div class="shopping_cart">
         <shopping_cart @click="cartVisible = !cartVisible" />
-      </div>
+      </div> -->
 
       <div class="user" >
-        <RouterLink to="/user-profile" v-if="user_status">
+        <RouterLink to="/user-profile">
           <user ></user>
         </RouterLink>
       </div>
@@ -258,9 +264,9 @@ const cartItems = ref([
       </div>
       <div class="icon_box">
         <div class="icon">
-          <shopping_cart @click="cartVisible = !cartVisible" />
+          <!-- <shopping_cart @click="cartVisible = !cartVisible" /> -->
           
-          <RouterLink to="/user-profile" v-if="user_status">
+          <RouterLink to="/user-profile">
               <user></user>
           </RouterLink>
         </div>
@@ -394,7 +400,7 @@ ul > .dropdown > .dropdown_menu > .router_link > button > .icon {
 }
 
 .user {
-  margin: 0 32px;
+  margin-right: 32px;
 }
 
 // 漢堡選單動畫間隔時間

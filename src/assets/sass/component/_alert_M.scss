@@ -5,7 +5,7 @@
 .my-swal-M{
     @include flex-center;
     width: 480px;
-    gap: 24px;
+    gap: 15px;
     padding: 40px 24px;
     flex-direction: column;
     border-radius: 20px;
@@ -20,7 +20,7 @@
     order: 2; /* 將 ICON 調整為第二個 */
     @include flex-center;
     flex-direction: column;
-    gap: 24px;
+    gap: 15px;
   }
   .my-swal-M >.swal2-html-container > .content > .title1{
     color: $neutral-700;
