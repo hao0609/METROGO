@@ -6,46 +6,63 @@
 
 .banner {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
   width: 100%;
   gap: 0.5%;
   height: 100%;
   background-color: $neutral-0;
+  overflow-y: auto;
+  scrollbar-width: none; /* Firefox 隱藏滾動條 */
 }
 
-.banner-grid {
+/* 隱藏滾動條（適用於 Chrome、Safari、Edge） */
+.banner::-webkit-scrollbar {
+  display: none;
+}
+
+.block {
+  flex: 0 0 auto;
+  aspect-ratio: 1 / 1;
+  transition: all 0.2s ease;
   display: flex;
-  width: 9.55%;
-  height: 100%;
-  flex-direction: column;
-  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
 }
 
-.banner-grid p {
+.text-content {
   display: flex;
   width: 100%;
   height: 120px;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-align: center;
+  font-family: $font-dela;
+  font-size: 120px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  color: black;
 }
 
-.grid-container {
-  display: flex;
-  align-items: center;
+.media-content {
   width: 100%;
-  height: 120px;
+  height: 100%;
 }
 
-.grid-container img {
+.media-content img,
+.media-content video {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.grid-container video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+.hidden {
+  opacity: 0;
+  transition: 0.2s;
+  transform: scale(0);
 }
 
 p {
@@ -276,10 +293,8 @@ swiper-slide {
 // 手機版
 @media screen and (max-width: 1240px) {
   // banner
-  .banner-grid {
-    p {
-      font-size: 90px;
-    }
+  .text-content {
+    font-size: 90px;
   }
   // 各線入口
   .hover-container h2 {
@@ -289,15 +304,15 @@ swiper-slide {
 
 @media screen and (max-width: 1024px) {
   // banner
-  .banner {
-    width: 100%;
-    flex-direction: column;
-  }
-  .banner-grid {
-    flex-direction: row;
-    width: 100%;
-    padding-bottom: 0.5%;
-  }
+  // .banner {
+  //   width: 100%;
+  //   flex-direction: column;
+  // }
+  // .banner-grid {
+  //   flex-direction: row;
+  //   width: 100%;
+  //   padding-bottom: 0.5%;
+  // }
 
   // 各線入口
   .line-entrance {
