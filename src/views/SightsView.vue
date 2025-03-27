@@ -1,20 +1,18 @@
 <script setup>
-import { ref, onMounted, onBeforeUnmount, reactive } from "vue";
+import { ref, onMounted, onBeforeUnmount, computed, nextTick } from "vue";
 import "animate.css";
 
 // 引入 gsap 控制 banner 動畫
 import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-// 註冊 ScrollTrigger
-gsap.registerPlugin(ScrollTrigger);
+import { ScrollToPlugin } from "gsap/ScrollToPlugin";
+// 註冊 ScrollToPlugin
+gsap.registerPlugin(ScrollToPlugin);
 
 // 引入 Navbar
 import Navbar_V1 from "../components/Navbar_V1.vue";
 import Footer from "../components/Footer.vue";
 
 // 引入Swiper 套件
-import { Swiper } from "swiper";
-import { Navigation } from "swiper/modules";
 import { register } from "swiper/element/bundle";
 import "swiper/css";
 import "swiper/css/navigation";
@@ -47,64 +45,34 @@ import banner22 from "../assets/images/sights/banner/22.gif";
 import banner23 from "../assets/images/sights/banner/23.jpg";
 import banner24 from "../assets/images/sights/banner/24.jpg";
 import banner25 from "../assets/images/sights/banner/25.jpg";
-// 定義 Banner Grid 的內容（有些是文字，有些是圖片）
-const grids = ref([
-  { type: "text", content: ["M", "E", "T", "R", "O"] },
-  {
-    type: "media",
-    content: [
-      { type: "image", src: banner1 },
-      { type: "image", src: banner2 },
-      { type: "image", src: banner3 },
-      { type: "video", src: banner4 },
-      { type: "image", src: banner5 },
-    ],
-  },
-  { type: "text", content: ["M", "E", "T", "R", "O"] },
-  {
-    type: "media",
-    content: [
-      { type: "image", src: banner6 },
-      { type: "video", src: banner7 },
-      { type: "image", src: banner8 },
-      { type: "image", src: banner9 },
-      { type: "image", src: banner10 },
-    ],
-  },
-  { type: "text", content: ["M", "E", "T", "R", "O"] },
-  {
-    type: "media",
-    content: [
-      { type: "image", src: banner11 },
-      { type: "image", src: banner12 },
-      { type: "image", src: banner13 },
-      { type: "image", src: banner14 },
-      { type: "image", src: banner15 },
-    ],
-  },
-  { type: "text", content: ["M", "E", "T", "R", "O"] },
-  {
-    type: "media",
-    content: [
-      { type: "image", src: banner16 },
-      { type: "image", src: banner17 },
-      { type: "image", src: banner18 },
-      { type: "image", src: banner19 },
-      { type: "image", src: banner20 },
-    ],
-  },
-  { type: "text", content: ["M", "E", "T", "R", "O"] },
-  {
-    type: "media",
-    content: [
-      { type: "image", src: banner21 },
-      { type: "image", src: banner22 },
-      { type: "image", src: banner23 },
-      { type: "image", src: banner24 },
-      { type: "image", src: banner25 },
-    ],
-  },
-]);
+// 定義 Banner block 內容（有些是文字，有些是圖片）
+const allMedia = [
+  { type: "image", src: banner1 },
+  { type: "image", src: banner2 },
+  { type: "image", src: banner3 },
+  { type: "video", src: banner7 },
+  { type: "video", src: banner4 },
+  { type: "image", src: banner5 },
+  { type: "image", src: banner6 },
+  { type: "image", src: banner8 },
+  { type: "image", src: banner9 },
+  { type: "image", src: banner10 },
+  { type: "image", src: banner11 },
+  { type: "image", src: banner12 },
+  { type: "image", src: banner13 },
+  { type: "image", src: banner14 },
+  { type: "image", src: banner15 },
+  { type: "image", src: banner16 },
+  { type: "image", src: banner17 },
+  { type: "image", src: banner18 },
+  { type: "image", src: banner19 },
+  { type: "image", src: banner20 },
+  { type: "image", src: banner21 },
+  { type: "image", src: banner22 },
+  { type: "image", src: banner23 },
+  { type: "image", src: banner24 },
+  { type: "image", src: banner25 },
+];
 
 // logos 管理
 import img1 from "../assets/images/sights/logo/Tibame.png";
@@ -136,15 +104,176 @@ const handleMouseMove = (event) => {
   }
 };
 
+// banner 消失
+const bannerRef = ref(null);
+const blocks = ref([]);
+const currentIndex = ref(0); // 目前隱藏的方塊 index
+const lastScrollTime = ref(0); // 最近一次紀錄的時間
+const scrollDelay = 20; // 防止滑鼠滾輪事件過於頻繁觸發，設滾動的最小間隔時間
+
+const createBlocks = () => {
+  const bannerWidth = window.innerWidth;
+  const bannerHeight = window.innerHeight;
+  const blockSize = bannerHeight / 5;
+  const blocksPerRow = Math.floor(bannerWidth / (blockSize + 5)); // 根據螢幕大小計算「每行最多可以容納多少個方塊」，每個方塊間隔 10px
+  const totalBlocks = blocksPerRow * 5; // 方塊總數
+
+  blocks.value = [];
+  const textContent = ["M", "E", "T", "R", "O"];
+  let mediaIndex = 0;
+
+  // 決定 方塊在網格中的行列數
+  for (let i = 0; i < totalBlocks; i++) {
+    const row = Math.floor(i / blocksPerRow); // 計算目前方塊在哪一行：項數 超過 blocksPerRow 就會換行
+    const col = i % blocksPerRow; // 計算目前方塊在哪一列：餘數相同會同一列
+    let number;
+
+    // 依照不同的列數來決定方塊的 number
+    if (col % 2 === 0) {
+      // 偶數列
+      number = col * 5 + row + 1;
+      blocks.value.push({
+        id: i,
+        number,
+        type: "text", // 設定為文字
+        content: textContent[row % textContent.length], // 顯示文字
+        hidden: false,
+        originalIndex: i,
+      });
+    } else {
+      //奇數列
+      number = col * 5 + (4 - row) + 1;
+      number = col * 5 + (4 - row) + 1;
+      blocks.value.push({
+        id: i,
+        number,
+        type: "media", // 設定為媒體
+        content: allMedia[mediaIndex % allMedia.length],
+        hidden: false,
+        originalIndex: i,
+      });
+      mediaIndex++;
+    }
+  }
+
+  // 升序排列
+  blocks.value.sort((a, b) => a.originalIndex - b.originalIndex);
+  currentIndex.value = 0;
+};
+
+const sortedBlocks = computed(() => {
+  return [...blocks.value].sort((a, b) => a.number - b.number);
+});
+
+const displayedBlocks = computed(() => {
+  return blocks.value;
+});
+
+// 設定方塊大小
+const blockStyle = computed(() => {
+  return () => ({
+    width: `${window.innerHeight / 5}px`,
+    height: `${window.innerHeight / 5}px`,
+  });
+});
+
+const handleWheel = (e) => {
+  const currentTime = Date.now();
+  if (currentTime - lastScrollTime.value < scrollDelay) {
+    return;
+  }
+
+  lastScrollTime.value = currentTime;
+
+  // 獲取 banner 和 line-entrance 的元素
+  const bannerElement = document.querySelector(".banner");
+  const lineEntranceElement = document.querySelector(".line-entrance");
+  const blockHeight = document.querySelector(".block").offsetHeight;
+
+  // 如果已經完成 banner 的隱藏
+  if (currentIndex.value >= blocks.value.length) {
+    if (e.deltaY < bannerElement.offsetHeight - blockHeight) {
+      // 往上滾 - 回到 banner
+      setTimeout(() => {
+        blocks.value.forEach((block) => {
+          block.hidden = false;
+        });
+        // 重置當前索引;
+        currentIndex.value = 0;
+      }, 100); // 延遲 100ms，讓方塊有時間顯示
+    } else {
+      // 往下滾 - 保持在 line-entrance
+      gsap.to(window, {
+        duration: 0.8,
+        scrollTo: lineEntranceElement,
+        ease: "ease",
+      });
+    }
+  } else {
+    // 原本的 banner 內部滾動邏輯
+    if (e.deltaY > 0) {
+      if (currentIndex.value < blocks.value.length) {
+        const blockToHide = sortedBlocks.value[currentIndex.value];
+        blocks.value.find((b) => b.number === blockToHide.number).hidden = true;
+        currentIndex.value++;
+
+        // 當所有方塊都被隱藏時
+        if (currentIndex.value >= blocks.value.length) {
+          window.removeEventListener("wheel", preventScroll, {
+            passive: false,
+          });
+          window.removeEventListener("scroll", preventScroll, {
+            passive: false,
+          });
+
+          document.body.style.overflow = "auto";
+
+          nextTick(() => {
+            gsap.to(window, {
+              duration: 0.8,
+              scrollTo: ".line-entrance",
+              ease: "ease",
+            });
+          });
+        }
+      }
+    } else {
+      if (currentIndex.value > 0) {
+        currentIndex.value--;
+        const blockToShow = sortedBlocks.value[currentIndex.value];
+        blocks.value.find(
+          (b) => b.number === blockToShow.number
+        ).hidden = false;
+      }
+    }
+  }
+};
+
+const handleResize = () => {
+  createBlocks();
+};
+
+// 阻止所有捲動的行為;
+const preventScroll = (e) => {
+  e.preventDefault();
+};
+
 onMounted(() => {
   // Header 觸發
   window.addEventListener("mousemove", handleMouseMove);
+  createBlocks();
+  window.addEventListener("resize", handleResize);
+  window.addEventListener("scroll", preventScroll, { passive: false });
+  window.addEventListener("wheel", preventScroll, { passive: false });
+  document.body.style.overflow = "hidden";
 });
-
-// Swiper 實例初始化
 
 onBeforeUnmount(() => {
   window.removeEventListener("mousemove", handleMouseMove);
+  window.removeEventListener("resize", handleResize);
+  window.removeEventListener("scroll", preventScroll);
+  window.removeEventListener("wheel", preventScroll);
+  document.body.style.overflow = "";
 });
 </script>
 
@@ -156,44 +285,43 @@ onBeforeUnmount(() => {
   </transition>
 
   <!-- banner -->
-  <div class="banner" ref="bannerRef" @scroll="handleScroll">
+  <div class="banner" ref="bannerRef" @wheel.prevent="handleWheel">
     <div
-      class="banner-grid"
-      v-for="(grid, index) in grids"
-      :key="index"
-      ref="gridRefs"
+      v-for="(block, index) in displayedBlocks"
+      :key="block.id"
+      class="block"
+      :class="{ hidden: block.hidden }"
+      :style="blockStyle(index)"
     >
-      <!-- 如果是文字 -->
-      <template v-if="grid.type === 'text'">
-        <p v-for="(char, charIndex) in grid.content" :key="charIndex">
-          {{ char }}
-        </p>
-      </template>
+      <!-- 顯示文字 -->
+      <div v-if="block.type === 'text'" class="text-content">
+        {{ block.content }}
+      </div>
 
-      <!-- 如果是媒體 (圖片或影片) -->
-      <template v-else-if="grid.type === 'media'">
-        <div
-          class="grid-container"
-          v-for="(item, itemIndex) in grid.content"
-          :key="itemIndex"
-        >
-          <!-- 判斷是圖片 -->
-          <img v-if="item.type === 'image'" :src="item.src" alt="" />
-
-          <!-- 判斷是影片 -->
+      <!-- 顯示圖片或影片 -->
+      <div v-if="block.type === 'media'" class="media-content">
+        <template v-if="block.content.type === 'image'">
+          <img
+            :src="block.content.src"
+            alt=""
+            class="w-full h-full object-cover"
+          />
+        </template>
+        <template v-if="block.content.type === 'video'">
           <video
-            v-else-if="item.type === 'video'"
+            :src="block.content.src"
             autoplay
             loop
             muted
-            :src="item.src"
-          ></video>
-        </div>
-      </template>
+            class="w-full h-full object-cover"
+          />
+        </template>
+      </div>
     </div>
   </div>
 
   <!-- 各線入口 -->
+
   <div class="line-entrance">
     <div class="line-container">
       <div class="img-container">
