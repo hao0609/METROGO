@@ -1,4 +1,5 @@
 <script setup>
+import SearchIcon from "@/components/icons/Iconsearch.vue";
 import Navbar_V1 from "@/components/Navbar_V1.vue";
 import Footer from "@/components/Footer.vue";
 import Pagination from '@/components/Pagination.vue';
@@ -36,9 +37,6 @@ const allNews = computed(() => {
 
 // 搜尋功能
 const searchNews = () => {
-  // 如果搜尋關鍵字為空，不進行搜尋
-  if (!searchKeyword.value.trim()) return;
-  
   // 重置類別和分頁
   selectedCategory.value = 'all';
   currentPage.value = 1;
@@ -100,18 +98,6 @@ const formatDate = (dateString) => {
     <div>
         <div class="news-hero bg-metro-green">
             <h1 class="hero-title txt-neutral-0">最新消息</h1>
-            <div class="metroshape-group left">
-                <div class="metroshape bg-green-400"></div>
-                <div class="metroshape bg-green-400"></div>
-                <div class="metroshape bg-green-400"></div>
-                <div class="metroshape bg-green-400"></div>
-            </div>
-            <div class="metroshape-group right">
-                <div class="metroshape bg-green-400"></div>
-                <div class="metroshape bg-green-400"></div>
-                <div class="metroshape bg-green-400"></div>
-                <div class="metroshape bg-green-400"></div>
-            </div>
         </div>
         <div class="content">
             <div class="filter-group">
@@ -132,7 +118,7 @@ const formatDate = (dateString) => {
                     <span class="select-arrow"></span>
                 </div>
                 <div class="input-group">
-                    <div class="input-wrapper">
+                    <div class="input-wrapper with-icon">
                         <input 
                           type="text" 
                           class="input-field" 
@@ -140,13 +126,8 @@ const formatDate = (dateString) => {
                           v-model="searchKeyword"
                           @keyup.enter="searchNews"
                         >
+                        <SearchIcon class="input-icon" />
                     </div>
-                    <button 
-                      class="btn_filled" 
-                      @click="searchNews"
-                    >
-                        查詢
-                    </button>
                 </div>
             </div>
 
@@ -164,12 +145,12 @@ const formatDate = (dateString) => {
                             '系統公告' 
                         }}
                     </div>
-                    <div class="img-news-photo"></div>
+                    <div class="img-news-photo" :style="{ backgroundImage: `url('${news.files && news.files.length > 0 ? news.files[0].src : 'https://picsum.photos/300/200'}')` }"></div>
                     <div class="card-text-wrap">
                         <div class="title2 bold card-title">{{ news.title }}</div>
                         <div class="card-content">
-                            <p class="caption news-date">{{ formatDate(news.posted) }}</p>
-                            <p>{{ news.description }}</p>
+                          <p class="caption news-date">{{ formatDate(news.posted) }}</p>
+                          <p v-html="news.description"></p>
                         </div>
                     </div>
                 </router-link>

@@ -21,7 +21,11 @@
         "posted": "2025-03-17 00:00:00 +08:00",
         "modified": "2025-03-17 15:35:46 +08:00",
         "url": "https://www.travel.taipei/zh-tw/activity/details/64969",
-        "files": [],
+        "files": [
+          {
+            "src":"https://www.travel.taipei/content/images/articles/505743/1024x768_articles-image-iytflhs2ju-w4izohx3o6g.jpg"
+          }
+        ],
         "links": []
       },
       {
@@ -45,7 +49,11 @@
         "posted": "2025-03-11 00:00:00 +08:00",
         "modified": "2025-03-11 10:38:36 +08:00",
         "url": "https://www.travel.taipei/zh-tw/activity/details/64921",
-        "files": [],
+        "files": [
+          {
+            "src":"https://www.travel.taipei/content/images/articles/505519/1024x768_articles-image-c7wsr0tk30ajdjwfvdj_dw.png"
+          }
+        ],
         "links": [
           {
             "src": "https://www.artistvillage.org/event-detail.php?p=4959",
@@ -74,7 +82,11 @@
         "posted": "2025-03-04 00:00:00 +08:00",
         "modified": "2025-03-04 12:00:39 +08:00",
         "url": "https://www.travel.taipei/zh-tw/activity/details/63873",
-        "files": [],
+        "files": [
+          {
+            "src":"https://www.travel.taipei/content/images/articles/495195/1024x768_articles-image-zqg3unzir0uclnplfqdung.jpg"
+          }
+        ],
         "links": []
       },
       {
@@ -98,7 +110,11 @@
         "posted": "2025-03-04 00:00:00 +08:00",
         "modified": "2025-03-04 11:44:05 +08:00",
         "url": "https://www.travel.taipei/zh-tw/activity/details/63872",
-        "files": [],
+        "files": [
+          {
+            "src":"https://www.travel.taipei/content/images/articles/495194/1024x768_articles-image-meye9rqmduczfywnbpee5a.jpg"
+          }
+        ],
         "links": []
       },
       {
@@ -122,7 +138,11 @@
         "posted": "2025-02-25 15:11:38 +08:00",
         "modified": "2025-02-27 18:35:50 +08:00",
         "url": "https://www.travel.taipei/zh-tw/activity/details/63857",
-        "files": [],
+        "files": [
+          {
+            "src":"https://www.travel.taipei/content/images/articles/495136/1024x768_articles-iragjcv2myb2.jpg"
+          }
+        ],
         "links": [
           {
             "src": "https://www.instagram.com/joyfulart_gallery/",
@@ -145,13 +165,17 @@
         "parking": "",
         "id": 63848,
         "title": "玉龍山游虺-塵三個展  Snake in Yulong Mountain - Chen San Solo Exhibition",
-        "description": "<div style=\"text-align: center;\">蛇年新氣象，乙巳年穎川畫廊隆重推出藝術家塵三個展「玉龍山游虺」。</div>\r\n此次展覽以雲南玉龍山為靈感泉源，從雪山的壯闊景致激發出心靈的迴響。玉龍山頂終年白雪靄靄，山腰雲騰霧繞，遠望如一條矯健的玉龍，從碧空婉蜒而來的壯麗意象，與蛇年象徵彼此呼應。<br>\r\n<br>\r\n塵三即興揮灑的筆觸如情感的自然流瀉，將繽紛亮麗的色彩化作情感的昇華，捕捉眼前不可思議的美景，每一筆都是對眼前山水的讚美與歌詠。此次展出的水墨作品〈洱海〉、〈靈山路〉、〈宿家歡〉、〈桃花弄〉等作品，輕逸出塵的色彩如仙子下凡點亮人間，又不失對生命的期許與讚嘆 ，帶點歡樂愉悅的氣息。油畫作品〈刑山〉、〈輞川〉、〈洱海玄境〉、〈雪地〉、如生命的謳歌，又有著對眼前虛幻美景的神往。塵三之水墨作品遠看恬淡怡人，風光旑旎如入桃花源尋幽；油畫作品色彩紛呈，靜中有動、動中有「境」，此境不單指「意境 」之妙，更有超越時空的個人絕對意志之表徵。<br>\r\n<br>\r\n雄鷹盤旋於蒼穹，振翅九霄翱翔千里，颯爽英姿宛若王者叱吒雲霓。塵三用快意瀟灑的筆觸，書寫著生命的激情與理想的探求，凌雲之志不因年紀而自縛。其超越形式的自由與豁達，提醒人在逆境中用昂揚的鬥志衝破難關，方能借力順風翱翔，智慧之泉源源不絕湧現。也期許觀者能從作品中找到心靈的共鳴與屬於自己的桃花源。",
+        "description": "蛇年新氣象，乙巳年穎川畫廊隆重推出藝術家塵三個展「玉龍山游虺」。\r\n此次展覽以雲南玉龍山為靈感泉源，從雪山的壯闊景致激發出心靈的迴響。玉龍山頂終年白雪靄靄，山腰雲騰霧繞，遠望如一條矯健的玉龍，從碧空婉蜒而來的壯麗意象，與蛇年象徵彼此呼應。<br>\r\n<br>\r\n塵三即興揮灑的筆觸如情感的自然流瀉，將繽紛亮麗的色彩化作情感的昇華，捕捉眼前不可思議的美景，每一筆都是對眼前山水的讚美與歌詠。此次展出的水墨作品〈洱海〉、〈靈山路〉、〈宿家歡〉、〈桃花弄〉等作品，輕逸出塵的色彩如仙子下凡點亮人間，又不失對生命的期許與讚嘆 ，帶點歡樂愉悅的氣息。油畫作品〈刑山〉、〈輞川〉、〈洱海玄境〉、〈雪地〉、如生命的謳歌，又有著對眼前虛幻美景的神往。塵三之水墨作品遠看恬淡怡人，風光旑旎如入桃花源尋幽；油畫作品色彩紛呈，靜中有動、動中有「境」，此境不單指「意境 」之妙，更有超越時空的個人絕對意志之表徵。<br>\r\n<br>\r\n雄鷹盤旋於蒼穹，振翅九霄翱翔千里，颯爽英姿宛若王者叱吒雲霓。塵三用快意瀟灑的筆觸，書寫著生命的激情與理想的探求，凌雲之志不因年紀而自縛。其超越形式的自由與豁達，提醒人在逆境中用昂揚的鬥志衝破難關，方能借力順風翱翔，智慧之泉源源不絕湧現。也期許觀者能從作品中找到心靈的共鳴與屬於自己的桃花源。",
         "begin": "2025-03-08 00:00:00 +08:00",
         "end": "2025-04-25 23:59:59 +08:00",
         "posted": "2025-02-23 18:23:42 +08:00",
         "modified": "2025-02-24 17:19:02 +08:00",
         "url": "https://www.travel.taipei/zh-tw/activity/details/63848",
-        "files": [],
+        "files": [
+          {
+            "src":"https://www.travel.taipei/content/images/articles/495076/1024x768_articles-iiyxe4nknivn.jpg"
+          }
+        ],
         "links": [
           {
             "src": "https://www.inriver.com.tw/",
@@ -178,13 +202,17 @@
         "parking": "",
         "id": 63770,
         "title": "北市圖萬興分館「四季讀書樂」系列主題書展伴您隨著季節的節奏 享受閱讀的樂趣",
-        "description": "新年伊始，您想讀幾本書來充實自己？為推廣館藏特色「大陸資料」，北市圖萬興分館規劃全年可外借主題書展。如清代文學家張潮在《幽夢影》中的經典名句「讀經宜冬；讀史宜夏；讀諸子宜秋；讀諸集宜春」。本分館將陸續展出經、史、子、集四部分類精選主題圖書、青少年讀物及童書，讓您沉浸在與四季交織的書香世界。<br>\r\n<img alt=\"北市圖萬興分館「四季讀書樂」春季系列主題書展伴您隨著季節的節奏 享受閱讀的樂趣(春季)(圖片來源：臺北市立圖書館)\" id=\"img-494809-1739953863902\" src=\"/image/494809/?r=1739953863902\" style=\"width: 100%; max-width: 760px;\">▲北市圖萬興分館「四季讀書樂」春季系列主題書展伴您隨著季節的節奏 享受閱讀的樂趣(春季)(圖片來源：臺北市立圖書館)<br>\r\n<br>\r\n本系列主題書展自年初開始辦理，2月中「讀諸集宜春，其機暢也。」詩詞主題書展、5月中「讀史宜夏，其時久也。」歷史主題書展、8月中「讀諸子宜秋，其致別也。」哲學主題書展、10月中「讀經宜冬，其神專也。」經學主題書展。配合時序，擇書而讀，四季都是讀書季，歡迎到館瀏覽借閱。亦推薦利用北市圖 Ebook Taipei 電子書，使用電腦或是手機、平板線上借閱。<br>\r\n<br>\r\n相關活動資訊請至<a href=\"https://tpml.gov.taipei/\" target=\"_blank\" title=\"臺北市立圖書館網頁(另開新視窗)\">臺北市立圖書館網頁</a>查詢；或洽詢萬興分館，電話：02-22345501。",
+        "description": "新年伊始，您想讀幾本書來充實自己？為推廣館藏特色「大陸資料」，北市圖萬興分館規劃全年可外借主題書展。如清代文學家張潮在《幽夢影》中的經典名句「讀經宜冬；讀史宜夏；讀諸子宜秋；讀諸集宜春」。本分館將陸續展出經、史、子、集四部分類精選主題圖書、青少年讀物及童書，讓您沉浸在與四季交織的書香世界。<br>\r\n▲北市圖萬興分館「四季讀書樂」春季系列主題書展伴您隨著季節的節奏 享受閱讀的樂趣(春季)(圖片來源：臺北市立圖書館)<br>\r\n<br>\r\n本系列主題書展自年初開始辦理，2月中「讀諸集宜春，其機暢也。」詩詞主題書展、5月中「讀史宜夏，其時久也。」歷史主題書展、8月中「讀諸子宜秋，其致別也。」哲學主題書展、10月中「讀經宜冬，其神專也。」經學主題書展。配合時序，擇書而讀，四季都是讀書季，歡迎到館瀏覽借閱。亦推薦利用北市圖 Ebook Taipei 電子書，使用電腦或是手機、平板線上借閱。<br>\r\n<br>\r\n相關活動資訊請至<a href=\"https://tpml.gov.taipei/\" target=\"_blank\" title=\"臺北市立圖書館網頁(另開新視窗)\">臺北市立圖書館網頁</a>查詢；或洽詢萬興分館，電話：02-22345501。",
         "begin": "2025-02-14 00:00:00 +08:00",
         "end": "2025-12-15 23:59:59 +08:00",
         "posted": "2025-02-19 00:00:00 +08:00",
         "modified": "2025-02-19 16:31:59 +08:00",
         "url": "https://www.travel.taipei/zh-tw/activity/details/63770",
-        "files": [],
+        "files": [
+          {
+            "src":"https://www.travel.taipei/content/images/articles/494809/1024x768_articles-image-zaq6wf6xmuuwkzgwgthvoa.jpg"
+          }
+        ],
         "links": []
       },
       {
@@ -202,13 +230,17 @@
         "parking": "",
         "id": 63762,
         "title": "2025內湖草莓季邀你體驗莓好花樣輕旅行，線上抽大獎！",
-        "description": "2025內湖草莓季-莓好花樣活動來囉！由內湖區農會主辦，臺北市政府產業發展局及財團法人台北市七星農田水利研究發展基金會協辦，台北市內湖區草莓產季為每年12月至隔年5月上旬，草莓園主要位於「白石湖休閒農業區、大湖街及安泰街」等處，除了「鮮採草莓」活動外，各農園亦推出不同「草莓手作樂」農遊體驗、草莓果醬手作DIY、窯烤披薩DIY、草莓盆栽等，也可品嚐「莓好食光」草莓冰淇淋、草莓牛奶、草莓香腸、草莓鬆餅等，還有「幸福莓滿」伴手禮自用送禮兩相宜！&nbsp;<br>\r\n<img alt=\"草莓手作樂-草莓果醬DIY(圖片來源：臺北市政府產業發展局)\" id=\"img-494727-1739781660630\" src=\"/image/494727/?r=1739781660630\" style=\"width: 100%; max-width: 760px;\"> ▲草莓手作樂-草莓果醬DIY(圖片來源：臺北市政府產業發展局)<br>\r\n<br>\r\n內湖草莓園多採溫室高架栽種，讓民眾在下雨天也能享受採草莓樂趣。透過「草莓採果趣」農遊體驗，民眾能了解農友如何用心經營農場，藉由活動向農友學習草莓栽種過程，享受品嚐自採鮮美可口草莓外，也增進對環境保護與永續農業的認識，成為一個結合娛樂、學習與自然的特別體驗。<br>\r\n<br>\r\n另外內湖草莓園周邊還有許多景點，如象徵恩愛的夫妻樹、幸福的同心池、大湖公園、碧湖公園、碧山巖開漳聖王廟、春秋步道、內溝溪生態步道等，邀您來一趟內湖莓好花樣輕旅行。<br>\r\n<img alt=\"2025草莓季-活動海報(圖片來源：臺北市政府產業發展局)\" id=\"img-494724-1739781670924\" src=\"/image/494724/?r=1739781670924\" style=\"width: 100%; max-width: 760px;\"> ▲2025草莓季-活動海報(圖片來源：臺北市政府產業發展局)<br>\r\n<br>\r\n2025內湖草莓季活動期間，加入「內湖草莓季LINE官方帳號好友」即可參加「線上抽折價券活動」，有機會可抽中500元折價券，中獎者可至內湖草莓季配合之草莓農園消費使用，每人每個LINE帳號限兌換1次，數量有限，趕緊搶好康！<br>\r\n<br>\r\n凡於活動期間到內湖草莓園配合之草莓農園，持「2025內湖草莓季-莓好花樣手拿牌」於FB拍照打卡並標註「#2025內湖草莓季#FB打卡抽好禮」，就有機會抽中Dyson吸塵器一台(共6台)，快來抽好康，千萬不可錯過！ 立即加入「內湖草莓季LINE官方帳號好友」可獲得更多活動詳情、農園介紹、交通資訊及好康資訊，亦可至<a href=\"http://www.neihu-strawberry.com.tw\" target=\"_blank\" title=\"內湖草莓季活動官網(另開新視窗)\">內湖草莓季活動官網</a>查詢喔！<br>\r\n<br>\r\n&nbsp;<img alt=\"2025草莓季-採果地圖(圖片來源：臺北市政府產業發展局)\" id=\"img-494721-1739781689600\" src=\"/image/494721/?r=1739781689600\" style=\"width: 100%; max-width: 760px;\"> ▲2025草莓季-採果地圖(圖片來源：臺北市政府產業發展局)<br>\r\n<br>\r\n<strong>【備註】白石湖吊橋自113年7月1日起施工封閉禁止通行，預計114年下旬完工，活動期間民眾可參考替代路線。</strong><br>\r\n<br>\r\n<br>\r\n<strong>【交通資訊】</strong><br>\r\n<br>\r\n<strong>●搭乘大眾運輸工具</strong><br>\r\n<br>\r\n<strong>1.白石湖休閒農業區周邊草莓農園：</strong><br>\r\n<br>\r\n－在臺北捷運「內湖站」，由1號出口步行至內湖路二段460號旁土地公廟（即「碧湖國小」公車站），搭乘「小2」公車至「碧山巖」站下車。<br>\r\n<br>\r\n－ 搭乘公車至「湖光市場」站下車，中國醫藥大學附設醫院台北分院旁轉搭「小2」公車至「碧山巖」站下車。<br>\r\n<br>\r\n<strong>2.大湖街周邊草莓農園：</strong><br>\r\n<br>\r\n－ 於臺北捷運「昆陽站」四號出口處或內湖「湖光市場」站搭「小3」公車，往老爺山莊方向，於「大坵田土地公廟」下車。<br>\r\n<br>\r\n<br>\r\n<br>\r\n<strong>●自行開車</strong><br>\r\n<br>\r\n<strong>1.白石湖休閒農業區周邊草莓農園</strong><br>\r\n<br>\r\n－ 由內湖路三段轉碧山路，駛至碧山巖開漳聖王廟入口前方停車場，再以步行方式從白石湖吊橋往同心池方向前行，沿路均有草莓園。<br>\r\n<br>\r\n<strong>2.大湖街一帶草莓園</strong><br>\r\n<br>\r\n－ 從大直方向：走文德路，接成功路四段，轉大湖山莊街接大湖街即可到達。<br>\r\n<br>\r\n－ 從民權隧道方向：民權東路六段接成功路五段，轉大湖山莊街，接大湖街即可到達。<br>\r\n<br>\r\n－ 從國道一號方向：走國道一號下內湖交流道，沿成功路二段、成功路三段接成功路四段，轉大湖山莊街，接大湖街即可到達。<br>\r\n<br>\r\n<strong>3.安泰街草莓園</strong><br>\r\n<br>\r\n－ 從民權隧道方向，接成功路五段，右轉康湖路，過了康湖隧道後，右邊叉路往安泰街，至114巷後，左轉前進至201號。",
+        "description": "2025內湖草莓季-莓好花樣活動來囉！由內湖區農會主辦，臺北市政府產業發展局及財團法人台北市七星農田水利研究發展基金會協辦，台北市內湖區草莓產季為每年12月至隔年5月上旬，草莓園主要位於「白石湖休閒農業區、大湖街及安泰街」等處，除了「鮮採草莓」活動外，各農園亦推出不同「草莓手作樂」農遊體驗、草莓果醬手作DIY、窯烤披薩DIY、草莓盆栽等，也可品嚐「莓好食光」草莓冰淇淋、草莓牛奶、草莓香腸、草莓鬆餅等，還有「幸福莓滿」伴手禮自用送禮兩相宜！&nbsp; ▲草莓手作樂-草莓果醬DIY(圖片來源：臺北市政府產業發展局)<br>\r\n<br>\r\n內湖草莓園多採溫室高架栽種，讓民眾在下雨天也能享受採草莓樂趣。透過「草莓採果趣」農遊體驗，民眾能了解農友如何用心經營農場，藉由活動向農友學習草莓栽種過程，享受品嚐自採鮮美可口草莓外，也增進對環境保護與永續農業的認識，成為一個結合娛樂、學習與自然的特別體驗。<br>\r\n<br>\r\n另外內湖草莓園周邊還有許多景點，如象徵恩愛的夫妻樹、幸福的同心池、大湖公園、碧湖公園、碧山巖開漳聖王廟、春秋步道、內溝溪生態步道等，邀您來一趟內湖莓好花樣輕旅行。<br>\r\n2025內湖草莓季活動期間，加入「內湖草莓季LINE官方帳號好友」即可參加「線上抽折價券活動」，有機會可抽中500元折價券，中獎者可至內湖草莓季配合之草莓農園消費使用，每人每個LINE帳號限兌換1次，數量有限，趕緊搶好康！<br>\r\n<br>\r\n凡於活動期間到內湖草莓園配合之草莓農園，持「2025內湖草莓季-莓好花樣手拿牌」於FB拍照打卡並標註「#2025內湖草莓季#FB打卡抽好禮」，就有機會抽中Dyson吸塵器一台(共6台)，快來抽好康，千萬不可錯過！ 立即加入「內湖草莓季LINE官方帳號好友」可獲得更多活動詳情、農園介紹、交通資訊及好康資訊，亦可至<a href=\"http://www.neihu-strawberry.com.tw\" target=\"_blank\" title=\"內湖草莓季活動官網(另開新視窗)\">內湖草莓季活動官網</a>查詢喔！<br>\r\n<br>\r\n&nbsp;  ▲2025草莓季-採果地圖(圖片來源：臺北市政府產業發展局)<br>\r\n<br>\r\n<strong>【備註】白石湖吊橋自113年7月1日起施工封閉禁止通行，預計114年下旬完工，活動期間民眾可參考替代路線。</strong><br>\r\n<br>\r\n<br>\r\n<strong>【交通資訊】</strong><br>\r\n<br>\r\n<strong>●搭乘大眾運輸工具</strong><br>\r\n<br>\r\n<strong>1.白石湖休閒農業區周邊草莓農園：</strong><br>\r\n<br>\r\n－在臺北捷運「內湖站」，由1號出口步行至內湖路二段460號旁土地公廟（即「碧湖國小」公車站），搭乘「小2」公車至「碧山巖」站下車。<br>\r\n<br>\r\n－ 搭乘公車至「湖光市場」站下車，中國醫藥大學附設醫院台北分院旁轉搭「小2」公車至「碧山巖」站下車。<br>\r\n<br>\r\n<strong>2.大湖街周邊草莓農園：</strong><br>\r\n<br>\r\n－ 於臺北捷運「昆陽站」四號出口處或內湖「湖光市場」站搭「小3」公車，往老爺山莊方向，於「大坵田土地公廟」下車。<br>\r\n<br>\r\n<br>\r\n<br>\r\n<strong>●自行開車</strong><br>\r\n<br>\r\n<strong>1.白石湖休閒農業區周邊草莓農園</strong><br>\r\n<br>\r\n－ 由內湖路三段轉碧山路，駛至碧山巖開漳聖王廟入口前方停車場，再以步行方式從白石湖吊橋往同心池方向前行，沿路均有草莓園。<br>\r\n<br>\r\n<strong>2.大湖街一帶草莓園</strong><br>\r\n<br>\r\n－ 從大直方向：走文德路，接成功路四段，轉大湖山莊街接大湖街即可到達。<br>\r\n<br>\r\n－ 從民權隧道方向：民權東路六段接成功路五段，轉大湖山莊街，接大湖街即可到達。<br>\r\n<br>\r\n－ 從國道一號方向：走國道一號下內湖交流道，沿成功路二段、成功路三段接成功路四段，轉大湖山莊街，接大湖街即可到達。<br>\r\n<br>\r\n<strong>3.安泰街草莓園</strong><br>\r\n<br>\r\n－ 從民權隧道方向，接成功路五段，右轉康湖路，過了康湖隧道後，右邊叉路往安泰街，至114巷後，左轉前進至201號。",
         "begin": "2025-02-15 00:00:00 +08:00",
         "end": "2025-05-11 23:59:59 +08:00",
         "posted": "2025-02-17 00:00:00 +08:00",
         "modified": "2025-02-17 16:46:40 +08:00",
         "url": "https://www.travel.taipei/zh-tw/activity/details/63762",
-        "files": [],
+        "files": [
+          {
+            "src":"https://www.travel.taipei/content/images/articles/494725/1024x768_articles-image-4zut5kt7dkyhowozf0c8hw.jpg"
+          }
+        ],
         "links": []
       },
       {
@@ -232,10 +264,14 @@
         "posted": "2025-02-13 17:22:24 +08:00",
         "modified": "2025-02-18 11:23:52 +08:00",
         "url": "https://www.travel.taipei/zh-tw/activity/details/63753",
-        "files": [],
+        "files": [
+          {
+            "src":"https://www.travel.taipei/content/images/articles/505743/1024x768_articles-image-iytflhs2ju-w4izohx3o6g.jpg"
+          }
+        ],
         "links": [
           {
-            "src": "https://www.kingcarart.org.tw/exhibitions-detail/221",
+            "src": "https://www.travel.taipei/content/images/articles/494680/1024x768_articles-ibiaf0nhxvpc.jpg",
             "subject": "官網介紹"
           }
         ]
@@ -261,7 +297,11 @@
         "posted": "2025-02-11 11:18:45 +08:00",
         "modified": "2025-02-13 09:58:59 +08:00",
         "url": "https://www.travel.taipei/zh-tw/activity/details/63693",
-        "files": [],
+        "files": [
+          {
+            "src":"https://www.travel.taipei/content/images/articles/494476/1024x768_articles-ij0ehwrvecbd.jpg"
+          }
+        ],
         "links": [
           {
             "src": "https://www.kingcarart.org.tw/exhibitions-detail/219",
@@ -290,7 +330,11 @@
         "posted": "2024-12-24 15:22:51 +08:00",
         "modified": "2024-12-24 16:19:24 +08:00",
         "url": "https://www.travel.taipei/zh-tw/activity/details/62405",
-        "files": [],
+        "files": [
+          {
+            "src":"https://www.travel.taipei/content/images/articles/493271/1024x768_articles-ilpcw0uf4fps.jpg"
+          }
+        ],
         "links": [
           {
             "src": "https://museum.post.gov.tw/post/Postal_Museum/museum/index.jsp?ID=1525402201649&control_type=page&news_no=66258&news_cat=10102",
@@ -319,7 +363,11 @@
         "posted": "2024-12-10 13:14:41 +08:00",
         "modified": "2024-12-12 13:46:14 +08:00",
         "url": "https://www.travel.taipei/zh-tw/activity/details/62311",
-        "files": [],
+        "files": [
+          {
+            "src":"https://www.travel.taipei/content/images/articles/492935/1024x768_articles-ialt2dtcfuay.png"
+          }
+        ],
         "links": [
           {
             "src": "https://bulabulay.com/",
@@ -338,30 +386,50 @@
         "description": "MetroGo x 悠遊卡聯名款即將登場！融合捷運地圖設計與時尚配色，讓你的日常通勤更具個人風格。限量 1000 張，預購從即日起開放，購買還可獲得專屬收藏包裝。數量有限，錯過不再！立即預訂，成為首批擁有者！",
         "begin": "",
         "end": "",
-        "posted": "2025-02-20 10:22:51 +08:00"
+        "posted": "2025-02-20 10:22:51 +08:00",
+        "files": [
+          {
+            "src":"https://img.freepik.com/free-vector/flat-design-travel-agency-labels-template_23-2149530998.jpg"
+          }
+        ]
       },
       {
         "title": "MetroGo 精選捷運紀念品，新品即將上架！",
         "description": "收藏捷運文化的最佳選擇！MetroGo 商城全新推出捷運主題 徽章、貼紙、明信片，精緻設計搭配高品質印刷，讓你的筆記本、行李箱或收藏牆增添獨特風格。每一款商品都承載著城市軌跡與旅人的回憶，立即入手，帶回專屬於你的捷運故事！",
         "begin": "",
         "end": "",
-        "posted": "2025-03-03 00:10:00 +08:00"
+        "posted": "2025-03-03 00:10:00 +08:00",
+        "files": [
+          {
+            "src":"https://img.freepik.com/free-vector/naive-geography-stickers_52683-70369.jpg?t=st=1743035590~exp=1743039190~hmac=d3afca705212e7d4209150d7e3d35850e200786646e205deb8768193edff5cac&w=1380"
+          }
+        ]
       }
     ],
     "system": [
     {
         "title": "網站維護公告",
-        "description": "為了提供更穩定的服務，系統將於 2025-01-07 00:00:00 ~ 2025-01-07 08:00 進行維修，在此期間，網站部分功能可能會暫時無法使用，敬請見諒。",
+        "description": "為了提供更穩定的服務，系統將於 2025-01-07 00:00:00 ~ 2025-01-07 08:00 進行維修，<br>\r\n在此期間，網站部分功能可能會暫時無法使用，敬請見諒。",
         "begin": "2025-01-07 00:00:00 +08:00",
         "end": "2025-01-07 08:00:00 +08:00",
-        "posted": "2025-01-03 15:22:51 +08:00"
+        "posted": "2025-01-03 15:22:51 +08:00",
+        "files": [
+          {
+            "src":"https://img.freepik.com/free-vector/greater-than-less-than-sign-wrench-gear-hands-tools-programmer-flat-vector-illustration-programming-coding-process-modern-technology-occupation-concept_74855-24577.jpg"
+          }
+        ]
     },
     {
         "title": "網站維護公告",
-        "description": "為了提供更穩定的服務，系統將於 2025-02-07 00:00:00 ~ 2025-02-07 08:00: 進行維修，在此期間，網站部分功能可能會暫時無法使用，敬請見諒。",
+        "description": "為了提供更穩定的服務，系統將於 2025-02-07 00:00:00 ~ 2025-02-07 08:00: 進行維修，<br>\r\n在此期間，網站部分功能可能會暫時無法使用，敬請見諒。",
         "begin": "2025-02-07 00:00:00 +08:00",
         "end": "2025-02-07 08:00:00 +08:00",
-        "posted": "2025-03-03 15:22:51 +08:00"
+        "posted": "2025-03-03 15:22:51 +08:00",
+        "files": [
+          {
+            "src":"https://img.freepik.com/free-vector/greater-than-less-than-sign-wrench-gear-hands-tools-programmer-flat-vector-illustration-programming-coding-process-modern-technology-occupation-concept_74855-24577.jpg"
+          }
+        ]
     }
 ]
   }

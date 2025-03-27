@@ -61,13 +61,13 @@ onMounted(() => {
                     }}
                 </div>
                 <div class="img-area">
-                    <div class="img-news-photo"></div>
+                    <div class="img-news-photo":style="{ backgroundImage: `url('${currentNews.files && currentNews.files.length > 0 ? currentNews.files[0].src : 'https://picsum.photos/720/480'}')` }"></div>
                 </div>
                 <div class="card-text-wrap">
                     <div class="title2 bold card-title">{{ currentNews.title }}</div>
                     <div class="card-content">
-                        <p class="caption news-date">{{ formatDate(currentNews.posted) }}</p>
-                        <p>{{ currentNews.description }}</p>
+                      <p class="caption news-date">{{ formatDate(currentNews.posted) }}</p>
+                      <p v-html="currentNews.description"></p>
                     </div>
                 </div>
             </div>
