@@ -1,3 +1,153 @@
+<style lang="scss" scoped>
+@use "@/assets/sass/page/backend/admin-common.scss";
+@use "@/assets/sass/page/backend/admin-userdata.scss";
+</style>
+
+<script setup>
+import BackIcon from "@/components/icons/IconBack.vue";
+import AdminEyeIcon from "@/components/icons/IconAdminEye.vue";
+
+const props = defineProps({
+  userInfo: {
+    type: Object,
+    required: true,
+    // 彈窗內容資料
+    default: () => ({
+      id: 'TID201111',
+      name: `王測試`, //無法確認 ICON 是否可以用外部引入.vue檔方式，目前先使用字串方式
+      email: 'test@gmail.com',
+      avatar: "http://127.0.0.1:5500/img/pic-featured_1.svg",
+      MissionGeneralData: {},
+    }),
+  },
+});
+
+
+// 遊戲資料頁籤
+const tabs = [
+        { id: "general", label: "一般任務" },
+        { id: "special", label: "特殊任務" },
+        // { id: "achievements", label: "成就" },
+]
+
+
+
+
+// export default {
+//   name: "AdminUserDataView",
+//   components: {
+//     AdminEyeIcon,
+//     BackIcon,
+//     // EditIcon,
+//     // DeleteIcon,
+//     // AddIcon,
+//   },
+//   methods: {
+//     goBack() {
+//       this.$router.push("/admin/user");
+//     },
+//   },
+//   data() {
+//     return {
+//       activeTab: "general",
+//       tabs: [
+//         { id: "general", label: "一般任務" },
+//         { id: "special", label: "特殊任務" },
+//         // { id: "achievements", label: "成就" },
+//       ],
+//       user: {
+//         id: "TID201111",
+//         name: "王測試",
+//         email: "test@gmail.com",
+//         avatar: "http://127.0.0.1:5500/img/pic-featured_1.svg", // 預設會員圖像
+//       },
+//       generalItems: [
+//         {
+//           id: 1,
+//           route: "淡水信義線",
+//           station: "台北車站",
+//           punchStatus: "已打卡",
+//           punchTime: "2024-11-20 22:56:05",
+//           chapterStatus: "已集章",
+//           rewardStatus: "已領取",
+//         },
+//         {
+//           id: 2,
+//           route: "淡水信義線",
+//           station: "臺大醫院站",
+//           punchStatus: "已打卡",
+//           punchTime: "2024-11-20 22:56:05",
+//           chapterStatus: "已集章",
+//           rewardStatus: "已領取",
+//         },
+//         {
+//           id: 3,
+//           route: "板南線",
+//           station: "忠孝新生站",
+//           punchStatus: "已打卡",
+//           punchTime: "2024-11-20 22:56:05",
+//           chapterStatus: "已集章",
+//           rewardStatus: "未領取",
+//         },
+//       ],
+//       specialItems: [
+//         {
+//           id: 1,
+//           route: "淡水信義線",
+//           journeyTravel: "半日遊",
+//           chapterStatus: "已集章",
+//           rewardStatus: "已領取",
+//           selected: false,
+//         },
+//         {
+//           id: 2,
+//           route: "淡水信義線",
+//           journeyTravel: "半日遊",
+//           chapterStatus: "已集章",
+//           rewardStatus: "已領取",
+//           selected: false,
+//         },
+//         {
+//           id: 3,
+//           route: "板南線",
+//           journeyTravel: "一日遊",
+//           chapterStatus: "已集章",
+//           rewardStatus: "未領取",
+//           selected: false,
+//         },
+//       ],
+//       achievementsItems: [
+//         {
+//           id: 1,
+//           category: "一般任務",
+//           name: "時光旅人",
+//           chapterStatus: "已集章",
+//           rewardStatus: "已領取",
+//         },
+//         {
+//           id: 2,
+//           category: "一般任務",
+//           name: "文湖線",
+//           chapterStatus: "已集章",
+//           rewardStatus: "已領取",
+//         },
+//         {
+//           id: 3,
+//           category: "特殊任務",
+//           name: "全制霸",
+//           chapterStatus: "已集章",
+//           rewardStatus: "未領取",
+//         },
+//       ],
+//     };
+//   },
+// };
+</script>
+
+
+
+
+
 <template>
   <div>
     <!-- 返回按鈕 -->
@@ -6,19 +156,19 @@
     <div class="user-profile">
       <p class="title2 bold">基本資料</p>
       <div class="profile-card">
-        <img :src="user.avatar" alt="會員圖像" class="avatar" />
+        <img :src="props.userInfo.avatar" alt="會員圖像" class="avatar" />
         <div class="info">
           <div class="info-row">
             <p class="info-title bold">會員 ID</p>
-            <span>{{ user.id }}</span>
+            <span>{{ props.userInfo.id }}</span>
           </div>
           <div class="info-row">
             <p class="info-title bold">姓名</p>
-            <span>{{ user.name }}</span>
+            <span>{{ props.userInfo.name }}</span>
           </div>
           <div class="info-row">
             <p class="info-title bold">電子郵件</p>
-            <span>{{ user.email }}</span>
+            <span>{{ props.userInfo.email }}</span>
           </div>
         </div>
       </div>
@@ -165,125 +315,4 @@
   </div>
 </template>
 
-<style lang="scss" scoped>
-@use "@/assets/sass/page/backend/admin-common.scss";
-@use "@/assets/sass/page/backend/admin-userdata.scss";
-</style>
 
-<script>
-// import EditIcon from '@/components/icons/IconAdminEdit.vue';
-// import DeleteIcon from '@/components/icons/IconAdminDelete.vue';
-// import AddIcon from '@/components/icons/IconAdd.vue';
-import BackIcon from "@/components/icons/IconBack.vue";
-import AdminEyeIcon from "@/components/icons/IconAdminEye.vue";
-
-export default {
-  name: "AdminUserDataView",
-  components: {
-    AdminEyeIcon,
-    BackIcon,
-    // EditIcon,
-    // DeleteIcon,
-    // AddIcon,
-  },
-  methods: {
-    goBack() {
-      this.$router.push("/admin/user");
-    },
-  },
-  data() {
-    return {
-      activeTab: "general",
-      tabs: [
-        { id: "general", label: "一般任務" },
-        { id: "special", label: "特殊任務" },
-        { id: "achievements", label: "成就" },
-      ],
-      user: {
-        id: "TID201111",
-        name: "王測試",
-        email: "test@gmail.com",
-        avatar: "http://127.0.0.1:5500/img/pic-featured_1.svg", // 預設會員圖像
-      },
-      generalItems: [
-        {
-          id: 1,
-          route: "淡水信義線",
-          station: "台北車站",
-          punchStatus: "已打卡",
-          punchTime: "2024-11-20 22:56:05",
-          chapterStatus: "已集章",
-          rewardStatus: "已領取",
-        },
-        {
-          id: 2,
-          route: "淡水信義線",
-          station: "臺大醫院站",
-          punchStatus: "已打卡",
-          punchTime: "2024-11-20 22:56:05",
-          chapterStatus: "已集章",
-          rewardStatus: "已領取",
-        },
-        {
-          id: 3,
-          route: "板南線",
-          station: "忠孝新生站",
-          punchStatus: "已打卡",
-          punchTime: "2024-11-20 22:56:05",
-          chapterStatus: "已集章",
-          rewardStatus: "未領取",
-        },
-      ],
-      specialItems: [
-        {
-          id: 1,
-          route: "淡水信義線",
-          journeyTravel: "半日遊",
-          chapterStatus: "已集章",
-          rewardStatus: "已領取",
-          selected: false,
-        },
-        {
-          id: 2,
-          route: "淡水信義線",
-          journeyTravel: "半日遊",
-          chapterStatus: "已集章",
-          rewardStatus: "已領取",
-          selected: false,
-        },
-        {
-          id: 3,
-          route: "板南線",
-          journeyTravel: "一日遊",
-          chapterStatus: "已集章",
-          rewardStatus: "未領取",
-          selected: false,
-        },
-      ],
-      achievementsItems: [
-        {
-          id: 1,
-          category: "一般任務",
-          name: "時光旅人",
-          chapterStatus: "已集章",
-          rewardStatus: "已領取",
-        },
-        {
-          id: 2,
-          category: "一般任務",
-          name: "文湖線",
-          chapterStatus: "已集章",
-          rewardStatus: "已領取",
-        },
-        {
-          id: 3,
-          category: "特殊任務",
-          name: "全制霸",
-          chapterStatus: "已集章",
-          rewardStatus: "未領取",
-        },
-      ],
-    };
-  },
-};
-</script>

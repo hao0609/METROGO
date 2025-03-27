@@ -275,3 +275,46 @@
 .pr-100 {
   padding-right: 100px;
 }
+
+
+
+.pagination{
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+// 會員管理下方翻頁紐
+.pagination-btn{
+  background: $neutral-0;
+  border-radius: 8px;
+  border-style: solid;
+  border-color: $neutral-150;
+  border-width: 1px;
+  margin: 12px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  min-width: 56px;
+  min-height: 56px;
+  padding: 0;
+  cursor: pointer;
+}
+
+.pagination-btn:hover{
+  background: $neutral-700;
+}
+
+.pagination-btn-svg{
+  fill: $neutral-700;
+  width: 100%;
+  height: 100%;
+}
+.pagination-btn-svg:hover{
+  fill: $neutral-0;
+}

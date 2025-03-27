@@ -52,6 +52,7 @@ import yellow_breakfast from "../views/featured/yellow-breakfast.vue";
 
 // 後台
 import AdminMainpageView from "../views/backend/AdminMainpageView.vue";
+import AdminUserView from "../views/backend/AdminUserView.vue"
 import Navbar_V1 from "../components/Navbar_V1.vue";
 
 const requireAuth = (to, from, next) => {
@@ -312,7 +313,7 @@ const router = createRouter({
         {
           path: "user",
           name: "AdminUser",
-          component: () => import("@/views/backend/AdminUserView.vue"),
+          component: AdminUserView,
         },
         {
           path: "user-data",
