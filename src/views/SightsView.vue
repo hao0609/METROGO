@@ -19,6 +19,29 @@ import "swiper/css/navigation";
 import "swiper/swiper-bundle.css";
 register(); // 註冊 swiper 自訂元素
 
+// 匯入 JSON 資料
+import featuredData from "@/json/featured.json";
+
+const selectedArticles = ref([]);
+
+// 隨機選取 5 篇推薦文章
+const getRandomArticles = () => {
+  let allArticles = [];
+
+  // 將 JSON 裡的所有文章扁平化為一個陣列
+  for (const line in featuredData) {
+    allArticles.push(...featuredData[line]);
+  }
+
+  // 隨機排序並選取前 5 篇
+  selectedArticles.value = allArticles
+    .sort(() => 0.5 - Math.random()) // 隨機排序
+    .slice(0, 5); // 取前 5 筆
+};
+
+// 初始化時執行
+onMounted(getRandomArticles);
+
 // banner 圖片管理
 import banner1 from "../assets/images/sights/banner/1.jpg";
 import banner2 from "../assets/images/sights/banner/2.jpg";
@@ -241,9 +264,7 @@ const handleWheel = (e) => {
       if (currentIndex.value > 0) {
         currentIndex.value--;
         const blockToShow = sortedBlocks.value[currentIndex.value];
-        blocks.value.find(
-          (b) => b.number === blockToShow.number
-        ).hidden = false;
+        blocks.value.find((b) => b.number === blockToShow.number).hidden = false;
       }
     }
   }
@@ -301,11 +322,7 @@ onBeforeUnmount(() => {
       <!-- 顯示圖片或影片 -->
       <div v-if="block.type === 'media'" class="media-content">
         <template v-if="block.content.type === 'image'">
-          <img
-            :src="block.content.src"
-            alt=""
-            class="w-full h-full object-cover"
-          />
+          <img :src="block.content.src" alt="" class="w-full h-full object-cover" />
         </template>
         <template v-if="block.content.type === 'video'">
           <video
@@ -378,7 +395,7 @@ onBeforeUnmount(() => {
   <!-- GO編精選 -->
   <div class="featured">
     <h1 class="featured-title">GO編精選</h1>
-    <swiper-container
+    <!-- <swiper-container
       class="mySwiper"
       :autoplay="{ delay: 3000 }"
       :loop="true"
@@ -427,6 +444,36 @@ onBeforeUnmount(() => {
                 <button class="btn_white small">閱讀更多</button>
               </div>
             </router-link>
+          </div>
+        </div>
+      </swiper-slide>
+    </swiper-container> -->
+
+    <swiper-container
+      class="mySwiper"
+      :autoplay="{ delay: 3000 }"
+      :loop="true"
+      :navigation="true"
+    >
+      <swiper-slide v-for="(article, index) in selectedArticles" :key="index">
+        <div class="featured-container">
+          <div class="featured-img">
+            <img
+              :src="article.store_info.info_photo"
+              :alt="article.journey_featured_name"
+            />
+          </div>
+          <div class="featured-paragraph">
+            <p class="paragraph-title title1">{{ article.journey_featured_name }}</p>
+            <p class="paragraph caption bold">{{ article.featured_paragraphs[0] }}</p>
+            <a
+              :href="`./journey-featured${article.link.replace('.', '')}`"
+              class="article-link"
+            >
+              <div class="btn-container">
+                <button class="btn_white small">閱讀更多</button>
+              </div>
+            </a>
           </div>
         </div>
       </swiper-slide>
