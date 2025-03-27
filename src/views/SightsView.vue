@@ -466,14 +466,14 @@ onBeforeUnmount(() => {
           <div class="featured-paragraph">
             <p class="paragraph-title title1">{{ article.journey_featured_name }}</p>
             <p class="paragraph caption bold">{{ article.featured_paragraphs[0] }}</p>
-            <a
-              :href="`./journey-featured${article.link.replace('.', '')}`"
+            <router-link
+              :to="`/journey-featured${article.link.replace('.', '')}`"
               class="article-link"
             >
               <div class="btn-container">
                 <button class="btn_white small">閱讀更多</button>
               </div>
-            </a>
+            </router-link>
           </div>
         </div>
       </swiper-slide>

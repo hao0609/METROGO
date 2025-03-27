@@ -34,12 +34,14 @@ import special_brown from "../views/special-line/brown.vue";
 import MissionSpecialView from "../views/MissionSpecialView.vue";
 import BackendLoginView from "../views/BackendLoginView.vue";
 import PrivacyView from "../views/PrivacyView.vue";
+import UserTermsView from "../views/UserTermsView.vue";
 import NewsView from "../views/NewsView.vue";
 import NewsDetailView from "../views/NewsDetailView.vue";
 import UserProfileView from "../views/UserProfileView.vue";
 
 // import JourneyFeaturedView from "../views/JourneyFeaturedView.vue";
 import blue_hotpot from "../views/featured/blue-hotpot.vue";
+import blue_dome from "../views/featured/blue-dome.vue";
 import red_dumpling from "../views/featured/red-dumpling.vue";
 import red_boat from "../views/featured/red-boat.vue";
 import brown_zoo from "../views/featured/brown-zoo.vue";
@@ -247,6 +249,9 @@ const router = createRouter({
     // 隱私權政策
     { path: "/privacy", name: "Privacy", component: PrivacyView },
 
+    // 使用者條款
+    { path: "/terms", name: "UserTerms", component: UserTermsView },
+
     // 最新消息
     { path: "/news", name: "News", component: NewsView },
 
@@ -272,6 +277,11 @@ const router = createRouter({
       path: "/journey-featured/blue-hotpot",
       name: "小編精選-藍線火鍋",
       component: blue_hotpot,
+    },
+    {
+      path: "/journey-featured/blue-dome",
+      name: "小編精選-藍線大巨蛋",
+      component: blue_dome,
     },
     {
       path: "/journey-featured/red-dumpling",

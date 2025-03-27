@@ -7,7 +7,7 @@
     </div>
     <div class="featured-articles">
       <template v-for="(article, index) in selectedArticles" :key="index">
-        <a :href="article.link" class="article-link">
+        <router-link :to="article.link" class="article-link">
           <div class="article">
             <div class="article-pic">
               <img
@@ -19,7 +19,7 @@
               {{ article.journey_featured_name }}
             </p>
           </div>
-        </a>
+        </router-link>
         <hr v-if="index !== selectedArticles.length - 1" />
       </template>
     </div>
