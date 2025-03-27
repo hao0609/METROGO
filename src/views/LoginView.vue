@@ -1,13 +1,15 @@
 <script>
 import { RouterLink } from "vue-router";
+import Navbar_V1 from "@/components/Navbar_V1.vue";
 import BackIcon from "@/components/icons/IconBack.vue";
 import EyeoffIcon from '@/components/icons/IconEyeoff.vue';
 import EyeIcon from '@/components/icons/IconEye.vue';
 
 // 引入 firebase authentication 登入註冊驗證方法
-import { auth } from '../firebase/firebaseConfig.js'
+import { auth,database } from '../firebase/firebaseConfig.js'
 import { createUserWithEmailAndPassword } from 'firebase/auth'
 import { signInWithEmailAndPassword } from 'firebase/auth'
+import { getDatabase, ref, get } from 'firebase/database';
 
 // 引入自定義的工具模組
 import { 
@@ -28,13 +30,18 @@ import { error } from "jquery";
 export default {
   name: "LoginView",
   components: {
+    Navbar_V1,
     BackIcon,
     EyeoffIcon,
     EyeIcon,
   },
   data() {
     return {
+      // LINE Login
+      channelID: '2007134479',
+      redirectUri: 'https://3fb1-36-231-151-154.ngrok-free.app/tid201/g2/login', // 上版時要改成專案網址 https://tibamef2e.com/tid201/g2/
       currentForm: 'login', // 預設顯示登入頁
+      clientSecret: '2eeeb7070c625f83716857367b24044f',
       passwordVisible: initPasswordVisibility(), 
       login: initLoginData(),
       signup: initSignupData(),
@@ -44,7 +51,9 @@ export default {
         show: false,
         type: 'success', // 'success' 或 'error'
         text: ''
-      }
+      },
+      // 添加前一頁記錄
+      previousRoute: null
     }
   },
   computed: {
@@ -53,7 +62,218 @@ export default {
       return this.currentForm === 'forgotpw1' || this.currentForm === 'forgotpw2';
     }
   },
+  // 添加 mounted 鉤子以監聽路由變化
+  mounted() {
+    // 從 sessionStorage 恢復前一頁資訊（如果有）
+    const savedRoute = sessionStorage.getItem('previousRoute');
+    if (savedRoute) {
+      try {
+        this.previousRoute = JSON.parse(savedRoute);
+      } catch (e) {
+        console.error('Error parsing saved route:', e);
+      }
+    }
+    
+    // 監聽路由變化
+    this.$router.beforeEach((to, from, next) => {
+      // 只記錄非登入頁面的路由
+      if (from.name && from.name !== 'LoginView') {
+        this.previousRoute = {
+          name: from.name,
+          params: from.params,
+          query: from.query
+        };
+        
+        // 保存到 sessionStorage 以防頁面刷新
+        sessionStorage.setItem('previousRoute', JSON.stringify(this.previousRoute));
+      }
+      next();
+    });
+  },
+  async created() {
+    // check sessionStorage
+    const lineLoginState = sessionStorage.getItem('lineLoginState');
+    if (lineLoginState) {
+      // line callback queryString https://example.com/callback?code=abcd1234&state=0987poi&friendship_status_changed=true
+      // check code and state
+      if (this.$route.query.code && this.$route.query.state === lineLoginState) {
+        console.log('lineLoginState:', lineLoginState);
+        // remove lineLoginState
+        sessionStorage.removeItem('lineLoginState');
+        // call api to get user info POST
+        const url = 'https://api.line.me/oauth2/v2.1/token';
+        const params = new URLSearchParams();
+        params.append('grant_type', 'authorization_code');
+        params.append('code', this.$route.query.code);
+        params.append('redirect_uri', this.redirectUri);
+        params.append('client_id', this.channelID);
+        params.append('client_secret', this.clientSecret);
+        console.log(params)
+        await fetch(url, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+          },
+          body: params
+        }).then(async response => {
+          /**
+           * access_token
+           * :
+           * "eyJhbGciOiJIUzI1NiJ9.yCps5R1Mo9tNo5rWRJvFnF1tkXjV1gSpuo91ArMJ1vCA6-8SUCWqVvzZVw_pHW4G2rzQm6V97E09iSwDgVPG-f1MKfZ8HZQ9EBsxNBfB-I62urkI-EZ65E6fzAdu8QHUEj7t4M__cH53Ti2gtYDSzMeXWYt_RLHPvAsb9TUFDhg.nc2kjn5rsyd_Mi_hIoEbT4y3tgJSQhz_bkEUNajGDok"
+           * expires_in
+           * :
+           * 2592000
+           * id_token
+           * :
+           * "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2FjY2Vzcy5saW5lLm1lIiwic3ViIjoiVTFmMTZlMDYzMGU0MGI2ZTY5MzA1OTgzNzc4OWFkOWUxIiwiYXVkIjoiMjAwNzExNjU4NCIsImV4cCI6MTc0Mjk4NzA2NSwiaWF0IjoxNzQyOTgzNDY1LCJhbXIiOlsibGluZXNzbyJdLCJuYW1lIjoiSmVycnkiLCJwaWN0dXJlIjoiaHR0cHM6Ly9wcm9maWxlLmxpbmUtc2Nkbi5uZXQvMGhzWFJmUnBzcExIZHZId0dybG5KVElGTmFJaG9ZTVNvX0YzRm5HVTBjSUVRUksyb3BBU3RxRlVwTmNrSVNmRHR5VkNzMEVFMUtJVTlGIiwiZW1haWwiOiJzYXJhNzc2NTZAZ21haWwuY29tIn0.6Wuq9L33plBrFyMVxmnJ8ixJkss7XFVBQphbzFcoCmI"
+           * refresh_token
+           * :
+           * "P1EAIRjNiI54ClAnetE6"
+           * scope
+           * :
+           * "openid profile"
+           * token_type
+           * :
+           * "Bearer"
+           */
+          const verifyParams = new URLSearchParams();
+          const res = await response.json();
+          console.log(res)
+          console.log(res.id_token)
+          verifyParams.append('id_token', res.id_token);
+          verifyParams.append('client_id', this.channelID);
+          // verify token( use id_token )
+          if (res.access_token) {
+            await fetch('https://api.line.me/oauth2/v2.1/verify', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'Authorization': 'Bearer ' + res.access_token
+              },
+              body: verifyParams
+            }).then(async verifyResponse => {
+              /**
+               * aud : "2007116584"
+               * email:"sara77656@gmail.com"
+               * exp :1742997887
+               * iat:1742994287
+               * iss:"https://access.line.me"
+               * name:"Devoloper Name"
+               * picture:"https://profile.line-scdn.net/0h
+               * sub:"U1f16e0630e40b6e693059837789ad9e1"
+               */
+              const verifyRes = await verifyResponse.json();
+              console.log(verifyRes)
+              // check email exist
+              const checkEmailInDatabase = await this.checkEmailInDatabase(verifyRes.email);
+              if (!checkEmailInDatabase) {
+                console.log('empty email');
+                // redirect to signup page
+                this.signup.email = verifyRes.email;
+                this.signup.nickname = verifyRes.name;
+                this.signup.password = 'line_' + verifyRes.sub;
+                // sign up
+                const userCredential = await createUserWithEmailAndPassword(auth,this.signup.email, this.signup.password)
+                const userUID = userCredential.user.uid
+                const result = await handleSignupAndSaveToFirebase(this.signup, userUID);
+                if (result.success) {
+                  await signInWithEmailAndPassword(auth,verifyRes.email, `line_${verifyRes.sub}`).then(() => {
+                    this.showMessage('success', `登入成功!`);
+                    // 使用統一導航方法
+                    this.navigateAfterAuth();
+                  }).catch(error => {
+                    console.log('error:', error);
+                    if (error.code === 'auth/user-not-found') {
+                      this.showMessage('error', `登入失敗： ${error.message}`);
+                    }
+                  });
+                } else {
+                  this.showMessage('error', `註冊失敗：${result.error}`);
+                }
+              } else {
+                console.log('login',verifyRes.email,`line_${verifyRes.sub}`)
+                // login
+                await signInWithEmailAndPassword(auth,verifyRes.email, `line_${verifyRes.sub}`).then(() => {
+                  this.showMessage('success', `登入成功!`);
+                  // 使用統一導航方法
+                  this.navigateAfterAuth();
+                }).catch(error => {
+                  console.log('error:', error);
+                  if (error.code === 'auth/user-not-found') {
+                    this.showMessage('error', `登入失敗： ${error.message}`);
+                  }
+                });
+              }
+              console.log('verifyResponse:', verifyRes);
+            })
+          }
+        })
+      }
+      console.log('lineLoginState:', lineLoginState);
+      sessionStorage.removeItem('lineLoginState');
+    }
+  },
   methods: {
+    // 添加統一的導航函數
+    navigateAfterAuth() {
+      setTimeout(() => {
+    // 檢查是否來自 LINE 登入
+    // 1. 檢查 URL 中是否有 LINE 授權碼
+          const isFromLine = this.$route.query.code && (
+            sessionStorage.getItem('fromLineLogin') === 'true' ||
+            document.referrer.includes('line.me')
+          );
+          
+          // 如果不是 LINE 登入且有前一頁記錄，返回前一頁
+          if (!isFromLine && this.previousRoute && this.previousRoute.name) {
+            this.$router.push({
+              name: this.previousRoute.name,
+              params: this.previousRoute.params,
+              query: this.previousRoute.query
+            });
+          } else {
+            // 如果是 LINE 登入或沒有前一頁記錄，導向首頁
+            this.$router.push({ name: 'HomeView' });
+          }
+          
+          // 清除 LINE 登入標記
+          sessionStorage.removeItem('fromLineLogin');
+        }, 1500);
+      },
+    
+    async checkEmailInDatabase(email) {
+      const emailRef = ref(database, `會員資料`);
+      // ${email.replace('.', '_')}
+      const snapshot = await get(emailRef);
+      let isEmailExist;
+      if(snapshot.exists()){
+        const dataObject = snapshot.val()
+      const dataList = Object.keys(snapshot.val())
+      console.log(dataList)
+        isEmailExist = dataList.filter( el => {
+          if(dataObject[el]['電子郵件'] === email){
+              return true
+          }
+        })
+
+      console.log(isEmailExist)
+      return isEmailExist.length>0;
+      }
+      console.log(snapshot.exists())
+      return snapshot.exists(); // 若存在，返回 true
+    }
+    ,
+    lineLogin() {
+      const response_type = 'code';
+      // random string (5-10 characters)
+      const state = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+      // save state to session storage
+      sessionStorage.setItem('lineLoginState', state);
+      sessionStorage.setItem('fromLineLogin', 'true');
+      const scope = 'openid%20email';
+      // fetch
+      window.location.href = `https://access.line.me/oauth2/v2.1/authorize?response_type=${response_type}&client_id=${this.channelID}&redirect_uri=${this.redirectUri}&state=${state}&scope=${scope}`;
+    },
     switchForm(formName) {
       this.currentForm = formName;
       
@@ -126,9 +346,8 @@ export default {
           await signInWithEmailAndPassword(auth,this.login.email, this.login.password)
           this.showMessage('success', `登入成功!`);
 
-            // 登入成功後，返回上一個瀏覽的頁面
-            this.$router.go(-1)
-  
+          // 使用統一導航方法
+          this.navigateAfterAuth();
 
         }catch(error){
             
@@ -170,10 +389,8 @@ export default {
               
               if (result.success) {
                 this.showMessage('success', '註冊成功！您的帳號已創建');
-                // 註冊成功後，可以直接導向瀏覽的前一頁，因為 Autherization 會自動幫註冊完的用戶登入
-                setTimeout(() => {
-                  this.$router.go(-1);     
-                }, 1500);
+                // 使用統一導航方法
+                this.navigateAfterAuth();
               } else {
                 this.showMessage('error', `註冊失敗：${result.error}`);
               }
@@ -245,6 +462,7 @@ export default {
 </script>
 
 <template>
+  <Navbar_V1 />
   <div class="container">
     <!-- 訊息提示 -->
     <div class="message-container" v-if="message.show">
@@ -271,7 +489,7 @@ export default {
                         <span>以 Google 帳號繼續</span>
                     </a>
                     </div>
-                    <div class="media-options">
+                    <div class="media-options" @click="lineLogin">
                     <img src="../assets/images/login/img_line.png" alt="" class="line-img">
                     <a href="#" class="field facebook">
                         <span>以 LINE 帳號繼續</span>
@@ -314,9 +532,9 @@ export default {
                 <span>還不是會員？</span><a @click.prevent="switchForm('signup')">點此註冊</a>
                 </div>
             </form>
-            <div class="form-link">
+            <!-- <div class="form-link">
                 <a href="#" class="forgot-pass" @click.prevent="switchForm('forgotpw1')">忘記密碼</a>
-            </div>
+            </div> -->
             </div>
         </div>
     </section>

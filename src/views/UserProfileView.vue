@@ -603,10 +603,9 @@ const passwordUpdateFailed = ref({
                 <div class="product-list">  
                     <div class="product">
                         <div class="img-product-photo"></div>
-                        <div class="icon-heart"><HearFillIcon/></div>
                         <div class="btn-group">
                             <button class="btn_outline small">查看詳情</button>
-                            <div class="cart-btn"><CartIcon/></div>
+                            <div class="cart-btn"><HearFillIcon/></div>
                         </div>
                     </div>
                 </div>

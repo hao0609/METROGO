@@ -400,13 +400,18 @@
     .cart-btn {
         width: 48px;
         height: 48px;
-        background: #6A1B9A;
-        color: white;
+        color: $metro-red;
         border-radius: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
         cursor: pointer;
+        border: 1px solid $primary-400;
+        background-color: $neutral-0;
+
+        &:hover {
+            background-color: #f6e9fe;
+        }
     }
 
 }
