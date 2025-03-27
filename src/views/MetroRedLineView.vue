@@ -296,7 +296,7 @@ const messageData = ref([
             </div>
             <div class="banner-txt-wrapper">
               <p class="title1 bold banner-txt-title">
-                {{ currentLineSights[4].sight_banner_titlee }}
+                {{ currentLineSights[4].sight_banner_title }}
               </p>
               <p class="title2 bold banner-txt-content">
                 {{ currentLineSights[4].sight_intro }}
