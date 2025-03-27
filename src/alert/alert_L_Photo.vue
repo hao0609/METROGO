@@ -134,8 +134,11 @@ const uploadPhoto = async () => {
   const year = today.getFullYear();
   const month = (today.getMonth() + 1).toString().padStart(2, "0");
   const day = today.getDate().toString().padStart(2, "0");
-  const formattedDate = `${year}${month}${day}`;
-  const fileName = `${mission}_${lineTitle}_${formattedDate}_${photoIndex}`;
+  const hours = today.getHours().toString().padStart(2, "0");
+  const minutes = today.getMinutes().toString().padStart(2, "0");
+  const seconds = today.getSeconds().toString().padStart(2, "0");
+  const formattedDateTime = `${year}${month}${day}_${hours}${minutes}${seconds}`;
+  const fileName = `${mission}_${lineTitle}_${formattedDateTime}`;
 
   // Firebase Storage 儲存路徑
   const filePath = `photos/${GetUserId}/${fileName}`;
