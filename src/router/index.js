@@ -41,9 +41,13 @@ import UserProfileView from "../views/UserProfileView.vue";
 // import JourneyFeaturedView from "../views/JourneyFeaturedView.vue";
 import blue_hotpot from "../views/featured/blue-hotpot.vue";
 import red_dumpling from "../views/featured/red-dumpling.vue";
+import red_boat from "../views/featured/red-boat.vue";
 import brown_zoo from "../views/featured/brown-zoo.vue";
+import brown_buffet from "../views/featured/brown-buffet.vue";
 import green_waterpark from "../views/featured/green-waterpark.vue";
+import green_dimsum from "../views/featured/green-dimsum.vue";
 import yellow_breakfast from "../views/featured/yellow-breakfast.vue";
+import yellow_fireworks from "../views/featured/yellow-fireworks.vue";
 
 // import featured_green from "../views/featured/green.vue";
 // import featured_red from "../views/featured/red.vue";
@@ -275,9 +279,19 @@ const router = createRouter({
       component: red_dumpling,
     },
     {
+      path: "/journey-featured/red-boat",
+      name: "小編精選-紅線漁人碼頭",
+      component: red_boat,
+    },
+    {
       path: "/journey-featured/brown-zoo",
       name: "小編精選-棕線動物園",
       component: brown_zoo,
+    },
+    {
+      path: "/journey-featured/brown-buffet",
+      name: "小編精選-棕線吃到飽",
+      component: brown_buffet,
     },
     {
       path: "/journey-featured/green-waterpark",
@@ -285,9 +299,19 @@ const router = createRouter({
       component: green_waterpark,
     },
     {
+      path: "/journey-featured/green-dimsum",
+      name: "小編精選-綠線飲茶",
+      component: green_dimsum,
+    },
+    {
       path: "/journey-featured/yellow-breakfast",
       name: "小編精選-黃線永和豆漿",
       component: yellow_breakfast,
+    },
+    {
+      path: "/journey-featured/yellow-fireworks",
+      name: "小編精選-黃線大稻埕煙火",
+      component: yellow_fireworks,
     },
 
     // 後台

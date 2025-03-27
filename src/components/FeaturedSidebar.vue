@@ -32,7 +32,7 @@ import featuredData from "@/json/featured.json";
 
 const selectedArticles = ref([]);
 
-// 隨機選取 4 篇推薦文章
+// 隨機選取 5 篇推薦文章
 const getRandomArticles = () => {
   let allArticles = [];
 
