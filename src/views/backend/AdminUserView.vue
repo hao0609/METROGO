@@ -7,14 +7,14 @@
 <script setup> 
   import BackIcon from '@/components/icons/IconBack.vue';
   import AdminEyeIcon from '@/components/icons/IconAdminEye.vue';
-  import { onMounted, ref,computed ,inject} from 'vue';
+  import { onMounted, ref,computed ,inject,nextTick} from 'vue';
 
   import { useRouter } from 'vue-router';
   const router = useRouter();
   
   import GetAllUserData from '../../js/view/Backend/getAllUserDB_Data.js';
 
-  // import eventBus from '../../eventbus/eventbus.js';
+  import emitter  from '../../eventbus/eventbus.js';
 
   
 
@@ -113,16 +113,21 @@
     }
   )
 
-  const emitter = inject('emitter'); // Inject `emitter`
-/**
+  // const emitter = inject('emitter'); // Inject `emitter`
+
+ /**
  * 把目前選取的該會員資料的會員ID 透過 eventBus 丟給 AdminUserDataView
  * @param {string} userID - 目前點選會員資料的會員ID
- */
-  const viewUser = (userID) => {
+ **/
+  const viewUser = async(userID) => {
     // viewUser: 自定義事件名稱 / userID: 會員ID
     console.log(userID);
 
-    emitter.emit('viewUser', userID);
+    // 不使用 eventbus，會有組件掛載時間差問題
+    // emitter.emit('viewUser', userID);
+
+    // 改用 sessionStorage
+    sessionStorage.setItem('selectedUserID', userID);
 
     router.push('/admin/user-data');
    

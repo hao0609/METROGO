@@ -7,36 +7,24 @@
 import BackIcon from "@/components/icons/IconBack.vue";
 import AdminEyeIcon from "@/components/icons/IconAdminEye.vue";
 import { ref, onMounted, inject} from 'vue';
-import { useRouter } from 'vue-router';
-const router = useRouter();
-import eventBus from '../../eventbus/eventbus.js';
+
+// import emitter from '../../eventbus/eventbus.js';
 import GetUserData from '../../js/view/Backend/checkUserDB_UserData.js'
 
-const emitter = inject('emitter');   // Inject `emitter`
+// const emitter = inject('emitter');   // Inject `emitter`
 
 onMounted(() => {
-  // eventBus.on('viewUser', getUserData);
 
+  // 不使用 eventbus，會有組件掛載時間差問題
+  // emitter.once('viewUser', ()=> {alert()});
 
-  emitter.on('viewUser', getUserData);
-  // eventBus.on('viewUser', async(userID) => {
-  //   sessionStorage.setItem('selectedUserID', userID);
-  //   console.log(`目前點選的會員資料的會員ID是: ${sessionStorage.getItem('selectedUserID')}`);
-  //   const data =  await GetUserData(userID)
-
-  //   console.log(data);
-  // })
-  console.log("讀取會員資料!");
-  
+  // 改用 sessionStorage
+  const userID = sessionStorage.getItem('selectedUserID')
+  // console.log(userID);
+  getUserData(userID);
   
   
 });
-
-// onUnmounted(() => {
-
-//   eventBus.off('viewUser', getUserData);
-
-// })
 
 const userData = ref({
   id: '',
@@ -46,24 +34,60 @@ const userData = ref({
   MissionGeneralData: {},
 })
 
-const getUserData = (userID) => {
-  console.log(`目前點選的會員資料的會員ID是: ${userID}`);
-  const data =  GetUserData(userID)
+const tabledata =  ref([])
 
-  console.log(data);
-  console.log(userData.value);
+const getUserData = async(userID) => {
+  console.log(`目前點選的會員資料的會員ID是: ${userID}`);
+  const data =  await GetUserData(userID)
+
+  // console.log(data);
 
   userData.value.id = data.會員編號;
   
   userData.value.name = data.會員姓名;
   userData.value.email = data.電子郵件;
   // userData.value.avatar = data.avatar;
-  userData.value.MissionGeneralData = data.MissionGeneralData;
+  const MissionGeneralData = data.一般任務遊戲進度
+
+  console.log(MissionGeneralData);
+  
+  
+  // 表格資料整理
+
+  // 第一步 Object.entries 將 object 透過鍵值轉成 陣列
+  // 第二步 使用 flatMap() 來進行陣列轉換並展平結果
+  // 第三步 使用 Object.keys(stations) 將每線的車站資料轉成陣列
+  // 第四布 使用 map 將目前處理的路線名稱以及陣列中的站名轉換成物件
+
+  // 路線名稱調整變更表
+  const routeMapping = {
+    棕線: '文湖線',
+    紅線: '淡水信義線',
+    綠線: '松山新店線',
+    黃線: '中和新蘆線',
+    藍線: '板南線',
+  };
+
+
+  tabledata.value =  
+  
+    Object.entries(MissionGeneralData).flatMap(([routeName, stations])=>
+      Object.entries(stations).map(([stationName, info]) => ({
+          route: routeMapping[routeName],    // 顯示對應的路線名稱
+          station: stationName,  
+          checkedIn: info.打卡狀態
+                    
+      }))
+      
+    )
+  
+  
+  // console.log(tabledata.value);  
   
 }
 
-
-
+// 目前點選的頁籤
+const activeTab= ref('general');
 // 遊戲資料頁籤
 const tabs = [
         { id: "general", label: "一般任務" },
@@ -72,7 +96,55 @@ const tabs = [
 ]
 
 
-
+  const specialItems = [
+        {
+          id: 1,
+          route: "淡水信義線",
+          journeyTravel: "半日遊",
+          chapterStatus: "已集章",
+          rewardStatus: "已領取",
+          selected: false,
+        },
+        {
+          id: 2,
+          route: "淡水信義線",
+          journeyTravel: "半日遊",
+          chapterStatus: "已集章",
+          rewardStatus: "已領取",
+          selected: false,
+        },
+        {
+          id: 3,
+          route: "板南線",
+          journeyTravel: "一日遊",
+          chapterStatus: "已集章",
+          rewardStatus: "未領取",
+          selected: false,
+        },
+      ]
+  const achievementsItems= [
+        {
+          id: 1,
+          category: "一般任務",
+          name: "時光旅人",
+          chapterStatus: "已集章",
+          rewardStatus: "已領取",
+        },
+        {
+          id: 2,
+          category: "一般任務",
+          name: "文湖線",
+          chapterStatus: "已集章",
+          rewardStatus: "已領取",
+        },
+        {
+          id: 3,
+          category: "特殊任務",
+          name: "全制霸",
+          chapterStatus: "已集章",
+          rewardStatus: "未領取",
+        },
+      ]
 
 // export default {
 //   name: "AdminUserDataView",
@@ -201,15 +273,15 @@ const tabs = [
         <div class="info">
           <div class="info-row">
             <p class="info-title bold">會員 ID</p>
-            <!-- <span>{{ userData.value.id }}</span> -->
+            <span>{{ userData.id }}</span>
           </div>
           <div class="info-row">
             <p class="info-title bold">姓名</p>
-            <!-- <span>{{ userData.value.name }}</span> -->
+            <span>{{ userData.name }}</span>
           </div>
           <div class="info-row">
             <p class="info-title bold">電子郵件</p>
-            <!-- <span>{{ userData.value.email }}</span> -->
+            <span>{{ userData.email }}</span>
           </div>
         </div>
       </div>
@@ -251,23 +323,20 @@ const tabs = [
                     <th>站名</th>
                     <th>打卡狀態</th>
                     <th>打卡時間</th>
-                    <th>集章狀態</th>
-                    <th>獎勵領取</th>
+
                   </tr>
                 </thead>
                 <tbody>
+                
                   <tr
-                    v-for="(general, index) in generalItems"
-                    :key="general.id"
+                    v-for="(item, index) in tabledata"
+                    :key="index"
                     :class="{ 'highlight-row': index % 2 === 1 }"
                   >
-                    <td>{{ general.id }}</td>
-                    <td>{{ general.route }}</td>
-                    <td>{{ general.station }}</td>
-                    <td>{{ general.punchStatus }}</td>
-                    <td>{{ general.punchTime }}</td>
-                    <td>{{ general.chapterStatus }}</td>
-                    <td>{{ general.rewardStatus }}</td>
+                    <td>{{ index+1 }}</td>
+                    <td>{{ item.route }}</td>
+                    <td>{{ item.station }}</td>
+                    <td>{{ item.checkedIn }}</td>
                   </tr>
                 </tbody>
               </table>
