@@ -80,37 +80,55 @@
       "sight_name": "新莊",
       "sight_banner_title": "傳統市場結合夜市",
       "sight_intro": "圍繞著歷史悠久的新莊慈祐宮，是結合傳統市場、美食小吃、宗教文化與購物的商圈，這裡不僅有超過200年的廟宇文化，還有許多老店、夜市小吃與傳統市場，是最能感受台灣在地風情的地方之一。",
-      "sight_img": "/src/assets/images/line/xinzhuang_01.jpg"
+      "sight_img": "/src/assets/images/line/xinzhuang_01.jpg",
+      "dialog_desc": "圍繞著歷史悠久的新莊慈祐宮，是結合傳統市場、美食小吃、宗教文化與購物的商圈，這裡不僅有超過200年的廟宇文化，還有許多老店、夜市小吃與傳統市場，是最能感受台灣在地風情的地方之一。",
+      "info_address":"新北市新莊區中正路138號",
+      "info_number":"02-2181-2345"
     },
     {
       "sight_name": "行天宮",
       "sight_banner_title": "老牌的關聖帝君廟",
       "sight_intro":"台北著名的傳統文化與美食商圈。行天宮是供奉關聖帝君的重要廟宇，每天吸引大量信眾前來參拜，使周邊商圈發展出獨特的宗教文化、老字號美食與特色店家。",
-      "sight_img": "/src/assets/images/line/xingtian_temple_01_300x417.jpg"
+      "sight_img": "/src/assets/images/line/xingtian_temple_01_300x417.jpg",
+      "dialog_desc": "台北著名的傳統文化與美食商圈。行天宮是供奉關聖帝君的重要廟宇，每天吸引大量信眾前來參拜，使周邊商圈發展出獨特的宗教文化、老字號美食與特色店家。",
+      "info_address":"台北市中山區民權東路二段109號",
+      "info_number":"02-2502-7924"
     },
     {
       "sight_name": "華山",
       "sight_banner_title": "懷舊新潮的文創",
       "sight_intro": "由舊倉庫來改造成今日的展覽場所，懷舊與新潮在這裡達成默契，品牌與動漫也和諧一致地等待你大駕光臨，探索你的想像，支持你愛的偶像，世界就是充滿愛與和平。",
-      "sight_img": "/src/assets/images/line/huashan_1914_creative_park_01.jpg"
+      "sight_img": "/src/assets/images/line/huashan_1914_creative_park_01.jpg",
+      "dialog_desc": "由舊倉庫來改造成今日的展覽場所，懷舊與新潮在這裡達成默契，品牌與動漫也和諧一致地等待你大駕光臨，探索你的想像，支持你愛的偶像，世界就是充滿愛與和平。",
+      "info_address":"台北市中正區八德路一段1號",
+      "info_number":"02-2358-1914"
     },
     {
       "sight_name": " 三和夜市",
       "sight_banner_title": "接地氣台式夜市",
       "sight_intro": "三和夜市商圈雖然規模不大，但以親民價格與道地小吃深受當地人喜愛，少了觀光夜市的商業氣息，多了樸實的生活感。如果你喜歡接地氣的台式夜市文化，這裡絕對值得一試！",
-      "sight_img": "/src/assets/images/line/xinzhuang_03_w300xh417.jpg"
+      "sight_img": "/src/assets/images/line/xinzhuang_03_w300xh417.jpg",
+      "dialog_desc": "三和夜市商圈雖然規模不大，但以親民價格與道地小吃深受當地人喜愛，少了觀光夜市的商業氣息，多了樸實的生活感。如果你喜歡接地氣的台式夜市文化，這裡絕對值得一試！",
+      "info_address":"新北市三重區中央北路",
+      "info_number":"02-2986-2345"
     },
     {
       "sight_name": "大都會公園",
       "sight_banner_title": "多樣功能的公園",
       "sight_intro": "大都會公園是結合生態、運動與親子活動的理想場所，不論是想悠閒散步、騎車運動，還是帶孩子玩樂，都能在這裡找到樂趣。下次有機會，不妨來這裡走走，享受城市中的綠意與悠閒！",
-      "sight_img": "/src/assets/images/line/sanchong_station_02_w300xh417.jpg"
+      "sight_img": "/src/assets/images/line/sanchong_station_02_w300xh417.jpg",
+      "dialog_desc": "大都會公園是結合生態、運動與親子活動的理想場所，不論是想悠閒散步、騎車運動，還是帶孩子玩樂，都能在這裡找到樂趣，也提供多種的遊樂設施，夏季更有水樂園，下次有機會，不妨來這裡走走，享受城市中的綠意與悠閒！",
+      "info_address":"新北市三重區水漾路一段",
+      "info_number":"02-8969-9596"
     },
     {
       "sight_name": "南勢角",
       "sight_banner_title": "土地公在看著你",
       "sight_intro": "新北市發展成熟的商圈之一，該商圈因交通便利、生活機能完善，吸引了許多居民及消費者，興南夜市提供各式平價美食，如鹽酥雞、牛排、滷肉飯、珍珠奶茶等，深受在地人喜愛。",
-      "sight_img": "/src/assets/images/line/HongludiNanshanFudeTemple_1_w300xh417.jpg"
+      "sight_img": "/src/assets/images/line/HongludiNanshanFudeTemple_1_w300xh417.jpg",
+      "dialog_desc": "新北市發展成熟的商圈之一，該商圈因交通便利、生活機能完善，吸引了許多居民及消費者，興南夜市提供各式平價美食，如鹽酥雞、牛排、滷肉飯、珍珠奶茶等，深受在地人喜愛，烘爐地的巨大土地公神像也是香火鼎盛，越夜越美麗，不僅信徒眾多，也是夜景聖地！",
+      "info_address":"新北市中和區捷運路6號",
+      "info_number":"02-2181-2345"
     }
   ],
   "板南線": [
