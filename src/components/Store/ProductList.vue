@@ -1,109 +1,126 @@
 <script setup>
+import { ref, computed, onMounted } from "vue";
+import { useRouter } from "vue-router";
+import ProductCard from "../Store/ProductCard.vue";
+import jsonData from "../../json/products.json";
 
-import { ref, computed, onMounted } from 'vue'
-import { useRouter } from 'vue-router'
-import ProductCard from '../Store/ProductCard.vue'
-
-
-const emitToParent = defineEmits(['product-click'])
+const emitToParent = defineEmits(["product-click"]);
 
 // Reactive state
-const router = useRouter()
-const currentPage = ref(1)
-const itemsPerPage = ref(12)
-const activeSort = ref('newest')
-
-
+const router = useRouter();
+const currentPage = ref(1);
+const itemsPerPage = ref(12);
+const activeSort = ref("newest");
 
 const products = ref([
-  
-  { id: 1, name: '馬克杯', price: 'NT$900', image: '/src/assets/images/cap.png', isFavorite: false, category: '自有品牌' },
-  { id: 2, name: 'T-shirt', price: 'NT$900', image: '/src/assets/images/T-shirt.png', isFavorite: false, category: '自有品牌' },
-  { id: 3, name: '識別證', price: 'NT$500', image: '/src/assets/images/card.png', isFavorite: false, category: '自有品牌' },
-  { id: 4, name: '明信片', price: 'NT$800', image: '/src/assets/images/card2.png', isFavorite: false, category: '自有品牌' },
-  
-])
+  {
+    id: 1,
+    name: "馬克杯",
+    price: "NT$900",
+    image: "/src/assets/images/cap.png",
+    isFavorite: false,
+    category: "自有品牌",
+  },
+  {
+    id: 2,
+    name: "T-shirt",
+    price: "NT$900",
+    image: "/src/assets/images/T-shirt.png",
+    isFavorite: false,
+    category: "自有品牌",
+  },
+  {
+    id: 3,
+    name: "識別證",
+    price: "NT$500",
+    image: "/src/assets/images/card.png",
+    isFavorite: false,
+    category: "自有品牌",
+  },
+  {
+    id: 4,
+    name: "明信片",
+    price: "NT$800",
+    image: "/src/assets/images/card2.png",
+    isFavorite: false,
+    category: "自有品牌",
+  },
+]);
 
-const filteredProducts = ref([])
+const filteredProducts = ref([]);
 
 // Computed properties
 const totalPages = computed(() => {
-  return Math.ceil(filteredProducts.value.length / itemsPerPage.value)
-})
+  return Math.ceil(filteredProducts.value.length / itemsPerPage.value);
+});
 
 const paginatedProducts = computed(() => {
-  const start = (currentPage.value - 1) * itemsPerPage.value
-  const end = start + itemsPerPage.value
-  return filteredProducts.value.slice(start, end)
-})
+  const start = (currentPage.value - 1) * itemsPerPage.value;
+  const end = start + itemsPerPage.value;
+  return filteredProducts.value.slice(start, end);
+});
 
 // Methods
 const extractPrice = (priceString) => {
-  return parseInt(priceString.replace(/[^0-9]/g, ''))
-}
+  return parseInt(priceString.replace(/[^0-9]/g, ""));
+};
 
 const applySorting = () => {
-  switch(activeSort.value) {
-    case 'price-asc':
-      filteredProducts.value.sort((a, b) => extractPrice(a.price) - extractPrice(b.price))
-      break
-    case 'price-desc':
-      filteredProducts.value.sort((a, b) => extractPrice(b.price) - extractPrice(a.price))
-      break
-    case 'newest':
-      filteredProducts.value.sort((a, b) => b.id - a.id)
-      break
-    case 'popular':
+  switch (activeSort.value) {
+    case "price-asc":
+      filteredProducts.value.sort(
+        (a, b) => extractPrice(a.price) - extractPrice(b.price)
+      );
+      break;
+    case "price-desc":
+      filteredProducts.value.sort(
+        (a, b) => extractPrice(b.price) - extractPrice(a.price)
+      );
+      break;
+    case "newest":
+      filteredProducts.value.sort((a, b) => b.id - a.id);
+      break;
+    case "popular":
       // 實際應用中的熱門度排序邏輯
-      break
+      break;
   }
-  
-  currentPage.value = 1
-}
 
-const handleProductClick = (product) => {
-  console.log('接收點擊事件，商品:', product)
- 
-  emit('product-click', product)
-}
-
-
-
+  currentPage.value = 1;
+};
 
 const addToCart = (product) => {
-  console.log('Add to cart:', product)
+  console.log("Add to cart:", product);
   // 實際購物車邏輯
-}
+};
 
 const toggleFavorite = (product) => {
-  const index = products.value.findIndex(p => p.id === product.id)
+  const index = products.value.findIndex((p) => p.id === product.id);
   if (index !== -1) {
-    products.value[index].isFavorite = !products.value[index].isFavorite
+    products.value[index].isFavorite = !products.value[index].isFavorite;
   }
-}
+};
 
 const prevPage = () => {
   if (currentPage.value > 1) {
-    currentPage.value -= 1
+    currentPage.value -= 1;
   }
-}
+};
 
 const nextPage = () => {
   if (currentPage.value < totalPages.value) {
-    currentPage.value += 1
+    currentPage.value += 1;
   }
-}
+};
 
 const goToPage = (page) => {
-  currentPage.value = page
-}
+  currentPage.value = page;
+};
 
 // Lifecycle hooks
 onMounted(() => {
-  filteredProducts.value = [...products.value]
-  applySorting()
-})
-
+  filteredProducts.value = [...products.value];
+  applySorting();
+});
 </script>
 
 <template>
@@ -120,13 +137,12 @@ onMounted(() => {
     </div>
 
     <div class="product-list__grid">
-      <ProductCard 
-        v-for="product in paginatedProducts" 
-        :key="product.id" 
-        :product="product" 
+      <ProductCard
+        v-for="product in paginatedProducts"
+        :key="product.id"
+        :product="product"
         @add-to-cart="addToCart"
         @toggle-favorite="toggleFavorite"
-          @click-product="handleProductClick"
       />
     </div>
 
@@ -134,16 +150,20 @@ onMounted(() => {
       <button class="pagination-btn prev" @click="prevPage">
         <span class="arrow-left"></span>
       </button>
-      <button 
-        v-for="page in totalPages" 
-        :key="page" 
+      <button
+        v-for="page in totalPages"
+        :key="page"
         :class="['pagination-btn', { active: currentPage === page }]"
         @click="goToPage(page)"
       >
         {{ page }}
       </button>
       <span class="pagination-ellipsis" v-if="totalPages > 5">...</span>
-      <button class="pagination-btn" v-if="totalPages > 5" @click="goToPage(totalPages)">
+      <button
+        class="pagination-btn"
+        v-if="totalPages > 5"
+        @click="goToPage(totalPages)"
+      >
         {{ totalPages }}
       </button>
       <button class="pagination-btn next" @click="nextPage">
@@ -154,12 +174,8 @@ onMounted(() => {
 </template>
 
 <style lang="scss" scoped>
-
-
-
-
 $product-card-radius: 8px;
-$product-primary-color: #8860D0;
+$product-primary-color: #8860d0;
 $product-text-color: #333333;
 $product-background: #ffffff;
 $product-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
@@ -172,15 +188,15 @@ $product-transition: all 0.3s ease;
   display: grid;
   grid-template-columns: repeat($columns, 1fr);
   gap: $gap;
-  
+
   @media (max-width: 1024px) {
     grid-template-columns: repeat(3, 1fr);
   }
-  
+
   @media (max-width: 768px) {
     grid-template-columns: repeat(2, 1fr);
   }
-  
+
   @media (max-width: 576px) {
     grid-template-columns: 1fr;
   }
@@ -193,7 +209,7 @@ $product-transition: all 0.3s ease;
   overflow: hidden;
   box-shadow: $product-shadow;
   transition: $product-transition;
-  
+
   &:hover {
     transform: translateY(-5px);
     box-shadow: $product-hover-shadow;
@@ -205,7 +221,7 @@ $product-transition: all 0.3s ease;
   position: relative;
   padding-top: 100%; // 正方形比例
   overflow: hidden;
-  
+
   img {
     position: absolute;
     top: 0;
@@ -215,7 +231,7 @@ $product-transition: all 0.3s ease;
     object-fit: cover;
     transition: transform 0.5s;
   }
-  
+
   &:hover img {
     transform: scale(1.05);
   }
@@ -224,7 +240,7 @@ $product-transition: all 0.3s ease;
 // 商品資訊區域樣式
 @mixin product-info {
   padding: 15px;
-  
+
   .product-name {
     font-size: 14px;
     margin: 0 0 5px;
@@ -233,7 +249,7 @@ $product-transition: all 0.3s ease;
     text-overflow: ellipsis;
     color: $product-text-color;
   }
-  
+
   .product-price {
     font-size: 16px;
     font-weight: bold;
@@ -247,7 +263,7 @@ $product-transition: all 0.3s ease;
   display: flex;
   padding: 0 15px 15px;
   justify-content: space-between;
-  
+
   button {
     width: 36px;
     height: 36px;
@@ -259,7 +275,7 @@ $product-transition: all 0.3s ease;
     justify-content: center;
     cursor: pointer;
     transition: all 0.3s;
-    
+
     &:hover {
       background-color: #f5f5f5;
     }
@@ -271,7 +287,7 @@ $product-transition: all 0.3s ease;
   display: flex;
   margin-bottom: 20px;
   gap: 10px;
-  
+
   .control-button {
     background-color: #333;
     color: #fff;
@@ -282,7 +298,7 @@ $product-transition: all 0.3s ease;
     display: flex;
     align-items: center;
     font-size: 14px;
-    
+
     .dropdown-icon {
       width: 10px;
       height: 10px;
@@ -292,7 +308,7 @@ $product-transition: all 0.3s ease;
       border-color: #fff transparent transparent transparent;
     }
   }
-  
+
   .dropdown-menu {
     position: absolute;
     top: 100%;
@@ -303,7 +319,7 @@ $product-transition: all 0.3s ease;
     z-index: 10;
     min-width: 150px;
     margin-top: 5px;
-    
+
     a {
       display: block;
       padding: 10px 15px;
@@ -311,7 +327,7 @@ $product-transition: all 0.3s ease;
       text-decoration: none;
       font-size: 14px;
       transition: background-color 0.3s;
-      
+
       &:hover {
         background-color: #f5f5f5;
       }
@@ -326,7 +342,7 @@ $product-transition: all 0.3s ease;
   align-items: center;
   gap: 5px;
   margin-top: 30px;
-  
+
   .pagination-btn {
     width: 36px;
     height: 36px;
@@ -339,13 +355,13 @@ $product-transition: all 0.3s ease;
     cursor: pointer;
     font-size: 14px;
     transition: all 0.3s;
-    
+
     &.active {
       background-color: #333;
       color: #fff;
       border-color: #333;
     }
-    
+
     &:hover:not(.active) {
       border-color: #999;
     }
@@ -358,9 +374,9 @@ $product-transition: all 0.3s ease;
   font-weight: bold;
   margin-bottom: 20px;
   position: relative;
-  
+
   &:after {
-    content: '';
+    content: "";
     position: absolute;
     bottom: -8px;
     left: 0;
@@ -374,19 +390,19 @@ $product-transition: all 0.3s ease;
 @mixin empty-state {
   text-align: center;
   padding: 40px 0;
-  
+
   .empty-icon {
     font-size: 48px;
     color: #ccc;
     margin-bottom: 15px;
   }
-  
+
   .empty-text {
     font-size: 16px;
     color: #999;
     margin-bottom: 20px;
   }
-  
+
   .empty-action {
     background-color: $product-primary-color;
     color: white;
@@ -395,13 +411,12 @@ $product-transition: all 0.3s ease;
     border-radius: 20px;
     cursor: pointer;
     transition: $product-transition;
-    
+
     &:hover {
       background-color: darken($product-primary-color, 10%);
     }
   }
 }
-
 
 //組件樣式
 .product-list {
@@ -415,7 +430,7 @@ $product-transition: all 0.3s ease;
     position: relative;
     width: 180px;
   }
-  
+
   .sort-select {
     padding: 8px 30px 8px 30px;
     border-radius: 50px;
@@ -428,10 +443,10 @@ $product-transition: all 0.3s ease;
     background-repeat: no-repeat;
     background-position: right 10px center;
     width: 100%;
-    
+
     &:focus {
       outline: none;
-      border-color:#8C25C0 ;
+      border-color: #8c25c0;
     }
   }
 
@@ -441,7 +456,7 @@ $product-transition: all 0.3s ease;
 
   &__pagination {
     @include product-pagination;
-    
+
     .arrow-left {
       width: 0;
       height: 0;
@@ -449,7 +464,7 @@ $product-transition: all 0.3s ease;
       border-width: 5px 8px 5px 0;
       border-color: transparent #333 transparent transparent;
     }
-    
+
     .arrow-right {
       width: 0;
       height: 0;
@@ -459,7 +474,4 @@ $product-transition: all 0.3s ease;
     }
   }
 }
-
-
-
 </style>

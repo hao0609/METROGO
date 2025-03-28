@@ -4,16 +4,16 @@ import EntranceViewView from "../views/EntranceView.vue";
 import LoginView from "../views/LoginView.vue";
 import AlertView from "../views/AlertView.vue";
 import SightsView from "../views/SightsView.vue";
-import TourBlueLineView  from "../views/TourBlueLineView.vue";
-import TourRedLineView  from "../views/TourRedLineView.vue";
-import TourGreenLineView  from "../views/TourGreenLineView.vue";
-import TourYellowLineView  from "../views/TourYellowLineView.vue";
-import TourBrownLineView  from "../views/TourBrownLineView.vue";
+import TourBlueLineView from "../views/TourBlueLineView.vue";
+import TourRedLineView from "../views/TourRedLineView.vue";
+import TourGreenLineView from "../views/TourGreenLineView.vue";
+import TourYellowLineView from "../views/TourYellowLineView.vue";
+import TourBrownLineView from "../views/TourBrownLineView.vue";
 
 import StoreView from "../views/StoreView.vue";
-import CategoryPage from "../views/CategoryPageView.vue";
+import CategoryPage from "../views/NewStoreView.vue";
 import ProductDetailView from "../views/ProductDetailView.vue";
-import CategoryPageView from "../views/CategoryPageView.vue";
+import CategoryPageView from "../views/NewStoreView.vue";
 
 import MetroBlueLineView from "../views/MetroBlueLineView.vue";
 import MetroRedLineView from "../views/MetroRedLineView.vue";
@@ -58,8 +58,10 @@ import yellow_fireworks from "../views/featured/yellow-fireworks.vue";
 
 // 後台
 import AdminMainpageView from "../views/backend/AdminMainpageView.vue";
-import AdminUserView from "../views/backend/AdminUserView.vue"
+import AdminUserView from "../views/backend/AdminUserView.vue";
 import Navbar_V1 from "../components/Navbar_V1.vue";
+import NewStroe from "../views/NewStoreView.vue";
+import NewStoreView from "../views/NewStoreView.vue";
 
 const requireAuth = (to, from, next) => {
   const isAuthenticated = localStorage.getItem("admin"); // 檢查登入狀態
@@ -94,13 +96,8 @@ const router = createRouter({
       name: "景點介紹",
       component: SightsView,
     },
-    { path: "/green-line", 
-      name: "松山新店線", 
-      component: MetroGreenLineView 
-    },
-    { path: "/brown-line", 
-      name: "文湖線", 
-      component: MetroBrownLineView },
+    { path: "/green-line", name: "松山新店線", component: MetroGreenLineView },
+    { path: "/brown-line", name: "文湖線", component: MetroBrownLineView },
     {
       path: "/yellow-line",
       name: "中和新盧線",
@@ -117,27 +114,31 @@ const router = createRouter({
       component: MetroRedLineView,
     },
     { path: "/featured/:line/:contentType", name: "小編精選" },
-    { path: "/tour/blue-line", 
-      name: "板南線半日遊", 
-      component: TourBlueLineView, 
+    {
+      path: "/tour/blue-line",
+      name: "板南線半日遊",
+      component: TourBlueLineView,
     },
-    { path: "/tour/red-line", 
-      name: "淡水線半日遊", 
-      component: TourRedLineView, 
+    {
+      path: "/tour/red-line",
+      name: "淡水線半日遊",
+      component: TourRedLineView,
     },
-    { path: "/tour/green-line", 
-      name: "松山新店線半日遊", 
+    {
+      path: "/tour/green-line",
+      name: "松山新店線半日遊",
       component: TourGreenLineView,
     },
-    { path: "/tour/yellow-line", 
-      name: "中和新蘆線半日遊", 
+    {
+      path: "/tour/yellow-line",
+      name: "中和新蘆線半日遊",
       component: TourYellowLineView,
     },
-    { path: "/tour/brown-line", 
-      name: "文湖線半日遊", 
-      component: TourBrownLineView, 
+    {
+      path: "/tour/brown-line",
+      name: "文湖線半日遊",
+      component: TourBrownLineView,
     },
-
 
     { path: "/special-mission", name: "特殊任務" },
     {
@@ -217,34 +218,27 @@ const router = createRouter({
 
     // 商城
 
-    { path: "/store", name: "商城", component : StoreView,},
-    { path: "/category", name: "分類", component : CategoryPageView,},
+    { path: "/store", name: "商城", component: NewStoreView },
+    { path: "/category", name: "分類", component: AlertView },
     {
-      path: '/product/:id',
-      name: '商品詳情頁',
+      path: "/product/:id",
+      name: "商品詳情頁",
       component: ProductDetailView,
       props: (route) => {
-        
-        const id = parseInt(route.params.id) || 0
-       
+        const id = parseInt(route.params.id) || 0;
+
         if (route.query.productData) {
           try {
-            const productData = JSON.parse(route.query.productData)
-            return { id, product: productData }
+            const productData = JSON.parse(route.query.productData);
+            return { id, product: productData };
           } catch (e) {
-            console.error('解析商品數據失敗', e)
+            console.error("解析商品數據失敗", e);
           }
         }
-        
-        return { id }
-      }
-    },
 
-   // { path: "/store", name: "商城入口" },
-   // { path: "/store", name: "商品頁" },
-   // { path: "/store", name: "商品詳情" },
-   // { path: "/store", name: "客製化" },//
-    
+        return { id };
+      },
+    },
 
     // 隱私權政策
     { path: "/privacy", name: "Privacy", component: PrivacyView },
@@ -430,7 +424,6 @@ const router = createRouter({
       name: "FormView",
       component: () => import("../views/FormView.vue"),
     },
-
 
     // Alert 樣式參考頁
     {

@@ -1,21 +1,17 @@
 <script setup>
-import Banner from '../components/Store/SearchBar.vue';
-import ProductList from '../components/Store/ProductList.vue';
+import Banner from "../components/Store/SearchBar.vue";
+import ProductList from "../components/Store/ProductList.vue";
 import Navbar_V1 from "@/components/Navbar_V1.vue";
-import HomeFooter from '@/components/Footer.vue'
+import HomeFooter from "@/components/Footer.vue";
 
 const handleSearch = (query) => {
-  console.log('Search query from App:', query);
- 
-}
-
-
-
+  console.log("Search query from App:", query);
+};
 </script>
 <template>
-    
-<div>
+  <div>
     <Navbar_V1 />
+
     <Banner @search="handleSearch" />
     <main class="main">
       <div class="container">
@@ -23,11 +19,9 @@ const handleSearch = (query) => {
       </div>
     </main>
     <HomeFooter />
-</div>
-
+  </div>
 </template>
 <style lang="scss" scoped>
-
 // * {
 //   margin: 0;
 //   padding: 0;
@@ -50,5 +44,4 @@ const handleSearch = (query) => {
 .main {
   padding: 30px 0;
 }
-
 </style>

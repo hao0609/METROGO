@@ -1,25 +1,17 @@
 <script setup>
- import { RouterView } from 'vue-router'
-
+import { RouterView } from "vue-router";
 
 /*  目前用戶登入狀態 */
 import { provide } from "vue";
 import { userLoginStatus } from "./js/view/userLoginStatus";
 const { user } = userLoginStatus();
-provide("user", user);      //  讓所有子組件都可以使用 user 目前用戶登入資料
-
-
-
-
+provide("user", user); //  讓所有子組件都可以使用 user 目前用戶登入資料
 </script>
 
 <template>
- 
-    <!-- 保留 <router-view /> 来渲染路由组件 -->
-    <div class="app-container">
-   
-    <RouterView/>
-    
+  <!-- 保留 <router-view /> 来渲染路由组件 -->
+  <div class="app-container">
+    <RouterView />
   </div>
 </template>
 
@@ -28,15 +20,12 @@ provide("user", user);      //  讓所有子組件都可以使用 user 目前用
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-
 }
-
 </style>
-
 
 <!--原本首頁瀏覽樣式頁面-->
 
- <!--<template>
+<!--<template>
   <header>
     <img
       alt="Vue logo"
@@ -63,9 +52,8 @@ provide("user", user);      //  讓所有子組件都可以使用 user 目前用
 
 </template>-->
 
-  <!-- <Footer /> -->
-  <!--</template> -->
-
+<!-- <Footer /> -->
+<!--</template> -->
 
 <!--
 <style scoped>
