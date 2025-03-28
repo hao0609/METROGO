@@ -6,10 +6,9 @@ import EyeoffIcon from '@/components/icons/IconEyeoff.vue';
 import EyeIcon from '@/components/icons/IconEye.vue';
 
 // 引入 firebase authentication 登入註冊驗證方法
-import { auth,database } from '../firebase/firebaseConfig.js'
-import { createUserWithEmailAndPassword } from 'firebase/auth'
-import { signInWithEmailAndPassword } from 'firebase/auth'
-import { getDatabase, ref, get } from 'firebase/database';
+import { auth, database } from '../firebase/firebaseConfig.js'
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth'
+import { ref, get } from 'firebase/database';
 
 // 引入自定義的工具模組
 import { 
@@ -24,8 +23,6 @@ import {
   initForgotPasswordData,
   validateLoginForm
 } from "../js/view/login.js";
-import { error } from "jquery";
-
 
 export default {
   name: "LoginView",
@@ -481,7 +478,7 @@ export default {
         <h2 class="form-title">登入</h2>
         <div class="form">
             <div class="form-content">
-            <form @submit.prevent="handleLogin">
+            <form @submit.prevent>
                 <div class="media-group">
                     <div class="media-options">
                     <img src="../assets/images/login/img_google.png" alt="" class="google-img">
@@ -526,7 +523,7 @@ export default {
                         </div>
                 </div>
                 <div class="button-field">
-                    <button class="btn_filled" type="submit">登入</button>
+                    <button class="btn_filled" type="button" @click="handleLogin">登入</button>
                 </div>
                 <div class="form-link">
                 <span>還不是會員？</span><a @click.prevent="switchForm('signup')">點此註冊</a>
@@ -543,7 +540,7 @@ export default {
         <h2 class="form-title">註冊</h2>
         <div class="form">
             <div class="form-content">
-            <form @submit.prevent="handleSignup">
+            <form @submit.prevent>
                 <div class="media-group">
                     <div class="media-options">
                     <img src="../assets/images/login/img_google.png" alt="" class="google-img">
@@ -616,103 +613,13 @@ export default {
                         </div>
                 </div>
                 <div class="button-field">
-                    <button class="btn_filled" type="submit" :disabled="isLoading">
+                    <button class="btn_filled" type="button" @click="handleSignup" :disabled="isLoading">
                       {{ isLoading ? '處理中...' : '註冊' }}
                     </button>
                 </div>
                 <div class="form-link">
                 <span>已經是會員？</span><a href="#" @click.prevent="switchForm('login')">點此登入</a>
                 </div>
-            </form>
-            </div>
-        </div>
-    </section>
-    <!-- 忘記密碼 step1 -->
-    <div class="return-btn title2 bold" @click="goBack" v-show="showBackButton">
-        <BackIcon/> 返回
-    </div>
-    <section class="forms forgotpw-1" v-show="currentForm === 'forgotpw1'">
-        <h2 class="form-title">忘記密碼</h2>
-        <div class="form">
-            <div class="form-content">
-            <form @submit.prevent="handleForgotPassword">
-                <p class="pw-desc">我們將發送驗證碼到你所輸入的電子信箱，請於限時內填入正確的驗證碼</p>
-                
-                <div class="form-group" :class="{ error: !forgotPassword.isEmailValid }">
-                    <label class="input-label required">信箱</label>
-                    <div class="input-wrapper">
-                    <input 
-                      type="text" 
-                      class="input-field" 
-                      placeholder="請輸入你的信箱" 
-                      v-model="forgotPassword.email"
-                      autocomplete="off" 
-                    />
-                    <span class="error-message" v-if="!forgotPassword.isEmailValid">{{ forgotPassword.emailErrorMsg }}</span>
-                    </div>
-                </div>
-                <div class="form-group" :class="{ error: !forgotPassword.isCodeValid }">
-                    <label class="input-label required">驗證碼</label>
-                    <div class="input-wrapper with-button">
-                    <input 
-                      type="text" 
-                      class="input-field" 
-                      placeholder="請輸入驗證碼" 
-                      v-model="forgotPassword.verificationCode"
-                      autocomplete="off" 
-                    />
-                    <button type="button" class="text-button" @click="sendVerificationCode">重送驗證碼</button>
-                    <span class="error-message" v-if="!forgotPassword.isCodeValid">{{ forgotPassword.codeErrorMsg }}</span>
-                    </div>
-                </div>
-                <div class="button-field">
-                    <button class="btn_filled" type="submit">下一步</button>
-                </div>   
-            </form>
-            </div>
-        </div>
-    </section>
-    <!-- 忘記密碼 step2 -->
-    <section class="forms forgotpw-2" v-show="currentForm === 'forgotpw2'">
-        <h2 class="form-title">忘記密碼</h2>
-        <div class="form">
-            <div class="form-content">
-            <form @submit.prevent="handleForgotPassword">
-                <p class="pw-desc">請設定你的新密碼</p>
-                
-                <div class="form-group" :class="{ error: !forgotPassword.isPasswordValid }">
-                    <label class="input-label required">設定新密碼</label>
-                    <div class="input-wrapper with-icon">
-                        <input 
-                          :type="passwordVisible.forgotpw ? 'text' : 'password'" 
-                          class="input-field" 
-                          placeholder="請輸入你的新密碼" 
-                          v-model="forgotPassword.newPassword"
-                          autocomplete="off"
-                        >
-                        <EyeoffIcon class="input-icon" v-if="!passwordVisible.forgotpw" @click="togglePasswordVisibility('forgotpw')"/>
-                        <EyeIcon class="input-icon" v-if="passwordVisible.forgotpw" @click="togglePasswordVisibility('forgotpw')"/>
-                        <span class="error-message" v-if="!forgotPassword.isPasswordValid">{{ forgotPassword.passwordErrorMsg }}</span>
-                    </div>
-                </div>
-                <div class="form-group" :class="{ error: !forgotPassword.isPasswordMatched }">
-                    <label class="input-label required">再次確認新密碼</label>
-                    <div class="input-wrapper with-icon">
-                        <input 
-                          :type="passwordVisible.forgotpwConfirm ? 'text' : 'password'" 
-                          class="input-field" 
-                          placeholder="請再次輸入密碼" 
-                          v-model="forgotPassword.confirmPassword"
-                          autocomplete="off"
-                        >
-                        <EyeoffIcon class="input-icon" v-if="!passwordVisible.forgotpwConfirm" @click="togglePasswordVisibility('forgotpwConfirm')"/>
-                        <EyeIcon class="input-icon" v-if="passwordVisible.forgotpwConfirm" @click="togglePasswordVisibility('forgotpwConfirm')"/>
-                        <span class="error-message" v-if="!forgotPassword.isPasswordMatched">{{ forgotPassword.passwordMatchErrorMsg }}</span>
-                    </div>
-                </div>
-                <div class="button-field">
-                    <button class="btn_filled" type="submit">更新密碼</button>
-                </div>   
             </form>
             </div>
         </div>
