@@ -6,21 +6,62 @@
 <script setup>
 import BackIcon from "@/components/icons/IconBack.vue";
 import AdminEyeIcon from "@/components/icons/IconAdminEye.vue";
+import { ref, onMounted, inject} from 'vue';
+import { useRouter } from 'vue-router';
+const router = useRouter();
+import eventBus from '../../eventbus/eventbus.js';
+import GetUserData from '../../js/view/Backend/checkUserDB_UserData.js'
 
-const props = defineProps({
-  userInfo: {
-    type: Object,
-    required: true,
-    // 彈窗內容資料
-    default: () => ({
-      id: 'TID201111',
-      name: `王測試`, //無法確認 ICON 是否可以用外部引入.vue檔方式，目前先使用字串方式
-      email: 'test@gmail.com',
-      avatar: "http://127.0.0.1:5500/img/pic-featured_1.svg",
-      MissionGeneralData: {},
-    }),
-  },
+const emitter = inject('emitter');   // Inject `emitter`
+
+onMounted(() => {
+  // eventBus.on('viewUser', getUserData);
+
+
+  emitter.on('viewUser', getUserData);
+  // eventBus.on('viewUser', async(userID) => {
+  //   sessionStorage.setItem('selectedUserID', userID);
+  //   console.log(`目前點選的會員資料的會員ID是: ${sessionStorage.getItem('selectedUserID')}`);
+  //   const data =  await GetUserData(userID)
+
+  //   console.log(data);
+  // })
+  console.log("讀取會員資料!");
+  
+  
+  
 });
+
+// onUnmounted(() => {
+
+//   eventBus.off('viewUser', getUserData);
+
+// })
+
+const userData = ref({
+  id: '',
+  name: '',
+  email: '',
+  avatar: '',
+  MissionGeneralData: {},
+})
+
+const getUserData = (userID) => {
+  console.log(`目前點選的會員資料的會員ID是: ${userID}`);
+  const data =  GetUserData(userID)
+
+  console.log(data);
+  console.log(userData.value);
+
+  userData.value.id = data.會員編號;
+  
+  userData.value.name = data.會員姓名;
+  userData.value.email = data.電子郵件;
+  // userData.value.avatar = data.avatar;
+  userData.value.MissionGeneralData = data.MissionGeneralData;
+  
+}
+
 
 
 // 遊戲資料頁籤
@@ -156,19 +197,19 @@ const tabs = [
     <div class="user-profile">
       <p class="title2 bold">基本資料</p>
       <div class="profile-card">
-        <img :src="props.userInfo.avatar" alt="會員圖像" class="avatar" />
+        <img src="" alt="會員圖像" class="avatar" />
         <div class="info">
           <div class="info-row">
             <p class="info-title bold">會員 ID</p>
-            <span>{{ props.userInfo.id }}</span>
+            <!-- <span>{{ userData.value.id }}</span> -->
           </div>
           <div class="info-row">
             <p class="info-title bold">姓名</p>
-            <span>{{ props.userInfo.name }}</span>
+            <!-- <span>{{ userData.value.name }}</span> -->
           </div>
           <div class="info-row">
             <p class="info-title bold">電子郵件</p>
-            <span>{{ props.userInfo.email }}</span>
+            <!-- <span>{{ userData.value.email }}</span> -->
           </div>
         </div>
       </div>

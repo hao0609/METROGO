@@ -7,9 +7,16 @@
 <script setup> 
   import BackIcon from '@/components/icons/IconBack.vue';
   import AdminEyeIcon from '@/components/icons/IconAdminEye.vue';
-  import { onMounted, ref,computed } from 'vue';
+  import { onMounted, ref,computed ,inject} from 'vue';
+
+  import { useRouter } from 'vue-router';
+  const router = useRouter();
   
   import GetAllUserData from '../../js/view/Backend/getAllUserDB_Data.js';
+
+  // import eventBus from '../../eventbus/eventbus.js';
+
+  
 
   // 宣告會員資料陣列
   const userItems = ref([]);
@@ -106,6 +113,21 @@
     }
   )
 
+  const emitter = inject('emitter'); // Inject `emitter`
+/**
+ * 把目前選取的該會員資料的會員ID 透過 eventBus 丟給 AdminUserDataView
+ * @param {string} userID - 目前點選會員資料的會員ID
+ */
+  const viewUser = (userID) => {
+    // viewUser: 自定義事件名稱 / userID: 會員ID
+    console.log(userID);
+
+    emitter.emit('viewUser', userID);
+
+    router.push('/admin/user-data');
+   
+  }
+
 
 </script>
 
@@ -152,7 +174,7 @@
                 <td>{{ user.會員註冊日期 }}</td>
                 <td>{{ user.點數積分 }}</td>
                 <td class="action-buttons">
-                  <button class="table-btn edit-btn">
+                  <button class="table-btn edit-btn" @click="viewUser(user.會員編號)">
                     <AdminEyeIcon/>
                   </button>
                 </td>
