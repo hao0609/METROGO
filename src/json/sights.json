@@ -4,37 +4,55 @@
       "sight_name": "新店",
       "sight_banner_title": "潭光山色漫步吊橋",
       "sight_intro": "清澈碧綠的水面加上壯觀的吊橋，悠閒地飽覽這潭光山景，加上與朋友一同划船，或是騎自行車、體驗立槳SUP，一同品嘗當地美食，夜晚還有氣氛浪漫的夜景。",
-      "sight_img": "/src/assets/images/line/bitan_02_w300xh417.jpg"
+      "sight_img": "/src/assets/images/line/bitan_02_w300xh417.jpg",
+      "dialog_desc": "清澈碧綠的水面加上壯觀的吊橋，悠閒地飽覽這潭光山景，加上與朋友一同划船，或是騎自行車、體驗立槳SUP，一同賞景喝下午茶，品嘗當地美食，夜晚燈光點綴橋面與水岸，景色浪漫迷人。鄰近捷運新店站，交通便利，是台北人周末放鬆、親子同遊或約會的理想去處。",
+      "info_address":"新北市新店區北宜路1段2號",
+      "info_number":"02-2181-2345 "
     },
     {
       "sight_name": "中山",
       "sight_banner_title": "南西的時尚與特色",
       "sight_intro": "最具文藝氣息與時尚氛圍的購物、美食與文化聚集地。結合百貨購物、特色咖啡廳、精品選物店、日系品牌、文創書店與夜生活，想逛街、喝咖啡、找美食，南西商圈都是絕佳選擇！",
-      "sight_img": "/src/assets/images/line/zhongshan_station_01_w300xh417.jpg"
+      "sight_img": "/src/assets/images/line/zhongshan_station_01_w300xh417.jpg",
+      "dialog_desc": "最具文藝氣息與時尚氛圍的購物、美食與文化聚集地。結合百貨購物、特色咖啡廳、精品選物店、日系品牌、文創書店與夜生活，此外，中山北路與赤峰街一帶有許多獨立書店、選物店與特色咖啡廳，充滿文青與設計氛圍。美食選擇多元，從日式料理、異國餐廳到傳統小吃一應俱全。鄰近的條通區則以日式居酒屋與酒吧聞名，是下班後放鬆的好去處。想逛街、喝咖啡、找美食，南西商圈都是絕佳選擇！",
+      "info_address":"臺北市大同區南京西路55號",
+      "info_number":"02-2181-2345 "
     },
     {
       "sight_name": "公館",
       "sight_banner_title": "超學生味的商圈",
       "sight_intro": "公館商圈鄰近臺灣大學、臺灣科技大學、師範大學公館校區，提供市民及學生食衣住行育樂機能性完善的購物商圈",
-      "sight_img": "/src/assets/images/line/NTU_01_w300xh417.jpg"
+      "sight_img": "/src/assets/images/line/NTU_01_w300xh417.jpg",
+      "dialog_desc": "公館商圈鄰近臺灣大學、臺灣科技大學、師範大學公館校區，結合美食、購物與文青風格。這裡有眾多學生愛去的平價美食，如藍家割包、陳三鼎黑糖珍珠鮮奶等經典小吃，水源市場與公館夜市提供多樣化餐飲選擇，吸引饕客前來，提供市民及學生食衣住行育樂機能性完善的購物商圈。",
+      "info_address":"臺北市中正區羅斯福路4段64之1號",
+      "info_number":"02-2181-2345 "
     },
     {
       "sight_name": "台北小巨蛋",
       "sight_banner_title": "東區的追星商圈",
       "sight_intro": "這裡結合演唱會、體育活動、美食、購物與娛樂，是台北東區的重要商圈之一，不論是追星族、購物狂、美食愛好者，還是運動健身族群，都能在這裡找到樂趣！",
-      "sight_img": "/src/assets/images/line/taipei_arena_07_w300xh417.jpg"
+      "sight_img": "/src/assets/images/line/taipei_arena_07_w300xh417.jpg",
+      "dialog_desc": "小巨蛋可容納約一萬五千名觀眾，這裡經常舉辦國際級演唱會、體育賽事與大型展覽，吸引眾多樂迷與運動愛好者，加上美食、購物與娛樂，是台北東區的重要商圈之一，不論是追星族、購物狂、美食愛好者，還是運動健身族群，都能在這裡找到樂趣！",
+      "info_address":"臺北市松山區南京東路四段2號",
+      "info_number":"02-2578-3536 "
     },
     {
       "sight_name": "中正紀念堂",
       "sight_banner_title": "老台北的風情文藝",
       "sight_intro": "展覽、舞台劇、欣賞音樂表演，也可以餵魚、看憲兵交接，周邊涵蓋了傳統市場、美食餐廳、文創書店與藝文展演空間，這裡適合喜歡人文氣息、老台北風情與藝文活動的朋友。",
-      "sight_img": "/src/assets/images/line/ChiangKai-ShekMemorialHallStation_5_w300xh417.jpg"
+      "sight_img": "/src/assets/images/line/ChiangKai-ShekMemorialHallStation_5_w300xh417.jpg",
+      "dialog_desc": "展覽、舞台劇、欣賞音樂表演，也可以餵魚、看憲兵交接，周邊涵蓋了傳統市場、美食餐廳、文創書店與藝文展演空間，這裡適合喜歡人文氣息、老台北風情與藝文活動的朋友，商圈內還有南門市場，提供傳統中式點心與各式美食，此外，附近也有許多特色咖啡廳與文青小店，適合散步與休憩。",
+      "info_address":"臺北市中正區中山南路21號",
+      "info_number":"02-2343-1100"
     },
     {
       "sight_name": "松山",
       "sight_banner_title": "媽祖加持的夜市",
       "sight_intro": "聚集了台灣傳統小吃、異國料理、特色甜點，讓人一邊逛街一邊吃遍各種美食。夜市旁還有松山慈祐宮、五分埔商圈、彩虹橋等景點，適合來場吃美食＋購物＋散步的一日遊！",
-      "sight_img": "/src/assets/images/line/songshan_station_02_w300xh417.jpg"
+      "sight_img": "/src/assets/images/line/songshan_station_02_w300xh417.jpg",
+      "dialog_desc": "聚集了台灣傳統小吃、異國料理、特色甜點，讓人一邊逛街一邊吃遍各種美食。夜市旁還有歷史悠久的松山慈祐宮，恭奉主神是媽祖娘娘，香火鼎盛、信徒眾多，這裡也鄰近五分埔成衣商圈、彩虹橋等景點，適合來場進香＋美食＋購物＋散步的一日遊！",
+      "info_address":"臺北市松山區饒河街",
+      "info_number":"02-2766-8876"
     }
   ],
   "文湖線": [
@@ -44,7 +62,7 @@
       "sight_intro":"亞洲規模最大的動物園之一，適合親子同遊，搭乘貓空纜車，可俯瞰台北市景，貓空以盛產鐵觀音茶聞名，許多茶館提供泡茶體驗，適合放鬆身心。有樟樹步道、指南宮、樟山寺等，適合健行與賞景。",
       "sight_img": "/src/assets/images/line/taipei_zoo_04_w300xh417.jpg",
       "dialog_desc": "亞洲規模最大的動物園之一，擁有各種珍稀動物，如大貓熊、無尾熊等，適合親子遊覽，提供豐富的生態教育與觀賞體驗，另外搭乘貓空纜車，可俯瞰台北市景，貓空以盛產鐵觀音茶聞名，許多茶館提供泡茶體驗，適合放鬆身心，附近有樟樹步道、指南宮、樟山寺等，適合健行與賞景。",
-      "info_address":"台北市文山區新光路二段30號",
+      "info_address":"臺北市文山區新光路二段30號",
       "info_number":"02-2938-2300"
     },
     {
