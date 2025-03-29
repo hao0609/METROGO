@@ -169,7 +169,7 @@ p {
   align-items: center;
   gap: 30px;
   --swiper-navigation-color: #ffffff; /* 導航按鈕顏色 */
-  --swiper-navigation-size: 35px; /* 導航按鈕大小 */
+  --swiper-navigation-size: 24px; /* 導航按鈕大小 */
 }
 
 swiper-slide {
@@ -400,8 +400,8 @@ swiper-slide {
 
   // GO編精選
   .featured-container {
-    gap: 20px;
-    padding: 20px;
+    gap: 24px;
+    padding: 48px;
   }
 
   .featured-title {

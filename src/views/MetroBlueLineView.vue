@@ -11,6 +11,32 @@ import { Swiper, SwiperSlide } from "swiper/vue";
 import { Pagination } from "swiper/modules";
 // 從 JSON 檔取得資料
 import sightsData from "@/json/sights.json";
+import featuredData from "@/json/featured.json";
+
+const selectedArticles = ref([]);
+
+// 隨機選取 2 篇 category:blue 的推薦文章
+const getRandomArticles = () => {
+  let allArticles = [];
+
+  // 將 JSON 裡的所有文章扁平化為一個陣列，並篩選出 category:blue 的資料
+  for (const line in featuredData) {
+    const filteredArticles = featuredData[line].filter((article) => {
+      return article && article.category === "blue"; // 確保 article 存在並且有 category
+    });
+
+    if (filteredArticles.length > 0) {
+      allArticles.push(...filteredArticles);
+    }
+  }
+
+  // 隨機排序並選取前 2 篇
+  selectedArticles.value = allArticles
+    .sort(() => 0.5 - Math.random()) // 隨機排序
+    .slice(0, 2); // 取前 2 筆
+};
+// 初始化時執行
+onMounted(getRandomArticles);
 
 // 將 JSON 數據轉換為 ref
 const sights = ref(sightsData);
@@ -78,7 +104,7 @@ const isDialogVisible = ref(false);
 function showSightDetail(index) {
   currentSightDetail.value = currentLineSights.value[index];
   // 塞入判斷視窗是否開啟共用變數
-  localStorage.setItem('isDialogOpen','Y')
+  localStorage.setItem("isDialogOpen", "Y");
   isDialogVisible.value = true;
   // 禁止背景滾動
   // document.body.style.overflow = "hidden";
@@ -89,7 +115,7 @@ function showSightDetail(index) {
 function closeSightDetail() {
   isDialogVisible.value = false;
   // 塞入判斷視窗是否開啟共用變數
-  localStorage.setItem('isDialogOpen','N')
+  localStorage.setItem("isDialogOpen", "N");
   // 允許背景滾動
   // document.body.style.overflow = "";
 }
@@ -186,11 +212,7 @@ const messageData = ref([
       <h1 class="metro-words">METROMETRO</h1>
       <div class="introduce">
         <div class="banner-group group-1">
-          <div
-            class="banner"
-            v-if="currentLineSights[0]"
-            @click="showSightDetail(0)"
-          >
+          <div class="banner" v-if="currentLineSights[0]" @click="showSightDetail(0)">
             <div
               class="banner-img"
               :style="{
@@ -208,11 +230,7 @@ const messageData = ref([
               </p>
             </div>
           </div>
-          <div
-            class="banner"
-            v-if="currentLineSights[1]"
-            @click="showSightDetail(1)"
-          >
+          <div class="banner" v-if="currentLineSights[1]" @click="showSightDetail(1)">
             <div
               class="banner-img"
               :style="{
@@ -233,11 +251,7 @@ const messageData = ref([
         </div>
 
         <div class="banner-group group-2">
-          <div
-            class="banner"
-            v-if="currentLineSights[2]"
-            @click="showSightDetail(2)"
-          >
+          <div class="banner" v-if="currentLineSights[2]" @click="showSightDetail(2)">
             <div
               class="banner-img"
               :style="{
@@ -256,11 +270,7 @@ const messageData = ref([
             </div>
           </div>
           <h1 class="banner-group-title">{{ currentLine }}</h1>
-          <div
-            class="banner"
-            v-if="currentLineSights[3]"
-            @click="showSightDetail(3)"
-          >
+          <div class="banner" v-if="currentLineSights[3]" @click="showSightDetail(3)">
             <div
               class="banner-img"
               :style="{
@@ -281,11 +291,7 @@ const messageData = ref([
         </div>
 
         <div class="banner-group group-3">
-          <div
-            class="banner"
-            v-if="currentLineSights[4]"
-            @click="showSightDetail(4)"
-          >
+          <div class="banner" v-if="currentLineSights[4]" @click="showSightDetail(4)">
             <div
               class="banner-img"
               :style="{
@@ -303,11 +309,7 @@ const messageData = ref([
               </p>
             </div>
           </div>
-          <div
-            class="banner"
-            v-if="currentLineSights[5]"
-            @click="showSightDetail(5)"
-          >
+          <div class="banner" v-if="currentLineSights[5]" @click="showSightDetail(5)">
             <div
               class="banner-img"
               :style="{
@@ -384,9 +386,7 @@ const messageData = ref([
             <div class="sight-basic-info">
               <div>
                 <span>地址：</span
-                ><span>{{
-                  currentSightDetail.info_address || "暫無資料"
-                }}</span>
+                ><span>{{ currentSightDetail.info_address || "暫無資料" }}</span>
               </div>
               <div>
                 <span>聯絡電話：</span
@@ -394,9 +394,7 @@ const messageData = ref([
               </div>
             </div>
             <p>
-              {{
-                currentSightDetail.dialog_desc || currentSightDetail.sight_intro
-              }}
+              {{ currentSightDetail.dialog_desc || currentSightDetail.sight_intro }}
             </p>
           </div>
           <div class="dialog-cta">
@@ -411,10 +409,16 @@ const messageData = ref([
     <MetroLineTitle title="GO精選" />
     <div class="section-group">
       <div
+        v-for="(article, index) in selectedArticles"
+        :key="index"
         class="go-choise-img"
-        style="
-          background-image: url('/src/assets/images/line/hot_pot_01_w600xh400.jpg');
-        "
+        :style="{ backgroundImage: `url(${article.featured_main_photo})` }"
+      >
+        <h2 class="group-title">{{ article.group_title }}</h2>
+      </div>
+      <!-- <div
+        class="go-choise-img"
+        style="background-image: url('/src/assets/images/line/hot_pot_01_w600xh400.jpg')"
       >
         <h2 class="group-title">火鍋季開跑</h2>
       </div>
@@ -425,7 +429,7 @@ const messageData = ref([
         "
       >
         <h2 class="group-title">耶誕城派對</h2>
-      </div>
+      </div> -->
     </div>
 
     <!-- 半日遊行程推薦 -->
@@ -437,7 +441,7 @@ const messageData = ref([
           background-image: url('/src/assets/images/line/ximending_02_w1312xh340.jpg');
         "
       >
-      <h1 class="group-title white">西門町</h1>
+        <h1 class="group-title white">西門町</h1>
       </div>
     </router-link>
 
@@ -450,7 +454,7 @@ const messageData = ref([
           background-image: url('/src/assets/images/line/longshan_temple_02_w1312xh340.jpg');
         "
       >
-      <h1 class="group-title white">龍山寺</h1>
+        <h1 class="group-title white">龍山寺</h1>
       </div>
     </router-link>
 

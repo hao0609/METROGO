@@ -11,6 +11,32 @@ import { Swiper, SwiperSlide } from "swiper/vue";
 import { Pagination } from "swiper/modules";
 // 從 JSON 檔取得資料
 import sightsData from "@/json/sights.json";
+import featuredData from "@/json/featured.json";
+
+const selectedArticles = ref([]);
+
+// 隨機選取 2 篇 category:blue 的推薦文章
+const getRandomArticles = () => {
+  let allArticles = [];
+
+  // 將 JSON 裡的所有文章扁平化為一個陣列，並篩選出 category:red 的資料
+  for (const line in featuredData) {
+    const filteredArticles = featuredData[line].filter((article) => {
+      return article && article.category === "red"; // 確保 article 存在並且有 category
+    });
+
+    if (filteredArticles.length > 0) {
+      allArticles.push(...filteredArticles);
+    }
+  }
+
+  // 隨機排序並選取前 2 篇
+  selectedArticles.value = allArticles
+    .sort(() => 0.5 - Math.random()) // 隨機排序
+    .slice(0, 2); // 取前 2 筆
+};
+// 初始化時執行
+onMounted(getRandomArticles);
 
 // 將 JSON 數據轉換為 ref
 const sights = ref(sightsData);
@@ -383,6 +409,14 @@ const messageData = ref([
     <MetroLineTitle title="GO精選" />
     <div class="section-group">
       <div
+        v-for="(article, index) in selectedArticles"
+        :key="index"
+        class="go-choise-img"
+        :style="{ backgroundImage: `url(${article.featured_main_photo})` }"
+      >
+        <h2 class="group-title">{{ article.group_title }}</h2>
+      </div>
+      <!-- <div
         class="go-choise-img"
         style="background-image: url('/src/assets/images/line/hot_pot_01_w600xh400.jpg')"
       >
@@ -395,7 +429,7 @@ const messageData = ref([
         "
       >
         <h2 class="group-title">耶誕城派對</h2>
-      </div>
+      </div> -->
     </div>
 
     <!-- 半日遊行程推薦 -->
