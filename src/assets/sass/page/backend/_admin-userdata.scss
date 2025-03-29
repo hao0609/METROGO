@@ -73,4 +73,32 @@
         justify-content:flex-end;
       }
     }
+
+    .CheckedinStatus_Box{
+
+      width: 125px;
+      display: flex;
+      justify-content: space-between;
+    }
+    
+    .CheckedinStatus_Box > .CheckedInStatus{
+      width: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 5px;
+      background-color:$neutral-150;
+    }
+    
+    // 如果是已打卡 
+    .checked-in{
+      background-color:$metro-green !important;
+      color: $neutral-0;
+    }
+    // 如果是未打卡
+    .not-checked-in{
+      background-color:$metro-red !important;
+      color: $neutral-0;
+    
+    }
   }
