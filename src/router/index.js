@@ -261,9 +261,10 @@ const router = createRouter({
 
     // 小編精選
     // {
-    //   path: "/journey-featured",
-    //   name: "小編精選",
+    //   path: "/journey-featured/:category/:id", // 動態路由
+    //   name: "JourneyFeatured",
     //   component: JourneyFeaturedView,
+    //   props: true // 讓 category 和 id 當作 props 傳入
     // },
 
     // 小編精選

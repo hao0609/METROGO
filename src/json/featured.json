@@ -2,6 +2,8 @@
     "板南線": [
         {
             "id": 1,
+            "category": "blue",
+            "group_title": "火鍋季開跑",
             "journey_featured_name": "天冷就要吃鍋！板南線老饕必吃火鍋！",
             "featured_main_photo": "/src/assets/images/featured/pic-featured_blue_hotpot_main.svg",
             "featured_photos": [
@@ -32,6 +34,8 @@
         },
         {
             "id": 2,
+            "category": "blue",
+            "group_title": "大巨蛋活動",
             "journey_featured_name": "開箱台北大巨蛋！全台最大多功能場館！",
             "featured_main_photo": "",
             "featured_photos": [
@@ -64,6 +68,8 @@
       "淡水信義線": [
         {
             "id": 1,
+            "category": "red",
+            "group_title": "必吃小籠包",
             "journey_featured_name": "觀光客必吃小籠包！朝聖信義東門鼎泰豐總店！",
             "featured_main_photo": "/src/assets/images/featured/pic-featured_red_dumpling_main.svg",
             "featured_photos": [
@@ -94,6 +100,8 @@
         },
         {
             "id": 2,
+            "category": "red",
+            "group_title": "漫遊金色海岸",
             "journey_featured_name": "漫遊金色海岸！淡水八里渡船體驗去！",
             "featured_main_photo": "/src/assets/images/featured/pic-featured_red_boat_main.svg",
             "featured_photos": [
@@ -126,6 +134,8 @@
     "松山新店線": [
       {
         "id": 1,
+        "category": "green",
+        "group_title": "台北玩水景點",
         "journey_featured_name": "台北玩水景點！銅板價親子友善游泳玩水好去處！",
         "featured_main_photo": "/src/assets/images/featured/pic-featured_green_waterpark_main.svg",
         "featured_photos": [
@@ -156,6 +166,8 @@
       },
       {
         "id": 2,
+        "category": "green",
+        "group_title": "推車港式飲茶",
         "journey_featured_name": "推車港式飲茶推薦！文湖線必吃經典港點！",
         "featured_main_photo": "/src/assets/images/featured/pic-featured_green_dimsum_main.svg",
         "featured_photos": [
@@ -188,6 +200,8 @@
     "文湖線": [
       {
         "id": 1,
+        "category": "brown",
+        "group_title": "親子旅遊去",
         "journey_featured_name": "來一個親子之旅！文湖線必去的動物園！",
         "featured_main_photo": "/src/assets/images/featured/pic-featured_brown_zoo_main.svg",
         "featured_photos": [
@@ -218,6 +232,8 @@
       },
       {
         "id": 2,
+        "category": "brown",
+        "group_title": "品嘗異國美食",
         "journey_featured_name": "百道異國美食吃到飽！海陸百匯在大直！",
         "featured_main_photo": "/src/assets/images/featured/pic-featured_brown_buffet_main.svg",
         "featured_photos": [
@@ -250,21 +266,23 @@
     "中和新蘆線": [
       {
         "id": 1,
+        "category": "yellow",
+        "group_title": "必吃永和豆漿",
         "journey_featured_name": "24小時全天候營業！傳統必吃永和豆漿推薦！",
-        "featured_main_photo": "",
+        "featured_main_photo": "/src/assets/images/featured/pic-featured_yellow_soymilk_main.svg",
         "featured_photos": [
-            "",
-            "",
-            "",
-            "",
-            ""
+            "/src/assets/images/featured/pic-featured_yellow_soymilk_1.svg",
+            "/src/assets/images/featured/pic-featured_yellow_soymilk_2.svg",
+            "/src/assets/images/featured/pic-featured_yellow_soymilk_3.svg",
+            "/src/assets/images/featured/pic-featured_yellow_soymilk_4.svg",
+            "/src/assets/images/featured/pic-featured_yellow_soymilk_5.svg"
         ],        
         "store_info": {
             "name": "世界豆漿大王",
             "address": "234新北市永和區永和路二段284號",
             "hours": "24 小時營業",
             "phone": "02 8927 0000",
-            "info_photo": ""
+            "info_photo": "/src/assets/images/featured/pic-featured_yellow_soymilk_info.svg"
           },          
         "featured_paragraphs": [
             "世界豆漿大王是台灣極具代表性的傳統早餐店之一，憑藉其獨特的口味和豐富的餐點選擇，成為了不少在地人與遊客日常生活的一部分。無論是早晨的第一餐，還是夜宵，這家豆漿店提供的經典台灣早餐，已經深植人心。尤其對於熱愛傳統台灣味的朋友來說，這裡無疑是必訪的美食地點之一。",
@@ -280,6 +298,8 @@
       },
       {
         "id": 2,
+        "category": "yellow",
+        "group_title": "煙火盛大登場",
         "journey_featured_name": "台北煙火最大盛會！大稻埕夏日節煙火登場！",
         "featured_main_photo": "/src/assets/images/featured/pic-featured_yellow_fireworks_main.svg",
         "featured_photos": [

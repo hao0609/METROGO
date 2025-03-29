@@ -78,7 +78,7 @@ const isDialogVisible = ref(false);
 function showSightDetail(index) {
   currentSightDetail.value = currentLineSights.value[index];
   // 塞入判斷視窗是否開啟共用變數
-  localStorage.setItem('isDialogOpen','Y')
+  localStorage.setItem("isDialogOpen", "Y");
   isDialogVisible.value = true;
   // 禁止背景滾動
   // document.body.style.overflow = "hidden";
@@ -89,7 +89,7 @@ function showSightDetail(index) {
 function closeSightDetail() {
   isDialogVisible.value = false;
   // 塞入判斷視窗是否開啟共用變數
-  localStorage.setItem('isDialogOpen','N')
+  localStorage.setItem("isDialogOpen", "N");
   // 允許背景滾動
   // document.body.style.overflow = "";
 }
@@ -186,11 +186,7 @@ const messageData = ref([
       <h1 class="metro-words">METROMETRO</h1>
       <div class="introduce">
         <div class="banner-group group-1">
-          <div
-            class="banner"
-            v-if="currentLineSights[0]"
-            @click="showSightDetail(0)"
-          >
+          <div class="banner" v-if="currentLineSights[0]" @click="showSightDetail(0)">
             <div
               class="banner-img"
               :style="{
@@ -208,11 +204,7 @@ const messageData = ref([
               </p>
             </div>
           </div>
-          <div
-            class="banner"
-            v-if="currentLineSights[1]"
-            @click="showSightDetail(1)"
-          >
+          <div class="banner" v-if="currentLineSights[1]" @click="showSightDetail(1)">
             <div
               class="banner-img"
               :style="{
@@ -233,11 +225,7 @@ const messageData = ref([
         </div>
 
         <div class="banner-group group-2">
-          <div
-            class="banner"
-            v-if="currentLineSights[2]"
-            @click="showSightDetail(2)"
-          >
+          <div class="banner" v-if="currentLineSights[2]" @click="showSightDetail(2)">
             <div
               class="banner-img"
               :style="{
@@ -256,11 +244,7 @@ const messageData = ref([
             </div>
           </div>
           <h1 class="banner-group-title">{{ currentLine }}</h1>
-          <div
-            class="banner"
-            v-if="currentLineSights[3]"
-            @click="showSightDetail(3)"
-          >
+          <div class="banner" v-if="currentLineSights[3]" @click="showSightDetail(3)">
             <div
               class="banner-img"
               :style="{
@@ -281,11 +265,7 @@ const messageData = ref([
         </div>
 
         <div class="banner-group group-3">
-          <div
-            class="banner"
-            v-if="currentLineSights[4]"
-            @click="showSightDetail(4)"
-          >
+          <div class="banner" v-if="currentLineSights[4]" @click="showSightDetail(4)">
             <div
               class="banner-img"
               :style="{
@@ -303,11 +283,7 @@ const messageData = ref([
               </p>
             </div>
           </div>
-          <div
-            class="banner"
-            v-if="currentLineSights[5]"
-            @click="showSightDetail(5)"
-          >
+          <div class="banner" v-if="currentLineSights[5]" @click="showSightDetail(5)">
             <div
               class="banner-img"
               :style="{
@@ -384,9 +360,7 @@ const messageData = ref([
             <div class="sight-basic-info">
               <div>
                 <span>地址：</span
-                ><span>{{
-                  currentSightDetail.info_address || "暫無資料"
-                }}</span>
+                ><span>{{ currentSightDetail.info_address || "暫無資料" }}</span>
               </div>
               <div>
                 <span>聯絡電話：</span
@@ -394,9 +368,7 @@ const messageData = ref([
               </div>
             </div>
             <p>
-              {{
-                currentSightDetail.dialog_desc || currentSightDetail.sight_intro
-              }}
+              {{ currentSightDetail.dialog_desc || currentSightDetail.sight_intro }}
             </p>
           </div>
           <div class="dialog-cta">
@@ -418,7 +390,9 @@ const messageData = ref([
       </div>
       <div
         class="go-choise-img"
-        style="background-image: url('/src/assets/images/line/BanqiaoStation_03_600x400.jpg')"
+        style="
+          background-image: url('/src/assets/images/line/BanqiaoStation_03_600x400.jpg');
+        "
       >
         <h2 class="group-title">耶誕城派對</h2>
       </div>
@@ -429,9 +403,11 @@ const messageData = ref([
     <router-link to="/tour/red-line" class="tour-link">
       <div
         class="w-full-img"
-        style="background-image: url('/src/assets/images/line/Taipei101_02_w1312xh340.jpg')"
+        style="
+          background-image: url('/src/assets/images/line/Taipei101_02_w1312xh340.jpg');
+        "
       >
-      <h1 class="group-title white">101</h1>
+        <h1 class="group-title white">101</h1>
       </div>
     </router-link>
 
@@ -440,9 +416,11 @@ const messageData = ref([
     <router-link to="/tour/red-line" class="tour-link">
       <div
         class="w-full-img"
-        style="background-image: url('/src/assets/images/line/rongjin_gorgeous_time_01_w1312xh340.jpg')"
+        style="
+          background-image: url('/src/assets/images/line/rongjin_gorgeous_time_01_w1312xh340.jpg');
+        "
       >
-      <h1 class="group-title white">東門</h1>
+        <h1 class="group-title white">東門</h1>
       </div>
     </router-link>
 

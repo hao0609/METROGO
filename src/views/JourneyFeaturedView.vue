@@ -1,5 +1,66 @@
+<script setup>
+import { ref } from "vue";
+import { useRoute } from "vue-router";
+
+const route = useRoute();
+const category = route.params.category;
+const id = route.params.id;
+
+console.log("分類:", category);
+console.log("文章 ID:", id);
+
+// 各種組件
+import Navbar_V1 from "@/components/Navbar_V1.vue";
+import Footer from "@/components/Footer.vue";
+import FeaturedMain from "@/components/FeaturedMain.vue";
+import FeaturedSidebar from "@/components/FeaturedSidebar.vue";
+import FeaturedInfo from "@/components/FeaturedInfo.vue";
+import FeaturedContent from "@/components/FeaturedContent.vue";
+
+// 匯入 JSON 資料
+import featuredDataJson from "@/json/featured.json";
+
+// 取得分類 id 的資料
+const featuredData = ref(null);
+
+const targetId = 1;
+const targetCategory = "blue";
+const filteredData = computed(() => {
+  let results = [];
+  for (const line in featuredDataJson) {
+    results.push(
+      ...featuredDataJson[line].filter(
+        (item) => item.id === targetId && item.category === targetCategory
+      )
+    );
+  }
+  return results;
+});
+</script>
+
 <template>
   <Navbar_V1 />
+  <div v-if="featuredData" class="div-all lightred">
+    <!-- 主要標題&圖片 -->
+    <FeaturedMain :FeaturedMain="featuredData" />
+
+    <div class="journey-featured-info red">
+      <!-- 店家資訊 -->
+      <FeaturedInfo :FeaturedInfo="featuredData.store_info" />
+    </div>
+
+    <div class="featured-paragraph-main">
+      <div class="featured-paragraph">
+        <!-- 小編精選內容 -->
+        <FeaturedContent :FeaturedContent="featuredData" />
+
+        <!-- 小編精選熱門推薦 -->
+        <FeaturedSidebar />
+      </div>
+    </div>
+  </div>
+  <Footer />
+  <!-- <Navbar_V1 />
   <div class="div-all lightblue">
     <div class="featured-main">
       <div class="journey_featured_title1">
@@ -59,9 +120,7 @@
       </div>
     </div>
 
-    <!-- <FeaturedInfo /> -->
 
-    <!-- 店家資訊 -->
     <div class="journey-featured-info blue">
       <div class="featured-main">
         <h2 class="featured-info-title">詹記麻辣火鍋西門大世界</h2>
@@ -178,22 +237,8 @@
       </div>
     </div>
   </div>
-  <Footer />
+  <Footer /> -->
 </template>
-
-<script>
-import Navbar_V1 from "@/components/Navbar_V1.vue";
-import Footer from "../components/Footer.vue";
-import FeaturedInfo from "../components/FeaturedInfo.vue";
-
-export default {
-  components: {
-    Navbar_V1,
-    Footer,
-    FeaturedInfo,
-  },
-};
-</script>
 
 <style lang="scss" scoped>
 @import "@/assets/sass/page/journey-featured.scss";
