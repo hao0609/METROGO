@@ -1,3 +1,61 @@
+<script>
+import { useRouter } from "vue-router";
+import AdminLogoutIcon from "@/components/icons/IconAdminLogout.vue";
+import AdminHomeIcon from "@/components/icons/IconAdminHome.vue";
+import AdminOrderIcon from "@/components/icons/IconAdminOrder.vue";
+import AdminPhotoIcon from "@/components/icons/IconAdminPhoto.vue";
+import AdminProductIcon from "@/components/icons/IconAdminProduct.vue";
+import AdminNewsIcon from "@/components/icons/IconAdminNews.vue";
+import AdminRightIcon from "@/components/icons/IconAdminRight.vue";
+import AdminScheduleIcon from "@/components/icons/IconAdminSchedule.vue";
+import AdminUserIcon from "@/components/icons/IconAdminUser.vue";
+import DownIcon from "@/components/icons/IconDown.vue";
+
+export default {
+  name: "BackendSidebar",
+  components: {
+    AdminLogoutIcon,
+    AdminHomeIcon,
+    AdminOrderIcon,
+    AdminPhotoIcon,
+    AdminProductIcon,
+    AdminNewsIcon,
+    AdminRightIcon,
+    AdminScheduleIcon,
+    AdminUserIcon,
+    DownIcon,
+  },
+  data() {
+    return {
+      userManagementExpanded: false,
+      productManagementExpanded: false,
+      newsManagementExpanded: false,
+    };
+  },
+  methods: {
+    toggleUserManagement() {
+      this.userManagementExpanded = !this.userManagementExpanded;
+    },
+    toggleProductManagement() {
+      this.productManagementExpanded = !this.productManagementExpanded;
+    },
+    toggleNewsManagement() {
+      this.newsManagementExpanded = !this.newsManagementExpanded;
+    },
+  },
+  setup() {
+    const router = useRouter();
+
+    const logout = () => {
+      localStorage.removeItem("admin"); // 清除登入資訊
+      router.push("/backend-login"); // 跳轉到後台登入頁
+    };
+
+    return { logout };
+  },
+};
+</script>
+
 <template>
   <div class="sidebar">
     <!-- Logo 和管理者資訊 -->
@@ -52,22 +110,18 @@
             </span>
             會員資料
           </router-link>
-          <!--<router-link
-            to="/admin/user-record"
-            class="menu-item sub-item bold"
-            active-class="active"
-          >
-            <span class="menu-icon">
-              <AdminRightIcon />
-            </span>
-            活動紀錄查詢
-          </router-link>-->
         </div>
       </div>
 
-      <!-- 商城管理 -->
+      <!-- 商品管理 -->
+      <router-link to="/admin/store" class="menu-item bold" active-class="active">
+        <span class="menu-icon">
+          <AdminProductIcon />
+        </span>
+        商品管理
+      </router-link>
 
-      <div class="menu-group">
+      <!-- <div class="menu-group">
         <router-link
           to="/admin/store"
           class="menu-item has-submenu bold"
@@ -92,36 +146,10 @@
             </span>
             商品管理
           </router-link>
-          <!--<router-link
-            to="/admin/store-category"
-            class="menu-item sub-item bold"
-            active-class="active"
-          >
-            <span class="menu-icon">
-              <AdminRightIcon />
-            </span>
-            分類管理
-          </router-link>
-          <router-link
-            to="/admin/store-label"
-            class="menu-item sub-item bold"
-            active-class="active"
-          >
-            <span class="menu-icon">
-              <AdminRightIcon />
-            </span>
-            標籤管理
-          </router-link> -->
-        </div>
-      </div>
 
-      <!-- 訂單管理 
-      <router-link to="/admin/order" class="menu-item bold" active-class="active">
-        <span class="menu-icon">
-          <AdminOrderIcon />
-        </span>
-        訂單管理
-      </router-link> -->
+        </div>
+      </div> -->
+
 
       <!-- 最新消息管理 -->
       <router-link to="/admin/news" class="menu-item bold" active-class="active">
@@ -130,14 +158,6 @@
         </span>
         最新消息管理
       </router-link>
-
-      <!-- 行程管理 
-      <router-link to="/admin/schedule" class="menu-item bold" active-class="active">
-        <span class="menu-icon">
-          <AdminScheduleIcon />
-        </span>
-        行程管理
-      </router-link> -->
 
       <!-- 照片管理 
       <router-link to="/admin/photo" class="menu-item bold" active-class="active">
@@ -164,6 +184,7 @@
 
 .logo-section {
   margin-bottom: 24px;
+  outline: none;
 
   .logo {
     width: 176px;
@@ -290,61 +311,3 @@
   }
 }
 </style>
-
-<script>
-import { useRouter } from "vue-router";
-import AdminLogoutIcon from "@/components/icons/IconAdminLogout.vue";
-import AdminHomeIcon from "@/components/icons/IconAdminHome.vue";
-import AdminOrderIcon from "@/components/icons/IconAdminOrder.vue";
-import AdminPhotoIcon from "@/components/icons/IconAdminPhoto.vue";
-import AdminProductIcon from "@/components/icons/IconAdminProduct.vue";
-import AdminNewsIcon from "@/components/icons/IconAdminNews.vue";
-import AdminRightIcon from "@/components/icons/IconAdminRight.vue";
-import AdminScheduleIcon from "@/components/icons/IconAdminSchedule.vue";
-import AdminUserIcon from "@/components/icons/IconAdminUser.vue";
-import DownIcon from "@/components/icons/IconDown.vue";
-
-export default {
-  name: "BackendSidebar",
-  components: {
-    AdminLogoutIcon,
-    AdminHomeIcon,
-    AdminOrderIcon,
-    AdminPhotoIcon,
-    AdminProductIcon,
-    AdminNewsIcon,
-    AdminRightIcon,
-    AdminScheduleIcon,
-    AdminUserIcon,
-    DownIcon,
-  },
-  data() {
-    return {
-      userManagementExpanded: false,
-      productManagementExpanded: false,
-      newsManagementExpanded: false,
-    };
-  },
-  methods: {
-    toggleUserManagement() {
-      this.userManagementExpanded = !this.userManagementExpanded;
-    },
-    toggleProductManagement() {
-      this.productManagementExpanded = !this.productManagementExpanded;
-    },
-    toggleNewsManagement() {
-      this.newsManagementExpanded = !this.newsManagementExpanded;
-    },
-  },
-  setup() {
-    const router = useRouter();
-
-    const logout = () => {
-      localStorage.removeItem("admin"); // 清除登入資訊
-      router.push("/backend-login"); // 跳轉到後台登入頁
-    };
-
-    return { logout };
-  },
-};
-</script>
