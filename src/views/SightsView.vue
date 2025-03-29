@@ -467,7 +467,7 @@ onBeforeUnmount(() => {
             <p class="paragraph-title title1">{{ article.journey_featured_name }}</p>
             <p class="paragraph caption bold">{{ article.featured_paragraphs[0] }}</p>
             <router-link
-              :to="`/journey-featured${article.link.replace('.', '')}`"
+              :to="`/journey-featured/${article.category}/${article.id}`"
               class="article-link"
             >
               <div class="btn-container">

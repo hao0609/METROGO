@@ -1,15 +1,8 @@
 <script setup>
-import { ref } from "vue";
+import { ref, computed, onMounted, watch } from "vue";
 import { useRoute } from "vue-router";
+import featuredData from "@/json/featured.json"; // 引入 JSON 資料
 
-const route = useRoute();
-const category = route.params.category;
-const id = route.params.id;
-
-console.log("分類:", category);
-console.log("文章 ID:", id);
-
-// 各種組件
 import Navbar_V1 from "@/components/Navbar_V1.vue";
 import Footer from "@/components/Footer.vue";
 import FeaturedMain from "@/components/FeaturedMain.vue";
@@ -17,42 +10,81 @@ import FeaturedSidebar from "@/components/FeaturedSidebar.vue";
 import FeaturedInfo from "@/components/FeaturedInfo.vue";
 import FeaturedContent from "@/components/FeaturedContent.vue";
 
-// 匯入 JSON 資料
-import featuredDataJson from "@/json/featured.json";
+// 取得路由參數
+const route = useRoute();
 
-// 取得分類 id 的資料
-const featuredData = ref(null);
+// 用於儲存篩選後的資料
+const selectfeaturedData = ref(null);
 
-const targetId = 1;
-const targetCategory = "blue";
-const filteredData = computed(() => {
-  let results = [];
-  for (const line in featuredDataJson) {
-    results.push(
-      ...featuredDataJson[line].filter(
-        (item) => item.id === targetId && item.category === targetCategory
-      )
-    );
+// 先定義函式
+const fetchFeaturedData = () => {
+  const category = route.params.category; // 從路由取得 category
+  const id = parseInt(route.params.id); // 轉換 id 為數字
+
+  console.log("Category:", category);
+  console.log("ID:", id);
+
+  // 確保 JSON 檔案中有對應的 category
+  if (featuredData[category]) {
+    // 從對應的 category 中篩選 id
+    const selectedItem = featuredData[category].find((item) => item.id === id);
+
+    if (selectedItem) {
+      selectfeaturedData.value = selectedItem;
+      console.log("找到的資料:", selectedItem);
+    } else {
+      console.error("找不到對應的 id:", id);
+    }
+  } else {
+    console.error("找不到對應的 category:", category);
   }
-  return results;
+};
+
+// **onMounted 現在可以安全地呼叫 fetchFeaturedData**
+onMounted(() => {
+  fetchFeaturedData();
 });
+
+// 監聽 route.params 變化（如果需要動態更新）
+watch(() => route.params, fetchFeaturedData, { deep: true });
+
+// 計算屬性：根據 category 設定不同的主題樣式
+const categoryClass = computed(() => ({
+  lightblue: selectfeaturedData.value?.category === "blue",
+  lightred: selectfeaturedData.value?.category === "red",
+  lightgreen: selectfeaturedData.value?.category === "green",
+  lightyellow: selectfeaturedData.value?.category === "yellow",
+  lightbrown: selectfeaturedData.value?.category === "brown",
+}));
+
+const categoryinfoClass = computed(() => ({
+  blue: selectfeaturedData.value?.category === "blue",
+  red: selectfeaturedData.value?.category === "red",
+  green: selectfeaturedData.value?.category === "green",
+  yellow: selectfeaturedData.value?.category === "yellow",
+  brown: selectfeaturedData.value?.category === "brown",
+}));
 </script>
 
 <template>
   <Navbar_V1 />
-  <div v-if="featuredData" class="div-all lightred">
+  <div v-if="selectfeaturedData" :class="categoryClass" class="div-all">
     <!-- 主要標題&圖片 -->
-    <FeaturedMain :FeaturedMain="featuredData" />
+    <FeaturedMain :FeaturedMain="selectfeaturedData" />
 
-    <div class="journey-featured-info red">
+    <div
+      v-if="selectfeaturedData"
+      :class="categoryinfoClass"
+      class="journey-featured-info"
+    >
       <!-- 店家資訊 -->
-      <FeaturedInfo :FeaturedInfo="featuredData.store_info" />
+      <FeaturedInfo :FeaturedInfo="selectfeaturedData.store_info" />
     </div>
 
     <div class="featured-paragraph-main">
       <div class="featured-paragraph">
         <!-- 小編精選內容 -->
-        <FeaturedContent :FeaturedContent="featuredData" />
+        <FeaturedContent :FeaturedContent="selectfeaturedData" />
 
         <!-- 小編精選熱門推薦 -->
         <FeaturedSidebar />

@@ -1,29 +1,13 @@
 <template>
   <div class="featured-paragraph-content">
-    <p v-if="FeaturedContent.featured_paragraphs[0]" :key="index">
-      {{ FeaturedContent.featured_paragraphs[0] }}
-    </p>
-    <h3 v-if="FeaturedContent.featured_paragraphs[1]" :key="index">
-      {{ FeaturedContent.featured_paragraphs[1] }}
-    </h3>
-    <p v-if="FeaturedContent.featured_paragraphs[2]" :key="index">
-      {{ FeaturedContent.featured_paragraphs[2] }}
-    </p>
-    <h3 v-if="FeaturedContent.featured_paragraphs[3]" :key="index">
-      {{ FeaturedContent.featured_paragraphs[3] }}
-    </h3>
-    <p v-if="FeaturedContent.featured_paragraphs[4]" :key="index">
-      {{ FeaturedContent.featured_paragraphs[4] }}
-    </p>
-    <h3 v-if="FeaturedContent.featured_paragraphs[5]" :key="index">
-      {{ FeaturedContent.featured_paragraphs[5] }}
-    </h3>
-    <p v-if="FeaturedContent.featured_paragraphs[6]" :key="index">
-      {{ FeaturedContent.featured_paragraphs[6] }}
-    </p>
-    <p v-if="FeaturedContent.featured_paragraphs[7]" :key="index">
-      {{ FeaturedContent.featured_paragraphs[7] }}
-    </p>
+    <!-- 使用 v-for 來動態渲染段落和標題 -->
+    <div v-for="(content, index) in FeaturedContent.featured_paragraphs" :key="index">
+      <!-- 根據內容類型來渲染 p 或 h3 -->
+      <p v-if="index % 2 === 0" v-text="content"></p>
+      <!-- 假設偶數索引是段落 -->
+      <h3 v-else v-text="content"></h3>
+      <!-- 假設奇數索引是標題 -->
+    </div>
   </div>
 </template>
 

@@ -39,22 +39,18 @@ import NewsView from "../views/NewsView.vue";
 import NewsDetailView from "../views/NewsDetailView.vue";
 import UserProfileView from "../views/UserProfileView.vue";
 
-// import JourneyFeaturedView from "../views/JourneyFeaturedView.vue";
-import blue_hotpot from "../views/featured/blue-hotpot.vue";
-import blue_dome from "../views/featured/blue-dome.vue";
-import red_dumpling from "../views/featured/red-dumpling.vue";
-import red_boat from "../views/featured/red-boat.vue";
-import brown_zoo from "../views/featured/brown-zoo.vue";
-import brown_buffet from "../views/featured/brown-buffet.vue";
-import green_waterpark from "../views/featured/green-waterpark.vue";
-import green_dimsum from "../views/featured/green-dimsum.vue";
-import yellow_breakfast from "../views/featured/yellow-breakfast.vue";
-import yellow_fireworks from "../views/featured/yellow-fireworks.vue";
+import JourneyFeaturedView from "../views/JourneyFeaturedView.vue";
+// import blue_hotpot from "../views/featured/blue-hotpot.vue";
+// import blue_dome from "../views/featured/blue-dome.vue";
+// import red_dumpling from "../views/featured/red-dumpling.vue";
+// import red_boat from "../views/featured/red-boat.vue";
+// import brown_zoo from "../views/featured/brown-zoo.vue";
+// import brown_buffet from "../views/featured/brown-buffet.vue";
+// import green_waterpark from "../views/featured/green-waterpark.vue";
+// import green_dimsum from "../views/featured/green-dimsum.vue";
+// import yellow_breakfast from "../views/featured/yellow-breakfast.vue";
+// import yellow_fireworks from "../views/featured/yellow-fireworks.vue";
 
-// import featured_green from "../views/featured/green.vue";
-// import featured_red from "../views/featured/red.vue";
-// import featured_yellow from "../views/featured/yellow.vue";
-// import featured_brown from "../views/featured/brown.vue";
 
 // 後台
 import AdminMainpageView from "../views/backend/AdminMainpageView.vue";
@@ -260,64 +256,64 @@ const router = createRouter({
     },
 
     // 小編精選
-    // {
-    //   path: "/journey-featured/:category/:id", // 動態路由
-    //   name: "JourneyFeatured",
-    //   component: JourneyFeaturedView,
-    //   props: true // 讓 category 和 id 當作 props 傳入
-    // },
+    {
+      path: '/journey-featured/:category/:id',
+      name: '小編精選',
+      component: JourneyFeaturedView,
+      props: true, // 允許路由參數作為 props 傳遞
+    },
 
     // 小編精選
-    {
-      path: "/journey-featured/blue-hotpot",
-      name: "小編精選-藍線火鍋",
-      component: blue_hotpot,
-    },
-    {
-      path: "/journey-featured/blue-dome",
-      name: "小編精選-藍線大巨蛋",
-      component: blue_dome,
-    },
-    {
-      path: "/journey-featured/red-dumpling",
-      name: "小編精選-紅線小籠包",
-      component: red_dumpling,
-    },
-    {
-      path: "/journey-featured/red-boat",
-      name: "小編精選-紅線漁人碼頭",
-      component: red_boat,
-    },
-    {
-      path: "/journey-featured/brown-zoo",
-      name: "小編精選-棕線動物園",
-      component: brown_zoo,
-    },
-    {
-      path: "/journey-featured/brown-buffet",
-      name: "小編精選-棕線吃到飽",
-      component: brown_buffet,
-    },
-    {
-      path: "/journey-featured/green-waterpark",
-      name: "小編精選-綠線自來水",
-      component: green_waterpark,
-    },
-    {
-      path: "/journey-featured/green-dimsum",
-      name: "小編精選-綠線飲茶",
-      component: green_dimsum,
-    },
-    {
-      path: "/journey-featured/yellow-breakfast",
-      name: "小編精選-黃線永和豆漿",
-      component: yellow_breakfast,
-    },
-    {
-      path: "/journey-featured/yellow-fireworks",
-      name: "小編精選-黃線大稻埕煙火",
-      component: yellow_fireworks,
-    },
+    // {
+    //   path: "/journey-featured/blue-hotpot",
+    //   name: "小編精選-藍線火鍋",
+    //   component: blue_hotpot,
+    // },
+    // {
+    //   path: "/journey-featured/blue-dome",
+    //   name: "小編精選-藍線大巨蛋",
+    //   component: blue_dome,
+    // },
+    // {
+    //   path: "/journey-featured/red-dumpling",
+    //   name: "小編精選-紅線小籠包",
+    //   component: red_dumpling,
+    // },
+    // {
+    //   path: "/journey-featured/red-boat",
+    //   name: "小編精選-紅線漁人碼頭",
+    //   component: red_boat,
+    // },
+    // {
+    //   path: "/journey-featured/brown-zoo",
+    //   name: "小編精選-棕線動物園",
+    //   component: brown_zoo,
+    // },
+    // {
+    //   path: "/journey-featured/brown-buffet",
+    //   name: "小編精選-棕線吃到飽",
+    //   component: brown_buffet,
+    // },
+    // {
+    //   path: "/journey-featured/green-waterpark",
+    //   name: "小編精選-綠線自來水",
+    //   component: green_waterpark,
+    // },
+    // {
+    //   path: "/journey-featured/green-dimsum",
+    //   name: "小編精選-綠線飲茶",
+    //   component: green_dimsum,
+    // },
+    // {
+    //   path: "/journey-featured/yellow-breakfast",
+    //   name: "小編精選-黃線永和豆漿",
+    //   component: yellow_breakfast,
+    // },
+    // {
+    //   path: "/journey-featured/yellow-fireworks",
+    //   name: "小編精選-黃線大稻埕煙火",
+    //   component: yellow_fireworks,
+    // },
 
     // 後台
     // 後台登入頁面

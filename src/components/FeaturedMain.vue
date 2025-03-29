@@ -14,11 +14,15 @@
             />
           </div>
           <div class="side-images flex">
-            <div class="side-img-top">
+            <div
+              v-for="(photo, index) in FeaturedMain.featured_photos.slice(0, 1)"
+              :key="index"
+              class="side-img-top"
+            >
               <img
-                v-if="FeaturedMain.featured_photos[0]"
-                :src="FeaturedMain.featured_photos[0]"
-                alt=""
+                v-if="photo"
+                :src="photo"
+                :alt="'側邊圖片' + (index + 1)"
                 class="journey_featured_photo1"
               />
             </div>
@@ -33,28 +37,16 @@
           </div>
         </div>
         <div class="bottom-images flex">
-          <div class="bottom-img">
+          <div
+            v-for="(photo, index) in FeaturedMain.featured_photos.slice(2)"
+            :key="index"
+            class="bottom-img"
+          >
             <img
-              v-if="FeaturedMain.featured_photos[2]"
-              :src="FeaturedMain.featured_photos[2]"
-              alt=""
+              v-if="photo"
+              :src="photo"
+              :alt="'底部圖片' + (index + 3)"
               class="journey_featured_photo3"
-            />
-          </div>
-          <div class="bottom-img">
-            <img
-              v-if="FeaturedMain.featured_photos[3]"
-              :src="FeaturedMain.featured_photos[3]"
-              alt=""
-              class="journey_featured_photo4"
-            />
-          </div>
-          <div class="bottom-img">
-            <img
-              v-if="FeaturedMain.featured_photos[4]"
-              :src="FeaturedMain.featured_photos[4]"
-              alt=""
-              class="journey_featured_photo5"
             />
           </div>
         </div>
@@ -64,8 +56,12 @@
 </template>
 
 <script setup>
+// 接收來自父組件的 props
 defineProps({
-  FeaturedMain: Object, // 接收來自父元件的標題圖片
+  FeaturedMain: {
+    type: Object,
+    required: true, // 確保這個 prop 是必要的
+  },
 });
 </script>
 
