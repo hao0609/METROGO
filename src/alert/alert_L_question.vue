@@ -80,6 +80,10 @@ export default {
       this.isCorrect = this.selectedAnswer === this.question.correct;
       // 顯示結果彈窗
       this.showResult = true;
+      if (this.isCorrect) {
+        // 更新父組件的 `answered` 狀態
+        this.$emit("update-question-status", this.question.id);
+      }
     },
     handleCancel() {
       this.$emit("cancel");

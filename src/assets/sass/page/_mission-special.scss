@@ -171,6 +171,9 @@ body {
         text-decoration: none;
       }
     }
+    .question-icon {
+      display: none;
+    }
 
     .section_active {
       transition: all 0.3s ease;

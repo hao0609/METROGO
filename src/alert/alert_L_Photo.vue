@@ -56,16 +56,15 @@
   </div>
 </template>
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref, onMounted, watch } from "vue";
 // import alert_user_photo_open from "@/alert/alert_user_photo_open.vue";
 import alert_user_camera_open from "@/alert/alert_user_camera_open.vue";
 import alert_camera from "@/alert/alert_camera.vue";
 import alert_L_result_upload from "@/alert/alert_L_result_upload.vue";
 import { storage, database } from "@/firebase/firebaseConfig.js";
 import { ref as fsRef, uploadBytes, getDownloadURL } from "firebase/storage";
-import { doc, serverTimestamp, setDoc } from "firebase/firestore";
+// import { doc, serverTimestamp, setDoc } from "firebase/firestore";
 
-let photoIndex = 0;
 const props = defineProps({
   title: { type: String, default: "" },
   message: { type: String, default: "" },
@@ -84,7 +83,7 @@ const fileInput = ref(null);
 const selectedPhoto = ref(null); // 使用者上傳的檔案
 const downloadURL = ref(""); // 上傳檔案的下載連結
 const error = ref(""); // 上傳失敗的訊息
-
+const uploadedFilePath = ref("");
 const isCorrect = ref(false);
 const showResult = ref(false);
 // 相機
@@ -128,7 +127,6 @@ const uploadPhoto = async () => {
   const { lineTitle, mission, GetUserId } = props;
   // const timestamp = Date.now();
   // const originalFileName = selectedPhoto.value.name;
-  photoIndex++; // 每上傳一次就遞增
   // 取得今天的日期，並格式化為 YYYYMMDD 格式
   const today = new Date();
   const year = today.getFullYear();
@@ -157,19 +155,19 @@ const uploadPhoto = async () => {
     isCorrect.value = true;
     showResult.value = true; // 顯示上傳結果彈窗
     // 將上傳記錄直接存入以使用者 ID 為文件的 Firestore 文件中
-    const userDocRef = doc(database, "users", props.GetUserId);
-    await setDoc(
-      userDocRef,
-      {
-        userId: props.GetUserId,
-        mission: props.mission,
-        imageURL: downloadURL.value,
-        lineTitle: props.lineTitle,
-        uploadedAt: serverTimestamp(),
-        filePath: filePath,
-      },
-      { merge: true }
-    ); // 使用 merge 避免覆蓋其他欄位（如果需要累計資料則不適用）
+    // const userDocRef = doc(database, "users", props.GetUserId);
+    // await setDoc(
+    //   userDocRef,
+    //   {
+    //     userId: props.GetUserId,
+    //     mission: props.mission,
+    //     imageURL: downloadURL.value,
+    //     lineTitle: props.lineTitle,
+    //     uploadedAt: serverTimestamp(),
+    //     filePath: filePath,
+    //   },
+    //   { merge: true }
+    // ); // 使用 merge 避免覆蓋其他欄位（如果需要累計資料則不適用）
     // 儲存至 Firestore
     // const uploadsCollectionRef = db, props.GetUserId, "uploads");
     // const docRef = await addDoc(uploadsCollectionRef, {
@@ -180,6 +178,8 @@ const uploadPhoto = async () => {
     //   filePath: filePath, // 上傳路徑
     // });
     // console.log("Firestore 紀錄成功，文件 ID:", docRef.id);
+    // console.log("Firestore 更新成功");
+    error.value = "";
     emit("uploadSuccess", { filePath, downloadURL: downloadURL.value });
     // 更新 Vue 狀態
     downloadURL.value = downloadURL.value;
@@ -196,7 +196,16 @@ const uploadPhoto = async () => {
     showResult.value = true; // 顯示上傳結果彈窗
   }
 };
-
+// 當 isCorrect 變為 true 時，自動通知父元件上傳成功
+watch(isCorrect, (newVal) => {
+  if (newVal) {
+    console.log("孫元件：上傳成功，觸發 uploadSuccess 事件");
+    emit("uploadSuccess", {
+      filePath: uploadedFilePath.value,
+      downloadURL: downloadURL.value,
+    });
+  }
+});
 // 相機
 const CameraClick = async () => {
   if (await checkCamera()) {
@@ -251,6 +260,7 @@ const reset = () => {
   //   fileInput.value.value = "";
   // }
 };
+
 const handlePhotoCaptured = (photoData) => {
   imgSrc.value = photoData; // 更新圖片預覽
 

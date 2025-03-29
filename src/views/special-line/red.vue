@@ -49,6 +49,7 @@
             :class="[
               { red_active: question.id === activeQuestionId },
               { answered: question.answered },
+
             ]"
           >
             <!-- <a :href="`#question-item${question.id}`">{{ question.title }}</a> -->
@@ -70,6 +71,7 @@
         :message2="selectedLine?.message2"
         @cancel="handleModalCancel"
         @confirm="handleModalConfirm"
+        @uploadSuccess="handleUploadSuccess"
       />
       <div class="mission-main">
 
@@ -92,8 +94,8 @@
             <img
               v-if="line.img"
               :src="line.img"
-              alt="Uploaded_Photo"
-              class="station-img"
+              alt="Uploaded Photo"
+              class="station-img red_shadow"
               @click="openPhotoAlert(line)" 
             />
             <div v-else class="no-photo red red_shadow" @click="openPhotoAlert(line)">
@@ -118,7 +120,7 @@
                   class="question-icon"
                   v-html="question.icon"
                 ></div>
-                <span class="question-text">點擊回答問題</span>
+                <span class="question-text"> {{ question.answered ? "回答完成" : "點擊回答問題" }}</span>
                 <!-- v-if="isQuestionVisible"-->
                 <alert_L_question
                   ref="alertQuestion"
@@ -126,6 +128,7 @@
                   :question="selectedQuestion"
                   @cancel="handleQuestionCancel"
                   @confirm="handleQuestionConfirm"
+                   @update-question-status="markQuestionAsAnswered"
                 />
               </div>
             </div>
@@ -188,7 +191,7 @@
   </div>
 </template>
 <script>
-import { ref, onMounted, onUnmounted, inject, watch, computed } from "vue";
+import { ref, onMounted, onUnmounted, inject, watch,nextTick } from "vue";
 import questionData from "@/json/question.json";
 import alert_L_Photo from "@/alert/alert_L_Photo.vue";
 import alert_L_question from "@/alert/alert_L_question.vue";
@@ -199,7 +202,7 @@ import PopupMenu from "@/components/Mission/PopupMenu.vue";
 
 // import { ref as storageRef, getDownloadURL } from 'firebase/storage';
 // import {  collection, query, where, getDocs } from 'firebase/firestore';
-import { storage } from "@/firebase/firebaseConfig.js";
+import { storage  } from "@/firebase/firebaseConfig.js";
 import { ref as storageRef, getDownloadURL,listAll } from 'firebase/storage';
 // import {  collection, query, where, getDocs } from 'firebase/firestore';
 // import { storage } from "@/firebase/firebasePhotoUpload.js";
@@ -231,7 +234,7 @@ export default {
     const isModalOpen = ref(false);
     const selectedModal = ref("");
     const sectionActive = ref(false);
-    const alertPhoto = ref(null);
+    // const alertPhoto = ref(null);
 
 
 
@@ -266,44 +269,11 @@ export default {
     //   // selectedQuestion.value = questions;
     //   isQuestionVisible.value = true;
     // };
-    
-// ---- storage ---------
 
 
 
- // ---- database --------- 
 
-//  const fetchImageData = async () => {
-//   try {
-//     // 建立查詢條件：userId 與 mission 需符合相應條件
-//     const q = query(
-//       collection(db, 'photos'),
-//       where('userId', '==', user_status.value), // 若 user_status 為物件，可改用 user_status.value.uid
-//       where('mission', '==', mission.value)
-//     );
-
-//     // 取得符合條件的文件快照
-//     const querySnapshot = await getDocs(q);
-
-//     // 遍歷查詢結果
-//     querySnapshot.forEach((doc) => {
-//       const data = doc.data();
-//       const lineTitle = data.lineTitle;
-//       const imageURL = data.imageURL;
-
-//       // 尋找 lines 陣列中符合 lineTitle 的項目
-//       const line = lines.value.find((line) => line.title === lineTitle);
-//       if (line) {
-//         line.img = imageURL;
-//         console.log(`已更新 ${lineTitle} 的圖片 URL 為：${imageURL}`);
-//       } else {
-//         console.warn(`找不到標題為 ${lineTitle} 的 line`);
-//       }
-//     });
-//   } catch (error) {
-//     console.error("取得圖片資料時發生錯誤：", error);
-//   }
-// };
+ // 
  
     // 取得棕線的問題列表
     const brownLineQuestions = ref(
@@ -326,7 +296,10 @@ export default {
       // isQuestionVisible.value = false;
       selectedQuestion.value = null;
     };
-
+    const handleUploadSuccess = async () => {
+  console.log("上傳成功，開始更新圖片");
+  await updateImagePath();
+};
     const handleModalConfirm = () => {
       // isVisible.value = false;
       selectedLine.value = null;
@@ -475,6 +448,7 @@ const mission = ref("淡水信義線");
 //   }
 // };
 const updateImagePath = async () => {
+
   for (let i = 0; i < lines.value.length; i++) {
     const index = i; // 保留 index 變數，確保對應 `lines.value[index]`
     const imagePath = `photos/${GetUserId.value}/`;
@@ -496,14 +470,21 @@ const updateImagePath = async () => {
         const latestImageRef = storageRef(storage, `${imagePath}${latestImage}`);
         const url = await getDownloadURL(latestImageRef);
 
-        lines.value[index].img = url;
+        // lines.value[index].img = url;
+      // 加上防快取參數，確保圖片能正確更新
+      // lines.value[index].img = `${url}?t=${Date.now()}`;
+        // 透過不可變更新觸發 Vue 的響應式檢測
+        // lines.value = [...lines.value];
+        if (lines.value[index].img !== url) {
+          lines.value[index].img = `${url}?t=${Date.now()}`; // 防快取
+        }
+        await nextTick();
+        console.log('DOM 更新後的 img src:', document.querySelector(`img[alt="${lines.value[index].title}"]`)?.src);
         console.log(`${lines.value[index].title} 圖片下載成功:`, url);
       } else {
         console.warn(`${lines.value[index].title} 沒有找到符合條件的圖片`);
       }
-      // ✅ 確保 `img` 欄位存的是 Firebase 下載 URL，而不是內部路徑
-      lines.value[index].img = url;
-      console.log(`${lines.value[index].title} 圖片下載成功:`, url);
+ 
     } catch (error) {
       console.error(`${lines.value[index].title} 下載圖片失敗:`, error.code, error.message);
     }
@@ -511,7 +492,13 @@ const updateImagePath = async () => {
 };
 
 
-
+const markQuestionAsAnswered = (questionId) => {
+      const question = questions.value.find((q) => q.id === questionId);
+      if (question) {
+        question.answered = true;
+      }
+      activeQuestionId.value = questionId;
+    };
 
     const activeStationId = ref(null);
     const activeQuestionId = ref(null);
@@ -699,6 +686,9 @@ const updateImagePath = async () => {
       // document.addEventListener("click", handleAnchorClick);
     });
 
+
+
+
     return {
       defaultImg,
       questions,
@@ -730,9 +720,11 @@ const updateImagePath = async () => {
       selectedQuestion,
       handleQuestionConfirm,
       handleQuestionCancel,
+
       showRandomQuestion,
       openPhotoAlert,
-
+      handleUploadSuccess,
+      markQuestionAsAnswered,
       selectedLine,
       // isVisible,
       handleModalCancel,
