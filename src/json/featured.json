@@ -38,20 +38,20 @@
             "category": "blue",
             "group_title": "大巨蛋活動",
             "journey_featured_name": "開箱台北大巨蛋！全台最大多功能場館！",
-            "featured_main_photo": "",
+            "featured_main_photo": "/src/assets/images/featured/pic-featured_blue_dome_main.svg",
             "featured_photos": [
-              "",
-              "",
-              "",
-              "",
-              ""
+              "/src/assets/images/featured/pic-featured_blue_dome_1.svg",
+              "/src/assets/images/featured/pic-featured_blue_dome_2.svg",
+              "/src/assets/images/featured/pic-featured_blue_dome_3.svg",
+              "/src/assets/images/featured/pic-featured_blue_dome_4.svg",
+              "/src/assets/images/featured/pic-featured_blue_dome_5.svg"
             ],        
             "store_info": {
                 "name": "台北大巨蛋",
                 "address": "110台北市信義區忠孝東路四段515號",
                 "hours": "24 小時營業",
                 "phone": "02 2722 8811",
-                "info_photo": ""
+                "info_photo": "/src/assets/images/featured/pic-featured_blue_dome_info.svg"
               },          
             "featured_paragraphs": [
                 "台北大巨蛋是台灣最具規模的多功能場館。作為台灣全國最大型的室內多功能場地之一，台北大巨蛋的開放不僅改變了台灣的娛樂和體育產業，也讓台北成為亞洲區域內的頂尖表演和活動場地之一。",
