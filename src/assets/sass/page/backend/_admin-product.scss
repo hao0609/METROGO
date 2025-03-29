@@ -1,0 +1,97 @@
+@use "@/assets/sass/base/color" as *;
+
+// 外層表格
+.td-title {
+    max-width: 160px;
+    align-content: center;
+    line-height: 150%;
+  }
+
+// 內層資料
+.img-preview {
+    // width: 100%;
+    // padding-left: 160px;
+    display: block;
+  }
+  
+.img-preview-photo {
+gap: 20px;
+width: 300px;
+height: 300px;
+background-color: $neutral-150;
+color: $neutral-400;
+border-radius: 12px;
+display: flex;
+justify-content: center;
+align-items: center;
+
+}
+
+.img-preview-photo.no-photo, .img-preview-photo.failed-photo {
+    padding: 20px;
+}
+
+.img-preview-photo.with-photo {
+    max-width: 300px;
+    max-height: 300px;
+    background-size: cover;
+    background-position: center;
+}
+
+.upload-note {
+  margin-left: 0;
+  margin-top: 20px;
+}
+
+
+// 未上傳狀態
+.img-preview-photo {
+  flex-direction: column;
+  gap: 12px;
+  cursor: pointer;
+}
+
+// 已上傳狀態
+.img-preview-photo.uploaded {
+  background-color: $neutral-0;
+  position: relative;
+  border: none;
+
+  img {
+      width: 300px;
+      height: 300px;
+      outline: 1px solid $neutral-150;
+      border-radius: 12px;
+  }
+}
+
+.img-preview-photo.uploaded {
+  .hover-section {
+      display: none;
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      border-radius: 12px;
+      overflow: hidden;
+      background-color: rgb(0,0,0,0.6);
+      gap: 24px;
+      align-items: center;
+      justify-content: center;
+
+      svg {
+         color: $neutral-0;
+         width: 40px;
+         cursor: pointer;
+
+         &:hover {
+          color: $neutral-150;
+         }
+      }
+  }
+}
+
+.img-preview-photo.uploaded:hover {
+  .hover-section {
+      display: flex;
+  }
+}
