@@ -7,6 +7,7 @@
 <script setup> 
   import BackIcon from '@/components/icons/IconBack.vue';
   import AdminEyeIcon from '@/components/icons/IconAdminEye.vue';
+  import IconAdminDelete from '@/components/icons/IconAdminDelete.vue';
   import { onMounted, ref,computed ,inject,nextTick} from 'vue';
 
   import { useRouter } from 'vue-router';
@@ -16,7 +17,28 @@
 
   import emitter  from '../../eventbus/eventbus.js';
 
+  import Alert_backend_DeleteUser from '../../components/Alert_backend_DeleteUser.vue';
+  const Alert_backend_DeleteUser_ref = ref(null);
   
+
+  const userID = ref({
+    ThirdTittle: ''
+  });
+
+  const deleteUserAlert = (userIDNum) =>{
+
+    userID.value.ThirdTittle = userIDNum
+    console.log(userID.value.ThirdTittle);
+    
+
+    Alert_backend_DeleteUser_ref.value.showAlert();
+  }
+  
+
+  // const test = () =>{
+  //   alert('test');
+  // }
+
 
   // 宣告會員資料陣列
   const userItems = ref([]);
@@ -134,6 +156,10 @@
   }
 
 
+  
+
+
+
 </script>
 
 
@@ -165,6 +191,7 @@
                 <th>註冊時間</th>
                 <th>點數</th>
                 <th>查看</th>
+                <th>刪除</th>
               </tr>
             </thead>
             <tbody>
@@ -181,6 +208,11 @@
                 <td class="action-buttons">
                   <button class="table-btn edit-btn" @click="viewUser(user.會員編號)">
                     <AdminEyeIcon/>
+                  </button>
+                </td>
+                <td class="action-buttons">
+                  <button class="table-btn delete-btn" @click="deleteUserAlert(user.會員編號)">
+                    <IconAdminDelete/>
                   </button>
                 </td>
               </tr>
@@ -208,6 +240,8 @@
           </div>
         </div>
       </div> 
+
+      <Alert_backend_DeleteUser ref="Alert_backend_DeleteUser_ref" :userID="userID" @refresh-data="getUserData"/>
   </template>
 
 

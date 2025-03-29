@@ -39,3 +39,15 @@
   .my-swal-M > .swal2-actions{
     margin: 0;
   }
+
+  .my-swal-M > .swal2-actions > .swal2-confirm{
+    order: 2;
+  }
+
+  .my-swal-M > .swal2-actions > .swal2-cancel{
+    order: 1;
+  }
+  
+  .backend_alertTittle {
+    font-size: 50px;
+  }

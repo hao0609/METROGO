@@ -3,7 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "dev": "vite",
+    "dev": "concurrently \"npm run dev:vite\" \"npm run dev:server\"",
+    "dev:vite": "vite",
+    "dev:server": "node server/server.js",
     "build": "vite build",
     "preview": "vite preview",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore"
@@ -12,8 +14,10 @@
     "@ant-design/icons-vue": "^7.0.1",
     "animate.css": "^4.1.1",
     "ant-design-vue": "^4.2.6",
+    "axios": "^1.8.4",
     "chart.js": "^4.4.8",
     "firebase": "^11.5.0",
+    "firebase-admin": "^13.2.0",
     "gsap": "^3.12.7",
     "jquery": "^3.7.1",
     "mitt": "^3.0.1",
