@@ -68,7 +68,7 @@ export default {
       ) {
         alert("登入成功");
         localStorage.setItem("admin", JSON.stringify(testAdmin)); // 儲存登入資訊
-        this.$router.push("/admin/dashboard"); // 轉跳到後台
+        this.$router.push("/admin/user"); // 轉跳到後台
       } else {
         this.errorMessage = "你的帳號密碼輸入錯誤";
       }

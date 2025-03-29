@@ -14,13 +14,9 @@
     @media screen and (max-width: 576px) {
         height: 174px;
     }
-
 }
 
 .hero-title {
-    // text-align: center;
-    // align-items: center;
-    // margin: auto;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -28,45 +24,6 @@
     z-index: 2;
     text-wrap: nowrap;
 }
-
-// .metroshape-group {
-//     display: flex;
-//     position: absolute;
-//     z-index: 1;
-//     gap: 24px;
-
-//     &.left {
-//         right: 50%;
-//         padding-right: 20%;
-//         top: 24px;
-//     }
-
-//     &.right {
-//         left: 50%;
-//         padding-left: 20%;
-//         bottom: 24px;
-//     }
-
-//     @media screen and (max-width: 576px) {
-//         gap: 8px;
-//     }
-// }
-
-// .metroshape {
-//     width: 160px;
-//     height: 200px;
-//     border-radius: 16px;
-//     display: block;
-//     position: relative;
-//     opacity: 50%;
-//     transform: skew(-20deg) translateX(10%);
-
-//     @media screen and (max-width: 576px) {
-//         width: 60px;
-//         height: 80px;
-//         border-radius: 8px;
-//     }
-// }
 
 .content {
     display: block;
@@ -120,7 +77,6 @@
     top: 50%;
     transform: translateY(-50%);
     transition: transform ease-in-out 0.3s;
-    //cursor: pointer;
     color: $neutral-200;
 }
 
@@ -148,13 +104,12 @@
     position: relative;
     cursor: pointer;
     transition: all 0.3s ease;
-    text-decoration: none; // 移除 route-link 樣式
-    color: inherit; // 移除 route-link 樣式
+    text-decoration: none;
+    color: inherit;
 
     &:hover {
         transform: translateY(-8px);
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        // border: 1px solid $primary-400;
     }
 
     @media screen and (max-width: 576px) {
@@ -169,23 +124,21 @@
     width: 300px;
     height: 200px;
     border-radius: 12px;
-    // position: static;
     background-color: $neutral-50;
-    background-image: url('https://picsum.photos/600/400');
-    background-repeat: no-repeat ;
-    background-size: cover;
+    background-position: center !important; 
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+    object-fit: cover;
 
     @media screen and (max-width: 576px) {
         width: 200px;
         height: 120px;
-        //background-image: url('https://picsum.photos/114/76');
         border-radius: 8px;
     }
 }
 
 .card-text-wrap {
     display: flex;
-    // position: relative;
     flex-direction: column;
     gap: 16px;
     align-items: flex-start;
@@ -208,6 +161,20 @@
     display: flex;
     flex-direction: column;
     gap: 12px;
+    width: 100%;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    
+    p {
+      margin: 0;
+      line-height: 1.5;
+      word-break: break-word;
+      overflow-wrap: break-word;
+      
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
 }
 
 .news-date {
@@ -224,24 +191,25 @@
 // 外層卡片的文字行數限制
 .news-list {
     .card-content {
-    display: -webkit-box;
-    -webkit-line-clamp: 5;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-height: 6em;
 
-    p {
-        margin-bottom: 10px;
-        
-        &:last-child {
-          margin-bottom: 0;
+        p {
+            margin-bottom: 0.5em;
         }
-      }
-    
-      br {
-        display: block;
-        margin: 10px 0;
-      }
-      
+        
+        // 處理內嵌元素在卡片中的顯示
+        :deep(br), br {
+            display: none;
+        }
+          
+        :deep(img), img {
+            display: none;
+        }
     }
 }
 
@@ -294,6 +262,10 @@
     flex-direction: column;
     padding: 80px 64px;
     gap: 40px;
+    
+    @media screen and (max-width: 768px) {
+        padding: 40px 20px;
+    }
 }
 
 .news-card-detail {
@@ -310,18 +282,60 @@
 
         .img-news-photo {
             width: 60%;
-            padding-bottom: 40%; // 等比例3:2縮放
+            padding-bottom: 40%;
             max-width: 720px;
             max-height: 480px;
             margin: 0 auto;
+            
+            @media screen and (max-width: 768px) {
+                width: 100%;
+                padding-bottom: 66.67%;
+            }
         }
+    }
+    
+    // 詳情頁卡片內容樣式
+    .card-content {
+        display: block;
+        -webkit-line-clamp: unset;
+        -webkit-box-orient: unset;
+        overflow: visible;
+        max-height: none;
+        
+        p, :deep(p) {
+          margin-bottom: 1em;
+          line-height: 1.6;
+        }
+        
+        br, :deep(br) {
+          display: block;
+          content: "";
+          margin: 0.5em 0;
+        }
+        
+        img, :deep(img) {
+          max-width: 100%;
+          height: auto;
+          display: block;
+          margin: 1em 0;
+        }
+    }
+    
+    @media screen and (max-width: 768px) {
+        padding: 60px 5%;
+        gap: 40px;
     }
 }
 
+.detail-content-text {
+    line-height: 1.6;
+    word-break: break-word;
+    overflow-wrap: break-word;
+}
 
 .no-data-message {
     text-align: center;
-    padding: 20px;
+    padding: 40px 0;
     color: $neutral-400;
-    font-size: 16px;
-  }
+    font-size: 1.2rem;
+}

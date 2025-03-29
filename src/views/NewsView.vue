@@ -14,6 +14,7 @@ const currentPage = ref(1);
 const itemsPerPage = ref(10);
 const selectedCategory = ref('all');
 const searchKeyword = ref('');
+const loadedData = ref(null);
 
 // 類別選項
 const categoryOptions = [
@@ -23,12 +24,36 @@ const categoryOptions = [
   { value: 'system', label: '系統公告' }
 ];
 
+// 初始化數據
+onMounted(() => {
+  loadNewsData();
+});
+
+// 從 localStorage 或 JSON 文件加載數據
+const loadNewsData = () => {
+  try {
+    // 嘗試從 localStorage 獲取數據
+    const storedData = localStorage.getItem('newsData');
+    
+    // 如果 localStorage 中有數據，則使用它；否則使用導入的 JSON 數據
+    loadedData.value = storedData ? JSON.parse(storedData) : { ...newsData };
+    
+    console.log('已加載新聞數據', loadedData.value);
+  } catch (error) {
+    console.error('加載新聞數據時出錯:', error);
+    // 發生錯誤時使用默認的 JSON 數據
+    loadedData.value = { ...newsData };
+  }
+};
+
 // 合併並排序所有新聞
 const allNews = computed(() => {
+  if (!loadedData.value) return [];
+  
   const combinedNews = [
-    ...newsData.news.map(item => ({ ...item, type: 'news', tagClass: 'tag-1' })),
-    ...newsData.store.map(item => ({ ...item, type: 'store', tagClass: 'tag-2' })),
-    ...newsData.system.map(item => ({ ...item, type: 'system', tagClass: 'tag-3' }))
+    ...(loadedData.value.news || []).map(item => ({ ...item, type: 'news', tagClass: 'tag-1' })),
+    ...(loadedData.value.store || []).map(item => ({ ...item, type: 'store', tagClass: 'tag-2' })),
+    ...(loadedData.value.system || []).map(item => ({ ...item, type: 'system', tagClass: 'tag-3' }))
   ];
 
   // 按照 posted 日期排序（新到舊）
@@ -56,7 +81,7 @@ const filteredNews = computed(() => {
     const keyword = searchKeyword.value.trim().toLowerCase();
     result = result.filter(news => 
       news.title.toLowerCase().includes(keyword) || 
-      news.description.toLowerCase().includes(keyword)
+      (news.description && news.description.toLowerCase().includes(keyword))
     );
   }
 
@@ -78,6 +103,8 @@ const displayedNews = computed(() => {
 // 翻頁處理
 const handlePageChange = (page) => {
   currentPage.value = page;
+  // 滾動到頁面頂部
+  window.scrollTo(0, 0);
 };
 
 // 類別變更處理
@@ -88,8 +115,26 @@ const handleCategoryChange = () => {
 
 // 格式化日期
 const formatDate = (dateString) => {
-  const date = new Date(dateString);
-  return `${date.getFullYear()}/${String(date.getMonth() + 1).padStart(2, '0')}/${String(date.getDate()).padStart(2, '0')}`;
+  if (!dateString) return '';
+  
+  try {
+    const date = new Date(dateString);
+    if (isNaN(date.getTime())) return ''; // 如果日期無效
+    
+    return `${date.getFullYear()}/${String(date.getMonth() + 1).padStart(2, '0')}/${String(date.getDate()).padStart(2, '0')}`;
+  } catch (error) {
+    console.error('日期格式化錯誤:', error);
+    return '';
+  }
+};
+
+// 獲取圖片URL，帶有後備圖片
+const getImageUrl = (news) => {
+  if (news.files && news.files.length > 0 && news.files[0].src) {
+    return news.files[0].src;
+  }
+  // 後備圖片
+  return 'https://picsum.photos/300/200';
 };
 </script>
 
@@ -145,7 +190,7 @@ const formatDate = (dateString) => {
                             '系統公告' 
                         }}
                     </div>
-                    <div class="img-news-photo" :style="{ backgroundImage: `url('${news.files && news.files.length > 0 ? news.files[0].src : 'https://picsum.photos/300/200'}')` }"></div>
+                    <div class="img-news-photo" :style="{ backgroundImage: `url('${getImageUrl(news)}')` }"></div>
                     <div class="card-text-wrap">
                         <div class="title2 bold card-title">{{ news.title }}</div>
                         <div class="card-content">

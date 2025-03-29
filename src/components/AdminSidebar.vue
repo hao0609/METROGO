@@ -18,13 +18,13 @@
 
     <!-- 側邊選單導航 -->
     <nav class="nav-menu">
-      <!-- 後台總覽 -->
+      <!-- 後台總覽 
       <router-link to="/admin/dashboard" class="menu-item bold" active-class="active">
         <span class="menu-icon">
           <AdminHomeIcon />
         </span>
         後台總覽
-      </router-link>
+      </router-link>-->
 
       <!-- 會員管理 -->
       <div class="menu-group">
@@ -52,7 +52,7 @@
             </span>
             會員資料
           </router-link>
-          <router-link
+          <!--<router-link
             to="/admin/user-record"
             class="menu-item sub-item bold"
             active-class="active"
@@ -61,7 +61,7 @@
               <AdminRightIcon />
             </span>
             活動紀錄查詢
-          </router-link>
+          </router-link>-->
         </div>
       </div>
 
@@ -92,7 +92,7 @@
             </span>
             商品管理
           </router-link>
-          <router-link
+          <!--<router-link
             to="/admin/store-category"
             class="menu-item sub-item bold"
             active-class="active"
@@ -111,72 +111,41 @@
               <AdminRightIcon />
             </span>
             標籤管理
-          </router-link>
+          </router-link> -->
         </div>
       </div>
 
-      <!-- 訂單管理 -->
+      <!-- 訂單管理 
       <router-link to="/admin/order" class="menu-item bold" active-class="active">
         <span class="menu-icon">
           <AdminOrderIcon />
         </span>
         訂單管理
-      </router-link>
+      </router-link> -->
 
       <!-- 最新消息管理 -->
-      <div class="menu-group">
-        <router-link
-          to="/admin/news"
-          class="menu-item has-submenu bold"
-          :class="{ expanded: newsManagementExpanded }"
-          @click="toggleNewsManagement"
-        >
-          <span class="menu-icon">
-            <AdminProductIcon />
-          </span>
-          最新消息管理
-          <DownIcon class="icon-down" />
-        </router-link>
+      <router-link to="/admin/news" class="menu-item bold" active-class="active">
+        <span class="menu-icon">
+          <AdminNewsIcon />
+        </span>
+        最新消息管理
+      </router-link>
 
-        <div class="submenu">
-          <router-link
-            to="/admin/news-add"
-            class="menu-item sub-item bold"
-            active-class="active"
-          >
-            <span class="menu-icon">
-              <AdminRightIcon />
-            </span>
-            文章管理
-          </router-link>
-          <router-link
-            to="/admin/news-category"
-            class="menu-item sub-item bold"
-            active-class="active"
-          >
-            <span class="menu-icon">
-              <AdminRightIcon />
-            </span>
-            分類管理
-          </router-link>
-        </div>
-      </div>
-
-      <!-- 行程管理 -->
+      <!-- 行程管理 
       <router-link to="/admin/schedule" class="menu-item bold" active-class="active">
         <span class="menu-icon">
           <AdminScheduleIcon />
         </span>
         行程管理
-      </router-link>
+      </router-link> -->
 
-      <!-- 照片管理 -->
+      <!-- 照片管理 
       <router-link to="/admin/photo" class="menu-item bold" active-class="active">
         <span class="menu-icon">
           <AdminPhotoIcon />
         </span>
         照片管理
-      </router-link>
+      </router-link>-->
     </nav>
   </div>
 </template>
