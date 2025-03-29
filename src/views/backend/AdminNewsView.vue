@@ -286,6 +286,9 @@ export default {
   <div>
     <h1 class="admin-title">最新消息管理</h1>  
     <div class="filter-group">
+      <button class="btn_filled small with-icon" @click="goToAddNews">
+        <AddIcon/>新增最新消息
+      </button>
       <div class="select-wrapper small auto-left">
         <select class="select-field" v-model="selectedCategory" @change="handleCategoryChange">
           <option value="all">全部分類</option>
@@ -295,9 +298,6 @@ export default {
         </select>
         <span class="select-arrow"></span>
       </div>
-      <button class="btn_filled small with-icon" @click="goToAddNews">
-        <AddIcon/>新增
-      </button>
     </div>
     
     <div v-if="dataLoadError" class="error-message">
@@ -311,7 +311,7 @@ export default {
             <th>上架時間</th>
             <th>類別</th>
             <th>標題</th>
-            <th>編輯</th>
+            <th>操作</th>
           </tr>
         </thead>
         <tbody>
