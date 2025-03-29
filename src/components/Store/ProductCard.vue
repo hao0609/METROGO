@@ -1,24 +1,9 @@
 <script setup>
-import { ref, onMounted } from "vue";
-
+import { defineProps } from "vue";
 // 引入 sweetalert2 彈窗
 import Swal from "sweetalert2";
 
-// 儲存從 JSON 讀取的商品列表
-const products = ref([]);
-
-// 從 JSON 檔案載入商品資料
-onMounted(async () => {
-  try {
-    const res = await fetch("/products.json"); // 從 JSON 檔案抓取資料
-    const data = await res.json(); // 解析成 JavaScript 物件
-    console.log(data);
-    products.value = data.products; // 把 products 陣列填入 Vue 的響應式變數
-  } catch (error) {
-    console.error("載入 JSON 失敗:", error);
-  }
-});
-
+// 接收父組件傳遞過來的單一產品資料
 const props = defineProps({
   product: {
     type: Object,
@@ -38,18 +23,23 @@ const toggleFavorite = () => {
 
 // 彈出 SweetAlert2 商品資訊視窗
 const showProductModal = (product) => {
+  let quantity = 1;
   Swal.fire({
     title: product.name, // 顯示商品名稱
     html: `
       <img src="${product.image}" alt="${
       product.name
     }" style="width: 100%; height:auto; object-fit: cover; margin-bottom: 10px;">
-      <p style="font-size: 18px;">價格：$${product.price}</p>
+     <div style="display: flex; flex-direction: column; gap: 20px">
+      <p style="font-size: 20px; color: #8C25C0 ; font-weight: 600;" >價格：$${
+        product.price
+      }</p>
       <div style="display: flex; justify-content: center; align-items: center; gap: 10px;">
         <button id="decrease-quantity" style="padding: 5px 10px;">-</button>
-        <span id="quantity" style="font-size: 18px;">1</span>
+        <input id="quantity" value="${quantity}" style="font-size: 18px; text-align:center;" ></input>
         <button id="increase-quantity" style="padding: 5px 10px;">+</button>
-      </div>
+     </div>
+        </div>
       <button id="add-to-cart" style="margin-top: 10px; padding: 10px 20px; background-color: #ff9800; color: white; border: none; cursor: pointer;">
         加入購物車
       </button>
@@ -59,16 +49,19 @@ const showProductModal = (product) => {
         ${product.favorite ? "❤️ 取消收藏" : "🤍 加入收藏"}
       </button>
     `,
-    showConfirmButton: false, // 隱藏確認按鈕
-    didOpen: () => {
-      let quantity = 1;
 
+    showConfirmButton: false, // 隱藏確認按鈕
+    customClass: {
+      title: "custom-title", // 設定 title 的自定義類別
+    },
+    didOpen: () => {
+      document.querySelector(".swal2-title").style.fontWeight = "400";
       // 綁定數量增加/減少按鈕
       document
         .getElementById("increase-quantity")
         .addEventListener("click", () => {
           quantity++;
-          document.getElementById("quantity").innerText = quantity;
+          document.getElementById("quantity").value = quantity;
         });
 
       document
@@ -76,7 +69,7 @@ const showProductModal = (product) => {
         .addEventListener("click", () => {
           if (quantity > 1) {
             quantity--;
-            document.getElementById("quantity").innerText = quantity;
+            document.getElementById("quantity").value = quantity;
           }
         });
 
@@ -110,7 +103,7 @@ const showProductModal = (product) => {
     </div>
     <div class="product-card__info">
       <h3 class="product-card__name">{{ product.name }}</h3>
-      <p class="product-card__price">{{ product.price }}</p>
+      <p class="product-card__price">$ {{ product.price }}</p>
     </div>
     <div class="product-card__actions">
       <button
@@ -130,6 +123,10 @@ const showProductModal = (product) => {
 <style lang="scss" scoped>
 @import "@/assets/sass/base/color.scss";
 @import "@/assets/sass/base/reset.scss";
+
+.product-card__name {
+  font-weight: 600;
+}
 
 .product-card {
   background-color: #fff;

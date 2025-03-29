@@ -1,54 +1,66 @@
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue' 
-import Swiper from 'swiper'
-import { Autoplay, Navigation, Pagination } from 'swiper/modules'
-import 'swiper/css'
-import 'swiper/css/navigation'
-import 'swiper/css/pagination'
+import { ref, computed, onMounted, onUnmounted } from "vue";
 
-const searchQuery = ref('')
-const placeholder = '想找什麼?'
-const swiperInstance = ref(null)
+// 引入 Swiper 輪播
+import Swiper from "swiper";
+import { Autoplay, Navigation, Pagination } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+
+const props = defineProps({
+  products: Array, // **接收來自父組件的商品資料**
+});
+const searchQuery = ref("");
+const placeholder = "想找什麼?";
+const swiperInstance = ref(null);
 
 // 輪播圖片陣列
 const bannerImages = ref([
   {
-    desktop: '/src/assets/images/store/store-banner.png',
-    mobile: '/src/assets/images/store/store-mobile-banner.png'
+    desktop: "/src/assets/images/store/store-banner.png",
+    mobile: "/src/assets/images/store/store-mobile-banner.png",
   },
   {
-    desktop: '/src/assets/images/store/store-banner2.png',
-    mobile: '/src/assets/images/store/store-mobile-banner2.png'
+    desktop: "/src/assets/images/store/store-banner2.png",
+    mobile: "/src/assets/images/store/store-mobile-banner2.png",
   },
   {
-    desktop: '/src/assets/images/store/store-banner3.png',
-    mobile: '/src/assets/images/store/store-mobile-banner3.png'
-  }
+    desktop: "/src/assets/images/store/store-banner3.png",
+    mobile: "/src/assets/images/store/store-mobile-banner3.png",
+  },
 ]);
+
+// **搜尋功能**
+const filteredProducts = computed(() => {
+  if (!searchQuery.value) return props.products;
+  return props.products.filter((product) =>
+    product.name.includes(searchQuery.value)
+  );
+});
+
+// **監聽搜尋輸入，通知父組件**
+const handleSearch = () => {
+  emit("search", searchQuery.value);
+  console.log("Searching for:", searchQuery.value);
+};
 
 const isMobile = ref(false);
 
-const emit = defineEmits(['search'])
-
-const handleSearch = () => {
-  emit('search', searchQuery.value)
-  console.log('Searching for:', searchQuery.value)
-}
+const emit = defineEmits(["search"]);
 
 onMounted(() => {
   // 檢查螢幕尺寸
   const checkScreenSize = () => {
     isMobile.value = window.innerWidth < 768;
   };
-  
+
   // 初始檢查
   checkScreenSize();
-  
-  
-  window.addEventListener('resize', checkScreenSize);
-  
+  window.addEventListener("resize", checkScreenSize);
+
   // 初始化 Swiper
-  swiperInstance.value = new Swiper('.swiper', {
+  swiperInstance.value = new Swiper(".swiper", {
     modules: [Autoplay, Navigation, Pagination],
     loop: true,
     autoplay: {
@@ -56,21 +68,20 @@ onMounted(() => {
       disableOnInteraction: false,
     },
     pagination: {
-      el: '.swiper-pagination',
-      clickable: true
+      el: ".swiper-pagination",
+      clickable: true,
       // 已移除 bulletActiveClass 設定
     },
     navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev',
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
     },
   });
 });
 
-// 添加 onUnmounted 生命週期鉤子
 onUnmounted(() => {
-  window.removeEventListener('resize', checkScreenSize);
-  
+  window.removeEventListener("resize", checkScreenSize);
+
   // 清理 Swiper 實例
   if (swiperInstance.value) {
     swiperInstance.value.destroy();
@@ -79,14 +90,23 @@ onUnmounted(() => {
 </script>
 
 <template>
-  
   <div class="banner-container">
- 
     <div class="swiper">
       <div class="swiper-wrapper">
-        <div class="swiper-slide" v-for="(image, index) in bannerImages" :key="index">
-          <div class="banner" :style="{ backgroundImage: `url(${isMobile ? image.mobile : image.desktop})` }"></div>
-         </div>
+        <div
+          class="swiper-slide"
+          v-for="(image, index) in bannerImages"
+          :key="index"
+        >
+          <div
+            class="banner"
+            :style="{
+              backgroundImage: `url(${
+                isMobile ? image.mobile : image.desktop
+              })`,
+            }"
+          ></div>
+        </div>
       </div>
       <!-- 輪播控制項 -->
       <div class="swiper-pagination"></div>
@@ -94,26 +114,39 @@ onUnmounted(() => {
       <div class="swiper-button-next"></div>
     </div>
 
-  
     <div class="banner__search">
       <div class="search">
         <div class="search__container">
           <i class="search__icon"></i>
-          <input 
-            type="text" 
-            class="search__input" 
+          <input
+            type="text"
+            class="search__input"
             :placeholder="placeholder"
             v-model="searchQuery"
             @keyup.enter="handleSearch"
+            @input="handleSearch"
           />
         </div>
       </div>
+
+      <!-- **搜尋結果 (只有輸入內容時才顯示)** -->
+      <div class="search-results" v-if="searchQuery">
+        <h3>搜尋結果：</h3>
+        <ul>
+          <li v-for="product in filteredProducts" :key="product.id">
+            <img :src="product.image" :alt="product.name" />
+            <p>{{ product.name }} - ${{ product.price }}</p>
+          </li>
+        </ul>
+        <p v-if="filteredProducts.length === 0">
+          找不到符合的商品，請試試其他關鍵字。
+        </p>
+      </div>
     </div>
   </div>
-
 </template>
 <style lang="scss" scoped>
-@import '../../assets/sass/base/color';
+@import "../../assets/sass/base/color";
 
 .banner-container {
   position: relative;
@@ -174,7 +207,7 @@ onUnmounted(() => {
     outline: none;
     width: 100%;
     font-size: 16px;
-    
+
     &::placeholder {
       color: #999;
     }
@@ -188,7 +221,7 @@ onUnmounted(() => {
   margin: 0 40px; // 讓按鈕不要太靠邊
   width: 50px;
   height: 50px;
-  
+
   &::after {
     font-size: 20px;
     border-radius: 50%;
@@ -219,8 +252,24 @@ onUnmounted(() => {
   margin: 0 6px;
 }
 
-
-
+.search-results {
+  margin-top: 20px;
+}
+.search-results ul {
+  list-style: none;
+  padding: 0;
+}
+.search-results li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.search-results img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+}
 
 @media screen and (max-width: 768px) {
   .banner__search {
@@ -228,20 +277,20 @@ onUnmounted(() => {
     right: 5%;
     max-width: 90%;
   }
-  
-  .search{
-     &__input {
+
+  .search {
+    &__input {
       font-size: 20px;
+    }
   }
-}
   .search__container {
     padding: 8px 20px;
   }
-  
+
   .swiper-button-next,
   .swiper-button-prev {
-    margin: 0 15px; 
-    
+    margin: 0 15px;
+
     &::after {
       font-size: 18px; // 縮小按鈕大小
       padding: 8px 12px;
@@ -255,6 +304,4 @@ onUnmounted(() => {
     display: none;
   }
 }
-
-
 </style>

@@ -1,51 +1,22 @@
 <script setup>
-import { ref, computed, onMounted } from "vue";
-import { useRouter } from "vue-router";
+import { ref, computed, onMounted, defineProps } from "vue";
 import ProductCard from "../Store/ProductCard.vue";
-import jsonData from "../../json/products.json";
 
 const emitToParent = defineEmits(["product-click"]);
 
+// 接收父組件傳遞過來的 products
+const props = defineProps({
+  products: {
+    type: Array,
+    required: true,
+  },
+});
+
 // Reactive state
-const router = useRouter();
+
 const currentPage = ref(1);
 const itemsPerPage = ref(12);
 const activeSort = ref("newest");
-
-const products = ref([
-  {
-    id: 1,
-    name: "馬克杯",
-    price: "NT$900",
-    image: "/src/assets/images/cap.png",
-    isFavorite: false,
-    category: "自有品牌",
-  },
-  {
-    id: 2,
-    name: "T-shirt",
-    price: "NT$900",
-    image: "/src/assets/images/T-shirt.png",
-    isFavorite: false,
-    category: "自有品牌",
-  },
-  {
-    id: 3,
-    name: "識別證",
-    price: "NT$500",
-    image: "/src/assets/images/card.png",
-    isFavorite: false,
-    category: "自有品牌",
-  },
-  {
-    id: 4,
-    name: "明信片",
-    price: "NT$800",
-    image: "/src/assets/images/card2.png",
-    isFavorite: false,
-    category: "自有品牌",
-  },
-]);
 
 const filteredProducts = ref([]);
 
@@ -80,9 +51,6 @@ const applySorting = () => {
     case "newest":
       filteredProducts.value.sort((a, b) => b.id - a.id);
       break;
-    case "popular":
-      // 實際應用中的熱門度排序邏輯
-      break;
   }
 
   currentPage.value = 1;
@@ -94,7 +62,7 @@ const addToCart = (product) => {
 };
 
 const toggleFavorite = (product) => {
-  const index = products.value.findIndex((p) => p.id === product.id);
+  const index = props.products.findIndex((p) => p.id === product.id);
   if (index !== -1) {
     products.value[index].isFavorite = !products.value[index].isFavorite;
   }
@@ -118,7 +86,7 @@ const goToPage = (page) => {
 
 // Lifecycle hooks
 onMounted(() => {
-  filteredProducts.value = [...products.value];
+  filteredProducts.value = [...props.products];
   applySorting();
 });
 </script>
@@ -131,14 +99,13 @@ onMounted(() => {
           <option value="newest">最新上架</option>
           <option value="price-asc">價格由低至高</option>
           <option value="price-desc">價格由高至低</option>
-          <option value="popular">熱門商品</option>
         </select>
       </div>
     </div>
 
     <div class="product-list__grid">
       <ProductCard
-        v-for="product in paginatedProducts"
+        v-for="product in props.products"
         :key="product.id"
         :product="product"
         @add-to-cart="addToCart"
