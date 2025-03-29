@@ -1,8 +1,8 @@
 <script setup>
-import { ref, computed, onMounted, defineProps } from "vue";
+import { ref, computed, onMounted, defineProps, watch } from "vue";
 import ProductCard from "../Store/ProductCard.vue";
 
-const emitToParent = defineEmits(["product-click"]);
+const emit = defineEmits(["product-click"]);
 
 // 接收父組件傳遞過來的 products
 const props = defineProps({
@@ -11,16 +11,10 @@ const props = defineProps({
     required: true,
   },
 });
-
-// Reactive state
-
 const currentPage = ref(1);
-const itemsPerPage = ref(12);
-const activeSort = ref("newest");
-
+const itemsPerPage = ref(8);
 const filteredProducts = ref([]);
 
-// Computed properties
 const totalPages = computed(() => {
   return Math.ceil(filteredProducts.value.length / itemsPerPage.value);
 });
@@ -31,43 +25,7 @@ const paginatedProducts = computed(() => {
   return filteredProducts.value.slice(start, end);
 });
 
-// Methods
-const extractPrice = (priceString) => {
-  return parseInt(priceString.replace(/[^0-9]/g, ""));
-};
-
-const applySorting = () => {
-  switch (activeSort.value) {
-    case "price-asc":
-      filteredProducts.value.sort(
-        (a, b) => extractPrice(a.price) - extractPrice(b.price)
-      );
-      break;
-    case "price-desc":
-      filteredProducts.value.sort(
-        (a, b) => extractPrice(b.price) - extractPrice(a.price)
-      );
-      break;
-    case "newest":
-      filteredProducts.value.sort((a, b) => b.id - a.id);
-      break;
-  }
-
-  currentPage.value = 1;
-};
-
-const addToCart = (product) => {
-  console.log("Add to cart:", product);
-  // 實際購物車邏輯
-};
-
-const toggleFavorite = (product) => {
-  const index = props.products.findIndex((p) => p.id === product.id);
-  if (index !== -1) {
-    products.value[index].isFavorite = !products.value[index].isFavorite;
-  }
-};
-
+// 切換頁面
 const prevPage = () => {
   if (currentPage.value > 1) {
     currentPage.value -= 1;
@@ -83,6 +41,90 @@ const nextPage = () => {
 const goToPage = (page) => {
   currentPage.value = page;
 };
+
+const activeSort = ref("newest");
+
+// 排列應用
+const applySorting = () => {
+  switch (activeSort.value) {
+    case "price-asc":
+      filteredProducts.value.sort(
+        (a, b) => extractPrice(a.price) - extractPrice(b.price)
+      );
+      break;
+    case "price-desc":
+      filteredProducts.value.sort(
+        (a, b) => extractPrice(b.price) - extractPrice(a.price)
+      );
+      break;
+    case "newest":
+      // 根據 posted 日期從最新到最舊排序
+      filteredProducts.value.sort(
+        (a, b) => new Date(b.posted) - new Date(a.posted)
+      );
+      break;
+  }
+
+  currentPage.value = 1;
+};
+
+const extractPrice = (priceString) => {
+  return parseInt(priceString.replace(/[^0-9]/g, ""));
+};
+
+// 切換收藏狀態
+const toggleFavorite = (product) => {
+  product.favorite = !product.favorite;
+};
+
+// 監聽排序方式變化
+watch(activeSort, () => {
+  currentPage.value = 1; // 只在排序方式變化時重置頁碼
+  const currentSort = activeSort.value;
+
+  switch (currentSort) {
+    case "price-asc":
+      filteredProducts.value.sort(
+        (a, b) => extractPrice(a.price) - extractPrice(b.price)
+      );
+      break;
+    case "price-desc":
+      filteredProducts.value.sort(
+        (a, b) => extractPrice(b.price) - extractPrice(a.price)
+      );
+      break;
+    case "newest":
+      filteredProducts.value.sort((a, b) => b.id - a.id);
+      break;
+  }
+});
+
+// 監聽產品資料變化，但不重置頁碼
+watch(
+  () => props.products,
+  (newProducts) => {
+    filteredProducts.value = [...newProducts];
+    // 應用當前排序但不重置頁碼
+    const currentSort = activeSort.value;
+
+    switch (currentSort) {
+      case "price-asc":
+        filteredProducts.value.sort(
+          (a, b) => extractPrice(a.price) - extractPrice(b.price)
+        );
+        break;
+      case "price-desc":
+        filteredProducts.value.sort(
+          (a, b) => extractPrice(b.price) - extractPrice(a.price)
+        );
+        break;
+      case "newest":
+        filteredProducts.value.sort((a, b) => b.id - a.id);
+        break;
+    }
+  },
+  { deep: true }
+);
 
 // Lifecycle hooks
 onMounted(() => {
@@ -105,10 +147,9 @@ onMounted(() => {
 
     <div class="product-list__grid">
       <ProductCard
-        v-for="product in props.products"
+        v-for="product in paginatedProducts"
         :key="product.id"
         :product="product"
-        @add-to-cart="addToCart"
         @toggle-favorite="toggleFavorite"
       />
     </div>

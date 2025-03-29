@@ -10,12 +10,10 @@ const props = defineProps({
     required: true,
   },
 });
+
 // 定義 emit 事件，讓父組件可以監聽
-const emit = defineEmits(["add-to-cart", "toggle-favorite"]);
-// 加入購物車
-const addToCart = () => {
-  emit("add-to-cart", props.product);
-};
+const emit = defineEmits(["toggle-favorite"]);
+
 // 切換收藏狀態
 const toggleFavorite = () => {
   emit("toggle-favorite", props.product);
@@ -23,71 +21,16 @@ const toggleFavorite = () => {
 
 // 彈出 SweetAlert2 商品資訊視窗
 const showProductModal = (product) => {
-  let quantity = 1;
   Swal.fire({
     title: product.name, // 顯示商品名稱
     html: `
-      <img src="${product.image}" alt="${
-      product.name
-    }" style="width: 100%; height:auto; object-fit: cover; margin-bottom: 10px;">
-     <div style="display: flex; flex-direction: column; gap: 20px">
-      <p style="font-size: 20px; color: #8C25C0 ; font-weight: 600;" >價格：$${
-        product.price
-      }</p>
-      <div style="display: flex; justify-content: center; align-items: center; gap: 10px;">
-        <button id="decrease-quantity" style="padding: 5px 10px;">-</button>
-        <input id="quantity" value="${quantity}" style="font-size: 18px; text-align:center;" ></input>
-        <button id="increase-quantity" style="padding: 5px 10px;">+</button>
-     </div>
-        </div>
-      <button id="add-to-cart" style="margin-top: 10px; padding: 10px 20px; background-color: #ff9800; color: white; border: none; cursor: pointer;">
-        加入購物車
-      </button>
-      <button id="toggle-favorite" style="margin-top: 10px; padding: 10px 20px; background-color: ${
-        product.favorite ? "red" : "#ccc"
-      }; color: white; border: none; cursor: pointer;">
-        ${product.favorite ? "❤️ 取消收藏" : "🤍 加入收藏"}
-      </button>
+      <img src="${product.image}" alt="${product.name}" style="width: 70%; height:auto; object-fit: cover; margin-bottom: 10px;">
+      <h2 style="text-align:left; font-size:24px; padding-bottom:20px;" >商品描述</h2>
+      <p style="text-align:left; font-size:14px; font-weight:bold;">${product.intro}</p>
+      <h2 style="text-align:left ; font-size:24px; padding:20px 0px;" >商品規格</h2>
+      <p style="text-align:left; font-size:14px; font-weight:bold;">${product.spec}</p>
     `,
-
     showConfirmButton: false, // 隱藏確認按鈕
-    customClass: {
-      title: "custom-title", // 設定 title 的自定義類別
-    },
-    didOpen: () => {
-      document.querySelector(".swal2-title").style.fontWeight = "400";
-      // 綁定數量增加/減少按鈕
-      document
-        .getElementById("increase-quantity")
-        .addEventListener("click", () => {
-          quantity++;
-          document.getElementById("quantity").value = quantity;
-        });
-
-      document
-        .getElementById("decrease-quantity")
-        .addEventListener("click", () => {
-          if (quantity > 1) {
-            quantity--;
-            document.getElementById("quantity").value = quantity;
-          }
-        });
-
-      // 綁定加入購物車按鈕
-      document.getElementById("add-to-cart").addEventListener("click", () => {
-        emit("add-to-cart", { ...product, quantity });
-        Swal.close(); // 關閉彈窗
-      });
-
-      // 綁定收藏按鈕
-      document
-        .getElementById("toggle-favorite")
-        .addEventListener("click", () => {
-          product.favorite = !product.favorite;
-          emit("toggle-favorite", product);
-          Swal.close(); // 關閉彈窗，避免 UI 沒有即時更新
-        });
-    },
   });
 };
 </script>
@@ -106,15 +49,13 @@ const showProductModal = (product) => {
       <p class="product-card__price">$ {{ product.price }}</p>
     </div>
     <div class="product-card__actions">
+      <p>{{ product.summary }}</p>
       <button
         class="product-card__favorite"
-        :class="{ 'is-favorite': product.favorite }"
+        :class="{ 'add-favorite': product.favorite }"
         @click.stop="toggleFavorite"
       >
         <span class="heart-icon"></span>
-      </button>
-      <button class="product-card__cart" @click.stop="addToCart">
-        <span class="cart-icon"></span>
       </button>
     </div>
   </div>
@@ -123,10 +64,6 @@ const showProductModal = (product) => {
 <style lang="scss" scoped>
 @import "@/assets/sass/base/color.scss";
 @import "@/assets/sass/base/reset.scss";
-
-.product-card__name {
-  font-weight: 600;
-}
 
 .product-card {
   background-color: #fff;
@@ -163,33 +100,36 @@ const showProductModal = (product) => {
   &__info {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     padding: 1rem;
     border-bottom: 1px solid #eee;
   }
 
   &__name {
-    font-size: 16px;
-    margin: 0 0 5px;
+    font-size: 18px;
     white-space: nowrap;
     text-overflow: ellipsis;
     color: $neutral-700;
+    font-weight: 600;
   }
 
   &__price {
-    font-size: 16px;
+    font-size: 18px;
     font-weight: bold;
-    margin: 0;
     color: $primary-400;
   }
 
   &__actions {
     display: flex;
-    padding: 0 15px 15px;
+    align-items: center;
+    padding: 15px;
     justify-content: space-between;
+    p {
+      font-size: 14px;
+    }
   }
 
-  &__favorite,
-  &__cart {
+  &__favorite {
     background: none;
     border: none;
     font-size: 1.2rem;
@@ -203,7 +143,7 @@ const showProductModal = (product) => {
     transition: all 0.3s ease;
     margin: 5px;
     &:hover {
-      background: rgba(106, 13, 173, 0.1);
+      color: red;
     }
   }
 
@@ -216,18 +156,8 @@ const showProductModal = (product) => {
       background-repeat: no-repeat;
     }
 
-    &.is-favorite .heart-icon {
+    &.add-favorite .heart-icon {
       background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="red" stroke="red" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>');
-    }
-  }
-
-  &__cart {
-    .cart-icon {
-      width: 25px;
-      height: 25px;
-      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>');
-      background-size: contain;
-      background-repeat: no-repeat;
     }
   }
 }

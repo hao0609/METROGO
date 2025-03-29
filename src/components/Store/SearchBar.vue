@@ -26,28 +26,35 @@ const bannerImages = ref([
     mobile: "/src/assets/images/store/store-mobile-banner2.png",
   },
   {
-    desktop: "/src/assets/images/store/store-banner3.png",
-    mobile: "/src/assets/images/store/store-mobile-banner3.png",
+    desktop:
+      "/src/assets/images/store/E3B08091-7849-4E73-BFBB-519C7E01FF19.png",
+    mobile: "/src/assets/images/store/E3B08091-7849-4E73-BFBB-519C7E01FF19.png",
   },
 ]);
 
-// **搜尋功能**
+// // **搜尋功能**
+// const filteredProducts = computed(() => {
+//   if (!searchQuery.value) return props.products;
+//   return props.products.filter((product) =>
+//     product.name.includes(searchQuery.value)
+//   );
+// });
+
+// 優化搜尋邏輯：當 searchQuery 改變時，自動更新過濾後的商品列表
 const filteredProducts = computed(() => {
-  if (!searchQuery.value) return props.products;
   return props.products.filter((product) =>
-    product.name.includes(searchQuery.value)
+    product.name.toLowerCase().includes(searchQuery.value.toLowerCase())
   );
 });
 
 // **監聽搜尋輸入，通知父組件**
+const emit = defineEmits(["search"]);
 const handleSearch = () => {
   emit("search", searchQuery.value);
   console.log("Searching for:", searchQuery.value);
 };
 
 const isMobile = ref(false);
-
-const emit = defineEmits(["search"]);
 
 onMounted(() => {
   // 檢查螢幕尺寸
@@ -114,13 +121,13 @@ onUnmounted(() => {
       <div class="swiper-button-next"></div>
     </div>
 
-    <div class="banner__search">
+    <div class="banner-search">
       <div class="search">
-        <div class="search__container">
-          <i class="search__icon"></i>
+        <div class="search-container">
+          <i class="search-icon"></i>
           <input
             type="text"
-            class="search__input"
+            class="search-input"
             :placeholder="placeholder"
             v-model="searchQuery"
             @keyup.enter="handleSearch"
@@ -166,13 +173,13 @@ onUnmounted(() => {
 
 .banner {
   width: 100%;
-  height: 450px;
+  height: 100%;
   background-size: cover;
   background-position: center;
   position: relative;
 }
 
-.banner__search {
+.banner-search {
   position: absolute;
   z-index: 10; // 提高層級，確保在輪播上方
   max-width: 800px;
@@ -184,7 +191,7 @@ onUnmounted(() => {
 .search {
   width: 100%;
 
-  &__container {
+  &-container {
     display: flex;
     align-items: center;
     background-color: #fff;
@@ -193,7 +200,7 @@ onUnmounted(() => {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   }
 
-  &__icon {
+  &-icon {
     width: 20px;
     height: 20px;
     background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>');
@@ -202,7 +209,7 @@ onUnmounted(() => {
     margin-right: 10px;
   }
 
-  &__input {
+  &-input {
     border: none;
     outline: none;
     width: 100%;
@@ -272,18 +279,18 @@ onUnmounted(() => {
 }
 
 @media screen and (max-width: 768px) {
-  .banner__search {
+  .banner-search {
     left: 5%;
     right: 5%;
     max-width: 90%;
   }
 
   .search {
-    &__input {
+    &-input {
       font-size: 20px;
     }
   }
-  .search__container {
+  .search-container {
     padding: 8px 20px;
   }
 
