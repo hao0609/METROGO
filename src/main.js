@@ -3,6 +3,8 @@ import "../css/style.css";
 
 import { createApp } from "vue";
 import { createPinia } from "pinia";
+import emitter from '../src/eventbus/eventbus.js'
+
 
 // marquee套件(跑馬燈)
 import Vue3Marquee from "vue3-marquee";
@@ -21,4 +23,5 @@ const app = createApp(App);
 app.use(createPinia());
 app.use(router);
 app.use(Vue3Marquee);
+app.config.globalProperties.emitter = emitter
 app.mount("#app");
