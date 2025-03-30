@@ -146,10 +146,10 @@ import Navbar_V1 from "../components/Navbar_V1.vue";
         </div>
       </div>
       <div class="paragraph-container">
-        <p class="title1 name">一甲子餐飲</p>
+        <p class="title1 name">美國街</p>
         <p class="title1">
-          地址：台北市萬華區康定路173巷<br />
-          營業時間：09:00–18:00，週一休息
+          地址：台北市萬華區昆明街96巷<br />
+          營業時間：11:00–22:00，
         </p>
         <div class="text">
           <p class="paragraph-content">
