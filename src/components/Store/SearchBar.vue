@@ -27,8 +27,8 @@ const bannerImages = ref([
   },
   {
     desktop:
-      "/src/assets/images/store/E3B08091-7849-4E73-BFBB-519C7E01FF19.png",
-    mobile: "/src/assets/images/store/E3B08091-7849-4E73-BFBB-519C7E01FF19.png",
+      "/src/assets/images/store/F26484CA-4DC7-4AB5-BC8C-DA2D555C691D.png",
+    mobile: "/src/assets/images/store/F26484CA-4DC7-4AB5-BC8C-DA2D555C691D.png",
   },
 ]);
 
@@ -56,12 +56,12 @@ const handleSearch = () => {
 
 const isMobile = ref(false);
 
-onMounted(() => {
-  // 檢查螢幕尺寸
-  const checkScreenSize = () => {
-    isMobile.value = window.innerWidth < 768;
-  };
+// 檢查螢幕尺寸
+const checkScreenSize = () => {
+  isMobile.value = window.innerWidth < 768;
+};
 
+onMounted(() => {
   // 初始檢查
   checkScreenSize();
   window.addEventListener("resize", checkScreenSize);

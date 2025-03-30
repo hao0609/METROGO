@@ -51,7 +51,6 @@ import JourneyFeaturedView from "../views/JourneyFeaturedView.vue";
 // import yellow_breakfast from "../views/featured/yellow-breakfast.vue";
 // import yellow_fireworks from "../views/featured/yellow-fireworks.vue";
 
-
 // 後台
 import AdminMainpageView from "../views/backend/AdminMainpageView.vue";
 import AdminUserView from "../views/backend/AdminUserView.vue";
@@ -215,26 +214,26 @@ const router = createRouter({
     // 商城
 
     { path: "/store", name: "商城", component: NewStoreView },
-    { path: "/category", name: "分類", component: AlertView },
-    {
-      path: "/product/:id",
-      name: "商品詳情頁",
-      component: ProductDetailView,
-      props: (route) => {
-        const id = parseInt(route.params.id) || 0;
+    // { path: "/category", name: "分類", component: AlertView },
+    // {
+    //   path: "/product/:id",
+    //   name: "商品詳情頁",
+    //   component: ProductDetailView,
+    //   props: (route) => {
+    //     const id = parseInt(route.params.id) || 0;
 
-        if (route.query.productData) {
-          try {
-            const productData = JSON.parse(route.query.productData);
-            return { id, product: productData };
-          } catch (e) {
-            console.error("解析商品數據失敗", e);
-          }
-        }
+    //     if (route.query.productData) {
+    //       try {
+    //         const productData = JSON.parse(route.query.productData);
+    //         return { id, product: productData };
+    //       } catch (e) {
+    //         console.error("解析商品數據失敗", e);
+    //       }
+    //     }
 
-        return { id };
-      },
-    },
+    //     return { id };
+    //   },
+    // },
 
     // 隱私權政策
     { path: "/privacy", name: "Privacy", component: PrivacyView },
@@ -257,8 +256,8 @@ const router = createRouter({
 
     // 小編精選
     {
-      path: '/journey-featured/:category/:id',
-      name: '小編精選',
+      path: "/journey-featured/:category/:id",
+      name: "小編精選",
       component: JourneyFeaturedView,
       props: true, // 允許路由參數作為 props 傳遞
     },

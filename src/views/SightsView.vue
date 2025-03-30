@@ -4,9 +4,10 @@ import "animate.css";
 
 // 引入 gsap 控制 banner 動畫
 import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 // 註冊 ScrollToPlugin
-gsap.registerPlugin(ScrollToPlugin);
+gsap.registerPlugin(ScrollToPlugin, ScrollTrigger);
 
 // 引入 Navbar
 import Navbar_V1 from "../components/Navbar_V1.vue";
@@ -46,25 +47,25 @@ onMounted(getRandomArticles);
 import banner1 from "../assets/images/sights/banner/1.jpg";
 import banner2 from "../assets/images/sights/banner/2.jpg";
 import banner3 from "../assets/images/sights/banner/3.jpeg";
-import banner4 from "../assets/videos/182237-868066892_tiny.mp4";
+import banner4 from "../assets/videos/video1.mp4";
 import banner5 from "../assets/images/sights/banner/5.jpg";
 import banner6 from "../assets/images/sights/banner/6.png";
-import banner7 from "../assets/videos/88921-608445975_tiny.mp4";
+import banner7 from "../assets/videos/video2.mp4";
 import banner8 from "../assets/images/sights/banner/8.jpg";
 import banner9 from "../assets/images/sights/banner/9.jpg";
 import banner10 from "../assets/images/sights/banner/10.jpg";
-import banner11 from "../assets/images/sights/banner/11.gif";
+import banner11 from "../assets/images/sights/banner/11.webp";
 import banner12 from "../assets/images/sights/banner/12.jpg";
 import banner13 from "../assets/images/sights/banner/13.jpg";
 import banner14 from "../assets/images/sights/banner/14.jpg";
 import banner15 from "../assets/images/sights/banner/15.jpg";
 import banner16 from "../assets/images/sights/banner/16.jpeg";
 import banner17 from "../assets/images/sights/banner/17.jpg";
-import banner18 from "../assets/images/sights/banner/18.gif";
+import banner18 from "../assets/images/sights/banner/18.webp";
 import banner19 from "../assets/images/sights/banner/19.jpg";
-import banner20 from "../assets/images/sights/banner/20.gif";
+import banner20 from "../assets/images/sights/banner/20.webp";
 import banner21 from "../assets/images/sights/banner/21.jpg";
-import banner22 from "../assets/images/sights/banner/22.gif";
+import banner22 from "../assets/images/sights/banner/22.webp";
 import banner23 from "../assets/images/sights/banner/23.jpg";
 import banner24 from "../assets/images/sights/banner/24.jpg";
 import banner25 from "../assets/images/sights/banner/25.jpg";
@@ -127,12 +128,12 @@ const handleMouseMove = (event) => {
   }
 };
 
-// banner 消失
+// Banner 區塊控制
 const bannerRef = ref(null);
 const blocks = ref([]);
 const currentIndex = ref(0); // 目前隱藏的方塊 index
 const lastScrollTime = ref(0); // 最近一次紀錄的時間
-const scrollDelay = 20; // 防止滑鼠滾輪事件過於頻繁觸發，設滾動的最小間隔時間
+const scrollDelay = 0.01; // 防止滑鼠滾輪事件過於頻繁觸發，設滾動的最小間隔時間
 
 const createBlocks = () => {
   const bannerWidth = window.innerWidth;
@@ -200,6 +201,7 @@ const blockStyle = computed(() => {
   });
 });
 
+// 處理滾動邏輯
 const handleWheel = (e) => {
   const currentTime = Date.now();
   if (currentTime - lastScrollTime.value < scrollDelay) {
@@ -216,6 +218,7 @@ const handleWheel = (e) => {
   // 如果已經完成 banner 的隱藏
   if (currentIndex.value >= blocks.value.length) {
     if (e.deltaY < bannerElement.offsetHeight - blockHeight) {
+      console.log(e.deltaY);
       // 往上滾 - 回到 banner
       setTimeout(() => {
         blocks.value.forEach((block) => {
@@ -224,13 +227,6 @@ const handleWheel = (e) => {
         // 重置當前索引;
         currentIndex.value = 0;
       }, 100); // 延遲 100ms，讓方塊有時間顯示
-    } else {
-      // 往下滾 - 保持在 line-entrance
-      gsap.to(window, {
-        duration: 0.8,
-        scrollTo: lineEntranceElement,
-        ease: "ease",
-      });
     }
   } else {
     // 原本的 banner 內部滾動邏輯
@@ -254,7 +250,7 @@ const handleWheel = (e) => {
           nextTick(() => {
             gsap.to(window, {
               duration: 0.8,
-              scrollTo: ".line-entrance",
+              scrollTo: lineEntranceElement,
               ease: "ease",
             });
           });
@@ -264,7 +260,9 @@ const handleWheel = (e) => {
       if (currentIndex.value > 0) {
         currentIndex.value--;
         const blockToShow = sortedBlocks.value[currentIndex.value];
-        blocks.value.find((b) => b.number === blockToShow.number).hidden = false;
+        blocks.value.find(
+          (b) => b.number === blockToShow.number
+        ).hidden = false;
       }
     }
   }
@@ -274,8 +272,12 @@ const handleResize = () => {
   createBlocks();
 };
 
+const scrollCount = ref(0);
+
 // 阻止所有捲動的行為;
 const preventScroll = (e) => {
+  scrollCount.value += 1;
+  // console.log("滾動次數:", scrollCount.value);
   e.preventDefault();
 };
 
@@ -322,9 +324,15 @@ onBeforeUnmount(() => {
       <!-- 顯示圖片或影片 -->
       <div v-if="block.type === 'media'" class="media-content">
         <template v-if="block.content.type === 'image'">
-          <img :src="block.content.src" alt="" class="w-full h-full object-cover" />
+          <link rel="preload" as="image" />
+          <img
+            :src="block.content.src"
+            alt=""
+            class="w-full h-full object-cover"
+          />
         </template>
         <template v-if="block.content.type === 'video'">
+          <link rel="preload" as="video" />
           <video
             :src="block.content.src"
             autoplay
@@ -464,8 +472,12 @@ onBeforeUnmount(() => {
             />
           </div>
           <div class="featured-paragraph">
-            <p class="paragraph-title title1">{{ article.journey_featured_name }}</p>
-            <p class="paragraph caption bold">{{ article.featured_paragraphs[0] }}</p>
+            <p class="paragraph-title title1">
+              {{ article.journey_featured_name }}
+            </p>
+            <p class="paragraph caption bold">
+              {{ article.featured_paragraphs[0] }}
+            </p>
             <router-link
               :to="`/journey-featured/${article.category}/${article.id}`"
               class="article-link"

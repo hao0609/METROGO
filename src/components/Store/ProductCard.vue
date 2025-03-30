@@ -31,6 +31,10 @@ const showProductModal = (product) => {
       <p style="text-align:left; font-size:14px; font-weight:bold;">${product.spec}</p>
     `,
     showConfirmButton: false, // 隱藏確認按鈕
+    didOpen: () => {
+      // 直接設置標題樣式
+      document.querySelector(".swal2-title").style.fontWeight = "400";
+    },
   });
 };
 </script>
