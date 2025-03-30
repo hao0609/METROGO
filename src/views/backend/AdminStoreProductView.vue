@@ -230,7 +230,7 @@
         <div class="img-preview">
           <!-- 根據圖片狀態動態顯示不同內容 -->
           <div v-if="photoStatus === 'default'" class="img-preview-photo default">
-            <img src="../assets/images/login/img_userprofile_default.svg">
+            <img src="../../assets/images/login/img_userprofile_default.svg">
           </div>
           <div v-else-if="photoStatus === 'nophoto'" class="img-preview-photo nophoto" @click="triggerFileUpload">
             <AddIcon/><span>上傳照片</span>

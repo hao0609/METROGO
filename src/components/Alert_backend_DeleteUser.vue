@@ -70,7 +70,11 @@
     const deleteUser = async(deleteUserID) => {
           try {
             // 發送刪除用戶請求 (使用 Axios 呼叫 express delete API)
-            const response = await axios.delete(`http://localhost:3000/delete-user/${deleteUserID}`);
+            const response = await axios.delete(`https://tibamef2e.com/tid201/g2/api/delete-user/${deleteUserID}`);
+
+            // 若是 RUN DEV 要用記得改成這個
+            // const response = await axios.delete(`http://localhost:3000/delete-user/${deleteUserID}`);
+
             console.log(response);
 
               // 刪除成功，跳彈窗

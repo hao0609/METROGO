@@ -276,9 +276,6 @@ const cartItems = ref([
       <div class="blue_man">
         <img src="../assets/images/blue_man.png" alt="" />
       </div>
-      <div class="yellow_man">
-        <img src="../assets/images/yellow_man.png" alt="" />
-      </div>
     </div>
   </div>
 
