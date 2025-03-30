@@ -281,6 +281,8 @@ export default {
         console.log("登入成功:", result.user);
         await addGoogleUser_ToDB (result.user)
 
+        this.navigateAfterAuth();
+
       } catch (error) {
         console.error("登入失敗:", error);
       }
