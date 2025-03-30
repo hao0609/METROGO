@@ -42,6 +42,8 @@ const userData = ref({
   MissionGeneralData: {},
 })
 
+const photoURL = ref('')
+
 const tableData =  ref([])
 
 const getUserData = async(userID) => {
@@ -54,6 +56,15 @@ const getUserData = async(userID) => {
   
   userData.value.name = data.會員姓名;
   userData.value.email = data.電子郵件;
+
+  userData.value.avatar = data.會員頭像;
+
+  if (userData.value.avatar == "") {
+    photoURL.value = "../src/assets/images/login/img_userprofile_default.svg"
+  }else{
+    photoURL.value = userData.value.avatar
+  }
+
   // userData.value.avatar = data.avatar;
   const MissionGeneralData = data.一般任務遊戲進度
 
@@ -312,7 +323,7 @@ const nextPage = () => {
     <div class="user-profile">
       <p class="title2 bold">基本資料</p>
       <div class="profile-card">
-        <img src="" alt="會員圖像" class="avatar" />
+        <img :src="photoURL" alt="會員圖像" class="avatar" />
         <div class="info">
           <div class="info-row">
             <p class="info-title bold">會員 ID</p>

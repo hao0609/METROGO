@@ -3,7 +3,7 @@
     <div class="backend-login">
       <div class="backend-login-logo">
         <!-- <img src="../assets/images/backend_enter.svg" alt="" /> -->
-        <icon_white></icon_white>
+        <Router-Link to="/" class="logo"><icon_white></icon_white></Router-Link>
       </div>
       <div class="backend-login-content">
         <div class="backend-login-info">

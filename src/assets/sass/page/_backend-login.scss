@@ -77,6 +77,11 @@ body{
 visibility: hidden; /* 讓它佔位置但不顯示 */
 }
 
+.logo{
+    display: flex;
+    align-self: center;
+}
+
 
 @media screen and (max-width: 576px) {
     .backend-login-logo{

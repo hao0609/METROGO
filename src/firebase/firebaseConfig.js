@@ -13,7 +13,7 @@ import {
 import { getStorage } from "firebase/storage";
 
 // 引入 firebase authentication 登入註冊驗證方法
-import { getAuth } from "firebase/auth";
+import { getAuth, GoogleAuthProvider, signInWithPopup, signOut} from "firebase/auth";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -151,4 +151,6 @@ async function initializeDatabase() {
 // 立即執行初始化
 initializeDatabase();
 
-export { auth, database, ref, set, get, onValue, remove, update, storage };
+const provider = new GoogleAuthProvider();
+
+export { auth, database, ref, set, get, onValue, remove, update, storage, provider, signInWithPopup, signOut};

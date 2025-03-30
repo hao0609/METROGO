@@ -6,9 +6,11 @@ import EyeoffIcon from '@/components/icons/IconEyeoff.vue';
 import EyeIcon from '@/components/icons/IconEye.vue';
 
 // 引入 firebase authentication 登入註冊驗證方法
-import { auth, database } from '../firebase/firebaseConfig.js'
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth'
+import { auth, database , provider, signInWithPopup, signOut} from '../firebase/firebaseConfig.js'
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword} from 'firebase/auth'
 import { ref, get } from 'firebase/database';
+import { addGoogleUser_ToDB } from "../js/view/addGoogleUser_ToDB.js";
+
 
 // 引入自定義的工具模組
 import { 
@@ -271,6 +273,18 @@ export default {
       // fetch
       window.location.href = `https://access.line.me/oauth2/v2.1/authorize?response_type=${response_type}&client_id=${this.channelID}&redirect_uri=${this.redirectUri}&state=${state}&scope=${scope}`;
     },
+
+     async googleLogin() {
+      try {
+        const result = await signInWithPopup(auth, provider);
+        // user.value = result.user;
+        console.log("登入成功:", result.user);
+        await addGoogleUser_ToDB (result.user)
+
+      } catch (error) {
+        console.error("登入失敗:", error);
+      }
+    },
     switchForm(formName) {
       this.currentForm = formName;
       
@@ -480,7 +494,7 @@ export default {
             <div class="form-content">
             <form @submit.prevent>
                 <div class="media-group">
-                    <div class="media-options">
+                    <div class="media-options" @click="googleLogin">
                     <img src="../assets/images/login/img_google.png" alt="" class="google-img">
                     <a href="#" class="field google">
                         <span>以 Google 帳號繼續</span>

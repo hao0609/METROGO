@@ -30,6 +30,24 @@ const user_status = inject("user"); // 取得用戶狀態
 //console.log(user_status.value);
 
 
+import alert_user_login from '../alert/alert_user_login.vue';    // 引入 alert_user_login 登入提醒彈窗
+const alert_user_login_ref = ref(null);
+
+
+const GotoUserProfile = () => {
+  if (user_status.value==null) {
+    alert_user_login_ref.value.UserLoginShowAlert();
+    
+    checked.value = false
+    rwd_menu.value.style.visibility = "hidden";
+    rwd_menu_bg.value.style.transform = "scale(0)";
+    rwd_menu.value.style.transform = "scale(0)";
+  }else{
+    router.push("/user-profile");
+  }
+}
+
+
 // 登入/ 登出按鈕文字
 const user_login_statusText = computed(() => {
   if (user_status.value==null) {
@@ -208,9 +226,9 @@ const cartItems = ref([
       </div> -->
 
       <div class="user" >
-        <RouterLink to="/user-profile">
-          <user ></user>
-        </RouterLink>
+        <!-- <RouterLink to="/user-profile"> -->
+          <user @click="GotoUserProfile"></user>
+        <!-- </RouterLink> -->
       </div>
 
       <button class="btn_white small" @click=CheckUserLoginStatus>{{ user_login_statusText }}</button>
@@ -266,9 +284,9 @@ const cartItems = ref([
         <div class="icon">
           <!-- <shopping_cart @click="cartVisible = !cartVisible" /> -->
           
-          <RouterLink to="/user-profile">
-              <user></user>
-          </RouterLink>
+          <!-- <RouterLink to="/user-profile"> -->
+              <user @click="GotoUserProfile"></user>
+          <!-- </RouterLink> -->
         </div>
       </div>
     </div>
@@ -286,6 +304,8 @@ const cartItems = ref([
   <!-- 用戶成功登出彈窗 -->
   <alert_logout_successful ref="alert_logout_successful_ref"/>
 
+  <!-- 用戶登入提醒彈窗 -->
+  <alert_user_login ref="alert_user_login_ref"/>
 
 </template>
 
