@@ -66,7 +66,7 @@
       "info_number":"02-2938-2300"
     },
     {
-      "sight_name": "忠孝復興站",
+      "sight_name": "忠孝復興",
       "sight_banner_title": "東區的魅力商圈",
       "sight_intro": "時尚、購物、美食與娛樂的熱門地區，結合便利的交通與豐富的生活機能，是台北最具代表性的繁華地段之一。逛街購物、約會聚餐、享受美容服務，或是體驗潮流文化，這裡都是絕佳的選擇。",
       "sight_img": "/src/assets/images/line/zhongxiao_fuxing_station_01_w300xh417.jpg",
@@ -75,7 +75,7 @@
       "info_number":"02-2181-2345"
     },
     {
-      "sight_name": "南京復興站",
+      "sight_name": "南京復興",
       "sight_banner_title": "熱鬧無比的商圈",
       "sight_intro": "融合購物、商業、娛樂、美食於一體，是台北市繁華且機能完善的黃金地段，無論是上班族、購物族或美食愛好者，都能在這裡找到最適合自己的活動！",
       "sight_img": "/src/assets/images/line/NanjingFuxingStation_02_w300xh417.jpg",
@@ -84,7 +84,7 @@
       "info_number":"02-2181-2345"
     },
     {
-      "sight_name": "劍南路站",
+      "sight_name": "劍南路",
       "sight_banner_title": "浪漫摩天輪賞風景",
       "sight_intro":"商圈結合購物、娛樂、美食與自然景觀，適合全家親子出遊、情侶約會。無論是到美麗華百樂園逛街看電影，還是在河濱公園騎車運動、品嚐美食或欣賞夜景，這裡都是台北兼具繁華與悠閒氛圍的商圈之一。",
       "sight_img": "/src/assets/images/line/miramar_01_w300xh417.jpg",
@@ -131,7 +131,7 @@
       "info_number":"02-2502-7924"
     },
     {
-      "sight_name": "華山",
+      "sight_name": "忠孝新生",
       "sight_banner_title": "懷舊新潮的文創",
       "sight_intro": "由舊倉庫來改造成今日的展覽場所，懷舊與新潮在這裡達成默契，品牌與動漫也和諧一致地等待你大駕光臨，探索你的想像，支持你愛的偶像，世界就是充滿愛與和平。",
       "sight_img": "/src/assets/images/line/huashan_1914_creative_park_01.jpg",
@@ -140,7 +140,7 @@
       "info_number":"02-2358-1914"
     },
     {
-      "sight_name": " 三和夜市",
+      "sight_name": " 台北橋",
       "sight_banner_title": "接地氣台式夜市",
       "sight_intro": "三和夜市商圈雖然規模不大，但以親民價格與道地小吃深受當地人喜愛，少了觀光夜市的商業氣息，多了樸實的生活感。如果你喜歡接地氣的台式夜市文化，這裡絕對值得一試！",
       "sight_img": "/src/assets/images/line/xinzhuang_03_w300xh417.jpg",
@@ -149,7 +149,7 @@
       "info_number":"02-2986-2345"
     },
     {
-      "sight_name": "大都會公園",
+      "sight_name": "三重",
       "sight_banner_title": "多樣功能的公園",
       "sight_intro": "大都會公園是結合生態、運動與親子活動的理想場所，不論是想悠閒散步、騎車運動，還是帶孩子玩樂，都能在這裡找到樂趣。下次有機會，不妨來這裡走走，享受城市中的綠意與悠閒！",
       "sight_img": "/src/assets/images/line/sanchong_station_02_w300xh417.jpg",
@@ -178,7 +178,7 @@
       "info_number":"02-2302-5162"
     },
     {
-      "sight_name": "東區百貨",
+      "sight_name": "市政府",
       "sight_banner_title": "百貨密集症候群",
       "sight_intro": "有人許運池裡滿滿的百貨公司嗎? 那這裡一定不會讓你失望，奢侈品、名牌精品、精緻美食、也可能不經意地遇到藝人明星，機會不等人，先來先贏！",
       "sight_img": "/src/assets/images/line/xinyi_shopping_district_01.jpg",
@@ -187,7 +187,7 @@
       "info_number":"02-2181-2345"
     },
     {
-      "sight_name": "大巨蛋",
+      "sight_name": "國父紀念館",
       "sight_banner_title": "文創大巨蛋特區",
       "sight_intro": "台北最新的娛樂、運動、購物與美食聚集地，這裡結合了大巨蛋、百貨購物中心、文創、夜生活與公園，成為台北最具規模的多功能商圈之一！",
       "sight_img": "/src/assets/images/line/taipei_dome_01.jpg",
@@ -196,7 +196,7 @@
       "info_number":"02-2722-8811"
     },
     {
-      "sight_name": "新北耶誕城",
+      "sight_name": "板橋",
       "sight_banner_title": "全台熊嗨的耶誕季",
       "sight_intro": "來感受濃濃台式的耶誕季，投射巨大的耶誕樹與聲光效果，周邊的燈海與特別打卡拍照處，周末還有巨星陪你歡唱不停，更是少不了等你品嘗的美食，猶豫甚麼？還不趕快跟上！",
       "sight_img": "/src/assets/images/line/new_taipei_city_government_01.jpg",
@@ -205,7 +205,7 @@
       "info_number":"02-2960-3456"
     },
     {
-      "sight_name": "西門町",
+      "sight_name": "西門",
       "sight_banner_title": "城市就是伸展台",
       "sight_intro": "潮流就是風格，挖掘屬於你自我風格，這裡相信可以滿足你的需求，文青、龐克、韓風、日式、台式、美式，在這裡做自己，何必在意別人眼光！",
       "sight_img": "/src/assets/images/line/ximending_01.jpg",
@@ -255,7 +255,7 @@
       "sight_name": "東門",
       "sight_banner_title": "知名文化特色商圈",
       "sight_intro": "許多知名的特色小店或是從小吃到大的餐廳，這裡都找得到，從懷念的蔥餅、剉冰、到明星指名的小籠包，熟悉的美味，老闆誠意滿滿，而你的回憶滿滿！",
-      "sight_img": "/src/assets/images/line/dongmen_station_01_w300xh417.jpg",
+      "sight_img": "/src/assets/images/line/yongkang_street_01_w300xh417.jpg",
       "dialog_desc": "許多知名的特色小店或是從小吃到大的餐廳，這裡都找得到，從懷念的蔥餅、剉冰、到明星指名的小籠包，特色小店讓你目不轉睛，熟悉的美味讓人食指大動，老闆誠意滿滿，而你的回憶滿滿！",
       "info_address":"臺北市大安區信義路2段166號",
       "info_number":"02-2181-2345"
@@ -265,7 +265,7 @@
       "sight_banner_title": "建築的飢餓行銷",
       "sight_intro": "看到台北藝術表演中心，你是不是有點餓？別怕！緊鄰著士林夜市，看完表演不就是要好好吃一頓嗎？邊吃邊玩，邊玩邊吃，輕鬆享受你的夜晚！",
       "sight_img": "/src/assets/images/line/TaipeiPerformingArtsCenter_04_w300xh417.jpg",
-      "dialog_desc": "看到台北藝術表演中心，你是不是有點餓？別怕！緊鄰著士林夜市，看完表演不就是要好好吃一頓嗎？這裡有眾多的選擇，讓你自由地邊吃邊玩，邊玩邊吃，輕鬆享受你的夜晚！",
+      "dialog_desc": "看到台北藝術表演中心，驚訝的你是不是有點餓？別怕！緊鄰著士林夜市，看完表演不就是要好好吃一頓嗎？這裡有著多種多樣的選擇，隨著逛夜市的人潮，讓你自由地逛著邊吃邊玩，邊玩邊吃，輕鬆享受你的夜晚！",
       "info_address":"臺北市士林區中山北路5段65號",
       "info_number":"02-2181-2345"
     },
