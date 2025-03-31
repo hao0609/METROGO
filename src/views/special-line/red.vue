@@ -204,6 +204,7 @@ import PopupMenu from "@/components/Mission/PopupMenu.vue";
 import { storage  } from "@/firebase/firebaseConfig.js";
 import { ref as storageRef, getDownloadURL,listAll } from 'firebase/storage';
 
+import { getUserAllPhotoData } from "../../js/view/getUserAll_StoragePhotoData";
 
 
 import alert_user_login from "@/alert/alert_user_login.vue";
@@ -344,6 +345,9 @@ export default {
       } else {
         GetUserId.value = user_status.value.uid;
         console.log(user_status.value.uid);
+
+        // 拿到用戶所有的 Storage 的所有照片
+        getUserAllPhotoData(user_status.value.uid)
 
         updateImagePath();
       }
@@ -701,6 +705,9 @@ const markQuestionAsAnswered = (questionId) => {
           }, 3000); // 等 3 秒再執行登入判斷，避免執行其他彈窗時間重疊到
         }
       });
+
+
+
       watch( updateImagePath, { immediate: true });
       questionSection.value = document.querySelector(".question-section");
       // document.addEventListener("click", handleAnchorClick);

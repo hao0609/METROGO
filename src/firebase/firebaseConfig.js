@@ -10,7 +10,7 @@ import {
   remove,
   update,
 } from "firebase/database";
-import { getStorage } from "firebase/storage";
+import { getStorage, ref as storageref, uploadBytes, listAll, getDownloadURL,getMetadata} from "firebase/storage";
 
 // 引入 firebase authentication 登入註冊驗證方法
 import { getAuth, GoogleAuthProvider, signInWithPopup, signOut} from "firebase/auth";
@@ -153,4 +153,4 @@ initializeDatabase();
 
 const provider = new GoogleAuthProvider();
 
-export { auth, database, ref, set, get, onValue, remove, update, storage, provider, signInWithPopup, signOut};
+export { auth, database, ref, set, get, onValue, remove, update, storage, provider, signInWithPopup, signOut,listAll, getDownloadURL,storageref,};
