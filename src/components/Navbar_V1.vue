@@ -269,10 +269,7 @@ const cartItems = ref([
             ><div class="mission_text">一般任務</div></RouterLink
           >
           <RouterLink to="/special-mission" class="router_link"
-            ><div class="mission_text">特殊任務 - 半日</div></RouterLink
-          >
-          <RouterLink to="/special-mission" class="router_link"
-            ><div class="mission_text">特殊任務 - 一日</div></RouterLink
+            ><div class="mission_text">特殊任務</div></RouterLink
           >
         </div>
         <RouterLink to="/store"><h2>商城</h2></RouterLink>
