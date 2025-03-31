@@ -1,7 +1,7 @@
 import { database } from '../../firebase/firebaseConfig';
 import { ref, set, push, get } from 'firebase/database';
 import MissionGeneral_UserInfo from '@/json/MissionGeneral_UserInfo.json';
-
+import GetUserData from '../view/Backend/checkUserDB_UserData.js'
 
 /**
  * 生成下一個會員ID
@@ -44,9 +44,6 @@ export const addGoogleUser_ToDB = async (UserData) => {
    
     try{
 
-    // 執行 Counter 功能
-    await generateMemberID();
-
     // 取得目前用戶註冊日期
 
     function getFormattedDate() {
@@ -71,8 +68,22 @@ export const addGoogleUser_ToDB = async (UserData) => {
     }
         
     const userRef = ref(database, '會員資料/' + UserData.uid);
-    await set(userRef, userDataToSave_Final);   // 變更為用用戶的唯一 UID set 方法添加至會員資料表 
-    console.log('用戶數據已成功保存到Firebase，會員ID:', UserData.uid);
+
+    
+
+    const ckeckUserExist = await GetUserData(UserData.uid)
+    console.log(ckeckUserExist);
+    
+    // 先判斷用戶是否已存在，如果不存在則將用戶數據保存到Firebase
+    if ( ckeckUserExist== null) {
+      // 執行 Counter 功能
+      await generateMemberID();
+
+      await set(userRef, userDataToSave_Final);   // 變更為用用戶的唯一 UID set 方法添加至會員資料表 
+      console.log('用戶數據已成功保存到Firebase，會員ID:', UserData.uid);
+    }
+
+
 
     }catch(error){
 

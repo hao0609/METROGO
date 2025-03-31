@@ -29,6 +29,26 @@ import { useRouter } from 'vue-router';
 // 確保用戶狀態已加載
 const userReady = ref(false);
 
+
+// 判斷用戶是否為 google 帳戶進行登入
+
+import { getAuth } from "firebase/auth";
+
+const auth = getAuth();
+const user = auth.currentUser;
+const checkUserIsGoogleAccount = () => {
+    const isGoogleLogin = user.providerData.some(provider => provider.providerId === 'google.com');
+    if (isGoogleLogin) {
+        console.log('用戶使用 Google 帳戶登入');
+        // 隱藏修改密碼欄位按鈕
+        CheckUserCanEditPWD.value = false
+    }else{
+        console.log('用戶未使用 Google 帳戶登入');
+        CheckUserCanEditPWD.value = true
+    }
+}
+
+
 onMounted(() => {
   // 等待用戶狀態準備好
   const checkUserStatus = () => {
@@ -38,6 +58,9 @@ onMounted(() => {
       // 如果用戶狀態還未準備好，500ms 後再檢查
       setTimeout(checkUserStatus, 500);
     }
+
+    checkUserIsGoogleAccount()
+
   };
   
   checkUserStatus();
@@ -70,6 +93,9 @@ const photoStatus = ref('default');
 
 // 計算屬性：是否有照片
 const hasPhoto = computed(() => photoUrl.value !== '');
+
+// 修改密碼欄位按鈕是否顯示，預設為顯示 ( 若為 google 障戶登入使用者則隱藏)
+const CheckUserCanEditPWD = ref(true);
 
 // 密碼相關狀態
 const passwordForm = ref({
@@ -443,15 +469,19 @@ const passwordUpdateFailed = ref({
             </div>
             <div class="side-bar-bottom">
                 <div class="menu">
+                <div
+                  v-for="(item, index) in menuItems" 
+                  :key="index"
+                >
                     <div 
-                        v-for="(item, index) in menuItems" 
-                        :key="index"
+                        v-if="item.id === 'changePassward' ? CheckUserCanEditPWD : true"
                         class="menu-item"
                         :class="{ active: activeMenuItem === item.id }"
                         @click="handleMenuClick(item.id)"
                     >
                         {{ item.text }}<SubwayRightIcon/>
                     </div>
+                </div>
                     <button class="btn_white small" @click="handleLogout">登出</button>
                 </div>
                 <div class="menu_mobile">
@@ -459,11 +489,11 @@ const passwordUpdateFailed = ref({
                         <div class="select-wrapper">
                             <select class="select-field" @change="handleMobileMenuChange($event)">
                                 <option value="" disabled selected>下拉選項</option>
-                                <option v-for="(item, index) in menuItems" 
-                                        :key="index" 
-                                        :value="item.id">
+                                <template v-for="(item, index) in menuItems" :key="index">
+                                    <option v-if="item.id !== 'changePassward' || CheckUserCanEditPWD" :value="item.id">
                                     {{ item.text }}
-                                </option>
+                                    </option>
+                                </template>
                             </select>
                             <span class="select-arrow"></span>
                         </div>
