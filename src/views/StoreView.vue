@@ -350,7 +350,7 @@ watch(isMobile, () => {
   transition: background-color 0.3s;
   
   &:hover {
-    background-color: darken($primary-400, 10%);
+    background-color: #f6e9fe;
   }
 }
 

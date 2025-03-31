@@ -357,7 +357,7 @@ const toggleWishlist = () => {
         color: white;
         
         &:hover {
-          background-color: darken($primary-400, 10%);
+          background-color: #9538c4;
         }
       }
       

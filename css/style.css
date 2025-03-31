@@ -300,6 +300,7 @@ table {
   flex-direction: column;
   max-width: 1200px;
   margin: 0 auto;
+  gap: 12px;
 }
 
 .footer-top {
@@ -335,6 +336,7 @@ table {
 .footer-bottom {
   width: 100%;
   padding-top: 40px;
+  gap: 24px;
 }
 
 .footer-text {

@@ -10,6 +10,7 @@ import { auth, database , provider, signInWithPopup, signOut} from '../firebase/
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword} from 'firebase/auth'
 import { ref, get } from 'firebase/database';
 import { addGoogleUser_ToDB } from "../js/view/addGoogleUser_ToDB.js";
+import Swal from 'sweetalert2';
 
 
 // 引入自定義的工具模組
@@ -177,29 +178,29 @@ export default {
                 const result = await handleSignupAndSaveToFirebase(this.signup, userUID);
                 if (result.success) {
                   await signInWithEmailAndPassword(auth,verifyRes.email, `line_${verifyRes.sub}`).then(() => {
-                    this.showMessage('success', `登入成功!`);
+                    this.showToast('success', `登入成功!`);
                     // 使用統一導航方法
                     this.navigateAfterAuth();
                   }).catch(error => {
                     console.log('error:', error);
                     if (error.code === 'auth/user-not-found') {
-                      this.showMessage('error', `登入失敗： ${error.message}`);
+                      this.showToast('error', `登入失敗： ${error.message}`);
                     }
                   });
                 } else {
-                  this.showMessage('error', `註冊失敗：${result.error}`);
+                  this.showToast('error', `註冊失敗：${result.error}`);
                 }
               } else {
                 console.log('login',verifyRes.email,`line_${verifyRes.sub}`)
                 // login
                 await signInWithEmailAndPassword(auth,verifyRes.email, `line_${verifyRes.sub}`).then(() => {
-                  this.showMessage('success', `登入成功!`);
+                  this.showToast('success', `登入成功!`);
                   // 使用統一導航方法
                   this.navigateAfterAuth();
                 }).catch(error => {
                   console.log('error:', error);
                   if (error.code === 'auth/user-not-found') {
-                    this.showMessage('error', `登入失敗： ${error.message}`);
+                    this.showToast('error', `登入失敗： ${error.message}`);
                   }
                 });
               }
@@ -281,17 +282,17 @@ export default {
         console.log("登入成功:", result.user);
         await addGoogleUser_ToDB (result.user)
 
+        this.showToast('success', '登入成功!')
+
         this.navigateAfterAuth();
 
       } catch (error) {
         console.error("登入失敗:", error);
+        this.showToast('error', `登入失敗: ${error.message}`);
       }
     },
     switchForm(formName) {
       this.currentForm = formName;
-      
-      // 重置訊息
-      this.resetMessage();
       
       // 切換表單時重置相應的表單數據
       if (formName === 'login') {
@@ -325,27 +326,7 @@ export default {
       // 切換密碼可見性
       this.passwordVisible[field] = !this.passwordVisible[field];
     },
-    // 顯示訊息
-    showMessage(type, text, duration = 3000) {
-      this.message = {
-        show: true,
-        type,
-        text
-      };
-      
-      // 自動隱藏訊息
-      setTimeout(() => {
-        this.resetMessage();
-      }, duration);
-    },
-    // 重置訊息
-    resetMessage() {
-      this.message = {
-        show: false,
-        type: 'success',
-        text: ''
-      };
-    },
+
     // 登入相關方法
     async handleLogin() {
       const isValid = validateLoginForm(this.login);
@@ -357,7 +338,8 @@ export default {
 
         try{
           await signInWithEmailAndPassword(auth,this.login.email, this.login.password)
-          this.showMessage('success', `登入成功!`);
+          // 使用 Toast 顯示成功消息
+          this.showToast('success', '登入成功!');
 
           // 使用統一導航方法
           this.navigateAfterAuth();
@@ -365,11 +347,11 @@ export default {
         }catch(error){
             
             switch (error.code) {
-                  case "auth/invalid-credential":
-                    this.showMessage('error', `帳號或密碼錯誤，請再試一次！`);
-                    break;
-                  default:
-                    this.showMessage('error', `登入失敗： ${error.message}`);
+              case "auth/invalid-credential":
+                this.showToast('error', '帳號或密碼錯誤，請再試一次！');
+                break;
+              default:
+                this.showToast('error', `登入失敗： ${error.message}`);
             }
         }
       }
@@ -401,11 +383,11 @@ export default {
             const result = await handleSignupAndSaveToFirebase(this.signup, userUID);
               
               if (result.success) {
-                this.showMessage('success', '註冊成功！您的帳號已創建');
+                this.showToast('success', '註冊成功！您的帳號已創建');
                 // 使用統一導航方法
                 this.navigateAfterAuth();
               } else {
-                this.showMessage('error', `註冊失敗：${result.error}`);
+                this.showToast('error', `註冊失敗：${result.error}`);
               }
 
           }
@@ -414,29 +396,57 @@ export default {
 
               // 這邊是 Firebase Authentication 的註冊驗證錯誤訊息
               switch (error.code) {
-              case "auth/invalid-email":
-                  this.showMessage('error', `註冊過程中出錯：請輸入有效的 Email`);
+                case "auth/invalid-email":
+                  this.showToast('error', '請輸入有效的 Email');
                   break;
-              case "auth/email-already-in-use":
-                  this.showMessage('error', `註冊過程中出錯：該 Email 已被註冊`);
+                case "auth/email-already-in-use":
+                  this.showToast('error', '該 Email 已被註冊');
                   break;
-              case "auth/weak-password":
-                  this.showMessage('error', `註冊過程中出錯：密碼至少需要 6 個字元`);
+                case "auth/weak-password":
+                  this.showToast('error', '密碼至少需要 6 個字元');
                   break;
-              default:
-                  alert("註冊失敗，請稍後再試");
-             
-            }
+                default:
+                  this.showToast('error', "註冊失敗，請稍後再試");
+              }
           }
 
         } catch (error) {
           console.error('註冊過程中出錯:', error);
-          this.showMessage('error', `註冊過程中出錯：${error.message}`);
+          this.showToast('error', `註冊過程中出錯：${error.message}`);
         } finally {
           this.isLoading = false;
         }
       }
     },
+
+    // 登入成功/失敗 Toast 通知方法
+    showToast(icon, title) {
+      const Toast = Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 2400,
+        timerProgressBar: false, 
+        backdrop: false,
+        didOpen: (toast) => {
+          toast.onmouseenter = Swal.stopTimer;
+          toast.onmouseleave = Swal.resumeTimer;
+
+          toast.style.marginTop = '100px';
+        },
+        customClass: {
+          container: 'login-toast-container',
+          popup: 'login-toast-popup',
+          title: 'login-toast-title'
+        }
+      });
+      
+      Toast.fire({
+        icon: icon, // 'success', 'error', 'warning', 'info', 'question'
+        title: title
+      });
+    },
+
     // 忘記密碼相關方法
     handleForgotPassword() {
       // 依據當前步驟執行相應的操作
@@ -476,14 +486,7 @@ export default {
 
 <template>
   <Navbar_V1 />
-  <div class="container">
-    <!-- 訊息提示 -->
-    <div class="message-container" v-if="message.show">
-      <div class="message" :class="message.type">
-        {{ message.text }}
-      </div>
-    </div>
-    
+  <div class="container">    
     <!-- 載入中遮罩 -->
     <div class="loading-overlay" v-if="isLoading">
       <div class="loading-spinner"></div>
@@ -645,4 +648,13 @@ export default {
 
 <style lang="scss" scoped>
 @use "../assets/sass/page/login.scss";
+</style>
+
+<style lang="scss">
+  .login-toast-title {
+    font-family: "NotoSansTC", "Microsoft JhengHei" !important;
+    font-size: 16px;
+    font-weight: 400 !important;
+    color: #232529;
+  }
 </style>

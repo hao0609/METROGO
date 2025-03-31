@@ -36,7 +36,7 @@ const alert_user_login_ref = ref(null);
 
 const GotoUserProfile = () => {
   if (user_status.value==null) {
-    alert_user_login_ref.value.UserLoginShowAlert();
+    router.push("/login");
     
     checked.value = false
     rwd_menu.value.style.visibility = "hidden";
