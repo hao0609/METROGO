@@ -138,6 +138,14 @@ const handleMouseMove = (event) => {
   }
 };
 
+function closeOnOutsideClick(event) {
+  // 點擊彈窗外範圍關閉彈窗
+  // 確保點擊的是背景遮罩，而不是彈窗本身
+  if (event.target.classList.contains('dialog-overlay')) {
+    closeSightDetail();
+  }
+}
+
 // 使用Vue的生命周期鉤子
 onMounted(() => {
   // 稍微延迟初始化以确保DOM完全渲染
@@ -368,8 +376,8 @@ const messageData = ref([
     </div>
 
     <!-- 景點詳情對話框 -->
-    <div class="dialog-overlay" v-if="isDialogVisible && currentSightDetail">
-      <div id="sightDetailDialog" v-if="isDialogVisible && currentSightDetail">
+    <div class="dialog-overlay" v-if="isDialogVisible && currentSightDetail" @click="closeOnOutsideClick">
+      <div id="sightDetailDialog" v-if="isDialogVisible && currentSightDetail" @click.stop>
         <div class="dialog-container">
           <div class="detail-dialog-content">
             <h2 class="detail-dialog-title">
