@@ -6,10 +6,6 @@ import Navbar_V1 from "@/components/Navbar_V1.vue";
 import HomeFooter from "@/components/Footer.vue";
 import { database, ref, get } from "@/firebase/firebaseConfig";
 
-const handleSearch = (query) => {
-  console.log("Search query from App:", query);
-};
-
 // 用來儲存從 Firebase 讀取的資料
 const products = vueRef([]);
 
@@ -34,6 +30,23 @@ const fetchProducts = () => {
     });
 };
 
+// 儲存過濾後的商品
+const filteredProducts = vueRef([]);
+
+// 搜尋邏輯：由 search 組件直接傳入過濾結果
+const handleSearch = (searchQuery) => {
+  console.log("Search query from SearchBar:", searchQuery);
+  if (searchQuery.trim() === "") {
+    // 如果搜尋框為空，顯示所有商品
+    filteredProducts.value = [...products.value];
+  } else {
+    // 否則進行過濾
+    filteredProducts.value = products.value.filter((product) => {
+      return product.name.toLowerCase().includes(searchQuery.toLowerCase());
+    });
+  }
+};
+
 onMounted(() => {
   fetchProducts(); // 頁面加載時調用
 });
@@ -45,26 +58,16 @@ onMounted(() => {
     <Banner @search="handleSearch" />
     <main class="main">
       <div class="container">
-        <ProductList :products="products" />
+        <ProductList
+          :products="products"
+          :filteredProducts="filteredProducts"
+        />
       </div>
     </main>
     <HomeFooter />
   </div>
 </template>
 <style lang="scss" scoped>
-// * {
-//   margin: 0;
-//   padding: 0;
-//   box-sizing: border-box;
-// }
-
-// body {
-//   font-family: Arial, sans-serif;
-//   line-height: 1.5;
-//   color: #333;
-//   background-color: #f8f8f8;
-// }
-
 .container {
   max-width: 1200px;
   margin: 0 auto;

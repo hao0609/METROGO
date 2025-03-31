@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed, onMounted, onUnmounted } from "vue";
+import { ref, onMounted, onUnmounted } from "vue";
 
 // 引入 Swiper 輪播
 import Swiper from "swiper";
@@ -8,52 +8,33 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
-const props = defineProps({
-  products: Array, // **接收來自父組件的商品資料**
-});
-const searchQuery = ref("");
-const placeholder = "想找什麼?";
 const swiperInstance = ref(null);
 
 // 輪播圖片陣列
 const bannerImages = ref([
   {
-    desktop: "/src/assets/images/store/store-banner.png",
-    mobile: "/src/assets/images/store/store-mobile-banner.png",
+    desktop: "/src/assets/images/store/storeBanner1.png",
+    mobile: "/src/assets/images/store/storeBanner1.png",
   },
   {
-    desktop: "/src/assets/images/store/store-banner2.png",
-    mobile: "/src/assets/images/store/store-mobile-banner2.png",
+    desktop: "/src/assets/images/store/stroeBanner2.png",
+    mobile: "/src/assets/images/store/storeBanner2.png",
   },
   {
-    desktop:
-      "/src/assets/images/store/F26484CA-4DC7-4AB5-BC8C-DA2D555C691D.png",
-    mobile: "/src/assets/images/store/F26484CA-4DC7-4AB5-BC8C-DA2D555C691D.png",
+    desktop: "/src/assets/images/store/storeBanner3.png",
+    mobile: "/src/assets/images/store/stroeBanner3.png",
   },
 ]);
 
-// // **搜尋功能**
-// const filteredProducts = computed(() => {
-//   if (!searchQuery.value) return props.products;
-//   return props.products.filter((product) =>
-//     product.name.includes(searchQuery.value)
-//   );
-// });
-
-// 優化搜尋邏輯：當 searchQuery 改變時，自動更新過濾後的商品列表
-const filteredProducts = computed(() => {
-  return props.products.filter((product) =>
-    product.name.toLowerCase().includes(searchQuery.value.toLowerCase())
-  );
-});
-
-// **監聽搜尋輸入，通知父組件**
-const emit = defineEmits(["search"]);
-const handleSearch = () => {
+// 監聽搜尋輸入，通知ProductList 組件
+const searchQuery = ref("");
+const placeholder = "想找什麼？";
+const emit = defineEmits();
+// 當搜尋內容改變時，發送事件將搜尋結果傳遞給父組件
+const onSearch = () => {
   emit("search", searchQuery.value);
-  console.log("Searching for:", searchQuery.value);
+  console.log("你正在鍵入: " + searchQuery.value);
 };
-
 const isMobile = ref(false);
 
 // 檢查螢幕尺寸
@@ -124,30 +105,15 @@ onUnmounted(() => {
     <div class="banner-search">
       <div class="search">
         <div class="search-container">
-          <i class="search-icon"></i>
+          <i class="search-icon" @click="onSearch"></i>
           <input
             type="text"
             class="search-input"
             :placeholder="placeholder"
             v-model="searchQuery"
-            @keyup.enter="handleSearch"
-            @input="handleSearch"
+            @keyup.enter="onSearch"
           />
         </div>
-      </div>
-
-      <!-- **搜尋結果 (只有輸入內容時才顯示)** -->
-      <div class="search-results" v-if="searchQuery">
-        <h3>搜尋結果：</h3>
-        <ul>
-          <li v-for="product in filteredProducts" :key="product.id">
-            <img :src="product.image" :alt="product.name" />
-            <p>{{ product.name }} - ${{ product.price }}</p>
-          </li>
-        </ul>
-        <p v-if="filteredProducts.length === 0">
-          找不到符合的商品，請試試其他關鍵字。
-        </p>
       </div>
     </div>
   </div>
@@ -276,6 +242,12 @@ onUnmounted(() => {
   width: 50px;
   height: 50px;
   object-fit: cover;
+}
+
+.search-icon:hover {
+  cursor: pointer;
+  transform: scale(1.2);
+  transition: transform 0.3s ease;
 }
 
 @media screen and (max-width: 768px) {

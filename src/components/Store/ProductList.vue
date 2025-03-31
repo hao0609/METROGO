@@ -10,19 +10,26 @@ const props = defineProps({
     type: Array,
     required: true,
   },
+  filteredProducts: {
+    type: Array,
+    required: false,
+    default: () => [],
+  },
 });
+
+// 處理頁面排序邏輯
 const currentPage = ref(1);
-const itemsPerPage = ref(8);
-const filteredProducts = ref([]);
+const itemsPerPage = ref(8); // 一次顯示 8 個商品
+const localFilteredProducts = ref([]);
 
 const totalPages = computed(() => {
-  return Math.ceil(filteredProducts.value.length / itemsPerPage.value);
+  return Math.ceil(localFilteredProducts.value.length / itemsPerPage.value);
 });
 
 const paginatedProducts = computed(() => {
   const start = (currentPage.value - 1) * itemsPerPage.value;
   const end = start + itemsPerPage.value;
-  return filteredProducts.value.slice(start, end);
+  return localFilteredProducts.value.slice(start, end);
 });
 
 // 切換頁面
@@ -48,18 +55,18 @@ const activeSort = ref("newest");
 const applySorting = () => {
   switch (activeSort.value) {
     case "price-asc":
-      filteredProducts.value.sort(
+      localFilteredProducts.value.sort(
         (a, b) => extractPrice(a.price) - extractPrice(b.price)
       );
       break;
     case "price-desc":
-      filteredProducts.value.sort(
+      localFilteredProducts.value.sort(
         (a, b) => extractPrice(b.price) - extractPrice(a.price)
       );
       break;
     case "newest":
       // 根據 posted 日期從最新到最舊排序
-      filteredProducts.value.sort(
+      localFilteredProducts.value.sort(
         (a, b) => new Date(b.posted) - new Date(a.posted)
       );
       break;
@@ -68,13 +75,13 @@ const applySorting = () => {
   currentPage.value = 1;
 };
 
-const extractPrice = (priceString) => {
-  return parseInt(priceString.replace(/[^0-9]/g, ""));
-};
-
 // 切換收藏狀態
 const toggleFavorite = (product) => {
   product.favorite = !product.favorite;
+};
+
+const extractPrice = (priceString) => {
+  return parseInt(priceString.replace(/[^0-9]/g, ""));
 };
 
 // 監聽排序方式變化
@@ -84,52 +91,69 @@ watch(activeSort, () => {
 
   switch (currentSort) {
     case "price-asc":
-      filteredProducts.value.sort(
+      localFilteredProducts.value.sort(
         (a, b) => extractPrice(a.price) - extractPrice(b.price)
       );
       break;
     case "price-desc":
-      filteredProducts.value.sort(
+      localFilteredProducts.value.sort(
         (a, b) => extractPrice(b.price) - extractPrice(a.price)
       );
       break;
     case "newest":
-      filteredProducts.value.sort((a, b) => b.id - a.id);
+      localFilteredProducts.value.sort((a, b) => b.id - a.id);
       break;
   }
 });
 
 // 監聽產品資料變化，但不重置頁碼
+
 watch(
   () => props.products,
   (newProducts) => {
-    filteredProducts.value = [...newProducts];
+    localFilteredProducts.value = [...newProducts];
     // 應用當前排序但不重置頁碼
     const currentSort = activeSort.value;
 
     switch (currentSort) {
       case "price-asc":
-        filteredProducts.value.sort(
+        localFilteredProducts.value.sort(
           (a, b) => extractPrice(a.price) - extractPrice(b.price)
         );
         break;
       case "price-desc":
-        filteredProducts.value.sort(
+        localFilteredProducts.value.sort(
           (a, b) => extractPrice(b.price) - extractPrice(a.price)
         );
         break;
       case "newest":
-        filteredProducts.value.sort((a, b) => b.id - a.id);
+        localFilteredProducts.value.sort((a, b) => b.id - a.id);
         break;
     }
   },
-  { deep: true }
+  { immediate: true, deep: true }
 );
 
-// Lifecycle hooks
+// 監聽 filteredProducts
+watch(
+  () => props.filteredProducts,
+  (newFilteredProducts) => {
+    localFilteredProducts.value = [...newFilteredProducts];
+
+    if (localFilteredProducts.value.length === 0) {
+      currentPage.value = 1; // 當沒產品時，確保回到第一頁
+    }
+    applySorting();
+  },
+  { immediate: true, deep: true }
+);
+
 onMounted(() => {
-  filteredProducts.value = [...props.products];
-  applySorting();
+  console.log(props.products); // 檢查是否有正確傳遞商品資料
+  if (props.products && props.products.length > 0) {
+    localFilteredProducts.value = [...props.products];
+    applySorting();
+  }
 });
 </script>
 
@@ -146,12 +170,20 @@ onMounted(() => {
     </div>
 
     <div class="product-list__grid">
-      <ProductCard
-        v-for="product in paginatedProducts"
-        :key="product.id"
-        :product="product"
-        @toggle-favorite="toggleFavorite"
-      />
+      <!-- 只顯示篩選後有商品的情況 -->
+      <template v-if="paginatedProducts.length > 0">
+        <ProductCard
+          v-for="product in paginatedProducts"
+          :key="product.id"
+          :product="product"
+          @toggle-favorite="toggleFavorite"
+        />
+      </template>
+
+      <!-- 顯示找不到商品的訊息 -->
+      <div v-else class="empty-message">
+        <p>目前沒有可顯示的商品。</p>
+      </div>
     </div>
 
     <div class="product-list__pagination">
@@ -481,5 +513,12 @@ $product-transition: all 0.3s ease;
       border-color: transparent transparent transparent #333;
     }
   }
+}
+
+.empty-message p {
+  font-weight: bold;
+  font-size: 24px;
+  text-align: center;
+  color: #999;
 }
 </style>
