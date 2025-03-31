@@ -431,10 +431,8 @@ const nextPage = () => {
                   <tr>
                     <th>No.</th>
                     <th>路線</th>
-                    <th>行程</th>
-                    <th>集章狀態</th>
-                    <th>獎勵領取</th>
-                    <th>查看</th>
+                    <th>照片上傳進度</th>
+                    <th>查看照片詳情</th>
                   </tr>
                 </thead>
                 <tbody>

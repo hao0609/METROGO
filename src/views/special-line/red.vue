@@ -89,7 +89,9 @@
             <p class="line-message">{{ line.message }}</p>
             <!-- <p class="line-message2">{{ line.message2 }}</p> -->
             </p>
-    
+
+            
+             
             <img
               v-if="line.img"
               :src="line.img"
@@ -257,9 +259,20 @@ export default {
 
     const selectedLine = ref("");
 
+    // 控制可不可跳出上傳圖片的彈窗 ( 應用於照片審核中 )，預設可以
+    const CanShowPhotoAlert = ref(true);
+
     const selectedQuestion = ref(null);
     const openPhotoAlert = (line) => {
-      selectedLine.value = line;
+      if (CanShowPhotoAlert.value == true){
+        selectedLine.value = line;
+
+      }
+      else{
+        // 這裡準備照片審核中的彈窗
+        alert("照片審核中");
+      }
+      
     };
     // const openQuestion = () => {
     //   // selectedQuestion.value = questions;
@@ -293,9 +306,16 @@ export default {
       selectedQuestion.value = null;
     };
     const handleUploadSuccess = async () => {
-  console.log("上傳成功，開始更新圖片");
-  await updateImagePath();
-};
+      console.log("上傳成功，開始更新圖片");
+      await updateImagePath();
+      // alert("上傳完要做的事");
+
+      // 讓圖片不能點選出上傳圖片彈窗
+      CanShowPhotoAlert.value = false;
+
+      // 準備將 "審核中" 的照片狀態寫入 FireBase
+
+  };
     const handleModalConfirm = () => {
       // isVisible.value = false;
       selectedLine.value = null;
@@ -470,6 +490,9 @@ const updateImagePath = async () => {
         const latestImage = stationFiles[0]; // 最新的檔案
         const latestImageRef = storageRef(storage, `${imagePath}${latestImage}`);
         const url = await getDownloadURL(latestImageRef);
+
+        console.log(url);
+        
 
         // lines.value[index].img = url;
       // 加上防快取參數，確保圖片能正確更新
@@ -720,6 +743,8 @@ const markQuestionAsAnswered = (questionId) => {
       sectionActive,
       toTop,
       showToTop,
+      CanShowPhotoAlert,
+
 
       // isQuestionVisible,
       questionData,

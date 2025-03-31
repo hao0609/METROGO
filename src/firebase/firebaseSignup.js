@@ -2,6 +2,7 @@ import { database } from './firebaseConfig';
 import { ref, set, push, get } from 'firebase/database';
 
 import MissionGeneral_UserInfo from '@/json/MissionGeneral_UserInfo.json';
+import MissionSpecial_UserInfo from '@/json/MissionSpecial_UserInfo.json';
 
 /**
  * 生成下一個會員ID
@@ -75,7 +76,8 @@ export const saveUserToFirebase = async (userData,userUID) => {
         "電子郵件": userData.email,
         "會員頭像": "",                             // 先給空的
         "點數積分": 0 ,                             // 先給0
-         ...MissionGeneral_UserInfo                // 一般任務遊戲進度
+         ...MissionGeneral_UserInfo,                // 一般任務遊戲進度
+         ...MissionSpecial_UserInfo                // 特殊任務遊戲進度
       }
 
   
