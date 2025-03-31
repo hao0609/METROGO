@@ -5,20 +5,20 @@
             "category": "blue",
             "group_title": "火鍋季開跑",
             "journey_featured_name": "天冷就要吃鍋！板南線老饕必吃火鍋！",
-            "featured_main_photo": "/src/assets/images/featured/pic-featured_blue_hotpot_main.svg",
+            "featured_main_photo": "/tid201/g2/images/featured/pic-featured_blue_hotpot_main.svg",
             "featured_photos": [
-              "/src/assets/images/featured/pic-featured_blue_hotpot_1.svg",
-              "/src/assets/images/featured/pic-featured_blue_hotpot_2.svg",
-              "/src/assets/images/featured/pic-featured_blue_hotpot_3.svg",
-              "/src/assets/images/featured/pic-featured_blue_hotpot_4.svg",
-              "/src/assets/images/featured/pic-featured_blue_hotpot_5.svg"
+              "/tid201/g2/images/featured/pic-featured_blue_hotpot_1.svg",
+              "/tid201/g2/images/featured/pic-featured_blue_hotpot_2.svg",
+              "/tid201/g2/images/featured/pic-featured_blue_hotpot_3.svg",
+              "/tid201/g2/images/featured/pic-featured_blue_hotpot_4.svg",
+              "/tid201/g2/images/featured/pic-featured_blue_hotpot_5.svg"
             ],        
             "store_info": {
                 "name": "詹記麻辣火鍋西門大世界",
                 "address": "10844台北市萬華區成都路81號B1",
                 "hours": "12:00 - 01:00",
                 "phone": "02 2311 1800",
-                "info_photo": "/src/assets/images/featured/pic-featured_blue_hotpot_info.svg"
+                "info_photo": "/tid201/g2/images/featured/pic-featured_blue_hotpot_info.svg"
               },          
             "featured_paragraphs": [
               "西門町，是台北最具代表性的繁華商圈之一，每天吸引無數旅客和在地人潮。在這片街道交錯的繁忙地帶，有一家不容錯過的麻辣火鍋名店——詹記麻辣火鍋。這家火鍋店不僅以其濃郁的湯頭和新鮮的食材馳名，更以其優雅的用餐環境和獨特的服務方式，成為火鍋愛好者心中的理想聚餐地。",
@@ -31,27 +31,27 @@
               "",
               "詹記麻辣火鍋在服務方面也十分用心。他們的服務人員態度親切，對於火鍋新手，他們會耐心講解如何調配醬料、選擇湯底，甚至幫忙下鍋煮料，讓顧客能毫無壓力地享受這一場味覺盛宴。另外，詹記還設有自助醬料區，提供多達二十多種醬料供顧客自由調配。無論你是喜歡傳統的沙茶醬，還是偏愛創意的柚香辣醬，都能在這裡找到你的最愛。"
             ],
-            "link": "./blue-hotpot"
+            "link": "/blue-hotpot"
         },
         {
             "id": 2,
             "category": "blue",
             "group_title": "大巨蛋活動",
             "journey_featured_name": "開箱台北大巨蛋！全台最大多功能場館！",
-            "featured_main_photo": "/src/assets/images/featured/pic-featured_blue_dome_main.svg",
+            "featured_main_photo": "/tid201/g2/images/featured/pic-featured_blue_dome_main.svg",
             "featured_photos": [
-              "/src/assets/images/featured/pic-featured_blue_dome_1.svg",
-              "/src/assets/images/featured/pic-featured_blue_dome_2.svg",
-              "/src/assets/images/featured/pic-featured_blue_dome_3.svg",
-              "/src/assets/images/featured/pic-featured_blue_dome_4.svg",
-              "/src/assets/images/featured/pic-featured_blue_dome_5.svg"
+              "/tid201/g2/images/featured/pic-featured_blue_dome_1.svg",
+              "/tid201/g2/images/featured/pic-featured_blue_dome_2.svg",
+              "/tid201/g2/images/featured/pic-featured_blue_dome_3.svg",
+              "/tid201/g2/images/featured/pic-featured_blue_dome_4.svg",
+              "/tid201/g2/images/featured/pic-featured_blue_dome_5.svg"
             ],        
             "store_info": {
                 "name": "台北大巨蛋",
                 "address": "110台北市信義區忠孝東路四段515號",
                 "hours": "24 小時營業",
                 "phone": "02 2722 8811",
-                "info_photo": "/src/assets/images/featured/pic-featured_blue_dome_info.svg"
+                "info_photo": "/tid201/g2/images/featured/pic-featured_blue_dome_info.svg"
               },          
             "featured_paragraphs": [
                 "台北大巨蛋是台灣最具規模的多功能場館。作為台灣全國最大型的室內多功能場地之一，台北大巨蛋的開放不僅改變了台灣的娛樂和體育產業，也讓台北成為亞洲區域內的頂尖表演和活動場地之一。",
@@ -64,7 +64,7 @@
                 "",
                 "作為全台最大的多功能場館，台北大巨蛋不僅是體育、音樂和娛樂的集中地，也代表著台灣現代化的文化與建設。無論你是想觀賞一場精彩的比賽、參加一場盛大的演唱會，隨時關注台北大巨蛋的最新活動消息就對了！"
               ],
-            "link": "./blue-dome"
+            "link": "/blue-dome"
         }
       ],
       "red": [
@@ -73,20 +73,20 @@
             "category": "red",
             "group_title": "必吃小籠包",
             "journey_featured_name": "觀光客必吃小籠包！朝聖信義東門鼎泰豐總店！",
-            "featured_main_photo": "/src/assets/images/featured/pic-featured_red_dumpling_main.svg",
+            "featured_main_photo": "/tid201/g2/images/featured/pic-featured_red_dumpling_main.svg",
             "featured_photos": [
-                "/src/assets/images/featured/pic-featured_red_dumpling_1.svg",
-                "/src/assets/images/featured/pic-featured_red_dumpling_2.svg",
-                "/src/assets/images/featured/pic-featured_red_dumpling_3.svg",
-                "/src/assets/images/featured/pic-featured_red_dumpling_4.svg",
-                "/src/assets/images/featured/pic-featured_red_dumpling_5.svg"
+                "/tid201/g2/images/featured/pic-featured_red_dumpling_1.svg",
+                "/tid201/g2/images/featured/pic-featured_red_dumpling_2.svg",
+                "/tid201/g2/images/featured/pic-featured_red_dumpling_3.svg",
+                "/tid201/g2/images/featured/pic-featured_red_dumpling_4.svg",
+                "/tid201/g2/images/featured/pic-featured_red_dumpling_5.svg"
             ],        
             "store_info": {
                 "name": "鼎泰豐 信義店",
                 "address": "106台北市大安區信義路二段194號",
                 "hours": "11:00 – 20:30",
                 "phone": "02 2321 8928",
-                "info_photo": "/src/assets/images/featured/pic-featured_red_dumpling_info.svg"
+                "info_photo": "/tid201/g2/images/featured/pic-featured_red_dumpling_info.svg"
               },          
             "featured_paragraphs": [
                 "鼎泰豐信義店，作為鼎泰豐的總店，是台灣最具代表性的餐廳之一，也是眾多觀光客和當地居民朝聖的美食聖地，是每個來到台北的遊客必訪的餐廳之一，依靠著捷運信義線與周邊的繁華商圈，成為了人們的聚集地。",
@@ -99,27 +99,27 @@
                 "",
                 "鼎泰豐不僅是品味台灣小吃的好地方，它也是台灣美食文化的重要象徵。如果你來台灣旅遊，這裡無疑是不可錯過的美食亮點，讓你在饗宴美味的同時，感受台灣熱情的餐飲服務和濃厚的在地文化。"
               ],
-            "link": "./red-dumpling"
+            "link": "/red-dumpling"
         },
         {
             "id": 2,
             "category": "red",
             "group_title": "漫遊金色海岸",
             "journey_featured_name": "漫遊金色海岸！淡水八里渡船體驗去！",
-            "featured_main_photo": "/src/assets/images/featured/pic-featured_red_boat_main.svg",
+            "featured_main_photo": "/tid201/g2/images/featured/pic-featured_red_boat_main.svg",
             "featured_photos": [
-                "/src/assets/images/featured/pic-featured_red_boat_1.svg",
-                "/src/assets/images/featured/pic-featured_red_boat_2.svg",
-                "/src/assets/images/featured/pic-featured_red_boat_3.svg",
-                "/src/assets/images/featured/pic-featured_red_boat_4.svg",
-                "/src/assets/images/featured/pic-featured_red_boat_5.svg"
+                "/tid201/g2/images/featured/pic-featured_red_boat_1.svg",
+                "/tid201/g2/images/featured/pic-featured_red_boat_2.svg",
+                "/tid201/g2/images/featured/pic-featured_red_boat_3.svg",
+                "/tid201/g2/images/featured/pic-featured_red_boat_4.svg",
+                "/tid201/g2/images/featured/pic-featured_red_boat_5.svg"
             ],        
             "store_info": {
                 "name": "淡水金色水岸渡船頭",
                 "address": "251新北市淡水區",
                 "hours": "7:00-21:00",
                 "phone": "02 2321 8928",
-                "info_photo": "/src/assets/images/featured/pic-featured_red_boat_info.svg"
+                "info_photo": "/tid201/g2/images/featured/pic-featured_red_boat_info.svg"
               },          
             "featured_paragraphs": [
                 "淡水八里渡船是台北市周邊一個非常受歡迎的觀光活動。從淡水渡船碼頭搭船到八里，途中可欣賞到淡水河的迷人景致。無論是白天享受陽光還是傍晚觀賞浪漫日落，這條渡船線路提供了一個難得的視角來觀賞台北周邊的自然美景。",
@@ -132,27 +132,27 @@
                 "",
                 "「淡水金色水岸渡船頭」不僅提供便捷的渡船服務，更是一個讓人放慢腳步、享受海風和景色的好地方。無論是白天享受海上的微風，還是黃昏時分欣賞金色海岸，這段渡船之旅都能帶來無比的愉悅和浪漫。帶著家人或朋友，一起來體驗這段難忘的海上之旅，探索淡水與八里的美麗景點，讓這段金色海岸的渡船體驗成為你旅行的亮點！"
               ],
-            "link": "./red-boat"
+            "link": "/red-boat"
         },
         {
             "id": 3,
             "category": "red",
             "group_title": "探索醫療前沿",
             "journey_featured_name": "台大醫院，全台醫療與研究的頂尖象徵！",
-            "featured_main_photo": "/src/assets/images/featured/pic-featured_red_hospital_main.svg",
+            "featured_main_photo": "/tid201/g2/images/featured/pic-featured_red_hospital_main.svg",
             "featured_photos": [
-                "/src/assets/images/featured/pic-featured_red_hospital_1.svg",
-                "/src/assets/images/featured/pic-featured_red_hospital_2.svg",
-                "/src/assets/images/featured/pic-featured_red_hospital_3.svg",
-                "/src/assets/images/featured/pic-featured_red_hospital_4.svg",
-                "/src/assets/images/featured/pic-featured_red_hospital_5.svg"
+                "/tid201/g2/images/featured/pic-featured_red_hospital_1.svg",
+                "/tid201/g2/images/featured/pic-featured_red_hospital_2.svg",
+                "/tid201/g2/images/featured/pic-featured_red_hospital_3.svg",
+                "/tid201/g2/images/featured/pic-featured_red_hospital_4.svg",
+                "/tid201/g2/images/featured/pic-featured_red_hospital_5.svg"
             ],        
             "store_info": {
                 "name": "國立臺灣大學醫學院附設醫院",
                 "address": " 100台北市中正區中山南路7號",
                 "hours": "09:00–16:30",
                 "phone": "02 2312 3456",
-                "info_photo": "/src/assets/images/featured/pic-featured_red_hospital_info.svg"
+                "info_photo": "/tid201/g2/images/featured/pic-featured_red_hospital_info.svg"
               },          
               "featured_paragraphs": [
                 "台大醫院是台灣最具歷史及權威的醫療機構之一，成立於1895年，為台灣的醫療、教學與研究的核心。作為台灣最大的醫學中心之一，台大醫院在臨床治療、醫學研究以及疾病防治方面都享有極高的聲譽。",
@@ -167,7 +167,7 @@
                 "",
                 "不論是對於急診患者的緊急救援，還是對於長期健康管理的全方位關懷，台大醫院始終以病患為中心，致力於提供世界一流的醫療服務。這不僅是一個醫療機構，更是無數人健康與生命的守護者。"
             ],
-            "link": "./red-hospital"
+            "link": "/red-hospital"
         }
       ],
     "green": [
@@ -176,20 +176,20 @@
         "category": "green",
         "group_title": "台北玩水景點",
         "journey_featured_name": "台北玩水景點！銅板價親子友善游泳玩水好去處！",
-        "featured_main_photo": "/src/assets/images/featured/pic-featured_green_waterpark_main.svg",
+        "featured_main_photo": "/tid201/g2/images/featured/pic-featured_green_waterpark_main.svg",
         "featured_photos": [
-            "/src/assets/images/featured/pic-featured_green_waterpark_1.svg",
-            "/src/assets/images/featured/pic-featured_green_waterpark_2.svg",
-            "/src/assets/images/featured/pic-featured_green_waterpark_3.svg",
-            "/src/assets/images/featured/pic-featured_green_waterpark_4.svg",
-            "/src/assets/images/featured/pic-featured_green_waterpark_5.svg"
+            "/tid201/g2/images/featured/pic-featured_green_waterpark_1.svg",
+            "/tid201/g2/images/featured/pic-featured_green_waterpark_2.svg",
+            "/tid201/g2/images/featured/pic-featured_green_waterpark_3.svg",
+            "/tid201/g2/images/featured/pic-featured_green_waterpark_4.svg",
+            "/tid201/g2/images/featured/pic-featured_green_waterpark_5.svg"
         ],        
         "store_info": {
             "name": "自來水博物館",
             "address": "100台北市中正區思源街1號",
             "hours": "09:00 – 17:00",
             "phone": "02 8369 5104",
-            "info_photo": "/src/assets/images/featured/pic-featured_green_waterpark_info.svg"
+            "info_photo": "/tid201/g2/images/featured/pic-featured_green_waterpark_info.svg"
           },          
         "featured_paragraphs": [
             "自來水博物館是台北市一個別具特色且具有教育意義的景點，結合了水文化、環保教育與親子互動，無論大人小孩都能在這裡獲得豐富的學習經驗。博物館位於台北市中正區，交通便捷，非常適合全家大小一起參觀，了解水資源的重要性以及自來水的歷史。",
@@ -202,27 +202,27 @@
             "",
             "自來水博物館不僅是了解水歷史與水處理技術的好地方，它還提供了親子遊玩、學習、互動的理想場域。館內不僅充滿了水文化的元素，還有許多能讓全家一同參與的活動，是台北市一個兼具教育意義和娛樂價值的旅遊景點。如果你和家人有興趣在台北尋找一個既能學習又能放鬆的地方，這裡絕對值得一遊！"
           ],
-        "link": "./green-waterpark"
+        "link": "/green-waterpark"
       },
       {
         "id": 2,
         "category": "green",
         "group_title": "推車港式飲茶",
         "journey_featured_name": "推車港式飲茶推薦！文湖線必吃經典港點！",
-        "featured_main_photo": "/src/assets/images/featured/pic-featured_green_dimsum_main.svg",
+        "featured_main_photo": "/tid201/g2/images/featured/pic-featured_green_dimsum_main.svg",
         "featured_photos": [
-            "/src/assets/images/featured/pic-featured_green_dimsum_1.svg",
-            "/src/assets/images/featured/pic-featured_green_dimsum_2.svg",
-            "/src/assets/images/featured/pic-featured_green_dimsum_3.svg",
-            "/src/assets/images/featured/pic-featured_green_dimsum_4.svg",
-            "/src/assets/images/featured/pic-featured_green_dimsum_5.svg"
+            "/tid201/g2/images/featured/pic-featured_green_dimsum_1.svg",
+            "/tid201/g2/images/featured/pic-featured_green_dimsum_2.svg",
+            "/tid201/g2/images/featured/pic-featured_green_dimsum_3.svg",
+            "/tid201/g2/images/featured/pic-featured_green_dimsum_4.svg",
+            "/tid201/g2/images/featured/pic-featured_green_dimsum_5.svg"
         ],        
         "store_info": {
             "name": "梅花廳 - 兄弟大飯店",
             "address": "105台北市松山區南京東路三段255號2-3樓",
             "hours": "10:00 – 21:00",
             "phone": "02 2712 3456#2188",
-            "info_photo": "/src/assets/images/featured/pic-featured_green_dimsum_info.svg"
+            "info_photo": "/tid201/g2/images/featured/pic-featured_green_dimsum_info.svg"
           },          
         "featured_paragraphs": [
             "位於台北市松山區的兄弟大飯店梅花廳，是一家擁有悠久歷史且深受台灣人喜愛的港式飲茶餐廳。餐廳內的設計典雅且氣氛輕鬆，提供正宗的港式點心，無論是當地居民還是外地遊客，都常常慕名而來品嚐這裡的經典港點。梅花廳不僅注重食材的選擇，更在製作工藝上追求精緻，讓每一位顧客都能享受正宗的港式飲茶體驗。",
@@ -235,7 +235,7 @@
             "",
             "兄弟大飯店梅花廳無疑是松山新店線沿線最具特色的港式飲茶餐廳之一。無論你是想品味正宗的港點，還是體驗傳統的推車服務，這裡都是一個不容錯過的好去處。若你正在尋找一個適合與家人朋友一同享受的美味餐廳，梅花廳絕對是你最佳的選擇。"
           ],
-          "link": "./green-dimsum"
+          "link": "/green-dimsum"
       }
     ],
     "brown": [
@@ -244,20 +244,20 @@
         "category": "brown",
         "group_title": "親子旅遊去",
         "journey_featured_name": "來一個親子之旅！文湖線必去的動物園！",
-        "featured_main_photo": "/src/assets/images/featured/pic-featured_brown_zoo_main.svg",
+        "featured_main_photo": "/tid201/g2/images/featured/pic-featured_brown_zoo_main.svg",
         "featured_photos": [
-            "/src/assets/images/featured/pic-featured_brown_zoo_1.svg",
-            "/src/assets/images/featured/pic-featured_brown_zoo_2.svg",
-            "/src/assets/images/featured/pic-featured_brown_zoo_3.svg",
-            "/src/assets/images/featured/pic-featured_brown_zoo_4.svg",
-            "/src/assets/images/featured/pic-featured_brown_zoo_5.svg"
+            "/tid201/g2/images/featured/pic-featured_brown_zoo_1.svg",
+            "/tid201/g2/images/featured/pic-featured_brown_zoo_2.svg",
+            "/tid201/g2/images/featured/pic-featured_brown_zoo_3.svg",
+            "/tid201/g2/images/featured/pic-featured_brown_zoo_4.svg",
+            "/tid201/g2/images/featured/pic-featured_brown_zoo_5.svg"
         ],        
         "store_info": {
             "name": "臺北市立動物園",
             "address": "116台北市文山區新光路二段30號",
             "hours": "09:00 - 17:00",
             "phone": "02 2938 2300",
-            "info_photo": "/src/assets/images/featured/pic-featured_brown_zoo_info.svg"
+            "info_photo": "/tid201/g2/images/featured/pic-featured_brown_zoo_info.svg"
           },          
         "featured_paragraphs": [
             "台北市立動物園（Taipei Zoo）是台灣最大的動物園之一，位於台北市文山區，這裡是親子遊玩的理想場所。園區成立於1914年，擁有豐富的動物種類和生態展示，致力於讓孩子們在遊玩的同時學習動物知識與環境保護。動物園內的設施適合各年齡層的遊客，特別是家庭遊客，無論是小朋友還是大人，都能在這裡度過難忘的時光。",
@@ -270,27 +270,27 @@
             "",
             "台北市立動物園是親子旅遊的絕佳選擇。這裡不僅有各式各樣的動物可以觀賞，還有充滿綠意的自然景觀和教育意義深遠的保育活動。無論是幼兒還是小學生，都能在這裡獲得樂趣與學習，並感受到大自然的魅力。帶著孩子來動物園，既能放鬆心情，又能增進親子之間的感情，這是一趟寓教於樂的完美旅程！"
         ],
-          "link": "./brown-zoo"
+          "link": "/brown-zoo"
       },
       {
         "id": 2,
         "category": "brown",
         "group_title": "品嘗異國美食",
         "journey_featured_name": "百道異國美食吃到飽！海陸百匯在大直！",
-        "featured_main_photo": "/src/assets/images/featured/pic-featured_brown_buffet_main.svg",
+        "featured_main_photo": "/tid201/g2/images/featured/pic-featured_brown_buffet_main.svg",
         "featured_photos": [
-            "/src/assets/images/featured/pic-featured_brown_buffet_1.svg",
-            "/src/assets/images/featured/pic-featured_brown_buffet_2.svg",
-            "/src/assets/images/featured/pic-featured_brown_buffet_3.svg",
-            "/src/assets/images/featured/pic-featured_brown_buffet_4.svg",
-            "/src/assets/images/featured/pic-featured_brown_buffet_5.svg"
+            "/tid201/g2/images/featured/pic-featured_brown_buffet_1.svg",
+            "/tid201/g2/images/featured/pic-featured_brown_buffet_2.svg",
+            "/tid201/g2/images/featured/pic-featured_brown_buffet_3.svg",
+            "/tid201/g2/images/featured/pic-featured_brown_buffet_4.svg",
+            "/tid201/g2/images/featured/pic-featured_brown_buffet_5.svg"
         ],        
         "store_info": {
             "name": "豐 FOOD 海陸百匯",
             "address": "10491台北市中山區植福路8號1樓",
             "hours": "11:30–14:00、14:30–16:30、17:30–21:00",
             "phone": "02 8502 0555",
-            "info_photo": "/src/assets/images/featured/pic-featured_brown_buffet_info.svg"
+            "info_photo": "/tid201/g2/images/featured/pic-featured_brown_buffet_info.svg"
           },          
         "featured_paragraphs": [
             "大直匯聚了不少優質餐廳，其中「豐 FOOD 海陸百匯」更是備受食客推崇的美食熱點。這家餐廳以其異國風味的海陸百匯料理、精緻環境以及無限量的自助美食選擇，成為聚會、宴會、家庭聚餐等場合的首選。",
@@ -303,7 +303,7 @@
             "",
             "豐 FOOD 海陸百匯是一個集豐盛海陸美食與優雅用餐環境於一體的餐廳，無論你是海鮮愛好者、肉食控，還是對素食有特殊要求，這裡都能提供一個令人滿意的用餐體驗。無論是和家人共享美好時光，還是和朋友、同事一起聚會，豐 FOOD 海陸百匯都是你不容錯過的理想選擇。"
           ],
-          "link": "./brown-buffet"
+          "link": "/brown-buffet"
       }
     ],
     "yellow": [
@@ -312,20 +312,20 @@
         "category": "yellow",
         "group_title": "必吃永和豆漿",
         "journey_featured_name": "24小時全天候營業！傳統必吃永和豆漿推薦！",
-        "featured_main_photo": "/src/assets/images/featured/pic-featured_yellow_soymilk_main.svg",
+        "featured_main_photo": "/tid201/g2/images/featured/pic-featured_yellow_soymilk_main.svg",
         "featured_photos": [
-            "/src/assets/images/featured/pic-featured_yellow_soymilk_1.svg",
-            "/src/assets/images/featured/pic-featured_yellow_soymilk_2.svg",
-            "/src/assets/images/featured/pic-featured_yellow_soymilk_3.svg",
-            "/src/assets/images/featured/pic-featured_yellow_soymilk_4.svg",
-            "/src/assets/images/featured/pic-featured_yellow_soymilk_5.svg"
+            "/tid201/g2/images/featured/pic-featured_yellow_soymilk_1.svg",
+            "/tid201/g2/images/featured/pic-featured_yellow_soymilk_2.svg",
+            "/tid201/g2/images/featured/pic-featured_yellow_soymilk_3.svg",
+            "/tid201/g2/images/featured/pic-featured_yellow_soymilk_4.svg",
+            "/tid201/g2/images/featured/pic-featured_yellow_soymilk_5.svg"
         ],        
         "store_info": {
             "name": "世界豆漿大王",
             "address": "234新北市永和區永和路二段284號",
             "hours": "24 小時營業",
             "phone": "02 8927 0000",
-            "info_photo": "/src/assets/images/featured/pic-featured_yellow_soymilk_info.svg"
+            "info_photo": "/tid201/g2/images/featured/pic-featured_yellow_soymilk_info.svg"
           },          
         "featured_paragraphs": [
             "世界豆漿大王是台灣極具代表性的傳統早餐店之一，憑藉其獨特的口味和豐富的餐點選擇，成為了不少在地人與遊客日常生活的一部分。無論是早晨的第一餐，還是夜宵，這家豆漿店提供的經典台灣早餐，已經深植人心。尤其對於熱愛傳統台灣味的朋友來說，這裡無疑是必訪的美食地點之一。",
@@ -338,20 +338,20 @@
             "",
             "世界豆漿大王不僅注重食材的選擇，更堅持以傳統手作方式製作每一道菜肴。他們的豆漿每天新鮮現磨，不使用任何添加劑，保證豆漿的純正口味。而每一份早餐都是現場製作，保證食材的新鮮和口感的完美呈現。這種對品質的堅持，讓世界豆漿大王在台灣的早餐店中脫穎而出，吸引著無數食客光顧。"
           ],
-          "link": "./yellow-breakfast"
+          "link": "/yellow-breakfast"
       },
       {
         "id": 2,
         "category": "yellow",
         "group_title": "煙火盛大登場",
         "journey_featured_name": "台北煙火最大盛會！大稻埕夏日節煙火登場！",
-        "featured_main_photo": "/src/assets/images/featured/pic-featured_yellow_fireworks_main.svg",
+        "featured_main_photo": "/tid201/g2/images/featured/pic-featured_yellow_fireworks_main.svg",
         "featured_photos": [
-          "/src/assets/images/featured/pic-featured_yellow_fireworks_1.svg",
-          "/src/assets/images/featured/pic-featured_yellow_fireworks_2.svg",
-          "/src/assets/images/featured/pic-featured_yellow_fireworks_3.svg",
-          "/src/assets/images/featured/pic-featured_yellow_fireworks_4.svg",
-          "/src/assets/images/featured/pic-featured_yellow_fireworks_5.svg"
+          "/tid201/g2/images/featured/pic-featured_yellow_fireworks_1.svg",
+          "/tid201/g2/images/featured/pic-featured_yellow_fireworks_2.svg",
+          "/tid201/g2/images/featured/pic-featured_yellow_fireworks_3.svg",
+          "/tid201/g2/images/featured/pic-featured_yellow_fireworks_4.svg",
+          "/tid201/g2/images/featured/pic-featured_yellow_fireworks_5.svg"
             
         ],        
         "store_info": {
@@ -359,7 +359,7 @@
             "address": "103台北市大同區堤外道路",
             "hours": "24 小時營業",
             "phone": "無",
-            "info_photo": "/src/assets/images/featured/pic-featured_yellow_fireworks_info.svg"
+            "info_photo": "/tid201/g2/images/featured/pic-featured_yellow_fireworks_info.svg"
           },          
         "featured_paragraphs": [
             "大稻埕碼頭煙火，每年夏季的台北煙火盛會，是無數人心中的必看盛典。位於台北市大稻埕的這場煙火秀，每年都吸引大批遊客和當地居民前來觀賞，成為夏季最具代表性的活動之一。煙火秀不僅是視覺的饗宴，還充滿了濃濃的節慶氛圍，是全家大小、情侶約會、朋友聚會的完美選擇。",
@@ -372,7 +372,7 @@
             "",
             "大稻埕煙火秀吸引的不僅是台北當地居民，還有來自全台灣各地的遊客。每年夏季，煙火的浪漫和壯觀，帶來滿滿的驚喜與感動，也是台北市夏季最重要的文化活動之一。"
         ],
-          "link": "./yellow-fireworks"
+          "link": "/yellow-fireworks"
       }
     ]
   }
