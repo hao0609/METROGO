@@ -260,9 +260,7 @@ const handleWheel = (e) => {
       if (currentIndex.value > 0) {
         currentIndex.value--;
         const blockToShow = sortedBlocks.value[currentIndex.value];
-        blocks.value.find(
-          (b) => b.number === blockToShow.number
-        ).hidden = false;
+        blocks.value.find((b) => b.number === blockToShow.number).hidden = false;
       }
     }
   }
@@ -325,11 +323,7 @@ onBeforeUnmount(() => {
       <div v-if="block.type === 'media'" class="media-content">
         <template v-if="block.content.type === 'image'">
           <link rel="preload" as="image" />
-          <img
-            :src="block.content.src"
-            alt=""
-            class="w-full h-full object-cover"
-          />
+          <img :src="block.content.src" alt="" class="w-full h-full object-cover" />
         </template>
         <template v-if="block.content.type === 'video'">
           <link rel="preload" as="video" />

@@ -206,14 +206,24 @@ swiper-slide {
 }
 
 .paragraph-title {
-  text-align: left;
+  text-align: justify;
   color: $neutral-0;
+  display: -webkit-box; /* 必須搭配 */
+  -webkit-box-orient: vertical; /* 必須搭配 */
+  -webkit-line-clamp: 2; /* 限制最多 2 行 */
+  overflow: hidden; /* 防止溢出 */
+  text-overflow: ellipsis;
 }
 
 .paragraph {
   color: $neutral-0;
-  text-align: left;
+  text-align: justify;
   font-family: $font-noto;
+  display: -webkit-box; /* 必須搭配 */
+  -webkit-box-orient: vertical; /* 必須搭配 */
+  -webkit-line-clamp: 3; /* 限制最多 2 行 */
+  overflow: hidden; /* 防止溢出 */
+  text-overflow: ellipsis;
 }
 
 .btn-container {
@@ -347,11 +357,11 @@ swiper-slide {
     padding-top: 0px;
   }
 
-  .featured-img {
-    display: flex;
-    width: 70%;
-    height: auto;
-  }
+  // .featured-img {
+  //   display: flex;
+  //   width: 100%;
+  //   height: auto;
+  // }
 
   .featured-paragraph {
     gap: 30px;
@@ -399,9 +409,11 @@ swiper-slide {
   }
 
   // GO編精選
+  .mySwiper{
+    padding: 0px 16px;
+  }
   .featured-container {
     gap: 24px;
-    padding: 48px;
   }
 
   .featured-title {

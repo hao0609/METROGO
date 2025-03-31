@@ -19,7 +19,9 @@
                 :alt="article.journey_featured_name"
               />
             </div>
-            <p class="article-title">{{ article.journey_featured_name }}</p>
+            <p>
+              {{ article.journey_featured_name }}
+            </p>
           </div>
         </router-link>
         <hr v-if="index !== selectedArticles.length - 1" />

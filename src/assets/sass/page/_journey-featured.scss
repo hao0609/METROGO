@@ -181,6 +181,12 @@ img{
         font-size: 16px;
         line-height: 1.5;
         width: 100%;
+        text-align: justify;
+        display: -webkit-box; /* 必須搭配 */
+        -webkit-box-orient: vertical; /* 必須搭配 */
+        -webkit-line-clamp: 2; /* 限制最多 2 行 */
+        overflow: hidden; /* 防止溢出 */
+        text-overflow: ellipsis;
     }
 }
 
