@@ -17,12 +17,12 @@ const bannerImages = ref([
     mobile: "/src/assets/images/store/storeBanner1.png",
   },
   {
-    desktop: "/src/assets/images/store/stroeBanner2.png",
+    desktop: "/src/assets/images/store/storeBanner2.png",
     mobile: "/src/assets/images/store/storeBanner2.png",
   },
   {
     desktop: "/src/assets/images/store/storeBanner3.png",
-    mobile: "/src/assets/images/store/stroeBanner3.png",
+    mobile: "/src/assets/images/store/storeBanner3.png",
   },
 ]);
 

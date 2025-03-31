@@ -10,10 +10,7 @@ import TourGreenLineView from "../views/TourGreenLineView.vue";
 import TourYellowLineView from "../views/TourYellowLineView.vue";
 import TourBrownLineView from "../views/TourBrownLineView.vue";
 
-import StoreView from "../views/StoreView.vue";
-import CategoryPage from "../views/NewStoreView.vue";
-import ProductDetailView from "../views/ProductDetailView.vue";
-import CategoryPageView from "../views/NewStoreView.vue";
+import StoreView from "../views/NewStoreView.vue";
 
 import MetroBlueLineView from "../views/MetroBlueLineView.vue";
 import MetroRedLineView from "../views/MetroRedLineView.vue";
@@ -214,26 +211,6 @@ const router = createRouter({
     // 商城
 
     { path: "/store", name: "商城", component: NewStoreView },
-    // { path: "/category", name: "分類", component: AlertView },
-    // {
-    //   path: "/product/:id",
-    //   name: "商品詳情頁",
-    //   component: ProductDetailView,
-    //   props: (route) => {
-    //     const id = parseInt(route.params.id) || 0;
-
-    //     if (route.query.productData) {
-    //       try {
-    //         const productData = JSON.parse(route.query.productData);
-    //         return { id, product: productData };
-    //       } catch (e) {
-    //         console.error("解析商品數據失敗", e);
-    //       }
-    //     }
-
-    //     return { id };
-    //   },
-    // },
 
     // 隱私權政策
     { path: "/privacy", name: "Privacy", component: PrivacyView },
