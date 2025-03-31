@@ -4,6 +4,18 @@ import Footer from "@/components/Footer.vue";
 import "animate.css";
 
 import { RouterLink } from "vue-router";
+import { ref, onMounted } from 'vue';
+import { useNewsData } from "@/js/view/getNewsData.js";
+import HomeProductList from "@/components/Home/ProductList.vue";
+
+const { getLatestNews, formatDate, getImageUrl } = useNewsData();
+const latestNews = ref([]);
+
+onMounted(() => {
+  // 獲取最新的兩筆新聞
+  latestNews.value = getLatestNews();
+});
+
 </script>
 
 <template>
@@ -97,41 +109,32 @@ import { RouterLink } from "vue-router";
   <div class="news">
     <div class="title-btn">
       <h2>最新消息別錯過</h2>
-      <button class="btn_filled">查看更多</button>
+      <RouterLink to="/news"><button class="btn_filled">查看更多</button></RouterLink>
     </div>
     <div class="news-container">
-      <div class="news-content">
+      <div 
+        v-for="news in latestNews" 
+        :key="news.title" 
+        class="news-content"
+      >
         <div class="news-img-container">
-          <img src="../assets/images/sample.jpg" alt="" />
+          <img :src="getImageUrl(news)" :alt="news.title" />
         </div>
         <div class="text-container">
           <div class="title-tag">
             <p class="title2 bold">
-              臺北市雙層觀光巴士Yes！Bus 探索臺北最具魅力的夜市－寧夏夜市！
+              {{ news.title }}
             </p>
-            <div class="news-tag bold">景點介紹</div>
+            <div class="news-tag bold">
+              {{ 
+                news.type === 'news' ? '最新消息' : 
+                news.type === 'store' ? '商城' : 
+                '系統公告' 
+              }}
+            </div>
           </div>
-          <p>2024/12/01</p>
-          <p>
-            從雙層巴士的高處俯瞰街景，感受城市夜晚的獨特氛圍，無論是古老的建築美感還是夜市裡的香氣四溢，都能讓你深刻體會臺北的文化魅力與活力。
-          </p>
-        </div>
-      </div>
-      <div class="news-content">
-        <div class="news-img-container">
-          <img src="../assets/images/sample.jpg" alt="" />
-        </div>
-        <div class="text-container">
-          <div class="title-tag">
-            <p class="title2 bold">
-              臺北市雙層觀光巴士Yes！Bus 探索臺北最具魅力的夜市－寧夏夜市！
-            </p>
-            <div class="news-tag bold">景點介紹</div>
-          </div>
-          <p>2024/12/01</p>
-          <p>
-            從雙層巴士的高處俯瞰街景，感受城市夜晚的獨特氛圍，無論是古老的建築美感還是夜市裡的香氣四溢，都能讓你深刻體會臺北的文化魅力與活力。
-          </p>
+          <p>{{ formatDate(news.posted) }}</p>
+          <p class="new-desc">{{ news.description }}</p>
         </div>
       </div>
     </div>
@@ -139,54 +142,9 @@ import { RouterLink } from "vue-router";
   <div class="products">
     <div class="title-btn">
       <h2>最新商品</h2>
-      <button class="btn_filled">查看更多</button>
+      <RouterLink to="/store"><button class="btn_filled">查看更多</button></RouterLink>
     </div>
-    <div class="products-card-container">
-      <div class="items">
-        <div class="product-card">
-          <div class="product-img-container">
-            <img src="../assets/images/cap.png" alt="" />
-          </div>
-          <div class="product-text">
-            <p class="title1 bold product-title">馬克杯</p>
-            <p>只是一個平凡的馬克杯而已。</p>
-            <div class="price">$450</div>
-          </div>
-        </div>
-        <div class="product-card">
-          <div class="product-img-container">
-            <img src="../assets/images/card.png" alt="" />
-          </div>
-          <div class="product-text">
-            <p class="title1 bold product-title">馬克杯</p>
-            <p>只是一個平凡的馬克杯而已。</p>
-            <div class="price">$450</div>
-          </div>
-        </div>
-      </div>
-      <div class="items">
-        <div class="product-card">
-          <div class="product-img-container">
-            <img src="../assets/images/card2.png" alt="" />
-          </div>
-          <div class="product-text">
-            <p class="title1 bold product-title">明信片組</p>
-            <p>只是一組明信片而已。</p>
-            <div class="price">$450</div>
-          </div>
-        </div>
-        <div class="product-card">
-          <div class="product-img-container">
-            <img src="../assets/images/T-shirt.png" alt="" />
-          </div>
-          <div class="product-text">
-            <p class="title1 bold product-title">馬克杯</p>
-            <p>只是一件衣服而已。</p>
-            <div class="price">$450</div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <HomeProductList />
   </div>
   <!-- <HomeProducts /> -->
   <Footer />

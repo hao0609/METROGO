@@ -137,6 +137,28 @@ a {
     top: 51%;
   }
 }
+.new-desc {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-height: 6em;
+
+    p {
+      margin-bottom: 0.5em;
+  }
+
+  // 處理內嵌元素在卡片中的顯示
+  :deep(br), br {
+      display: none;
+  }
+    
+  :deep(img), img {
+      display: none;
+  }
+}
+
 .special-mission-title {
   background-color: $yellow-400;
   position: absolute;
@@ -195,7 +217,7 @@ a {
   width: 100%;
   text-align: center;
   display: flex;
-  padding: 40px;
+  padding: 40px 32px;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -275,8 +297,11 @@ a {
     width: 40%;
     height: 100%;
     img {
-      width: 100%;
-      height: auto;
+      // width: 100%;
+      // height: auto;
+      width: 360px;
+      height: 240px;
+      border-radius: 12px;
       object-fit: cover;
     }
   }
@@ -368,8 +393,9 @@ a {
     .price {
       color: $primary-400;
       font-weight: 700;
+      font-size: 18px;
       display: flex;
-      justify-content: flex-end;
+      justify-content: flex-start;
     }
   }
 }
@@ -424,6 +450,20 @@ a {
       font-size: 14px;
     }
   }
+
+  .news-content {
+    width: 100%;
+    padding: 32px 24px;
+
+    .news-img-container {
+      width: 100%;
+      height: 100%;
+      img {
+        width: 100%;
+        height: auto;
+      }
+    }
+  }
 }
 
 @media screen and (max-width: 768px) {
@@ -446,12 +486,21 @@ a {
     padding: 5px;
     height: auto;
   }
+  .benefits, .news, .products {
+    padding: 40px 24px;
+  }
+
+  .items {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
 }
 
 @media screen and (max-width: 576px) {
   .banner {
     align-items: center;
     height: auto;
+    min-height: 320px;
     h1 {
       font-size: 50px;
     }
@@ -486,6 +535,35 @@ a {
     .hidden {
       display: none;
     }
+  }
+
+  .title-btn {
+    align-items: center;
+
+    button {
+      width: 32px;
+      min-width: 80px;
+      height: 32px;
+      padding: 5px;
+      font-size: 12px;
+      line-height: 14px;
+      margin-top:4px; // 微調高度
+    }
+  }
+
+  .news .title-btn {
+    flex-direction: column;
+    align-items: flex-start;
+    
+    a {
+      margin-top: 24px;
+      margin-left: auto
+    }
+  }
+
+  .items {
+    display: grid;
+    grid-template-columns: 1fr;
   }
 
   .products-card-container {

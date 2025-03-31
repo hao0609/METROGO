@@ -1,5 +1,6 @@
 <script>
-import { useRouter } from "vue-router";
+import { useRouter, useRoute } from "vue-router";
+import { computed } from 'vue';
 import AdminLogoutIcon from "@/components/icons/IconAdminLogout.vue";
 import AdminHomeIcon from "@/components/icons/IconAdminHome.vue";
 import AdminOrderIcon from "@/components/icons/IconAdminOrder.vue";
@@ -45,13 +46,32 @@ export default {
   },
   setup() {
     const router = useRouter();
+    const route = useRoute();
+
+    // 檢查當前路徑是否為指定路徑或其子路徑
+    const isUserActive = computed(() => {
+      return route.path.startsWith('/admin/user');
+    });
+
+    const isStoreActive = computed(() => {
+      return route.path.startsWith('/admin/store');
+    });
+
+    const isNewsActive = computed(() => {
+      return route.path.startsWith('/admin/news');
+    });
 
     const logout = () => {
       localStorage.removeItem("admin"); // 清除登入資訊
       router.push("/backend-login"); // 跳轉到後台登入頁
     };
 
-    return { logout };
+    return { 
+      logout,
+      isUserActive,
+      isStoreActive,
+      isNewsActive
+    };
   },
 };
 </script>
@@ -76,96 +96,41 @@ export default {
 
     <!-- 側邊選單導航 -->
     <nav class="nav-menu">
-      <!-- 後台總覽 
-      <router-link to="/admin/dashboard" class="menu-item bold" active-class="active">
-        <span class="menu-icon">
-          <AdminHomeIcon />
-        </span>
-        後台總覽
-      </router-link>-->
-
       <!-- 會員管理 -->
-      <div class="menu-group">
-        <router-link
-          to="/admin/user"
-          class="menu-item has-submenu bold"
-          :class="{ expanded: userManagementExpanded }"
-          @click="toggleUserManagement"
-        >
-          <span class="menu-icon">
-            <AdminUserIcon />
-          </span>
-          會員管理
-          <DownIcon class="icon-down" />
-        </router-link>
-
-        <div class="submenu">
-          <router-link
-            to="/admin/user-data"
-            class="menu-item sub-item bold"
-            active-class="active"
-          >
-            <span class="menu-icon">
-              <AdminRightIcon />
-            </span>
-            會員資料
-          </router-link>
-        </div>
-      </div>
+      <router-link 
+        to="/admin/user" 
+        class="menu-item bold" 
+        :class="{ 'active': isUserActive }"
+      >
+        <span class="menu-icon">
+          <AdminUserIcon />
+        </span>
+        會員管理
+      </router-link>
 
       <!-- 商品管理 -->
-      <router-link to="/admin/store" class="menu-item bold" active-class="active">
+      <router-link 
+        to="/admin/store" 
+        class="menu-item bold" 
+        :class="{ 'active': isStoreActive }"
+      >
         <span class="menu-icon">
           <AdminProductIcon />
         </span>
         商品管理
       </router-link>
 
-      <!-- <div class="menu-group">
-        <router-link
-          to="/admin/store"
-          class="menu-item has-submenu bold"
-          :class="{ expanded: productManagementExpanded }"
-          @click="toggleProductManagement"
-        >
-          <span class="menu-icon">
-            <AdminProductIcon />
-          </span>
-          商城管理
-          <DownIcon class="icon-down" />
-        </router-link>
-
-        <div class="submenu">
-          <router-link
-            to="/admin/store-product"
-            class="menu-item sub-item bold"
-            active-class="active"
-          >
-            <span class="menu-icon">
-              <AdminRightIcon />
-            </span>
-            商品管理
-          </router-link>
-
-        </div>
-      </div> -->
-
-
       <!-- 最新消息管理 -->
-      <router-link to="/admin/news" class="menu-item bold" active-class="active">
+      <router-link 
+        to="/admin/news" 
+        class="menu-item bold" 
+        :class="{ 'active': isNewsActive }"
+      >
         <span class="menu-icon">
           <AdminNewsIcon />
         </span>
         最新消息管理
       </router-link>
-
-      <!-- 照片管理 
-      <router-link to="/admin/photo" class="menu-item bold" active-class="active">
-        <span class="menu-icon">
-          <AdminPhotoIcon />
-        </span>
-        照片管理
-      </router-link>-->
     </nav>
   </div>
 </template>

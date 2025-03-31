@@ -74,7 +74,7 @@ const activeMenuItem = ref('userInfo'); // 預設顯示會員資料 tab
 const menuItems = ref([
     { id: 'userInfo', text: '會員資料' },
     { id: 'changePassward', text: '修改密碼' },
-    { id: 'productCollection', text: '商品收藏' }
+    // { id: 'productCollection', text: '商品收藏' }
 ]);
 
 // 會員資料
@@ -488,7 +488,6 @@ const passwordUpdateFailed = ref({
                     <div class="select-group">
                         <div class="select-wrapper">
                             <select class="select-field" @change="handleMobileMenuChange($event)">
-                                <option value="" disabled selected>下拉選項</option>
                                 <template v-for="(item, index) in menuItems" :key="index">
                                     <option v-if="item.id !== 'changePassward' || CheckUserCanEditPWD" :value="item.id">
                                     {{ item.text }}
@@ -627,7 +626,7 @@ const passwordUpdateFailed = ref({
         </div>
 
         <!-- 商品收藏 -->
-        <div class="container-right" id="productCollection" :style="{ display: activeMenuItem === 'productCollection' ? 'block' : 'none' }">
+        <!-- <div class="container-right" id="productCollection" :style="{ display: activeMenuItem === 'productCollection' ? 'block' : 'none' }">
             <div class="title1 bold">商品收藏</div>
             <div class="content">   
                 <div class="product-list">  
@@ -640,7 +639,7 @@ const passwordUpdateFailed = ref({
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>   
     
     <Footer />
