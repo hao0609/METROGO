@@ -387,14 +387,15 @@ const messageData = ref([
     <!-- 引入 MetroLineTitle 元件可直接輸入標題文字 -->
     <MetroLineTitle title="GO精選" />
     <div class="section-group">
-      <div
+      <router-link
         v-for="(article, index) in selectedArticles"
         :key="index"
+        :to="`/journey-featured/${article.category}/${article.id}`"
         class="go-choise-img"
         :style="{ backgroundImage: `url(${article.featured_main_photo})` }"
       >
         <h2 class="group-title">{{ article.group_title }}</h2>
-      </div>
+      </router-link>
       <!-- <div class="go-choise-img" style="background-image: url('/src/assets/images/line/hot_pot_01_w600xh400.jpg')">
         <h2 class="group-title">火鍋季開跑</h2>
       </div>

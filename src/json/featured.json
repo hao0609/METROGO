@@ -133,6 +133,41 @@
                 "「淡水金色水岸渡船頭」不僅提供便捷的渡船服務，更是一個讓人放慢腳步、享受海風和景色的好地方。無論是白天享受海上的微風，還是黃昏時分欣賞金色海岸，這段渡船之旅都能帶來無比的愉悅和浪漫。帶著家人或朋友，一起來體驗這段難忘的海上之旅，探索淡水與八里的美麗景點，讓這段金色海岸的渡船體驗成為你旅行的亮點！"
               ],
             "link": "./red-boat"
+        },
+        {
+            "id": 2,
+            "category": "red",
+            "group_title": "探索醫療前沿",
+            "journey_featured_name": "台大醫院，全台醫療與研究的頂尖象徵！",
+            "featured_main_photo": "/src/assets/images/featured/pic-featured_red_hospital_main.svg",
+            "featured_photos": [
+                "/src/assets/images/featured/pic-featured_red_hospital_1.svg",
+                "/src/assets/images/featured/pic-featured_red_hospital_2.svg",
+                "/src/assets/images/featured/pic-featured_red_hospital_3.svg",
+                "/src/assets/images/featured/pic-featured_red_hospital_4.svg",
+                "/src/assets/images/featured/pic-featured_red_hospital_5.svg"
+            ],        
+            "store_info": {
+                "name": "國立臺灣大學醫學院附設醫院",
+                "address": " 100台北市中正區中山南路7號",
+                "hours": "09:00–16:30",
+                "phone": "02 2312 3456",
+                "info_photo": "/src/assets/images/featured/pic-featured_red_hospital_info.svg"
+              },          
+              "featured_paragraphs": [
+                "台大醫院是台灣最具歷史及權威的醫療機構之一，成立於1895年，為台灣的醫療、教學與研究的核心。作為台灣最大的醫學中心之一，台大醫院在臨床治療、醫學研究以及疾病防治方面都享有極高的聲譽。",
+                "頂尖醫療服務，為民服務",
+                "台大醫院不僅提供先進的醫療設備與技術，還有眾多專業醫師與護理團隊，為患者提供全方位的健康照護服務。無論是門診、住院治療，還是特殊疾病的診治，台大醫院都能為患者提供高品質的醫療體驗。",
+                "醫學研究與創新",
+                "作為台灣的醫學研究中心，台大醫院積極推動醫學研究，並在癌症、心血管疾病、神經科學等領域有著突破性的研究成果。醫院的研究成果不僅推動台灣的醫學進步，也對全球的醫學界產生了深遠影響。",
+                "台大醫院的設施與環境",
+                "台大醫院的建築現代化且設施齊全，並且不斷進行更新與擴建。患者可以在這裡享受舒適、寬敞的就診環境。此外，醫院內也設有便利的健身房、咖啡廳等設施，讓患者及其家屬在等候過程中也能得到放鬆。",
+                "醫療教育，培養專業醫師",
+                "台大醫院與台灣大學醫學院有著深厚的合作關係，是未來醫學人才的搖籃。每年都有眾多的醫學生、住院醫師以及專科醫師在這裡接受嚴謹的臨床訓練，並且積極參與各類專業發展與學術活動。",
+                "",
+                "不論是對於急診患者的緊急救援，還是對於長期健康管理的全方位關懷，台大醫院始終以病患為中心，致力於提供世界一流的醫療服務。這不僅是一個醫療機構，更是無數人健康與生命的守護者。"
+            ],
+            "link": "./red-hospital"
         }
       ],
     "green": [
