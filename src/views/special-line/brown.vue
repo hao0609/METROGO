@@ -72,6 +72,7 @@
         :message2="selectedLine?.message2"
         @cancel="handleModalCancel"
         @confirm="handleModalConfirm"
+        @uploadSuccess="handleUploadSuccess"
       />
       <div class="mission-main" ref="missionMain">
         <div class="line" v-for="line in lines" :key="line.id" :id="`item${line.id}`">
@@ -90,8 +91,9 @@
             <img
               v-if="line.img"
               :src="line.img"
-              alt="Station Image"
+              alt="Uploaded Photo"
               class="station-img brown_shadow"
+              @click="openPhotoAlert(line)"
             />
             <div v-else class="no-photo brown brown_shadow" @click="openPhotoAlert(line)">
               <img :src="defaultImg" alt="Lock Icon" class="lock-icon" />
@@ -111,17 +113,21 @@
               <p class="message">{{ question.message }}</p>
               <div class="question brown brown_shadow" @click="showRandomQuestion">
                 <div
-                  v-if="question.icon"
+                  v-if="question.icon && !question.answered"
                   class="question-icon"
                   v-html="question.icon"
                 ></div>
-                <span class="question-text">點擊回答問題</span>
+                <div v-if="question.answered" class="check-icon" v-html="checkIcon"></div>
+                <span class="question-text">
+                  {{ question.answered ? "回答完成" : "點擊回答問題" }}</span
+                >
                 <alert_L_question
                   ref="alertQuestion"
                   v-if="isQuestionVisible"
                   :question="selectedQuestion"
                   @cancel="handleQuestionCancel"
                   @confirm="handleQuestionConfirm"
+                  @update-question-status="markQuestionAsAnswered"
                 />
               </div>
             </div>
@@ -184,7 +190,7 @@
   </div>
 </template>
 <script>
-import { ref, onMounted, onUnmounted, inject, watch } from "vue";
+import { ref, onMounted, onUnmounted, inject, watch, nextTick } from "vue";
 import questionData from "@/json/question.json";
 import alert_L_Photo from "@/alert/alert_L_Photo.vue";
 import alert_L_question from "@/alert/alert_L_question.vue";
@@ -194,6 +200,9 @@ import Footer from "@/components/Footer.vue";
 import ModalMenu from "@/components/Mission/ModalMenu.vue";
 import PopupMenu from "@/components/Mission/PopupMenu.vue";
 import alert_user_login from "@/alert/alert_user_login.vue";
+import { storage } from "@/firebase/firebaseConfig.js";
+import { ref as storageRef, getDownloadURL, listAll } from "firebase/storage";
+
 export default {
   components: {
     ModalMenu,
@@ -221,7 +230,6 @@ export default {
     const sectionActive = ref(false);
     // const PhotoAlert = ref(null); // 新增 PhotoAlert ref
     const alertPhoto = ref(null);
-    const GetUserId = ref(null);
     const alert_user_login_ref = ref(null);
     const openModal = (type) => {
       selectedModal.value = type;
@@ -261,6 +269,7 @@ export default {
       } else {
         GetUserId.value = user_status.value.uid;
         // console.log(user_status.value.uid);
+        updateImagePath();
       }
     };
     const openPhotoAlert = (line) => {
@@ -275,7 +284,6 @@ export default {
     const brownLineQuestions = ref(
       questionData.metroLines.find((line) => line.line === "文湖線").questions
     );
-    const mission = "文湖線";
 
     // 隨機選擇一題
     const showRandomQuestion = () => {
@@ -396,6 +404,81 @@ export default {
     ]);
     const activeStationId = ref(null);
     const activeQuestionId = ref(null);
+    const checkIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="114" height="114" viewBox="0 0 114 114" fill="none">
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M28.5 47.5L19 57L47.5 85.5L95 38L85.5 28.5L47.5 66.5L28.5 47.5Z" fill="white"/>
+</svg>`;
+
+    const GetUserId = ref("");
+    // 當 user_status 有值時更新：
+    if (user_status.value) {
+      GetUserId.value = user_status.value.uid;
+    }
+    const imageUrl = ref("");
+    const uploadDate = ref("");
+    const mission = ref("文湖線");
+    const updateImagePath = async () => {
+      for (let i = 0; i < lines.value.length; i++) {
+        const index = i; // 保留 index 變數，確保對應 `lines.value[index]`
+        const imagePath = `photos/${GetUserId.value}/`;
+        const stationPrefix = `${mission.value}_${lines.value[index].title}_${uploadDate.value}`;
+
+        try {
+          console.log("下載路徑:", imagePath);
+          const folderRef = storageRef(storage, imagePath);
+          const fileList = await listAll(folderRef);
+          // 過濾符合該站點的檔案，並按時間排序
+          const stationFiles = fileList.items
+            .map((file) => file.name)
+            .filter((name) => name.startsWith(stationPrefix))
+            .sort((a, b) => b.localeCompare(a)); // 降冪排序（最新在前）
+
+          if (stationFiles.length > 0) {
+            const latestImage = stationFiles[0]; // 最新的檔案
+            const latestImageRef = storageRef(storage, `${imagePath}${latestImage}`);
+            const url = await getDownloadURL(latestImageRef);
+
+            // lines.value[index].img = url;
+            // 加上防快取參數，確保圖片能正確更新
+            // lines.value[index].img = `${url}?t=${Date.now()}`;
+            // 透過不可變更新觸發 Vue 的響應式檢測
+            // lines.value = [...lines.value];
+            if (lines.value[index].img !== url) {
+              lines.value[index].img = `${url}?t=${Date.now()}`; // 防快取
+            }
+            await nextTick();
+            console.log(
+              "DOM 更新後的 img src:",
+              document.querySelector(`img[alt="${lines.value[index].title}"]`)?.src
+            );
+            console.log(`${lines.value[index].title} 圖片下載成功:`, url);
+          } else {
+            console.warn(`${lines.value[index].title} 沒有找到符合條件的圖片`);
+          }
+        } catch (error) {
+          console.error(
+            `${lines.value[index].title} 下載圖片失敗:`,
+            error.code,
+            error.message
+          );
+        }
+      }
+    };
+    const handleUploadSuccess = async () => {
+      console.log("上傳成功，開始更新圖片");
+      await updateImagePath();
+    };
+    const markQuestionAsAnswered = (questionId) => {
+      console.log("祖父組件收到正確回答訊息:", questionId);
+
+      const question = questions.value.find((q) => q.id === questionId);
+      if (question) {
+        console.log("更新前 answered 狀態:", question.answered);
+        question.answered = true;
+        console.log("更新後 answered 狀態:", question.answered);
+      } else {
+        console.warn("找不到 ID 為", questionId, "的問題");
+      }
+    };
 
     const gap = 50;
     const onScroll = () => {
@@ -617,6 +700,12 @@ export default {
       CheckUserStatus,
       mission,
       GetUserId,
+      checkIcon,
+      getDownloadURL,
+      storageRef,
+      imageUrl,
+      markQuestionAsAnswered,
+      handleUploadSuccess,
 
       // PhotoAlert, // 返回 PhotoAlert ref
       // showPhotoAlert,

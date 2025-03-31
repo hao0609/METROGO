@@ -14,10 +14,10 @@ export function useUserPoints() {
       const pointsRef = dbRef(database, `會員資料/${uid}/點數積分`);
       const snapshot = await get(pointsRef);
       if (snapshot.exists()) {
-        console.log("點數資料:", snapshot.val());
+        // console.log("點數資料:", snapshot.val());
         return snapshot.val(); // 確保返回的值是數字
       } else {
-        return 0; // 如果沒有點數資料，返回 0
+        // return 0; // 如果沒有點數資料，返回 0
       }
     } catch (error) {
       console.error("獲取會員點數失敗:", error);

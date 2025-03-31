@@ -5,11 +5,6 @@
       <div class="modal-body">
         <h2>問答</h2>
         <div class="question-container">
-          <img
-            class="img-qa qa"
-            src="../assets/images/MissionSpecial/img_question.svg"
-            alt=""
-          />
           <div class="question-title title1 bold white">
             {{ question.text }}
           </div>
@@ -65,7 +60,6 @@ export default {
       required: true,
     },
   },
-
   data() {
     return {
       selectedAnswer: null,
@@ -76,12 +70,10 @@ export default {
   emits: ["confirm", "cancel"],
   methods: {
     handleConfirm() {
-      // 判斷答案
       this.isCorrect = this.selectedAnswer === this.question.correct;
-      // 顯示結果彈窗
       this.showResult = true;
+
       if (this.isCorrect) {
-        // 更新父組件的 `answered` 狀態
         this.$emit("update-question-status", this.question.id);
       }
     },
@@ -98,7 +90,9 @@ export default {
       // 關閉結果彈窗，並同時關閉問題彈窗（例如發送 cancel 事件給父組件）
       this.showResult = false;
       this.$emit("cancel"); // 可通知父組件關閉整個問答流程
-      this.reset();
+      if (!this.isCorrect) {
+        this.reset();
+      }
     },
     retryHandler() {
       this.showResult = false;

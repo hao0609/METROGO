@@ -3,10 +3,7 @@
     <div class="modal-content" @click.stop>
       <div class="modal-body">
         <h2>問答結果</h2>
-        <div
-          class="result-icon"
-          :class="{ correct: isCorrect, incorrect: !isCorrect }"
-        >
+        <div class="result-icon" :class="{ correct: isCorrect, incorrect: !isCorrect }">
           <span v-if="isCorrect"
             ><svg
               xmlns="http://www.w3.org/2000/svg"

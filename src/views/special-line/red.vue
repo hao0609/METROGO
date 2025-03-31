@@ -87,10 +87,9 @@
             <div class="message"></div>
             <p><span class="list red">審核條件</span>   
             <p class="line-message">{{ line.message }}</p>
-            <p class="line-message2">{{ line.message2 }}</p>
+            <!-- <p class="line-message2">{{ line.message2 }}</p> -->
             </p>
-     
-
+    
             <img
               v-if="line.img"
               :src="line.img"
@@ -116,12 +115,13 @@
               <p class="message">{{ question.message }}</p>
               <div class="question red red_shadow" @click="showRandomQuestion">
                 <div
-                  v-if="question.icon"
+                v-if="question.icon && !question.answered"
                   class="question-icon"
                   v-html="question.icon"
                 ></div>
+                <div v-if="question.answered" class="check-icon" v-html="checkIcon"></div>
                 <span class="question-text"> {{ question.answered ? "回答完成" : "點擊回答問題" }}</span>
-                <!-- v-if="isQuestionVisible"-->
+               
                 <alert_L_question
                   ref="alertQuestion"
                   v-if="selectedQuestion !== null"
@@ -199,13 +199,10 @@ import Navbar_V1 from "@/components/Navbar_V1.vue";
 import Footer from "@/components/Footer.vue";
 import ModalMenu from "@/components/Mission/ModalMenu.vue";
 import PopupMenu from "@/components/Mission/PopupMenu.vue";
-
-// import { ref as storageRef, getDownloadURL } from 'firebase/storage';
-// import {  collection, query, where, getDocs } from 'firebase/firestore';
 import { storage  } from "@/firebase/firebaseConfig.js";
 import { ref as storageRef, getDownloadURL,listAll } from 'firebase/storage';
-// import {  collection, query, where, getDocs } from 'firebase/firestore';
-// import { storage } from "@/firebase/firebasePhotoUpload.js";
+
+
 
 import alert_user_login from "@/alert/alert_user_login.vue";
 
@@ -216,7 +213,6 @@ export default {
     Navbar_V1,
     Footer,
     alert_L_Photo,
-
     alert_L_question,
     alert_user_login,
   },
@@ -304,10 +300,13 @@ export default {
       // isVisible.value = false;
       selectedLine.value = null;
     };
-    const handleQuestionConfirm = () => {
-      isQuestionVisible.value = false;
-      selectedQuestion.value = null;
-    };
+    const handleQuestionConfirm = (data) => {
+  if (data.isCorrect) {
+    markQuestionAsAnswered(data.questionId);
+  }
+  isQuestionVisible.value = false;
+  selectedQuestion.value = null;
+};
     const user_status = inject("user"); // 取得用戶狀態
     // 檢查用戶有沒有登入的狀態
     const CheckUserStatus = () => {
@@ -391,7 +390,9 @@ export default {
 </svg>`,
       },
     ]);
-
+    const checkIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="114" height="114" viewBox="0 0 114 114" fill="none">
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M28.5 47.5L19 57L47.5 85.5L95 38L85.5 28.5L47.5 66.5L28.5 47.5Z" fill="white"/>
+</svg>`;
 // Firebase Storage 中圖片的路徑
 
 const GetUserId = ref('');
@@ -493,12 +494,17 @@ const updateImagePath = async () => {
 
 
 const markQuestionAsAnswered = (questionId) => {
-      const question = questions.value.find((q) => q.id === questionId);
-      if (question) {
-        question.answered = true;
-      }
-      activeQuestionId.value = questionId;
-    };
+  console.log("祖父組件收到正確回答訊息:", questionId);
+  
+  const question = questions.value.find((q) => q.id === questionId);
+  if (question) {
+    console.log("更新前 answered 狀態:", question.answered);
+    question.answered = true;
+    console.log("更新後 answered 狀態:", question.answered);
+  } else {
+    console.warn("找不到 ID 為", questionId, "的問題");
+  }
+};
 
     const activeStationId = ref(null);
     const activeQuestionId = ref(null);
@@ -733,11 +739,11 @@ const markQuestionAsAnswered = (questionId) => {
       CheckUserStatus,
       GetUserId,
       mission,
-
+      checkIcon,
       getDownloadURL,
       storageRef,
-      // imagePath,
       imageUrl,
+      // imagePath,
       // selectedIndex,
       // selectedLineTitle,
       // lineTitle,
