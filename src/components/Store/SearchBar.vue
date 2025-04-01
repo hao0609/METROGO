@@ -13,16 +13,16 @@ const swiperInstance = ref(null);
 // 輪播圖片陣列
 const bannerImages = ref([
   {
-    desktop: "/src/assets/images/store/storeBanner1.png",
-    mobile: "/src/assets/images/store/storeBanner1.png",
+    desktop: "/tid201/g2/images/store/storeBanner1.png",
+    mobile: "/tid201/g2/images/store/storeBanner1.png",
   },
   {
-    desktop: "/src/assets/images/store/storeBanner2.png",
-    mobile: "/src/assets/images/store/storeBanner2.png",
+    desktop: "/tid201/g2/images/store/storeBanner2.png",
+    mobile: "/tid201/g2/images/store/storeBanner2.png",
   },
   {
-    desktop: "/src/assets/images/store/storeBanner3.png",
-    mobile: "/src/assets/images/store/storeBanner3.png",
+    desktop: "/tid201/g2/images/store/storeBanner3.png",
+    mobile: "/tid201/g2/images/store/storeBanner3.png",
   },
 ]);
 

@@ -10,8 +10,6 @@ import TourGreenLineView from "../views/TourGreenLineView.vue";
 import TourYellowLineView from "../views/TourYellowLineView.vue";
 import TourBrownLineView from "../views/TourBrownLineView.vue";
 
-import StoreView from "../views/NewStoreView.vue";
-
 import MetroBlueLineView from "../views/MetroBlueLineView.vue";
 import MetroRedLineView from "../views/MetroRedLineView.vue";
 import MetroGreenLineView from "../views/MetroGreenLineView.vue";
@@ -72,15 +70,6 @@ const router = createRouter({
       name: "HomeView",
       component: HomeView,
     },
-
-    // {
-    //   path: "/about",
-    //   name: "about",
-    //   // route level code-splitting
-    //   // this generates a separate chunk (About.[hash].js) for this route
-    //   // which is lazy-loaded when the route is visited.
-    //   component: () => import("../views/AboutView.vue"),
-    // },
 
     // 景點介紹
     {
@@ -382,20 +371,6 @@ const router = createRouter({
           component: () => import("@/views/backend/AdminPhotoView.vue"),
         },
       ],
-    },
-
-    // 樣式參考頁
-    {
-      path: "/style-view",
-      name: "StyleView",
-      component: () => import("../views/StyleView.vue"),
-    },
-
-    //表格參考頁
-    {
-      path: "/table-view",
-      name: "FormView",
-      component: () => import("../views/FormView.vue"),
     },
 
     // Alert 樣式參考頁

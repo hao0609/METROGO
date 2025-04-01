@@ -282,13 +282,38 @@ const preventScroll = (e) => {
 };
 
 onMounted(() => {
+  // 確保頁面加載時從頂部開始
+  window.scrollTo(0, 0);
   // Header 觸發
   window.addEventListener("mousemove", handleMouseMove);
+
   createBlocks();
   window.addEventListener("resize", handleResize);
   window.addEventListener("scroll", preventScroll, { passive: false });
   window.addEventListener("wheel", preventScroll, { passive: false });
   document.body.style.overflow = "hidden";
+
+  // 僅在 banner 區域內阻止滾動，而不是整個頁面
+  const bannerElement = document.querySelector(".banner");
+  if (bannerElement) {
+    bannerElement.addEventListener("wheel", handleWheel, { passive: false });
+  }
+
+  // 等待 DOM 完全渲染後再初始化 Swiper
+  nextTick(() => {
+    const swipers = document.querySelectorAll("swiper-container");
+    swipers.forEach((swiper) => {
+      Object.assign(swiper, {
+        autoplay: {
+          delay: 3000,
+          disableOnInteraction: false,
+        },
+        loop: true,
+        navigation: true,
+      });
+      swiper.initialize();
+    });
+  });
 });
 
 onBeforeUnmount(() => {
@@ -404,58 +429,58 @@ onBeforeUnmount(() => {
   <div class="featured">
     <h1 class="featured-title">GO編精選</h1>
     <!-- <swiper-container
-      class="mySwiper"
-      :autoplay="{ delay: 3000 }"
-      :loop="true"
-      :navigation="true"
-    >
-      <swiper-slide>
-        <div class="featured-container">
-          <div class="featured-img">
-            <img
-              src="../assets/images/featured/chongqing-6764965_1280.jpg"
-              alt=""
-            />
+        class="mySwiper"
+        :autoplay="{ delay: 3000 }"
+        :loop="true"
+        :navigation="true"
+      >
+        <swiper-slide>
+          <div class="featured-container">
+            <div class="featured-img">
+              <img
+                src="../assets/images/featured/chongqing-6764965_1280.jpg"
+                alt=""
+              />
+            </div>
+            <div class="featured-paragraph">
+              <p class="paragraph-title title1">
+                天冷就要吃鍋！盤點板南線老饕必吃火鍋！
+              </p>
+              <p class="paragraph caption bold">
+                台北的冬天，最適合約三五好友來一鍋熱騰騰的火鍋！從大直到永春，沿著捷運藍線走，一路都是火鍋美食天堂，無論你偏愛清淡的湯底還是濃郁的麻辣，這五間必吃火鍋店絕對讓你心滿意足！無論是深夜宵夜場還是悠閒的晚餐時光，這些火鍋店的豐富選擇絕對能滿足每位饕客的味蕾。準備好暖暖你的冬天，跟著我們的推薦開啟你的火鍋之旅吧！
+              </p>
+              <router-link to="/journey-featured">
+                <div class="btn-container">
+                  <button class="btn_white small">閱讀更多</button>
+                </div>
+              </router-link>
+            </div>
           </div>
-          <div class="featured-paragraph">
-            <p class="paragraph-title title1">
-              天冷就要吃鍋！盤點板南線老饕必吃火鍋！
-            </p>
-            <p class="paragraph caption bold">
-              台北的冬天，最適合約三五好友來一鍋熱騰騰的火鍋！從大直到永春，沿著捷運藍線走，一路都是火鍋美食天堂，無論你偏愛清淡的湯底還是濃郁的麻辣，這五間必吃火鍋店絕對讓你心滿意足！無論是深夜宵夜場還是悠閒的晚餐時光，這些火鍋店的豐富選擇絕對能滿足每位饕客的味蕾。準備好暖暖你的冬天，跟著我們的推薦開啟你的火鍋之旅吧！
-            </p>
-            <router-link to="/journey-featured">
-              <div class="btn-container">
-                <button class="btn_white small">閱讀更多</button>
-              </div>
-            </router-link>
+        </swiper-slide>
+        <swiper-slide>
+          <div class="featured-container">
+            <div class="featured-img">
+              <img
+                src="../assets/images/featured/chongqing-6764965_1280.jpg"
+                alt=""
+              />
+            </div>
+            <div class="featured-paragraph">
+              <p class="paragraph-title title1">
+                天冷就要吃鍋！盤點板南線老饕必吃火鍋！
+              </p>
+              <p class="paragraph caption bold">
+                台北的冬天，最適合約三五好友來一鍋熱騰騰的火鍋！從大直到永春，沿著捷運藍線走，一路都是火鍋美食天堂，無論你偏愛清淡的湯底還是濃郁的麻辣，這五間必吃火鍋店絕對讓你心滿意足！無論是深夜宵夜場還是悠閒的晚餐時光，這些火鍋店的豐富選擇絕對能滿足每位饕客的味蕾。準備好暖暖你的冬天，跟著我們的推薦開啟你的火鍋之旅吧！
+              </p>
+              <router-link to="/journey-featured">
+                <div class="btn-container">
+                  <button class="btn_white small">閱讀更多</button>
+                </div>
+              </router-link>
+            </div>
           </div>
-        </div>
-      </swiper-slide>
-      <swiper-slide>
-        <div class="featured-container">
-          <div class="featured-img">
-            <img
-              src="../assets/images/featured/chongqing-6764965_1280.jpg"
-              alt=""
-            />
-          </div>
-          <div class="featured-paragraph">
-            <p class="paragraph-title title1">
-              天冷就要吃鍋！盤點板南線老饕必吃火鍋！
-            </p>
-            <p class="paragraph caption bold">
-              台北的冬天，最適合約三五好友來一鍋熱騰騰的火鍋！從大直到永春，沿著捷運藍線走，一路都是火鍋美食天堂，無論你偏愛清淡的湯底還是濃郁的麻辣，這五間必吃火鍋店絕對讓你心滿意足！無論是深夜宵夜場還是悠閒的晚餐時光，這些火鍋店的豐富選擇絕對能滿足每位饕客的味蕾。準備好暖暖你的冬天，跟著我們的推薦開啟你的火鍋之旅吧！
-            </p>
-            <router-link to="/journey-featured">
-              <div class="btn-container">
-                <button class="btn_white small">閱讀更多</button>
-              </div>
-            </router-link>
-          </div>
-        </div>
-      </swiper-slide>
-    </swiper-container> -->
+        </swiper-slide>
+      </swiper-container> -->
 
     <swiper-container
       class="mySwiper"
