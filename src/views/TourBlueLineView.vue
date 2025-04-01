@@ -135,13 +135,13 @@ import Navbar_V1 from "../components/Navbar_V1.vue";
 
         <div class="img-container-rows">
           <div class="img-container-bottom">
-            <img src="../assets/images/tour/wan_nian_building_01.jpg " alt="" />
+            <img src="../assets/images/tour/wan_nian_building_01.webp " alt="" />
           </div>
           <div class="img-container-bottom">
-            <img src="../assets/images/tour/wan_nian_building_04.jpg " alt="" />
+            <img src="../assets/images/tour/wan_nian_building_04.webp  " alt="" />
           </div>
           <div class="img-container-bottom">
-            <img src="../assets/images/tour/wan_nian_building_02.jpg" alt="" />
+            <img src="../assets/images/tour/wan_nian_building_02.webp " alt="" />
           </div>
         </div>
       </div>
@@ -178,13 +178,13 @@ import Navbar_V1 from "../components/Navbar_V1.vue";
 
         <div class="img-container-rows">
           <div class="img-container-bottom">
-            <img src="../assets/images/tour/american_street_03.jpg " alt="" />
+            <img src="../assets/images/tour/american_street_03.webp  " alt="" />
           </div>
           <div class="img-container-bottom">
-            <img src="../assets/images/tour/american_street_01.jpg " alt="" />
+            <img src="../assets/images/tour/american_street_01.webp  " alt="" />
           </div>
           <div class="img-container-bottom">
-            <img src="../assets/images/tour/american_street_02.jpg" alt="" />
+            <img src="../assets/images/tour/american_street_02.webp " alt="" />
           </div>
         </div>
       </div>
@@ -224,13 +224,13 @@ import Navbar_V1 from "../components/Navbar_V1.vue";
 
         <div class="img-container-rows">
           <div class="img-container-bottom">
-            <img src="../assets/images/tour/long_shan_temple_02.jpg " alt="" />
+            <img src="../assets/images/tour/long_shan_temple_02.webp  " alt="" />
           </div>
           <div class="img-container-bottom">
-            <img src="../assets/images/tour/long_shan_temple_05.jpg " alt="" />
+            <img src="../assets/images/tour/long_shan_temple_05.webp  " alt="" />
           </div>
           <div class="img-container-bottom">
-            <img src="../assets/images/tour/long_shan_temple_01.jpg " alt="" />
+            <img src="../assets/images/tour/long_shan_temple_01.webp  " alt="" />
           </div>
         </div>
       </div>
@@ -267,13 +267,13 @@ import Navbar_V1 from "../components/Navbar_V1.vue";
 
         <div class="img-container-rows">
           <div class="img-container-bottom">
-            <img src="../assets/images/tour/BopiliaoHistoricBlock_07.jpg " alt="" />
+            <img src="../assets/images/tour/BopiliaoHistoricBlock_07.webp " alt="" />
           </div>
           <div class="img-container-bottom">
-            <img src="../assets/images/tour/BopiliaoHistoricBlock_04.jpg " alt="" />
+            <img src="../assets/images/tour/BopiliaoHistoricBlock_04.webp " alt="" />
           </div>
           <div class="img-container-bottom">
-            <img src="../assets/images/tour/BopiliaoHistoricBlock_02.jpg " alt="" />
+            <img src="../assets/images/tour/BopiliaoHistoricBlock_02.webp  " alt="" />
           </div>
         </div>
       </div>
