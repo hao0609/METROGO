@@ -153,4 +153,4 @@ initializeDatabase();
 
 const provider = new GoogleAuthProvider();
 
-export { auth, database, ref, set, get, onValue, remove, update, storage, provider, signInWithPopup, signOut,listAll, getDownloadURL,storageref,};
+export { auth, database, ref, set, get, onValue, remove, update, storage, provider, signInWithPopup, signOut,listAll, getDownloadURL,storageref,getMetadata};

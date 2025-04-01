@@ -235,6 +235,8 @@ export default {
     const sectionActive = ref(false);
     // const alertPhoto = ref(null);
 
+    const currentClickedStation = ref("");
+
 
 
     const alert_user_login_ref = ref(null);
@@ -267,6 +269,11 @@ export default {
     const openPhotoAlert = (line) => {
       if (CanShowPhotoAlert.value == true){
         selectedLine.value = line;
+
+        currentClickedStation.value = props.lineTitle
+
+        console.log(currentClickedStation.value);
+        
 
       }
       else{
@@ -314,7 +321,16 @@ export default {
       // 讓圖片不能點選出上傳圖片彈窗
       CanShowPhotoAlert.value = false;
 
-      // 準備將 "審核中" 的照片狀態寫入 FireBase
+      // 準備將目前上傳圖片的 URL 跟 "審核中" 的照片狀態寫入 FireBase
+      getUserAllPhotoData(user_status.value.uid)
+      
+      console.log("這裡是上傳成功的地方");
+
+      console.log(props.mission,props.lineTitle);
+      
+
+      
+      
 
   };
     const handleModalConfirm = () => {
@@ -751,7 +767,7 @@ const markQuestionAsAnswered = (questionId) => {
       toTop,
       showToTop,
       CanShowPhotoAlert,
-
+      currentClickedStation,
 
       // isQuestionVisible,
       questionData,

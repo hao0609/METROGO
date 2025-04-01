@@ -1,4 +1,4 @@
-import {storage,  storageref, listAll, getDownloadURL} from '../../firebase/firebaseConfig'
+import {storage,  storageref, listAll, getDownloadURL,getMetadata} from '../../firebase/firebaseConfig'
 
 /**
  * 獲取用戶在 storage 中的所有圖片資料
