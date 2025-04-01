@@ -69,6 +69,7 @@
         :mission="mission"
         :message="selectedLine?.message"
         :message2="selectedLine?.message2"
+        :checkText="selectedLine?.checkText"
         @cancel="handleModalCancel"
         @confirm="handleModalConfirm"
         @uploadSuccess="handleUploadSuccess"
@@ -89,9 +90,11 @@
             <p class="line-message">{{ line.message }}</p>
             <!-- <p class="line-message2">{{ line.message2 }}</p> -->
             </p>
-
-            
-             
+            <p>照片審核狀態：{{line.checkText}}</p>
+            <template v-if="line.checkText === '審核未通過'">（請重新上傳）</template>             
+            <template v-if="line.checkText === '未上傳'">（請上傳圖片）</template>             
+            <template v-if="line.checkText === '審核中'">（後台審核中）</template>             
+            <template v-if="line.checkText === '審核通過'">（照片已通過審核）</template>             
             <img
               v-if="line.img"
               :src="line.img"
@@ -205,9 +208,11 @@ import { storage  } from "@/firebase/firebaseConfig.js";
 import { ref as storageRef, getDownloadURL,listAll } from 'firebase/storage';
 
 import { getUserAllPhotoData } from "../../js/view/getUserAll_StoragePhotoData";
-
+import GetUserMissionSpecialData from "../../js/view/MissionSpecail/getUser_MissionSpecialData"
 
 import alert_user_login from "@/alert/alert_user_login.vue";
+
+
 
 export default {
   components: {
@@ -267,19 +272,15 @@ export default {
 
     const selectedQuestion = ref(null);
     const openPhotoAlert = (line) => {
-      if (CanShowPhotoAlert.value == true){
+      if (line.checkText == "未上傳" || line.checkText == "審核未通過") {
         selectedLine.value = line;
-
-        currentClickedStation.value = props.lineTitle
-
-        console.log(currentClickedStation.value);
-        
-
       }
-      else{
-        // 這裡準備照片審核中的彈窗
-        alert("照片審核中");
+      else if (line.checkText == "審核通過") {
+        alert("恭喜 ! 此照片審核已通過 !")
+      }else if (line.checkText == "審核中") {
+        alert("後台審核中")
       }
+      
       
     };
     // const openQuestion = () => {
@@ -313,21 +314,33 @@ export default {
       // isQuestionVisible.value = false;
       selectedQuestion.value = null;
     };
-    const handleUploadSuccess = async () => {
+    const handleUploadSuccess = async (newValue) => {
+
+      console.log(newValue);
+      
       console.log("上傳成功，開始更新圖片");
       await updateImagePath();
-      // alert("上傳完要做的事");
-
-      // 讓圖片不能點選出上傳圖片彈窗
-      CanShowPhotoAlert.value = false;
 
       // 準備將目前上傳圖片的 URL 跟 "審核中" 的照片狀態寫入 FireBase
       getUserAllPhotoData(user_status.value.uid)
       
-      console.log("這裡是上傳成功的地方");
+      // 更新目前文字的狀態為 "審核中"
 
-      console.log(props.mission,props.lineTitle);
-      
+      switch (newValue) {
+        case "淡水站":
+          lines.value[0].checkText = "審核中";
+          break;
+        case "關渡站":
+        lines.value[1].checkText = "審核中";
+        break;
+        case "北投站":
+        lines.value[2].checkText = "審核中";
+        break;
+        default:
+          break;
+      }
+
+
 
       
       
@@ -346,7 +359,7 @@ export default {
 };
     const user_status = inject("user"); // 取得用戶狀態
     // 檢查用戶有沒有登入的狀態
-    const CheckUserStatus = () => {
+    const CheckUserStatus = async() => {
       console.log(user_status.value);
 
       if (user_status.value == null) {
@@ -362,8 +375,20 @@ export default {
         GetUserId.value = user_status.value.uid;
         console.log(user_status.value.uid);
 
-        // 拿到用戶所有的 Storage 的所有照片
-        getUserAllPhotoData(user_status.value.uid)
+        // 拿到用戶的特殊任務遊戲進度資料
+        let UserDBData = await GetUserMissionSpecialData(user_status.value.uid,mission.value)
+        console.log(UserDBData);
+
+        // 顯示目前資料庫的狀態
+
+        // 淡水站的審核狀態
+        // console.log(lines.value[0].checkText);
+        // console.log(UserDBData.淡水.照片狀態);
+        lines.value[0].checkText = UserDBData.淡水.照片狀態
+        // 關渡站的審核狀態
+        lines.value[1].checkText = UserDBData.關渡.照片狀態
+        // 北投站的審核狀態
+        lines.value[2].checkText = UserDBData.北投.照片狀態
 
         updateImagePath();
       }
@@ -397,6 +422,7 @@ export default {
           " 淡水擁有豐富的自然與人文景觀，如紅樹林保護區、漁人碼頭的浪漫夕陽，以及歷史悠久的淡水老街。這裡有著名的小吃，如阿給、鐵蛋、魚酥等，還能搭渡輪前往八里或欣賞河岸風光，是台北近郊熱門旅遊地點。",
         message: "請拍攝「金色水岸」，包含金色水岸字樣",
         // img: "/src/assets/images/MissionSpecial/red_01.png",
+        checkText:"",
         img: null,
       },
       {
@@ -405,6 +431,7 @@ export default {
         subtitle:
           " 關渡擁有悠久歷史的關渡宮，是北台灣重要的媽祖廟。關渡自然公園則是賞鳥與生態觀察的好地方，擁有豐富的濕地生態。沿著河岸的自行車道，可一路騎往淡水或市區，適合喜愛戶外活動的旅客。",
         message: "請拍攝「關渡宮」，包含關渡宮字樣",
+        checkText:"",
         img: null,
       },
       {
@@ -413,6 +440,7 @@ export default {
         subtitle:
           " 北投以溫泉聞名，擁有北投溫泉博物館、地熱谷等知名景點。北投圖書館是台灣首座綠建築圖書館，結合自然環境與閱讀空間。此外，北投公園及周邊步道充滿綠意，是放鬆散步的好去處，讓旅客能同時享受自然與文化之美。",
         message: "請拍攝北投溫泉博物館",
+        checkText:"",
         img: null,
       },
     ]);
