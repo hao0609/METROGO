@@ -136,13 +136,13 @@ import Navbar_V1 from "../components/Navbar_V1.vue";
 
         <div class="img-container-rows">
           <div class="img-container-bottom">
-            <img src="../assets/images/tour/wufenpu_01.jpg " alt="" />
+            <img src="../assets/images/tour/wufenpu_01.webp " alt="" />
           </div>
           <div class="img-container-bottom">
-            <img src="../assets/images/tour/wufenpu_02.jpg " alt="" />
+            <img src="../assets/images/tour/wufenpu_02.webp " alt="" />
           </div>
           <div class="img-container-bottom">
-            <img src="../assets/images/tour/wufenpu_03.jpg " alt="" />
+            <img src="../assets/images/tour/wufenpu_03.webp " alt="" />
           </div>
         </div>
       </div>
@@ -180,13 +180,13 @@ import Navbar_V1 from "../components/Navbar_V1.vue";
 
         <div class="img-container-rows">
           <div class="img-container-bottom">
-            <img src="../assets/images/tour/SongshanStation_01.jpg " alt="" />
+            <img src="../assets/images/tour/SongshanStation_01.webp" alt="" />
           </div>
           <div class="img-container-bottom">
-            <img src="../assets/images/tour/SongshanStation_03.jpg " alt="" />
+            <img src="../assets/images/tour/SongshanStation_03.webp " alt="" />
           </div>
           <div class="img-container-bottom">
-            <img src="../assets/images/tour/RaoheStreetNightMarket _02.jpg " alt="" />
+            <img src="../assets/images/tour/RaoheStreetNightMarket _02.webp " alt="" />
           </div>
         </div>
       </div>
@@ -226,13 +226,13 @@ import Navbar_V1 from "../components/Navbar_V1.vue";
 
         <div class="img-container-rows">
           <div class="img-container-bottom">
-            <img src="../assets/images/tour/taipei_arena_07.jpg " alt="" />
+            <img src="../assets/images/tour/taipei_arena_07.webp " alt="" />
           </div>
           <div class="img-container-bottom">
-            <img src="../assets/images/tour/taipei_arena_05.jpg " alt="" />
+            <img src="../assets/images/tour/taipei_arena_05.webp " alt="" />
           </div>
           <div class="img-container-bottom">
-            <img src="../assets/images/tour/taipei_arena_06.jpg " alt="" />
+            <img src="../assets/images/tour/taipei_arena_06.webp " alt="" />
           </div>
         </div>
       </div>
@@ -271,13 +271,13 @@ import Navbar_V1 from "../components/Navbar_V1.vue";
 
         <div class="img-container-rows">
           <div class="img-container-bottom">
-            <img src="../assets/images/tour/breeze_nanjing_01.jpg " alt="" />
+            <img src="../assets/images/tour/breeze_nanjing_01.webp " alt="" />
           </div>
           <div class="img-container-bottom">
-            <img src="../assets/images/tour/breeze_nanjing_02.jpg " alt="" />
+            <img src="../assets/images/tour/breeze_nanjing_02.webp " alt="" />
           </div>
           <div class="img-container-bottom">
-            <img src="../assets/images/tour/breeze_nanjing_03.jpg " alt="" />
+            <img src="../assets/images/tour/breeze_nanjing_03.webp " alt="" />
           </div>
         </div>
       </div>
