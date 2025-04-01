@@ -217,9 +217,59 @@ const handleWheel = (e) => {
 
   // 如果已經完成 banner 的隱藏
   if (currentIndex.value >= blocks.value.length) {
-    if (e.deltaY < bannerElement.offsetHeight - blockHeight) {
-      console.log(e.deltaY);
-      // 往上滾 - 回到 banner
+    // if (e.deltaY < bannerElement.offsetHeight - blockHeight) {
+    //   // 往上滾 - 回到 banner
+    //   setTimeout(() => {
+    //     blocks.value.forEach((block) => {
+    //       block.hidden = false;
+    //     });
+    //     // 重置當前索引;
+    //     currentIndex.value = 0;
+    //   }, 100); // 延遲 100ms，讓方塊有時間顯示
+    // }
+    // } else {
+    //   // 原本的 banner 內部滾動邏輯
+    //   if (e.deltaY > 0) {
+    //     if (currentIndex.value < blocks.value.length) {
+    //       const blockToHide = sortedBlocks.value[currentIndex.value];
+    //       blocks.value.find((b) => b.number === blockToHide.number).hidden = true;
+    //       currentIndex.value++;
+
+    //       // 當所有方塊都被隱藏時
+    //       if (currentIndex.value >= blocks.value.length) {
+    //         window.removeEventListener("wheel", preventScroll, {
+    //           passive: false,
+    //         });
+    //         window.removeEventListener("scroll", preventScroll, {
+    //           passive: false,
+    //         });
+
+    //         document.body.style.overflow = "auto";
+
+    //         nextTick(() => {
+    //           gsap.to(window, {
+    //             duration: 0.7,
+    //             scrollTo: lineEntranceElement,
+    //             ease: "ease",
+    //           });
+    //         });
+    //       }
+    //     }
+    //   } else {
+    //     if (currentIndex.value > 0) {
+    //       currentIndex.value--;
+    //       const blockToShow = sortedBlocks.value[currentIndex.value];
+    //       blocks.value.find(
+    //         (b) => b.number === blockToShow.number
+    //       ).hidden = false;
+    //     }
+    //   }
+    // }  // 檢查是否在 line-entrance 區域或其後的區域
+    const lineEntranceRect = lineEntranceElement.getBoundingClientRect();
+
+    // 如果往上滾動（無論在哪個位置）
+    if (e.deltaY < 0) {
+      // 立即恢復所有方塊的顯示
       setTimeout(() => {
         blocks.value.forEach((block) => {
           block.hidden = false;
@@ -227,6 +277,25 @@ const handleWheel = (e) => {
         // 重置當前索引;
         currentIndex.value = 0;
       }, 100); // 延遲 100ms，讓方塊有時間顯示
+
+      // 重置當前索引
+      currentIndex.value = 0;
+
+      // 滾動回 banner 區域
+      gsap.to(window, {
+        duration: 0.5, // 稍微加快速度
+        scrollTo: { y: 0 }, // 回到頁面頂部
+        ease: "power2.out", // 使用更流暢的緩動效果
+        onComplete: () => {
+          // 捲動完成後阻止滾動
+          document.body.style.overflow = "hidden";
+        },
+      });
+
+      // 防止事件冒泡和默認行為
+      e.preventDefault();
+      e.stopPropagation();
+      return false;
     }
   } else {
     // 原本的 banner 內部滾動邏輯
@@ -249,7 +318,7 @@ const handleWheel = (e) => {
 
           nextTick(() => {
             gsap.to(window, {
-              duration: 0.7,
+              duration: 0.8,
               scrollTo: lineEntranceElement,
               ease: "ease",
             });
@@ -313,6 +382,33 @@ onMounted(() => {
   if (bannerElement) {
     bannerElement.addEventListener("wheel", handleWheel, { passive: false });
   }
+
+  // 監聽整個頁面的滾輪事件，只在滾動到line-entrance頂部時才允許向上滾回banner
+  window.addEventListener(
+    "wheel",
+    (e) => {
+      // 獲取line-entrance元素
+      const lineEntranceElement = document.querySelector(".line-entrance");
+      if (!lineEntranceElement) return;
+
+      // 計算line-entrance元素的頂部位置相對於視窗頂部的距離
+      const lineEntranceTop = lineEntranceElement.getBoundingClientRect().top;
+
+      // 只有當所有方塊已隱藏，且往上滾動，且line-entrance元素剛好在視窗頂部或附近時才處理
+      // 這裡設置一個小範圍，允許在line-entrance頂部附近50px的範圍內觸發
+      const isAtLineEntranceTop =
+        lineEntranceTop <= 50 && lineEntranceTop >= -50;
+
+      if (
+        currentIndex.value >= blocks.value.length &&
+        e.deltaY < 0 &&
+        isAtLineEntranceTop
+      ) {
+        handleWheel(e);
+      }
+    },
+    { passive: false }
+  );
 
   // 等待 DOM 完全渲染後再初始化 Swiper
   nextTick(() => {
