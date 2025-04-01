@@ -447,7 +447,7 @@ const messageData = ref([
       <div
         class="w-full-img"
         style="
-          background-image: url('/src/assets/images/line/Taipei101_02_w1312xh340.jpg');
+          background-image: url('/tid201/g2/images/line/Taipei101_02_w1312xh340.jpg');
         "
       >
         <h1 class="group-title white">101</h1>
@@ -460,7 +460,7 @@ const messageData = ref([
       <div
         class="w-full-img"
         style="
-          background-image: url('/src/assets/images/line/rongjin_gorgeous_time_01_w1312xh340.jpg');
+          background-image: url('/tid201/g2/images/line/rongjin_gorgeous_time_01_w1312xh340.jpg');
         "
       >
         <h1 class="group-title white">東門</h1>

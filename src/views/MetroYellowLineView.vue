@@ -418,7 +418,7 @@ const messageData = ref([
       <div
         class="w-full-img"
         style="
-          background-image: url('/src/assets/images/line/sanchong_station_06_w1312xh340.jpg');
+          background-image: url('/tid201/g2/images/line/sanchong_station_06_w1312xh340.jpg');
         "
       >
         <h1 class="group-title white">三重</h1>
@@ -431,7 +431,7 @@ const messageData = ref([
       <div
         class="w-full-img"
         style="
-          background-image: url('/src/assets/images/line/sanhe_night_market_01_w1312xh340.jpg');
+          background-image: url('/tid201/g2/images/line/sanhe_night_market_01_w1312xh340.jpg');
         "
       >
         <h1 class="group-title white">台北橋</h1>

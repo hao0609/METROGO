@@ -447,7 +447,7 @@ const messageData = ref([
       <div
         class="w-full-img"
         style="
-          background-image: url('/src/assets/images/line/ximending_02_w1312xh340.jpg');
+          background-image: url('/tid201/g2/images/line/ximending_02_w1312xh340.jpg');
         "
       >
         <h1 class="group-title white">西門町</h1>
@@ -460,7 +460,7 @@ const messageData = ref([
       <div
         class="w-full-img"
         style="
-          background-image: url('/src/assets/images/line/longshan_temple_02_w1312xh340.jpg');
+          background-image: url('/tid201/g2/images/line/longshan_temple_02_w1312xh340.jpg');
         "
       >
         <h1 class="group-title white">龍山寺</h1>

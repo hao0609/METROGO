@@ -4,7 +4,7 @@
       "sight_name": "新店",
       "sight_banner_title": "潭光山色漫步吊橋",
       "sight_intro": "清澈碧綠的水面加上壯觀的吊橋，悠閒地飽覽這潭光山景，加上與朋友一同划船，或是騎自行車、體驗立槳SUP，一同品嘗當地美食，夜晚還有氣氛浪漫的夜景。",
-      "sight_img": "./src/assets/images/line/bitan_02_w300xh417.jpg",
+      "sight_img": "/tid201/g2/images/line/bitan_02_w300xh417.jpg",
       "dialog_desc": "清澈碧綠的水面加上壯觀的吊橋，悠閒地飽覽這潭光山景，加上與朋友一同划船，或是騎自行車、體驗立槳SUP，一同賞景喝下午茶，品嘗當地美食，夜晚燈光點綴橋面與水岸，景色浪漫迷人。鄰近捷運新店站，交通便利，是台北人周末放鬆、親子同遊或約會的理想去處。",
       "info_address":"新北市新店區北宜路1段2號",
       "info_number":"02-2181-2345 "
@@ -13,7 +13,7 @@
       "sight_name": "中山",
       "sight_banner_title": "南西的時尚與特色",
       "sight_intro": "最具文藝氣息與時尚氛圍的購物、美食與文化聚集地。結合百貨購物、特色咖啡廳、精品選物店、日系品牌、文創書店與夜生活，想逛街、喝咖啡、找美食，南西商圈都是絕佳選擇！",
-      "sight_img": "./src/assets/images/line/zhongshan_station_01_w300xh417.jpg",
+      "sight_img": "/tid201/g2/images/line/zhongshan_station_01_w300xh417.jpg",
       "dialog_desc": "最具文藝氣息與時尚氛圍的購物、美食與文化聚集地。結合百貨購物、特色咖啡廳、精品選物店、日系品牌、文創書店與夜生活，此外，中山北路與赤峰街一帶有許多獨立書店、選物店與特色咖啡廳，充滿文青與設計氛圍。美食選擇多元，從日式料理、異國餐廳到傳統小吃一應俱全。鄰近的條通區則以日式居酒屋與酒吧聞名，是下班後放鬆的好去處。想逛街、喝咖啡、找美食，南西商圈都是絕佳選擇！",
       "info_address":"臺北市大同區南京西路55號",
       "info_number":"02-2181-2345 "
@@ -22,7 +22,7 @@
       "sight_name": "公館",
       "sight_banner_title": "超學生味的商圈",
       "sight_intro": "公館商圈鄰近臺灣大學、臺灣科技大學、師範大學公館校區，提供市民及學生食衣住行育樂機能性完善的購物商圈",
-      "sight_img": "./src/assets/images/line/NTU_01_w300xh417.jpg",
+      "sight_img": "/tid201/g2/images/line/NTU_01_w300xh417.jpg",
       "dialog_desc": "公館商圈鄰近臺灣大學、臺灣科技大學、師範大學公館校區，結合美食、購物與文青風格。這裡有眾多學生愛去的平價美食，如藍家割包、陳三鼎黑糖珍珠鮮奶等經典小吃，水源市場與公館夜市提供多樣化餐飲選擇，吸引饕客前來，提供市民及學生食衣住行育樂機能性完善的購物商圈。",
       "info_address":"臺北市中正區羅斯福路4段64之1號",
       "info_number":"02-2181-2345 "
@@ -31,7 +31,7 @@
       "sight_name": "台北小巨蛋",
       "sight_banner_title": "東區的追星商圈",
       "sight_intro": "這裡結合演唱會、體育活動、美食、購物與娛樂，是台北東區的重要商圈之一，不論是追星族、購物狂、美食愛好者，還是運動健身族群，都能在這裡找到樂趣！",
-      "sight_img": "./src/assets/images/line/taipei_arena_07_w300xh417.jpg",
+      "sight_img": "/tid201/g2/images/line/taipei_arena_07_w300xh417.jpg",
       "dialog_desc": "小巨蛋可容納約一萬五千名觀眾，這裡經常舉辦國際級演唱會、體育賽事與大型展覽，吸引眾多樂迷與運動愛好者，加上美食、購物與娛樂，是台北東區的重要商圈之一，不論是追星族、購物狂、美食愛好者，還是運動健身族群，都能在這裡找到樂趣！",
       "info_address":"臺北市松山區南京東路四段2號",
       "info_number":"02-2578-3536 "
@@ -40,7 +40,7 @@
       "sight_name": "中正紀念堂",
       "sight_banner_title": "老台北的風情文藝",
       "sight_intro": "展覽、舞台劇、欣賞音樂表演，也可以餵魚、看憲兵交接，周邊涵蓋了傳統市場、美食餐廳、文創書店與藝文展演空間，這裡適合喜歡人文氣息、老台北風情與藝文活動的朋友。",
-      "sight_img": "./src/assets/images/line/ChiangKai-ShekMemorialHallStation_5_w300xh417.jpg",
+      "sight_img": "/tid201/g2/images/line/ChiangKai-ShekMemorialHallStation_5_w300xh417.jpg",
       "dialog_desc": "展覽、舞台劇、欣賞音樂表演，也可以餵魚、看憲兵交接，周邊涵蓋了傳統市場、美食餐廳、文創書店與藝文展演空間，這裡適合喜歡人文氣息、老台北風情與藝文活動的朋友，商圈內還有南門市場，提供傳統中式點心與各式美食，此外，附近也有許多特色咖啡廳與文青小店，適合散步與休憩。",
       "info_address":"臺北市中正區中山南路21號",
       "info_number":"02-2343-1100"
@@ -49,7 +49,7 @@
       "sight_name": "松山",
       "sight_banner_title": "媽祖加持的夜市",
       "sight_intro": "聚集了台灣傳統小吃、異國料理、特色甜點，讓人一邊逛街一邊吃遍各種美食。夜市旁還有松山慈祐宮、五分埔商圈、彩虹橋等景點，適合來場吃美食＋購物＋散步的一日遊！",
-      "sight_img": "./src/assets/images/line/songshan_station_02_w300xh417.jpg",
+      "sight_img": "/tid201/g2/images/line/songshan_station_02_w300xh417.jpg",
       "dialog_desc": "聚集了台灣傳統小吃、異國料理、特色甜點，讓人一邊逛街一邊吃遍各種美食。夜市旁還有歷史悠久的松山慈祐宮，恭奉主神是媽祖娘娘，香火鼎盛、信徒眾多，這裡也鄰近五分埔成衣商圈、彩虹橋等景點，適合來場進香＋美食＋購物＋散步的一日遊！",
       "info_address":"臺北市松山區饒河街",
       "info_number":"02-2766-8876"
@@ -60,7 +60,7 @@
       "sight_name": "動物園",
       "sight_banner_title": "動物園與貓空纜車",
       "sight_intro":"亞洲規模最大的動物園之一，適合親子同遊，搭乘貓空纜車，可俯瞰台北市景，貓空以盛產鐵觀音茶聞名，許多茶館提供泡茶體驗，適合放鬆身心。有樟樹步道、指南宮、樟山寺等，適合健行與賞景。",
-      "sight_img": "./src/assets/images/line/taipei_zoo_04_w300xh417.jpg",
+      "sight_img": "/tid201/g2/images/line/taipei_zoo_04_w300xh417.jpg",
       "dialog_desc": "亞洲規模最大的動物園之一，擁有各種珍稀動物，如大貓熊、無尾熊等，適合親子遊覽，提供豐富的生態教育與觀賞體驗，另外搭乘貓空纜車，可俯瞰台北市景，貓空以盛產鐵觀音茶聞名，許多茶館提供泡茶體驗，適合放鬆身心，附近有樟樹步道、指南宮、樟山寺等，適合健行與賞景。",
       "info_address":"臺北市文山區新光路二段30號",
       "info_number":"02-2938-2300"
@@ -69,7 +69,7 @@
       "sight_name": "忠孝復興",
       "sight_banner_title": "東區的魅力商圈",
       "sight_intro": "時尚、購物、美食與娛樂的熱門地區，結合便利的交通與豐富的生活機能，是台北最具代表性的繁華地段之一。逛街購物、約會聚餐、享受美容服務，或是體驗潮流文化，這裡都是絕佳的選擇。",
-      "sight_img": "./src/assets/images/line/zhongxiao_fuxing_station_01_w300xh417.jpg",
+      "sight_img": "/tid201/g2/images/line/zhongxiao_fuxing_station_01_w300xh417.jpg",
       "dialog_desc": "時尚、購物、美食與娛樂的熱門地區，結合便利的交通與豐富的生活機能，逛街購物、約會聚餐、享受美容服務，或是體驗潮流文化，不僅是時尚購物的熱點，也是美食和夜生活的重鎮，無論白天還是夜晚，都能在這裡找到屬於自己的樂趣與驚喜。從時尚的街頭巷尾到充滿活力的夜晚場景，這裡是臺北最具魅力的地區之一，是每個來訪者都不容錯過的熱點。",
       "info_address":"臺北市大安區忠孝東路3段302號",
       "info_number":"02-2181-2345"
@@ -78,7 +78,7 @@
       "sight_name": "南京復興",
       "sight_banner_title": "熱鬧無比的商圈",
       "sight_intro": "融合購物、商業、娛樂、美食於一體，是台北市繁華且機能完善的黃金地段，無論是上班族、購物族或美食愛好者，都能在這裡找到最適合自己的活動！",
-      "sight_img": "./src/assets/images/line/NanjingFuxingStation_02_w300xh417.jpg",
+      "sight_img": "/tid201/g2/images/line/NanjingFuxingStation_02_w300xh417.jpg",
       "dialog_desc": "融合購物、商業、娛樂、美食於一體，是台北市繁華且機能完善的黃金地段，鄰近微風廣場、台北小巨蛋、遼夏街夜市，相當的熱鬧，讓你從早到晚都逛不完，無論是上班族、購物族或美食愛好者，都能在這裡找到最適合自己的活動！",
       "info_address":"臺北市松山區南京東路3段253號",
       "info_number":"02-2181-2345"
@@ -87,7 +87,7 @@
       "sight_name": "劍南路",
       "sight_banner_title": "浪漫摩天輪賞風景",
       "sight_intro":"商圈結合購物、娛樂、美食與自然景觀，適合全家親子出遊、情侶約會。無論是到美麗華百樂園逛街看電影，還是在河濱公園騎車運動、品嚐美食或欣賞夜景，這裡都是台北兼具繁華與悠閒氛圍的商圈之一。",
-      "sight_img": "./src/assets/images/line/miramar_01_w300xh417.jpg",
+      "sight_img": "/tid201/g2/images/line/miramar_01_w300xh417.jpg",
       "dialog_desc": "商圈結合購物、娛樂、美食與自然景觀，適合全家親子出遊、情侶約會，全台首創的百米摩天輪，結合娛樂、科技、藝術於一體，可以媲美日本「東京台場摩天輪」，成為情侶約會的首選景點，夜間綻放光彩炫麗的燈光表演，是台北夜空最美麗的寶石。加上浪漫夢幻的音樂旋轉木馬遊樂設施，讓空氣中更充滿溫馨歡樂感。結合美食餐飲、親子購物、美妝保養、電影娛樂，美麗華擁有寬廣的空間與舒適的環境，不僅僅為複合式的商業空間，更是觀光旅遊的勝地。",
       "info_address":"臺北市中山區敬業三路20號",
       "info_number":"02-2175-3456"
@@ -96,7 +96,7 @@
       "sight_name": "松山機場",
       "sight_banner_title": "抓住飛機許個願",
       "sight_intro": "提供了機場觀景台，提供寬闊視角，可欣賞飛機起降，吸引航空迷與攝影愛好者機場。周邊公園如美堤河濱公園、彩虹橋，適合散步或騎單車，欣賞松山機場的飛機景觀。",
-      "sight_img": "./src/assets/images/line/SongshanAirportStation_01_w300xh417.jpg",
+      "sight_img": "/tid201/g2/images/line/SongshanAirportStation_01_w300xh417.jpg",
       "dialog_desc": "提供了機場觀景台，提供寬闊視角，可欣賞飛機起降，吸引航空迷與攝影愛好者機場。周邊公園如美堤河濱公園、彩虹橋，適合散步或騎單車，欣賞松山機場的飛機景觀，松山機場其實有超多美食，有泰式、港式、台式等，不少餐廳都在管制區外，還有星巴克、翰林茶館、Subway和摩斯漢堡等知名連鎖店。除了要在松山機場搭飛機的旅客外，住在機場附近或在附近上班的朋友，也都可以前往機場美食街品嘗這些好吃的料理唷！",
       "info_address":"臺北市松山區敦化北路340-9號",
       "info_number":"02-8770-3460"
@@ -105,7 +105,7 @@
       "sight_name": "大湖公園",
       "sight_banner_title": "湖光山色踏青去",
       "sight_intro": "環境清幽、綠意盎然，適合喜愛大自然、運動健行、親子活動的民眾。來大湖公園散步賞景，還是沿著登山步道健行，這裡都是一個讓人放鬆心情的好地方。",
-      "sight_img": "./src/assets/images/line/dahu_park_01_w300xh417.jpg",
+      "sight_img": "/tid201/g2/images/line/dahu_park_01_w300xh417.jpg",
       "dialog_desc": "環境清幽、綠意盎然，適合喜愛大自然、運動健行、親子活動的民眾，來大湖公園散步賞景，還是沿著登山步道健行，這裡都是一個讓人放鬆心情的好地方，假日經常有大型活動的大湖公園，如交響樂團、社區大學、高國中等藝文類團體的表演，自然環境優美，園區經常可見情侶、親子同遊，也是藝術工作者、劇組人員喜歡取景之地。",
       "info_address":"臺北市內湖區成功路五段31號",
       "info_number":"02-2381-5132"
@@ -116,7 +116,7 @@
       "sight_name": "新莊",
       "sight_banner_title": "傳統市場結合夜市",
       "sight_intro": "圍繞著歷史悠久的新莊慈祐宮，是結合傳統市場、美食小吃、宗教文化與購物的商圈，這裡不僅有超過200年的廟宇文化，還有許多老店、夜市小吃與傳統市場，是最能感受台灣在地風情的地方之一。",
-      "sight_img": "./src/assets/images/line/xinzhuang_01.jpg",
+      "sight_img": "/tid201/g2/images/line/xinzhuang_01.jpg",
       "dialog_desc": "圍繞著歷史悠久的新莊慈祐宮，是結合傳統市場、美食小吃、宗教文化與購物的商圈，這裡不僅有超過200年的廟宇文化，還有許多老店、夜市小吃與傳統市場，新莊廟街的歷史韻味藏在骨子裡，米市街、戲館巷、打鐵行等百年巷弄與老店，散發出老街獨有氣味和聲響。新莊廟街在夜晚會搖身一變為熱鬧的夜市，潤餅捲、蒙古烤肉、瓜仔肉飯、紅糟肉圓等令人食指大動的攤販，在百年古廟前升起氤氳的蒸氣和香味，每一攤都是千錘百鍊、經得起考驗的美味是最能感受台灣在地風情的地方之一。",
       "info_address":"新北市新莊區中正路138號",
       "info_number":"02-2181-2345"
@@ -125,7 +125,7 @@
       "sight_name": "行天宮",
       "sight_banner_title": "老牌的關聖帝君廟",
       "sight_intro":"台北著名的傳統文化與美食商圈。行天宮是供奉關聖帝君的重要廟宇，每天吸引大量信眾前來參拜，使周邊商圈發展出獨特的宗教文化、老字號美食與特色店家。",
-      "sight_img": "./src/assets/images/line/xingtian_temple_01_300x417.jpg",
+      "sight_img": "/tid201/g2/images/line/xingtian_temple_01_300x417.jpg",
       "dialog_desc": "台北著名的傳統文化與美食商圈。行天宮是供奉關聖帝君的重要廟宇，每天吸引大量信眾前來參拜，使周邊商圈發展出獨特的宗教文化，附近香火鋪、命相館，還有獨特的命理地下街，因為香火鼎盛，附近老字號美食與特色店家也相當多，值得你祈求平安外，也來品嘗美食。",
       "info_address":"臺北市中山區民權東路二段109號",
       "info_number":"02-2502-7924"
@@ -134,7 +134,7 @@
       "sight_name": "忠孝新生",
       "sight_banner_title": "懷舊新潮的文創",
       "sight_intro": "由舊倉庫來改造成今日的展覽場所，懷舊與新潮在這裡達成默契，品牌與動漫也和諧一致地等待你大駕光臨，探索你的想像，支持你愛的偶像，世界就是充滿愛與和平。",
-      "sight_img": "./src/assets/images/line/huashan_1914_creative_park_01.jpg",
+      "sight_img": "/tid201/g2/images/line/huashan_1914_creative_park_01.jpg",
       "dialog_desc": "由舊倉庫來改造成今日的展覽場所，懷舊與新潮在這裡達成默契，品牌與動漫也和諧一致地等待你大駕光臨，探索你的想像，支持你愛的偶像，世界就是充滿愛與和平，此外，園區內也有多間餐廳、店舖、藝廊等商業設施，至今已舉辦多次藝文展演活動，也將舊建築物翻新、設置裝置藝術，吸引民眾前來參觀、拍照；園區後方也有一整片的大草皮區，提供大家野餐玩樂。",
       "info_address":"臺北市中正區八德路一段1號",
       "info_number":"02-2358-1914"
@@ -143,7 +143,7 @@
       "sight_name": " 台北橋",
       "sight_banner_title": "接地氣台式夜市",
       "sight_intro": "三和夜市商圈雖然規模不大，但以親民價格與道地小吃深受當地人喜愛，少了觀光夜市的商業氣息，多了樸實的生活感。如果你喜歡接地氣的台式夜市文化，這裡絕對值得一試！",
-      "sight_img": "./src/assets/images/line/xinzhuang_03_w300xh417.jpg",
+      "sight_img": "/tid201/g2/images/line/xinzhuang_03_w300xh417.jpg",
       "dialog_desc": "三和夜市商圈雖然規模不大，但以親民價格與道地小吃深受當地人喜愛，少了觀光夜市的商業氣息，多了樸實的生活感，白天是傳統市場，晚上則是夜市，不僅身上穿的嘴裡吃的，日常生活用品也能買得到，如果你喜歡接地氣的台式夜市文化，這裡絕對值得你親身來體驗！",
       "info_address":"新北市三重區中央北路",
       "info_number":"02-2986-2345"
@@ -152,7 +152,7 @@
       "sight_name": "三重",
       "sight_banner_title": "多樣功能的公園",
       "sight_intro": "大都會公園是結合生態、運動與親子活動的理想場所，不論是想悠閒散步、騎車運動，還是帶孩子玩樂，都能在這裡找到樂趣。下次有機會，不妨來這裡走走，享受城市中的綠意與悠閒！",
-      "sight_img": "./src/assets/images/line/sanchong_station_02_w300xh417.jpg",
+      "sight_img": "/tid201/g2/images/line/sanchong_station_02_w300xh417.jpg",
       "dialog_desc": "大都會公園是結合生態、運動與親子活動的理想場所，不論是想悠閒散步、騎車、打球，還是帶孩子玩樂，或是野餐和躺在草地上打滾，都能在這裡找到樂趣，也提供多種的遊樂設施，夏季更有水樂園，下次有機會，不妨來這裡走走，無論是三五好友約打球或親子同樂，歡迎一同來享受城市中的綠意與悠閒！",
       "info_address":"新北市三重區水漾路一段",
       "info_number":"02-8969-9596"
@@ -161,7 +161,7 @@
       "sight_name": "南勢角",
       "sight_banner_title": "土地公在看著你",
       "sight_intro": "新北市發展成熟的商圈之一，該商圈因交通便利、生活機能完善，吸引了許多居民及消費者，興南夜市提供各式平價美食，如鹽酥雞、牛排、滷肉飯、珍珠奶茶等，深受在地人喜愛。",
-      "sight_img": "./src/assets/images/line/HongludiNanshanFudeTemple_1_w300xh417.jpg",
+      "sight_img": "/tid201/g2/images/line/HongludiNanshanFudeTemple_1_w300xh417.jpg",
       "dialog_desc": "新北市發展成熟的商圈之一，該商圈因交通便利、生活機能完善，吸引了許多居民及消費者，興南夜市提供各式平價美食，如鹽酥雞、牛排、滷肉飯、珍珠奶茶等，深受在地人喜愛，聳立在山上烘爐地的巨大土地公神像也是香火鼎盛，越晚人越多，越夜越美麗，不僅信徒眾多，也是賞夜景好地方！",
       "info_address":"新北市中和區捷運路6號",
       "info_number":"02-2181-2345"
@@ -172,7 +172,7 @@
       "sight_name": "龍山寺",
       "sight_banner_title": "各路神仙來保庇",
       "sight_intro": "懷著你的願望或問題，誠懇地與神交流吧！充滿歷史意義與神秘的氛圍，不管你想得到甚麼或想知道甚麼，煩惱糾結的選擇，這裡都可以給你參考的答案！",
-      "sight_img": "./src/assets/images/line/longshan_temple_01.jpg",
+      "sight_img": "/tid201/g2/images/line/longshan_temple_01.jpg",
       "dialog_desc": "懷著你的願望或問題，藉著手中的幾炷香，誠懇地與神交流吧！這裡充滿歷史意義與周邊命理館神秘的氛圍，不管你想得到甚麼想知道甚麼，或是正在煩惱糾結的選擇，透過與神明的交流或是命理師的溝通，相信都可以給你能夠參考的答案！",
       "info_address":"臺北市萬華區廣州街211號",
       "info_number":"02-2302-5162"
@@ -181,7 +181,7 @@
       "sight_name": "市政府",
       "sight_banner_title": "百貨密集症候群",
       "sight_intro": "有人許運池裡滿滿的百貨公司嗎? 那這裡一定不會讓你失望，奢侈品、名牌精品、精緻美食、也可能不經意地遇到藝人明星，機會不等人，先來先贏！",
-      "sight_img": "./src/assets/images/line/xinyi_shopping_district_01.jpg",
+      "sight_img": "/tid201/g2/images/line/xinyi_shopping_district_01.jpg",
       "dialog_desc": "有人許運池裡滿滿的百貨公司嗎? 那麼這裡稱之為消費天堂一定不會讓你失望，奢侈品、名牌精品、運動品牌、家電精品等眾多選擇！另外還有名牌的精緻美食餐廳、一次滿足你的消費慾望，也可能不經意地遇到藝人明星，機會不等人，先來先贏！",
       "info_address":"臺北市信義區忠孝東路5段2號",
       "info_number":"02-2181-2345"
@@ -190,7 +190,7 @@
       "sight_name": "國父紀念館",
       "sight_banner_title": "文創大巨蛋特區",
       "sight_intro": "台北最新的娛樂、運動、購物與美食聚集地，這裡結合了大巨蛋、百貨購物中心、文創、夜生活與公園，成為台北最具規模的多功能商圈之一！",
-      "sight_img": "./src/assets/images/line/taipei_dome_01.jpg",
+      "sight_img": "/tid201/g2/images/line/taipei_dome_01.jpg",
       "dialog_desc": "台北最新的娛樂、運動、購物與美食聚集地，這裡結合了大巨蛋運動賽事與巨星演唱會、百貨購物中心、松山文創園區、夜生活與公園，所有你想得到的娛樂功能，這裡都有，好逛、好吃、好玩！是最具規模的多功能商圈之一！",
       "info_address":"臺北市信義區忠孝東路四段515號",
       "info_number":"02-2722-8811"
@@ -199,7 +199,7 @@
       "sight_name": "板橋",
       "sight_banner_title": "全台熊嗨的耶誕季",
       "sight_intro": "來感受濃濃台式的耶誕季，投射巨大的耶誕樹與聲光效果，周邊的燈海與特別打卡拍照處，周末還有巨星陪你歡唱不停，更是少不了等你品嘗的美食，猶豫甚麼？還不趕快跟上！",
-      "sight_img": "./src/assets/images/line/new_taipei_city_government_01.jpg",
+      "sight_img": "/tid201/g2/images/line/new_taipei_city_government_01.jpg",
       "dialog_desc": "來感受濃濃台式的耶誕季，投射巨大的耶誕樹與聲光效果，周邊的燈海與特別打卡拍照處，還有特色市集等你來逛，周末還有巨星陪你歡唱不停，更是少不了等你品嘗的美食，好吃好玩！還猶豫甚麼？還不趕快跟上！",
       "info_address":"新北市板橋區中山路一段161號",
       "info_number":"02-2960-3456"
@@ -208,7 +208,7 @@
       "sight_name": "西門",
       "sight_banner_title": "城市就是伸展台",
       "sight_intro": "潮流就是風格，挖掘屬於你自我風格，這裡相信可以滿足你的需求，文青、龐克、韓風、日式、台式、美式，在這裡做自己，何必在意別人眼光！",
-      "sight_img": "./src/assets/images/line/ximending_01.jpg",
+      "sight_img": "/tid201/g2/images/line/ximending_01.jpg",
       "dialog_desc": "潮流就是風格，挖掘屬於你自我風格，這裡相信這裡多種特色風格的小店，可以滿足你的需求，文青、龐克、韓風、日式、台式、美式、英倫等，今天想要甚麼風格，在這裡裝扮自己，何必在意別人眼光！",
       "info_address":"臺北市中正區寶慶路32之1號",
       "info_number":"02-2181-2345"
@@ -217,7 +217,7 @@
       "sight_name": "台北車站",
       "sight_banner_title": "約北車北三門口",
       "sight_intro": "身為首都的車站，怎麼可以輕易地錯過它呢？這裡有著最多的人潮，還有絕不能錯過的商家與地下街， 眾多的異國美食，有吃有玩，怎能不約在這呢？",
-      "sight_img": "./src/assets/images/line/taipei_city_mall_01.jpg",
+      "sight_img": "/tid201/g2/images/line/taipei_city_mall_01.jpg",
       "dialog_desc": "身為首都的車站，怎麼可以輕易地錯過它呢？這裡有著最多的人潮，樓上有著美食餐廳，還有絕不能錯過的商家與台北地下街，眾多的異國美食與動漫周邊和電玩，有吃有玩，怎能不約在這呢？",
       "info_address":"臺北市中正區忠孝西路一段49號",
       "info_number":"02-2191-0096"
@@ -228,7 +228,7 @@
       "sight_name": "淡水",
       "sight_banner_title": "樹下絕美夕陽黃昏",
       "sight_intro": "以前的黃金般港口歷史與現在老街商圈，留下來的故事多到聽不完，古蹟與美食，柳樹下的絕美夕陽黃昏加上巨無霸冰淇淋，電影拍攝場景與渡輪體驗，我全都要！",
-      "sight_img": "./src/assets/images/line/danshui_01_w300xh417.jpg",
+      "sight_img": "/tid201/g2/images/line/danshui_01_w300xh417.jpg",
       "dialog_desc": "以前的黃金般港口歷史與現在老街商圈，前人留下來的故事多到聽不完，可步行可騎自行車，逛古蹟，品嘗阿給、蝦捲、魚酥、糕餅及眾多美食，柳樹下的絕美夕陽黃昏加上巨無霸冰淇淋，電影拍攝場景與輕鬆渡輪體驗，我全都要！",
       "info_address":"新北市淡水區中正路1號",
       "info_number":"02-2181-2345"
@@ -237,7 +237,7 @@
       "sight_name": "圓山",
       "sight_banner_title": "展場成為野餐公園",
       "sight_intro": "以前的花卉博覽展覽場地，搭配著綠地成為休閒野餐的好所在，有攤販也有餐廳，假日還有農會市集、街頭藝人表演，帶著野餐墊，讓自己放鬆吧！",
-      "sight_img": "./src/assets/images/line/EXPO_yuanshan_park_01_w300xh417.jpg",
+      "sight_img": "/tid201/g2/images/line/EXPO_yuanshan_park_01_w300xh417.jpg",
       "dialog_desc": "以前辦的花卉博覽展覽場地，現在搭配著綠地而成為市中心休閒野餐聚會的好所在，園內還有MAJI集食行樂市集，提供美食、文創商品與音樂表演，增添園區的活力與趣味，假日還有農會市集、街頭藝人表演，跟著三五好友或全家人，帶著你的野餐墊，好好地讓陽光曬曬腦袋、放鬆自己一下！",
       "info_address":"臺北市中山區玉門街1號",
       "info_number":"02-2182-8886"
@@ -246,7 +246,7 @@
       "sight_name": "新北投",
       "sight_banner_title": "舊情綿綿的溫泉鄉",
       "sight_intro": "冷冽的寒流，讓身體在溫泉中泡得舒舒麻麻的，再好好品嘗溫泉鄉美食，幻想以前的商人交流，或是幫派喬事情，再加上那卡西背景音樂，以前人也真是太會享受了吧！",
-      "sight_img": "./src/assets/images/line/xinbeitou_01_w300xh417.jpg",
+      "sight_img": "/tid201/g2/images/line/xinbeitou_01_w300xh417.jpg",
       "dialog_desc": "冷冽的寒流，讓身體在溫泉中泡得舒舒麻麻的，放鬆放空你的身、心、靈，再好好品嘗溫泉鄉地美食，幻想著以前的商人交流，或是幫派角頭老大在喬事情喬地盤，最好再加上那卡西背景音樂，如此愜意地讓人羨慕，以前人也真是太會享受了吧！",
       "info_address":"臺北市北投區大業路700號",
       "info_number":"02-2891-2972"
@@ -255,7 +255,7 @@
       "sight_name": "東門",
       "sight_banner_title": "知名文化特色商圈",
       "sight_intro": "許多知名的特色小店或是從小吃到大的餐廳，這裡都找得到，從懷念的蔥餅、剉冰、到明星指名的小籠包，熟悉的美味，老闆誠意滿滿，而你的回憶滿滿！",
-      "sight_img": "./src/assets/images/line/yongkang_street_01_w300xh417.jpg",
+      "sight_img": "/tid201/g2/images/line/yongkang_street_01_w300xh417.jpg",
       "dialog_desc": "許多知名的特色小店或是從小吃到大的餐廳，這裡都找得到，從懷念的蔥餅、剉冰、豆花、到明星指名的小籠包，熟悉的美味讓人食指大動，老闆誠意滿滿，而你的回憶滿滿！這裡也有眾多特色小店，個性商品琳瑯滿目，值得你來逛逛！",
       "info_address":"臺北市大安區信義路2段166號",
       "info_number":"02-2181-2345"
@@ -264,7 +264,7 @@
       "sight_name": "劍潭",
       "sight_banner_title": "建築的飢餓行銷",
       "sight_intro": "看到台北藝術表演中心，你是不是有點餓？別怕！緊鄰著士林夜市，看完表演不就是要好好吃一頓嗎？邊吃邊玩，邊玩邊吃，輕鬆享受你的夜晚！",
-      "sight_img": "./src/assets/images/line/TaipeiPerformingArtsCenter_04_w300xh417.jpg",
+      "sight_img": "/tid201/g2/images/line/TaipeiPerformingArtsCenter_04_w300xh417.jpg",
       "dialog_desc": "看到台北藝術表演中心，驚訝的你是不是有點餓？別怕！緊鄰著士林夜市，看完表演不就是要好好吃一頓嗎？這裡匯聚各式美食，如豪大大雞排、大腸包小腸、蚵仔煎、士林大香腸等，吸引眾多遊客品嚐。此外，夜市內也有服飾、遊戲攤位和特色小店，提供多樣化的購物與娛樂選擇，隨著逛夜市的人潮，讓你自由地逛著邊吃邊玩，邊玩邊吃，輕鬆享受你的夜晚！",
       "info_address":"臺北市士林區中山北路5段65號",
       "info_number":"02-2181-2345"
@@ -273,7 +273,7 @@
       "sight_name": "台北101",
       "sight_banner_title": "跨年首選台北101",
       "sight_intro": "不僅僅只是想看超級高聳建築物煙火，或是從高樓層眺望台北，這裡的商圈、百貨公司更是密集，海外的著名餐廳也在這裡駐點，來這裡務必吃好、逛好！",
-      "sight_img": "./src/assets/images/line/taipei101_06_w300xh417.jpg",
+      "sight_img": "/tid201/g2/images/line/taipei101_06_w300xh417.jpg",
       "dialog_desc": "不僅僅只是想人擠人一起聽巨星演唱會及看台北101跨年煙火，或是從高樓層眺望台北商圈，這裡的百貨公司更是密集地過分，不僅有街頭藝人秀，海外的著名美食餐廳也在這裡駐點，電影院也等著你大駕光臨，夜店更有著意外遇到明星的驚喜，所有你想的娛樂都可以在這裡得到實現，來這裡務必吃好、逛好、玩好！",
       "info_address":"臺北市信義區市府路45號",
       "info_number":"02-8101-8800"

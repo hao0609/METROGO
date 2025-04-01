@@ -426,7 +426,7 @@ const messageData = ref([
       <div
         class="w-full-img"
         style="
-          background-image: url('/src/assets/images/line/shih_chien_university_03_w1312xh340.jpg');
+          background-image: url('/tid201/g2/images/line/shih_chien_university_03_w1312xh340.jpg');
         "
       >
         <h1 class="group-title white">大直</h1>
@@ -438,7 +438,7 @@ const messageData = ref([
     <router-link to="/tour/brown-line" class="tour-link">
       <div
         class="w-full-img"
-        style="background-image: url('/src/assets/images/line/miramar_06_w1312xh340.jpg')"
+        style="background-image: url('/tid201/g2/images/line/miramar_06_w1312xh340.jpg')"
       >
         <h1 class="group-title white">劍南路</h1>
       </div>

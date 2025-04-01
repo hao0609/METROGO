@@ -418,7 +418,7 @@ const messageData = ref([
       <div
         class="w-full-img"
         style="
-          background-image: url('/src/assets/images/line/SongshanStation_03_w1312xh340.jpg');
+          background-image: url('/tid201/g2/images/line/SongshanStation_03_w1312xh340.jpg');
         "
       >
         <h1 class="group-title white">松山</h1>
@@ -431,7 +431,7 @@ const messageData = ref([
       <div
         class="w-full-img"
         style="
-          background-image: url('/src/assets/images/line/taipei_arena_05_w1312xh340.jpg');
+          background-image: url('/tid201/g2/images/line/taipei_arena_05_w1312xh340.jpg');
         "
       >
         <h1 class="group-title white">小巨蛋</h1>
