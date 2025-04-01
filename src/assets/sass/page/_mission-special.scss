@@ -133,23 +133,27 @@ body {
       text-align: center;
       margin: 0 auto;
 
-      &.answered,
+      &.red-answered,
       &.red-line {
         background-color: #e3002c;
         color: #ffff;
       }
+      &.blue-answered,
       &.blue-line {
         background-color: #0070bd;
         color: #ffff;
       }
+      &.yellow-answered,
       &.yellow-line {
         background-color: #f8b61c;
         color: #ffff;
       }
+      &.brown-answered,
       &.brown-line {
         background-color: #c48c31;
         color: #ffff;
       }
+      &.green-answered,
       &.green-line {
         background-color: #008659;
         color: #ffff;

@@ -48,7 +48,7 @@
             :key="question.id"
             :class="[
               { blue_active: question.id === activeQuestionId },
-              { answered: question.answered },
+              { 'blue-answered': isanswered },
             ]"
           >
             <!-- <a :href="`#question-item${question.id}`">{{ question.title }}</a> -->
@@ -114,18 +114,16 @@
                     class="question-icon"
                     v-html="question.icon"
                   ></div>
-                  <div
-                    v-if="question.answered"
-                    class="check-icon"
-                    v-html="checkIcon"
-                  ></div>
+                  <div v-if="isanswered" class="check-icon" v-html="checkIcon"></div>
                   <span class="question-text">
-                    {{ question.answered ? "回答完成" : "點擊回答問題" }}</span
+                    {{ isanswered ? "回答完成" : "點擊回答問題" }}</span
                   >
                   <alert_L_question
                     ref="alertQuestion"
                     v-if="isQuestionVisible"
                     :question="selectedQuestion"
+                    @cancel="handleQuestionCancel"
+                    @confirm="handleQuestionConfirm"
                     @update-question-status="markQuestionAsAnswered"
                   />
                 </div>
@@ -231,7 +229,7 @@ export default {
     const sectionActive = ref(false);
     // const PhotoAlert = ref(null); // 新增 PhotoAlert ref
     const alertPhoto = ref(null);
-
+    const isanswered = ref(false);
     const alert_user_login_ref = ref(null);
     const openModal = (type) => {
       selectedModal.value = type;
@@ -283,7 +281,10 @@ export default {
     const handleModalConfirm = () => {
       isVisible.value = false;
     };
-    const handleQuestionConfirm = () => {
+    const handleQuestionConfirm = (data) => {
+      if (data.isCorrect) {
+        markQuestionAsAnswered(data);
+      }
       isQuestionVisible.value = false;
     };
     // user 狀態
@@ -467,18 +468,15 @@ export default {
       console.log("上傳成功，開始更新圖片");
       await updateImagePath();
     };
-    const markQuestionAsAnswered = (questionId) => {
-      console.log("祖父組件收到正確回答訊息:", questionId);
-
-      const question = questions.value.find((q) => q.id === questionId);
-      if (question) {
-        console.log("更新前 answered 狀態:", question.answered);
-        question.answered = true;
-        console.log("更新後 answered 狀態:", question.answered);
-      } else {
-        console.warn("找不到 ID 為", questionId, "的問題");
+    const markQuestionAsAnswered = (data) => {
+      console.log("收到 confirm 事件:", data); // 確保接收正確訊息
+      if (data.isCorrect) {
+        // 確認收到正確訊息
+        console.log("答案是正確的！");
+        isanswered.value = true;
       }
     };
+
     const gap = 50;
     const onScroll = () => {
       if (
@@ -645,6 +643,8 @@ export default {
           }, 3000); // 等 3 秒再執行登入判斷，避免執行其他彈窗時間重疊到
         }
       });
+      watch(updateImagePath, { immediate: true });
+
       questionSection.value = document.querySelector(".question-section");
       // document.addEventListener("click", handleAnchorClick);
       window.addEventListener("scroll", onScroll);
@@ -705,6 +705,7 @@ export default {
       imageUrl,
       markQuestionAsAnswered,
       handleUploadSuccess,
+      isanswered,
     };
   },
 };
