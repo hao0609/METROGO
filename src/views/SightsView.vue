@@ -249,7 +249,7 @@ const handleWheel = (e) => {
 
           nextTick(() => {
             gsap.to(window, {
-              duration: 0.8,
+              duration: 0.7,
               scrollTo: lineEntranceElement,
               ease: "ease",
             });
@@ -275,23 +275,38 @@ const handleResize = () => {
 const scrollCount = ref(0);
 
 // 阻止所有捲動的行為;
+
 const preventScroll = (e) => {
-  scrollCount.value += 1;
-  // console.log("滾動次數:", scrollCount.value);
-  e.preventDefault();
+  // 只在 banner 區域完全顯示時阻止滾動
+  if (currentIndex.value < blocks.value.length) {
+    scrollCount.value += 1;
+    // console.log("滾動次數:", scrollCount.value);
+    e.preventDefault();
+  }
 };
 
 onMounted(() => {
-  // 確保頁面加載時從頂部開始
-  window.scrollTo(0, 0);
+  nextTick(() => {
+    const bannerElement = document.querySelector(".banner");
+    if (bannerElement) {
+      bannerElement.scrollIntoView({ behavior: "auto" });
+      // 或者使用您已經在使用的 gsap
+      gsap.to(window, {
+        duration: 0.1, // 快速滾動
+        scrollTo: bannerElement,
+        ease: "none",
+      });
+    }
+  });
+
   // Header 觸發
   window.addEventListener("mousemove", handleMouseMove);
 
   createBlocks();
   window.addEventListener("resize", handleResize);
-  window.addEventListener("scroll", preventScroll, { passive: false });
-  window.addEventListener("wheel", preventScroll, { passive: false });
-  document.body.style.overflow = "hidden";
+  // window.addEventListener("scroll", preventScroll, { passive: false });
+  // window.addEventListener("wheel", preventScroll, { passive: false });
+  // document.body.style.overflow = "hidden";
 
   // 僅在 banner 區域內阻止滾動，而不是整個頁面
   const bannerElement = document.querySelector(".banner");
@@ -319,8 +334,13 @@ onMounted(() => {
 onBeforeUnmount(() => {
   window.removeEventListener("mousemove", handleMouseMove);
   window.removeEventListener("resize", handleResize);
-  window.removeEventListener("scroll", preventScroll);
-  window.removeEventListener("wheel", preventScroll);
+  // window.removeEventListener("scroll", preventScroll);
+  // window.removeEventListener("wheel", preventScroll);
+  // 移除 banner 區域的事件監聽
+  const bannerElement = document.querySelector(".banner");
+  if (bannerElement) {
+    bannerElement.removeEventListener("wheel", handleWheel);
+  }
   document.body.style.overflow = "";
 });
 </script>
