@@ -134,13 +134,13 @@ import Navbar_V1 from "../components/Navbar_V1.vue";
 
         <div class="img-container-rows">
           <div class="img-container-bottom">
-            <img src="../assets/images/tour/taipei101_01.jpg " alt="" />
+            <img src="../assets/images/tour/taipei101_01.webp " alt="" />
           </div>
           <div class="img-container-bottom">
-            <img src="../assets/images/tour/taipei101_04.jpg " alt="" />
+            <img src="../assets/images/tour/taipei101_04.webp " alt="" />
           </div>
           <div class="img-container-bottom">
-            <img src="../assets/images/tour/taipei101_11.jpg " alt="" />
+            <img src="../assets/images/tour/taipei101_11.webp " alt="" />
           </div>
         </div>
       </div>
@@ -177,13 +177,13 @@ import Navbar_V1 from "../components/Navbar_V1.vue";
 
         <div class="img-container-rows">
           <div class="img-container-bottom">
-            <img src="../assets/images/tour/four_four_south_village_01.jpg " alt="" />
+            <img src="../assets/images/tour/four_four_south_village_01.webp " alt="" />
           </div>
           <div class="img-container-bottom">
-            <img src="../assets/images/tour/four_four_south_village_02.jpg " alt="" />
+            <img src="../assets/images/tour/four_four_south_village_02.webp " alt="" />
           </div>
           <div class="img-container-bottom">
-            <img src="../assets/images/tour/four_four_south_village_03.jpg " alt="" />
+            <img src="../assets/images/tour/four_four_south_village_03.webp " alt="" />
           </div>
         </div>
       </div>
@@ -224,13 +224,13 @@ import Navbar_V1 from "../components/Navbar_V1.vue";
 
         <div class="img-container-rows">
           <div class="img-container-bottom">
-            <img src="../assets/images/tour/yongkang_street_01.jpg " alt="" />
+            <img src="../assets/images/tour/yongkang_street_01.webp " alt="" />
           </div>
           <div class="img-container-bottom">
-            <img src="../assets/images/tour/yongkang_street_02.jpg " alt="" />
+            <img src="../assets/images/tour/yongkang_street_02.webp " alt="" />
           </div>
           <div class="img-container-bottom">
-            <img src="../assets/images/tour/yongkang_street_03.jpg " alt="" />
+            <img src="../assets/images/tour/yongkang_street_03.webp " alt="" />
           </div>
         </div>
       </div>
@@ -268,13 +268,13 @@ import Navbar_V1 from "../components/Navbar_V1.vue";
 
         <div class="img-container-rows">
           <div class="img-container-bottom">
-            <img src="../assets/images/tour/rongjin_gorgeous_time_01.jpg " alt="" />
+            <img src="../assets/images/tour/rongjin_gorgeous_time_01.webp " alt="" />
           </div>
           <div class="img-container-bottom">
-            <img src="../assets/images/tour/rongjin_gorgeous_time_02.jpg" alt="" />
+            <img src="../assets/images/tour/rongjin_gorgeous_time_02.webp" alt="" />
           </div>
           <div class="img-container-bottom">
-            <img src="../assets/images/tour/rongjin_gorgeous_time_03.jpg " alt="" />
+            <img src="../assets/images/tour/rongjin_gorgeous_time_03.webp " alt="" />
           </div>
         </div>
       </div>
