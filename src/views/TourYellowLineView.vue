@@ -135,13 +135,13 @@ import Navbar_V1 from "../components/Navbar_V1.vue";
 
         <div class="img-container-rows">
           <div class="img-container-bottom">
-            <img src="../assets/images/tour/sanchong_station_07.jpg" alt="" />
+            <img src="../assets/images/tour/sanchong_station_07.webp" alt="" />
           </div>
           <div class="img-container-bottom">
-            <img src="../assets/images/tour/sanchong_station_03.jpg" alt="" />
+            <img src="../assets/images/tour/sanchong_station_03.webp" alt="" />
           </div>
           <div class="img-container-bottom">
-            <img src="../assets/images/tour/sanchong_station_05.jpg" alt="" />
+            <img src="../assets/images/tour/sanchong_station_05.webp" alt="" />
           </div>
         </div>
       </div>
@@ -182,13 +182,13 @@ import Navbar_V1 from "../components/Navbar_V1.vue";
 
         <div class="img-container-rows">
           <div class="img-container-bottom">
-            <img src="../assets/images/tour/xianse_temple_02.jpg " alt="" />
+            <img src="../assets/images/tour/xianse_temple_02.webp " alt="" />
           </div>
           <div class="img-container-bottom">
-            <img src="../assets/images/tour/xianse_temple_01.jpg " alt="" />
+            <img src="../assets/images/tour/xianse_temple_01.webp " alt="" />
           </div>
           <div class="img-container-bottom">
-            <img src="../assets/images/tour/xianse_temple_03.jpg " alt="" />
+            <img src="../assets/images/tour/xianse_temple_03.webp " alt="" />
           </div>
         </div>
       </div>
@@ -227,13 +227,13 @@ import Navbar_V1 from "../components/Navbar_V1.vue";
 
         <div class="img-container-rows">
           <div class="img-container-bottom">
-            <img src="../assets/images/tour/rooftop_plaza_01.jpg " alt="" />
+            <img src="../assets/images/tour/rooftop_plaza_01.webp " alt="" />
           </div>
           <div class="img-container-bottom">
-            <img src="../assets/images/tour/rooftop_plaza_02.jpg " alt="" />
+            <img src="../assets/images/tour/rooftop_plaza_02.webp " alt="" />
           </div>
           <div class="img-container-bottom">
-            <img src="../assets/images/tour/rooftop_plaza_03.jpg " alt="" />
+            <img src="../assets/images/tour/rooftop_plaza_03.webp " alt="" />
           </div>
         </div>
       </div>
@@ -273,13 +273,13 @@ import Navbar_V1 from "../components/Navbar_V1.vue";
 
         <div class="img-container-rows">
           <div class="img-container-bottom">
-            <img src="../assets/images/tour/sanhe_night_market_02.jpg " alt="" />
+            <img src="../assets/images/tour/sanhe_night_market_02.webp " alt="" />
           </div>
           <div class="img-container-bottom">
-            <img src="../assets/images/tour/sanhe_night_market_03.jpg" alt="" />
+            <img src="../assets/images/tour/sanhe_night_market_03.webp" alt="" />
           </div>
           <div class="img-container-bottom">
-            <img src="../assets/images/tour/sanhe_night_market_01.jpg " alt="" />
+            <img src="../assets/images/tour/sanhe_night_market_01.webp " alt="" />
           </div>
         </div>
       </div>
