@@ -136,13 +136,13 @@ import Navbar_V1 from "../components/Navbar_V1.vue";
 
         <div class="img-container-rows">
           <div class="img-container-bottom">
-            <img src="../assets/images/tour/shih_chien_university_01.jpg " alt="" />
+            <img src="../assets/images/tour/shih_chien_university_01.webp " alt="" />
           </div>
           <div class="img-container-bottom">
-            <img src="../assets/images/tour/shih_chien_university_03.jpg " alt="" />
+            <img src="../assets/images/tour/shih_chien_university_03.webp " alt="" />
           </div>
           <div class="img-container-bottom">
-            <img src="../assets/images/tour/shih_chien_university_04.jpg " alt="" />
+            <img src="../assets/images/tour/shih_chien_university_04.webp " alt="" />
           </div>
         </div>
       </div>
@@ -181,13 +181,13 @@ import Navbar_V1 from "../components/Navbar_V1.vue";
 
         <div class="img-container-rows">
           <div class="img-container-bottom">
-            <img src="../assets/images/tour/ching-kuo_chi-haicultural_park_03.jpg " alt="" />
+            <img src="../assets/images/tour/ching-kuo_chi-haicultural_park_03.webp " alt="" />
           </div>
           <div class="img-container-bottom">
-            <img src="../assets/images/tour/ching-kuo_chi-haicultural_park_02.jpg " alt="" />
+            <img src="../assets/images/tour/ching-kuo_chi-haicultural_park_02.webp " alt="" />
           </div>
           <div class="img-container-bottom">
-            <img src="../assets/images/tour/ching-kuo_chi-haicultural_park_01.jpg " alt="" />
+            <img src="../assets/images/tour/ching-kuo_chi-haicultural_park_01.webp " alt="" />
           </div>
         </div>
       </div>
@@ -229,13 +229,13 @@ import Navbar_V1 from "../components/Navbar_V1.vue";
 
         <div class="img-container-rows">
           <div class="img-container-bottom">
-            <img src="../assets/images/tour/miramar_02.jpg " alt="" />
+            <img src="../assets/images/tour/miramar_02.webp" alt="" />
           </div>
           <div class="img-container-bottom">
-            <img src="../assets/images/tour/miramar_05.jpg " alt="" />
+            <img src="../assets/images/tour/miramar_05.webp" alt="" />
           </div>
           <div class="img-container-bottom">
-            <img src="../assets/images/tour/miramar_04.jpg " alt="" />
+            <img src="../assets/images/tour/miramar_04.webp " alt="" />
           </div>
         </div>
       </div>
@@ -273,13 +273,13 @@ import Navbar_V1 from "../components/Navbar_V1.vue";
 
         <div class="img-container-rows">
           <div class="img-container-bottom">
-            <img src="../assets/images/tour/meiti_riverside_park_03.jpg " alt="" />
+            <img src="../assets/images/tour/meiti_riverside_park_03.webp " alt="" />
           </div>
           <div class="img-container-bottom">
-            <img src="../assets/images/tour/meiti_riverside_park_02.jpg " alt="" />
+            <img src="../assets/images/tour/meiti_riverside_park_02.webp " alt="" />
           </div>
           <div class="img-container-bottom">
-            <img src="../assets/images/tour/meiti_riverside_park_01.jpg " alt="" />
+            <img src="../assets/images/tour/meiti_riverside_park_01.webp " alt="" />
           </div>
         </div>
       </div>
