@@ -4,7 +4,7 @@
       <span class="close-icon">&#10005;</span>
     </button>
     <ul class="popup-menu-list">
-      <li @click="$emit('openModal', 'rewards')">
+      <!-- <li @click="$emit('openModal', 'rewards')">
         <div class="menu-icon">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -108,7 +108,7 @@
           </svg>
         </div>
         <div class="menu-text">集章冊</div>
-      </li>
+      </li> -->
       <li @click="$emit('openModal', 'gameRules')">
         <div class="menu-icon">
           <svg

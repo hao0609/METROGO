@@ -417,10 +417,7 @@
                           </span>
                         </div>
                       </div>
-                      <div
-                        class="reward-icon gray"
-                        style="background-color: #ccd1d5"
-                      >
+                      <div class="reward-icon gray" style="background-color: #ccd1d5">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           width="76"
@@ -435,10 +432,7 @@
                         </svg>
                         <div class="task-title">半日遊</div>
                       </div>
-                      <div
-                        class="reward-icon gray"
-                        style="background-color: #ccd1d5"
-                      >
+                      <div class="reward-icon gray" style="background-color: #ccd1d5">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           width="44"
@@ -490,10 +484,7 @@
                           </span>
                         </div>
                       </div>
-                      <div
-                        class="reward-icon gray"
-                        style="background-color: #ccd1d5"
-                      >
+                      <div class="reward-icon gray" style="background-color: #ccd1d5">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           width="76"
@@ -508,10 +499,7 @@
                         </svg>
                         <div class="task-title">半日遊</div>
                       </div>
-                      <div
-                        class="reward-icon gray"
-                        style="background-color: #ccd1d5"
-                      >
+                      <div class="reward-icon gray" style="background-color: #ccd1d5">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           width="44"
@@ -562,10 +550,7 @@
                           </span>
                         </div>
                       </div>
-                      <div
-                        class="reward-icon gray"
-                        style="background-color: #ccd1d5"
-                      >
+                      <div class="reward-icon gray" style="background-color: #ccd1d5">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           width="76"
@@ -580,10 +565,7 @@
                         </svg>
                         <div class="task-title">半日遊</div>
                       </div>
-                      <div
-                        class="reward-icon gray"
-                        style="background-color: #ccd1d5"
-                      >
+                      <div class="reward-icon gray" style="background-color: #ccd1d5">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           width="44"
@@ -634,10 +616,7 @@
                           </span>
                         </div>
                       </div>
-                      <div
-                        class="reward-icon gray"
-                        style="background-color: #ccd1d5"
-                      >
+                      <div class="reward-icon gray" style="background-color: #ccd1d5">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           width="76"
@@ -652,10 +631,7 @@
                         </svg>
                         <div class="task-title">半日遊</div>
                       </div>
-                      <div
-                        class="reward-icon gray"
-                        style="background-color: #ccd1d5"
-                      >
+                      <div class="reward-icon gray" style="background-color: #ccd1d5">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           width="44"
@@ -706,10 +682,7 @@
                           </span>
                         </div>
                       </div>
-                      <div
-                        class="reward-icon gray"
-                        style="background-color: #ccd1d5"
-                      >
+                      <div class="reward-icon gray" style="background-color: #ccd1d5">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           width="76"
@@ -724,10 +697,7 @@
                         </svg>
                         <div class="task-title">半日遊</div>
                       </div>
-                      <div
-                        class="reward-icon gray"
-                        style="background-color: #ccd1d5"
-                      >
+                      <div class="reward-icon gray" style="background-color: #ccd1d5">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           width="44"
@@ -761,9 +731,7 @@
                     :class="[
                       'reward-icon red',
                       {
-                        yellow:
-                          activeTab === 'achievement' ||
-                          activeTab === 'special',
+                        yellow: activeTab === 'achievement' || activeTab === 'special',
                       },
                     ]"
                     v-html="badge.icon"
@@ -800,8 +768,8 @@
         <div class="modal-header">
           <div class="modal-title title1 bold">
             <div v-if="activeSlide === 0">玩法說明</div>
-            <div v-if="activeSlide === 1">一般任務</div>
-            <div v-if="activeSlide === 2">特殊任務</div>
+            <!-- <div v-if="activeSlide === 1">一般任務</div> -->
+            <!-- <div v-if="activeSlide === 2">特殊任務</div> -->
           </div>
           <button @click="$emit('close')" class="close-btn light">
             <span>&#10005;</span>
@@ -811,7 +779,7 @@
           <div class="slide-content">
             <!-- 第一頁：玩法說明 -->
             <div v-if="activeSlide === 0" class="rules-page1">
-              <p style="margin:20px 10px;text-align: center">
+              <p style="margin: 20px 10px; text-align: center">
                 此互動遊戲可分為"一般任務"與"特殊任務"
                 兩種玩法，皆可透過遊玩達成任務獲得對應的獎勳積分
               </p>
@@ -844,10 +812,7 @@
                             filterUnits="userSpaceOnUse"
                             color-interpolation-filters="sRGB"
                           >
-                            <feFlood
-                              flood-opacity="0"
-                              result="BackgroundImageFix"
-                            />
+                            <feFlood flood-opacity="0" result="BackgroundImageFix" />
                             <feColorMatrix
                               in="SourceAlpha"
                               type="matrix"
@@ -907,10 +872,7 @@
                             filterUnits="userSpaceOnUse"
                             color-interpolation-filters="sRGB"
                           >
-                            <feFlood
-                              flood-opacity="0"
-                              result="BackgroundImageFix"
-                            />
+                            <feFlood flood-opacity="0" result="BackgroundImageFix" />
                             <feColorMatrix
                               in="SourceAlpha"
                               type="matrix"
@@ -951,34 +913,55 @@
             <!-- 第二頁：一般任務 -->
             <div v-if="activeSlide === 1" class="rules-page2">
               <p>
-                一般任務主要遊玩方法為定位捷運站點打卡，透過玩家定位與附近 <span style="color: red;font-weight: bold">500 </span>
-                公尺範圍內的捷運站點來判別玩家是否位於該捷運站點，若要遊玩"一般任務"請務必開啟裝置或瀏覽器定位功能 !
+                一般任務主要遊玩方法為定位捷運站點打卡，透過玩家定位與附近
+                <span style="color: red; font-weight: bold">500 </span>
+                公尺範圍內的捷運站點來判別玩家是否位於該捷運站點，若要遊玩"一般任務"請務必開啟裝置或瀏覽器定位功能
+                !
               </p>
-              <br>
+              <br />
               <p>
                 若系統判別用戶位於該捷運站點位置時，畫面中該站點將會呈現 "玩家"
-                圖標，代表玩家目前位於此捷運站點位置中，此時點擊該圖標將會跳出
-                "定位成功" 畫面視窗，點擊確認領取積分。
+                圖標，代表玩家目前位於此捷運站點位置中，此時點擊該圖標將會跳出 "定位成功"
+                畫面視窗，點擊確認領取積分。
               </p>
-              <br>
+              <br />
               <p>
-                確認打完成後，該站點擊顯示 "紅色旗標"，代表該站已完成打卡! 繼續探險下一站吧!
+                確認打完成後，該站點擊顯示 "紅色旗標"，代表該站已完成打卡!
+                繼續探險下一站吧!
               </p>
-              <br>
+              <br />
               <div class="game-icon">
                 <p>打卡成功</p>
                 <img src="/img/Group 37206.png" alt="打卡成功" />
 
-                <p>積分領取</p>
+                <p>獲取積分</p>
                 <div class="game-icon menu">
-                  <svg class="vector" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 100%;">
-                  <path d="M24 2.14381C26.4323 3.5481 28.4521 5.56791 29.8564 8.00022C31.2607 10.4325 32 13.1916 32 16.0002C32 18.8088 31.2607 21.5679 29.8563 24.0002C28.452 26.4325 26.4322 28.4523 23.9998 29.8565C21.5675 31.2608 18.8084 32 15.9997 32C13.1911 32 10.432 31.2606 7.99974 29.8563C5.56744 28.4519 3.54766 26.4321 2.14342 23.9997C0.739168 21.5674 -7.13435e-05 18.8083 5.16424e-09 15.9997L0.00800019 15.4813C0.0976051 12.7181 0.901676 10.0253 2.34182 7.66536C3.78197 5.30543 5.80905 3.35893 8.22543 2.01562C10.6418 0.672324 13.365 -0.0219371 16.1296 0.000528389C18.8942 0.0229939 21.6058 0.761419 24 2.14381ZM16 6.39978C15.5757 6.39978 15.1687 6.56835 14.8686 6.86841C14.5686 7.16846 14.4 7.57543 14.4 7.99977C13.127 7.99977 11.9061 8.50548 11.0059 9.40565C10.1057 10.3058 9.6 11.5267 9.6 12.7997C9.6 14.0728 10.1057 15.2937 11.0059 16.1938C11.9061 17.094 13.127 17.5997 14.4 17.5997V20.7997C14.1347 20.8144 13.8697 20.764 13.6283 20.6531C13.3868 20.5421 13.1761 20.3738 13.0144 20.1629L12.9056 20.0013C12.6867 19.6482 12.3391 19.3942 11.9362 19.2928C11.5334 19.1915 11.1069 19.2507 10.747 19.4581C10.3871 19.6655 10.1219 20.0048 10.0076 20.4041C9.89326 20.8035 9.93874 21.2316 10.1344 21.5981C10.5428 22.3063 11.1253 22.8985 11.8267 23.3186C12.5282 23.7386 13.3252 23.9725 14.1424 23.9981H14.4C14.3997 24.3902 14.5434 24.7688 14.8038 25.062C15.0643 25.3552 15.4233 25.5426 15.8128 25.5884L16 25.5996C16.4243 25.5996 16.8313 25.4311 17.1314 25.131C17.4314 24.831 17.6 24.424 17.6 23.9997L17.8816 23.9917C19.129 23.9196 20.2991 23.3639 21.1433 22.4428C21.9875 21.5217 22.4392 20.3077 22.4026 19.0588C22.3659 17.8099 21.8437 16.6245 20.9469 15.7545C20.0501 14.8846 18.8494 14.3985 17.6 14.3997V11.1997C18.1728 11.1805 18.6736 11.4237 18.9856 11.8365L19.0944 11.9981C19.3133 12.3512 19.6609 12.6052 20.0638 12.7066C20.4666 12.808 20.8931 12.7487 21.253 12.5413C21.6129 12.3339 21.8781 11.9947 21.9924 11.5953C22.1067 11.1959 22.0613 10.7678 21.8656 10.4014C21.4574 9.6928 20.875 9.10027 20.1735 8.67997C19.4721 8.25967 18.6749 8.02553 17.8576 7.99977H17.6C17.6 7.57543 17.4314 7.16846 17.1314 6.86841C16.8313 6.56835 16.4243 6.39978 16 6.39978ZM17.6 17.5997C18.0243 17.5997 18.4313 17.7683 18.7314 18.0683C19.0314 18.3684 19.2 18.7753 19.2 19.1997C19.2 19.624 19.0314 20.031 18.7314 20.331C18.4313 20.6311 18.0243 20.7997 17.6 20.7997V17.5997ZM14.4 11.1997V14.3997C13.9757 14.3997 13.5687 14.2312 13.2686 13.9311C12.9686 13.631 12.8 13.2241 12.8 12.7997C12.8 12.3754 12.9686 11.9684 13.2686 11.6684C13.5687 11.3683 13.9757 11.1997 14.4 11.1997Z" fill="#FCD34D" />
+                  <svg
+                    class="vector"
+                    width="32"
+                    height="32"
+                    viewBox="0 0 32 32"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    style="width: 100%"
+                  >
+                    <path
+                      d="M24 2.14381C26.4323 3.5481 28.4521 5.56791 29.8564 8.00022C31.2607 10.4325 32 13.1916 32 16.0002C32 18.8088 31.2607 21.5679 29.8563 24.0002C28.452 26.4325 26.4322 28.4523 23.9998 29.8565C21.5675 31.2608 18.8084 32 15.9997 32C13.1911 32 10.432 31.2606 7.99974 29.8563C5.56744 28.4519 3.54766 26.4321 2.14342 23.9997C0.739168 21.5674 -7.13435e-05 18.8083 5.16424e-09 15.9997L0.00800019 15.4813C0.0976051 12.7181 0.901676 10.0253 2.34182 7.66536C3.78197 5.30543 5.80905 3.35893 8.22543 2.01562C10.6418 0.672324 13.365 -0.0219371 16.1296 0.000528389C18.8942 0.0229939 21.6058 0.761419 24 2.14381ZM16 6.39978C15.5757 6.39978 15.1687 6.56835 14.8686 6.86841C14.5686 7.16846 14.4 7.57543 14.4 7.99977C13.127 7.99977 11.9061 8.50548 11.0059 9.40565C10.1057 10.3058 9.6 11.5267 9.6 12.7997C9.6 14.0728 10.1057 15.2937 11.0059 16.1938C11.9061 17.094 13.127 17.5997 14.4 17.5997V20.7997C14.1347 20.8144 13.8697 20.764 13.6283 20.6531C13.3868 20.5421 13.1761 20.3738 13.0144 20.1629L12.9056 20.0013C12.6867 19.6482 12.3391 19.3942 11.9362 19.2928C11.5334 19.1915 11.1069 19.2507 10.747 19.4581C10.3871 19.6655 10.1219 20.0048 10.0076 20.4041C9.89326 20.8035 9.93874 21.2316 10.1344 21.5981C10.5428 22.3063 11.1253 22.8985 11.8267 23.3186C12.5282 23.7386 13.3252 23.9725 14.1424 23.9981H14.4C14.3997 24.3902 14.5434 24.7688 14.8038 25.062C15.0643 25.3552 15.4233 25.5426 15.8128 25.5884L16 25.5996C16.4243 25.5996 16.8313 25.4311 17.1314 25.131C17.4314 24.831 17.6 24.424 17.6 23.9997L17.8816 23.9917C19.129 23.9196 20.2991 23.3639 21.1433 22.4428C21.9875 21.5217 22.4392 20.3077 22.4026 19.0588C22.3659 17.8099 21.8437 16.6245 20.9469 15.7545C20.0501 14.8846 18.8494 14.3985 17.6 14.3997V11.1997C18.1728 11.1805 18.6736 11.4237 18.9856 11.8365L19.0944 11.9981C19.3133 12.3512 19.6609 12.6052 20.0638 12.7066C20.4666 12.808 20.8931 12.7487 21.253 12.5413C21.6129 12.3339 21.8781 11.9947 21.9924 11.5953C22.1067 11.1959 22.0613 10.7678 21.8656 10.4014C21.4574 9.6928 20.875 9.10027 20.1735 8.67997C19.4721 8.25967 18.6749 8.02553 17.8576 7.99977H17.6C17.6 7.57543 17.4314 7.16846 17.1314 6.86841C16.8313 6.56835 16.4243 6.39978 16 6.39978ZM17.6 17.5997C18.0243 17.5997 18.4313 17.7683 18.7314 18.0683C19.0314 18.3684 19.2 18.7753 19.2 19.1997C19.2 19.624 19.0314 20.031 18.7314 20.331C18.4313 20.6311 18.0243 20.7997 17.6 20.7997V17.5997ZM14.4 11.1997V14.3997C13.9757 14.3997 13.5687 14.2312 13.2686 13.9311C12.9686 13.631 12.8 13.2241 12.8 12.7997C12.8 12.3754 12.9686 11.9684 13.2686 11.6684C13.5687 11.3683 13.9757 11.1997 14.4 11.1997Z"
+                      fill="#FCD34D"
+                    />
                   </svg>
                 </div>
                 <p>完成打卡</p>
-                <svg class="r-24" width="43" height="54" viewBox="0 0 43 54" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M0 0.723145V53.6222" stroke="black" stroke-width="5" />
-                <path d="M43 16.8611L1.75 33.1961V0.5271L43 16.8611Z" fill="#FF0000" />
+                <svg
+                  class="r-24"
+                  width="43"
+                  height="54"
+                  viewBox="0 0 43 54"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path d="M0 0.723145V53.6222" stroke="black" stroke-width="5" />
+                  <path d="M43 16.8611L1.75 33.1961V0.5271L43 16.8611Z" fill="#FF0000" />
                 </svg>
                 <!-- <img src="/img/humbleicons_cart.png" alt="cart" /> -->
               </div>
@@ -988,17 +971,22 @@
             <div v-if="activeSlide === 2" class="rules-page3">
               <div class="rules-list">
                 <ol>
-                  <li>玩家需選擇一條台北捷運線，挑戰一日遊或半日遊行程：</li>
+                  <li>玩家需選擇一條台北捷運線，挑戰行程：</li>
                   <ol class="rules-list circle">
-                    <li>一日遊:4個景點與1個問答。</li>
-                    <li>半日遊:3個景點與1個問答。</li>
+                    <!-- <li>一日遊:4個景點與1個問答。</li> -->
+                    <li>
+                      共<span style="color: red">3個景點</span>與<span style="color: red"
+                        >1個問答</span
+                      >。
+                    </li>
                   </ol>
 
                   <li>
-                    玩家可自由選擇景點，在每個景點拍攝含有指定標的物的照片並上傳。
-                    照片需經官方審核，審核時間約1個工作天。若照片不清晰或照片中無指定標的物，將被視為未完成挑戰，需重新拍攝上傳。
+                    玩家可自由選擇景點，在每個景點拍攝含有指定標的物的照片並上傳。3個景點及1個問答完成後即可獲得積分。
+                    <!-- 照片需經官方審核，審核時間約1個工作天。 -->
+                    <!-- 若照片不清晰或照片中無指定標的物，將被視為未完成挑戰，需重新拍攝上傳。 -->
                   </li>
-                  <p>上傳失敗例:</p>
+                  <!-- <p>上傳失敗例:</p>
                   <div class="game-icon special">
                     <div class="icon">
                       <p>照片不清晰</p>
@@ -1008,10 +996,11 @@
                       <p>無指定標的物 <br />ex:台北101</p>
                       <img src="https://picsum.photos/id/236/100/100" />
                     </div>
-                  </div>
+                  </div> -->
 
                   <li>
-                    每一線景點及問答挑戰完成後，即完成該條線的行程，可至「徽章領取」及「集章冊」領取積分與徽章。
+                    每一線景點及問答挑戰完成後，即完成該條線的行程，
+                    <!-- 可至「徽章領取」及「集章冊」領取積分與徽章。 -->
                   </li>
                   <div class="game-icon special">
                     <div class="icon">
@@ -1031,7 +1020,7 @@
                       </svg>
                     </div>
                     <span class="arrow">&#10148;</span>
-                    <div class="icon">
+                    <!-- <div class="icon">
                       <p>徽章領取</p>
                       <div class="game-icon menu">
                         <svg
@@ -1120,10 +1109,10 @@
                         </svg>
                         <span>集章冊</span>
                       </div>
-                    </div>
-                    <span class="arrow">&#10148;</span>
+                    </div> -->
+                    <!-- <span class="arrow">&#10148;</span> -->
                     <div class="icon">
-                      <p>積分領取</p>
+                      <p>獲得積分</p>
                       <div class="game-icon menu">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -1253,7 +1242,8 @@ export default {
           point: "10",
         },
         achievement: {
-          info: "淡水信義線一日遊任務，完成並通過審核，並且問答回答正確，即可獲得100點積分",
+          info:
+            "淡水信義線一日遊任務，完成並通過審核，並且問答回答正確，即可獲得100點積分",
           icon: `
     
           <svg xmlns="http://www.w3.org/2000/svg" width="54" height="64" viewBox="0 0 54 64" fill="none">
@@ -1442,9 +1432,7 @@ export default {
     // 只顯示已完成的定位任務徽章
     completedLocationBadges() {
       return this.locationTasks
-        .map((task, index) =>
-          task.progress === 100 ? this.locationBadges[index] : null
-        )
+        .map((task, index) => (task.progress === 100 ? this.locationBadges[index] : null))
         .filter((badge) => badge !== null);
     },
 
@@ -1463,9 +1451,7 @@ export default {
     // 只顯示已完成的特殊遊戲徽章
     completedSpecialBadges() {
       return this.specialTasks
-        .map((task, index) =>
-          task.progress === 100 ? this.specialBadges[index] : null
-        )
+        .map((task, index) => (task.progress === 100 ? this.specialBadges[index] : null))
         .filter((badge) => badge !== null);
     },
     // mounted() {
