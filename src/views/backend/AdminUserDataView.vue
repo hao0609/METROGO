@@ -387,7 +387,7 @@ const handleReviewClick = async (item, result) => {
         <div class="tab-content">
           <!-- 一般任務頁籤 -->
           <div v-if="activeTab === 'general'">
-            <div class="filter-group">
+            <!-- <div class="filter-group">
               <div class="select-wrapper small">
                 <select class="select-field">
                   <option value="all" selected>路線</option>
@@ -399,7 +399,7 @@ const handleReviewClick = async (item, result) => {
                 <input type="text" class="input-field" placeholder="捷運站名" />
               </div>
               <button class="btn_filled small">篩選</button>
-            </div>
+            </div>-->
             <div class="admin-table">
               <table>
                 <thead>
