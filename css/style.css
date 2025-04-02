@@ -803,8 +803,8 @@ label .checkbox-custom {
 .radio-custom:after {
   content: "";
   position: absolute;
-  top: 20%;
-  left: 20%;
+  top: 18%;
+  left: 18%;
   transform: translate(-50%, -50%) scale(0);
   width: 12px;
   height: 12px;

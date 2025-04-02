@@ -74,8 +74,12 @@
       }
     }
 
-    .CheckedinStatus_Box{
+    .td-center{
+      display: flex;
+      justify-content: center;
+    }
 
+    .CheckedinStatus_Box{
       width: 125px;
       display: flex;
       justify-content: space-between;
@@ -99,6 +103,32 @@
     .not-checked-in{
       background-color:$metro-red !important;
       color: $neutral-0;
-    
     }
-  }
+
+    // 特殊任務照片詳情
+    .photo-detail-title {
+      text-align: left;
+      margin-top: 40px;
+      margin-bottom: 20px;
+    }
+
+    .td-center .radio-group {
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    /* 可點擊的按鈕樣式 */
+      .table-btn.view-btn {
+        cursor: pointer;
+      }
+
+      /* 禁用的radio按鈕樣式 */
+      .radio-container.disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+      }
+
+      .radio-container.disabled .radio-label {
+        color: #999;
+      }
+}

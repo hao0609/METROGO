@@ -60,12 +60,13 @@
       </section>
       <alert_L_Photo
         ref="alertPhoto"
-        v-if="isVisible"
+        v-if="selectedLine"
         :lineTitle="selectedLine?.title"
         :GetUserId="GetUserId"
         :mission="mission"
         :message="selectedLine?.message"
         :message2="selectedLine?.message2"
+        :checkText="selectedLine?.checkText"        
         @cancel="handleModalCancel"
         @confirm="handleModalConfirm"
         @uploadSuccess="handleUploadSuccess"
@@ -83,7 +84,12 @@
             <div class="message"></div>
             <span class="list blue">審核條件</span>
             <p class="line-message">{{ line.message }}</p>
-            <p class="line-message2">{{ line.message2 }}</p>
+            <!-- <p class="line-message2">{{ line.message2 }}</p> -->
+            <p>照片審核狀態：{{line.checkText}}</p>
+            <template v-if="line.checkText === '審核未通過'">（請重新上傳）</template>             
+            <template v-if="line.checkText === '未上傳'">（請上傳圖片）</template>             
+            <template v-if="line.checkText === '審核中'">（後台審核中）</template>             
+            <template v-if="line.checkText === '審核通過'">（照片已通過審核）</template> 
             <img
               v-if="line.img"
               :src="line.img"
@@ -202,6 +208,9 @@ import alert_user_login from "@/alert/alert_user_login.vue";
 import { storage } from "@/firebase/firebaseConfig.js";
 import { ref as storageRef, getDownloadURL, listAll } from "firebase/storage";
 
+import { getUserAllPhotoData } from "../../js/view/getUserAll_StoragePhotoData";
+import GetUserMissionSpecialData from "../../js/view/MissionSpecail/getUser_MissionSpecialData"
+
 export default {
   components: {
     ModalMenu,
@@ -229,6 +238,8 @@ export default {
     const sectionActive = ref(false);
     // const PhotoAlert = ref(null); // 新增 PhotoAlert ref
     const alertPhoto = ref(null);
+
+    const currentClickedStation = ref("");
     const isanswered = ref(false);
     const alert_user_login_ref = ref(null);
     const openModal = (type) => {
@@ -252,8 +263,17 @@ export default {
     const selectedLine = ref(null);
     const selectedQuestion = ref(null);
     const openPhotoAlert = (line) => {
-      selectedLine.value = line;
-      isVisible.value = true;
+      console.log(line);
+      
+      if (line.checkText == "未上傳" || line.checkText == "審核未通過") {
+        
+        selectedLine.value = line;
+      }
+      else if (line.checkText == "審核通過") {
+        alert("恭喜 ! 此照片審核已通過 !")
+      }else if (line.checkText == "審核中") {
+        alert("後台審核中")
+      }
     };
     // const openQuestion = () => {
     //   // selectedQuestion.value = questions;
@@ -272,14 +292,14 @@ export default {
     };
 
     const handleModalCancel = () => {
-      isVisible.value = false;
+      selectedLine.value = false;
     };
     const handleQuestionCancel = () => {
       isQuestionVisible.value = false;
     };
 
     const handleModalConfirm = () => {
-      isVisible.value = false;
+      selectedLine.value = false;
     };
     const handleQuestionConfirm = (data) => {
       if (data.isCorrect) {
@@ -291,7 +311,7 @@ export default {
     const user_status = inject("user"); // 取得用戶狀態
 
     // 檢查用戶有沒有登入的狀態
-    const CheckUserStatus = () => {
+    const CheckUserStatus = async() => {
       console.log(user_status.value);
 
       if (user_status.value == null) {
@@ -305,7 +325,22 @@ export default {
         }
       } else {
         GetUserId.value = user_status.value.uid;
-        // console.log(user_status.value.uid);
+        console.log(user_status.value.uid);
+
+        // 拿到用戶的特殊任務遊戲進度資料
+        let UserDBData = await GetUserMissionSpecialData(user_status.value.uid,mission.value)
+        console.log(UserDBData);
+
+        // 顯示目前資料庫的狀態
+
+        // 淡水站的審核狀態
+        // console.log(lines.value[0].checkText);
+        // console.log(UserDBData.淡水.照片狀態);
+        lines.value[0].checkText = UserDBData.國父紀念館.照片狀態
+        // 關渡站的審核狀態
+        lines.value[1].checkText = UserDBData.台北車站.照片狀態
+        // 北投站的審核狀態
+        lines.value[2].checkText = UserDBData.龍山寺.照片狀態
         updateImagePath();
       }
     };
@@ -370,6 +405,7 @@ export default {
           "館內展出孫中山事蹟，周邊大草坪適合休憩，還可遠眺台北 101，信義區的百貨商場與夜生活就在附近。",
         message: "請拍攝「國父紀念館映池」",
         // img: "/src/assets/images/MissionSpecial/red_01.png",
+        checkText:"",
         img: null,
       },
       {
@@ -378,6 +414,7 @@ export default {
         subtitle:
           "台北交通樞紐，鐵路、高鐵、捷運交會，商場、美食、書店齊聚，連通地下街，適合購物與休閒。",
         message: "請拍攝「北門」",
+        checkText:"",
         img: null,
       },
       {
@@ -386,6 +423,7 @@ export default {
         subtitle:
           " 艋舺龍山寺香火鼎盛，是台北最古老的寺廟之一，周邊有剝皮寮老街、華西街夜市，展現濃厚的歷史與庶民文化。",
         message: "請拍攝「龍山寺」",
+        checkText:"",
         img: null,
       },
     ]);
@@ -464,9 +502,30 @@ export default {
         }
       }
     };
-    const handleUploadSuccess = async () => {
+    const handleUploadSuccess = async (newValue) => {
+
+      console.log(newValue);
       console.log("上傳成功，開始更新圖片");
       await updateImagePath();
+      
+      // 準備將目前上傳圖片的 URL 跟 "審核中" 的照片狀態寫入 FireBase
+      getUserAllPhotoData(user_status.value.uid)
+      
+      // 更新目前文字的狀態為 "審核中"
+
+      switch (newValue) {
+        case "國父紀念館站":       
+          lines.value[0].checkText = "審核中";
+          break;
+        case "台北車站":
+        lines.value[1].checkText = "審核中";
+        break;
+        case "龍山寺站":
+        lines.value[2].checkText = "審核中";
+        break;
+        default:
+          break;
+      }
     };
     const markQuestionAsAnswered = (data) => {
       console.log("收到 confirm 事件:", data); // 確保接收正確訊息
@@ -706,6 +765,7 @@ export default {
       markQuestionAsAnswered,
       handleUploadSuccess,
       isanswered,
+      currentClickedStation
     };
   },
 };

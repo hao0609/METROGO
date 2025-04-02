@@ -64,12 +64,13 @@
       </section>
       <alert_L_Photo
         ref="alertPhoto"
-        v-if="isVisible"
+        v-if="selectedLine"
         :lineTitle="selectedLine?.title"
         :GetUserId="GetUserId"
         :mission="mission"
         :message="selectedLine?.message"
         :message2="selectedLine?.message2"
+        :checkText="selectedLine?.checkText"        
         @cancel="handleModalCancel"
         @confirm="handleModalConfirm"
         @uploadSuccess="handleUploadSuccess"
@@ -87,7 +88,12 @@
             <div class="message"></div>
             <span class="list brown">審核條件</span>
             <p class="line-message">{{ line.message }}</p>
-            <p class="line-message2">{{ line.message2 }}</p>
+            <!-- <p class="line-message2">{{ line.message2 }}</p> -->
+            <p>照片審核狀態：{{line.checkText}}</p>
+            <template v-if="line.checkText === '審核未通過'">（請重新上傳）</template>             
+            <template v-if="line.checkText === '未上傳'">（請上傳圖片）</template>             
+            <template v-if="line.checkText === '審核中'">（後台審核中）</template>             
+            <template v-if="line.checkText === '審核通過'">（照片已通過審核）</template> 
             <img
               v-if="line.img"
               :src="line.img"
@@ -203,6 +209,9 @@ import alert_user_login from "@/alert/alert_user_login.vue";
 import { storage } from "@/firebase/firebaseConfig.js";
 import { ref as storageRef, getDownloadURL, listAll } from "firebase/storage";
 
+import { getUserAllPhotoData } from "../../js/view/getUserAll_StoragePhotoData";
+import GetUserMissionSpecialData from "../../js/view/MissionSpecail/getUser_MissionSpecialData"
+
 export default {
   components: {
     ModalMenu,
@@ -231,6 +240,9 @@ export default {
     const isanswered = ref(false);
     // const PhotoAlert = ref(null); // 新增 PhotoAlert ref
     const alertPhoto = ref(null);
+
+    const currentClickedStation = ref("");
+
     const alert_user_login_ref = ref(null);
     const openModal = (type) => {
       selectedModal.value = type;
@@ -255,7 +267,7 @@ export default {
 
     const user_status = inject("user"); // 取得用戶狀態
     // 檢查用戶有沒有登入的狀態
-    const CheckUserStatus = () => {
+    const CheckUserStatus = async() => {
       console.log(user_status.value);
 
       if (user_status.value == null) {
@@ -269,13 +281,37 @@ export default {
         }
       } else {
         GetUserId.value = user_status.value.uid;
-        // console.log(user_status.value.uid);
+        console.log(user_status.value.uid);
+
+        // 拿到用戶的特殊任務遊戲進度資料
+        let UserDBData = await GetUserMissionSpecialData(user_status.value.uid,mission.value)
+        console.log(UserDBData);
+
+        // 顯示目前資料庫的狀態
+
+        // 淡水站的審核狀態
+        // console.log(lines.value[0].checkText);
+        // console.log(UserDBData.淡水.照片狀態);
+        lines.value[0].checkText = UserDBData.劍南路.照片狀態
+        // 關渡站的審核狀態
+        lines.value[1].checkText = UserDBData.松山機場.照片狀態
+        // 北投站的審核狀態
+        lines.value[2].checkText = UserDBData.大湖公園.照片狀態
         updateImagePath();
       }
     };
     const openPhotoAlert = (line) => {
-      selectedLine.value = line;
-      isVisible.value = true;
+      console.log(line);
+      
+      if (line.checkText == "未上傳" || line.checkText == "審核未通過") {
+        
+        selectedLine.value = line;
+      }
+      else if (line.checkText == "審核通過") {
+        alert("恭喜 ! 此照片審核已通過 !")
+      }else if (line.checkText == "審核中") {
+        alert("後台審核中")
+      }
     };
     // const openQuestion = () => {
     //   // selectedQuestion.value = questions;
@@ -294,14 +330,14 @@ export default {
     };
 
     const handleModalCancel = () => {
-      isVisible.value = false;
+      selectedLine.value = false;
     };
     const handleQuestionCancel = () => {
       isQuestionVisible.value = false;
     };
 
     const handleModalConfirm = () => {
-      isVisible.value = false;
+      selectedLine.value = false;
     };
     const handleQuestionConfirm = (data) => {
       if (data.isCorrect) {
@@ -365,12 +401,13 @@ export default {
     const lines = ref([
       {
         id: 1,
-        title: "劍南路站 ",
+        title: "劍南路站",
         subtitle:
           "美麗華摩天輪是大直地標，可俯瞰台北夜景，周邊有百貨商場、美食餐廳，還可前往內湖河濱公園，享受都市中的綠意。",
         message: "請拍攝「美麗華摩天輪」",
         message2: "(請拍攝美麗華摩天輪整體）",
         // img: "/src/assets/images/MissionSpecial/red_01.png",
+        checkText:"",
         img: null,
       },
       {
@@ -380,6 +417,7 @@ export default {
           "市區內的機場，交通便利，提供國內與東亞航線，附近的美堤河濱公園可欣賞飛機起降，適合親子散步與攝影愛好者。",
         message: "請拍攝「松山機場景觀台」",
         message2: "（請拍攝松山機場景觀台整體）",
+        checkText:"",
         img: null,
       },
       {
@@ -389,6 +427,7 @@ export default {
           "環湖步道適合散步、慢跑，湖中小島與拱橋景致優美，湖畔有大片草坪，是台北市內難得的自然綠地，適合親子與寵物同遊。",
         message: "請拍攝「大湖公園」",
         message2: "（請拍攝含有大湖公園字樣）",
+        checkText:"",
         img: null,
       },
     ]);
@@ -467,9 +506,30 @@ export default {
         }
       }
     };
-    const handleUploadSuccess = async () => {
+    const handleUploadSuccess = async (newValue) => {
+
+      console.log(newValue);
       console.log("上傳成功，開始更新圖片");
       await updateImagePath();
+
+      // 準備將目前上傳圖片的 URL 跟 "審核中" 的照片狀態寫入 FireBase
+      getUserAllPhotoData(user_status.value.uid)
+      
+      // 更新目前文字的狀態為 "審核中"
+
+      switch (newValue) {
+        case "劍南路站":       
+          lines.value[0].checkText = "審核中";
+          break;
+        case "松山機場站":
+        lines.value[1].checkText = "審核中";
+        break;
+        case "大湖公園站":
+        lines.value[2].checkText = "審核中";
+        break;
+        default:
+          break;
+      }
     };
     const markQuestionAsAnswered = (data) => {
       console.log("收到 confirm 事件:", data); // 確保接收正確訊息
@@ -479,7 +539,6 @@ export default {
         isanswered.value = true;
       }
     };
-
     const gap = 50;
     const onScroll = () => {
       if (
@@ -706,6 +765,7 @@ export default {
       imageUrl,
       markQuestionAsAnswered,
       handleUploadSuccess,
+      currentClickedStation,
       isanswered,
 
       // PhotoAlert, // 返回 PhotoAlert ref

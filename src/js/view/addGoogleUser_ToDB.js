@@ -1,6 +1,7 @@
 import { database } from '../../firebase/firebaseConfig';
 import { ref, set, push, get } from 'firebase/database';
 import MissionGeneral_UserInfo from '@/json/MissionGeneral_UserInfo.json';
+import MissionSpecial_UserInfo from '@/json/MissionSpecial_UserInfo.json';
 import GetUserData from '../view/Backend/checkUserDB_UserData.js'
 
 /**
@@ -64,7 +65,8 @@ export const addGoogleUser_ToDB = async (UserData) => {
     "電子郵件":  UserData.email,
     "會員頭像":  UserData.photoURL,                             // 先給空的
     "點數積分": 0 ,                             // 先給0
-        ...MissionGeneral_UserInfo                // 一般任務遊戲進度
+        ...MissionGeneral_UserInfo,                // 一般任務遊戲進度
+        ...MissionSpecial_UserInfo                // 特殊任務遊戲進度
     }
         
     const userRef = ref(database, '會員資料/' + UserData.uid);
