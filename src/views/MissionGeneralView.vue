@@ -125,8 +125,8 @@
     onMounted(() => {
       
 
-      document.addEventListener("wheel", disableScroll_and_dbClick, { passive: false });
-      document.addEventListener("touchmove", disableScroll_and_dbClick, { passive: false });
+    //   document.addEventListener("wheel", disableScroll_and_dbClick, { passive: false });
+    //   document.addEventListener("touchmove", disableScroll_and_dbClick, { passive: false });
       document.addEventListener("keydown", (event) => {
         if (["ArrowUp", "ArrowDown", "Space", "PageUp", "PageDown"].includes(event.key)) {
           event.preventDefault();
@@ -332,7 +332,7 @@
     <div class="line_select">
         <div class="line_select_box">
             <div class="line_select_btns" ref="line_select_btns">
-                <RouterLink to="red" class="router_link" @click="">
+                <RouterLink to="red" class="router_link">
                     <button class="red">
                         <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 60 60" fill="none">
                         <g clip-path="url(#clip0_2006_16720)">
