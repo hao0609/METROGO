@@ -344,7 +344,7 @@
         "id": 2,
         "category": "yellow",
         "group_title": "煙火盛大登場",
-        "journey_featured_name": "台北煙火最大盛會！大稻埕夏日節煙火登場！",
+        "journey_featured_name": "台北煙火最大盛會！台北熱門夏日節煙火登場！",
         "featured_main_photo": "/tid201/g2/images/featured/pic-featured_yellow_fireworks_main.svg",
         "featured_photos": [
           "/tid201/g2/images/featured/pic-featured_yellow_fireworks_1.svg",
@@ -355,7 +355,7 @@
             
         ],        
         "store_info": {
-            "name": "大稻埕碼頭",
+            "name": "大稻土呈碼頭",
             "address": "103台北市大同區堤外道路",
             "hours": "24 小時營業",
             "phone": "無",
