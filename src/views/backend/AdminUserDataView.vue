@@ -72,7 +72,7 @@ const getUserData = async(userID) => {
   //console.log('測試',data);
   
   userData.value.id = data.會員編號;
-  userData.value.name = data.會員姓名;
+  userData.value.name = data.會員暱稱;
   userData.value.email = data.電子郵件;
   userData.value.avatar = data.會員頭像;
   userData.value.specialMissionData = data.特殊任務遊戲進度;
@@ -362,7 +362,7 @@ const handleReviewClick = async (item, result) => {
             <span>{{ userData.id }}</span>
           </div>
           <div class="info-row">
-            <p class="info-title bold">姓名</p>
+            <p class="info-title bold">暱稱</p>
             <span>{{ userData.name }}</span>
           </div>
           <div class="info-row">

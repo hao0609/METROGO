@@ -156,7 +156,16 @@
   }
 
 
-  
+  // 會員註冊日期 日期格式改為 YYYY/MM/DD
+  const formatDate = (dateStr) => {
+    if (!dateStr) return '';
+    const date = new Date(dateStr);
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    return `${year}/${month}/${day}`;
+  };
+    
 
 
 
@@ -186,7 +195,7 @@
               <tr>
                 <th>No.</th>
                 <th>會員ID</th>
-                <th>姓名</th>
+                <th>暱稱</th>
                 <th>電子郵件</th>
                 <th>註冊時間</th>
                 <th>點數</th>
@@ -201,9 +210,9 @@
               >
                 <td>{{ (currentPage - 1) * itemsPerPage + index + 1 }}</td>
                 <td>{{ user.會員編號 }}</td>
-                <td>{{ user.會員姓名 }}</td>
+                <td>{{ user.會員暱稱 }}</td>
                 <td>{{ user.電子郵件 }}</td>
-                <td>{{ user.會員註冊日期 }}</td>
+                <td>{{ formatDate(user.會員註冊日期) }}</td>
                 <td>{{ user.點數積分 }}</td>
                 <td class="action-buttons">
                   <button class="table-btn edit-btn" @click="viewUser(user.會員編號)">
