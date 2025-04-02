@@ -39,7 +39,7 @@ export default {
     return {
       // LINE Login
       channelID: '2007134479',
-      redirectUri: 'https://3fb1-36-231-151-154.ngrok-free.app/tid201/g2/login', // 上版時要改成專案網址 https://tibamef2e.com/tid201/g2/
+      redirectUri: 'https://tibamef2e.com/tid201/g2/', // 上版時要改成專案網址 https://tibamef2e.com/tid201/g2/
       currentForm: 'login', // 預設顯示登入頁
       clientSecret: '2eeeb7070c625f83716857367b24044f',
       passwordVisible: initPasswordVisibility(), 

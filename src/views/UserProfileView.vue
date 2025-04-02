@@ -527,13 +527,14 @@ const passwordUpdateFailed = ref({
                     @change="handleFileUpload"
                 />
                 <div class="form-group">
-                    <label class="input-label">會員姓名</label>
+                    <label class="input-label">暱稱</label>
                     <div class="input-wrapper">
                         <input 
                             type="text" 
                             class="input-field" 
                             v-model="userName" 
                             placeholder="請輸入你的名稱"
+                            autocomplete="off"
                         >
                     </div>
                 </div>
@@ -559,6 +560,7 @@ const passwordUpdateFailed = ref({
                             class="input-field" 
                             placeholder="請輸入新密碼"
                             v-model="passwordForm.newPassword"
+                            autocomplete="off"
                         >
                         <EyeoffIcon 
                             class="input-icon" 
@@ -592,6 +594,7 @@ const passwordUpdateFailed = ref({
                             class="input-field" 
                             placeholder="再次確認新密碼"
                             v-model="passwordForm.confirmPassword"
+                            autocomplete="off"
                         >
                         <EyeoffIcon 
                             class="input-icon" 

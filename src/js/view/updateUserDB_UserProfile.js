@@ -53,7 +53,7 @@ export const updateUserName = async (uid, userName) => {
         }
         
         const userRef = dbRef(database, `會員資料/${uid}`);
-        await update(userRef, { '會員姓名': userName.trim() });
+        await update(userRef, { '會員暱稱': userName.trim() });
         
         return true;
     } catch (error) {

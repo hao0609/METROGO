@@ -233,7 +233,7 @@
       <table>
         <thead>
           <tr>
-            <th>編號</th>
+            <th>No.</th>
             <th>上架日期</th>
             <th>商品名稱</th>
             <th>建議售價</th>

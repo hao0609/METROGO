@@ -88,7 +88,7 @@ export const getUserProfile = async (userStatus) => {
 
         return {
             points: points,
-            userName: basicInfo?.['會員姓名'] || "",
+            userName: basicInfo?.['會員暱稱'] || "",
             email: basicInfo?.['電子郵件'] || userStatus.email || "",
             userPhoto: basicInfo?.['會員頭像'] || userStatus.userPhoto || "",
             // 可以添加更多用戶信息字段...
