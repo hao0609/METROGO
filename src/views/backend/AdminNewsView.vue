@@ -177,9 +177,12 @@ export default {
     },
     formatDate(dateStr) {
       if (!dateStr) return '';
-      // 處理日期格式，如果需要轉換格式，可以在這裡處理
+      // 處理日期格式，轉換為 YYYY/MM/DD 格式
       const date = new Date(dateStr);
-      return date.toISOString().split('T')[0]; // 返回 YYYY-MM-DD 格式
+      const year = date.getFullYear();
+      const month = String(date.getMonth() + 1).padStart(2, '0');
+      const day = String(date.getDate()).padStart(2, '0');
+      return `${year}/${month}/${day}`; // 返回 YYYY/MM/DD 格式
     },
     handleEdit(id) {
       // 處理編輯邏輯
