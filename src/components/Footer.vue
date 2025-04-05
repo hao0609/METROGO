@@ -14,8 +14,9 @@ import { RouterLink } from "vue-router";
         <nav class="footer-menu">
           <ul>
             <li><RouterLink to="/sights">景點介紹</RouterLink></li>
-            <li><RouterLink to="/points">積分任務</RouterLink></li>
-            <li><RouterLink to="/shop">線上商城</RouterLink></li>
+            <li><RouterLink to="/general-mission">一般任務</RouterLink></li>
+            <li><RouterLink to="/special-mission">特殊任務</RouterLink></li>
+            <li><RouterLink to="/store">線上商城</RouterLink></li>
             <li><RouterLink to="/news">最新消息</RouterLink></li>
           </ul>
         </nav>
