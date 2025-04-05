@@ -10,6 +10,7 @@
   }
   .mission-body {
     max-width: 100%;
+    // max-width: 1138px;
     margin: auto;
     padding: 0; // 根據需求調整
   }
@@ -66,9 +67,6 @@ body {
     width: 80%;
     max-width: 900px;
     flex: 0.25;
-    @include mobile() {
-      width: 60%;
-    }
   }
   @include tablet() {
     .metro_line_id {
@@ -362,7 +360,7 @@ section > ol > li > .brown:hover {
 }
 .vertical-line {
   position: fixed;
-  left: 45%;
+  left: 35%;
   top: 0px;
   height: 100%;
   width: 2px;
@@ -382,7 +380,7 @@ section > ol > li > .brown:hover {
 
   // position: fixed;
   top: calc(#{$headerHeight} + #{$gap});
-  left: 41%;
+  left: 31%;
   // transform: translate(-50%, -50%);
   width: 100px;
   height: 100px;
@@ -393,7 +391,7 @@ section > ol > li > .brown:hover {
   @media screen and (min-width: 768px) and (max-width: 1200px) {
     width: 80px;
     height: 80px;
-    left: 40%;
+    left: 31%;
   }
   @include tablet() {
     width: 70px;
@@ -429,25 +427,23 @@ section > ol > li > .brown:hover {
   }
 }
 
-// .mission-footer {
-//   width: 100%;
-//   margin-bottom: 50px;
-//   @include tablet() {
-//     img {
-//       // max-height: 500px;
-//       width: 100%;
-//       margin-top: 50px;
-//     }
-//   }
-//   @include mobile() {
-//     margin-bottom: 0;
-//     img {
-//       // max-height: 362px;
-//       width: 100%;
-//       margin-top: 50px;
-//     }
-//   }
-// }
+.mission-footer {
+  width: 100%;
+  margin-bottom: 50px;
+  @include tablet() {
+    img {
+      // max-height: 500px;
+      width: 100%;
+      margin-top: 50px;
+    }
+  }
+  @include mobile() {
+    margin-bottom: 0;
+    img {
+      transform: scale(0.8);
+    }
+  }
+}
 .money_box {
   background: $neutral-0;
   border-radius: 12px;
