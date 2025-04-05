@@ -31,14 +31,14 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref, onMounted, watch } from "vue";
 import { useRoute } from "vue-router";
 import featuredData from "@/json/featured.json";
 
 const route = useRoute(); // 取得當前頁面路由
 const selectedArticles = ref([]);
 
-// 隨機選取 5 篇推薦文章
+// 隨機選取 5 篇推薦文章，並排除當前頁面文章
 const getRandomArticles = () => {
   let allArticles = [];
 
@@ -47,22 +47,32 @@ const getRandomArticles = () => {
     allArticles.push(...featuredData[line]);
   }
 
-  // 獲取當前頁面的路徑，格式化為與 JSON 中的 `category` 和 `id` 相匹配
-  const currentPath = `/journey-featured/${route.params.category}/${route.params.id}`;
+  // 獲取當前頁面的 category 和 id
+  const currentCategory = route.params.category;
+  const currentId = route.params.id;
 
   // 過濾掉當前頁面的文章
   const filteredArticles = allArticles.filter(
-    (article) => `/journey-featured/${article.category}/${article.id}` !== currentPath
+    (article) => !(article.category === currentCategory && article.id === currentId)
   );
 
   // 隨機排序並選取前 5 篇文章
   selectedArticles.value = filteredArticles
-    .sort(() => 0.5 - Math.random()) // 隨機排序
+    .sort(() => Math.random() - 0.5) // 隨機排序
     .slice(0, 5); // 取前 5 篇
 };
 
 // 初始化時執行
 onMounted(getRandomArticles);
+
+// 監聽路由變更，當使用者點擊側邊欄文章時重新載入
+watch(
+  () => route.params,
+  () => {
+    getRandomArticles(); // 重新獲取隨機 5 篇文章
+  },
+  { immediate: true, deep: true } // 深度監聽，確保 `route.params` 內的變化會觸發
+);
 </script>
 
 <style lang="scss" scoped>
