@@ -44,31 +44,31 @@ const getRandomArticles = () => {
 onMounted(getRandomArticles);
 
 // banner 圖片管理
-import banner1 from "../assets/images/sights/banner/1.jpg";
-import banner2 from "../assets/images/sights/banner/2.jpg";
-import banner3 from "../assets/images/sights/banner/3.jpeg";
+import banner1 from "../assets/images/sights/banner/1.webp";
+import banner2 from "../assets/images/sights/banner/2.webp";
+import banner3 from "../assets/images/sights/banner/3.webp";
 import banner4 from "../assets/videos/video1.mp4";
-import banner5 from "../assets/images/sights/banner/5.jpg";
-import banner6 from "../assets/images/sights/banner/6.png";
+import banner5 from "../assets/images/sights/banner/5.webp";
+import banner6 from "../assets/images/sights/banner/6.webp";
 import banner7 from "../assets/videos/video2.mp4";
-import banner8 from "../assets/images/sights/banner/8.jpg";
-import banner9 from "../assets/images/sights/banner/9.jpg";
-import banner10 from "../assets/images/sights/banner/10.jpg";
+import banner8 from "../assets/images/sights/banner/8.webp";
+import banner9 from "../assets/images/sights/banner/9.webp";
+import banner10 from "../assets/images/sights/banner/10.webp";
 import banner11 from "../assets/images/sights/banner/11.webp";
-import banner12 from "../assets/images/sights/banner/12.jpg";
-import banner13 from "../assets/images/sights/banner/13.jpg";
-import banner14 from "../assets/images/sights/banner/14.jpg";
-import banner15 from "../assets/images/sights/banner/15.jpg";
-import banner16 from "../assets/images/sights/banner/16.jpeg";
-import banner17 from "../assets/images/sights/banner/17.jpg";
+import banner12 from "../assets/images/sights/banner/12.webp";
+import banner13 from "../assets/images/sights/banner/13.webp";
+import banner14 from "../assets/images/sights/banner/14.webp";
+import banner15 from "../assets/images/sights/banner/15.webp";
+import banner16 from "../assets/images/sights/banner/16.webp";
+import banner17 from "../assets/images/sights/banner/17.webp";
 import banner18 from "../assets/images/sights/banner/18.webp";
-import banner19 from "../assets/images/sights/banner/19.jpg";
+import banner19 from "../assets/images/sights/banner/19.webp";
 import banner20 from "../assets/images/sights/banner/20.webp";
-import banner21 from "../assets/images/sights/banner/21.jpg";
+import banner21 from "../assets/images/sights/banner/21.webp";
 import banner22 from "../assets/images/sights/banner/22.webp";
-import banner23 from "../assets/images/sights/banner/23.jpg";
-import banner24 from "../assets/images/sights/banner/24.jpg";
-import banner25 from "../assets/images/sights/banner/25.jpg";
+import banner23 from "../assets/images/sights/banner/23.webp";
+import banner24 from "../assets/images/sights/banner/24.webp";
+import banner25 from "../assets/images/sights/banner/25.webp";
 // 定義 Banner block 內容（有些是文字，有些是圖片）
 const allMedia = [
   { type: "image", src: banner1 },
@@ -514,6 +514,9 @@ onBeforeUnmount(() => {
             autoplay
             loop
             muted
+            playsinline
+            disablePictureInPicture
+            @touchstart.prevent
             class="w-full h-full object-cover"
           />
         </template>
