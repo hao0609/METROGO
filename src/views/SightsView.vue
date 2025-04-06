@@ -354,10 +354,43 @@ const preventScroll = (e) => {
   }
 };
 
+// 手機板
+// 新增觸控事件處理函數
+let touchStartY = 0;
+
+const handleTouchStart = (e) => {
+  touchStartY = e.touches[0].clientY;
+};
+
+const handleTouchMove = (e) => {
+  if (currentIndex.value >= blocks.value.length) {
+    return; // 如果所有方塊已隱藏，允許正常滑動
+  }
+
+  const touchY = e.touches[0].clientY;
+  const deltaY = touchStartY - touchY;
+
+  // 模擬 wheel 事件的 deltaY
+  const simulatedEvent = {
+    deltaY: deltaY,
+    preventDefault: () => e.preventDefault(),
+    stopPropagation: () => e.stopPropagation(),
+  };
+  handleWheel(simulatedEvent);
+  e.preventDefault(); // 只在 banner 區域內阻止默認滑動
+};
+
 onMounted(() => {
   nextTick(() => {
     const bannerElement = document.querySelector(".banner");
     if (bannerElement) {
+      bannerElement.addEventListener("wheel", handleWheel, { passive: false });
+      bannerElement.addEventListener("touchmove", handleTouchMove, {
+        passive: false,
+      });
+      bannerElement.addEventListener("touchstart", handleTouchStart, {
+        passive: true,
+      });
       bannerElement.scrollIntoView({ behavior: "auto" });
       // 或者使用您已經在使用的 gsap
       gsap.to(window, {
@@ -436,6 +469,8 @@ onBeforeUnmount(() => {
   const bannerElement = document.querySelector(".banner");
   if (bannerElement) {
     bannerElement.removeEventListener("wheel", handleWheel);
+    bannerElement.removeEventListener("touchmove", handleTouchMove);
+    bannerElement.removeEventListener("touchstart", handleTouchStart);
   }
   document.body.style.overflow = "";
 });
