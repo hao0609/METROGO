@@ -30,10 +30,11 @@
     </div>
   </div> -->
 
-  <!--  loading 轉場 -->
-  <div v-if="!isLoaded" id="loading"></div>
+  <!--  loading 轉場，若要使用要在entrance-container 加上 v-else -->
 
-  <div class="entrance-container" v-else>
+  <!-- <div v-if="!isLoaded" id="loading"></div> -->
+
+  <div class="entrance-container">
     <div class="bg-container"></div>
     <div class="content">
       <div class="front_logo">
@@ -73,31 +74,31 @@ import { RouterLink } from "vue-router";
 import icon_black from "../components/icons/icon_black.vue";
 import "animate.css";
 
-import { gsap } from "gsap";
-gsap.registerPlugin(ScrambleTextPlugin);
+// import { gsap } from "gsap";
+// gsap.registerPlugin(ScrambleTextPlugin);
 
 export default {
-  data() {
-    return {
-      isLoaded: false,
-    };
-  },
-  mounted() {
-    const tl = gsap.timeline();
-    tl.to("#loading", {
-      duration: 10,
-      scrambleText: {
-        text: "在 METROGO ，每個台北捷運站都是大家的遊戲關卡。我們精心設計了每條捷運線的半日遊特殊任務，讓使用者透過拍照打卡和趣味問答，一步步重新認識這城市的獨特魅力。也提供了各線的半日遊、小編精選的美食推薦與行程，從城市文化之旅，到地方人文歷史與自然之旅、特殊景點、隱藏在民間美食或購物聖地，每條路線都會帶給大家不同的探險體驗。透過 METROGO，讓我們一起重新認識這城市的美好，將每天的通勤轉化為充滿驚喜的城市探索！",
-        chars: "upperCase",
-        revealDelay: 0.5,
-        tweenLength: false,
-      },
-    });
-    // 等動畫結束後切換畫面
-    tl.call(() => {
-      this.isLoaded = true;
-    });
-  },
+  // data() {
+  //   return {
+  //     isLoaded: false,
+  //   };
+  // },
+  // mounted() {
+  //   const tl = gsap.timeline();
+  //   tl.to("#loading", {
+  //     duration: 20,
+  //     scrambleText: {
+  //       text: "在 METROGO ，每個台北捷運站都是大家的遊戲關卡。我們精心設計了每條捷運線的半日遊特殊任務，讓使用者透過拍照打卡和趣味問答，一步步重新認識這城市的獨特魅力。",
+  //       chars: "upperCase",
+  //       revealDelay: 0.5,
+  //       tweenLength: false,
+  //     },
+  //   });
+  //   // 等動畫結束後切換畫面
+  //   tl.call(() => {
+  //     this.isLoaded = true;
+  //   });
+  // },
   components: {
     icon_black,
   },
@@ -124,9 +125,17 @@ export default {
 }
 
 /* loading text */
-#loading {
+
+/* #loading {
+  background-color: #e0c4ee;
+  color: #8c25c0;
+  overflow-x: hidden;
+  width: 100vw;
+  height: 100vh;
+  padding: 10%;
   font-size: 50px;
-  font-weight: 400;
-  font-family: Dela Gothic One;
-}
+  font-weight: bolder;
+  font-family: NotoSansTC;
+  line-height: 1.5;
+} */
 </style>

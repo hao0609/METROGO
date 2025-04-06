@@ -75,7 +75,10 @@ const router = createRouter({
     {
       path: "/sights",
       name: "景點介紹",
-      component: SightsView,
+      component: () =>
+        import(
+          /* webpackChunkName: "sights", webpackPrefetch: true */ "@/views/SightsView.vue"
+        ),
     },
     { path: "/green-line", name: "松山新店線", component: MetroGreenLineView },
     { path: "/brown-line", name: "文湖線", component: MetroBrownLineView },
