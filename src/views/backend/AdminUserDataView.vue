@@ -24,6 +24,7 @@ const router = useRouter();
 // import emitter from '../../eventbus/eventbus.js';
 import GetUserData from '../../js/view/Backend/checkUserDB_UserData.js'
 import handlePhotoReview from '../../js/view/Backend/photoReview.js';
+import defaultAvatar from '@/assets/images/login/img_userprofile_default.svg'
 
 // const emitter = inject('emitter');   // Inject `emitter`
 
@@ -78,7 +79,7 @@ const getUserData = async(userID) => {
   userData.value.specialMissionData = data.特殊任務遊戲進度;
   
   if (userData.value.avatar == "") {
-    photoURL.value = "../src/assets/images/login/img_userprofile_default.svg"
+    photoURL.value = defaultAvatar
   }else{
     photoURL.value = userData.value.avatar
   }
