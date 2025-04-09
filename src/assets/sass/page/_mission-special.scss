@@ -3,6 +3,11 @@
     @content;
   }
 }
+@mixin phone() {
+  @media screen and (max-width: 320px) {
+    @content;
+  }
+}
 @include tablet() {
   .app {
     padding: 0;
@@ -110,6 +115,7 @@ body {
       left: 0;
       z-index: 50;
     }
+
     ol {
       display: flex;
       gap: 18px;
@@ -202,6 +208,11 @@ body {
         opacity: 1;
         transform: scale(0.8);
       }
+      @include phone() {
+        transform: scale(0.6);
+        left: -30px;
+        top: 100px;
+      }
     }
   }
 
@@ -213,7 +224,10 @@ body {
     flex: 0.5;
     padding: 0px 64px;
     transition: opacity 0.3s ease;
-
+    @include phone() {
+      padding: 0px 5px 0px 90px;
+      flex: 1;
+    }
     p {
       margin: 20px 0;
     }
@@ -373,6 +387,9 @@ section > ol > li > .brown:hover {
   @include mobile() {
     left: 25%;
   }
+  @include phone() {
+    left: 10%;
+  }
 }
 
 .fixed-ball {
@@ -402,6 +419,11 @@ section > ol > li > .brown:hover {
     width: 65px;
     height: 65px;
     left: 20%;
+  }
+  @include phone() {
+    width: 40px;
+    height: 40px;
+    left: 5%;
   }
 }
 .mission-footer {
@@ -522,6 +544,10 @@ button {
   }
   @include mobile() {
     transform: scale(0.8);
+  }
+  @include phone() {
+    transform: scale(0.6);
+    bottom: -10px;
   }
 }
 .line-message2 {

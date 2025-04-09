@@ -31,8 +31,11 @@ const imgSrc = ref("");
 onMounted(async () => {
   try {
     // 請求相機串流
+    // streamRef.value = await navigator.mediaDevices.getUserMedia({
+    //   video: true,
+    // });
     streamRef.value = await navigator.mediaDevices.getUserMedia({
-      video: true,
+      video: { facingMode: { exact: "environment" } },
     });
     // 將串流綁定到 video 元素上
     if (videoRef.value) {
@@ -69,13 +72,7 @@ const takePhoto = () => {
   canvasRef.value.height = videoRef.value.videoHeight;
 
   // 擷取相機畫面並轉成 base64 圖片
-  context.drawImage(
-    videoRef.value,
-    0,
-    0,
-    canvasRef.value.width,
-    canvasRef.value.height
-  );
+  context.drawImage(videoRef.value, 0, 0, canvasRef.value.width, canvasRef.value.height);
   imgSrc.value = canvasRef.value.toDataURL("image/jpeg");
   // console.log("拍攝的圖片：", imgSrc.value);
 
