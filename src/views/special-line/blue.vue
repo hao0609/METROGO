@@ -66,7 +66,7 @@
         :mission="mission"
         :message="selectedLine?.message"
         :message2="selectedLine?.message2"
-        :checkText="selectedLine?.checkText"        
+        :checkText="selectedLine?.checkText"
         @cancel="handleModalCancel"
         @confirm="handleModalConfirm"
         @uploadSuccess="handleUploadSuccess"
@@ -85,11 +85,11 @@
             <span class="list blue">審核條件</span>
             <p class="line-message">{{ line.message }}</p>
             <!-- <p class="line-message2">{{ line.message2 }}</p> -->
-            <p>照片審核狀態：{{line.checkText}}</p>
-            <template v-if="line.checkText === '審核未通過'">（請重新上傳）</template>             
-            <template v-if="line.checkText === '未上傳'">（請上傳圖片）</template>             
-            <template v-if="line.checkText === '審核中'">（後台審核中）</template>             
-            <template v-if="line.checkText === '審核通過'">（照片已通過審核）</template> 
+            <p>照片審核狀態：{{ line.checkText }}</p>
+            <template v-if="line.checkText === '審核未通過'">（請重新上傳）</template>
+            <template v-if="line.checkText === '未上傳'">（請上傳圖片）</template>
+            <template v-if="line.checkText === '審核中'">（後台審核中）</template>
+            <template v-if="line.checkText === '審核通過'">（照片已通過審核）</template>
             <img
               v-if="line.img"
               :src="line.img"
@@ -116,7 +116,7 @@
               <div class="station-img question-icon blue blue_shadow">
                 <div class="question blue blue_shadow" @click="showRandomQuestion">
                   <div
-                    v-if="question.icon && !question.answered"
+                    v-if="question.icon && !isanswered"
                     class="question-icon"
                     v-html="question.icon"
                   ></div>
@@ -207,9 +207,10 @@ import PopupMenu from "@/components/Mission/PopupMenu.vue";
 import alert_user_login from "@/alert/alert_user_login.vue";
 import { storage } from "@/firebase/firebaseConfig.js";
 import { ref as storageRef, getDownloadURL, listAll } from "firebase/storage";
-
+import GetUserQuestionData from "../../js/view/MissionSpecail/getUser_QuestionData";
 import { getUserAllPhotoData } from "../../js/view/getUserAll_StoragePhotoData";
-import GetUserMissionSpecialData from "../../js/view/MissionSpecail/getUser_MissionSpecialData"
+import GetUserMissionSpecialData from "../../js/view/MissionSpecail/getUser_MissionSpecialData";
+// import Alert_L_Photo from "../../alert/alert_L_Photo.vue";
 
 export default {
   components: {
@@ -264,15 +265,13 @@ export default {
     const selectedQuestion = ref(null);
     const openPhotoAlert = (line) => {
       console.log(line);
-      
+
       if (line.checkText == "未上傳" || line.checkText == "審核未通過") {
-        
         selectedLine.value = line;
-      }
-      else if (line.checkText == "審核通過") {
-        alert("恭喜 ! 此照片審核已通過 !")
-      }else if (line.checkText == "審核中") {
-        alert("後台審核中")
+      } else if (line.checkText == "審核通過") {
+        alert("恭喜 ! 此照片審核已通過 !");
+      } else if (line.checkText == "審核中") {
+        alert("後台審核中");
       }
     };
     // const openQuestion = () => {
@@ -283,12 +282,22 @@ export default {
     const brownLineQuestions = ref(
       questionData.metroLines.find((line) => line.line === "板南線").questions
     );
-
     // 隨機選擇一題
-    const showRandomQuestion = () => {
-      const randomIndex = Math.floor(Math.random() * brownLineQuestions.value.length);
-      selectedQuestion.value = brownLineQuestions.value[randomIndex];
-      isQuestionVisible.value = true;
+    const showRandomQuestion = async () => {
+      const missionData = await GetUserMissionSpecialData(
+        user_status.value.uid,
+        mission.value
+      );
+      console.log("Firebase 取得的任務資料：", missionData);
+      if (missionData && missionData["問答狀態"] === true) {
+        alert("你已經回答過囉！");
+        return;
+      }
+      if (!selectedQuestion.value) {
+        const randomIndex = Math.floor(Math.random() * LineQuestions.value.length);
+        selectedQuestion.value = LineQuestions.value[randomIndex];
+      }
+      showQuestionModal.value = true;
     };
 
     const handleModalCancel = () => {
@@ -311,7 +320,7 @@ export default {
     const user_status = inject("user"); // 取得用戶狀態
 
     // 檢查用戶有沒有登入的狀態
-    const CheckUserStatus = async() => {
+    const CheckUserStatus = async () => {
       console.log(user_status.value);
 
       if (user_status.value == null) {
@@ -328,7 +337,10 @@ export default {
         console.log(user_status.value.uid);
 
         // 拿到用戶的特殊任務遊戲進度資料
-        let UserDBData = await GetUserMissionSpecialData(user_status.value.uid,mission.value)
+        let UserDBData = await GetUserMissionSpecialData(
+          user_status.value.uid,
+          mission.value
+        );
         console.log(UserDBData);
 
         // 顯示目前資料庫的狀態
@@ -336,12 +348,22 @@ export default {
         // 淡水站的審核狀態
         // console.log(lines.value[0].checkText);
         // console.log(UserDBData.淡水.照片狀態);
-        lines.value[0].checkText = UserDBData.國父紀念館.照片狀態
+        lines.value[0].checkText = UserDBData.國父紀念館.照片狀態;
         // 關渡站的審核狀態
-        lines.value[1].checkText = UserDBData.台北車站.照片狀態
+        lines.value[1].checkText = UserDBData.台北車站.照片狀態;
         // 北投站的審核狀態
-        lines.value[2].checkText = UserDBData.龍山寺.照片狀態
+        lines.value[2].checkText = UserDBData.龍山寺.照片狀態;
         updateImagePath();
+        let updatedUserQAData = await GetUserQuestionData(
+          user_status.value.uid,
+          mission.value
+        );
+        console.log("問答資料:", updatedUserQAData);
+        if (updatedUserQAData && updatedUserQAData["問答狀態"] === true) {
+          isanswered.value = true;
+        } else {
+          isanswered.value = false;
+        }
       }
     };
     // 定義正確的顯示 alert 方法
@@ -405,7 +427,7 @@ export default {
           "館內展出孫中山事蹟，周邊大草坪適合休憩，還可遠眺台北 101，信義區的百貨商場與夜生活就在附近。",
         message: "請拍攝「國父紀念館映池」",
         // img: "/src/assets/images/MissionSpecial/red_01.png",
-        checkText:"",
+        checkText: "",
         img: null,
       },
       {
@@ -414,7 +436,7 @@ export default {
         subtitle:
           "台北交通樞紐，鐵路、高鐵、捷運交會，商場、美食、書店齊聚，連通地下街，適合購物與休閒。",
         message: "請拍攝「北門」",
-        checkText:"",
+        checkText: "",
         img: null,
       },
       {
@@ -423,7 +445,7 @@ export default {
         subtitle:
           " 艋舺龍山寺香火鼎盛，是台北最古老的寺廟之一，周邊有剝皮寮老街、華西街夜市，展現濃厚的歷史與庶民文化。",
         message: "請拍攝「龍山寺」",
-        checkText:"",
+        checkText: "",
         img: null,
       },
     ]);
@@ -503,36 +525,44 @@ export default {
       }
     };
     const handleUploadSuccess = async (newValue) => {
-
       console.log(newValue);
       console.log("上傳成功，開始更新圖片");
       await updateImagePath();
-      
+
       // 準備將目前上傳圖片的 URL 跟 "審核中" 的照片狀態寫入 FireBase
-      getUserAllPhotoData(user_status.value.uid)
-      
+      getUserAllPhotoData(user_status.value.uid);
+
       // 更新目前文字的狀態為 "審核中"
 
       switch (newValue) {
-        case "國父紀念館站":       
+        case "國父紀念館站":
           lines.value[0].checkText = "審核中";
           break;
         case "台北車站":
-        lines.value[1].checkText = "審核中";
-        break;
+          lines.value[1].checkText = "審核中";
+          break;
         case "龍山寺站":
-        lines.value[2].checkText = "審核中";
-        break;
+          lines.value[2].checkText = "審核中";
+          break;
         default:
           break;
       }
     };
-    const markQuestionAsAnswered = (data) => {
-      console.log("收到 confirm 事件:", data); // 確保接收正確訊息
-      if (data.isCorrect) {
-        // 確認收到正確訊息
-        console.log("答案是正確的！");
+    const markQuestionAsAnswered = async (data) => {
+      console.log("收到 update-question-status 事件:", data);
+
+      if (!data.isCorrect) {
+        console.log("答錯，不進行更新");
+        return;
+      }
+
+      try {
+        await GetUserQuestionData(user_status.value.uid, mission.value, true);
         isanswered.value = true;
+        selectedQuestion.value.answered = true;
+        console.log("✅ 問答狀態更新完成");
+      } catch (err) {
+        console.error(" 更新 Firebase 失敗:", err.message);
       }
     };
 
@@ -765,7 +795,7 @@ export default {
       markQuestionAsAnswered,
       handleUploadSuccess,
       isanswered,
-      currentClickedStation
+      currentClickedStation,
     };
   },
 };

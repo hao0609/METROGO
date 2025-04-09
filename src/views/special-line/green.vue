@@ -85,11 +85,11 @@
             <span class="list green">審核條件</span>
             <p class="line-message">{{ line.message }}</p>
             <!-- <p class="line-message2">{{ line.message2 }}</p> -->
-            <p>照片審核狀態：{{line.checkText}}</p>
-            <template v-if="line.checkText === '審核未通過'">（請重新上傳）</template>             
-            <template v-if="line.checkText === '未上傳'">（請上傳圖片）</template>             
-            <template v-if="line.checkText === '審核中'">（後台審核中）</template>             
-            <template v-if="line.checkText === '審核通過'">（照片已通過審核）</template> 
+            <p>照片審核狀態：{{ line.checkText }}</p>
+            <template v-if="line.checkText === '審核未通過'">（請重新上傳）</template>
+            <template v-if="line.checkText === '未上傳'">（請上傳圖片）</template>
+            <template v-if="line.checkText === '審核中'">（後台審核中）</template>
+            <template v-if="line.checkText === '審核通過'">（照片已通過審核）</template>
             <img
               v-if="line.img"
               :src="line.img"
@@ -204,9 +204,9 @@ import PopupMenu from "@/components/Mission/PopupMenu.vue";
 import alert_user_login from "@/alert/alert_user_login.vue";
 import { storage } from "@/firebase/firebaseConfig.js";
 import { ref as storageRef, getDownloadURL, listAll } from "firebase/storage";
-
+import GetUserQuestionData from "../../js/view/MissionSpecail/getUser_QuestionData";
 import { getUserAllPhotoData } from "../../js/view/getUserAll_StoragePhotoData";
-import GetUserMissionSpecialData from "../../js/view/MissionSpecail/getUser_MissionSpecialData"
+import GetUserMissionSpecialData from "../../js/view/MissionSpecail/getUser_MissionSpecialData";
 
 export default {
   components: {
@@ -264,20 +264,18 @@ export default {
     const selectedQuestion = ref(null);
     const openPhotoAlert = (line) => {
       console.log(line);
-      
+
       if (line.checkText == "未上傳" || line.checkText == "審核未通過") {
-        
         selectedLine.value = line;
-      }
-      else if (line.checkText == "審核通過") {
-        alert("恭喜 ! 此照片審核已通過 !")
-      }else if (line.checkText == "審核中") {
-        alert("後台審核中")
+      } else if (line.checkText == "審核通過") {
+        alert("恭喜 ! 此照片審核已通過 !");
+      } else if (line.checkText == "審核中") {
+        alert("後台審核中");
       }
     };
 
     // 檢查用戶有沒有登入的狀態
-    const CheckUserStatus = async() => {
+    const CheckUserStatus = async () => {
       // console.log(user_status.value);s
 
       if (user_status.value == null) {
@@ -294,7 +292,10 @@ export default {
         console.log(user_status.value.uid);
 
         // 拿到用戶的特殊任務遊戲進度資料
-        let UserDBData = await GetUserMissionSpecialData(user_status.value.uid,mission.value)
+        let UserDBData = await GetUserMissionSpecialData(
+          user_status.value.uid,
+          mission.value
+        );
         console.log(UserDBData);
 
         // 顯示目前資料庫的狀態
@@ -302,13 +303,23 @@ export default {
         // 淡水站的審核狀態
         // console.log(lines.value[0].checkText);
         // console.log(UserDBData.淡水.照片狀態);
-        lines.value[0].checkText = UserDBData.中正紀念堂.照片狀態
+        lines.value[0].checkText = UserDBData.中正紀念堂.照片狀態;
         // 關渡站的審核狀態
-        lines.value[1].checkText = UserDBData.小南門.照片狀態
+        lines.value[1].checkText = UserDBData.小南門.照片狀態;
         // 北投站的審核狀態
-        lines.value[2].checkText = UserDBData.公館.照片狀態
+        lines.value[2].checkText = UserDBData.公館.照片狀態;
 
         updateImagePath();
+        let updatedUserQAData = await GetUserQuestionData(
+          user_status.value.uid,
+          mission.value
+        );
+        console.log("問答資料:", updatedUserQAData);
+        if (updatedUserQAData && updatedUserQAData["問答狀態"] === true) {
+          isanswered.value = true;
+        } else {
+          isanswered.value = false;
+        }
       }
     };
 
@@ -322,10 +333,21 @@ export default {
     );
 
     // 隨機選擇一題
-    const showRandomQuestion = () => {
-      const randomIndex = Math.floor(Math.random() * brownLineQuestions.value.length);
-      selectedQuestion.value = brownLineQuestions.value[randomIndex];
-      isQuestionVisible.value = true;
+    const showRandomQuestion = async () => {
+      const missionData = await GetUserMissionSpecialData(
+        user_status.value.uid,
+        mission.value
+      );
+      console.log("Firebase 取得的任務資料：", missionData);
+      if (missionData && missionData["問答狀態"] === true) {
+        alert("你已經回答過囉！");
+        return;
+      }
+      if (!selectedQuestion.value) {
+        const randomIndex = Math.floor(Math.random() * LineQuestions.value.length);
+        selectedQuestion.value = LineQuestions.value[randomIndex];
+      }
+      showQuestionModal.value = true;
     };
 
     const handleModalCancel = () => {
@@ -374,7 +396,7 @@ export default {
           "國家級紀念館，紀念孫中山先生，廣場壯麗，是拍照打卡與參觀藝文展覽的好去處，每日還有莊嚴的衛兵交接儀式。",
         message: "請拍攝「中正紀念堂」，包含字樣",
         // img: "/src/assets/images/MissionSpecial/red_01.png",
-        checkText:"",
+        checkText: "",
         img: null,
       },
       {
@@ -383,7 +405,7 @@ export default {
         subtitle:
           "台北府城牆遺跡與台灣博物館南門園區位於此站，充滿歷史文化氛圍，適合喜愛老建築與歷史的遊客。",
         message: "請拍攝「台北植物園」大門",
-        checkText:"",
+        checkText: "",
         img: null,
       },
       {
@@ -392,7 +414,7 @@ export default {
         subtitle:
           "台灣大學所在地，周邊有熱鬧的公館夜市，小吃選擇多，如鴨肉飯、豆花、滷味，文青書店與音樂表演空間也相當豐富。",
         message: "請拍攝「公館夜市」隨一店家",
-        checkText:"",
+        checkText: "",
         img: null,
       },
     ]);
@@ -472,37 +494,45 @@ export default {
       }
     };
     const handleUploadSuccess = async (newValue) => {
-
       console.log(newValue);
-      
+
       console.log("上傳成功，開始更新圖片");
       await updateImagePath();
-      
+
       // 準備將目前上傳圖片的 URL 跟 "審核中" 的照片狀態寫入 FireBase
-      getUserAllPhotoData(user_status.value.uid)
-      
+      getUserAllPhotoData(user_status.value.uid);
+
       // 更新目前文字的狀態為 "審核中"
 
       switch (newValue) {
-        case "中正紀念堂站":       
+        case "中正紀念堂站":
           lines.value[0].checkText = "審核中";
           break;
         case "小南門站":
-        lines.value[1].checkText = "審核中";
-        break;
+          lines.value[1].checkText = "審核中";
+          break;
         case "公館站":
-        lines.value[2].checkText = "審核中";
-        break;
+          lines.value[2].checkText = "審核中";
+          break;
         default:
           break;
       }
     };
-    const markQuestionAsAnswered = (data) => {
-      console.log("收到 confirm 事件:", data); // 確保接收正確訊息
-      if (data.isCorrect) {
-        // 確認收到正確訊息
-        console.log("答案是正確的！");
+    const markQuestionAsAnswered = async (data) => {
+      console.log("收到 update-question-status 事件:", data);
+
+      if (!data.isCorrect) {
+        console.log("答錯，不進行更新");
+        return;
+      }
+
+      try {
+        await GetUserQuestionData(user_status.value.uid, mission.value, true);
         isanswered.value = true;
+        selectedQuestion.value.answered = true;
+        console.log("✅ 問答狀態更新完成");
+      } catch (err) {
+        console.error(" 更新 Firebase 失敗:", err.message);
       }
     };
     const gap = 50;

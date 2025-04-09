@@ -85,11 +85,11 @@
             <span class="list yellow">審核條件</span>
             <p class="line-message">{{ line.message }}</p>
             <!-- <p class="line-message2">{{ line.message2 }}</p> -->
-            <p>照片審核狀態：{{line.checkText}}</p>
-            <template v-if="line.checkText === '審核未通過'">（請重新上傳）</template>             
-            <template v-if="line.checkText === '未上傳'">（請上傳圖片）</template>             
-            <template v-if="line.checkText === '審核中'">（後台審核中）</template>             
-            <template v-if="line.checkText === '審核通過'">（照片已通過審核）</template> 
+            <p>照片審核狀態：{{ line.checkText }}</p>
+            <template v-if="line.checkText === '審核未通過'">（請重新上傳）</template>
+            <template v-if="line.checkText === '未上傳'">（請上傳圖片）</template>
+            <template v-if="line.checkText === '審核中'">（後台審核中）</template>
+            <template v-if="line.checkText === '審核通過'">（照片已通過審核）</template>
 
             <img
               v-if="line.img"
@@ -209,9 +209,9 @@ import PopupMenu from "@/components/Mission/PopupMenu.vue";
 import alert_user_login from "@/alert/alert_user_login.vue";
 import { storage } from "@/firebase/firebaseConfig.js";
 import { ref as storageRef, getDownloadURL, listAll } from "firebase/storage";
-
+import GetUserQuestionData from "../../js/view/MissionSpecail/getUser_QuestionData";
 import { getUserAllPhotoData } from "../../js/view/getUserAll_StoragePhotoData";
-import GetUserMissionSpecialData from "../../js/view/MissionSpecail/getUser_MissionSpecialData"
+import GetUserMissionSpecialData from "../../js/view/MissionSpecail/getUser_MissionSpecialData";
 
 export default {
   components: {
@@ -220,7 +220,6 @@ export default {
     Navbar_V1,
     Footer,
     alert_L_Photo,
-    // AlertWebM,
     alert_L_question,
     alert_user_login,
   },
@@ -238,12 +237,11 @@ export default {
     const isModalOpen = ref(false);
     const selectedModal = ref("");
     const sectionActive = ref(false);
-    const isanswered = ref(false);
     // const PhotoAlert = ref(null); // 新增 PhotoAlert ref
     const alertPhoto = ref(null);
 
     const currentClickedStation = ref("");
-
+    const isanswered = ref(false);
     const alert_user_login_ref = ref(null);
     const openModal = (type) => {
       selectedModal.value = type;
@@ -285,7 +283,10 @@ export default {
         console.log(user_status.value.uid);
 
         // 拿到用戶的特殊任務遊戲進度資料
-        let UserDBData = await GetUserMissionSpecialData(user_status.value.uid,mission.value)
+        let UserDBData = await GetUserMissionSpecialData(
+          user_status.value.uid,
+          mission.value
+        );
         console.log(UserDBData);
 
         // 顯示目前資料庫的狀態
@@ -293,25 +294,33 @@ export default {
         // 淡水站的審核狀態
         // console.log(lines.value[0].checkText);
         // console.log(UserDBData.淡水.照片狀態);
-        lines.value[0].checkText = UserDBData.大橋頭.照片狀態
+        lines.value[0].checkText = UserDBData.大橋頭.照片狀態;
         // 關渡站的審核狀態
-        lines.value[1].checkText = UserDBData.行天宮.照片狀態
+        lines.value[1].checkText = UserDBData.行天宮.照片狀態;
         // 北投站的審核狀態
-        lines.value[2].checkText = UserDBData.東門.照片狀態
+        lines.value[2].checkText = UserDBData.東門.照片狀態;
         updateImagePath();
+        let updatedUserQAData = await GetUserQuestionData(
+          user_status.value.uid,
+          mission.value
+        );
+        console.log("問答資料:", updatedUserQAData);
+        if (updatedUserQAData && updatedUserQAData["問答狀態"] === true) {
+          isanswered.value = true;
+        } else {
+          isanswered.value = false;
+        }
       }
     };
     const openPhotoAlert = (line) => {
       console.log(line);
-      
+
       if (line.checkText == "未上傳" || line.checkText == "審核未通過") {
-        
         selectedLine.value = line;
-      }
-      else if (line.checkText == "審核通過") {
-        alert("恭喜 ! 此照片審核已通過 !")
-      }else if (line.checkText == "審核中") {
-        alert("後台審核中")
+      } else if (line.checkText == "審核通過") {
+        alert("恭喜 ! 此照片審核已通過 !");
+      } else if (line.checkText == "審核中") {
+        alert("後台審核中");
       }
     };
     // const openQuestion = () => {
@@ -324,10 +333,21 @@ export default {
     );
 
     // 隨機選擇一題
-    const showRandomQuestion = () => {
-      const randomIndex = Math.floor(Math.random() * brownLineQuestions.value.length);
-      selectedQuestion.value = brownLineQuestions.value[randomIndex];
-      isQuestionVisible.value = true;
+    const showRandomQuestion = async () => {
+      const missionData = await GetUserMissionSpecialData(
+        user_status.value.uid,
+        mission.value
+      );
+      console.log("Firebase 取得的任務資料：", missionData);
+      if (missionData && missionData["問答狀態"] === true) {
+        alert("你已經回答過囉！");
+        return;
+      }
+      if (!selectedQuestion.value) {
+        const randomIndex = Math.floor(Math.random() * LineQuestions.value.length);
+        selectedQuestion.value = LineQuestions.value[randomIndex];
+      }
+      showQuestionModal.value = true;
     };
 
     const handleModalCancel = () => {
@@ -340,10 +360,7 @@ export default {
     const handleModalConfirm = () => {
       selectedLine.value = false;
     };
-    const handleQuestionConfirm = (data) => {
-      if (data.isCorrect) {
-        markQuestionAsAnswered(data);
-      }
+    const handleQuestionConfirm = () => {
       isQuestionVisible.value = false;
     };
     const stations = ref([
@@ -375,7 +392,7 @@ export default {
           "鄰近大稻埕與延三夜市，保留老台北風情，夜市內有許多經典小吃，如刈包、魯肉飯、燒餅油條，是老台北人最愛的美食地。",
         message: "請拍攝「迪化街」任一店家.",
         // img: "/src/assets/images/MissionSpecial/red_01.png",
-        checkText:"",
+        checkText: "",
         img: null,
       },
       {
@@ -384,7 +401,7 @@ export default {
         subtitle:
           "全台知名財神廟，香火鼎盛，不收香油錢，提供免費祈福與收驚服務，信徒絡繹不絕，是求財與求事業順利的熱門廟宇。",
         message: "請拍攝「行天宮」正面",
-        checkText:"",
+        checkText: "",
         img: null,
       },
       {
@@ -393,7 +410,7 @@ export default {
         subtitle:
           " 永康街商圈美食林立，鼎泰豐小籠包、芒果冰、牛肉麵等名店雲集，巷弄內還有文青咖啡館與特色小店，適合美食與購物探索。",
         message: "請拍攝「永康商圈」任一店家",
-        checkText:"",
+        checkText: "",
         img: null,
       },
     ]);
@@ -471,36 +488,45 @@ export default {
         }
       }
     };
-    const handleUploadSuccess = async (newValue ) => {
+    const handleUploadSuccess = async (newValue) => {
       console.log(newValue);
       console.log("上傳成功，開始更新圖片");
       await updateImagePath();
-      
+
       // 準備將目前上傳圖片的 URL 跟 "審核中" 的照片狀態寫入 FireBase
-      getUserAllPhotoData(user_status.value.uid)
-      
+      getUserAllPhotoData(user_status.value.uid);
+
       // 更新目前文字的狀態為 "審核中"
 
       switch (newValue) {
-        case "大橋頭站":       
+        case "大橋頭站":
           lines.value[0].checkText = "審核中";
           break;
         case "行天宮站":
-        lines.value[1].checkText = "審核中";
-        break;
+          lines.value[1].checkText = "審核中";
+          break;
         case "東門站":
-        lines.value[2].checkText = "審核中";
-        break;
+          lines.value[2].checkText = "審核中";
+          break;
         default:
           break;
       }
     };
-    const markQuestionAsAnswered = (data) => {
-      console.log("收到 confirm 事件:", data); // 確保接收正確訊息
-      if (data.isCorrect) {
-        // 確認收到正確訊息
-        console.log("答案是正確的！");
+    const markQuestionAsAnswered = async (data) => {
+      console.log("收到 update-question-status 事件:", data);
+
+      if (!data.isCorrect) {
+        console.log("答錯，不進行更新");
+        return;
+      }
+
+      try {
+        await GetUserQuestionData(user_status.value.uid, mission.value, true);
         isanswered.value = true;
+        selectedQuestion.value.answered = true;
+        console.log("✅ 問答狀態更新完成");
+      } catch (err) {
+        console.error(" 更新 Firebase 失敗:", err.message);
       }
     };
     const gap = 50;

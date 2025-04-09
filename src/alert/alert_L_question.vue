@@ -89,27 +89,33 @@ export default {
 
     handleCancel() {
       this.$emit("cancel");
-      this.reset();
+      // this.reset();
     },
     // 可在送出時回傳選擇的答案
     selectAnswer(answerId) {
       this.selectedAnswer = answerId;
+      this.question.selectedAnswer = answerId;
       // console.log("選擇的答案 id:", answerId);
     },
     closeModalHandler() {
       // 關閉結果彈窗，並同時關閉問題彈窗（例如發送 cancel 事件給父組件）
       this.showResult = false;
       this.$emit("cancel"); // 可通知父組件關閉整個問答流程
-      this.reset();
+      // this.reset();
     },
     retryHandler() {
       this.showResult = false;
-      this.reset();
+      // this.reset();
     },
-    reset() {
-      this.selectedAnswer = null; // 清空已選擇的答案
-      this.isCorrect = false;
-    },
+    // reset() {
+    //   // this.selectedAnswer = null; // 清空已選擇的答案
+    //   this.isCorrect = false;
+    // },
+  },
+  created() {
+    if (this.question.selectedAnswer) {
+      this.selectedAnswer = this.question.selectedAnswer;
+    }
   },
 };
 </script>

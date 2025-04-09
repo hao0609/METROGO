@@ -125,7 +125,8 @@
                
                 <alert_L_question
                   ref="alertQuestion"
-                  v-if="selectedQuestion && !selectedQuestion.answered"
+                  v-if="showQuestionModal"
+                    :visible="showQuestionModal"
                   :question="selectedQuestion"
                   @cancel="handleQuestionCancel"
                   @confirm="handleQuestionConfirm"
@@ -205,7 +206,7 @@ import { ref as storageRef, getDownloadURL,listAll } from 'firebase/storage';
 
 import { getUserAllPhotoData } from "../../js/view/getUserAll_StoragePhotoData";
 import GetUserMissionSpecialData from "../../js/view/MissionSpecail/getUser_MissionSpecialData"
-
+import GetUserQuestionData from"../../js/view/MissionSpecail/getUser_QuestionData"
 import alert_user_login from "@/alert/alert_user_login.vue";
 
 
@@ -234,10 +235,8 @@ export default {
     const isModalOpen = ref(false);
     const selectedModal = ref("");
     const sectionActive = ref(false);
-    // const alertPhoto = ref(null);
-
+    const showQuestionModal = ref(false)
     const currentClickedStation = ref("");
-
 const isanswered=ref(false);
     const alert_user_login_ref = ref(null);
 
@@ -265,6 +264,8 @@ const isanswered=ref(false);
     // 控制可不可跳出上傳圖片的彈窗 ( 應用於照片審核中 )，預設可以
     const CanShowPhotoAlert = ref(true);
 
+    // const selectedQuestion = ref(null);
+    // 選擇一筆題目（例如第一筆），並保留該題目資料
     const selectedQuestion = ref(null);
     const openPhotoAlert = (line) => {
       if (line.checkText == "未上傳" || line.checkText == "審核未通過") {
@@ -284,31 +285,42 @@ const isanswered=ref(false);
     // };
 
 
-
-
- // 
- 
-    // 取得棕線的問題列表
+    // 取得問題列表
     const brownLineQuestions = ref(
       questionData.metroLines.find((line) => line.line === "淡水信義線").questions
     );
-
+    const LineQuestions = ref(brownLineQuestions.value);
 
     // 隨機選擇一題
-    const showRandomQuestion = () => {
-      const randomIndex = Math.floor(Math.random() * brownLineQuestions.value.length);
-      selectedQuestion.value = brownLineQuestions.value[randomIndex];
-      // isQuestionVisible.value = true;
+    const showRandomQuestion = async() => {
+      const missionData = await GetUserMissionSpecialData(user_status.value.uid, mission.value);
+  console.log("Firebase 取得的任務資料：", missionData);
+  if (missionData && missionData["問答狀態"] === true) {
+    alert("你已經回答過囉！");
+    return;
+  }
+      if (!selectedQuestion.value){
+      const randomIndex = Math.floor(Math.random() * LineQuestions.value.length);
+      selectedQuestion.value = LineQuestions.value[randomIndex];
     };
+      showQuestionModal.value = true
+  }
+//   function openQuestionModal() {
+//   // ✅ 如果沒有已選的題目，才選一題
+//   if (!selectedQuestion.value) {
+//     showRandomQuestion();
+//   } else {
+//     showQuestionModal.value = true;
+//   }
+// }
 
     const handleModalCancel = () => {
-      // isVisible.value = false;
       selectedLine.value = null;
     };
     const handleQuestionCancel = () => {
-      // isQuestionVisible.value = false;
-      selectedQuestion.value = null;
+      showQuestionModal.value = false
     };
+
     const handleUploadSuccess = async (newValue) => {
 
       console.log(newValue);
@@ -342,14 +354,16 @@ const isanswered=ref(false);
 
   };
     const handleModalConfirm = () => {
-      // isVisible.value = false;
-      selectedLine.value = null;
+      // selectedLine.value = null;
+      showQuestionModal.value = false
     };
-    const handleQuestionConfirm = (data) => {
+    const handleQuestionConfirm = async (data) => {
       if (data.isCorrect) {
+
     markQuestionAsAnswered(data);
+
   }
-  // isQuestionVisible.value = false;
+
   selectedQuestion.value = null;
 };
     const user_status = inject("user"); // 取得用戶狀態
@@ -373,7 +387,13 @@ const isanswered=ref(false);
         // 拿到用戶的特殊任務遊戲進度資料
         let UserDBData = await GetUserMissionSpecialData(user_status.value.uid,mission.value)
         console.log(UserDBData);
-
+        let updatedUserQAData = await GetUserQuestionData(user_status.value.uid,mission.value)
+        console.log("問答資料:", updatedUserQAData);
+        if (updatedUserQAData && updatedUserQAData["問答狀態"] === true) {
+    isanswered.value = true;
+  } else {
+    isanswered.value = false;
+  }
         // 顯示目前資料庫的狀態
 
         // 淡水站的審核狀態
@@ -559,24 +579,34 @@ const updateImagePath = async () => {
 };
 
 
-const markQuestionAsAnswered = (data) => {
-  console.log("收到 confirm 事件:", data); // 確保接收正確訊息
-      if (data.isCorrect) {
-        // 確認收到正確訊息
-        console.log("答案是正確的！");
-        isanswered.value=true;
-        // this.question.answered = true; // 將問題標記為已回答
+const markQuestionAsAnswered = async (data) => {
+      console.log("收到 update-question-status 事件:", data);
+
+      if (!data.isCorrect) {
+        console.log("答錯，不進行更新");
+        return;
       }
-  // const question = questions.value.find((q) => q.id === questionId);
-  // if (question) {
-  //   console.log("更新前 answered 狀態:", question.answered);
-  //   question.answered = true;
-  //   console.log("更新後 answered 狀態:", question.answered);
-  //   activeQuestionId.value = questionId;
-  // } else {
-  //   console.warn("找不到 ID 為", questionId, "的問題");
-  // }
-};
+ // 更新 Firebase 中的問答狀態
+ GetUserQuestionData(user_status.value.uid, mission.value, true)
+    .then(() => {
+      isanswered.value = true
+      if (selectedQuestion.value) {
+        selectedQuestion.value.answered = true
+      }
+      console.log("✅ 問答狀態更新完成")
+    })
+    .catch((err) => {
+      console.error("更新 Firebase 失敗:", err.message)
+    })
+      // try {
+      //   await GetUserQuestionData(user_status.value.uid, mission.value, true);
+      //   isanswered.value = true;
+      //   selectedQuestion.value.answered = true;
+      //   console.log("✅ 問答狀態更新完成");
+      // } catch (err) {
+      //   console.error(" 更新 Firebase 失敗:", err.message);
+      // }
+    };
     const activeStationId = ref(null);
     const activeQuestionId = ref(null);
 
@@ -748,6 +778,7 @@ const markQuestionAsAnswered = (data) => {
             CheckUserStatus();
           }, 3000); // 等 3 秒再執行登入判斷，避免執行其他彈窗時間重疊到
         }
+       
       });
 
 
@@ -816,15 +847,13 @@ const markQuestionAsAnswered = (data) => {
       GetUserId,
       mission,
       checkIcon,
+      
       getDownloadURL,
       storageRef,
       imageUrl,
       isanswered,
-      // imagePath,
-      // selectedIndex,
-      // selectedLineTitle,
-      // lineTitle,
-
+      showQuestionModal,
+      // openQuestionModal,
     };
   },
 };
