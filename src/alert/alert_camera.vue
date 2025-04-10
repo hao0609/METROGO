@@ -31,11 +31,8 @@ const imgSrc = ref("");
 onMounted(async () => {
   try {
     // 請求相機串流
-    // streamRef.value = await navigator.mediaDevices.getUserMedia({
-    //   video: true,
-    // });
     streamRef.value = await navigator.mediaDevices.getUserMedia({
-      video: { facingMode: { exact: "environment" } },
+      video: true,
     });
     // 將串流綁定到 video 元素上
     if (videoRef.value) {
