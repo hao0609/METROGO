@@ -231,3 +231,9 @@
     max-width: 350px;
   }
 }
+.flip-btn {
+  display: none;
+  @include mobile() {
+    display: block;
+  }
+}

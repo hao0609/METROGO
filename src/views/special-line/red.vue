@@ -299,10 +299,8 @@ const isanswered=ref(false);
     alert("你已經回答過囉！");
     return;
   }
-      if (!selectedQuestion.value){
-      const randomIndex = Math.floor(Math.random() * LineQuestions.value.length);
-      selectedQuestion.value = LineQuestions.value[randomIndex];
-    };
+  const idx = Math.floor(Math.random() * brownLineQuestions.value.length);
+  selectedQuestion.value = brownLineQuestions.value[idx];
       showQuestionModal.value = true
   }
 //   function openQuestionModal() {

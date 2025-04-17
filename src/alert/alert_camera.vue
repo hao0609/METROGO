@@ -15,6 +15,7 @@
       <div class="modal-footer">
         <div class="btn-group">
           <button @click="takePhoto" class="btn small capture-btn">拍照</button>
+          <button @click="switchCamera" class="btn small flip-btn">翻轉鏡頭</button>
         </div>
       </div>
     </div>
@@ -28,22 +29,42 @@ const isCameraOpen = ref(false);
 const streamRef = ref(null); // 存取相機串流
 const videoRef = ref(null); // 影片元素
 const imgSrc = ref("");
-onMounted(async () => {
+const currentFacingMode = ref("user");
+
+// 初始化相機
+const initCamera = async () => {
   try {
-    // 請求相機串流
     streamRef.value = await navigator.mediaDevices.getUserMedia({
-      video: true,
+      video: { facingMode: currentFacingMode.value },
     });
-    // 將串流綁定到 video 元素上
     if (videoRef.value) {
       videoRef.value.srcObject = streamRef.value;
     }
     isCameraOpen.value = true;
-    // console.log("相機已開啟");
   } catch (error) {
     console.error("開啟相機失敗:", error);
   }
+};
+
+onMounted(async () => {
+  await initCamera();
 });
+// onMounted(async () => {
+//   try {
+//     // 請求相機串流
+//     streamRef.value = await navigator.mediaDevices.getUserMedia({
+//       video: true,
+//     });
+//     // 將串流綁定到 video 元素上
+//     if (videoRef.value) {
+//       videoRef.value.srcObject = streamRef.value;
+//     }
+//     isCameraOpen.value = true;
+//     // console.log("相機已開啟");
+//   } catch (error) {
+//     console.error("開啟相機失敗:", error);
+//   }
+// });
 // 組件卸載前停止串流
 onBeforeUnmount(() => {
   if (streamRef.value) {
@@ -78,6 +99,29 @@ const takePhoto = () => {
 
   // 自動關閉彈窗
   closeCamera();
+};
+
+// 切換相機（前/後鏡頭）
+const switchCamera = async () => {
+  // 停止現有的串流
+  if (streamRef.value) {
+    streamRef.value.getTracks().forEach((track) => track.stop());
+  }
+
+  // 切換鏡頭：如果原本為 "user" 則切換為 "environment"，反之亦然
+  currentFacingMode.value = currentFacingMode.value === "user" ? "environment" : "user";
+
+  try {
+    // 依照新的 facingMode 重新獲取串流
+    streamRef.value = await navigator.mediaDevices.getUserMedia({
+      video: { facingMode: currentFacingMode.value },
+    });
+    if (videoRef.value) {
+      videoRef.value.srcObject = streamRef.value;
+    }
+  } catch (error) {
+    console.error("切換相機失敗:", error);
+  }
 };
 const emit = defineEmits(["photoCaptured", "cancel"]);
 

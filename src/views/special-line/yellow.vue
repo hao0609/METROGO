@@ -239,6 +239,17 @@ export default {
     const sectionActive = ref(false);
     // const PhotoAlert = ref(null); // 新增 PhotoAlert ref
     const alertPhoto = ref(null);
+    const isVisible = ref(false); // 在父組件中定義 isVisible
+    const isQuestionVisible = ref(false);
+
+    const selectedLine = ref(null);
+    const selectedQuestion = ref(null);
+    // const showQuestionModal = ref(false);
+    // 取得棕線的問題列表
+    const brownLineQuestions = ref(
+      questionData.metroLines.find((line) => line.line === "中和新蘆線").questions
+    );
+    const user_status = inject("user"); // 取得用戶狀態
 
     const currentClickedStation = ref("");
     const isanswered = ref(false);
@@ -257,13 +268,6 @@ export default {
     const toggleSection = () => {
       sectionActive.value = !sectionActive.value;
     };
-
-    const isVisible = ref(false); // 在父組件中定義 isVisible
-    const isQuestionVisible = ref(false);
-
-    const selectedLine = ref(null);
-    const selectedQuestion = ref(null);
-    const user_status = inject("user"); // 取得用戶狀態
 
     // 檢查用戶有沒有登入的狀態
     const CheckUserStatus = async () => {
@@ -327,10 +331,6 @@ export default {
     //   // selectedQuestion.value = questions;
     //   isQuestionVisible.value = true;
     // };
-    // 取得棕線的問題列表
-    const brownLineQuestions = ref(
-      questionData.metroLines.find((line) => line.line === "中和新蘆線").questions
-    );
 
     // 隨機選擇一題
     const showRandomQuestion = async () => {
@@ -343,11 +343,14 @@ export default {
         alert("你已經回答過囉！");
         return;
       }
-      if (!selectedQuestion.value) {
-        const randomIndex = Math.floor(Math.random() * LineQuestions.value.length);
-        selectedQuestion.value = LineQuestions.value[randomIndex];
-      }
-      showQuestionModal.value = true;
+      // if (!selectedQuestion.value) {
+      //   const randomIndex = Math.floor(Math.random() * brownLineQuestions.value.length);
+      //   selectedQuestion.value = brownLineQuestions.value[randomIndex];
+      // }
+      // 每次都重抽
+      const idx = Math.floor(Math.random() * brownLineQuestions.value.length);
+      selectedQuestion.value = brownLineQuestions.value[idx];
+      isQuestionVisible.value = true;
     };
 
     const handleModalCancel = () => {

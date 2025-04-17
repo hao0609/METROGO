@@ -75,9 +75,8 @@ const props = defineProps({
   checkText: { type: String, default: "" },
 });
 
-
 // 告訴父元件哪個站點的照片調整為審核中
-const currentSation = ref('');
+const currentSation = ref("");
 
 // dropzone
 const dropzone = ref(null);
@@ -159,16 +158,22 @@ const uploadPhoto = async () => {
 
     console.log("圖片上傳成功,URL:", downloadURL.value);
 
-    // 照片上傳成功後，把用戶會員資料表的圖片 URL 跟 審核狀態變更為 "審核中" 
+    // 照片上傳成功後，把用戶會員資料表的圖片 URL 跟 審核狀態變更為 "審核中"
 
-    updateUser_UploadPhotoData(GetUserId,mission,lineTitle,downloadURL.value,formattedDateTime)
-    
+    updateUser_UploadPhotoData(
+      GetUserId,
+      mission,
+      lineTitle,
+      downloadURL.value,
+      formattedDateTime
+    );
+
     currentSation.value = props.lineTitle;
 
     isCorrect.value = true;
     showResult.value = true; // 顯示上傳結果彈窗
     // 將上傳記錄直接存入以使用者 ID 為文件的 Firestore 文件中
-    
+
     // const userDocRef = doc(database, "users", props.GetUserId);
     // await setDoc(
     //   userDocRef,
@@ -194,8 +199,8 @@ const uploadPhoto = async () => {
     // console.log("Firestore 紀錄成功，文件 ID:", docRef.id);
     // console.log("Firestore 更新成功");
     error.value = "";
-    
-    emit("uploadSuccess",  currentSation.value);
+
+    emit("uploadSuccess", currentSation.value);
     // 更新 Vue 狀態
     downloadURL.value = downloadURL.value;
     isCorrect.value = true;

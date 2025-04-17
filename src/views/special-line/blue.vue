@@ -293,11 +293,9 @@ export default {
         alert("你已經回答過囉！");
         return;
       }
-      if (!selectedQuestion.value) {
-        const randomIndex = Math.floor(Math.random() * LineQuestions.value.length);
-        selectedQuestion.value = LineQuestions.value[randomIndex];
-      }
-      showQuestionModal.value = true;
+      const idx = Math.floor(Math.random() * brownLineQuestions.value.length);
+      selectedQuestion.value = brownLineQuestions.value[idx];
+      isQuestionVisible.value = true;
     };
 
     const handleModalCancel = () => {

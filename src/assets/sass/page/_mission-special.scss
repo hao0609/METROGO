@@ -546,10 +546,10 @@ button {
     bottom: calc(50% - 100px); // 當到達 footer 時，移動到 footer 頂部
   }
   @include mobile() {
-    transform: scale(0.8);
+    transform: scale(0.7);
   }
   @include phone() {
-    transform: scale(0.6);
+    transform: scale(0.5);
     bottom: -10px;
   }
 }
