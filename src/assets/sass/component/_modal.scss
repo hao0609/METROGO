@@ -3,6 +3,11 @@
     @content;
   }
 }
+@mixin phone() {
+  @media screen and (max-width: 320px) {
+    @content;
+  }
+}
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -14,11 +19,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 100;
+  z-index: 999;
   cursor: default;
 }
 
 .modal-content {
+  position: relative;
+  z-index: 999;
   max-height: 90vh;
   overflow-y: auto;
   background-color: $neutral-0;
@@ -144,6 +151,13 @@
   .btn-group {
     display: flex;
     gap: 8px;
+    &.qa {
+      display: flex;
+      @include phone() {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
   }
   display: flex;
   justify-content: center;
@@ -171,10 +185,17 @@
   }
   .btn {
     width: 130px;
+    &.qa {
+      width: 130px;
+      @include mobile() {
+        width: 180px;
+      }
+    }
   }
   .submit-btn {
     width: 260px;
   }
+
   .modal-footer {
     margin-top: 24px;
   }

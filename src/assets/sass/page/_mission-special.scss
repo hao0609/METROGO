@@ -102,25 +102,25 @@ body {
 
   section {
     flex: 0.4;
-
+    z-index: 10;
     justify-content: flex-start;
     align-content: center;
     text-align: center;
     top: calc(#{$headerHeight} + #{$gap});
     left: 8%;
-    // position: fixed;
-    // height: 394px;
     position: relative;
     @include tablet() {
       left: 0;
-      z-index: 10;
     }
-
+    &.section--active {
+      z-index: 9999; // ✅ 當 active 才加 z-index
+    }
     ol {
       display: flex;
       gap: 18px;
       flex-direction: column;
       transform: translateX(0);
+      z-index: 1000;
 
       @include tablet() {
         transform: translateX(-120%);
@@ -129,6 +129,18 @@ body {
         border: 1px solid #00000039;
         padding: 20px;
         border-radius: 12px;
+      }
+    }
+    ol.section_active {
+      transition: all 0.3s ease;
+      transform: translateX(5%);
+
+      @include tablet() {
+        position: absolute;
+        z-index: 9999; // ✅ 這時才浮上來
+        background: rgba(255, 255, 255, 0.95);
+        transform: translateX(0);
+        pointer-events: auto;
       }
     }
     .title1 {
@@ -187,10 +199,6 @@ body {
       display: none;
     }
 
-    .section_active {
-      transition: all 0.3s ease;
-      transform: translateX(5%);
-    }
     .section-button {
       background-color: $neutral-700;
       position: relative;
@@ -200,8 +208,6 @@ body {
       border-radius: 12px;
       margin-bottom: 20px;
       // transform: translateY(0);
-
-      z-index: 30;
       opacity: 0;
 
       @include tablet() {
@@ -211,7 +217,7 @@ body {
       @include phone() {
         transform: scale(0.6);
         left: -30px;
-        top: 100px;
+        top: 40px;
       }
     }
   }
@@ -266,6 +272,7 @@ body {
       align-items: center;
       justify-content: center;
       text-align: center;
+      position: relative;
       // pointer-events: none;
       .question-text {
         margin-top: 10px;
@@ -278,6 +285,7 @@ body {
     .lock-icon {
       width: 120px;
       height: 120px;
+      position: relative;
     }
 
     .lock-text {

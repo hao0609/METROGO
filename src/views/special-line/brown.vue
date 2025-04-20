@@ -16,7 +16,7 @@
     <AlertWebM ref="PhotoAlert" :alertInfo="alertInfo" /> -->
     <!-- 彈窗引入測試 -->
     <div class="mission-content">
-      <section ref="section">
+      <section ref="section" :class="{ 'section--active': sectionActive }">
         <button class="section-button" @click="toggleSection">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -164,7 +164,7 @@
             </div>
           </div> -->
     </div>
-    <div class="to-top" @click="toTop" v-show="showToTop">
+    <div class="to-top" @click="toTop" v-show="showToTop && !isQuestionVisible">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="72"

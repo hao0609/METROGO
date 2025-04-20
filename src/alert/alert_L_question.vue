@@ -2,6 +2,9 @@
   <div class="modal-overlay" v-if="!showResult" @click.stop>
     <div class="modal-content" @click.stop>
       <!-- 點擊關閉按鈕觸發 cancel 事件 -->
+      <button class="close-btn" @click="handleCancel">
+        <span>&#10005;</span>
+      </button>
       <div class="modal-body">
         <h2>問答</h2>
         <div class="question-container">
@@ -30,8 +33,8 @@
         </div>
       </div>
       <div class="modal-footer">
-        <div class="btn-group">
-          <button class="btn small" @click="handleCancel">關閉</button>
+        <div class="btn-group qa">
+          <button class="btn small qa" @click="handleCancel">關閉</button>
           <button
             class="submit-btn small"
             @click="handleConfirm"
